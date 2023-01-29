@@ -3,5 +3,5 @@
 
 JNIEXPORT jint Java_jolt_TestNatives_addTen(JNIEnv *env, jobject obj, jint x)
 {
-    return x + 15;
+    return x + 10;
 }
