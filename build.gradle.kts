@@ -25,12 +25,13 @@ library {
 
         // include JNI
         val javaInclude = "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
-        val osFamily = targetPlatform.targetMachine.operatingSystemFamily
         compileTask.includes(javaInclude)
+        val os = targetPlatform.targetMachine.operatingSystemFamily
         when {
-            osFamily.isLinux -> compileTask.includes("$javaInclude/linux")
-            osFamily.isWindows -> compileTask.includes("$javaInclude/win32")
-            osFamily.isMacOs -> compileTask.includes("$javaInclude/darwin")
+            os.isLinux -> compileTask.includes("$javaInclude/linux")
+            os.isWindows -> compileTask.includes("$javaInclude/win32")
+            os.isMacOs -> compileTask.includes("$javaInclude/darwin")
+            else -> throw IllegalStateException("Unsupported OS $os")
         }
 
         // include Jolt
@@ -66,6 +67,13 @@ tasks {
 
             doLast {
                 // TODO modify build script to add -fPIC
+                // append:
+                /*
+                # Jolt-JNI
+                if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR MINGW OR EMSCRIPTEN)
+	                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+	            endif()
+                 */
 
                 exec {
                     workingDir = File(outputDir)
@@ -86,7 +94,11 @@ tasks {
     }
 
     withType<LinkSharedLibrary> {
-        // todo
-        libs.from("$rootDir/JoltPhysics/Build/Linux_Debug/libJolt.a")
+        val os = org.gradle.internal.os.OperatingSystem.current()
+        when {
+            // TODO different build types
+            os.isLinux -> libs.from("$rootDir/JoltPhysics/Build/Linux_${JoltBuildType.Default.key}/libJolt.a")
+            else -> throw IllegalStateException("Unsupported OS $os")
+        }
     }
 }
