@@ -1,5 +1,3 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
 pluginManagement {
     plugins {
         kotlin("jvm") version "1.8.0"
@@ -10,7 +8,8 @@ pluginManagement {
 rootProject.name = "jolt-jni"
 
 listOf(
-    "natives"
+    "natives-linux",
+    "test"
 ).forEach {
     val name = "${rootProject.name}-$it"
     include(name)

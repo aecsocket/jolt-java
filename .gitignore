@@ -128,3 +128,8 @@ buildNumber.properties
 run/
 build
 .gradle
+
+# Built binaries
+**/resources/jolt/*.so
+**/resources/jolt/*.dll
+**/resources/jolt/*.dylib
