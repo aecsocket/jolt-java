@@ -14,14 +14,16 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(11))
 }
 
+val projBindings = project(":jolt-jni-bindings")
+
 tasks {
     jar {
         val jarTask = this
-        rootProject.tasks.withType<LinkSharedLibrary> {
+        projBindings.tasks.withType<LinkSharedLibrary> {
             jarTask.mustRunAfter(this)
         }
 
-        from("${rootProject.buildDir}/lib/main/debug/libjolt-jni.so") {
+        from("${projBindings.buildDir}/lib/main/debug/libjolt-jni-bindings.so") {
             into("jolt/")
         }
     }

@@ -8,6 +8,7 @@ pluginManagement {
 rootProject.name = "jolt-jni"
 
 listOf(
+    "bindings",
     "natives-linux",
     "test"
 ).forEach {

@@ -9,10 +9,18 @@ extern "C" {
 #endif
 /*
  * Class:     jolt_JoltEnvironment
- * Method:    registerDefaultAllocator
+ * Method:    _registerDefaultAllocator
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_jolt_JoltEnvironment_registerDefaultAllocator
+JNIEXPORT void JNICALL Java_jolt_JoltEnvironment__1registerDefaultAllocator
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     jolt_JoltEnvironment
+ * Method:    _registerTypes
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_jolt_JoltEnvironment__1registerTypes
   (JNIEnv *, jclass);
 
 #ifdef __cplusplus

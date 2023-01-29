@@ -3,9 +3,13 @@ package jolt;
 public final class JoltEnvironment {
     private JoltEnvironment() {}
 
-    static {
-        JoltNativeLoader.load();
+    public static void registerDefaultAllocator() {
+        _registerDefaultAllocator();
     }
+    private static native void _registerDefaultAllocator();
 
-    public static native void registerDefaultAllocator();
+    public static void registerTypes() {
+        _registerTypes();
+    }
+    private static native void _registerTypes();
 }

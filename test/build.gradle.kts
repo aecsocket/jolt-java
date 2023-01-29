@@ -19,5 +19,6 @@ kotlin {
 tasks {
     test {
         useJUnitPlatform()
+        dependsOn(rootProject.tasks.assemble)
     }
 }
