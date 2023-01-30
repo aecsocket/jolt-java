@@ -66,15 +66,15 @@ tasks {
 
     val nativesWindows = register<Exec>("generateNativesWindows") {
         group = "natives"
-        val buildDir = "$rootDir/JoltPhysics/Build"
-        val outputDir = "$buildDir/MinGW_${buildType.key}"
+        val buildDir = "$rootDir\\JoltPhysics\\Build"
+        val outputDir = "$buildDir\\MinGW_${buildType.key}"
 
         doFirst {
             delete(outputDir)
         }
 
         workingDir = File(buildDir)
-        commandLine = listOf("$buildDir/cmake_windows_mingw.sh", buildType.key)
+        commandLine = listOf("$buildDir\\cmake_windows_mingw.sh", buildType.key)
 
         doLast {
             exec {
@@ -84,7 +84,7 @@ tasks {
 
             exec {
                 workingDir = File(outputDir)
-                commandLine = listOf("$buildDir/UnitTests.exe")
+                commandLine = listOf("$buildDir\\UnitTests.exe")
             }
         }
     }
