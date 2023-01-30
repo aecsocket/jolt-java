@@ -30,7 +30,7 @@ library {
 tasks {
     val makeWorkers = minOf(32, Runtime.getRuntime().availableProcessors())
 
-    register<Exec>("generateNatives") {
+    register<Exec>("generateNativesLinux") {
         group = "natives"
         val buildDir = "$rootDir/JoltPhysics/Build"
         val outputDir = "$buildDir/Linux_${buildType.key}"
@@ -60,6 +60,31 @@ tasks {
             exec {
                 workingDir = File(outputDir)
                 commandLine = listOf("$outputDir/UnitTests")
+            }
+        }
+    }
+
+    register<Exec>("generateNativesWindows") {
+        group = "natives"
+        val buildDir = "$rootDir/JoltPhysics/Build"
+        val outputDir = "$buildDir/MinGW_${buildType.key}"
+
+        doFirst {
+            delete(outputDir)
+        }
+
+        workingDir = File(buildDir)
+        commandLine = listOf("$buildDir/cmake_windows_mingw.sh", buildType.key)
+
+        doLast {
+            exec {
+                workingDir = File(outputDir)
+                commandLine = listOf("cmake", "--build", "MinGW_Debug")
+            }
+
+            exec {
+                workingDir = File(outputDir)
+                commandLine = listOf("$buildDir/UnitTests.exe")
             }
         }
     }
