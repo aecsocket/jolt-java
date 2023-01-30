@@ -2,6 +2,9 @@ plugins {
     id("cpp-library")
 }
 
+val buildType = ext.get(BUILD_TYPE) as JoltBuildType
+val flavor = ext.get(FLAVOR) as JoltFlavor
+
 library {
     binaries.configureEach {
         val compileTask = compileTask.get()
@@ -26,52 +29,47 @@ library {
 
 tasks {
     val makeWorkers = minOf(32, Runtime.getRuntime().availableProcessors())
-    JoltBuildType.values().forEach { buildType ->
-        register<Exec>("generateNativesLinux${buildType.key}") {
-            group = "natives"
-            val buildDir = "$rootDir/JoltPhysics/Build"
-            val outputDir = "$buildDir/Linux_${buildType.key}"
 
-            doFirst {
-                delete(outputDir)
+    register<Exec>("generateNatives") {
+        group = "natives"
+        val buildDir = "$rootDir/JoltPhysics/Build"
+        val outputDir = "$buildDir/Linux_${buildType.key}"
+
+        doFirst {
+            delete(outputDir)
+
+            // TODO modify build script to add -fPIC
+            // append:
+            /*
+            # Jolt-JNI
+            if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR MINGW OR EMSCRIPTEN)
+                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+            endif()
+             */
+        }
+
+        workingDir = File(buildDir)
+        commandLine = listOf("$buildDir/cmake_linux_clang_gcc.sh", buildType.key)
+
+        doLast {
+            exec {
+                workingDir = File(outputDir)
+                commandLine = listOf("make", "-j$makeWorkers")
             }
 
-            workingDir = File(buildDir)
-            commandLine = listOf("$buildDir/cmake_linux_clang_gcc.sh", buildType.key)
-
-            doLast {
-                // TODO modify build script to add -fPIC
-                // append:
-                /*
-                # Jolt-JNI
-                if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR MINGW OR EMSCRIPTEN)
-	                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
-	            endif()
-                 */
-
-                exec {
-                    workingDir = File(outputDir)
-                    commandLine = listOf("make", "-j$makeWorkers")
-                }
-
-                exec {
-                    workingDir = File(outputDir)
-                    commandLine = listOf("$outputDir/UnitTests")
-                }
+            exec {
+                workingDir = File(outputDir)
+                commandLine = listOf("$outputDir/UnitTests")
             }
         }
-    }
-
-    register("generateNativesLinux") {
-        group = "natives"
-        dependsOn("generateNativesLinux${JoltBuildType.Default.key}")
     }
 
     withType<LinkSharedLibrary> {
         val os = org.gradle.internal.os.OperatingSystem.current()
         when {
-            // TODO different build types
-            os.isLinux -> libs.from("$rootDir/JoltPhysics/Build/Linux_${JoltBuildType.Default.key}/libJolt.a")
+            os.isLinux -> libs.from("$rootDir/JoltPhysics/Build/Linux_${buildType.key}/libJolt.a")
+            os.isWindows -> libs.from("$rootDir/JoltPhysics/Build/Windows_${buildType.key}/Jolt.dll")
+            os.isMacOsX -> libs.from("$rootDir/JoltPhysics/Build/XCode_MacOS_${buildType.key}/Jolt.dylib")
             else -> throw IllegalStateException("Unsupported OS $os")
         }
     }

@@ -3,9 +3,18 @@ plugins {
 }
 
 allprojects {
-    group = "io.gitlab.aecsocket"
+    group = "io.github.aecsocket"
     version = "0.1.0"
     description = "Java JNI bindings for the Jolt physics engine"
+
+    ext {
+        set(BUILD_TYPE, project.property(BUILD_TYPE)?.let {
+            JoltBuildType.valueOf(it.toString())
+        } ?: JoltBuildType.DEBUG)
+        set(FLAVOR, project.property(FLAVOR)?.let {
+            JoltFlavor.valueOf(it.toString())
+        } ?: JoltFlavor.SP)
+    }
 }
 
 repositories {
@@ -23,13 +32,6 @@ java {
 val projBindings = project(":jolt-jni-bindings")
 
 tasks {
-    /*
-    1. git submodule update -> Jolt headers
-    2. : -> build bindings for platform -> libjolt-jni.so
-    3. :jolt-jni-natives-linux -> copy libjolt-jni.so to src/main/resources
-    4. :jolt-jni-test -> runtimeOnly(:jolt-jni-natives-linux)
-     */
-
     compileJava {
         options.headerOutputDirectory.set(File("${projBindings.projectDir}/src/main/cpp"))
     }

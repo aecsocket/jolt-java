@@ -10,6 +10,7 @@ rootProject.name = "jolt-jni"
 listOf(
     "bindings",
     "natives-linux",
+    "natives-windows",
     "test"
 ).forEach {
     val name = "${rootProject.name}-$it"
