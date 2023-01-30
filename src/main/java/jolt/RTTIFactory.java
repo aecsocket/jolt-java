@@ -7,15 +7,13 @@ public final class RTTIFactory extends JoltNative {
     public static RTTIFactory ofPointer(long address) { return new RTTIFactory(address); }
 
     public RTTIFactory() {
-        super(_create());
+        address = _create();
     }
     private static native long _create();
 
-    public static RTTIFactory instance() { return _instance(); }
-    private static native RTTIFactory _instance();
+    public static @Nullable RTTIFactory instance() { return ofPointer(_instance()); }
+    private static native long _instance();
 
-    public static void instance(@Nullable RTTIFactory factory) {
-        _instance(factory == null ? 0 : factory.address);
-    }
-    private static native void _instance(long address);
+    public static void instance(@Nullable RTTIFactory factory) { _instance(factory == null ? 0 : factory.address); }
+    private static native void _instance(long factory);
 }

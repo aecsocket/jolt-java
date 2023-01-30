@@ -1,8 +1,9 @@
 package jolt;
 
 public class JoltNative implements Destroyable {
-    protected final long address;
+    protected long address;
 
+    protected JoltNative() {}
     protected JoltNative(long address) {
         this.address = address;
     }
@@ -12,6 +13,7 @@ public class JoltNative implements Destroyable {
     @Override
     public void destroy() {
         _destroy(address);
+        address = 0;
     }
     private static native void _destroy(long address);
 

@@ -18,9 +18,9 @@ JNIEXPORT jlong JNICALL Java_jolt_PhysicsSystem__1create
 /*
  * Class:     jolt_PhysicsSystem
  * Method:    _getBodyActivationListener
- * Signature: (J)Ljolt/BodyActivationListener;
+ * Signature: (J)J
  */
-JNIEXPORT jobject JNICALL Java_jolt_PhysicsSystem__1getBodyActivationListener
+JNIEXPORT jlong JNICALL Java_jolt_PhysicsSystem__1getBodyActivationListener
   (JNIEnv *, jclass, jlong);
 
 /*

@@ -15,7 +15,7 @@ public class PhysicsSystem extends JoltNative {
             ObjectVsBroadPhaseLayerFilter objectVsBroadPhaseLayerFilter,
             ObjectLayerPairFilter objectLayerPairFilter
     ) {
-        super(_create(maxBodies, numBodyMutexes, maxBodyPairs, maxContactConstraints, broadPhaseLayerInterface.address, objectVsBroadPhaseLayerFilter.address, objectLayerPairFilter.address));
+        address = _create(maxBodies, numBodyMutexes, maxBodyPairs, maxContactConstraints, broadPhaseLayerInterface.address, objectVsBroadPhaseLayerFilter.address, objectLayerPairFilter.address);
     }
     private static native long _create(
             int maxBodies,
@@ -27,8 +27,8 @@ public class PhysicsSystem extends JoltNative {
             long objectLayerPairFilter
     );
 
-    public @Nullable BodyActivationListener getBodyActivationListener() { return _getBodyActivationListener(address); }
-    private static native BodyActivationListener _getBodyActivationListener(long address);
+    public @Nullable BodyActivationListener getBodyActivationListener() { return BodyActivationListener.ofPointer(_getBodyActivationListener(address)); }
+    private static native long _getBodyActivationListener(long address);
 
     public void setBodyActivationListener(@Nullable BodyActivationListener listener) { _setBodyActivationListener(address, listener == null ? 0 : listener.address); }
     private static native void _setBodyActivationListener(long address, long listener);

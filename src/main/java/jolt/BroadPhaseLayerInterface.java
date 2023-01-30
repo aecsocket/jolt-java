@@ -6,10 +6,13 @@ public class BroadPhaseLayerInterface extends JoltNative {
     public static BroadPhaseLayerInterface ofPointer(long address) { return new BroadPhaseLayerInterface(address); }
 
     public BroadPhaseLayerInterface() {
-        super(_create());
+        address = _create();
     }
-    private static native long _create();
+    private native long _create();
 
     public int getNumBroadPhaseLayers() { throw unsupported(); }
+    private int _getNumBroadPhaseLayers() { return getNumBroadPhaseLayers(); }
+
     public BroadPhaseLayer getBroadPhaseLayer(int layer) { throw unsupported(); }
+    private long _getBroadPhaseLayer(int layer) { return getBroadPhaseLayer(layer).address; }
 }

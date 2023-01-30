@@ -11,8 +11,7 @@ class JoltTest {
         JoltNativeLoader.load()
 
         JoltEnvironment.registerDefaultAllocator()
-        val factory = RTTIFactory()
-        RTTIFactory.instance(factory)
+        RTTIFactory.instance(RTTIFactory())
         JoltEnvironment.registerTypes()
         val tempAllocator = TempAllocatorImpl.ofSize(10 * 1024 * 1024)
         val jobSystem = JobSystemThreadPool(2048, 8, Runtime.getRuntime().availableProcessors() - 1)
@@ -49,7 +48,7 @@ class JoltTest {
             bpLayers, objBpLayerFilter, objObjLayerFilter
         )
 
-        val bodyActivationListener = object : BodyActivationListener() {
+        /*val bodyActivationListener = object : BodyActivationListener() {
             override fun onBodyActivated(bodyID: BodyID, bodyUserData: Long) {
                 println("A body got activated")
             }
@@ -60,14 +59,14 @@ class JoltTest {
         }
         physSystem.bodyActivationListener = bodyActivationListener
 
-        bodyActivationListener.destroy()
+        bodyActivationListener.destroy()*/
         physSystem.destroy()
         objObjLayerFilter.destroy()
         objBpLayerFilter.destroy()
         bpLayers.destroy()
         tempAllocator.destroy()
         jobSystem.destroy()
-        factory.destroy()
+        RTTIFactory.instance()?.destroy()
         RTTIFactory.instance(null)
     }
 }

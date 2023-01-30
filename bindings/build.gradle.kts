@@ -74,11 +74,11 @@ tasks {
         }
 
         workingDir = File(buildDir)
-        commandLine = listOf("$buildDir\\cmake_windows_mingw.sh", buildType.key)
+        commandLine = listOf(".\\cmake_windows_mingw.sh", buildType.key)
 
         doLast {
             exec {
-                workingDir = File(outputDir)
+                workingDir = File(buildDir)
                 commandLine = listOf("cmake", "--build", "MinGW_Debug")
             }
 

@@ -1,13 +1,24 @@
-#include "jolt_JoltEnvironment.h"
-#include <Jolt/Jolt.h>
+#include "JoltJNI.cpp"
 #include <Jolt/RegisterTypes.h>
 
 extern "C" {
-    JNIEXPORT void JNICALL Java_jolt_JoltEnvironment__1registerDefaultAllocator(JNIEnv *env, jclass) {
-        JPH::RegisterDefaultAllocator();
-    }
+/*
+ * Class:     jolt_JoltEnvironment
+ * Method:    _registerDefaultAllocator
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_jolt_JoltEnvironment__1registerDefaultAllocator
+  (JNIEnv *, jclass) {
+    RegisterDefaultAllocator();
+}
 
-    JNIEXPORT void JNICALL Java_jolt_JoltEnvironment__1registerTypes(JNIEnv *env, jclass) {
-        JPH::RegisterTypes();
-    }
+/*
+ * Class:     jolt_JoltEnvironment
+ * Method:    _registerTypes
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_jolt_JoltEnvironment__1registerTypes
+  (JNIEnv *, jclass) {
+    RegisterTypes();
+}
 }

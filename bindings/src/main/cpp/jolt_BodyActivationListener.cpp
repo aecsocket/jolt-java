@@ -1,10 +1,6 @@
-#include "jolt_BodyActivationListener.h"
 #include "JoltJNI.cpp"
-#include <Jolt/Jolt.h>
 #include <Jolt/Physics/Body/BodyActivationListener.h>
 #include <Jolt/Physics/Body/BodyID.h>
-
-using namespace JPH;
 
 class BodyActivationListenerImpl : BodyActivationListener {
     public:
@@ -38,11 +34,13 @@ class BodyActivationListenerImpl : BodyActivationListener {
 };
 
 extern "C" {
-//    JNIEXPORT jlong JNICALL Java_jolt_BodyActivationListener__1create(JNIEnv *env, jclass) {
-//        JPH::BodyActivationListener * const ptr = new BodyActivationListenerImpl();
-//    }
-//
-//    JNIEXPORT void JNICALL Java_jolt_JoltEnvironment__1registerTypes(JNIEnv *env, jclass) {
-//        JPH::RegisterTypes();
-//    }
+/*
+ * Class:     jolt_BodyActivationListener
+ * Method:    _create
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_jolt_BodyActivationListener__1create
+  (JNIEnv *env, jobject obj) {
+    return (jlong) new BodyActivationListenerImpl(env, obj);
+}
 }

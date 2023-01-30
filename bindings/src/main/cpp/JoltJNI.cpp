@@ -1,11 +1,13 @@
 #include <cstdint>
 #include <jni.h>
+#include <Jolt/Jolt.h>
 
 using uint = unsigned int;
 using uint8 = uint8_t;
 using uint16 = uint16_t;
 using uint32 = uint32_t;
 using uint64 = uint64_t;
+using namespace JPH;
 
 static JavaVM *javaVm = nullptr;
 
@@ -31,15 +33,4 @@ class JniThreadEnv {
         JNIEnv *env;
 };
 
-static thread_local JniThreadEnv jniThreadEnv;
-
-class JniThreadManager {
-    public:
-        static bool init(JNIEnv *env) {
-            if (env->GetJavaVM(&javaVm) != 0) {
-                return false;
-            }
-            jniThreadEnv = JniThreadEnv(env);
-            return true;
-        }
-};
+static JniThreadEnv jniThreadEnv;

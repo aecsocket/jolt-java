@@ -2,7 +2,7 @@ package jolt;
 
 public final class BodyID extends JoltNative {
     private BodyID(long address) { super(address); }
-    public static BodyID ptr(long address) { return new BodyID(address); }
+    public static BodyID ofPointer(long address) { return new BodyID(address); }
 
     public static BodyID ofRaw(int value) { return new BodyID(_ofRaw(value)); }
     private static native long _ofRaw(int value);

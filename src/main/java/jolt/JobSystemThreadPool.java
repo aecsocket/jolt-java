@@ -5,7 +5,7 @@ public final class JobSystemThreadPool extends JobSystem {
     public static JobSystemThreadPool ofPointer(long address) { return new JobSystemThreadPool(address); }
 
     public JobSystemThreadPool(int maxJobs, int maxBarriers, int numThreads) {
-        super(_create(maxJobs, maxBarriers, numThreads));
+        address = _create(maxJobs, maxBarriers, numThreads);
     }
     private static native long _create(int maxJobs, int maxBarriers, int numThreads);
 }

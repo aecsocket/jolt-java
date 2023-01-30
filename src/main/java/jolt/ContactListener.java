@@ -5,7 +5,7 @@ public class ContactListener extends JoltNative {
     public static ContactListener ofPointer(long address) { return new ContactListener(address); }
 
     public ContactListener() {
-        super(_create());
+        address = _create();
     }
     private static native long _create();
 

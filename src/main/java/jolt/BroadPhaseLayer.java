@@ -5,7 +5,7 @@ public class BroadPhaseLayer extends JoltNative {
     public static BroadPhaseLayer ofPointer(long address) { return new BroadPhaseLayer(address); }
 
     public BroadPhaseLayer(byte value) {
-        super(_create(value));
+        address = _create(value);
     }
     private static native long _create(byte value);
 

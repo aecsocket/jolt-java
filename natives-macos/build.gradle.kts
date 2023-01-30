@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("maven-publish")
 }
 
 repositories {
@@ -25,6 +26,14 @@ tasks {
 
         from("${projBindings.buildDir}/lib/main/debug/libjolt-jni-bindings.dylib") {
             into("jolt/")
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
         }
     }
 }

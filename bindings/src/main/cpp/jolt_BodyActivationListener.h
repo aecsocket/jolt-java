@@ -13,7 +13,7 @@ extern "C" {
  * Signature: ()J
  */
 JNIEXPORT jlong JNICALL Java_jolt_BodyActivationListener__1create
-  (JNIEnv *, jclass);
+  (JNIEnv *, jobject);
 
 #ifdef __cplusplus
 }

@@ -16,6 +16,9 @@ public final class JoltNativeLoader {
         try {
             JoltNativeMeta meta = platform.loadMeta();
             loadFromMeta(meta);
+            if (!_initThreadManager()) {
+                throw new IllegalStateException("Could not initialize thread manager");
+            }
         } catch (Throwable ex) {
             throw new IllegalStateException("Could not load Jolt-JNI for platform " + platform, ex);
         }
@@ -33,4 +36,6 @@ public final class JoltNativeLoader {
             throw new IllegalStateException("Could not load Jolt-JNI from " + libPath, e);
         }
     }
+
+    private static native boolean _initThreadManager();
 }
