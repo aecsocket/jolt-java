@@ -11,6 +11,8 @@ listOf(
     "bindings",
     "natives-linux",
     "natives-windows",
+    "natives-macos",
+    "natives-macos-arm64",
     "test"
 ).forEach {
     val name = "${rootProject.name}-$it"

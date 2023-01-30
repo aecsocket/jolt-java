@@ -30,7 +30,7 @@ library {
 tasks {
     val makeWorkers = minOf(32, Runtime.getRuntime().availableProcessors())
 
-    register<Exec>("generateNativesLinux") {
+    val nativesLinux = register<Exec>("generateNativesLinux") {
         group = "natives"
         val buildDir = "$rootDir/JoltPhysics/Build"
         val outputDir = "$buildDir/Linux_${buildType.key}"
@@ -64,7 +64,7 @@ tasks {
         }
     }
 
-    register<Exec>("generateNativesWindows") {
+    val nativesWindows = register<Exec>("generateNativesWindows") {
         group = "natives"
         val buildDir = "$rootDir/JoltPhysics/Build"
         val outputDir = "$buildDir/MinGW_${buildType.key}"
@@ -89,13 +89,31 @@ tasks {
         }
     }
 
-    withType<LinkSharedLibrary> {
-        val os = org.gradle.internal.os.OperatingSystem.current()
-        when {
-            os.isLinux -> libs.from("$rootDir/JoltPhysics/Build/Linux_${buildType.key}/libJolt.a")
-            os.isWindows -> libs.from("$rootDir/JoltPhysics/Build/Windows_${buildType.key}/Jolt.dll")
-            os.isMacOsX -> libs.from("$rootDir/JoltPhysics/Build/XCode_MacOS_${buildType.key}/Jolt.dylib")
-            else -> throw IllegalStateException("Unsupported OS $os")
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    when {
+        os.isLinux -> {
+            register("generateNatives") {
+                dependsOn(nativesLinux)
+            }
+
+            withType<LinkSharedLibrary> {
+                libs.from("$rootDir/JoltPhysics/Build/Linux_${buildType.key}/libJolt.a")
+            }
         }
+        os.isWindows -> {
+            register("generateNatives") {
+                dependsOn(nativesWindows)
+            }
+
+            withType<LinkSharedLibrary> {
+                libs.from("$rootDir/JoltPhysics/Build/Windows_${buildType.key}/Jolt.dll")
+            }
+        }
+        os.isMacOsX -> {
+            withType<LinkSharedLibrary> {
+                libs.from("$rootDir/JoltPhysics/Build/XCode_MacOS_${buildType.key}/libJolt.dylib")
+            }
+        }
+        else -> throw IllegalStateException("Unsupported OS $os")
     }
 }
