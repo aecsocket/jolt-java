@@ -1,5 +1,7 @@
-#include "JoltJNI.cpp"
+#include "JoltJNI.h"
 #include <Jolt/RegisterTypes.h>
+
+using namespace JPH;
 
 extern "C" {
 /*

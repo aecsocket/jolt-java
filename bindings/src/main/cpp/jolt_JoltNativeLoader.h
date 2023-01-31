@@ -9,10 +9,10 @@ extern "C" {
 #endif
 /*
  * Class:     jolt_JoltNativeLoader
- * Method:    _initThreadManager
- * Signature: ()Z
+ * Method:    _init
+ * Signature: ()V
  */
-JNIEXPORT jboolean JNICALL Java_jolt_JoltNativeLoader__1initThreadManager
+JNIEXPORT void JNICALL Java_jolt_JoltNativeLoader__1init
   (JNIEnv *, jclass);
 
 #ifdef __cplusplus

@@ -1,36 +1,33 @@
-#include <cstdint>
-#include <jni.h>
-#include <Jolt/Jolt.h>
+#include "JoltJNI.h"
+#include <iostream>
 
-using uint = unsigned int;
-using uint8 = uint8_t;
-using uint16 = uint16_t;
-using uint32 = uint32_t;
-using uint64 = uint64_t;
-using namespace JPH;
+void JoltJNI::Init(JNIEnv* env) {
+    if (vm != nullptr) return; // already initialized
+    env->GetJavaVM(&vm);
 
-static JavaVM *javaVm = nullptr;
+    jclass cBodyActivationListener = env->FindClass("jolt/physics/body/BodyActivationListener");
+    if (env->ExceptionCheck()) return;
+    BodyActivationListener_onBodyActivated = env->GetMethodID(cBodyActivationListener, "_onBodyActivated", "(JJ)V");
+    BodyActivationListener_onBodyDeactivated = env->GetMethodID(cBodyActivationListener, "_onBodyDeactivated", "(JJ)V");;
 
-class JniThreadEnv {
-    public:
-        JniThreadEnv() : shouldDetach(false), env(nullptr) {}
-        JniThreadEnv(JNIEnv *env) : shouldDetach(false), env(env) {}
-        ~JniThreadEnv() {
-            if (shouldDetach) {
-                javaVm->DetachCurrentThread();
-            }
-        }
-        JNIEnv* getEnv() {
-            if (env == nullptr && javaVm != nullptr) {
-                javaVm->AttachCurrentThreadAsDaemon((void**) &env, nullptr);
-                shouldDetach = true;
-            }
-            return env;
-        }
+    jclass cBroadPhaseLayerInterface = env->FindClass("jolt/physics/collision/broadphase/BroadPhaseLayerInterface");
+    if (env->ExceptionCheck()) return;
+    BroadPhaseLayerInterface_getNumBroadPhaseLayers = env->GetMethodID(cBroadPhaseLayerInterface, "_getNumBroadPhaseLayers", "()I");
+    BroadPhaseLayerInterface_getBroadPhaseLayer = env->GetMethodID(cBroadPhaseLayerInterface, "_getBroadPhaseLayer", "(I)J");
+    BroadPhaseLayerInterface_getBroadPhaseLayerName = env->GetMethodID(cBroadPhaseLayerInterface, "_getBroadPhaseLayerName", "(J)Ljava/lang/String;");
 
-    private:
-        bool shouldDetach;
-        JNIEnv *env;
-};
+    jclass cObjectVsBroadPhaseLayerFilter = env->FindClass("jolt/physics/collision/broadphase/ObjectVsBroadPhaseLayerFilter");
+    if (env->ExceptionCheck()) return;
+    ObjectVsBroadPhaseLayerFilter_shouldCollide = env->GetMethodID(cObjectVsBroadPhaseLayerFilter, "_shouldCollide", "(IJ)Z");
 
-static JniThreadEnv jniThreadEnv;
+    jclass cContactListener = env->FindClass("jolt/physics/collision/ContactListener");
+    if (env->ExceptionCheck()) return;
+    ContactListener_onContactValidate = env->GetMethodID(cContactListener, "_onContactValidate", "(JJFFFJ)I");
+    ContactListener_onContactAdded = env->GetMethodID(cContactListener, "_onContactAdded", "(JJJJ)V");
+    ContactListener_onContactPersisted = env->GetMethodID(cContactListener, "_onContactPersisted", "(JJJJ)V");
+    ContactListener_onContactRemoved = env->GetMethodID(cContactListener, "_onContactRemoved", "(J)V");
+
+    jclass cObjectLayerPairFilter = env->FindClass("jolt/physics/collision/ObjectLayerPairFilter");
+    if (env->ExceptionCheck()) return;
+    ObjectLayerPairFilter_shouldCollide = env->GetMethodID(cObjectLayerPairFilter, "_shouldCollide", "(II)Z");
+}

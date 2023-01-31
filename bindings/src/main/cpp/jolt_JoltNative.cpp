@@ -1,4 +1,6 @@
-#include "JoltJNI.cpp"
+#include "JoltJNI.h"
+
+using namespace JPH;
 
 extern "C" {
 /*

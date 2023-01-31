@@ -1,19 +1,15 @@
-#include "JoltJNI.cpp"
-#include <iostream>
+#include "JoltJNI.h"
+
+using namespace JPH;
 
 extern "C" {
 /*
  * Class:     jolt_JoltNativeLoader
- * Method:    _initThreadManager
- * Signature: ()Z
+ * Method:    _init
+ * Signature: ()V
  */
-JNIEXPORT jboolean JNICALL Java_jolt_JoltNativeLoader__1initThreadManager
+JNIEXPORT void JNICALL Java_jolt_JoltNativeLoader__1init
   (JNIEnv *env, jclass) {
-    if (env->GetJavaVM(&javaVm) != 0) {
-        return false;
-    }
-    jniThreadEnv = JniThreadEnv(env);
-    std::cout << "jni env in thingy = " << (long) &jniThreadEnv << std::endl;
-    return true;
+    joltJni.Init(env);
 }
 }
