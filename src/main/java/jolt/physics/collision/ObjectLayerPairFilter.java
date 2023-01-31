@@ -1,4 +1,6 @@
-package jolt;
+package jolt.physics.collision;
+
+import jolt.JoltNative;
 
 public class ObjectLayerPairFilter extends JoltNative {
     protected ObjectLayerPairFilter(long address) { super(address); }

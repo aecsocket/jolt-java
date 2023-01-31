@@ -1,7 +1,7 @@
-package jolt;
+package jolt.physics.collision.shape;
 
+import jolt.JoltNative;
 import jolt.physics.body.BodyID;
-import jolt.physics.collision.shape.SubShapeID;
 
 public final class SubShapeIDPair extends JoltNative {
     private SubShapeIDPair(long address) { super(address); }

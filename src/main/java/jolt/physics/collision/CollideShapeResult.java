@@ -2,9 +2,10 @@ package jolt.physics.collision;
 
 import jolt.JoltNative;
 
-public final class ContactManifold extends JoltNative {
-    private ContactManifold(long address) { super(address); }
-    public static ContactManifold ofPointer(long address) { return new ContactManifold(address); }
+public class CollideShapeResult extends JoltNative {
+    protected CollideShapeResult(long address) { super(address); }
+    public static CollideShapeResult ofPointer(long address) { return new CollideShapeResult(address); }
+
 
 }
 

@@ -24,6 +24,7 @@ library {
 
         // include Jolt
         compileTask.includes("$rootDir/JoltPhysics")
+        compileTask.macros["JPH_PROFILE_ENABLED"] = "boobs"
     }
 }
 

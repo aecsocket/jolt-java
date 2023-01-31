@@ -1,4 +1,6 @@
-package jolt;
+package jolt.core;
+
+import jolt.JoltNative;
 
 public class TempAllocator extends JoltNative {
     protected TempAllocator(long address) { super(address); }

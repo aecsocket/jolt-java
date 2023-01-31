@@ -1,4 +1,6 @@
-package jolt;
+package jolt.physics.body;
+
+import jolt.JoltNative;
 
 public final class BodyInterface extends JoltNative {
     private BodyInterface(long address) { super(address); }

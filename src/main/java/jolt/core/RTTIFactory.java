@@ -1,4 +1,6 @@
-package jolt;
+package jolt.core;
+
+import jolt.JoltNative;
 
 import javax.annotation.Nullable;
 
@@ -14,6 +16,6 @@ public final class RTTIFactory extends JoltNative {
     public static @Nullable RTTIFactory instance() { return ofPointer(_instance()); }
     private static native long _instance();
 
-    public static void instance(@Nullable RTTIFactory factory) { _instance(factory == null ? 0 : factory.address); }
-    private static native void _instance(long factory);
+    public static void instance(@Nullable RTTIFactory value) { _instance(value == null ? 0 : value.address); }
+    private static native void _instance(long value);
 }

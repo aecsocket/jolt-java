@@ -1,4 +1,6 @@
-package jolt;
+package jolt.physics.body;
+
+import jolt.JoltNative;
 
 public class BodyActivationListener extends JoltNative {
     protected BodyActivationListener(long address) { super(address); }

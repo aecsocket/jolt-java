@@ -1,6 +1,6 @@
-package jolt;
+package jolt.physics.collision.broadphase;
 
-import jolt.physics.collision.broadphase.BroadPhaseLayer;
+import jolt.JoltNative;
 
 public class ObjectVsBroadPhaseLayerFilter extends JoltNative {
     protected ObjectVsBroadPhaseLayerFilter(long address) { super(address); }

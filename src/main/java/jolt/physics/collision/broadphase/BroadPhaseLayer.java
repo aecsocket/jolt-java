@@ -1,4 +1,6 @@
-package jolt;
+package jolt.physics.collision.broadphase;
+
+import jolt.JoltNative;
 
 public class BroadPhaseLayer extends JoltNative {
     protected BroadPhaseLayer(long address) { super(address); }

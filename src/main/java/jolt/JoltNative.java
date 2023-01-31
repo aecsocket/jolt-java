@@ -17,7 +17,7 @@ public class JoltNative implements Destroyable {
     }
     private static native void _destroy(long address);
 
-    static RuntimeException unsupported() {
-        return new UnsupportedOperationException();
+    public static RuntimeException unimplemented() {
+        return new UnimplementedMethodException();
     }
 }

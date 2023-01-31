@@ -1,4 +1,4 @@
-package jolt;
+package jolt.core;
 
 public final class JobSystemThreadPool extends JobSystem {
     private JobSystemThreadPool(long address) { super(address); }

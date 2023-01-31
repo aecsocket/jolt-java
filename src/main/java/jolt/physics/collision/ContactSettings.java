@@ -1,4 +1,6 @@
-package jolt;
+package jolt.physics.collision;
+
+import jolt.JoltNative;
 
 public final class ContactSettings extends JoltNative {
     private ContactSettings(long address) { super(address); }

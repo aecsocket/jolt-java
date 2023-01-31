@@ -1,4 +1,4 @@
-package jolt;
+package jolt.core;
 
 public final class TempAllocatorImpl extends TempAllocator {
     private TempAllocatorImpl(long address) { super(address); }

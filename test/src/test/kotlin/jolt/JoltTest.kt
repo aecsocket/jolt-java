@@ -1,5 +1,16 @@
 package jolt
 
+import jolt.core.JobSystemThreadPool
+import jolt.core.RTTIFactory
+import jolt.core.TempAllocatorImpl
+import jolt.physics.PhysicsSystem
+import jolt.physics.body.BodyActivationListener
+import jolt.physics.body.BodyID
+import jolt.physics.collision.*
+import jolt.physics.collision.broadphase.BroadPhaseLayer
+import jolt.physics.collision.broadphase.BroadPhaseLayerInterface
+import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter
+import jolt.physics.collision.shape.SubShapeIDPair
 import kotlin.test.Test
 
 const val LAYER_NON_MOVING = 0
@@ -14,15 +25,21 @@ class JoltTest {
         RTTIFactory.instance(RTTIFactory())
         JoltEnvironment.registerTypes()
         val tempAllocator = TempAllocatorImpl.ofSize(10 * 1024 * 1024)
-        val jobSystem = JobSystemThreadPool(2048, 8, Runtime.getRuntime().availableProcessors() - 1)
+        val jobSystem =
+            JobSystemThreadPool(2048, 8, Runtime.getRuntime().availableProcessors() - 1)
 
-        val bpLayerNonMoving = BroadPhaseLayer((0).toByte())
-        val bpLayerMoving = BroadPhaseLayer(1L)
+        val bpLayerNonMoving = BroadPhaseLayer.ofValue((0).toByte())
+        val bpLayerMoving = BroadPhaseLayer.ofValue((1).toByte())
         val bpLayers = object : BroadPhaseLayerInterface() {
             override fun getNumBroadPhaseLayers() = 2
             override fun getBroadPhaseLayer(layer: Int) = when (layer) {
                 LAYER_NON_MOVING -> bpLayerNonMoving
                 LAYER_MOVING -> bpLayerMoving
+                else -> throw RuntimeException()
+            }
+            override fun getBroadPhaseLayerName(layer: BroadPhaseLayer) = when (layer) {
+                bpLayerNonMoving -> "NON_MOVING"
+                bpLayerMoving -> "MOVING"
                 else -> throw RuntimeException()
             }
         }
@@ -48,7 +65,7 @@ class JoltTest {
             bpLayers, objBpLayerFilter, objObjLayerFilter
         )
 
-        /*val bodyActivationListener = object : BodyActivationListener() {
+        val bodyActivationListener = object : BodyActivationListener() {
             override fun onBodyActivated(bodyID: BodyID, bodyUserData: Long) {
                 println("A body got activated")
             }
@@ -59,7 +76,45 @@ class JoltTest {
         }
         physSystem.bodyActivationListener = bodyActivationListener
 
-        bodyActivationListener.destroy()*/
+        val contactListener = object : ContactListener() {
+            override fun onContactValidate(
+                body1: BodyID,
+                body2: BodyID,
+                baseOffset: JtVec3f,
+                collisionResult: CollideShapeResult
+            ): ValidateResult {
+                println("Contact validate callback")
+                return ValidateResult.ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR
+            }
+
+            override fun onContactAdded(
+                body1: BodyID,
+                body2: BodyID,
+                manifold: ContactManifold,
+                settings: ContactSettings
+            ) {
+                println("A contact was added")
+            }
+
+            override fun onContactPersisted(
+                body1: BodyID,
+                body2: BodyID,
+                manifold: ContactManifold,
+                settings: ContactSettings
+            ) {
+                println("A contact was persisted")
+            }
+
+            override fun onContactRemoved(subShapePair: SubShapeIDPair) {
+                println("A contact was removed")
+            }
+        }
+        physSystem.contactListener = contactListener
+
+        val bodyInterface = physSystem.bodyInterface
+
+        contactListener.destroy()
+        bodyActivationListener.destroy()
         physSystem.destroy()
         objObjLayerFilter.destroy()
         objBpLayerFilter.destroy()

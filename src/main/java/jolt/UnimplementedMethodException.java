@@ -1,2 +1,3 @@
-package jolt;public class UnimplementedMethodException {
-}
+package jolt;
+
+public final class UnimplementedMethodException extends RuntimeException {}

@@ -1,6 +1,5 @@
 #include "JoltJNI.h"
-#include <Jolt/Physics/Body/BodyActivationListener.h>
-#include <Jolt/Physics/Body/BodyID.h>
+#include <Jolt/Physics/Collision/ContactListener.h>
 
 using namespace JPH;
 
@@ -16,17 +15,17 @@ class ContactListenerImpl : ContactListener {
 
         virtual ValidateResult OnContactValidate(const Body &inBody1, const Body &inBody2, RVec3Arg inBaseOffset, const CollideShapeResult &inCollisionResult) override {
             return (ValidateResult) env->CallIntMethod(globalRef, joltJni.ContactListener_onContactValidate,
-                (jlong) &inBody1, (jlong) &inBody2, (jfloat) inBaseOffset.x, (jfloat) inBaseOffset.y, (jfloat) inBaseOffset.z, (jlong) &inCollisionResult);
+                (jlong) &inBody1, (jlong) &inBody2, (jfloat) inBaseOffset.GetX(), (jfloat) inBaseOffset.GetY(), (jfloat) inBaseOffset.GetZ(), (jlong) &inCollisionResult);
         }
 
         virtual void OnContactAdded(const Body &inBody1, const Body &inBody2, const ContactManifold &inManifold, ContactSettings &ioSettings) override {
             return env->CallVoidMethod(globalRef, joltJni.ContactListener_onContactAdded,
-                (jlong) &inBody1, (jlong) &inBody2, (jlong) inManifold, (jlong) &ioSettings);
+                (jlong) &inBody1, (jlong) &inBody2, (jlong) &inManifold, (jlong) &ioSettings);
         }
 
         virtual void OnContactPersisted(const Body &inBody1, const Body &inBody2, const ContactManifold &inManifold, ContactSettings &ioSettings) override {
             return env->CallVoidMethod(globalRef, joltJni.ContactListener_onContactPersisted,
-                (jlong) &inBody1, (jlong) &inBody2, (jlong) inManifold, (jlong) &ioSettings);
+                (jlong) &inBody1, (jlong) &inBody2, (jlong) &inManifold, (jlong) &ioSettings);
         }
 
         virtual void OnContactRemoved(const SubShapeIDPair &inSubShapePair) override {

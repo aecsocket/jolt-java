@@ -1,5 +1,6 @@
-package jolt;
+package jolt.physics;
 
+import jolt.JoltNative;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
 import jolt.physics.collision.ObjectLayerPairFilter;
@@ -22,7 +23,7 @@ public class PhysicsSystem extends JoltNative {
             ObjectVsBroadPhaseLayerFilter objectVsBroadPhaseLayerFilter,
             ObjectLayerPairFilter objectLayerPairFilter
     ) {
-        address = _create(maxBodies, numBodyMutexes, maxBodyPairs, maxContactConstraints, broadPhaseLayerInterface.address, objectVsBroadPhaseLayerFilter.address, objectLayerPairFilter.address);
+        address = _create(maxBodies, numBodyMutexes, maxBodyPairs, maxContactConstraints, broadPhaseLayerInterface.getAddress(), objectVsBroadPhaseLayerFilter.getAddress(), objectLayerPairFilter.getAddress());
     }
     private static native long _create(
             int maxBodies,
@@ -43,12 +44,12 @@ public class PhysicsSystem extends JoltNative {
     public @Nullable BodyActivationListener getBodyActivationListener() { return BodyActivationListener.ofPointer(_getBodyActivationListener(address)); }
     private static native long _getBodyActivationListener(long address);
 
-    public void setBodyActivationListener(@Nullable BodyActivationListener value) { _setBodyActivationListener(address, value == null ? 0 : value.address); }
+    public void setBodyActivationListener(@Nullable BodyActivationListener value) { _setBodyActivationListener(address, value == null ? 0 : value.getAddress()); }
     private static native void _setBodyActivationListener(long address, long value);
 
     public @Nullable ContactListener getContactListener() { return ContactListener.ofPointer(_getContactListener(address)); }
     private static native long _getContactListener(long address);
 
-    public void setContactListener(@Nullable ContactListener value) { _setContactListener(address, value == null ? 0 : value.address); }
+    public void setContactListener(@Nullable ContactListener value) { _setContactListener(address, value == null ? 0 : value.getAddress()); }
     private static native void _setContactListener(long address, long value);
 }

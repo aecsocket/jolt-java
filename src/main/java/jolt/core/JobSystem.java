@@ -1,4 +1,6 @@
-package jolt;
+package jolt.core;
+
+import jolt.JoltNative;
 
 public class JobSystem extends JoltNative {
     protected JobSystem() {}

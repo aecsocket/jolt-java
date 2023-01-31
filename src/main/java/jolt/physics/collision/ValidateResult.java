@@ -1,4 +1,4 @@
-package jolt;
+package jolt.physics.collision;
 
 public enum ValidateResult {
     ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR  (_acceptAllContactsForThisBodyPair()),

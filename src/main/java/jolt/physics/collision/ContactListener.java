@@ -1,7 +1,8 @@
-package jolt.physics.collision.broadphase;
+package jolt.physics.collision;
 
 import jolt.*;
 import jolt.physics.body.BodyID;
+import jolt.physics.collision.shape.SubShapeIDPair;
 
 public class ContactListener extends JoltNative {
     protected ContactListener(long address) { super(address); }
@@ -10,10 +11,10 @@ public class ContactListener extends JoltNative {
     public ContactListener() {
         address = _create();
     }
-    private static native long _create();
+    private native long _create();
 
-    public ValidateResult onContactValidate(BodyID body1, BodyID body2, ContactManifold manifold, ContactSettings settings) { throw unimplemented(); }
-    private int _onContactValidate(long body1, long body2, long manifold, long settings) { return onContactValidate(BodyID.ofPointer(body1), BodyID.ofPointer(body2), ContactManifold.ofPointer(manifold), ContactSettings.ofPointer(settings)).ordinal(); }
+    public ValidateResult onContactValidate(BodyID body1, BodyID body2, JtVec3f baseOffset, CollideShapeResult collisionResult) { throw unimplemented(); }
+    private int _onContactValidate(long body1, long body2, float baseOffsetX, float baseOffsetY, float baseOffsetZ, long collisionResult) { return onContactValidate(BodyID.ofPointer(body1), BodyID.ofPointer(body2), new JtVec3f(baseOffsetX, baseOffsetY, baseOffsetZ), CollideShapeResult.ofPointer(collisionResult)).ordinal(); }
 
     public void onContactAdded(BodyID body1, BodyID body2, ContactManifold manifold, ContactSettings settings) {}
     private void _onContactAdded(long body1, long body2, long manifold, long settings) { onContactAdded(BodyID.ofPointer(body1), BodyID.ofPointer(body2), ContactManifold.ofPointer(manifold), ContactSettings.ofPointer(settings)); }
