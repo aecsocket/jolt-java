@@ -11,6 +11,3 @@ enum class JoltFlavor(val key: String) {
     SP  ("Sp"),
     DP  ("Dp")
 }
-
-const val BUILD_TYPE = "buildType"
-const val FLAVOR = "flavor"

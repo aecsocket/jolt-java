@@ -1,21 +1,23 @@
 package jolt.core;
 
+import jolt.jni.JniBind;
 import jolt.JoltNative;
 
 import javax.annotation.Nullable;
 
 public final class RTTIFactory extends JoltNative {
-    private RTTIFactory(long address) { super(address); }
-    public static RTTIFactory ofPointer(long address) { return new RTTIFactory(address); }
+    private RTTIFactory(long address) { this.address = address; }
+    public static RTTIFactory ref(long address) { return address == 0 ? null : new RTTIFactory(address); }
 
-    public RTTIFactory() {
-        address = _create();
-    }
-    private static native long _create();
+    public RTTIFactory() { address = _ctor(); }
+    @JniBind("return (jlong) new Factory();")
+    private static native long _ctor();
 
-    public static @Nullable RTTIFactory instance() { return ofPointer(_instance()); }
-    private static native long _instance();
+    public static @Nullable RTTIFactory getInstance() { return ref(_getInstance()); }
+    @JniBind("return (jlong) Factory::sInstance;")
+    private static native long _getInstance();
 
-    public static void instance(@Nullable RTTIFactory value) { _instance(value == null ? 0 : value.address); }
-    private static native void _instance(long value);
+    public static void setInstance(@Nullable RTTIFactory value) { _setInstance(value == null ? 0L : value.address); }
+    @JniBind("Factory::sInstance = (Factory*) value;")
+    private static native void _setInstance(long value);
 }

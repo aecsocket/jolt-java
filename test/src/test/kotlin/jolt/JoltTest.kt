@@ -3,6 +3,7 @@ package jolt
 import jolt.core.JobSystemThreadPool
 import jolt.core.RTTIFactory
 import jolt.core.TempAllocatorImpl
+import jolt.math.JtVec3f
 import jolt.physics.PhysicsSystem
 import jolt.physics.body.BodyActivationListener
 import jolt.physics.body.BodyID
@@ -22,11 +23,10 @@ class JoltTest {
         JoltNativeLoader.load()
 
         JoltEnvironment.registerDefaultAllocator()
-        RTTIFactory.instance(RTTIFactory())
+        RTTIFactory.setInstance(RTTIFactory())
         JoltEnvironment.registerTypes()
         val tempAllocator = TempAllocatorImpl.ofSize(10 * 1024 * 1024)
-        val jobSystem =
-            JobSystemThreadPool(2048, 8, Runtime.getRuntime().availableProcessors() - 1)
+        val jobSystem = JobSystemThreadPool(2048, 8, Runtime.getRuntime().availableProcessors() - 1)
 
         val bpLayerNonMoving = BroadPhaseLayer.ofValue((0).toByte())
         val bpLayerMoving = BroadPhaseLayer.ofValue((1).toByte())
@@ -113,15 +113,16 @@ class JoltTest {
 
         val bodyInterface = physSystem.bodyInterface
 
-        contactListener.destroy()
-        bodyActivationListener.destroy()
-        physSystem.destroy()
-        objObjLayerFilter.destroy()
-        objBpLayerFilter.destroy()
-        bpLayers.destroy()
-        tempAllocator.destroy()
-        jobSystem.destroy()
-        RTTIFactory.instance()?.destroy()
-        RTTIFactory.instance(null)
+        contactListener.delete()
+        bodyActivationListener.delete()
+        physSystem.delete()
+        objObjLayerFilter.delete()
+        objBpLayerFilter.delete()
+        bpLayers.delete()
+        println(jobSystem)
+        jobSystem.delete()
+        tempAllocator.delete()
+        RTTIFactory.getInstance()?.delete()
+        RTTIFactory.setInstance(null)
     }
 }

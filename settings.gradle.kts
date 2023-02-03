@@ -1,13 +1,16 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     plugins {
         kotlin("jvm") version "1.8.0"
-        id("org.jetbrains.dokka") version "1.7.20"
     }
 }
 
 rootProject.name = "jolt-jni"
 
 listOf(
+    "annotations",
+    "processor",
     "bindings",
     "natives-linux",
     "natives-windows",

@@ -1,24 +1,30 @@
 package jolt.physics.collision.shape;
 
+import jolt.jni.JniSelfBind;
 import jolt.JoltNative;
 import jolt.physics.body.BodyID;
 
 public final class SubShapeIDPair extends JoltNative {
     private SubShapeIDPair(long address) { super(address); }
-    public static SubShapeIDPair ofPointer(long address) { return new SubShapeIDPair(address); }
+    public static SubShapeIDPair ref(long address) { return new SubShapeIDPair(address); }
 
-    public BodyID getBody1ID() { return BodyID.ofPointer(_getBody1ID(address)); }
+    public BodyID getBody1ID() { return BodyID.ref(_getBody1ID(address)); }
+    @JniSelfBind("return *self->GetBody1ID();")
     private static native long _getBody1ID(long address);
 
-    public SubShapeID getSubShape1ID() { return SubShapeID.ofPointer(_getSubShape1ID(address)); }
+    public SubShapeID getSubShape1ID() { return SubShapeID.ref(_getSubShape1ID(address)); }
+    @JniSelfBind("return *self->GetSubShapeID1();")
     private static native long _getSubShape1ID(long address);
 
-    public BodyID getBody2ID() { return BodyID.ofPointer(_getBody2ID(address)); }
+    public BodyID getBody2ID() { return BodyID.ref(_getBody2ID(address)); }
+    @JniSelfBind("return *self->GetBody2ID();")
     private static native long _getBody2ID(long address);
 
-    public SubShapeID getSubShape2ID() { return SubShapeID.ofPointer(_getSubShape2ID(address)); }
+    public SubShapeID getSubShape2ID() { return SubShapeID.ref(_getSubShape2ID(address)); }
+    @JniSelfBind("return *self->GetSubShapeID2();")
     private static native long _getSubShape2ID(long address);
 
     public long hash() { return _hash(address); }
+    @JniSelfBind("return self->GetHash();")
     private static native long _hash(long address);
 }

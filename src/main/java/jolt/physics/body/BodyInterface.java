@@ -4,7 +4,5 @@ import jolt.JoltNative;
 
 public final class BodyInterface extends JoltNative {
     private BodyInterface(long address) { super(address); }
-    public static BodyInterface ofPointer(long address) { return new BodyInterface(address); }
-
+    public static BodyInterface ref(long address) { return address == 0 ? null : new BodyInterface(address); }
 }
-

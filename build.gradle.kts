@@ -15,8 +15,11 @@ allprojects {
         set(FLAVOR, project.property(FLAVOR)?.let {
             JoltFlavor.valueOf(it.toString().toUpperCase())
         } ?: JoltFlavor.SP)
+        set(JVM_VERSION, 16)
     }
 }
+
+val jvmVersion = ext.get(JVM_VERSION) as Int
 
 repositories {
     mavenCentral()
@@ -24,21 +27,19 @@ repositories {
 
 dependencies {
     implementation("com.google.code.findbugs", "jsr305", "3.0.2")
+    implementation(projects.joltJniAnnotations)
+    annotationProcessor(projects.joltJniProcessor)
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(11))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(jvmVersion))
 }
 
-val projBindings = project(":jolt-jni-bindings")
+val bindings: Project = projects.joltJniBindings.dependencyProject
 
 tasks {
-    compileJava {
-        options.headerOutputDirectory.set(File("${projBindings.projectDir}/src/main/cpp"))
-    }
-
     assemble {
-        dependsOn(projBindings.tasks.assemble)
+        dependsOn(bindings.tasks.assemble)
     }
 }
 

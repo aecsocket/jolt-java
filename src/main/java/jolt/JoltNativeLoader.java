@@ -18,7 +18,7 @@ public final class JoltNativeLoader {
             loadFromMeta(meta);
             _init();
         } catch (Throwable ex) {
-            throw new IllegalStateException("Could not load Jolt-JNI for platform " + platform, ex);
+            throw new IllegalStateException("Could not load Jolt JNI for platform " + platform, ex);
         }
     }
 
@@ -31,7 +31,7 @@ public final class JoltNativeLoader {
             Files.copy(libIn, libFile, StandardCopyOption.REPLACE_EXISTING);
             System.load(libFile.toAbsolutePath().toString());
         } catch (IOException e) {
-            throw new IllegalStateException("Could not load Jolt-JNI from " + libPath, e);
+            throw new IllegalStateException("Could not load Jolt JNI from " + libPath, e);
         }
     }
 

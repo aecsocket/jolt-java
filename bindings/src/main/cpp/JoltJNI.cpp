@@ -1,33 +1,50 @@
-#include "JoltJNI.h"
-#include <iostream>
+//#include "JoltJNI.h"
+#include <jni.h>
+#include <cstdint>
+#include <Jolt/Jolt.h>
+#include <Jolt/RegisterTypes.h>
+#include <Jolt/Core/Factory.h>
+#include <Jolt/Core/TempAllocator.h>
+#include <Jolt/Core/JobSystem.h>
+#include <Jolt/Core/JobSystemThreadPool.h>
+#include <Jolt/Physics/PhysicsSystem.h>
+#include <Jolt/Physics/Body/BodyActivationListener.h>
 
-void JoltJNI::Init(JNIEnv* env) {
-    if (vm != nullptr) return; // already initialized
-    env->GetJavaVM(&vm);
+using uint = unsigned int;
+using uint8 = uint8_t;
+using uint16 = uint16_t;
+using uint32 = uint32_t;
+using uint64 = uint64_t;
+using namespace JPH;
+/*using namespace JoltJNI;
 
-    jclass cBodyActivationListener = env->FindClass("jolt/physics/body/BodyActivationListener");
-    if (env->ExceptionCheck()) return;
-    BodyActivationListener_onBodyActivated = env->GetMethodID(cBodyActivationListener, "_onBodyActivated", "(JJ)V");
-    BodyActivationListener_onBodyDeactivated = env->GetMethodID(cBodyActivationListener, "_onBodyDeactivated", "(JJ)V");;
+class CallbackNative {
+public:
+    CallbackNative(JNIEnv* env, jobject localRef) : env(env), globalRef(env->NewGlobalRef(localRef)) {}
+    ~CallbackNative() {
+        env->DeleteGlobalRef(globalRef);
+    }
 
-    jclass cBroadPhaseLayerInterface = env->FindClass("jolt/physics/collision/broadphase/BroadPhaseLayerInterface");
-    if (env->ExceptionCheck()) return;
-    BroadPhaseLayerInterface_getNumBroadPhaseLayers = env->GetMethodID(cBroadPhaseLayerInterface, "_getNumBroadPhaseLayers", "()I");
-    BroadPhaseLayerInterface_getBroadPhaseLayer = env->GetMethodID(cBroadPhaseLayerInterface, "_getBroadPhaseLayer", "(I)J");
-    BroadPhaseLayerInterface_getBroadPhaseLayerName = env->GetMethodID(cBroadPhaseLayerInterface, "_getBroadPhaseLayerName", "(J)Ljava/lang/String;");
+protected:
+    jobject globalRef;
+    JNIEnv* env;
+};
 
-    jclass cObjectVsBroadPhaseLayerFilter = env->FindClass("jolt/physics/collision/broadphase/ObjectVsBroadPhaseLayerFilter");
-    if (env->ExceptionCheck()) return;
-    ObjectVsBroadPhaseLayerFilter_shouldCollide = env->GetMethodID(cObjectVsBroadPhaseLayerFilter, "_shouldCollide", "(IJ)Z");
+class BodyActivationListenerImpl : CallbackNative, BodyActivationListener {
+public:
+    BodyActivationListenerImpl(JNIEnv* env, jobject localRef) : CallbackNative(env, localRef) {}
 
-    jclass cContactListener = env->FindClass("jolt/physics/collision/ContactListener");
-    if (env->ExceptionCheck()) return;
-    ContactListener_onContactValidate = env->GetMethodID(cContactListener, "_onContactValidate", "(JJFFFJ)I");
-    ContactListener_onContactAdded = env->GetMethodID(cContactListener, "_onContactAdded", "(JJJJ)V");
-    ContactListener_onContactPersisted = env->GetMethodID(cContactListener, "_onContactPersisted", "(JJJJ)V");
-    ContactListener_onContactRemoved = env->GetMethodID(cContactListener, "_onContactRemoved", "(J)V");
+    virtual void OnBodyActivated(const BodyID &inBodyID, uint64 inBodyUserData) override {
+        env->CallVoidMethod(globalRef, BodyActivationListener_onBodyActivated,
+            (jlong) &inBodyID, (jlong) inBodyUserData);
+    }
 
-    jclass cObjectLayerPairFilter = env->FindClass("jolt/physics/collision/ObjectLayerPairFilter");
-    if (env->ExceptionCheck()) return;
-    ObjectLayerPairFilter_shouldCollide = env->GetMethodID(cObjectLayerPairFilter, "_shouldCollide", "(II)Z");
+    virtual void OnBodyDeactivated(const BodyID &inBodyID, uint64 inBodyUserData) override {
+        env->CallVoidMethod(globalRef, BodyActivationListener_onBodyDeactivated,
+            (jlong) &inBodyID, (jlong) inBodyUserData);
+    }
+};*/
+
+extern "C" {
+
 }

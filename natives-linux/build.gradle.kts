@@ -3,6 +3,8 @@ plugins {
     id("maven-publish")
 }
 
+val jvmVersion = ext.get(JVM_VERSION) as Int
+
 repositories {
     mavenCentral()
 }
@@ -12,19 +14,19 @@ dependencies {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(11))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(jvmVersion))
 }
 
-val projBindings = project(":jolt-jni-bindings")
+val bindings: Project = projects.joltJniBindings.dependencyProject
 
 tasks {
     jar {
         val jarTask = this
-        projBindings.tasks.withType<LinkSharedLibrary> {
+        bindings.tasks.withType<LinkSharedLibrary> {
             jarTask.mustRunAfter(this)
         }
 
-        from("${projBindings.buildDir}/lib/main/debug/libjolt-jni-bindings.so") {
+        from("${bindings.buildDir}/lib/main/debug/libjolt-jni-bindings.so") {
             into("jolt/")
         }
     }
