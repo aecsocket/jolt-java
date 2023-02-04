@@ -3,16 +3,18 @@ package jolt
 import jolt.core.JobSystemThreadPool
 import jolt.core.RTTIFactory
 import jolt.core.TempAllocatorImpl
+import jolt.math.JtQuat
 import jolt.math.JtVec3f
+import jolt.physics.Activation
 import jolt.physics.PhysicsSystem
-import jolt.physics.body.Body
-import jolt.physics.body.BodyActivationListener
-import jolt.physics.body.BodyID
+import jolt.physics.body.*
 import jolt.physics.collision.*
 import jolt.physics.collision.broadphase.BroadPhaseLayer
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter
-import jolt.physics.collision.shape.SubShapeIDPair
+import jolt.physics.collision.shape.BoxShapeSettings
+import jolt.physics.collision.shape.SphereShape
+import jolt.physics.collision.shape.SubShapeIdPair
 import kotlin.test.Test
 
 const val LAYER_NON_MOVING = 0
@@ -41,7 +43,7 @@ class JoltTest {
             override fun getBroadPhaseLayerName(layer: BroadPhaseLayer) = when (layer) {
                 bpLayerNonMoving -> "NON_MOVING"
                 bpLayerMoving -> "MOVING"
-                else -> throw IllegalArgumentException("Invalid layer $layer / $bpLayerMoving")
+                else -> throw IllegalArgumentException("Invalid layer $layer")
             }
         }
 
@@ -61,17 +63,18 @@ class JoltTest {
             }
         }
 
-        val physSystem = PhysicsSystem(
+        val physSystem = PhysicsSystem()
+        physSystem.init(
             1024, 0, 1024, 1024,
             bpLayers, objBpLayerFilter, objObjLayerFilter
         )
 
         val bodyActivationListener = object : BodyActivationListener() {
-            override fun onBodyActivated(bodyID: BodyID, bodyUserData: Long) {
+            override fun onBodyActivated(bodyID: BodyId, bodyUserData: Long) {
                 println("A body got activated")
             }
 
-            override fun onBodyDeactivated(bodyID: BodyID, bodyUserData: Long) {
+            override fun onBodyDeactivated(bodyID: BodyId, bodyUserData: Long) {
                 println("A body went to sleep")
             }
         }
@@ -106,7 +109,7 @@ class JoltTest {
                 println("A contact was persisted")
             }
 
-            override fun onContactRemoved(subShapePair: SubShapeIDPair) {
+            override fun onContactRemoved(subShapePair: SubShapeIdPair) {
                 println("A contact was removed")
             }
         }
@@ -114,15 +117,52 @@ class JoltTest {
 
         val bodyInterface = physSystem.bodyInterface
 
-        contactListener.delete()
-        bodyActivationListener.delete()
-        physSystem.delete()
-        objObjLayerFilter.delete()
-        objBpLayerFilter.delete()
-        bpLayers.delete()
-        jobSystem.delete()
-        tempAllocator.delete()
-        RTTIFactory.getInstance()?.delete()
-        RTTIFactory.setInstance(null)
+        val floorShapeSettings = BoxShapeSettings(JtVec3f(100.0f, 1.0f, 100.0f))
+        val floorShape = floorShapeSettings.create()
+
+        val floorSettings = BodyCreationSettings(floorShape, JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.IDENTITY, MotionType.STATIC, LAYER_NON_MOVING)
+        val floor = bodyInterface.createBody(floorSettings)
+
+        bodyInterface.addBody(floor.id, Activation.DONT_ACTIVATE)
+
+        val sphereSettings = BodyCreationSettings(SphereShape(0.5f), JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
+        val sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE)
+
+        /*
+        bodyInterface.setLinearVelocity(sphereId, JtVec3f(0.0f, -5.0f, 0.0f))
+
+        val deltaTime = 1 / 60f
+        physSystem.optimizeBroadPhase()
+
+        var step = 0
+        while (bodyInterface.isActive(sphereId)) {
+            ++step
+
+            val position = bodyInterface.getCenterOfMassPosition(sphereId)
+            val velocity = bodyInterface.getLinearVelocity(sphereId)
+            println("Step $step: Position = $position, Velocity = $velocity")
+
+            val collisionSteps = 1
+            val integrationSubSteps = 1
+
+            physSystem.update(deltaTime, collisionSteps, integrationSubSteps, tempAllocator, jobSystem)
+        }
+
+        bodyInterface.removeBody(sphereId)
+        bodyInterface.destroyBody(sphereId)
+
+        bodyInterface.removeBody(floor.id)
+        bodyInterface.destroyBody(floor.id)*/
+
+//        contactListener.delete()
+//        bodyActivationListener.delete()
+//        physSystem.delete()
+//        objObjLayerFilter.delete()
+//        objBpLayerFilter.delete()
+//        bpLayers.delete()
+//        jobSystem.delete()
+//        tempAllocator.delete()
+//        RTTIFactory.getInstance()?.delete()
+//        RTTIFactory.setInstance(null)
     }
 }

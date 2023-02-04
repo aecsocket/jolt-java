@@ -12,6 +12,7 @@ import javax.lang.model.element.PackageElement
 import javax.lang.model.element.TypeElement
 import javax.lang.model.type.TypeMirror
 import javax.tools.StandardLocation
+import kotlin.reflect.KClass
 
 private fun Writer.writeLine(str: String = "") = write(str + '\n')
 
@@ -56,11 +57,6 @@ private fun TypeMirror.cType() = when (toString()) {
 
 @SupportedAnnotationTypes("jolt.jni.*")
 class JniAnnotationProcessor : AbstractProcessor() {
-    data class IncludeEntry(
-        val name: String,
-        val priority: Int
-    )
-
     data class CallbackBinding(
         val classPackage: String,
         val className: String,
@@ -76,14 +72,17 @@ class JniAnnotationProcessor : AbstractProcessor() {
         val body: List<String>
     )
 
-    class CppModel {
-        val originElements = HashSet<Element>()
-        val includes = ArrayList<IncludeEntry>().apply {
-            add(IncludeEntry("<jni.h>", IncludePriority.EARLIEST))
-        }
+    class ClassModel(val priority: Int) {
+        val includes = ArrayList<List<String>>()
         val callbackBindings = ArrayList<CallbackBinding>()
         val headers = ArrayList<List<String>>()
+        val init = ArrayList<List<String>>()
         val methodBindings = ArrayList<MethodBinding>()
+    }
+
+    class CppModel {
+        val originElements = HashSet<Element>()
+        val classes = ArrayList<ClassModel>()
     }
 
     val models = HashMap<String, CppModel>()
@@ -110,10 +109,14 @@ class JniAnnotationProcessor : AbstractProcessor() {
 
                 val sections = ArrayList<List<String>>()
 
+                val classModels = model.classes.sortedBy { it.priority }
+
                 // includes
-                val includes = LinkedHashSet(model.includes
-                    .sortedBy { it.priority }
-                    .map { it.name })
+                val includes = LinkedHashSet(listOf("<jni.h>") +
+                    classModels
+                        .flatMap { it.includes }
+                        .flatten()
+                )
                 sections += includes.map { include ->
                     if (include.startsWith("<") && include.endsWith(">"))
                         "#include $include"
@@ -134,7 +137,7 @@ class JniAnnotationProcessor : AbstractProcessor() {
                 }
 
                 val callbackClasses = LinkedHashMap<String, CallbackClass>()
-                model.callbackBindings.forEach { callback ->
+                classModels.flatMap { it.callbackBindings }.forEach { callback ->
                     val className = "${callback.classPackage}.${callback.className}"
                     val callbackClass = callbackClasses.computeIfAbsent(className) { CallbackClass(callback.className) }
                     callbackClass.methods += CallbackMethod(
@@ -144,30 +147,33 @@ class JniAnnotationProcessor : AbstractProcessor() {
                 }
 
                 val callbackFields = ArrayList<String>()
-                val callbackInit = ArrayList<String>()
+                val jniInit = ArrayList<String>()
                 callbackClasses.toList().forEachIndexed { idx, (className, callback) ->
                     if (callback.methods.isEmpty()) return@forEachIndexed
 
                     val classVar = "c$idx"
-                    callbackInit += listOf(
+                    jniInit += listOf(
                         """jclass $classVar = env->FindClass("${className.replace('.', '/')}");""",
                         "if (env->ExceptionCheck()) return;"
                     )
                     callback.methods.forEach { method ->
                         val fieldName = "${callback.simpleName}_${method.name.removePrefix("_")}"
                         callbackFields += "jmethodID $fieldName;"
-                        callbackInit += """$fieldName = env->GetMethodID($classVar, "${method.name}", "${method.signature}");"""
+                        jniInit += """$fieldName = env->GetMethodID($classVar, "${method.name}", "${method.signature}");"""
                     }
                 }
 
-                sections += callbackFields +
-                    listOf("void InitCallbacks(JNIEnv* env) {") + callbackInit.map { "    $it" } + "}"
+                sections += callbackFields
 
                 // headers
-                sections += model.headers.flatJoin(newline)
+                sections += classModels.flatMap { it.headers }.flatJoin(newline)
+
+                // JNI init
+                jniInit += classModels.flatMap { it.init }.flatten()
+                sections += listOf("void JNIInit(JNIEnv* env) {") + jniInit.map { "    $it" } + "}"
 
                 // method bindings
-                sections += listOf("""extern "C" {""") + model.methodBindings
+                sections += listOf("""extern "C" {""") + classModels.flatMap { it.methodBindings }
                     .map { method ->
                         listOf(
                             "JNIEXPORT ${method.returns} JNICALL ${method.name}",
@@ -184,28 +190,33 @@ class JniAnnotationProcessor : AbstractProcessor() {
         } else {
             roundEnv.getElementsAnnotatedWith(JniNative::class.java).forEach { classElement ->
                 val jniNative = classElement.getAnnotation(JniNative::class.java)
-                val model = models.computeIfAbsent(jniNative.value) { CppModel() }
-                model.originElements += classElement
+                val jniPriority = classElement.getAnnotation(JniPriority::class.java)?.value ?: NativePriority.NORMAL
+                val cppModel = models.computeIfAbsent(jniNative.value) { CppModel() }
+                val classModel = ClassModel(jniPriority).also { cppModel.classes += it }
+                cppModel.originElements += classElement
 
                 val packageName = (classElement.enclosingElement as PackageElement).qualifiedName
                 val className = "$packageName.${classElement.simpleName}"
 
                 classElement.getAnnotation(JniInclude::class.java)?.let { jniInclude ->
-                    model.includes += jniInclude.value.lines()
-                        .map { IncludeEntry(it, jniInclude.priority) }
+                    classModel.includes += jniInclude.value.lines()
                 }
 
                 classElement.getAnnotation(JniHeader::class.java)?.let { jniHeader ->
-                    model.headers += jniHeader.value.lines()
+                    classModel.headers += jniHeader.value.lines()
+                }
+
+                classElement.getAnnotation(JniInit::class.java)?.let { jniInit ->
+                    classModel.init += jniInit.value.lines()
                 }
 
                 val jniType: JniType? = classElement.getAnnotation(JniType::class.java)
 
                 fun bindMethod(element: Element, body: List<String>) {
                     element as ExecutableElement
-                    model.originElements += element
+                    cppModel.originElements += element
 
-                    model.methodBindings += MethodBinding(
+                    classModel.methodBindings += MethodBinding(
                         mangleMethod(className, element.simpleName.toString()),
                         listOf(
                             "JNIEnv* env",
@@ -220,25 +231,42 @@ class JniAnnotationProcessor : AbstractProcessor() {
                     val childName = childElement.simpleName.toString()
 
                     // methods
+                    fun requireType(annotationType: KClass<*>) {
+                        errors += "Method $className.$childName is annotated with ${annotationType.simpleName}, but class is not annotated with ${JniType::class.simpleName}"
+                    }
+
                     childElement.getAnnotation(JniBind::class.java)?.let { jniBind ->
                         bindMethod(childElement, jniBind.value.lines())
                     }
 
-                    childElement.getAnnotation(JniSelfBind::class.java)?.let { jniSelfBind ->
+                    childElement.getAnnotation(JniBindSelf::class.java)?.let { jniBindSelf ->
                         val selfType = jniType?.value ?: run {
-                            errors += "Method $className.$childName is annotated with ${JniSelfBind::class.simpleName}, but class is not annotated with ${JniType::class.simpleName}"
+                            requireType(JniBindSelf::class)
                             return@let
                         }
 
                         bindMethod(childElement, listOf(
                             "$selfType* self = ($selfType*) address;"
-                        ) + jniSelfBind.value.lines())
+                        ) + jniBindSelf.value.lines())
+                    }
+
+                    childElement.getAnnotation(JniBindDelete::class.java)?.let {
+                        val selfType = jniType?.value ?: run {
+                            requireType(JniBindDelete::class)
+                            return@let
+                        }
+
+                        bindMethod(childElement, listOf("delete ($selfType*) address;"))
+                    }
+
+                    childElement.getAnnotation(JniBindInit::class.java)?.let {
+                        bindMethod(childElement, listOf("JNIInit(env);"))
                     }
 
                     childElement.getAnnotation(JniCallback::class.java)?.let {
                         childElement as ExecutableElement
 
-                        model.callbackBindings += CallbackBinding(
+                        classModel.callbackBindings += CallbackBinding(
                             packageName.toString(),
                             classElement.simpleName.toString(),
                             childName,

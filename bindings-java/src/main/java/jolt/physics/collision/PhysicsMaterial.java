@@ -1,15 +1,15 @@
-package jolt.core;
+package jolt.physics.collision;
 
 import jolt.JoltNative;
 import jolt.jni.JniBindDelete;
 import jolt.jni.JniInclude;
 import jolt.jni.JniType;
 
-@JniInclude("<Jolt/Core/TempAllocator.h>")
-@JniType("TempAllocator")
-public class TempAllocator extends JoltNative {
-    protected TempAllocator(long address) { super(address); }
-    public static TempAllocator ref(long address) { return address == 0 ? null : new TempAllocator(address); }
+@JniInclude("<Jolt/Physics/Collision/PhysicsMaterial.h>")
+@JniType("PhysicsMaterial")
+public class PhysicsMaterial extends JoltNative {
+    private PhysicsMaterial(long address) { super(address); }
+    public static PhysicsMaterial ref(long address) { return new PhysicsMaterial(address); }
 
     @Override
     public void delete() {
@@ -19,6 +19,5 @@ public class TempAllocator extends JoltNative {
     }
     @JniBindDelete
     private static native void _delete(long address);
-
-    protected TempAllocator() {}
 }
+

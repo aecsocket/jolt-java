@@ -27,6 +27,7 @@ library {
         // include Jolt
         compileTask.includes("$rootDir/JoltPhysics")
         compileTask.macros["JPH_PROFILE_ENABLED"] = "true"
+        compileTask.macros["JPH_ENABLE_ASSERTS"] = "true"
 
         // include generated C++
         compileTask.includes("${bindingsJava.buildDir}/generated/sources/annotationProcessor/java/main/jolt/")

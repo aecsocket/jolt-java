@@ -2,10 +2,12 @@ package jolt;
 
 import jolt.jni.*;
 
+import javax.annotation.Nullable;
 import java.util.Objects;
 
 @JniNative(JoltNative.MODEL)
-@JniInclude(priority = IncludePriority.EARLY, value = """
+@JniPriority(NativePriority.EARLY)
+@JniInclude("""
         <cstdint>
         <Jolt/Jolt.h>""")
 @JniHeader("""
@@ -16,38 +18,67 @@ import java.util.Objects;
         using uint64 = uint64_t;
         using namespace JPH;
         
+        static JavaVM* javaVm = nullptr;
+        
+        class JNIThreadEnv {
+        public:
+            JNIThreadEnv() : shouldDetach(false), env(nullptr) {}
+            JNIThreadEnv(JNIEnv *env) : shouldDetach(false), env(env) {}
+            ~JNIThreadEnv() {
+                if (shouldDetach) {
+                    javaVm->DetachCurrentThread();
+                }
+            }
+            
+            JNIEnv* getEnv() {
+                if (env == nullptr && javaVm != nullptr) {
+                    javaVm->AttachCurrentThreadAsDaemon((void**) &env, nullptr);
+                    shouldDetach = true;
+                }
+                return env;
+            }
+        
+        private:
+            bool shouldDetach;
+            JNIEnv* env;
+        };
+        
+        static thread_local JNIThreadEnv jniThread;
+        
         class JNINative {
         public:
-            JNINative(JNIEnv* env, jobject obj) : env(env), obj(env->NewGlobalRef(obj)) {}
+            JNINative(JNIEnv* env, jobject obj) : obj(env->NewGlobalRef(obj)) {}
             ~JNINative() {
-                env->DeleteGlobalRef(obj);
+                jniThread.getEnv()->DeleteGlobalRef(obj);
             }
         
         protected:
-            JNIEnv* env;
             jobject obj;
         };""")
+@JniInit("""
+        env->GetJavaVM(&javaVm);
+        jniThread = JNIThreadEnv(env);""")
+
 public class JoltNative implements AutoCloseable {
     public static final String MODEL = "jolt/JoltJNIBindings";
+    protected static final String NATIVE_OBJECT_DELETED = "Native object is already deleted";
 
     protected long address;
 
     protected JoltNative(long address) { this.address = address; }
     // although this *can* return null, we leave the nullability ambiguous
     public static JoltNative ref(long address) { return address == 0 ? null : new JoltNative(address); }
+    public static long ptr(@Nullable JoltNative obj) { return obj == null ? 0 : obj.address; }
+
+    protected static RuntimeException unimplemented() {
+        return new UnimplementedMethodException();
+    }
 
     public JoltNative() {}
 
     public long getAddress() { return address; }
 
-    public void delete() {
-        if (address == 0L)
-            throw new IllegalStateException("Native object is already deleted");
-        _delete(address);
-        address = 0;
-    }
-    @JniBind("delete (void*) address;")
-    private static native void _delete(long address);
+    public void delete() { throw unimplemented(); }
     @Override public void close() { delete(); }
 
     @Override
@@ -66,9 +97,5 @@ public class JoltNative implements AutoCloseable {
     @Override
     public int hashCode() {
         return Objects.hash(address);
-    }
-
-    public static RuntimeException unimplemented() {
-        return new UnimplementedMethodException();
     }
 }

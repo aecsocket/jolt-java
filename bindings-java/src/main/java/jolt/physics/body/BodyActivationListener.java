@@ -1,22 +1,22 @@
 package jolt.physics.body;
 
-import jolt.jni.JniBind;
+import jolt.jni.*;
 import jolt.JoltNative;
-import jolt.jni.JniCallback;
-import jolt.jni.JniHeader;
-import jolt.jni.JniInclude;
 
 @JniInclude("<Jolt/Physics/Body/BodyActivationListener.h>")
+@JniType("BodyActivationListenerImpl")
 @JniHeader("""
         class BodyActivationListenerImpl : JNINative, BodyActivationListener {
         public:
             BodyActivationListenerImpl(JNIEnv* env, jobject obj) : JNINative(env, obj) {}
             
             void OnBodyActivated(const BodyID& inBodyID, uint64 inBodyUserData) override {
+                JNIEnv* env = jniThread.getEnv();
                 env->CallVoidMethod(obj, BodyActivationListener_onBodyActivated);
             }
             
             void OnBodyDeactivated(const BodyID& inBodyID, uint64 inBodyUserData) override {
+                JNIEnv* env = jniThread.getEnv();
                 env->CallVoidMethod(obj, BodyActivationListener_onBodyDeactivated);
             }
         };""")
@@ -24,15 +24,24 @@ public class BodyActivationListener extends JoltNative {
     private BodyActivationListener(long address) { super(address); }
     public static BodyActivationListener ref(long address) { return address == 0 ? null : new BodyActivationListener(address); }
 
+    @Override
+    public void delete() {
+        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
+        _delete(address);
+        address = 0;
+    }
+    @JniBindDelete
+    private static native void _delete(long address);
+
     public BodyActivationListener() { address = _ctor(); }
     @JniBind("return (long) new BodyActivationListenerImpl(env, obj);")
     private native long _ctor();
 
-    public void onBodyActivated(BodyID bodyID, long bodyUserData) {}
+    public void onBodyActivated(BodyId bodyID, long bodyUserData) {}
     @JniCallback
-    private void _onBodyActivated(long bodyId, long bodyUserData) { onBodyActivated(BodyID.ref(bodyId), bodyUserData); }
+    private void _onBodyActivated(long bodyId, long bodyUserData) { onBodyActivated(BodyId.ref(bodyId), bodyUserData); }
 
-    public void onBodyDeactivated(BodyID bodyId, long bodyUserData) {}
+    public void onBodyDeactivated(BodyId bodyId, long bodyUserData) {}
     @JniCallback
-    private void _onBodyDeactivated(long bodyId, long bodyUserData) { onBodyDeactivated(BodyID.ref(bodyId), bodyUserData); }
+    private void _onBodyDeactivated(long bodyId, long bodyUserData) { onBodyDeactivated(BodyId.ref(bodyId), bodyUserData); }
 }

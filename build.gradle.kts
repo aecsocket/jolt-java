@@ -47,8 +47,14 @@ publishing {
     }
 }
 
+val bindingsCpp = projects.joltJniBindingsCpp.dependencyProject
+
 tasks {
     test {
         dependsOn(assemble)
+    }
+
+    assemble {
+        dependsOn(bindingsCpp.tasks.assemble)
     }
 }

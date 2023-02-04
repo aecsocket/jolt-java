@@ -17,7 +17,20 @@ public final class PhysicsSystem extends JoltNative {
     private PhysicsSystem(long address) { super(address); }
     public static PhysicsSystem ref(long address) { return address == 0 ? null : new PhysicsSystem(address); }
 
-    public PhysicsSystem(
+    @Override
+    public void delete() {
+        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
+        _delete(address);
+        address = 0;
+    }
+    @JniBindDelete
+    private static native void _delete(long address);
+
+    public PhysicsSystem() { address = _ctor(); }
+    @JniBind("return (long) new PhysicsSystem();")
+    private static native long _ctor();
+
+    public void init(
             int maxBodies,
             int numBodyMutexes,
             int maxBodyPairs,
@@ -26,7 +39,7 @@ public final class PhysicsSystem extends JoltNative {
             ObjectVsBroadPhaseLayerFilter objectVsBroadPhaseLayerFilter,
             ObjectLayerPairFilter objectLayerPairFilter
     ) {
-        address = _ctor(
+        _init(
                 maxBodies, numBodyMutexes, maxBodyPairs, maxContactConstraints,
                 broadPhaseLayerInterface.getAddress(),
                 objectVsBroadPhaseLayerFilter.getAddress(),
@@ -42,7 +55,7 @@ public final class PhysicsSystem extends JoltNative {
                 *((ObjectLayerPairFilter*) objectLayerPairFilter)
             );
             return (long) self;""")
-    private static native long _ctor(
+    private static native long _init(
             int maxBodies,
             int numBodyMutexes,
             int maxBodyPairs,
@@ -53,26 +66,26 @@ public final class PhysicsSystem extends JoltNative {
     );
 
     public BodyInterface getBodyInterface() { return BodyInterface.ref(_getBodyInterface(address)); }
-    @JniSelfBind("return (long) &self->GetBodyInterface();")
+    @JniBindSelf("return (long) &self->GetBodyInterface();")
     private static native long _getBodyInterface(long address);
 
     public BodyInterface getBodyInterfaceNoLock() { return BodyInterface.ref(_getBodyInterfaceNoLock(address)); }
-    @JniSelfBind("return (long) &self->GetBodyInterfaceNoLock();")
+    @JniBindSelf("return (long) &self->GetBodyInterfaceNoLock();")
     private static native long _getBodyInterfaceNoLock(long address);
 
     public @Nullable BodyActivationListener getBodyActivationListener() { return BodyActivationListener.ref(_getBodyActivationListener(address)); }
-    @JniSelfBind("return (long) self->GetBodyActivationListener();")
+    @JniBindSelf("return (long) self->GetBodyActivationListener();")
     private static native long _getBodyActivationListener(long address);
 
-    public void setBodyActivationListener(@Nullable BodyActivationListener value) { _setBodyActivationListener(address, value == null ? 0 : value.getAddress()); }
-    @JniSelfBind("self->SetBodyActivationListener((BodyActivationListener*) value);")
+    public void setBodyActivationListener(@Nullable BodyActivationListener value) { _setBodyActivationListener(address, ptr(value)); }
+    @JniBindSelf("self->SetBodyActivationListener((BodyActivationListener*) value);")
     private static native void _setBodyActivationListener(long address, long value);
 
     public @Nullable ContactListener getContactListener() { return ContactListener.ref(_getContactListener(address)); }
-    @JniSelfBind("return (long) self->GetContactListener();")
+    @JniBindSelf("return (long) self->GetContactListener();")
     private static native long _getContactListener(long address);
 
-    public void setContactListener(@Nullable ContactListener value) { _setContactListener(address, value == null ? 0 : value.getAddress()); }
-    @JniSelfBind("self->SetContactListener((ContactListener*) address);")
+    public void setContactListener(@Nullable ContactListener value) { _setContactListener(address, ptr(value)); }
+    @JniBindSelf("self->SetContactListener((ContactListener*) address);")
     private static native void _setContactListener(long address, long value);
 }

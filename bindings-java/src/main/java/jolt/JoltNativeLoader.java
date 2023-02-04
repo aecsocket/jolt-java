@@ -1,6 +1,7 @@
 package jolt;
 
 import jolt.jni.JniBind;
+import jolt.jni.JniBindInit;
 import jolt.jni.JniNative;
 
 import java.io.IOException;
@@ -39,6 +40,6 @@ public final class JoltNativeLoader {
         }
     }
 
-    @JniBind("InitCallbacks(env);")
+    @JniBindInit
     private static native void _init();
 }

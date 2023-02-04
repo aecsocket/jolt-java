@@ -2,7 +2,7 @@ package jolt.jni
 
 import java.lang.annotation.Inherited
 
-object IncludePriority {
+object NativePriority {
     const val NORMAL = 0
     const val EARLY = -100
     const val EARLIEST = -1000
@@ -17,7 +17,15 @@ annotation class JniNative(val value: String)
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-annotation class JniInclude(val value: String, val priority: Int = IncludePriority.NORMAL)
+annotation class JniPriority(val value: Int)
+
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.SOURCE)
+annotation class JniType(val value: String)
+
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.SOURCE)
+annotation class JniInclude(val value: String)
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
@@ -25,7 +33,7 @@ annotation class JniHeader(val value: String)
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-annotation class JniType(val value: String)
+annotation class JniInit(val value: String)
 
 
 @Target(AnnotationTarget.FUNCTION)
@@ -34,7 +42,15 @@ annotation class JniBind(val value: String)
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)
-annotation class JniSelfBind(val value: String)
+annotation class JniBindSelf(val value: String)
+
+@Target(AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.SOURCE)
+annotation class JniBindDelete
+
+@Target(AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.SOURCE)
+annotation class JniBindInit
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)

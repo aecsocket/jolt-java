@@ -1,15 +1,14 @@
-package jolt.core;
+package jolt.physics.collision.shape;
 
-import jolt.JoltNative;
 import jolt.jni.JniBindDelete;
 import jolt.jni.JniInclude;
 import jolt.jni.JniType;
 
-@JniInclude("<Jolt/Core/JobSystem.h>")
-@JniType("JobSystem")
-public class JobSystem extends JoltNative {
-    protected JobSystem(long address) { super(address); }
-    public static JobSystem ref(long address) { return address == 0 ? null : new JobSystem(address); }
+@JniInclude("<Jolt/Physics/Collision/Shape/Shape.h>")
+@JniType("ConvexShape")
+public class ConvexShape extends Shape {
+    protected ConvexShape(long address) { super(address); }
+    public static ConvexShape ref(long address) { return new ConvexShape(address); }
 
     @Override
     public void delete() {
@@ -20,5 +19,5 @@ public class JobSystem extends JoltNative {
     @JniBindDelete
     private static native void _delete(long address);
 
-    protected JobSystem() {}
+    protected ConvexShape() {}
 }
