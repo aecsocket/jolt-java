@@ -1,5 +1,21 @@
 package jolt;
 
+import jolt.jni.IncludePriority;
+import jolt.jni.JniHeader;
+import jolt.jni.JniInclude;
+import jolt.jni.JniNative;
+
+@JniNative("jolt/JoltJNI")
+@JniInclude(priority = IncludePriority.EARLY, value = """
+        <cstdint>
+        <Jolt/Jolt.h>""")
+@JniHeader("""
+        using uint = unsigned int;
+        using uint8 = uint8_t;
+        using uint16 = uint16_t;
+        using uint32 = uint32_t;
+        using uint64 = uint64_t;
+        using namespace JPH;""")
 public class JoltNative implements AutoCloseable {
     protected long address;
 

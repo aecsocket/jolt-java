@@ -1,8 +1,10 @@
 package jolt.physics.collision;
 
+import jolt.jni.JniInclude;
 import jolt.jni.JniSelfBind;
 import jolt.JoltNative;
 
+@JniInclude("<Jolt/Physics/Collision/ContactListener.h>")
 public final class ContactSettings extends JoltNative {
     private ContactSettings(long address) { super(address); }
     public static ContactSettings ref(long address) { return new ContactSettings(address); }

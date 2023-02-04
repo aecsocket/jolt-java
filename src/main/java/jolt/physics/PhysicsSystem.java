@@ -1,7 +1,6 @@
 package jolt.physics;
 
-import jolt.jni.JniBind;
-import jolt.jni.JniSelfBind;
+import jolt.jni.*;
 import jolt.JoltNative;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
@@ -12,6 +11,8 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 
 import javax.annotation.Nullable;
 
+@JniInclude("<Jolt/Physics/PhysicsSystem.h>")
+@JniSelfType("PhysicsSystem")
 public final class PhysicsSystem extends JoltNative {
     private PhysicsSystem(long address) { super(address); }
     public static PhysicsSystem ref(long address) { return address == 0 ? null : new PhysicsSystem(address); }
@@ -40,8 +41,7 @@ public final class PhysicsSystem extends JoltNative {
                 *((ObjectVsBroadPhaseLayerFilter*) objectVsBroadPhaseLayerFilter),
                 *((ObjectLayerPairFilter*) objectLayerPairFilter)
             );
-            return (jlong) self;
-            """)
+            return (jlong) self;""")
     private static native long _ctor(
             int maxBodies,
             int numBodyMutexes,

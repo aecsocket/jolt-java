@@ -1,7 +1,9 @@
 package jolt.physics.collision.broadphase;
 
 import jolt.JoltNative;
+import jolt.jni.JniInclude;
 
+@JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>")
 public class ObjectVsBroadPhaseLayerFilter extends JoltNative {
     private ObjectVsBroadPhaseLayerFilter(long address) { super(address); }
     public static ObjectVsBroadPhaseLayerFilter ref(long address) { return address == 0 ? null : new ObjectVsBroadPhaseLayerFilter(address); }

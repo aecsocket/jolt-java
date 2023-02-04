@@ -3,7 +3,9 @@ package jolt.physics.body;
 import jolt.jni.JniBind;
 import jolt.JoltNative;
 import jolt.jni.JniCallback;
+import jolt.jni.JniInclude;
 
+@JniInclude("<Jolt/Physics/Body/BodyActivationListener.h>")
 public class BodyActivationListener extends JoltNative {
     private BodyActivationListener(long address) { super(address); }
     public static BodyActivationListener ref(long address) { return address == 0 ? null : new BodyActivationListener(address); }

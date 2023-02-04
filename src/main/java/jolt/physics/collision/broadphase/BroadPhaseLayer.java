@@ -1,8 +1,10 @@
 package jolt.physics.collision.broadphase;
 
+import jolt.jni.JniInclude;
 import jolt.jni.JniSelfBind;
 import jolt.JoltNative;
 
+@JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>")
 public final class BroadPhaseLayer extends JoltNative {
     private BroadPhaseLayer(long address) { super(address); }
     public static BroadPhaseLayer ref(long address) { return address == 0 ? null : new BroadPhaseLayer(address); }

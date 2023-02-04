@@ -1,5 +1,8 @@
 package jolt;
 
+import jolt.jni.JniInclude;
+
+@JniInclude("<Jolt/RegisterTypes.h>")
 public final class JoltEnvironment {
     private JoltEnvironment() {}
 

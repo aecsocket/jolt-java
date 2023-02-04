@@ -1,10 +1,13 @@
 package jolt.physics.collision;
 
 import jolt.JoltNative;
+import jolt.jni.JniHeader;
+import jolt.jni.JniInclude;
 import jolt.math.JtVec3f;
 import jolt.physics.body.BodyID;
 import jolt.physics.collision.shape.SubShapeIDPair;
 
+@JniInclude("<Jolt/Physics/Collision/ContactListener.h>")
 public class ContactListener extends JoltNative {
     private ContactListener(long address) { super(address); }
     public static ContactListener ref(long address) { return address == 0 ? null : new ContactListener(address); }

@@ -2,9 +2,11 @@ package jolt.core;
 
 import jolt.jni.JniBind;
 import jolt.JoltNative;
+import jolt.jni.JniInclude;
 
 import javax.annotation.Nullable;
 
+@JniInclude("<Jolt/Core/Factory.h>")
 public final class RTTIFactory extends JoltNative {
     private RTTIFactory(long address) { this.address = address; }
     public static RTTIFactory ref(long address) { return address == 0 ? null : new RTTIFactory(address); }
