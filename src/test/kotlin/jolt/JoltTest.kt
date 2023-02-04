@@ -128,7 +128,6 @@ class JoltTest {
         val sphereSettings = BodyCreationSettings(SphereShape(0.5f), JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
         val sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE)
 
-        /*
         bodyInterface.setLinearVelocity(sphereId, JtVec3f(0.0f, -5.0f, 0.0f))
 
         val deltaTime = 1 / 60f
@@ -152,17 +151,17 @@ class JoltTest {
         bodyInterface.destroyBody(sphereId)
 
         bodyInterface.removeBody(floor.id)
-        bodyInterface.destroyBody(floor.id)*/
+        bodyInterface.destroyBody(floor.id)
 
-//        contactListener.delete()
-//        bodyActivationListener.delete()
-//        physSystem.delete()
-//        objObjLayerFilter.delete()
-//        objBpLayerFilter.delete()
-//        bpLayers.delete()
-//        jobSystem.delete()
-//        tempAllocator.delete()
-//        RTTIFactory.getInstance()?.delete()
-//        RTTIFactory.setInstance(null)
+        contactListener.delete()
+        bodyActivationListener.delete()
+        physSystem.delete()
+        objObjLayerFilter.delete()
+        objBpLayerFilter.delete()
+        bpLayers.delete()
+        jobSystem.delete()
+        tempAllocator.delete()
+        RTTIFactory.getInstance()?.delete()
+        RTTIFactory.setInstance(null)
     }
 }

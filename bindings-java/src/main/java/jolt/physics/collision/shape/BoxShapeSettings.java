@@ -27,7 +27,7 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
 
     public BoxShapeSettings(JtVec3f halfExtent, float convexRadius, @Nullable PhysicsMaterial material) {
         address = _ctor(
-                halfExtent.x(), halfExtent.y(), halfExtent.z(),
+                halfExtent.x, halfExtent.y, halfExtent.z,
                 convexRadius,
                 ptr(material)
         );

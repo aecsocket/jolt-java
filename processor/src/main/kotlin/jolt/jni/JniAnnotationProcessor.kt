@@ -52,7 +52,8 @@ private fun mangleMethod(className: String, methodName: String) =
 
 private fun TypeMirror.cType() = when (toString()) {
     "void" -> "void"
-    else -> "j$this"
+    "boolean", "char", "byte", "short", "int", "float", "long", "double" -> "j$this"
+    else -> "jobject"
 }
 
 @SupportedAnnotationTypes("jolt.jni.*")

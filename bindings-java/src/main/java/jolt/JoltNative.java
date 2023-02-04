@@ -47,6 +47,23 @@ import java.util.Objects;
         
         jclass runtimeException;
         
+        jclass JtVec3f;
+        jmethodID JtVec3f_set;
+        
+        jclass JtQuat;
+        jmethodID JtQuat_set;
+        
+        void JniToJava(JNIEnv* env, const RVec3 from, jobject to) {
+            env->CallObjectMethod(to, JtVec3f_set,
+                from.GetX(), from.GetY(), from.GetZ());
+        }
+        
+        jobject JniToJava(JNIEnv* env, const RVec3 from) {
+            jobject to = env->AllocObject(JtVec3f);
+            JniToJava(env, from, to);
+            return to;
+        }
+        
         class JNINative {
         public:
             JNINative(JNIEnv* env, jobject obj) : obj(env->NewGlobalRef(obj)) {}
@@ -60,7 +77,12 @@ import java.util.Objects;
 @JniInit("""
         env->GetJavaVM(&javaVm);
         jniThread = JNIThreadEnv(env);
-        runtimeException = env->FindClass("java/lang/RuntimeException");""")
+        runtimeException = env->FindClass("java/lang/RuntimeException");
+        
+        JtVec3f = env->FindClass("jolt/math/JtVec3f");
+        JtVec3f_set = env->GetMethodID(JtVec3f, "set", "(FFF)V");
+        JtQuat = env->FindClass("jolt/math/JtQuat");
+        JtQuat_set = env->GetMethodID(JtQuat, "set", "(FFFF)V");""")
 
 public class JoltNative implements AutoCloseable {
     public static final String MODEL = "jolt/JoltJNIBindings";

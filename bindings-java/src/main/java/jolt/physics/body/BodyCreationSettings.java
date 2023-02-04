@@ -31,8 +31,8 @@ public final class BodyCreationSettings extends JoltNative {
     ) {
         address = _ctor0(
                 shape.getAddress(),
-                position.x(), position.y(), position.z(),
-                rotation.x(), rotation.y(), rotation.z(), rotation.w(),
+                position.x, position.y, position.z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
                 motionType.ordinal(),
                 objectLayer
         );
@@ -62,8 +62,8 @@ public final class BodyCreationSettings extends JoltNative {
     ) {
         address = _ctor1(
                 shape.getAddress(),
-                position.x(), position.y(), position.z(),
-                rotation.x(), rotation.y(), rotation.z(), rotation.w(),
+                position.x, position.y, position.z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
                 motionType.ordinal(),
                 objectLayer
         );

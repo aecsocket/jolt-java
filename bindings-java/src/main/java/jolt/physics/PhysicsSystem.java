@@ -1,5 +1,7 @@
 package jolt.physics;
 
+import jolt.core.JobSystem;
+import jolt.core.TempAllocator;
 import jolt.jni.*;
 import jolt.JoltNative;
 import jolt.physics.body.BodyActivationListener;
@@ -31,10 +33,7 @@ public final class PhysicsSystem extends JoltNative {
     private static native long _ctor();
 
     public void init(
-            int maxBodies,
-            int numBodyMutexes,
-            int maxBodyPairs,
-            int maxContactConstraints,
+            int maxBodies, int numBodyMutexes, int maxBodyPairs, int maxContactConstraints,
             BroadPhaseLayerInterface broadPhaseLayerInterface,
             ObjectVsBroadPhaseLayerFilter objectVsBroadPhaseLayerFilter,
             ObjectLayerPairFilter objectLayerPairFilter
@@ -55,11 +54,7 @@ public final class PhysicsSystem extends JoltNative {
                 *((ObjectLayerPairFilter*) objectLayerPairFilter)
             );""")
     private static native void _init(
-            long _a,
-            int maxBodies,
-            int numBodyMutexes,
-            int maxBodyPairs,
-            int maxContactConstraints,
+            long _a, int maxBodies, int numBodyMutexes, int maxBodyPairs, int maxContactConstraints,
             long broadPhaseLayerInterface,
             long objectVsBroadPhaseLayerFilter,
             long objectLayerPairFilter
@@ -88,4 +83,28 @@ public final class PhysicsSystem extends JoltNative {
     public void setContactListener(@Nullable ContactListener value) { _setContactListener(address, ptr(value)); }
     @JniBindSelf("self->SetContactListener((ContactListener*) value);")
     private static native void _setContactListener(long _a, long value);
+
+    public void optimizeBroadPhase() { _optimizeBroadPhase(address); }
+    @JniBindSelf("self->OptimizeBroadPhase();")
+    private static native void _optimizeBroadPhase(long _a);
+
+    public void update(
+            float deltaTime, int collisionSteps, int integrationSubSteps,
+            TempAllocator tempAllocator, JobSystem jobSystem
+    ) {
+        _update(
+                address, deltaTime, collisionSteps, integrationSubSteps,
+                tempAllocator.getAddress(), jobSystem.getAddress()
+        );
+    }
+    @JniBindSelf("""
+            self->Update(
+                deltaTime, collisionSteps, integrationSubSteps,
+                (TempAllocator*) tempAllocator,
+                (JobSystem*) jobSystem
+            );""")
+    private static native void _update(
+            long _a, float deltaTime, int collisionSteps, int integrationSubSteps,
+            long tempAllocator, long jobSystem
+    );
 }
