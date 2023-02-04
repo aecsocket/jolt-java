@@ -45,6 +45,8 @@ import java.util.Objects;
         
         static thread_local JNIThreadEnv jniThread;
         
+        jclass runtimeException;
+        
         class JNINative {
         public:
             JNINative(JNIEnv* env, jobject obj) : obj(env->NewGlobalRef(obj)) {}
@@ -57,7 +59,8 @@ import java.util.Objects;
         };""")
 @JniInit("""
         env->GetJavaVM(&javaVm);
-        jniThread = JNIThreadEnv(env);""")
+        jniThread = JNIThreadEnv(env);
+        runtimeException = env->FindClass("java/lang/RuntimeException");""")
 
 public class JoltNative implements AutoCloseable {
     public static final String MODEL = "jolt/JoltJNIBindings";
@@ -65,7 +68,11 @@ public class JoltNative implements AutoCloseable {
 
     protected long address;
 
-    protected JoltNative(long address) { this.address = address; }
+    protected JoltNative(long address) {
+        if (address == 0)
+            throw new IllegalArgumentException("Creating object with null address");
+        this.address = address;
+    }
     // although this *can* return null, we leave the nullability ambiguous
     public static JoltNative ref(long address) { return address == 0 ? null : new JoltNative(address); }
     public static long ptr(@Nullable JoltNative obj) { return obj == null ? 0 : obj.address; }

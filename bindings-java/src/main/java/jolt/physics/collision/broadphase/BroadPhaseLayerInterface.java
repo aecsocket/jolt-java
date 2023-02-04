@@ -46,10 +46,10 @@ public class BroadPhaseLayerInterface extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public BroadPhaseLayerInterface() { address = _ctor(); }
-    @JniBind("return (long) new BroadPhaseLayerInterfaceImpl(env, obj);")
+    @JniBind("return (jlong) new BroadPhaseLayerInterfaceImpl(env, obj);")
     private native long _ctor();
 
     public int getNumBroadPhaseLayers() { throw unimplemented(); }

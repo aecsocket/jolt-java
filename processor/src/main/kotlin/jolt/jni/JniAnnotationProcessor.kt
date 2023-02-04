@@ -212,8 +212,7 @@ class JniAnnotationProcessor : AbstractProcessor() {
 
                 val jniType: JniType? = classElement.getAnnotation(JniType::class.java)
 
-                fun bindMethod(element: Element, body: List<String>) {
-                    element as ExecutableElement
+                fun bindMethod(element: ExecutableElement, body: List<String>) {
                     cppModel.originElements += element
 
                     classModel.methodBindings += MethodBinding(
@@ -228,51 +227,75 @@ class JniAnnotationProcessor : AbstractProcessor() {
                 }
 
                 classElement.enclosedElements.forEach { childElement ->
-                    val childName = childElement.simpleName.toString()
+                    when (childElement) {
+                        is ExecutableElement -> {
+                            val methodName = childElement.simpleName.toString()
 
-                    // methods
-                    fun requireType(annotationType: KClass<*>) {
-                        errors += "Method $className.$childName is annotated with ${annotationType.simpleName}, but class is not annotated with ${JniType::class.simpleName}"
-                    }
+                            fun error(annotationType: KClass<*>, message: String) {
+                                errors += "Method $className.$methodName is annotated with ${annotationType.simpleName}, but $message"
+                            }
 
-                    childElement.getAnnotation(JniBind::class.java)?.let { jniBind ->
-                        bindMethod(childElement, jniBind.value.lines())
-                    }
+                            fun requireType(annotationType: KClass<*>) =
+                                error(annotationType, "class is not annotated with ${JniType::class.simpleName}")
 
-                    childElement.getAnnotation(JniBindSelf::class.java)?.let { jniBindSelf ->
-                        val selfType = jniType?.value ?: run {
-                            requireType(JniBindSelf::class)
-                            return@let
+                            childElement.getAnnotation(JniBind::class.java)?.let { jniBind ->
+                                bindMethod(childElement, jniBind.value.lines())
+                            }
+
+                            childElement.getAnnotation(JniBindSelf::class.java)?.let { jniBindSelf ->
+                                val selfType = jniType?.value ?: run {
+                                    requireType(JniBindSelf::class)
+                                    return@let
+                                }
+
+                                val params = childElement.parameters
+                                if (
+                                    params.isEmpty()
+                                    || params[0].simpleName.toString() != "_a"
+                                    || params[0].asType().toString() != "long"
+                                ) {
+                                    error(JniBindSelf::class, "requires 1st argument `long _a` = `address`")
+                                    return@let
+                                }
+
+                                bindMethod(childElement, listOf(
+                                    "auto* self = ($selfType*) _a;"
+                                ) + jniBindSelf.value.lines())
+                            }
+
+                            childElement.getAnnotation(JniBindDelete::class.java)?.let {
+                                val selfType = jniType?.value ?: run {
+                                    requireType(JniBindDelete::class)
+                                    return@let
+                                }
+
+                                val params = childElement.parameters
+                                if (
+                                    params.size != 1
+                                    || params[0].simpleName.toString() != "_a"
+                                    || params[0].asType().toString() != "long"
+                                ) {
+                                    error(JniBindDelete::class, "requires one argument `long _a` = `address`")
+                                    return@let
+                                }
+
+                                bindMethod(childElement, listOf("delete ($selfType*) _a;"))
+                            }
+
+                            childElement.getAnnotation(JniBindInit::class.java)?.let {
+                                bindMethod(childElement, listOf("JNIInit(env);"))
+                            }
+
+                            childElement.getAnnotation(JniCallback::class.java)?.let {
+                                classModel.callbackBindings += CallbackBinding(
+                                    packageName.toString(),
+                                    classElement.simpleName.toString(),
+                                    methodName,
+                                    childElement.parameters.map { param -> param.asType() },
+                                    childElement.returnType
+                                )
+                            }
                         }
-
-                        bindMethod(childElement, listOf(
-                            "$selfType* self = ($selfType*) address;"
-                        ) + jniBindSelf.value.lines())
-                    }
-
-                    childElement.getAnnotation(JniBindDelete::class.java)?.let {
-                        val selfType = jniType?.value ?: run {
-                            requireType(JniBindDelete::class)
-                            return@let
-                        }
-
-                        bindMethod(childElement, listOf("delete ($selfType*) address;"))
-                    }
-
-                    childElement.getAnnotation(JniBindInit::class.java)?.let {
-                        bindMethod(childElement, listOf("JNIInit(env);"))
-                    }
-
-                    childElement.getAnnotation(JniCallback::class.java)?.let {
-                        childElement as ExecutableElement
-
-                        classModel.callbackBindings += CallbackBinding(
-                            packageName.toString(),
-                            classElement.simpleName.toString(),
-                            childName,
-                            childElement.parameters.map { param -> param.asType() },
-                            childElement.returnType
-                        )
                     }
                 }
             }

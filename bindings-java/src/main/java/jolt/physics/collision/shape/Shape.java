@@ -9,7 +9,7 @@ import jolt.jni.JniType;
 @JniType("Shape")
 public class Shape extends JoltNative {
     protected Shape(long address) { super(address); }
-    public static Shape ref(long address) { return new Shape(address); }
+    public static Shape ref(long address) { return address == 0 ? null : new Shape(address); }
 
     @Override
     public void delete() {
@@ -18,7 +18,7 @@ public class Shape extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     protected Shape() {}
 }

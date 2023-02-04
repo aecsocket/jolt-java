@@ -8,7 +8,7 @@ import jolt.jni.JniType;
 @JniType("ConvexShape")
 public class ConvexShape extends Shape {
     protected ConvexShape(long address) { super(address); }
-    public static ConvexShape ref(long address) { return new ConvexShape(address); }
+    public static ConvexShape ref(long address) { return address == 0 ? null : new ConvexShape(address); }
 
     @Override
     public void delete() {
@@ -17,7 +17,7 @@ public class ConvexShape extends Shape {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     protected ConvexShape() {}
 }

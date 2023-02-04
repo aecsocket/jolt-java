@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @JniType("BoxShapeSettings")
 public final class BoxShapeSettings extends ConvexShapeSettings {
     private BoxShapeSettings(long address) { super(address); }
-    public static BoxShapeSettings ref(long address) { return new BoxShapeSettings(address); }
+    public static BoxShapeSettings ref(long address) { return address == 0 ? null : new BoxShapeSettings(address); }
 
     @Override
     public void delete() {
@@ -23,7 +23,7 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public BoxShapeSettings(JtVec3f halfExtent, float convexRadius, @Nullable PhysicsMaterial material) {
         address = _ctor(
@@ -33,7 +33,7 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
         );
     }
     @JniBind("""
-        return (long) new BoxShapeSettings(
+        return (jlong) new BoxShapeSettings(
             Vec3Arg(halfExtentX, halfExtentY, halfExtentZ),
             convexRadius,
             (PhysicsMaterial*) material

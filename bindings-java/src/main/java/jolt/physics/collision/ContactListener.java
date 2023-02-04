@@ -48,10 +48,10 @@ public class ContactListener extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public ContactListener() { address = _ctor(); }
-    @JniBind("return (long) new ContactListenerImpl(env, obj);")
+    @JniBind("return (jlong) new ContactListenerImpl(env, obj);")
     private native long _ctor();
 
     public ValidateResult onContactValidate(Body body1, Body body2, JtVec3f baseOffset, CollideShapeResult collisionResult) { throw unimplemented(); }

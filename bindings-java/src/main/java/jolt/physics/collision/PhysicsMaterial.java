@@ -9,7 +9,7 @@ import jolt.jni.JniType;
 @JniType("PhysicsMaterial")
 public class PhysicsMaterial extends JoltNative {
     private PhysicsMaterial(long address) { super(address); }
-    public static PhysicsMaterial ref(long address) { return new PhysicsMaterial(address); }
+    public static PhysicsMaterial ref(long address) { return address == 0 ? null : new PhysicsMaterial(address); }
 
     @Override
     public void delete() {
@@ -18,6 +18,6 @@ public class PhysicsMaterial extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 }
 

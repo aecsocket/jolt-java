@@ -18,7 +18,7 @@ public class TempAllocator extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     protected TempAllocator() {}
 }

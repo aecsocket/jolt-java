@@ -31,10 +31,10 @@ public class BodyActivationListener extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public BodyActivationListener() { address = _ctor(); }
-    @JniBind("return (long) new BodyActivationListenerImpl(env, obj);")
+    @JniBind("return (jlong) new BodyActivationListenerImpl(env, obj);")
     private native long _ctor();
 
     public void onBodyActivated(BodyId bodyID, long bodyUserData) {}

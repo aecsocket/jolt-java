@@ -12,6 +12,6 @@ public final class Body extends JoltNative {
     public static Body ref(long address) { return address == 0 ? null : new Body(address); }
 
     public BodyId getId() { return BodyId.ref(_getId(address)); }
-    @JniBindSelf("return (long) &self->GetID();")
-    private static native long _getId(long address);
+    @JniBindSelf("return (jlong) &self->GetID();")
+    private static native long _getId(long _a);
 }

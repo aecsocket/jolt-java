@@ -19,20 +19,20 @@ public final class BodyInterface extends JoltNative {
         if (body == 0) throw new IllegalStateException(OUT_OF_BODIES);
         return Body.ref(body);
     }
-    @JniBindSelf("return (long) self->CreateBody(*((BodyCreationSettings*) settings));")
-    private static native long _createBody(long address, long settings);
+    @JniBindSelf("return (jlong) self->CreateBody(*((BodyCreationSettings*) settings));")
+    private static native long _createBody(long _a, long settings);
 
     public Body createBodyWithId(BodyId bodyId, BodyCreationSettings settings) {
         long body = _createBodyWithId(address, bodyId.getAddress(), settings.getAddress());
         if (body == 0) throw new IllegalStateException(OUT_OF_BODIES);
         return Body.ref(body);
     }
-    @JniBindSelf("return (long) self->CreateBodyWithID(*((BodyID*) bodyId), *((BodyCreationSettings*) settings));")
-    private static native long _createBodyWithId(long address, long bodyId, long settings);
+    @JniBindSelf("return (jlong) self->CreateBodyWithID(*((BodyID*) bodyId), *((BodyCreationSettings*) settings));")
+    private static native long _createBodyWithId(long _a, long bodyId, long settings);
 
     public void addBody(BodyId bodyId, Activation activationMode) { _addBody(address, bodyId.getAddress(), activationMode.ordinal()); }
     @JniBindSelf("return self->AddBody(*((BodyID*) bodyId), (EActivation) activationMode);")
-    private static native void _addBody(long address, long bodyId, long activationMode);
+    private static native void _addBody(long _a, long bodyId, long activationMode);
 
     public BodyId createAndAddBody(BodyCreationSettings settings, Activation activationMode) {
         long body = _createAndAddBody(address, settings.getAddress(), activationMode.ordinal());
@@ -41,6 +41,6 @@ public final class BodyInterface extends JoltNative {
     }
     @JniBindSelf("""
             BodyID res = self->CreateAndAddBody(*((BodyCreationSettings*) settings), (EActivation) activationMode);
-            return (long) &res;""")
-    private static native long _createAndAddBody(long address, long settings, int activationMode);
+            return (jlong) &res;""")
+    private static native long _createAndAddBody(long _a, long settings, int activationMode);
 }

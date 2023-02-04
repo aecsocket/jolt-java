@@ -16,15 +16,15 @@ public final class BroadPhaseLayer extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public static BroadPhaseLayer ofValue(byte value) { return new BroadPhaseLayer(_ofValue(value)); }
-    @JniBind("return (long) new BroadPhaseLayer(value);")
+    @JniBind("return (jlong) new BroadPhaseLayer(value);")
     private static native long _ofValue(byte value);
 
     public int getValue() { return _getValue(address); }
     @JniBindSelf("return (int) (uint8) *self;")
-    private static native int _getValue(long address);
+    private static native int _getValue(long _a);
 
     @Override
     public boolean equals(Object o) {

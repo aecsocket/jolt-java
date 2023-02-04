@@ -27,10 +27,10 @@ public class ObjectVsBroadPhaseLayerFilter extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public ObjectVsBroadPhaseLayerFilter() { address = _ctor(); }
-    @JniBind("return (long) new ObjectVsBroadPhaseLayerFilterImpl(env, obj);")
+    @JniBind("return (jlong) new ObjectVsBroadPhaseLayerFilterImpl(env, obj);")
     private native long _ctor();
 
     public boolean shouldCollide(int layer1, BroadPhaseLayer layer2) { throw unimplemented(); }

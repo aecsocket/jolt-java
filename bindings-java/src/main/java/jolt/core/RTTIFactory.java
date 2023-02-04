@@ -21,14 +21,14 @@ public final class RTTIFactory extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public RTTIFactory() { address = _ctor(); }
-    @JniBind("return (long) new Factory();")
+    @JniBind("return (jlong) new Factory();")
     private static native long _ctor();
 
     public static @Nullable RTTIFactory getInstance() { return ref(_getInstance()); }
-    @JniBind("return (long) Factory::sInstance;")
+    @JniBind("return (jlong) Factory::sInstance;")
     private static native long _getInstance();
 
     public static void setInstance(@Nullable RTTIFactory value) { _setInstance(ptr(value)); }

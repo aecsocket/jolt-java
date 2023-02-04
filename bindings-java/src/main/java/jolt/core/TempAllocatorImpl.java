@@ -18,9 +18,9 @@ public final class TempAllocatorImpl extends TempAllocator {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public static TempAllocatorImpl ofSize(long size) { return ref(_ofSize(size)); }
-    @JniBind("return (long) new TempAllocatorImpl(size);")
+    @JniBind("return (jlong) new TempAllocatorImpl(size);")
     private static native long _ofSize(long size);
 }

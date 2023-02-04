@@ -8,6 +8,6 @@ import jolt.jni.JniType;
 @JniType("CollideShapeResult")
 public class CollideShapeResult extends JoltNative {
     protected CollideShapeResult(long address) { super(address); }
-    public static CollideShapeResult ref(long address) { return new CollideShapeResult(address); }
+    public static CollideShapeResult ref(long address) { return address == 0 ? null : new CollideShapeResult(address); }
 }
 

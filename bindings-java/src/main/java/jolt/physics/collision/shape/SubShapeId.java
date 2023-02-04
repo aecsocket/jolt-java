@@ -8,5 +8,5 @@ import jolt.jni.JniType;
 @JniType("SubShapeID")
 public final class SubShapeId extends JoltNative {
     private SubShapeId(long address) { super(address); }
-    public static SubShapeId ref(long address) { return new SubShapeId(address); }
+    public static SubShapeId ref(long address) { return address == 0 ? null : new SubShapeId(address); }
 }

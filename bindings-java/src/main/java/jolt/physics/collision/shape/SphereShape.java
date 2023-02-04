@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @JniType("SphereShape")
 public final class SphereShape extends ConvexShape {
     private SphereShape(long address) { super(address); }
-    public static SphereShape ref(long address) { return new SphereShape(address); }
+    public static SphereShape ref(long address) { return address == 0 ? null : new SphereShape(address); }
 
     @Override
     public void delete() {
@@ -21,12 +21,12 @@ public final class SphereShape extends ConvexShape {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public SphereShape(float radius, @Nullable PhysicsMaterial material) {
         address = _ctor(radius, ptr(material));
     }
-    @JniBind("return (long) new SphereShape(radius, (PhysicsMaterial*) material);")
+    @JniBind("return (jlong) new SphereShape(radius, (PhysicsMaterial*) material);")
     private static native long _ctor(float radius, long material);
 
     public SphereShape(float radius) { this(radius, null); }

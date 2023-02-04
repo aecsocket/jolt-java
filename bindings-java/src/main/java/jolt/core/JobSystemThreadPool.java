@@ -18,11 +18,11 @@ public final class JobSystemThreadPool extends JobSystem {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public JobSystemThreadPool(int maxJobs, int maxBarriers, int numThreads) {
         address = _ctor(maxJobs, maxBarriers, numThreads);
     }
-    @JniBind("return (long) new JobSystemThreadPool(maxJobs, maxBarriers, numThreads);")
+    @JniBind("return (jlong) new JobSystemThreadPool(maxJobs, maxBarriers, numThreads);")
     private static native long _ctor(int maxJobs, int maxBarriers, int numThreads);
 }

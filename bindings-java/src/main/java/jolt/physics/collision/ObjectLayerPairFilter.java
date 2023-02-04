@@ -27,10 +27,10 @@ public class ObjectLayerPairFilter extends JoltNative {
         address = 0;
     }
     @JniBindDelete
-    private static native void _delete(long address);
+    private static native void _delete(long _a);
 
     public ObjectLayerPairFilter() { address = _ctor(); }
-    @JniBind("return (long) new ObjectLayerPairFilterImpl(env, obj);")
+    @JniBind("return (jlong) new ObjectLayerPairFilterImpl(env, obj);")
     private native long _ctor();
 
     public boolean shouldCollide(int layer1, int layer2) { throw unimplemented(); }
