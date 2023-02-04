@@ -19,4 +19,12 @@ public final class BroadPhaseLayer extends JoltNative {
     public int getValue() { return _getValue(address); }
     @JniSelfBind("return (int) (uint8) *self;")
     private static native int _getValue(long address);
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof BroadPhaseLayer other) {
+            return getValue() == other.getValue();
+        }
+        return false;
+    }
 }

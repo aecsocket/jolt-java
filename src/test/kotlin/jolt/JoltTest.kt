@@ -5,6 +5,7 @@ import jolt.core.RTTIFactory
 import jolt.core.TempAllocatorImpl
 import jolt.math.JtVec3f
 import jolt.physics.PhysicsSystem
+import jolt.physics.body.Body
 import jolt.physics.body.BodyActivationListener
 import jolt.physics.body.BodyID
 import jolt.physics.collision.*
@@ -35,12 +36,12 @@ class JoltTest {
             override fun getBroadPhaseLayer(layer: Int) = when (layer) {
                 LAYER_NON_MOVING -> bpLayerNonMoving
                 LAYER_MOVING -> bpLayerMoving
-                else -> throw RuntimeException()
+                else -> throw IllegalArgumentException("Invalid layer $layer")
             }
             override fun getBroadPhaseLayerName(layer: BroadPhaseLayer) = when (layer) {
                 bpLayerNonMoving -> "NON_MOVING"
                 bpLayerMoving -> "MOVING"
-                else -> throw RuntimeException()
+                else -> throw IllegalArgumentException("Invalid layer $layer / $bpLayerMoving")
             }
         }
 
@@ -78,8 +79,8 @@ class JoltTest {
 
         val contactListener = object : ContactListener() {
             override fun onContactValidate(
-                body1: BodyID,
-                body2: BodyID,
+                body1: Body,
+                body2: Body,
                 baseOffset: JtVec3f,
                 collisionResult: CollideShapeResult
             ): ValidateResult {
@@ -88,8 +89,8 @@ class JoltTest {
             }
 
             override fun onContactAdded(
-                body1: BodyID,
-                body2: BodyID,
+                body1: Body,
+                body2: Body,
                 manifold: ContactManifold,
                 settings: ContactSettings
             ) {
@@ -97,8 +98,8 @@ class JoltTest {
             }
 
             override fun onContactPersisted(
-                body1: BodyID,
-                body2: BodyID,
+                body1: Body,
+                body2: Body,
                 manifold: ContactManifold,
                 settings: ContactSettings
             ) {
@@ -119,7 +120,6 @@ class JoltTest {
         objObjLayerFilter.delete()
         objBpLayerFilter.delete()
         bpLayers.delete()
-        println(jobSystem)
         jobSystem.delete()
         tempAllocator.delete()
         RTTIFactory.getInstance()?.delete()

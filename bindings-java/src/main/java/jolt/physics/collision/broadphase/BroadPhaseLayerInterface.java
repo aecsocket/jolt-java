@@ -25,6 +25,7 @@ import jolt.jni.JniInclude;
             const char* GetBroadPhaseLayerName(BroadPhaseLayer inLayer) const override {
                 jstring res = (jstring) env->CallObjectMethod(obj, BroadPhaseLayerInterface_getBroadPhaseLayerName,
                     &inLayer);
+                if (env->ExceptionCheck()) return nullptr;
                 return env->GetStringUTFChars(res, 0);
             }
         #endif

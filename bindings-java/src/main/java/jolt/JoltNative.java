@@ -1,9 +1,8 @@
 package jolt;
 
-import jolt.jni.IncludePriority;
-import jolt.jni.JniHeader;
-import jolt.jni.JniInclude;
-import jolt.jni.JniNative;
+import jolt.jni.*;
+
+import java.util.Objects;
 
 @JniNative(JoltNative.MODEL)
 @JniInclude(priority = IncludePriority.EARLY, value = """
@@ -47,8 +46,27 @@ public class JoltNative implements AutoCloseable {
         _delete(address);
         address = 0;
     }
+    @JniBind("delete (void*) address;")
     private static native void _delete(long address);
     @Override public void close() { delete(); }
+
+    @Override
+    public String toString() {
+        return String.format("%s*%xd", getClass().getName(), address);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JoltNative that = (JoltNative) o;
+        return address == that.address;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
+    }
 
     public static RuntimeException unimplemented() {
         return new UnimplementedMethodException();
