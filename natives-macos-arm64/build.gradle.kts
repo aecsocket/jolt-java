@@ -10,14 +10,14 @@ repositories {
 }
 
 dependencies {
-    implementation(rootProject)
+    implementation(projects.joltJniBindingsJava)
 }
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(jvmVersion))
 }
 
-val bindings: Project = projects.joltJniBindings.dependencyProject
+val bindings: Project = projects.joltJniBindingsCpp.dependencyProject
 
 tasks {
     jar {

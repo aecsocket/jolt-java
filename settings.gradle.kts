@@ -11,7 +11,8 @@ rootProject.name = "jolt-jni"
 listOf(
     "annotations",
     "processor",
-    "bindings",
+    "bindings-java",
+    "bindings-cpp",
     "natives-linux",
     "natives-windows",
     "natives-macos",

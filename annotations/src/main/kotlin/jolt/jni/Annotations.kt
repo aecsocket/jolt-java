@@ -25,7 +25,8 @@ annotation class JniHeader(val value: String)
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-annotation class JniSelfType(val value: String)
+annotation class JniType(val value: String)
+
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)

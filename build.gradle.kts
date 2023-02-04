@@ -1,5 +1,5 @@
 plugins {
-    id("java")
+    kotlin("jvm")
     id("maven-publish")
 }
 
@@ -26,21 +26,17 @@ repositories {
 }
 
 dependencies {
-    implementation("com.google.code.findbugs", "jsr305", "3.0.2")
-    implementation(projects.joltJniAnnotations)
-    annotationProcessor(projects.joltJniProcessor)
+    implementation(projects.joltJniBindingsJava)
+
+    testImplementation(kotlin("test"))
+    testRuntimeOnly(projects.joltJniNativesLinux)
+    testRuntimeOnly(projects.joltJniNativesWindows)
+    testRuntimeOnly(projects.joltJniNativesMacos)
+    testRuntimeOnly(projects.joltJniNativesMacosArm64)
 }
 
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(jvmVersion))
-}
-
-val bindings: Project = projects.joltJniBindings.dependencyProject
-
-tasks {
-    assemble {
-        dependsOn(bindings.tasks.assemble)
-    }
+kotlin {
+    jvmToolchain(jvmVersion)
 }
 
 publishing {
@@ -48,5 +44,11 @@ publishing {
         create<MavenPublication>("maven") {
             from(components["java"])
         }
+    }
+}
+
+tasks {
+    test {
+        dependsOn(assemble)
     }
 }
