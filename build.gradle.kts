@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    implementation(projects.joltJniBindingsJava)
+    implementation(projects.joltJni)
 
     testImplementation(kotlin("test"))
     testRuntimeOnly(projects.joltJniNativesLinux)
@@ -37,24 +37,4 @@ dependencies {
 
 kotlin {
     jvmToolchain(jvmVersion)
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-        }
-    }
-}
-
-val bindingsCpp = projects.joltJniBindingsCpp.dependencyProject
-
-tasks {
-    test {
-        dependsOn(assemble)
-    }
-
-    assemble {
-        dependsOn(bindingsCpp.tasks.assemble)
-    }
 }

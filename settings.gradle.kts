@@ -6,22 +6,10 @@ pluginManagement {
     }
 }
 
-rootProject.name = "jolt-jni"
+rootProject.name = "jolt-jni-parent"
 
+include("jolt-jni")
 listOf(
-    "annotations",
-    "processor",
-    "bindings-java",
-    "bindings-cpp",
-    "natives-linux",
-    "natives-windows",
-    "natives-macos",
-    "natives-macos-arm64",
-    "test"
-).forEach {
-    val name = "${rootProject.name}-$it"
-    include(name)
-    project(":$name").apply {
-        projectDir = file(it)
-    }
-}
+    "annotations", "processor", "bindings-cpp",
+    "natives-linux", "natives-windows", "natives-macos", "natives-macos-arm64"
+).forEach { include("jolt-jni-$it") }
