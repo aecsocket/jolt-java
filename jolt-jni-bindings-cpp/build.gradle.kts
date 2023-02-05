@@ -28,8 +28,16 @@ library {
 
         // include Jolt
         compileTask.includes("$rootDir/JoltPhysics")
-        compileTask.macros["JPH_PROFILE_ENABLED"] = "true"
-        compileTask.macros["JPH_ENABLE_ASSERTS"] = "true"
+        when (buildType) {
+            JoltBuildType.DEBUG -> {
+                compileTask.macros["JPH_PROFILE_ENABLED"] = ""
+                compileTask.macros["JPH_ENABLE_ASSERTS"] = ""
+            }
+        }
+        when (flavor) {
+            JoltFlavor.DP -> compileTask.macros["JPH_DOUBLE_PRECISION"] = ""
+            JoltFlavor.SP -> {}
+        }
 
         // include generated C++
         compileTask.includes("${bindings.buildDir}/generated/sources/annotationProcessor/java/main/jolt/")
@@ -46,18 +54,13 @@ tasks {
 
         doFirst {
             delete(outputDir)
-
-            // TODO modify build script to add -fPIC
-            // append:
-            /*
-            # Jolt-JNI
-            if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR MINGW OR EMSCRIPTEN)
-                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
-            endif()
-             */
         }
 
         workingDir = File(buildDir)
+        environment["JOLT_JNI_DOUBLE_PRECISION"] = when (flavor) {
+            JoltFlavor.SP -> "OFF"
+            JoltFlavor.DP -> "ON"
+        }
         commandLine = listOf("$buildDir/cmake_linux_clang_gcc.sh", buildType.key)
 
         doLast {

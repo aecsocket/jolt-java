@@ -3,6 +3,7 @@ package jolt.physics.body;
 import jolt.JoltNative;
 import jolt.jni.*;
 import jolt.math.JtQuat;
+import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;
 import jolt.physics.collision.shape.Shape;
 import jolt.physics.collision.shape.ShapeSettings;
@@ -22,30 +23,30 @@ public final class BodyCreationSettings extends JoltNative {
     @JniBindDelete
     private static native void _delete(long _a);
 
-    public BodyCreationSettings(
+    public static BodyCreationSettings sp(
             ShapeSettings shape,
             JtVec3f position,
             JtQuat rotation,
             MotionType motionType,
             int objectLayer
     ) {
-        address = _ctor0(
+        return new BodyCreationSettings(_sp0(
                 shape.getAddress(),
                 position.x, position.y, position.z,
                 rotation.x, rotation.y, rotation.z, rotation.w,
                 motionType.ordinal(),
                 objectLayer
-        );
+        ));
     }
     @JniBind("""
             return (jlong) new BodyCreationSettings(
                 (ShapeSettings*) shape,
-                RVec3Arg(positionX, positionY, positionZ),
-                QuatArg(rotationX, rotationY, rotationZ, rotationW),
+                RVec3(positionX, positionY, positionZ),
+                Quat(rotationX, rotationY, rotationZ, rotationW),
                 (EMotionType) motionType,
-                objectLayer
+                (ObjectLayer) objectLayer
             );""")
-    private static native long _ctor0(
+    private static native long _sp0(
             long shape,
             float positionX, float positionY, float positionZ,
             float rotationX, float rotationY, float rotationZ, float rotationW,
@@ -53,32 +54,95 @@ public final class BodyCreationSettings extends JoltNative {
             int objectLayer
     );
 
-    public BodyCreationSettings(
+    public static BodyCreationSettings sp(
             Shape shape,
             JtVec3f position,
             JtQuat rotation,
             MotionType motionType,
             int objectLayer
     ) {
-        address = _ctor1(
+        return new BodyCreationSettings(_sp1(
                 shape.getAddress(),
                 position.x, position.y, position.z,
                 rotation.x, rotation.y, rotation.z, rotation.w,
                 motionType.ordinal(),
                 objectLayer
-        );
+        ));
+    }
+    @JniBind("""
+            auto* abc = new BodyCreationSettings(
+                (Shape*) shape,
+                RVec3(positionX, positionY, positionZ),
+                Quat(rotationX, rotationY, rotationZ, rotationW),
+                (EMotionType) motionType,
+                (ObjectLayer) objectLayer
+            );
+            return (jlong) abc;""")
+    private static native long _sp1(
+            long shape,
+            float positionX, float positionY, float positionZ,
+            float rotationX, float rotationY, float rotationZ, float rotationW,
+            int motionType,
+            int objectLayer
+    );
+
+    public static BodyCreationSettings dp(
+            ShapeSettings shape,
+            JtVec3d position,
+            JtQuat rotation,
+            MotionType motionType,
+            int objectLayer
+    ) {
+        return new BodyCreationSettings(_dp0(
+                shape.getAddress(),
+                position.x, position.y, position.z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
+                motionType.ordinal(),
+                objectLayer
+        ));
+    }
+    @JniBind("""
+            return (jlong) new BodyCreationSettings(
+                (ShapeSettings*) shape,
+                RVec3(positionX, positionY, positionZ),
+                Quat(rotationX, rotationY, rotationZ, rotationW),
+                (EMotionType) motionType,
+                (ObjectLayer) objectLayer
+            );""")
+    private static native long _dp0(
+            long shape,
+            double positionX, double positionY, double positionZ,
+            float rotationX, float rotationY, float rotationZ, float rotationW,
+            int motionType,
+            int objectLayer
+    );
+
+    public static BodyCreationSettings dp(
+            Shape shape,
+            JtVec3d position,
+            JtQuat rotation,
+            MotionType motionType,
+            int objectLayer
+    ) {
+        return new BodyCreationSettings(_dp1(
+                shape.getAddress(),
+                position.x, position.y, position.z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
+                motionType.ordinal(),
+                objectLayer
+        ));
     }
     @JniBind("""
             return (jlong) new BodyCreationSettings(
                 (Shape*) shape,
-                RVec3Arg(positionX, positionY, positionZ),
-                QuatArg(rotationX, rotationY, rotationZ, rotationW),
+                RVec3(positionX, positionY, positionZ),
+                Quat(rotationX, rotationY, rotationZ, rotationW),
                 (EMotionType) motionType,
-                objectLayer
+                (ObjectLayer) objectLayer
             );""")
-    private static native long _ctor1(
+    private static native long _dp1(
             long shape,
-            float positionX, float positionY, float positionZ,
+            double positionX, double positionY, double positionZ,
             float rotationX, float rotationY, float rotationZ, float rotationW,
             int motionType,
             int objectLayer
@@ -104,11 +168,31 @@ public final class BodyCreationSettings extends JoltNative {
     @JniBindSelf("return self->HasMassProperties();")
     private static native boolean _hasMassProperties(long _a);
 
-    public JtVec3f getPositionSp() { return _getPositionSp(address); }
-    @JniBindSelf("return ToJava(env, self->mPosition);")
-    private static native JtVec3f _getPositionSp(long _a);
+    public JtVec3f getPositionSp(JtVec3f out) {
+        _getPositionSp(address, out);
+        return out;
+    }
+    public JtVec3f getPositionSp() { return getPositionSp(new JtVec3f()); }
+    @JniBindSelf("ToJava(env, self->mPosition, out);")
+    private static native void _getPositionSp(long _a, JtVec3f out);
 
     public void setPositionSp(JtVec3f value) { _setPositionSp(address, value.x, value.y, value.z); }
-    @JniBindSelf("self->mPosition = Vec3(valueX, valueY, valueZ);")
+    @JniBindSelf("self->mPosition = RVec3(valueX, valueY, valueZ);")
     private static native void _setPositionSp(long _a, float valueX, float valueY, float valueZ);
+
+    public JtVec3d getPositionDp(JtVec3d out) {
+        _getPositionDp(address, out);
+        return out;
+    }
+    public JtVec3d getPositionDp() { return getPositionDp(new JtVec3d()); }
+    @JniBindSelf("ToJava(env, self->mPosition, out);")
+    private static native void _getPositionDp(long _a, JtVec3d out);
+
+    public JtQuat getRotation(JtQuat out) {
+        _getRotation(address, out);
+        return out;
+    }
+    public JtQuat getRotation() { return getRotation(new JtQuat()); }
+    @JniBindSelf("ToJava(env, self->mRotation, out);")
+    private static native void _getRotation(long _a, JtQuat out);
 }

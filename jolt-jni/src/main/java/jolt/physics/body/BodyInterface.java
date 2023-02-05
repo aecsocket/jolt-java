@@ -4,6 +4,8 @@ import jolt.JoltNative;
 import jolt.jni.JniInclude;
 import jolt.jni.JniBindSelf;
 import jolt.jni.JniType;
+import jolt.math.JtQuat;
+import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;
 import jolt.physics.Activation;
 
@@ -61,16 +63,141 @@ public final class BodyInterface extends JoltNative {
     @JniBindSelf("self->DeactivateBody(BodyID(bodyId));")
     private static native void _deactivateBody(long _a, int bodyId);
 
-
-
+    // transform
     // TODO double-precision
-    public JtVec3f getCenterOfMassPositionSp(int bodyId) { return _getCenterOfMassPositionSp(address, bodyId); }
-    @JniBindSelf("return ToJava(env, self->GetCenterOfMassPosition(BodyID(bodyId)));")
-    private static native JtVec3f _getCenterOfMassPositionSp(long _a, int bodyId);
 
-    public JtVec3f getLinearVelocity(int bodyId) { return _getLinearVelocity(address, bodyId); }
-    @JniBindSelf("return ToJava(env, self->GetLinearVelocity(BodyID(bodyId)));")
-    private static native JtVec3f _getLinearVelocity(long _a, int bodyId);
+    public void getPositionAndRotationSp(int bodyId, JtVec3f outPosition, JtQuat outRotation) { _getPositionAndRotationSp(address, bodyId, outPosition, outRotation); }
+    @JniBindSelf("""
+            RVec3 position;
+            Quat rotation;
+            self->GetPositionAndRotation(BodyID(bodyId), position, rotation);
+            ToJava(env, position, outPosition);
+            ToJava(env, rotation, outRotation);""")
+    private static native void _getPositionAndRotationSp(long _a, int bodyId, JtVec3f outPosition, JtQuat outRotation);
+
+    public void getPositionAndRotationDp(int bodyId, JtVec3d outPosition, JtQuat outRotation) { _getPositionAndRotationDp(address, bodyId, outPosition, outRotation); }
+    @JniBindSelf("""
+            RVec3 position;
+            Quat rotation;
+            self->GetPositionAndRotation(BodyID(bodyId), position, rotation);
+            ToJava(env, position, outPosition);
+            ToJava(env, rotation, outRotation);""")
+    private static native void _getPositionAndRotationDp(long _a, int bodyId, JtVec3d outPosition, JtQuat outRotation);
+
+    public void setPositionAndRotationSp(int bodyId, JtVec3f position, JtQuat rotation, Activation activationMode) {
+        _setPositionAndRotationSp(
+                address, bodyId,
+                position.x, position.y, position.z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
+                activationMode.ordinal()
+        );
+    }
+    @JniBindSelf("""
+            self->SetPositionAndRotation(
+                BodyID(bodyId),
+                RVec3(positionX, positionY, positionZ),
+                Quat(rotationX, rotationY, rotationZ, rotationW),
+                (EActivation) activationMode
+            );""")
+    private static native void _setPositionAndRotationSp(
+            long _a, int bodyId,
+            float positionX, float positionY, float positionZ,
+            float rotationX, float rotationY, float rotationZ, float rotationW,
+            int activationMode
+    );
+
+    public void setPositionAndRotationDp(int bodyId, JtVec3d position, JtQuat rotation, Activation activationMode) {
+        _setPositionAndRotationDp(
+                address, bodyId,
+                position.x, position.y, position.z,
+                rotation.x, rotation.y, rotation.z, rotation.w,
+                activationMode.ordinal()
+        );
+    }
+    @JniBindSelf("""
+            self->SetPositionAndRotation(
+                BodyID(bodyId),
+                RVec3(positionX, positionY, positionZ),
+                Quat(rotationX, rotationY, rotationZ, rotationW),
+                (EActivation) activationMode
+            );""")
+    private static native void _setPositionAndRotationDp(
+            long _a, int bodyId,
+            double positionX, double positionY, double positionZ,
+            float rotationX, float rotationY, float rotationZ, float rotationW,
+            int activationMode
+    );
+
+    // position
+
+    public JtVec3f getPositionSp(int bodyId, JtVec3f out) {
+        _getPositionSp(address, bodyId, out);
+        return out;
+    }
+    public JtVec3f getPositionSp(int bodyId) { return getPositionSp(bodyId, new JtVec3f()); }
+    @JniBindSelf("ToJava(env, self->GetPosition(BodyID(bodyId)), out);")
+    private static native void _getPositionSp(long _a, int bodyId, JtVec3f out);
+
+    public JtVec3d getPositionDp(int bodyId, JtVec3d out) {
+        _getPositionDp(address, bodyId, out);
+        return out;
+    }
+    public JtVec3d getPositionDp(int bodyId) { return getPositionDp(bodyId, new JtVec3d()); }
+    @JniBindSelf("ToJava(env, self->GetPosition(BodyID(bodyId)), out);")
+    private static native void _getPositionDp(long _a, int bodyId, JtVec3d out);
+
+    public void setPositionSp(int bodyId, JtVec3f value, Activation activationMode) { _setPositionSp(address, bodyId, value.x, value.y, value.z, activationMode.ordinal()); }
+    @JniBindSelf("self->SetPosition(BodyID(bodyId), RVec3(valueX, valueY, valueZ), (EActivation) activationMode);")
+    private static native void _setPositionSp(long _a, int bodyId, float valueX, float valueY, float valueZ, int activationMode);
+
+    public void setPositionDp(int bodyId, JtVec3d value, Activation activationMode) { _setPositionDp(address, bodyId, value.x, value.y, value.z, activationMode.ordinal()); }
+    @JniBindSelf("self->SetPosition(BodyID(bodyId), RVec3(valueX, valueY, valueZ), (EActivation) activationMode);")
+    private static native void _setPositionDp(long _a, int bodyId, double valueX, double valueY, double valueZ, int activationMode);
+
+    // center of mass
+
+    public JtVec3f getCenterOfMassPositionSp(int bodyId, JtVec3f out) {
+        _getCenterOfMassPositionSp(address, bodyId, out);
+        return out;
+    }
+    public JtVec3f getCenterOfMassPositionSp(int bodyId) { return getCenterOfMassPositionSp(bodyId, new JtVec3f()); }
+    @JniBindSelf("ToJava(env, self->GetCenterOfMassPosition(BodyID(bodyId)), out);")
+    private static native void _getCenterOfMassPositionSp(long _a, int bodyId, JtVec3f out);
+
+    public JtVec3d getCenterOfMassPositionDp(int bodyId, JtVec3d out) {
+        _getCenterOfMassPositionDp(address, bodyId, out);
+        return out;
+    }
+    public JtVec3d getCenterOfMassPositionDp(int bodyId) { return getCenterOfMassPositionDp(bodyId, new JtVec3d()); }
+    @JniBindSelf("""
+            BodyID abcd(bodyId);
+            self->GetLinearVelocity(abcd);
+            ToJava(env, self->GetCenterOfMassPosition(abcd), out);""")
+    private static native void _getCenterOfMassPositionDp(long _a, int bodyId, JtVec3d out);
+
+    // rotation
+
+    public JtQuat getRotation(int bodyId, JtQuat out) {
+        _getRotation(address, bodyId, out);
+        return out;
+    }
+    public JtQuat getRotation(int bodyId) { return getRotation(bodyId, new JtQuat()); }
+    @JniBindSelf("ToJava(env, self->GetRotation(BodyID(bodyId)), out);")
+    private static native void _getRotation(long _a, int bodyId, JtQuat out);
+
+    public void setRotation(int bodyId, JtQuat value, Activation activationMode) { _setRotation(address, bodyId, value.x, value.y, value.z, value.w, activationMode.ordinal()); }
+    @JniBindSelf("self->SetRotation(BodyID(bodyId), Quat(valueX, valueY, valueZ, valueW), (EActivation) activationMode);")
+    private static native void _setRotation(long _a, int bodyId, float valueX, float valueY, float valueZ, float valueW, int activationMode);
+
+    // velocity
+
+    public JtVec3f getLinearVelocity(int bodyId, JtVec3f into) {
+        _getLinearVelocity(address, bodyId, into);
+        return into;
+    }
+    public JtVec3f getLinearVelocity(int bodyId) { return getLinearVelocity(bodyId, new JtVec3f()); }
+    @JniBindSelf("ToJavaSp(env, self->GetLinearVelocity(BodyID(bodyId)), into);")
+    private static native void _getLinearVelocity(long _a, int bodyId, JtVec3f into);
 
     public void setLinearVelocity(int bodyId, JtVec3f value) { _setLinearVelocity(address, bodyId, value.x, value.y, value.z); }
     @JniBindSelf("self->SetLinearVelocity(BodyID(bodyId), Vec3(valueX, valueY, valueZ));")

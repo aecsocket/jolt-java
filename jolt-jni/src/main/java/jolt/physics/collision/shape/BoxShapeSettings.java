@@ -45,9 +45,13 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
 
     public BoxShapeSettings(JtVec3f halfExtent) { this(halfExtent, PhysicsSettings.DEFAULT_CONVEX_RADIUS, null); }
 
-    public JtVec3f getHalfExtent() { return _getHalfExtent(address); }
-    @JniBindSelf("return ToJava(env, self->mHalfExtent);")
-    private static native JtVec3f _getHalfExtent(long _a);
+    public JtVec3f getHalfExtent(JtVec3f out) {
+        _getHalfExtent(address, out);
+        return out;
+    }
+    public JtVec3f getHalfExtent() { return getHalfExtent(new JtVec3f()); }
+    @JniBindSelf("ToJavaSp(env, self->mHalfExtent, out);")
+    private static native void _getHalfExtent(long _a, JtVec3f out);
 
     public void setHalfExtent(JtVec3f value) { _setHalfExtent(address, value.x, value.y, value.z); }
     @JniBindSelf("self->mHalfExtent = Vec3(valueX, valueY, valueZ);")

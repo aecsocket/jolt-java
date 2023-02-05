@@ -1,5 +1,5 @@
 plugins {
-    id("java")
+    kotlin("jvm")
     id("maven-publish")
 }
 
@@ -9,8 +9,12 @@ repositories {
     mavenCentral()
 }
 
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(jvmVersion))
+dependencies {
+    implementation(projects.joltJni)
+}
+
+kotlin {
+    jvmToolchain(jvmVersion)
 }
 
 publishing {

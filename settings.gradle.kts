@@ -10,6 +10,6 @@ rootProject.name = "jolt-jni-parent"
 
 include("jolt-jni")
 listOf(
-    "annotations", "processor", "bindings-cpp",
+    "annotations", "processor", "bindings-cpp", "kotlin",
     "natives-linux", "natives-windows", "natives-macos", "natives-macos-arm64"
 ).forEach { include("jolt-jni-$it") }

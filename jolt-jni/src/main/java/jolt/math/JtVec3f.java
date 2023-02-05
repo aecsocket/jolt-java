@@ -10,16 +10,16 @@ import jolt.jni.JniNative;
         jclass JtVec3f;
         jmethodID JtVec3f_set;
         
-        void ToJava(JNIEnv* env, const Vec3 from, jobject to) {
+        void ToJavaSp(JNIEnv* env, const Vec3 from, jobject to) {
             env->CallObjectMethod(to, JtVec3f_set,
                 from.GetX(), from.GetY(), from.GetZ());
         }
         
-        jobject ToJava(JNIEnv* env, const Vec3 from) {
-            jobject to = env->AllocObject(JtVec3f);
-            ToJava(env, from, to);
-            return to;
-        }""")
+        #ifndef JPH_DOUBLE_PRECISION
+        void ToJava(JNIEnv* env, const RVec3 from, jobject to) {
+            ToJavaSp(env, from, to);
+        }
+        #endif""")
 @JniInit("""
         JtVec3f = env->FindClass("jolt/math/JtVec3f");
         JtVec3f_set = env->GetMethodID(JtVec3f, "set", "(FFF)V");""")

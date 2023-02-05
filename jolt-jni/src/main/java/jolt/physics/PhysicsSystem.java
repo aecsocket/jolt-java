@@ -163,24 +163,28 @@ public final class PhysicsSystem extends JoltNative {
      */
     public void addConstraint(Constraint constraint) { _addConstraint(address, constraint.getAddress()); }
     @JniBindSelf("self->AddConstraint((Constraint*) constraint);")
-    private static native long _addConstraint(long _a, long constraint);
+    private static native void _addConstraint(long _a, long constraint);
 
     /**
      * Remove constraint from the world.
      */
     public void removeConstraint(Constraint constraint) { _removeConstraint(address, constraint.getAddress()); }
     @JniBindSelf("self->RemoveConstraint((Constraint*) constraint);")
-    private static native long _removeConstraint(long _a, long constraint);
+    private static native void _removeConstraint(long _a, long constraint);
 
     // TODO GetConstraints()
 
-    public JtVec3f getGravity() { return _getGravity(address); }
-    @JniBindSelf("return ToJava(env, self->GetGravity());")
-    private static native JtVec3f _getGravity(long _a);
+    public JtVec3f getGravity(JtVec3f out) {
+        _getGravity(address, out);
+        return out;
+    }
+    public JtVec3f getGravity() { return getGravity(new JtVec3f()); }
+    @JniBindSelf("ToJavaSp(env, self->GetGravity(), out);")
+    private static native void _getGravity(long _a, JtVec3f out);
 
     public void setGravity(JtVec3f value) { _setGravity(address, value.x, value.y, value.z); }
     @JniBindSelf("self->SetGravity(Vec3(valueX, valueY, valueZ));")
-    private static native JtVec3f _setGravity(long _a, float valueX, float valueY, float valueZ);
+    private static native void _setGravity(long _a, float valueX, float valueY, float valueZ);
 
     // listeners
 

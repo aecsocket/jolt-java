@@ -9,6 +9,7 @@ import java.util.Objects;
 @JniPriority(NativePriority.EARLY)
 @JniInclude("""
         <cstdint>
+        <iostream>
         <Jolt/Jolt.h>""")
 @JniHeader("""
         using uint = unsigned int;

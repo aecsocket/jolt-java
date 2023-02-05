@@ -9,6 +9,14 @@ import jolt.jni.JniNative;
 public final class JoltEnvironment {
     private JoltEnvironment() {}
 
+    public static boolean isDoublePrecision() { return _isDoublePrecision(); }
+    @JniBind("""
+            #ifdef JPH_DOUBLE_PRECISION
+            return true;
+            #endif
+            return false;""")
+    private static native boolean _isDoublePrecision();
+
     public static void registerDefaultAllocator() { _registerDefaultAllocator(); }
     @JniBind("RegisterDefaultAllocator();")
     private static native void _registerDefaultAllocator();

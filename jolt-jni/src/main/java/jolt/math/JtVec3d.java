@@ -8,7 +8,18 @@ import jolt.jni.JniNative;
 @JniNative(JoltNative.MODEL)
 @JniHeader("""
         jclass JtVec3d;
-        jmethodID JtVec3d_set;""")
+        jmethodID JtVec3d_set;
+        
+        void ToJavaDp(JNIEnv* env, const DVec3 from, jobject to) {
+            env->CallObjectMethod(to, JtVec3d_set,
+                from.GetX(), from.GetY(), from.GetZ());
+        }
+        
+        #ifdef JPH_DOUBLE_PRECISION
+        void ToJava(JNIEnv* env, const RVec3 from, jobject to) {
+            ToJavaDp(env, from, to);
+        }
+        #endif""")
 @JniInit("""
         JtVec3d = env->FindClass("jolt/math/JtVec3d");
         JtVec3d_set = env->GetMethodID(JtVec3d, "set", "(DDD)V");""")

@@ -8,7 +8,12 @@ import jolt.jni.JniNative;
 @JniNative(JoltNative.MODEL)
 @JniHeader("""
         jclass JtQuat;
-        jmethodID JtQuat_set;""")
+        jmethodID JtQuat_set;
+        
+        void ToJava(JNIEnv* env, const Quat from, jobject to) {
+            env->CallObjectMethod(to, JtQuat_set,
+                from.GetX(), from.GetY(), from.GetZ(), from.GetW());
+        }""")
 @JniInit("""
         JtQuat = env->FindClass("jolt/math/JtQuat");
         JtQuat_set = env->GetMethodID(JtQuat, "set", "(FFFF)V");""")
