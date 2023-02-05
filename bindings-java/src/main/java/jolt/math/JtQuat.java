@@ -1,5 +1,17 @@
 package jolt.math;
 
+import jolt.JoltNative;
+import jolt.jni.JniHeader;
+import jolt.jni.JniInit;
+import jolt.jni.JniNative;
+
+@JniNative(JoltNative.MODEL)
+@JniHeader("""
+        jclass JtQuat;
+        jmethodID JtQuat_set;""")
+@JniInit("""
+        JtQuat = env->FindClass("jolt/math/JtQuat");
+        JtQuat_set = env->GetMethodID(JtQuat, "set", "(FFFF)V");""")
 public class JtQuat {
     public static final JtQuat IDENTITY = new JtQuat(0f, 0f, 0f, 1f);
 

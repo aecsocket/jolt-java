@@ -99,4 +99,16 @@ public final class BodyCreationSettings extends JoltNative {
     public void setShape(Shape shape) { _setShape(address, shape.getAddress()); }
     @JniBindSelf("self->SetShape((Shape*) shape);")
     private static native void _setShape(long _a, long shape);
+
+    public boolean hasMassProperties() { return _hasMassProperties(address); }
+    @JniBindSelf("return self->HasMassProperties();")
+    private static native boolean _hasMassProperties(long _a);
+
+    public JtVec3f getPositionSp() { return _getPositionSp(address); }
+    @JniBindSelf("return ToJava(env, self->mPosition);")
+    private static native JtVec3f _getPositionSp(long _a);
+
+    public void setPositionSp(JtVec3f value) { _setPositionSp(address, value.x, value.y, value.z); }
+    @JniBindSelf("self->mPosition = Vec3(valueX, valueY, valueZ);")
+    private static native void _setPositionSp(long _a, float valueX, float valueY, float valueZ);
 }

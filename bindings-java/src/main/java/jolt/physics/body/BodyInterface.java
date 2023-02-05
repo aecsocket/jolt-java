@@ -16,6 +16,7 @@ public final class BodyInterface extends JoltNative {
     public static BodyInterface ref(long address) { return address == 0 ? null : new BodyInterface(address); }
 
     // add/remove
+
     public Body createBody(BodyCreationSettings settings) {
         long body = _createBody(address, settings.getAddress());
         if (body == 0) throw new IllegalStateException(OUT_OF_BODIES);
@@ -46,43 +47,34 @@ public final class BodyInterface extends JoltNative {
                 .GetIndexAndSequenceNumber();""")
     private static native int _createAndAddBody(long _a, long settings, int activationMode);
 
-    // body access
+    // activation
+
     public boolean isActive(int bodyId) { return _isActive(address, bodyId); }
     @JniBindSelf("return self->IsActive(BodyID(bodyId));")
     private static native boolean _isActive(long _a, int bodyId);
 
+    public void activateBody(int bodyId) { _activateBody(address, bodyId); }
+    @JniBindSelf("self->ActivateBody(BodyID(bodyId));")
+    private static native void _activateBody(long _a, int bodyId);
+
+    public void deactivateBody(int bodyId) { _deactivateBody(address, bodyId); }
+    @JniBindSelf("self->DeactivateBody(BodyID(bodyId));")
+    private static native void _deactivateBody(long _a, int bodyId);
+
+
+
     // TODO double-precision
-    public JtVec3f getCenterOfMassPosition(int bodyId) { return _getCenterOfMassPosition(address, bodyId); }
-    @JniBindSelf("""
-            return JniToJava(
-                jniThread.getEnv(),
-                self->GetCenterOfMassPosition(BodyID(bodyId))
-            );""")
-    private static native JtVec3f _getCenterOfMassPosition(long _a, int bodyId);
+    public JtVec3f getCenterOfMassPositionSp(int bodyId) { return _getCenterOfMassPositionSp(address, bodyId); }
+    @JniBindSelf("return ToJava(env, self->GetCenterOfMassPosition(BodyID(bodyId)));")
+    private static native JtVec3f _getCenterOfMassPositionSp(long _a, int bodyId);
 
     public JtVec3f getLinearVelocity(int bodyId) { return _getLinearVelocity(address, bodyId); }
-    @JniBindSelf("""
-            return JniToJava(
-                jniThread.getEnv(),
-                self->GetLinearVelocity(BodyID(bodyId))
-            );""")
+    @JniBindSelf("return ToJava(env, self->GetLinearVelocity(BodyID(bodyId)));")
     private static native JtVec3f _getLinearVelocity(long _a, int bodyId);
 
-    public void setLinearVelocity(int bodyId, JtVec3f value) {
-        _setLinearVelocity(
-                address, bodyId,
-                value.x, value.y, value.z
-        );
-    }
-    @JniBindSelf("""
-            self->SetLinearVelocity(
-                BodyID(bodyId),
-                Vec3(valueX, valueY, valueZ)
-            );""")
-    private static native void _setLinearVelocity(
-            long _a, int bodyId,
-            float valueX, float valueY, float valueZ
-    );
+    public void setLinearVelocity(int bodyId, JtVec3f value) { _setLinearVelocity(address, bodyId, value.x, value.y, value.z); }
+    @JniBindSelf("self->SetLinearVelocity(BodyID(bodyId), Vec3(valueX, valueY, valueZ));")
+    private static native void _setLinearVelocity(long _a, int bodyId, float valueX, float valueY, float valueZ);
 
     // advanced
     public Body createBodyWithId(int bodyId, BodyCreationSettings settings) {

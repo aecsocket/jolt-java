@@ -20,7 +20,7 @@ import kotlin.test.Test
 const val LAYER_NON_MOVING = 0
 const val LAYER_MOVING = 1
 
-class JoltTest {
+class HelloJolt {
     @Test
     fun testJolt() {
         JoltNativeLoader.load()
@@ -137,7 +137,7 @@ class JoltTest {
         while (bodyInterface.isActive(sphereId)) {
             ++step
 
-            val position = bodyInterface.getCenterOfMassPosition(sphereId)
+            val position = bodyInterface.getCenterOfMassPositionSp(sphereId)
             val velocity = bodyInterface.getLinearVelocity(sphereId)
             println("Step $step: Position = $position, Velocity = $velocity")
 
