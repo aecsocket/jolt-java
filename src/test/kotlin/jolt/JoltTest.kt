@@ -70,11 +70,11 @@ class JoltTest {
         )
 
         val bodyActivationListener = object : BodyActivationListener() {
-            override fun onBodyActivated(bodyID: BodyId, bodyUserData: Long) {
+            override fun onBodyActivated(bodyID: BodyIds, bodyUserData: Long) {
                 println("A body got activated")
             }
 
-            override fun onBodyDeactivated(bodyID: BodyId, bodyUserData: Long) {
+            override fun onBodyDeactivated(bodyID: BodyIds, bodyUserData: Long) {
                 println("A body went to sleep")
             }
         }

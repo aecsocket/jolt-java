@@ -37,11 +37,11 @@ public class BodyActivationListener extends JoltNative {
     @JniBind("return (jlong) new BodyActivationListenerImpl(env, obj);")
     private native long _ctor();
 
-    public void onBodyActivated(BodyId bodyID, long bodyUserData) {}
+    public void onBodyActivated(BodyIds bodyID, long bodyUserData) {}
     @JniCallback
-    private void _onBodyActivated(long bodyId, long bodyUserData) { onBodyActivated(BodyId.ref(bodyId), bodyUserData); }
+    private void _onBodyActivated(long bodyId, long bodyUserData) { onBodyActivated(BodyIds.ref(bodyId), bodyUserData); }
 
-    public void onBodyDeactivated(BodyId bodyId, long bodyUserData) {}
+    public void onBodyDeactivated(BodyIds bodyId, long bodyUserData) {}
     @JniCallback
-    private void _onBodyDeactivated(long bodyId, long bodyUserData) { onBodyDeactivated(BodyId.ref(bodyId), bodyUserData); }
+    private void _onBodyDeactivated(long bodyId, long bodyUserData) { onBodyDeactivated(BodyIds.ref(bodyId), bodyUserData); }
 }
