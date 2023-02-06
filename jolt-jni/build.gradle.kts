@@ -18,6 +18,8 @@ dependencies {
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(jvmVersion))
+    withSourcesJar()
+    withJavadocJar()
 }
 
 // so that `publishing` can get `tasks.jar`

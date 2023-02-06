@@ -169,10 +169,7 @@ public final class BodyInterface extends JoltNative {
         return out;
     }
     public JtVec3d getCenterOfMassPositionDp(int bodyId) { return getCenterOfMassPositionDp(bodyId, new JtVec3d()); }
-    @JniBindSelf("""
-            BodyID abcd(bodyId);
-            self->GetLinearVelocity(abcd);
-            ToJava(env, self->GetCenterOfMassPosition(abcd), out);""")
+    @JniBindSelf("ToJava(env, self->GetCenterOfMassPosition(BodyID(bodyId)), out);")
     private static native void _getCenterOfMassPositionDp(long _a, int bodyId, JtVec3d out);
 
     // rotation

@@ -3,7 +3,18 @@ plugins {
 }
 
 val buildType = ext.get(BUILD_TYPE) as JoltBuildType
-val flavor = ext.get(FLAVOR) as JoltFlavor
+val features = listOfNotNull(
+    if (ext.get(DOUBLE_PRECISION) as Boolean) JoltFeature.DOUBLE_PRECISION else null,
+    //JoltFeature.USE_SSE4_1,
+    //JoltFeature.USE_SSE4_2,
+    //JoltFeature.USE_AVX,
+    //JoltFeature.USE_AVX2,
+    //JoltFeature.USE_AVX512,
+    //JoltFeature.USE_LZCNT,
+    //JoltFeature.USE_TZCNT,
+    //JoltFeature.USE_F16C,
+    //JoltFeature.USE_FMADD,
+)
 
 val bindings = projects.joltJni.dependencyProject
 
@@ -33,10 +44,11 @@ library {
                 compileTask.macros["JPH_PROFILE_ENABLED"] = ""
                 compileTask.macros["JPH_ENABLE_ASSERTS"] = ""
             }
+            JoltBuildType.RELEASE -> {}
+            JoltBuildType.DISTRIBUTION -> {}
         }
-        when (flavor) {
-            JoltFlavor.DP -> compileTask.macros["JPH_DOUBLE_PRECISION"] = ""
-            JoltFlavor.SP -> {}
+        features.forEach { feature ->
+            compileTask.macros[feature.macro()] = ""
         }
 
         // include generated C++
@@ -57,9 +69,8 @@ tasks {
         }
 
         workingDir = File(buildDir)
-        environment["JOLT_JNI_DOUBLE_PRECISION"] = when (flavor) {
-            JoltFlavor.SP -> "OFF"
-            JoltFlavor.DP -> "ON"
+        JoltFeature.values().forEach { feature ->
+            environment[feature.cmakeFlag()] = if (feature in features) "ON" else "OFF"
         }
         commandLine = listOf("$buildDir/cmake_linux_clang_gcc.sh", buildType.key)
 

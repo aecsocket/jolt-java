@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 
 /**
  * The main class for the physics system. It contains all rigid bodies and simulates them.
- * <br>
+ * <p>
  * The main simulation is performed by the {@link #update(float, int, int, TempAllocator, JobSystem)} call on multiple threads (if the JobSystem is configured to use them).
  * Please refer to the general architecture overview in the Docs folder for more information.
  */
@@ -91,7 +91,7 @@ public final class PhysicsSystem extends JoltNative {
 
     /**
      * Access to the body interface. This interface allows to create / remove bodies and to change their properties.
-     * <br>
+     * <p>
      * Version that does not lock the bodies, use with great care!
      */
     public BodyInterface getBodyInterfaceNoLock() { return BodyInterface.ref(_getBodyInterfaceNoLock(address)); }
@@ -114,7 +114,7 @@ public final class PhysicsSystem extends JoltNative {
 
     /**
      * Interface that allows fine collision queries against first the broad phase and then the narrow phase.
-     * <br>
+     * <p>
      * Version that does not lock the bodies, use with great care!
      */
     public NarrowPhaseQuery getNarrowPhaseQueryNoLock() { return NarrowPhaseQuery.ref(_getNarrowPhaseQueryNoLock(address)); }

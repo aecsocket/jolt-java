@@ -20,7 +20,7 @@ public final class TempAllocatorImpl extends TempAllocator {
     @JniBindDelete
     private static native void _delete(long _a);
 
-    public static TempAllocatorImpl ofSize(long size) { return ref(_ofSize(size)); }
+    public static TempAllocatorImpl ofBytes(long size) { return ref(_ofBytes(size)); }
     @JniBind("return (jlong) new TempAllocatorImpl(size);")
-    private static native long _ofSize(long size);
+    private static native long _ofBytes(long size);
 }

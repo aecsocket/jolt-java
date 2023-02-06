@@ -7,6 +7,7 @@ import jolt.math.JtQuat
 import jolt.math.JtVec3d
 import jolt.math.JtVec3f
 import jolt.physics.Activation
+import jolt.physics.PhysicsSettings
 import jolt.physics.PhysicsSystem
 import jolt.physics.body.*
 import jolt.physics.collision.*
@@ -26,14 +27,19 @@ class HelloJolt {
     fun testJolt() {
         JoltNativeLoader.load()
 
-        val doublePrecision = JoltEnvironment.isDoublePrecision()
-        println("Double precision: $doublePrecision")
+        val features = JoltEnvironment.features()
+        val doublePrecision = JoltEnvironment.uses(JoltFeature.DOUBLE_PRECISION)
+        println("Features: ${features.joinToString(" ")}")
 
         JoltEnvironment.registerDefaultAllocator()
         RTTIFactory.setInstance(RTTIFactory())
         JoltEnvironment.registerTypes()
-        val tempAllocator = TempAllocatorImpl.ofSize(10 * 1024 * 1024)
-        val jobSystem = JobSystemThreadPool(2048, 8, Runtime.getRuntime().availableProcessors() - 1)
+        val tempAllocator = TempAllocatorImpl.ofBytes(10 * 1024 * 1024)
+        val jobSystem = JobSystemThreadPool(
+            PhysicsSettings.MAX_PHYSICS_JOBS,
+            PhysicsSettings.MAX_PHYSICS_BARRIERS,
+            Runtime.getRuntime().availableProcessors() - 1
+        )
 
         val bpLayerNonMoving = BroadPhaseLayer.ofValue((0).toByte())
         val bpLayerMoving = BroadPhaseLayer.ofValue((1).toByte())
@@ -124,18 +130,16 @@ class HelloJolt {
         val floorShapeSettings = BoxShapeSettings(JtVec3f(100.0f, 1.0f, 100.0f))
         val floorShape = floorShapeSettings.create()
 
-        val floorSettings = if (doublePrecision)
-            BodyCreationSettings.dp(floorShape, JtVec3d(0.0, -1.0, 0.0), JtQuat.IDENTITY, MotionType.STATIC, LAYER_NON_MOVING)
-        else
-            BodyCreationSettings.sp(floorShape, JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.IDENTITY, MotionType.STATIC, LAYER_NON_MOVING)
+        val floorSettings =
+            if (doublePrecision) BodyCreationSettings.dp(floorShape, JtVec3d(0.0, -1.0, 0.0), JtQuat.IDENTITY, MotionType.STATIC, LAYER_NON_MOVING)
+            else BodyCreationSettings.sp(floorShape, JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.IDENTITY, MotionType.STATIC, LAYER_NON_MOVING)
         val floor = bodyInterface.createBody(floorSettings)
 
         bodyInterface.addBody(floor.id, Activation.DONT_ACTIVATE)
 
-        val sphereSettings = if (doublePrecision)
-            BodyCreationSettings.dp(SphereShape(0.5f), JtVec3d(0.0, 2.0, 0.0), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
-        else
-            BodyCreationSettings.sp(SphereShape(0.5f), JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
+        val sphereSettings =
+            if (doublePrecision) BodyCreationSettings.dp(SphereShape(0.5f), JtVec3d(0.0, 2.0, 0.0), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
+            else BodyCreationSettings.sp(SphereShape(0.5f), JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
         val sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE)
 
         bodyInterface.setLinearVelocity(sphereId, JtVec3f(0.0f, -5.0f, 0.0f))
@@ -147,10 +151,9 @@ class HelloJolt {
         while (bodyInterface.isActive(sphereId)) {
             ++step
 
-            val position: Any = if (doublePrecision)
-                bodyInterface.getCenterOfMassPositionDp(sphereId)
-            else
-                bodyInterface.getCenterOfMassPositionSp(sphereId)
+            val position: Any =
+                if (doublePrecision) bodyInterface.getCenterOfMassPositionDp(sphereId)
+                else bodyInterface.getCenterOfMassPositionSp(sphereId)
             val velocity = bodyInterface.getLinearVelocity(sphereId)
             println("Step $step: Position = $position, Velocity = $velocity")
 
