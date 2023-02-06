@@ -2,6 +2,7 @@ package jolt.physics.body;
 
 import jolt.JoltNative;
 import jolt.jni.*;
+import jolt.math.JtMat44f;
 import jolt.math.JtQuat;
 import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;
@@ -168,6 +169,14 @@ public final class BodyCreationSettings extends JoltNative {
     @JniBindSelf("return self->HasMassProperties();")
     private static native boolean _hasMassProperties(long _a);
 
+    public MassProperties getMassProperties(MassProperties out) {
+        _getMassProperties(address, out);
+        return out;
+    }
+    public MassProperties getMassProperties() { return getMassProperties(new MassProperties()); }
+    @JniBindSelf("ToJava(env, self->GetMassProperties(), out);")
+    private static native void _getMassProperties(long _a, MassProperties out);
+
     public JtVec3f getPositionSp(JtVec3f out) {
         _getPositionSp(address, out);
         return out;
@@ -195,4 +204,39 @@ public final class BodyCreationSettings extends JoltNative {
     public JtQuat getRotation() { return getRotation(new JtQuat()); }
     @JniBindSelf("ToJava(env, self->mRotation, out);")
     private static native void _getRotation(long _a, JtQuat out);
+
+    public MassProperties getMassPropertiesOverride(MassProperties out) {
+        _getMassPropertiesOverride(address, out);
+        return out;
+    }
+    public MassProperties getMassPropertiesOverride() { return getMassPropertiesOverride(new MassProperties()); }
+    @JniBindSelf("ToJava(env, self->mMassPropertiesOverride, out);")
+    private static native void _getMassPropertiesOverride(long _a, MassProperties out);
+
+    public void setMassPropertiesOverride(MassProperties value) {
+        JtMat44f inertia = value.inertia;
+        _setMassPropertiesOverride(address, value.mass,
+                inertia.n00, inertia.n01, inertia.n02, inertia.n03,
+                inertia.n10, inertia.n11, inertia.n12, inertia.n13,
+                inertia.n20, inertia.n21, inertia.n22, inertia.n23,
+                inertia.n30, inertia.n31, inertia.n32
+        );
+    }
+    @JniBindSelf("""
+            MassProperties value;
+            value.mMass = mass;
+            value.mInertia = Mat44(
+                Vec4(inertia00, inertia01, inertia02, inertia03),
+                Vec4(inertia10, inertia11, inertia12, inertia13),
+                Vec4(inertia20, inertia21, inertia22, inertia23),
+                Vec4(inertia30, inertia31, inertia32, 1.0f)
+            );
+            self->mMassPropertiesOverride = value;""")
+    private static native void _setMassPropertiesOverride(
+            long _a, float mass,
+            float inertia00, float inertia01, float inertia02, float inertia03,
+            float inertia10, float inertia11, float inertia12, float inertia13,
+            float inertia20, float inertia21, float inertia22, float inertia23,
+            float inertia30, float inertia31, float inertia32
+    );
 }

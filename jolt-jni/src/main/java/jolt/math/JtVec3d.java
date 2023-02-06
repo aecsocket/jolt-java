@@ -23,7 +23,7 @@ import jolt.jni.JniNative;
 @JniInit("""
         JtVec3d = env->FindClass("jolt/math/JtVec3d");
         JtVec3d_set = env->GetMethodID(JtVec3d, "set", "(DDD)V");""")
-public class JtVec3d {
+public final class JtVec3d {
     public static final JtVec3d ZERO = new JtVec3d(0.0, 0.0, 0.0);
 
     public double x;
@@ -38,6 +38,8 @@ public class JtVec3d {
         this.y = y;
         this.z = z;
     }
+
+    public void set(JtVec3d v) { set(v.x, v.y, v.z); }
 
     @Override
     public String toString() { return String.format("(%f, %f, %f)", x, y, z); }

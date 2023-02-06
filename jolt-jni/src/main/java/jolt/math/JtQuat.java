@@ -17,7 +17,7 @@ import jolt.jni.JniNative;
 @JniInit("""
         JtQuat = env->FindClass("jolt/math/JtQuat");
         JtQuat_set = env->GetMethodID(JtQuat, "set", "(FFFF)V");""")
-public class JtQuat {
+public final class JtQuat {
     public static final JtQuat IDENTITY = new JtQuat(0f, 0f, 0f, 1f);
 
     public float x;
@@ -34,6 +34,8 @@ public class JtQuat {
         this.z = z;
         this.w = w;
     }
+
+    public void set(JtQuat q) { set(q.x, q.y, q.z, q.w); }
 
     @Override
     public String toString() { return String.format("(%f + %fi + %fj + %fk)", w, x, y, z); }

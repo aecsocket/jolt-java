@@ -2,8 +2,12 @@ package jolt.physics.collision.shape;
 
 import jolt.JoltNative;
 import jolt.jni.JniBindDelete;
+import jolt.jni.JniBindSelf;
 import jolt.jni.JniInclude;
 import jolt.jni.JniType;
+import jolt.math.JtAABox;
+import jolt.math.JtVec3f;
+import jolt.physics.body.MassProperties;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/Shape.h>")
 @JniType("Shape")
@@ -21,4 +25,36 @@ public class Shape extends JoltNative {
     private static native void _delete(long _a);
 
     protected Shape() {}
+
+    public boolean mustBeStatic() { return _mustBeStatic(address); }
+    @JniBindSelf("return self->MustBeStatic();")
+    private static native boolean _mustBeStatic(long _a);
+
+    public JtVec3f getCenterOfMass(JtVec3f out) {
+        _getCenterOfMass(address, out);
+        return out;
+    }
+    public JtVec3f getCenterOfMass() { return getCenterOfMass(new JtVec3f()); }
+    @JniBindSelf("ToJavaSp(env, self->GetCenterOfMass(), out);")
+    private static native void _getCenterOfMass(long _a, JtVec3f out);
+
+    public JtAABox getLocalBounds(JtAABox out) {
+        _getLocalBounds(address, out);
+        return out;
+    }
+    public JtAABox getLocalBounds() { return getLocalBounds(new JtAABox()); }
+    @JniBindSelf("ToJava(env, self->GetLocalBounds(), out);")
+    private static native void _getLocalBounds(long _a, JtAABox out);
+
+    public float getInnerRadius() { return _getInnerRadius(address); }
+    @JniBindSelf("return self->GetInnerRadius();")
+    private static native float _getInnerRadius(long _a);
+
+    public MassProperties getMassProperties(MassProperties out) {
+        _getMassProperties(address, out);
+        return out;
+    }
+    public MassProperties getMassProperties() { return getMassProperties(new MassProperties()); }
+    @JniBindSelf("ToJava(env, self->GetMassProperties(), out);")
+    private static native void _getMassProperties(long _a, MassProperties out);
 }
