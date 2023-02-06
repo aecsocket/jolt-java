@@ -29,6 +29,7 @@ repositories {
 
 dependencies {
     implementation(projects.joltJni)
+    implementation(projects.joltJniKotlin)
 
     testImplementation(kotlin("test"))
     testRuntimeOnly(projects.joltJniNativesLinux)

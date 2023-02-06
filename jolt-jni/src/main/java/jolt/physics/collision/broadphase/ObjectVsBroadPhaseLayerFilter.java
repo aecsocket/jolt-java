@@ -13,7 +13,7 @@ import jolt.jni.*;
             bool ShouldCollide(ObjectLayer inLayer1, BroadPhaseLayer inLayer2) const override {
                 JNIEnv* env = jniThread.getEnv();
                 return env->CallBooleanMethod(obj, ObjectVsBroadPhaseLayerFilter_shouldCollide,
-                    inLayer1, &inLayer2);
+                    inLayer1, (BroadPhaseLayer::Type) inLayer2);
             }
         };""")
 public class ObjectVsBroadPhaseLayerFilter extends JoltNative {
@@ -33,7 +33,7 @@ public class ObjectVsBroadPhaseLayerFilter extends JoltNative {
     @JniBind("return (jlong) new ObjectVsBroadPhaseLayerFilterImpl(env, obj);")
     private native long _ctor();
 
-    public boolean shouldCollide(int layer1, BroadPhaseLayer layer2) { throw unimplemented(); }
+    public boolean shouldCollide(int layer1, byte layer2) { throw unimplemented(); }
     @JniCallback
-    private boolean _shouldCollide(int layer1, long layer2) { return shouldCollide(layer1, BroadPhaseLayer.ref(layer2)); }
+    private boolean _shouldCollide(int layer1, byte layer2) { return shouldCollide(layer1, layer2); }
 }

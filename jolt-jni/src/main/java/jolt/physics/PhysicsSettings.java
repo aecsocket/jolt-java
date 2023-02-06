@@ -179,4 +179,218 @@ public final class PhysicsSettings extends JoltNative {
     public void setMaxPenetrationDistance(float value) { _setMaxPenetrationDistance(address, value); }
     @JniBindSelf("self->mMaxPenetrationDistance = value;")
     private static native void _setMaxPenetrationDistance(long _a, float value);
+
+
+    /**
+     * Maximum relative delta position for body pairs to be able to reuse collision results from last frame (units: meter^2).
+     */
+    public float getBodyPairCacheMaxDeltaPositionSq() { return _getBodyPairCacheMaxDeltaPositionSq(address); }
+    @JniBindSelf("return self->mBodyPairCacheMaxDeltaPositionSq;")
+    private static native float _getBodyPairCacheMaxDeltaPositionSq(long _a);
+
+    /**
+     * Maximum relative delta position for body pairs to be able to reuse collision results from last frame (units: meter^2).
+     */
+    public void setBodyPairCacheMaxDeltaPositionSq(float value) { _setBodyPairCacheMaxDeltaPositionSq(address, value); }
+    @JniBindSelf("self->mBodyPairCacheMaxDeltaPositionSq = value;")
+    private static native void _setBodyPairCacheMaxDeltaPositionSq(long _a, float value);
+
+
+    /**
+     * Maximum relative delta orientation for body pairs to be able to reuse collision results from last frame, stored as cos(max angle / 2).
+     */
+    public float getBodyPairCacheCosMaxDeltaRotationDiv2() { return _getBodyPairCacheCosMaxDeltaRotationDiv2(address); }
+    @JniBindSelf("return self->mBodyPairCacheCosMaxDeltaRotationDiv2;")
+    private static native float _getBodyPairCacheCosMaxDeltaRotationDiv2(long _a);
+
+    /**
+     * Maximum relative delta orientation for body pairs to be able to reuse collision results from last frame, stored as cos(max angle / 2).
+     */
+    public void setBodyPairCacheCosMaxDeltaRotationDiv2(float value) { _setBodyPairCacheCosMaxDeltaRotationDiv2(address, value); }
+    @JniBindSelf("self->mBodyPairCacheCosMaxDeltaRotationDiv2 = value;")
+    private static native void _setBodyPairCacheCosMaxDeltaRotationDiv2(long _a, float value);
+
+
+    /**
+     * Maximum angle between normals that allows manifolds between different sub shapes of the same body pair to be combined.
+     */
+    public float getContactNormalCosMaxDeltaRotation() { return _getContactNormalCosMaxDeltaRotation(address); }
+    @JniBindSelf("return self->mContactNormalCosMaxDeltaRotation;")
+    private static native float _getContactNormalCosMaxDeltaRotation(long _a);
+
+    /**
+     * Maximum angle between normals that allows manifolds between different sub shapes of the same body pair to be combined.
+     */
+    public void setContactNormalCosMaxDeltaRotation(float value) { _setContactNormalCosMaxDeltaRotation(address, value); }
+    @JniBindSelf("self->mContactNormalCosMaxDeltaRotation = value;")
+    private static native void _setContactNormalCosMaxDeltaRotation(long _a, float value);
+
+
+    /**
+     * Maximum allowed distance between old and new contact point to preserve contact forces for warm start (units: meter^2).
+     */
+    public float getContactPointPreserveLambdaMaxDistSq() { return _getContactPointPreserveLambdaMaxDistSq(address); }
+    @JniBindSelf("return self->mContactPointPreserveLambdaMaxDistSq;")
+    private static native float _getContactPointPreserveLambdaMaxDistSq(long _a);
+
+    /**
+     * Maximum allowed distance between old and new contact point to preserve contact forces for warm start (units: meter^2).
+     */
+    public void setContactPointPreserveLambdaMaxDistSq(float value) { _setContactPointPreserveLambdaMaxDistSq(address, value); }
+    @JniBindSelf("self->mContactPointPreserveLambdaMaxDistSq = value;")
+    private static native void _setContactPointPreserveLambdaMaxDistSq(long _a, float value);
+
+
+    /**
+     * Number of solver velocity iterations to run.
+     * Note that this needs to be >= 2 in order for friction to work (friction is applied using the non-penetration impulse from the previous iteration).
+     */
+    public int getNumVelocitySteps() { return _getNumVelocitySteps(address); }
+    @JniBindSelf("return self->mNumVelocitySteps;")
+    private static native int _getNumVelocitySteps(long _a);
+
+    /**
+     * Number of solver velocity iterations to run.
+     * Note that this needs to be >= 2 in order for friction to work (friction is applied using the non-penetration impulse from the previous iteration).
+     */
+    public void setNumVelocitySteps(int value) { _setNumVelocitySteps(address, value); }
+    @JniBindSelf("self->mNumVelocitySteps = value;")
+    private static native void _setNumVelocitySteps(long _a, int value);
+
+
+    /**
+     * Number of solver position iterations to run.
+     */
+    public int getNumPositionSteps() { return _getNumPositionSteps(address); }
+    @JniBindSelf("return self->mNumPositionSteps;")
+    private static native int _getNumPositionSteps(long _a);
+
+    /**
+     * Number of solver position iterations to run.
+     */
+    public void setNumPositionSteps(int value) { _setNumPositionSteps(address, value); }
+    @JniBindSelf("self->mNumPositionSteps = value;")
+    private static native void _setNumPositionSteps(long _a, int value);
+
+
+    /**
+     * Minimal velocity needed before a collision can be elastic (unit: m).
+     */
+    public float getMinVelocityForRestitution() { return _getMinVelocityForRestitution(address); }
+    @JniBindSelf("return self->mMinVelocityForRestitution;")
+    private static native float _getMinVelocityForRestitution(long _a);
+
+    /**
+     * Minimal velocity needed before a collision can be elastic (unit: m).
+     */
+    public void setMinVelocityForRestitution(float value) { _setMinVelocityForRestitution(address, value); }
+    @JniBindSelf("self->mMinVelocityForRestitution = value;")
+    private static native void _setMinVelocityForRestitution(long _a, float value);
+
+
+    /**
+     * Time before object is allowed to go to sleep (unit: seconds).
+     */
+    public float getTimeBeforeSleep() { return _getTimeBeforeSleep(address); }
+    @JniBindSelf("return self->mTimeBeforeSleep;")
+    private static native float _getTimeBeforeSleep(long _a);
+
+    /**
+     * Time before object is allowed to go to sleep (unit: seconds).
+     */
+    public void setTimeBeforeSleep(float value) { _setTimeBeforeSleep(address, value); }
+    @JniBindSelf("self->mTimeBeforeSleep = value;")
+    private static native void _setTimeBeforeSleep(long _a, float value);
+
+
+    /**
+     * Velocity of points on bounding box of object below which an object can be considered sleeping (unit: m/s).
+     */
+    public float getPointVelocitySleepThreshold() { return _getPointVelocitySleepThreshold(address); }
+    @JniBindSelf("return self->mPointVelocitySleepThreshold;")
+    private static native float _getPointVelocitySleepThreshold(long _a);
+
+    /**
+     * Velocity of points on bounding box of object below which an object can be considered sleeping (unit: m/s).
+     */
+    public void setPointVelocitySleepThreshold(float value) { _setPointVelocitySleepThreshold(address, value); }
+    @JniBindSelf("self->mPointVelocitySleepThreshold = value;")
+    private static native void _setPointVelocitySleepThreshold(long _a, float value);
+
+
+    /**
+     * Whether or not to use warm starting for constraints (initially applying previous frames impulses).
+     */
+    public boolean getConstraintWarmStart() { return _getConstraintWarmStart(address); }
+    @JniBindSelf("return self->mConstraintWarmStart;")
+    private static native boolean _getConstraintWarmStart(long _a);
+
+    /**
+     * Whether or not to use warm starting for constraints (initially applying previous frames impulses).
+     */
+    public void setConstraintWarmStart(boolean value) { _setConstraintWarmStart(address, value); }
+    @JniBindSelf("self->mConstraintWarmStart = value;")
+    private static native void _setConstraintWarmStart(long _a, boolean value);
+
+
+    /**
+     * Whether or not to use the body pair cache, which removes the need for narrow phase collision detection
+     * when orientation between two bodies didn't change.
+     */
+    public boolean getUseBodyPairContactCache() { return _getUseBodyPairContactCache(address); }
+    @JniBindSelf("return self->mUseBodyPairContactCache;")
+    private static native boolean _getUseBodyPairContactCache(long _a);
+
+    /**
+     * Whether or not to use the body pair cache, which removes the need for narrow phase collision detection
+     * when orientation between two bodies didn't change.
+     */
+    public void setUseBodyPairContactCache(boolean value) { _setUseBodyPairContactCache(address, value); }
+    @JniBindSelf("self->mUseBodyPairContactCache = value;")
+    private static native void _setUseBodyPairContactCache(long _a, boolean value);
+
+
+    /**
+     * Whether or not to reduce manifolds with similar contact normals into one contact manifold.
+     */
+    public boolean getUseManifoldReduction() { return _getUseManifoldReduction(address); }
+    @JniBindSelf("return self->mUseManifoldReduction;")
+    private static native boolean _getUseManifoldReduction(long _a);
+
+    /**
+     * Whether or not to reduce manifolds with similar contact normals into one contact manifold.
+     */
+    public void setUseManifoldReduction(boolean value) { _setUseManifoldReduction(address, value); }
+    @JniBindSelf("self->mUseManifoldReduction = value;")
+    private static native void _setUseManifoldReduction(long _a, boolean value);
+
+
+    /**
+     * If objects can go to sleep or not.
+     */
+    public boolean getAllowSleeping() { return _getAllowSleeping(address); }
+    @JniBindSelf("return self->mAllowSleeping;")
+    private static native boolean _getAllowSleeping(long _a);
+
+    /**
+     * If objects can go to sleep or not.
+     */
+    public void setAllowSleeping(boolean value) { _setAllowSleeping(address, value); }
+    @JniBindSelf("self->mAllowSleeping = value;")
+    private static native void _setAllowSleeping(long _a, boolean value);
+
+
+    /**
+     * When false, we prevent collision against non-active (shared) edges. Mainly for debugging the algorithm.
+     */
+    public boolean getCheckActiveEdges() { return _getCheckActiveEdges(address); }
+    @JniBindSelf("return self->mCheckActiveEdges;")
+    private static native boolean _getCheckActiveEdges(long _a);
+
+    /**
+     * When false, we prevent collision against non-active (shared) edges. Mainly for debugging the algorithm.
+     */
+    public void setCheckActiveEdges(boolean value) { _setCheckActiveEdges(address, value); }
+    @JniBindSelf("self->mCheckActiveEdges = value;")
+    private static native void _setCheckActiveEdges(long _a, boolean value);
 }

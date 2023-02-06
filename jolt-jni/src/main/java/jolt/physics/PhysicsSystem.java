@@ -230,6 +230,10 @@ public final class PhysicsSystem extends JoltNative {
      * The world steps for a total of inDeltaTime seconds. This is divided in inCollisionSteps iterations. Each iteration
      * consists of collision detection followed by inIntegrationSubSteps integration steps.
      */
+    /*
+    crash at JPH::TempAllocatorImpl::Allocate(unsigned int):
+      TempAllocator is not big enough to fit all contactConstraints
+     */
     public void update(
             float deltaTime, int collisionSteps, int integrationSubSteps,
             TempAllocator tempAllocator, JobSystem jobSystem

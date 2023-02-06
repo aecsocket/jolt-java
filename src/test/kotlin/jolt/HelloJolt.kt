@@ -3,6 +3,10 @@ package jolt
 import jolt.core.JobSystemThreadPool
 import jolt.core.RTTIFactory
 import jolt.core.TempAllocatorImpl
+import jolt.kotlin.BodyCreationSettingsDp
+import jolt.kotlin.BodyCreationSettingsSp
+import jolt.kotlin.BroadPhaseLayer
+import jolt.kotlin.ObjectLayer
 import jolt.math.JtQuat
 import jolt.math.JtVec3d
 import jolt.math.JtVec3f
@@ -11,7 +15,6 @@ import jolt.physics.PhysicsSettings
 import jolt.physics.PhysicsSystem
 import jolt.physics.body.*
 import jolt.physics.collision.*
-import jolt.physics.collision.broadphase.BroadPhaseLayer
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter
 import jolt.physics.collision.shape.BoxShapeSettings
@@ -19,8 +22,11 @@ import jolt.physics.collision.shape.SphereShape
 import jolt.physics.collision.shape.SubShapeIdPair
 import kotlin.test.Test
 
-const val LAYER_NON_MOVING = 0
-const val LAYER_MOVING = 1
+val OBJECT_LAYER_NON_MOVING = ObjectLayer(0)
+val OBJECT_LAYER_MOVING = ObjectLayer(1)
+
+val BP_LAYER_NON_MOVING = BroadPhaseLayer(0)
+val BP_LAYER_MOVING = BroadPhaseLayer(1)
 
 class HelloJolt {
     @Test
@@ -41,34 +47,32 @@ class HelloJolt {
             Runtime.getRuntime().availableProcessors() - 1
         )
 
-        val bpLayerNonMoving = BroadPhaseLayer.ofValue((0).toByte())
-        val bpLayerMoving = BroadPhaseLayer.ofValue((1).toByte())
-        val bpLayers = object : BroadPhaseLayerInterface() {
+        val bpLayerInterface = object : BroadPhaseLayerInterface() {
             override fun getNumBroadPhaseLayers() = 2
-            override fun getBroadPhaseLayer(layer: Int) = when (layer) {
-                LAYER_NON_MOVING -> bpLayerNonMoving
-                LAYER_MOVING -> bpLayerMoving
+            override fun getBroadPhaseLayer(layer: Int) = when (ObjectLayer(layer)) {
+                OBJECT_LAYER_NON_MOVING -> BP_LAYER_NON_MOVING
+                OBJECT_LAYER_MOVING -> BP_LAYER_MOVING
                 else -> throw IllegalArgumentException("Invalid layer $layer")
-            }
-            override fun getBroadPhaseLayerName(layer: BroadPhaseLayer) = when (layer) {
-                bpLayerNonMoving -> "NON_MOVING"
-                bpLayerMoving -> "MOVING"
+            }.id
+            override fun getBroadPhaseLayerName(layer: Byte) = when (BroadPhaseLayer(layer)) {
+                BP_LAYER_NON_MOVING -> "NON_MOVING"
+                BP_LAYER_MOVING -> "MOVING"
                 else -> throw IllegalArgumentException("Invalid layer $layer")
             }
         }
 
         val objBpLayerFilter = object : ObjectVsBroadPhaseLayerFilter() {
-            override fun shouldCollide(layer1: Int, layer2: BroadPhaseLayer) = when (layer1) {
-                LAYER_NON_MOVING -> layer2.value == LAYER_MOVING
-                LAYER_MOVING -> true
+            override fun shouldCollide(layer1: Int, layer2: Byte) = when (ObjectLayer(layer1)) {
+                OBJECT_LAYER_NON_MOVING -> BroadPhaseLayer(layer2) == BP_LAYER_MOVING
+                OBJECT_LAYER_MOVING -> true
                 else -> false
             }
         }
 
         val objObjLayerFilter = object : ObjectLayerPairFilter() {
-            override fun shouldCollide(layer1: Int, layer2: Int) = when (layer1) {
-                LAYER_NON_MOVING -> layer2 == LAYER_MOVING
-                LAYER_MOVING -> true
+            override fun shouldCollide(layer1: Int, layer2: Int) = when (ObjectLayer(layer1)) {
+                OBJECT_LAYER_NON_MOVING -> ObjectLayer(layer2) == OBJECT_LAYER_MOVING
+                OBJECT_LAYER_MOVING -> true
                 else -> false
             }
         }
@@ -76,7 +80,7 @@ class HelloJolt {
         val physSystem = PhysicsSystem()
         physSystem.init(
             1024, 0, 1024, 1024,
-            bpLayers, objBpLayerFilter, objObjLayerFilter
+            bpLayerInterface, objBpLayerFilter, objObjLayerFilter
         )
 
         val bodyActivationListener = object : BodyActivationListener() {
@@ -131,15 +135,15 @@ class HelloJolt {
         val floorShape = floorShapeSettings.create()
 
         val floorSettings =
-            if (doublePrecision) BodyCreationSettings.dp(floorShape, JtVec3d(0.0, -1.0, 0.0), JtQuat.IDENTITY, MotionType.STATIC, LAYER_NON_MOVING)
-            else BodyCreationSettings.sp(floorShape, JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.IDENTITY, MotionType.STATIC, LAYER_NON_MOVING)
+            if (doublePrecision) BodyCreationSettingsDp(floorShape, JtVec3d(0.0, -1.0, 0.0), JtQuat.IDENTITY, MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
+            else BodyCreationSettingsSp(floorShape, JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.IDENTITY, MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
         val floor = bodyInterface.createBody(floorSettings)
 
         bodyInterface.addBody(floor.id, Activation.DONT_ACTIVATE)
 
         val sphereSettings =
-            if (doublePrecision) BodyCreationSettings.dp(SphereShape(0.5f), JtVec3d(0.0, 2.0, 0.0), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
-            else BodyCreationSettings.sp(SphereShape(0.5f), JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, LAYER_MOVING)
+            if (doublePrecision) BodyCreationSettingsDp(SphereShape(0.5f), JtVec3d(0.0, 2.0, 0.0), JtQuat.IDENTITY, MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
+            else BodyCreationSettingsSp(SphereShape(0.5f), JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
         val sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE)
 
         bodyInterface.setLinearVelocity(sphereId, JtVec3f(0.0f, -5.0f, 0.0f))
@@ -174,7 +178,7 @@ class HelloJolt {
         physSystem.delete()
         objObjLayerFilter.delete()
         objBpLayerFilter.delete()
-        bpLayers.delete()
+        bpLayerInterface.delete()
         jobSystem.delete()
         tempAllocator.delete()
         RTTIFactory.getInstance()?.delete()

@@ -13,24 +13,24 @@ import jolt.jni.*;
             uint GetNumBroadPhaseLayers() const override {
                 JNIEnv* env = jniThread.getEnv();
                 uint res = env->CallIntMethod(obj, BroadPhaseLayerInterface_getNumBroadPhaseLayers);
-                if (env->ExceptionCheck()) return 0;
+                env->ExceptionCheck();
                 return res;
             }
             
             BroadPhaseLayer GetBroadPhaseLayer(ObjectLayer inLayer) const override {
                 JNIEnv* env = jniThread.getEnv();
-                BroadPhaseLayer res = *((BroadPhaseLayer*) env->CallLongMethod(obj, BroadPhaseLayerInterface_getBroadPhaseLayer,
-                    inLayer));
-                if (env->ExceptionCheck()) throw std::runtime_error("abc");
-                return res;
+                uint8 res = env->CallByteMethod(obj, BroadPhaseLayerInterface_getBroadPhaseLayer,
+                    inLayer);
+                env->ExceptionCheck();
+                return BroadPhaseLayer(res);
             }
         
         #if defined(JPH_EXTERNAL_PROFILE) || defined(JPH_PROFILE_ENABLED)
             const char* GetBroadPhaseLayerName(BroadPhaseLayer inLayer) const override {
                 JNIEnv* env = jniThread.getEnv();
                 jstring res = (jstring) env->CallObjectMethod(obj, BroadPhaseLayerInterface_getBroadPhaseLayerName,
-                    &inLayer);
-                if (env->ExceptionCheck()) return nullptr;
+                    (BroadPhaseLayer::Type) inLayer);
+                env->ExceptionCheck();
                 return env->GetStringUTFChars(res, 0);
             }
         #endif
@@ -56,11 +56,11 @@ public class BroadPhaseLayerInterface extends JoltNative {
     @JniCallback
     private int _getNumBroadPhaseLayers() { return getNumBroadPhaseLayers(); }
 
-    public BroadPhaseLayer getBroadPhaseLayer(int layer) { throw unimplemented(); }
+    public byte getBroadPhaseLayer(int layer) { throw unimplemented(); }
     @JniCallback
-    private long _getBroadPhaseLayer(int layer) { return getBroadPhaseLayer(layer).getAddress(); }
+    private byte _getBroadPhaseLayer(int layer) { return getBroadPhaseLayer(layer); }
 
-    public String getBroadPhaseLayerName(BroadPhaseLayer layer) { throw unimplemented(); }
+    public String getBroadPhaseLayerName(byte layer) { throw unimplemented(); }
     @JniCallback
-    private String _getBroadPhaseLayerName(long layer) { return getBroadPhaseLayerName(BroadPhaseLayer.ref(layer)); }
+    private String _getBroadPhaseLayerName(byte layer) { return getBroadPhaseLayerName(layer); }
 }
