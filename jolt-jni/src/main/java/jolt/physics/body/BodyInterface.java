@@ -1,9 +1,9 @@
 package jolt.physics.body;
 
 import jolt.JoltNative;
-import jolt.jni.JniInclude;
-import jolt.jni.JniBindSelf;
-import jolt.jni.JniType;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniBindSelf;
+import io.github.aecsocket.jniglue.JniType;
 import jolt.math.JtQuat;
 import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;

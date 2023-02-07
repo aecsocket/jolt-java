@@ -1,6 +1,6 @@
 package jolt.physics.body;
 
-import jolt.jni.*;
+import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
 
 @JniInclude("<Jolt/Physics/Body/BodyActivationListener.h>")

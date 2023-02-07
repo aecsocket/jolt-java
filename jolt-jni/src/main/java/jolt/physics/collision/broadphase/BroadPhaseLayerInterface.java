@@ -1,7 +1,7 @@
 package jolt.physics.collision.broadphase;
 
+import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
-import jolt.jni.*;
 
 @JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>")
 @JniType("BroadPhaseLayerInterfaceImpl")

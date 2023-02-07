@@ -1,7 +1,7 @@
 package jolt.physics.body;
 
+import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
-import jolt.jni.*;
 import jolt.math.JtMat44f;
 import jolt.math.JtQuat;
 import jolt.math.JtVec3d;

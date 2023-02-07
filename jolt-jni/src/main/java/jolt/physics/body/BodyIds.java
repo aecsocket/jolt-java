@@ -1,7 +1,7 @@
 package jolt.physics.body;
 
 import jolt.JoltNative;
-import jolt.jni.JniNative;
+import io.github.aecsocket.jniglue.JniNative;
 
 @JniNative(JoltNative.MODEL)
 public final class BodyIds extends JoltNative {

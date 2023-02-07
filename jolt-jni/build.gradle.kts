@@ -5,15 +5,11 @@ plugins {
 
 val jvmVersion = ext.get(JVM_VERSION) as Int
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    implementation(projects.joltJniAnnotations)
-    annotationProcessor(projects.joltJniProcessor)
+    implementation(libs.jniGlueAnnotations)
+    annotationProcessor(libs.jniGlueProcessor)
 
-    implementation("com.google.code.findbugs", "jsr305", "3.0.2")
+    implementation(libs.findBugs)
 }
 
 java {

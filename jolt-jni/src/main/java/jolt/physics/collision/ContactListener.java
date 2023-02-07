@@ -1,7 +1,7 @@
 package jolt.physics.collision;
 
+import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
-import jolt.jni.*;
 import jolt.math.JtVec3f;
 import jolt.physics.body.Body;
 import jolt.physics.collision.shape.SubShapeIdPair;

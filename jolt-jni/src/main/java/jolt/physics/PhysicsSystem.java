@@ -1,8 +1,8 @@
 package jolt.physics;
 
+import io.github.aecsocket.jniglue.*;
 import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
-import jolt.jni.*;
 import jolt.JoltNative;
 import jolt.math.JtVec3f;
 import jolt.physics.body.BodyActivationListener;

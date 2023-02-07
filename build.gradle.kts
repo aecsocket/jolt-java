@@ -19,13 +19,14 @@ allprojects {
         set(DOUBLE_PRECISION, doublePrecision)
         set(JVM_VERSION, 16)
     }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
 }
 
 val jvmVersion = ext.get(JVM_VERSION) as Int
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     implementation(projects.joltJni)

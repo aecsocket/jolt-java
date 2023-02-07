@@ -5,10 +5,6 @@ plugins {
 val jvmVersion = ext.get(JVM_VERSION) as Int
 val bindings = projects.joltJniBindingsCpp.dependencyProject
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(projects.joltJni)
 }

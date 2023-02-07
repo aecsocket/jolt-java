@@ -1,9 +1,9 @@
 package jolt.physics.collision;
 
-import jolt.jni.JniInclude;
-import jolt.jni.JniBindSelf;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniBindSelf;
 import jolt.JoltNative;
-import jolt.jni.JniType;
+import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Physics/Collision/ContactListener.h>")
 @JniType("ContactSettings")

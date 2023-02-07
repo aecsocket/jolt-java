@@ -1,8 +1,7 @@
 package jolt;
 
-import jolt.jni.JniBind;
-import jolt.jni.JniBindInit;
-import jolt.jni.JniNative;
+import io.github.aecsocket.jniglue.JniBindInit;
+import io.github.aecsocket.jniglue.JniNative;
 
 import java.io.IOException;
 import java.nio.file.Files;

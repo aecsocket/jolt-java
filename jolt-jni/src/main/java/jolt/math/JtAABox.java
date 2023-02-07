@@ -1,9 +1,9 @@
 package jolt.math;
 
 import jolt.JoltNative;
-import jolt.jni.JniHeader;
-import jolt.jni.JniInit;
-import jolt.jni.JniNative;
+import io.github.aecsocket.jniglue.JniHeader;
+import io.github.aecsocket.jniglue.JniInit;
+import io.github.aecsocket.jniglue.JniNative;
 
 @JniNative(JoltNative.MODEL)
 @JniHeader("""

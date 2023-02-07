@@ -1,8 +1,8 @@
 package jolt.physics.collision.broadphase;
 
 import jolt.JoltNative;
-import jolt.jni.JniInclude;
-import jolt.jni.JniType;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>")
 @JniType("BroadPhaseQuery")

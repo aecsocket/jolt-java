@@ -1,13 +1,10 @@
 package jolt.physics.body;
 
+import io.github.aecsocket.jniglue.JniBindSelf;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniType;
 import jolt.JoltNative;
-import jolt.jni.*;
 import jolt.math.JtMat44f;
-import jolt.math.JtQuat;
-import jolt.math.JtVec3d;
-import jolt.math.JtVec3f;
-import jolt.physics.collision.shape.Shape;
-import jolt.physics.collision.shape.ShapeSettings;
 
 @JniInclude("<Jolt/Physics/Body/MotionProperties.h>")
 @JniType("MotionProperties")

@@ -1,8 +1,8 @@
 package jolt.physics.collision.shape;
 
-import jolt.jni.JniBindDelete;
-import jolt.jni.JniInclude;
-import jolt.jni.JniType;
+import io.github.aecsocket.jniglue.JniBindDelete;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/ConvexShape.h>")
 @JniType("ConvexShapeSettings")

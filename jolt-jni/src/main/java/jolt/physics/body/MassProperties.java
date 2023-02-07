@@ -1,13 +1,10 @@
 package jolt.physics.body;
 
+import io.github.aecsocket.jniglue.JniHeader;
+import io.github.aecsocket.jniglue.JniInit;
+import io.github.aecsocket.jniglue.JniNative;
 import jolt.JoltNative;
-import jolt.jni.*;
 import jolt.math.JtMat44f;
-import jolt.math.JtQuat;
-import jolt.math.JtVec3d;
-import jolt.math.JtVec3f;
-import jolt.physics.collision.shape.Shape;
-import jolt.physics.collision.shape.ShapeSettings;
 
 /**
  * Describes the mass and inertia properties of a body. Used during body construction only.

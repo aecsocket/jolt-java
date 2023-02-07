@@ -1,8 +1,8 @@
 package jolt.physics.collision;
 
 import jolt.JoltNative;
-import jolt.jni.JniInclude;
-import jolt.jni.JniType;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Physics/Collision/NarrowPhaseQuery.h>")
 @JniType("NarrowPhaseQuery")

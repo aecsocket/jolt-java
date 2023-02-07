@@ -1,7 +1,7 @@
 package jolt.physics.collision;
 
+import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
-import jolt.jni.*;
 
 @JniInclude("<Jolt/Physics/Collision/ObjectLayer.h>")
 @JniType("ObjectLayerPairFilterImpl")

@@ -1,6 +1,6 @@
 package jolt;
 
-import jolt.jni.*;
+import io.github.aecsocket.jniglue.*;
 
 import javax.annotation.Nullable;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package jolt.physics.collision;
 
-import jolt.jni.JniInclude;
+import io.github.aecsocket.jniglue.JniInclude;
 
 @JniInclude("<Jolt/Physics/Collision/ContactListener.h>")
 public enum ValidateResult {

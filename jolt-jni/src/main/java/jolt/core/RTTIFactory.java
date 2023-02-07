@@ -1,10 +1,10 @@
 package jolt.core;
 
-import jolt.jni.JniBind;
+import io.github.aecsocket.jniglue.JniBind;
 import jolt.JoltNative;
-import jolt.jni.JniBindDelete;
-import jolt.jni.JniInclude;
-import jolt.jni.JniType;
+import io.github.aecsocket.jniglue.JniBindDelete;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniType;
 
 import javax.annotation.Nullable;
 

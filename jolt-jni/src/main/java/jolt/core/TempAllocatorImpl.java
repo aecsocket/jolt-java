@@ -1,9 +1,9 @@
 package jolt.core;
 
-import jolt.jni.JniBind;
-import jolt.jni.JniBindDelete;
-import jolt.jni.JniInclude;
-import jolt.jni.JniType;
+import io.github.aecsocket.jniglue.JniBind;
+import io.github.aecsocket.jniglue.JniBindDelete;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniType;
 
 /**
  * Default implementation of the temp allocator that allocates a large block through malloc upfront.

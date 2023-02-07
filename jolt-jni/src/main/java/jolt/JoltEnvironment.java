@@ -1,8 +1,8 @@
 package jolt;
 
-import jolt.jni.JniBind;
-import jolt.jni.JniInclude;
-import jolt.jni.JniNative;
+import io.github.aecsocket.jniglue.JniBind;
+import io.github.aecsocket.jniglue.JniInclude;
+import io.github.aecsocket.jniglue.JniNative;
 
 import java.util.List;
 
