@@ -21,7 +21,6 @@ public final class JoltNativeLoader {
         try {
             JoltNativeMeta meta = platform.loadMeta();
             loadFromMeta(meta);
-            _init();
         } catch (Throwable ex) {
             throw new IllegalStateException("Could not load Jolt JNI for platform " + platform, ex);
         }
@@ -40,6 +39,7 @@ public final class JoltNativeLoader {
         }
     }
 
+    public static void init() { _init(); }
     @JniBindInit
     private static native void _init();
 }

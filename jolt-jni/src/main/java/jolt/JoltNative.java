@@ -63,7 +63,7 @@ import java.util.Objects;
         jniThread = JNIThreadEnv(env);
         runtimeException = env->FindClass("java/lang/RuntimeException");""")
 
-public class JoltNative implements AutoCloseable {
+public class JoltNative {
     public static final String MODEL = "jolt/JoltJNIBindings";
     protected static final String NATIVE_OBJECT_DELETED = "Native object is already deleted";
 
@@ -87,7 +87,6 @@ public class JoltNative implements AutoCloseable {
     public long getAddress() { return address; }
 
     public void delete() { throw unimplemented(); }
-    @Override public void close() { delete(); }
 
     @Override
     public String toString() {

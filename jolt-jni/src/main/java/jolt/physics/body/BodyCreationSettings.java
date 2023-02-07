@@ -205,6 +205,22 @@ public final class BodyCreationSettings extends JoltNative {
     @JniBindSelf("ToJava(env, self->mRotation, out);")
     private static native void _getRotation(long _a, JtQuat out);
 
+    public OverrideMassProperties getOverrideMassProperties() { return OverrideMassProperties.values()[_getOverrideMassProperties(address)]; }
+    @JniBindSelf("return (jint) self->mOverrideMassProperties;")
+    private static native int _getOverrideMassProperties(long _a);
+
+    public void setOverrideMassProperties(OverrideMassProperties value) { _setOverrideMassProperties(address, value.ordinal()); }
+    @JniBindSelf("self->mOverrideMassProperties = (EOverrideMassProperties) value;")
+    private static native void _setOverrideMassProperties(long _a, int value);
+
+    public float getInertiaMultiplier() { return _getInertiaMultiplier(address); }
+    @JniBindSelf("return self->mInertiaMultiplier;")
+    private static native float _getInertiaMultiplier(long _a);
+
+    public void setInertiaMultiplier(float value) { _setInertiaMultiplier(address, value); }
+    @JniBindSelf("self->mInertiaMultiplier = value;")
+    private static native void _setInertiaMultiplier(long _a, float value);
+
     public MassProperties getMassPropertiesOverride(MassProperties out) {
         _getMassPropertiesOverride(address, out);
         return out;

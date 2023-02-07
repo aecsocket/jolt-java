@@ -14,7 +14,4 @@ public final class BodyIds extends JoltNative {
 
     public static int getIndex(int id) { return id & MAX_BODY_INDEX; }
     public static byte getSequenceNumber(int id) { return (byte) (id >> 24); }
-
-    private BodyIds(long address) { super(address); }
-    public static BodyIds ref(long address) { return address == 0 ? null : new BodyIds(address); }
 }
