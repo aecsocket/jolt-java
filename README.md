@@ -7,7 +7,7 @@ JoltJNI
 
 ### Coverage
 
-- [] Geometry types
+- [ ] Geometry types
   - [x] Primitives
   - [ ] Meshes
 - [x] Rigid bodies

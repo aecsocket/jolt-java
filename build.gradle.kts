@@ -3,11 +3,13 @@ plugins {
     id("maven-publish")
 }
 
-// change using `-PbuildType=value` and `-PdoublePrecision=true` on the command line or in gradle.properties
+// change using `-PbuildType=value` and `-Pflavor=value` on the command line or in gradle.properties
 val buildType = project.findProperty(BUILD_TYPE)?.let {
     JoltBuildType.valueOf(it.toString().toUpperCase())
 } ?: JoltBuildType.DEBUG
-val doublePrecision = project.findProperty(DOUBLE_PRECISION)?.toString()?.toBoolean() ?: false
+val flavor = project.findProperty(FLAVOR)?.let {
+    JoltFlavor.valueOf(it.toString().toUpperCase())
+} ?: JoltFlavor.SP
 
 allprojects {
     group = "io.github.aecsocket"
@@ -16,7 +18,7 @@ allprojects {
 
     ext {
         set(BUILD_TYPE, buildType)
-        set(DOUBLE_PRECISION, doublePrecision)
+        set(FLAVOR, flavor)
         set(JVM_VERSION, 16)
     }
 

@@ -1,5 +1,5 @@
 const val BUILD_TYPE = "buildType"
-const val DOUBLE_PRECISION = "doublePrecision"
+const val FLAVOR = "flavor"
 const val JVM_VERSION = "jvmVersion"
 
 enum class JoltBuildType(val key: String) {
@@ -9,6 +9,11 @@ enum class JoltBuildType(val key: String) {
     // RELEASE_UBSAN       ("ReleaseUBSAN"),
     // RELEASE_COVERAGE    ("ReleaseCoverage"),
     DISTRIBUTION        ("Distribution")
+}
+
+enum class JoltFlavor {
+    SP,
+    DP
 }
 
 enum class JoltFeature {

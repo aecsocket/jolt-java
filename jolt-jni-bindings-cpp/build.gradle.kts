@@ -3,8 +3,9 @@ plugins {
 }
 
 val buildType = ext.get(BUILD_TYPE) as JoltBuildType
+val flavor = ext.get(FLAVOR) as JoltFlavor
 val features = listOfNotNull(
-    if (ext.get(DOUBLE_PRECISION) as Boolean) JoltFeature.DOUBLE_PRECISION else null,
+    if (flavor == JoltFlavor.DP) JoltFeature.DOUBLE_PRECISION else null,
     //JoltFeature.USE_SSE4_1,
     //JoltFeature.USE_SSE4_2,
     //JoltFeature.USE_AVX,
