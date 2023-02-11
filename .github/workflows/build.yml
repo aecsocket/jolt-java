@@ -1,0 +1,51 @@
+name: "Build"
+
+on:
+  push:
+    branches: "**"
+    tags-ignore: [ "**" ]
+  pull_request:
+
+jobs:
+  build:
+    # Only run on PRs if the source branch is on someone else's repo
+    if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ] # TODO windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: "Checkout source"
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: "Setup Java"
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: "Setup Gradle"
+        uses: gradle/gradle-build-action@v2
+      - name: "Run Gradle build"
+        run: ./gradlew generateNatives build
+      - name: "Get version type"
+        run: |
+          if [ "$(./gradlew properties | awk '/^version:/ { print $2 }' | grep '\-SNAPSHOT')" ]; then
+            echo "VERSION_TYPE=snapshot" >> $GITHUB_ENV
+          else
+            echo "VERSION_TYPE=release" >> $GITHUB_ENV
+          fi
+      - name: "Publish snapshot"
+        if: ${{ env.VERSION_TYPE == 'snapshot' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: ./gradlew publish
+        env:
+          ORG_GRADLE_PROJECT_sonatypeUsername: "${{ secrets.SONATYPE_USERNAME }}"
+          ORG_GRADLE_PROJECT_sonatypePassword: "${{ secrets.SONATYPE_PASSWORD }}"
+      - name: "Publish release"
+        if: ${{ env.VERSION_TYPE == 'release' && github.event_name == 'push' }}
+        run: ./gradlew -PforceSign=true publishToSonatype closeAndReleaseSonatypeStagingRepository
+        env:
+          ORG_GRADLE_PROJECT_sonatypeUsername: "${{ secrets.SONATYPE_USERNAME }}"
+          ORG_GRADLE_PROJECT_sonatypePassword: "${{ secrets.SONATYPE_PASSWORD }}"
+          ORG_GRADLE_PROJECT_signingKey: "${{ secrets.SIGNING_KEY }}"
+          ORG_GRADLE_PROJECT_signingPassword: "${{ secrets.SIGNING_PASSWORD }}"

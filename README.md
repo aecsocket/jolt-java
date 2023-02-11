@@ -1,12 +1,20 @@
-JoltJNI
-===
+<div align="center">
 
-[JoltPhysics](https://github.com/jrouwe/JoltPhysics) bindings for Java using JNI
+# JoltJni
+[![License](https://img.shields.io/github/license/aecsocket/jolt-jni)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/aecsocket/jolt-jni/build.yml)](https://github.com/aecsocket/jolt-jni/actions/workflows/build.yml)
+![Release](https://img.shields.io/maven-central/v/io.github.aecsocket/jolt-jni?label=release)
+![Snapshot](https://img.shields.io/nexus/s/io.github.aecsocket/jolt-jni?label=snapshot&server=https%3A%2F%2Fs01.oss.sonatype.org)
 
-## Features
+Java bindings for [JoltPhysics](https://github.com/jrouwe/JoltPhysics)
 
-### Coverage
+</div>
 
+These bindings are still feature-incomplete and unstable.
+
+## Coverage
+
+Features:
 - [ ] Geometry types
   - [x] Primitives
   - [ ] Meshes
@@ -14,8 +22,6 @@ JoltJNI
 - [ ] Joints
 - [ ] Vehicles
 - [ ] Characters
-
-### Variants
 
 Platforms:
 - Linux (x86_64)
@@ -40,24 +46,32 @@ repositories {
 
 dependencies {
     implementation("io.github.aecsocket", "jolt-jni", "VERSION")
-    // implementation("io.github.aecsocket", "jolt-jni-kotlin", "VERSION")
-    runtimeOnly("io.github.aecsocket", "jolt-jni", "VERSION", classifier = "natives-linux")
-    runtimeOnly("io.github.aecsocket", "jolt-jni", "VERSION", classifier = "natives-windows")
-    runtimeOnly("io.github.aecsocket", "jolt-jni", "VERSION", classifier = "natives-macos")
-    runtimeOnly("io.github.aecsocket", "jolt-jni", "VERSION", classifier = "natives-macos-arm64")
+  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-linux", "VERSION")
+  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-windows", "VERSION")
+  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos", "VERSION")
+  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos-arm64", "VERSION")
 }
 ```
 
-See the example [HelloJolt.java](src/test/java/jolt/HelloJolt.java) file for a minimal working example.
+Usage is very similar to JoltPhysics. See [HelloJolt.java](jolt-jni-test/src/test/java/jolt/HelloJolt.java) to get a
+minimal implementation.
 
-## Build
+### Entry point
+
+Use `jolt.JoltEnvironment.load()` to load the native libraries from the jar (in `jolt/`), or load them yourself using
+`System.load`. Afterwards, run some Jolt setup:
+
+```java
+JoltEnvironment.registerDefaultAllocator();
+RTTIFactory.setInstance(new RTTIFactory());
+JoltEnvironment.registerTypes();
+```
+
+## Building from source
 
 ```sh
 git clone https://github.com/aecsocket/jolt-jni
 cd jolt-jni
 git submodule update --init
-# You must run `generateNatives` to build the Jolt native library
-# After changing any build settings like buildType, you must rerun generateNatives
-# You must use the same build settings in `assemble` task as you generated the natives with
-./gradlew -PbuildType=debug -Pflavor=sp generateNatives build
+./gradlew generateNatives build
 ```
