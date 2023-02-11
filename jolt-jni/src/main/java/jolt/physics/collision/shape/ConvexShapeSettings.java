@@ -2,10 +2,10 @@ package jolt.physics.collision.shape;
 
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/ConvexShape.h>")
-@JniType("ConvexShapeSettings")
+@JniTypeMapping("ConvexShapeSettings")
 public class ConvexShapeSettings extends ShapeSettings {
     protected ConvexShapeSettings(long address) { super(address); }
     public static ConvexShapeSettings ref(long address) { return address == 0 ? null : new ConvexShapeSettings(address); }

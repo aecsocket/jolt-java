@@ -1,12 +1,12 @@
 package jolt.core;
 
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Core/JobSystem.h>")
-@JniType("JobSystem")
+@JniTypeMapping("JobSystem")
 /**
  *
  * A class that allows units of work (Jobs) to be scheduled across multiple threads.

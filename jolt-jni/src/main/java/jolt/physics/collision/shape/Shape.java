@@ -1,16 +1,16 @@
 package jolt.physics.collision.shape;
 
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
 import jolt.math.JtAABox;
 import jolt.math.JtVec3f;
 import jolt.physics.body.MassProperties;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/Shape.h>")
-@JniType("Shape")
+@JniTypeMapping("Shape")
 public class Shape extends JoltNative {
     protected Shape(long address) { super(address); }
     public static Shape ref(long address) { return address == 0 ? null : new Shape(address); }

@@ -1,31 +1,26 @@
 package jolt.physics.body;
 
+import io.github.aecsocket.jniglue.JniCallback;
 import io.github.aecsocket.jniglue.JniHeader;
-import io.github.aecsocket.jniglue.JniInit;
 import io.github.aecsocket.jniglue.JniNative;
-import jolt.JoltNative;
+import io.github.aecsocket.jniglue.JniReferenced;
+import jolt.JoltEnvironment;
 import jolt.math.JtMat44f;
 
 /**
  * Describes the mass and inertia properties of a body. Used during body construction only.
  */
-@JniNative(JoltNative.MODEL)
+@JniNative(JoltEnvironment.JNI_MODEL)
+@JniReferenced
 @JniHeader("""
-        jclass JtMassProperties;
-        jmethodID JtMassProperties_set;
-        
         void ToJava(JNIEnv* env, const MassProperties from, jobject to) {
-            env->CallObjectMethod(to, JtMassProperties_set,
+            JNI_MassProperties_set(env, to,
                 from.mMass,
                 from.mInertia(0, 0), from.mInertia(0, 1), from.mInertia(0, 2), from.mInertia(0, 3),
                 from.mInertia(1, 0), from.mInertia(1, 1), from.mInertia(1, 2), from.mInertia(1, 3),
                 from.mInertia(2, 0), from.mInertia(2, 1), from.mInertia(2, 2), from.mInertia(2, 3),
-                from.mInertia(3, 0), from.mInertia(3, 1), from.mInertia(3, 2)
-            );
+                from.mInertia(3, 0), from.mInertia(3, 1), from.mInertia(3, 2));
         }""")
-@JniInit("""
-        JtMassProperties = env->FindClass("jolt/physics/body/MassProperties");
-        JtMassProperties_set = env->GetMethodID(JtMassProperties, "set", "(FFFFFFFFFFFFFFFF)V");""")
 public final class MassProperties {
     public float mass = 0.0f;
     public JtMat44f inertia = JtMat44f.ZERO;
@@ -35,6 +30,7 @@ public final class MassProperties {
         set(mass, inertia);
     }
 
+    @JniCallback
     public void set(
             float mass,
             float inertia00, float inertia01, float inertia02, float inertia03,

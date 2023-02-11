@@ -10,7 +10,7 @@ import jolt.physics.collision.shape.Shape;
 import jolt.physics.collision.shape.ShapeSettings;
 
 @JniInclude("<Jolt/Physics/Body/BodyCreationSettings.h>")
-@JniType("BodyCreationSettings")
+@JniTypeMapping("BodyCreationSettings")
 public final class BodyCreationSettings extends JoltNative {
     private BodyCreationSettings(long address) { super(address); }
     public static BodyCreationSettings ref(long address) { return address == 0 ? null : new BodyCreationSettings(address); }

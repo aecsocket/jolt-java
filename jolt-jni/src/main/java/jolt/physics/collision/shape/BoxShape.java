@@ -8,7 +8,7 @@ import jolt.physics.collision.PhysicsMaterial;
 import javax.annotation.Nullable;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/BoxShape.h>")
-@JniType("BoxShape")
+@JniTypeMapping("BoxShape")
 public final class BoxShape extends ConvexShape {
     private BoxShape(long address) { super(address); }
     public static BoxShape ref(long address) { return address == 0 ? null : new BoxShape(address); }

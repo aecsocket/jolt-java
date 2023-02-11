@@ -3,10 +3,10 @@ package jolt.physics.collision.shape;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniBindSelf;
-import io.github.aecsocket.jniglue.JniType;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/Shape.h>")
-@JniType("ShapeSettings")
+@JniTypeMapping("ShapeSettings")
 public class ShapeSettings extends ConvexShape {
     protected ShapeSettings(long address) { super(address); }
     public static ShapeSettings ref(long address) { return address == 0 ? null : new ShapeSettings(address); }
@@ -26,7 +26,7 @@ public class ShapeSettings extends ConvexShape {
     @JniBindSelf("""
             ShapeSettings::ShapeResult result = self->Create();
             if (result.HasError()) {
-                env->ThrowNew(runtimeException, result.GetError().c_str());
+                env->ThrowNew(jni_RuntimeException, result.GetError().c_str());
                 return (jlong) nullptr;
             }
             return (jlong) result.Get().GetPtr();""")

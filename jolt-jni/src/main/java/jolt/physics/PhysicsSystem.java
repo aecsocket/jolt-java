@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * Please refer to the general architecture overview in the Docs folder for more information.
  */
 @JniInclude("<Jolt/Physics/PhysicsSystem.h>")
-@JniType("PhysicsSystem")
+@JniTypeMapping("PhysicsSystem")
 public final class PhysicsSystem extends JoltNative {
     private PhysicsSystem(long address) { super(address); }
     public static PhysicsSystem ref(long address) { return address == 0 ? null : new PhysicsSystem(address); }

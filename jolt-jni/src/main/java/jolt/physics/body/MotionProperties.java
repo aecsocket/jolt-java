@@ -2,12 +2,12 @@ package jolt.physics.body;
 
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import jolt.math.JtMat44f;
 
 @JniInclude("<Jolt/Physics/Body/MotionProperties.h>")
-@JniType("MotionProperties")
+@JniTypeMapping("MotionProperties")
 public final class MotionProperties extends JoltNative {
     private MotionProperties(long address) { super(address); }
     public static MotionProperties ref(long address) { return address == 0 ? null : new MotionProperties(address); }

@@ -1,27 +1,9 @@
 plugins {
-    id("java")
+    id("natives-conventions")
 }
 
-val jvmVersion = ext.get(JVM_VERSION) as Int
-val bindings = projects.joltJniBindingsCpp.dependencyProject
-
-dependencies {
-    implementation(projects.joltJni)
-}
-
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(jvmVersion))
-}
-
-tasks {
-    jar {
-        val jarTask = this
-        bindings.tasks.withType<LinkSharedLibrary> {
-            jarTask.mustRunAfter(this)
-        }
-
-        from("${bindings.buildDir}/lib/main/debug/libjolt-jni-bindings-cpp.so") {
-            into("jolt/")
-        }
-    }
+natives {
+    platformPredicate.set { it.isLinux }
+    bindingsFileName.set("libjolt-jni-bindings.so")
+    destInnerDir.set("linux")
 }

@@ -2,11 +2,11 @@ package jolt.physics.collision.shape;
 
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniBindSelf;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
-import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/SubShapeIDPair.h>")
-@JniType("SubShapeIDPair")
+@JniTypeMapping("SubShapeIDPair")
 public final class SubShapeIdPair extends JoltNative {
     private SubShapeIdPair(long address) { super(address); }
     public static SubShapeIdPair ref(long address) { return address == 0 ? null : new SubShapeIdPair(address); }

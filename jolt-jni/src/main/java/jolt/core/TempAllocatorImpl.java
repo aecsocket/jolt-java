@@ -3,13 +3,13 @@ package jolt.core;
 import io.github.aecsocket.jniglue.JniBind;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 
 /**
  * Default implementation of the temp allocator that allocates a large block through malloc upfront.
  */
 @JniInclude("<Jolt/Core/TempAllocator.h>")
-@JniType("TempAllocatorImpl")
+@JniTypeMapping("TempAllocatorImpl")
 public final class TempAllocatorImpl extends TempAllocator {
     private TempAllocatorImpl(long address) { super(address); }
     public static TempAllocatorImpl ref(long address) { return address == 0 ? null : new TempAllocatorImpl(address); }

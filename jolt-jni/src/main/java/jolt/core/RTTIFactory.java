@@ -1,15 +1,15 @@
 package jolt.core;
 
 import io.github.aecsocket.jniglue.JniBind;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
 
 import javax.annotation.Nullable;
 
 @JniInclude("<Jolt/Core/Factory.h>")
-@JniType("Factory")
+@JniTypeMapping("Factory")
 public final class RTTIFactory extends JoltNative {
     private RTTIFactory(long address) { this.address = address; }
     public static RTTIFactory ref(long address) { return address == 0 ? null : new RTTIFactory(address); }

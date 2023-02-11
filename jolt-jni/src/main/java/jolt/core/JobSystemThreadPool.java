@@ -3,10 +3,10 @@ package jolt.core;
 import io.github.aecsocket.jniglue.JniBind;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 
 @JniInclude("<Jolt/Core/JobSystemThreadPool.h>")
-@JniType("JobSystemThreadPool")
+@JniTypeMapping("JobSystemThreadPool")
 /**
  * Implementation of a JobSystem using a thread pool
  * <p>

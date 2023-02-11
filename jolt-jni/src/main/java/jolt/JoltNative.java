@@ -5,49 +5,8 @@ import io.github.aecsocket.jniglue.*;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-@JniNative(JoltNative.MODEL)
-@JniPriority(NativePriority.EARLY)
-@JniInclude("""
-        <cstdint>
-        <iostream>
-        <Jolt/Jolt.h>""")
+@JniNative(JoltEnvironment.JNI_MODEL)
 @JniHeader("""
-        using uint = unsigned int;
-        using uint8 = uint8_t;
-        using uint16 = uint16_t;
-        using uint32 = uint32_t;
-        using uint64 = uint64_t;
-        using namespace JPH;
-        
-        static JavaVM* javaVm = nullptr;
-        
-        class JNIThreadEnv {
-        public:
-            JNIThreadEnv() : shouldDetach(false), env(nullptr) {}
-            JNIThreadEnv(JNIEnv *env) : shouldDetach(false), env(env) {}
-            ~JNIThreadEnv() {
-                if (shouldDetach) {
-                    javaVm->DetachCurrentThread();
-                }
-            }
-            
-            JNIEnv* getEnv() {
-                if (env == nullptr && javaVm != nullptr) {
-                    javaVm->AttachCurrentThreadAsDaemon((void**) &env, nullptr);
-                    shouldDetach = true;
-                }
-                return env;
-            }
-        
-        private:
-            bool shouldDetach;
-            JNIEnv* env;
-        };
-        
-        static thread_local JNIThreadEnv jniThread;
-        
-        jclass runtimeException;
-        
         class JNINative {
         public:
             JNINative(JNIEnv* env, jobject obj) : obj(env->NewGlobalRef(obj)) {}
@@ -58,13 +17,8 @@ import java.util.Objects;
         protected:
             jobject obj;
         };""")
-@JniInit("""
-        env->GetJavaVM(&javaVm);
-        jniThread = JNIThreadEnv(env);
-        runtimeException = env->FindClass("java/lang/RuntimeException");""")
 
 public class JoltNative {
-    public static final String MODEL = "jolt/JoltJNIBindings";
     protected static final String NATIVE_OBJECT_DELETED = "Native object is already deleted";
 
     protected long address;

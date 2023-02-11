@@ -1,22 +1,20 @@
 package jolt.math;
 
-import jolt.JoltNative;
+import io.github.aecsocket.jniglue.JniCallback;
+import io.github.aecsocket.jniglue.JniReferenced;
+import jolt.JoltEnvironment;
 import io.github.aecsocket.jniglue.JniHeader;
-import io.github.aecsocket.jniglue.JniInit;
 import io.github.aecsocket.jniglue.JniNative;
 
-@JniNative(JoltNative.MODEL)
+@JniNative(JoltEnvironment.JNI_MODEL)
+@JniReferenced
 @JniHeader("""
-        jclass JtMat44f;
-        jmethodID JtMat44f_set;
-        
         void ToJavaSp(JNIEnv* env, const Mat44 from, jobject to) {
-            env->CallObjectMethod(to, JtMat44f_set,
+            JNI_JtMat44f_set(env, to,
                 from(0, 0), from(0, 1), from(0, 2), from(0, 3),
                 from(1, 0), from(1, 1), from(1, 2), from(1, 3),
                 from(2, 0), from(2, 1), from(2, 2), from(2, 3),
-                from(3, 0), from(3, 1), from(3, 2), from(3, 3)
-            );
+                from(3, 0), from(3, 1), from(3, 2));
         }
         
         #ifndef JPH_DOUBLE_PRECISION
@@ -24,9 +22,6 @@ import io.github.aecsocket.jniglue.JniNative;
             ToJavaSp(env, from, to);
         }
         #endif""")
-@JniInit("""
-        JtMat44f = env->FindClass("jolt/math/JtMat44f");
-        JtMat44f_set = env->GetMethodID(JtMat44f, "set", "(FFFFFFFFFFFFFFF)V");""")
 public final class JtMat44f {
     public static final JtMat44f IDENTITY = new JtMat44f(
             1f, 0f, 0f, 0f,
@@ -61,6 +56,7 @@ public final class JtMat44f {
         );
     }
 
+    @JniCallback
     public void set(
             float n00, float n01, float n02, float n03,
             float n10, float n11, float n12, float n13,

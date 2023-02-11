@@ -1,22 +1,12 @@
 plugins {
+    id("publishing-conventions")
     kotlin("jvm")
-    id("maven-publish")
 }
-
-val jvmVersion = ext.get(JVM_VERSION) as Int
 
 dependencies {
     implementation(projects.joltJni)
 }
 
 kotlin {
-    jvmToolchain(jvmVersion)
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-        }
-    }
+    jvmToolchain(indra.javaVersions().target().get())
 }

@@ -2,11 +2,11 @@ package jolt.physics.collision;
 
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniBindSelf;
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
-import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Physics/Collision/ContactListener.h>")
-@JniType("ContactSettings")
+@JniTypeMapping("ContactSettings")
 public final class ContactSettings extends JoltNative {
     private ContactSettings(long address) { super(address); }
     public static ContactSettings ref(long address) { return address == 0 ? null : new ContactSettings(address); }

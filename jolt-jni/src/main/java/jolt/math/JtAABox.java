@@ -1,24 +1,19 @@
 package jolt.math;
 
-import jolt.JoltNative;
+import io.github.aecsocket.jniglue.JniCallback;
+import io.github.aecsocket.jniglue.JniReferenced;
+import jolt.JoltEnvironment;
 import io.github.aecsocket.jniglue.JniHeader;
-import io.github.aecsocket.jniglue.JniInit;
 import io.github.aecsocket.jniglue.JniNative;
 
-@JniNative(JoltNative.MODEL)
+@JniNative(JoltEnvironment.JNI_MODEL)
+@JniReferenced
 @JniHeader("""
-        jclass JtAABox;
-        jmethodID JtAABox_set;
-        
         void ToJava(JNIEnv* env, const AABox from, jobject to) {
-            env->CallObjectMethod(to, JtAABox_set,
+            JNI_JtAABox_set(env, to,
                 from.mMin.GetX(), from.mMin.GetY(), from.mMin.GetZ(),
-                from.mMax.GetX(), from.mMax.GetY(), from.mMax.GetZ()
-            );
+                from.mMax.GetX(), from.mMax.GetY(), from.mMax.GetZ());
         }""")
-@JniInit("""
-        JtAABox = env->FindClass("jolt/math/JtAABox");
-        JtAABox_set = env->GetMethodID(JtAABox, "set", "(FFFFFF)V");""")
 public final class JtAABox {
     public JtVec3f min;
     public JtVec3f max;
@@ -28,6 +23,7 @@ public final class JtAABox {
         set(min, max);
     }
 
+    @JniCallback
     public void set(
             float minX, float minY, float minZ,
             float maxX, float maxY, float maxZ

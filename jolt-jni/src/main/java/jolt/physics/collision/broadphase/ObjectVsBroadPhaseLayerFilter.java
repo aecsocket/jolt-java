@@ -4,7 +4,8 @@ import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
 
 @JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>")
-@JniType("ObjectVsBroadPhaseLayerFilterImpl")
+@JniReferenced
+@JniTypeMapping("ObjectVsBroadPhaseLayerFilterImpl")
 @JniHeader("""
         class ObjectVsBroadPhaseLayerFilterImpl : JNINative, ObjectVsBroadPhaseLayerFilter {
         public:
@@ -12,7 +13,7 @@ import jolt.JoltNative;
             
             bool ShouldCollide(ObjectLayer inLayer1, BroadPhaseLayer inLayer2) const override {
                 JNIEnv* env = jniThread.getEnv();
-                return env->CallBooleanMethod(obj, ObjectVsBroadPhaseLayerFilter_shouldCollide,
+                return JNI_ObjectVsBroadPhaseLayerFilter_shouldCollide(env, obj,
                     inLayer1, (BroadPhaseLayer::Type) inLayer2);
             }
         };""")

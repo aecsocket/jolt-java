@@ -1,15 +1,23 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
-    plugins {
-        kotlin("jvm") version "1.8.0"
+    repositories {
+        gradlePluginPortal()
     }
+    includeBuild("build-logic")
+}
+
+plugins {
+    id("ca.stellardrift.polyglot-version-catalogs") version "6.0.1"
 }
 
 rootProject.name = "jolt-jni-parent"
 
 include("jolt-jni")
-listOf(
-    "bindings-cpp", "kotlin",
-    "natives-linux", "natives-windows", "natives-macos", "natives-macos-arm64"
-).forEach { include("jolt-jni-$it") }
+include("jolt-jni-bindings")
+include("jolt-jni-kotlin")
+include("jolt-jni-natives-linux")
+include("jolt-jni-natives-windows")
+include("jolt-jni-natives-macos")
+include("jolt-jni-natives-macos-arm64")
+include("jolt-jni-test")

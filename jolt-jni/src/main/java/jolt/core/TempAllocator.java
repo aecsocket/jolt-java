@@ -1,12 +1,12 @@
 package jolt.core;
 
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Core/TempAllocator.h>")
-@JniType("TempAllocator")
+@JniTypeMapping("TempAllocator")
 public class TempAllocator extends JoltNative {
     protected TempAllocator(long address) { super(address); }
     public static TempAllocator ref(long address) { return address == 0 ? null : new TempAllocator(address); }

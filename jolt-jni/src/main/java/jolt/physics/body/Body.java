@@ -1,12 +1,12 @@
 package jolt.physics.body;
 
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniBindSelf;
-import io.github.aecsocket.jniglue.JniType;
 
 @JniInclude("<Jolt/Physics/Body/Body.h>")
-@JniType("Body")
+@JniTypeMapping("Body")
 public final class Body extends JoltNative {
     private Body(long address) { super(address); }
     public static Body ref(long address) { return address == 0 ? null : new Body(address); }

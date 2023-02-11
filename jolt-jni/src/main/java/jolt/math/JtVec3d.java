@@ -1,17 +1,16 @@
 package jolt.math;
 
-import jolt.JoltNative;
+import io.github.aecsocket.jniglue.JniCallback;
+import io.github.aecsocket.jniglue.JniReferenced;
+import jolt.JoltEnvironment;
 import io.github.aecsocket.jniglue.JniHeader;
-import io.github.aecsocket.jniglue.JniInit;
 import io.github.aecsocket.jniglue.JniNative;
 
-@JniNative(JoltNative.MODEL)
+@JniNative(JoltEnvironment.JNI_MODEL)
+@JniReferenced
 @JniHeader("""
-        jclass JtVec3d;
-        jmethodID JtVec3d_set;
-        
         void ToJavaDp(JNIEnv* env, const DVec3 from, jobject to) {
-            env->CallObjectMethod(to, JtVec3d_set,
+            JNI_JtVec3d_set(env, to,
                 from.GetX(), from.GetY(), from.GetZ());
         }
         
@@ -20,9 +19,6 @@ import io.github.aecsocket.jniglue.JniNative;
             ToJavaDp(env, from, to);
         }
         #endif""")
-@JniInit("""
-        JtVec3d = env->FindClass("jolt/math/JtVec3d");
-        JtVec3d_set = env->GetMethodID(JtVec3d, "set", "(DDD)V");""")
 public final class JtVec3d {
     public static final JtVec3d ZERO = new JtVec3d(0.0, 0.0, 0.0);
 
@@ -33,6 +29,7 @@ public final class JtVec3d {
     public JtVec3d() {}
     public JtVec3d(double x, double y, double z) { set(x, y, z); }
 
+    @JniCallback
     public void set(double x, double y, double z) {
         this.x = x;
         this.y = y;

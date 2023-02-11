@@ -7,7 +7,8 @@ import jolt.physics.body.Body;
 import jolt.physics.collision.shape.SubShapeIdPair;
 
 @JniInclude("<Jolt/Physics/Collision/ContactListener.h>")
-@JniType("ContactListenerImpl")
+@JniReferenced
+@JniTypeMapping("ContactListenerImpl")
 @JniHeader("""
         class ContactListenerImpl : JNINative, ContactListener {
         public:
@@ -15,26 +16,26 @@ import jolt.physics.collision.shape.SubShapeIdPair;
             
             ValidateResult OnContactValidate(const Body& inBody1, const Body& inBody2, RVec3Arg inBaseOffset, const CollideShapeResult &inCollisionResult) override {
                 JNIEnv* env = jniThread.getEnv();
-                return (ValidateResult) env->CallIntMethod(obj, ContactListener_onContactValidate,
-                    &inBody1, &inBody2, inBaseOffset.GetX(), inBaseOffset.GetY(), inBaseOffset.GetZ(), &inCollisionResult);
+                return (ValidateResult) JNI_ContactListener_onContactValidate(env, obj,
+                    (jlong) &inBody1, (jlong) &inBody2, inBaseOffset.GetX(), inBaseOffset.GetY(), inBaseOffset.GetZ(), (jlong) &inCollisionResult);
             }
             
             void OnContactAdded(const Body& inBody1, const Body& inBody2, const ContactManifold& inManifold, ContactSettings &ioSettings) override {
                 JNIEnv* env = jniThread.getEnv();
-                env->CallVoidMethod(obj, ContactListener_onContactAdded,
-                    &inBody1, &inBody2, &inManifold, &ioSettings);
+                JNI_ContactListener_onContactAdded(env, obj,
+                    (jlong) &inBody1, (jlong) &inBody2, (jlong) &inManifold, (jlong) &ioSettings);
             }
             
             void OnContactPersisted(const Body& inBody1, const Body& inBody2, const ContactManifold& inManifold, ContactSettings &ioSettings) override {
                 JNIEnv* env = jniThread.getEnv();
-                env->CallVoidMethod(obj, ContactListener_onContactPersisted,
-                    &inBody1, &inBody2, &inManifold, &ioSettings);
+                JNI_ContactListener_onContactPersisted(env, obj,
+                    (jlong) &inBody1, (jlong) &inBody2, (jlong) &inManifold, (jlong) &ioSettings);
             }
             
             void OnContactRemoved(const SubShapeIDPair& inSubShapePair) override {
                 JNIEnv* env = jniThread.getEnv();
-                env->CallVoidMethod(obj, ContactListener_onContactAdded,
-                    &inSubShapePair);
+                JNI_ContactListener_onContactRemoved(env, obj,
+                    (jlong) &inSubShapePair);
             }
         };""")
 public class ContactListener extends JoltNative {

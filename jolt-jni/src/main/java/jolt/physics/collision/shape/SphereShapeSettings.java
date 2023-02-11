@@ -6,7 +6,7 @@ import jolt.physics.collision.PhysicsMaterial;
 import javax.annotation.Nullable;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/SphereShape.h>")
-@JniType("SphereShapeSettings")
+@JniTypeMapping("SphereShapeSettings")
 public final class SphereShapeSettings extends ConvexShapeSettings {
     private SphereShapeSettings(long address) { super(address); }
     public static SphereShapeSettings ref(long address) { return address == 0 ? null : new SphereShapeSettings(address); }

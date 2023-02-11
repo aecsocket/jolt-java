@@ -1,26 +1,24 @@
 package jolt.math;
 
-import jolt.JoltNative;
+import io.github.aecsocket.jniglue.JniCallback;
+import io.github.aecsocket.jniglue.JniReferenced;
+import jolt.JoltEnvironment;
 import io.github.aecsocket.jniglue.JniHeader;
-import io.github.aecsocket.jniglue.JniInit;
 import io.github.aecsocket.jniglue.JniNative;
 
-@JniNative(JoltNative.MODEL)
+@JniNative(JoltEnvironment.JNI_MODEL)
+@JniReferenced
 @JniHeader("""
-        jclass JtMat44d;
-        jmethodID JtMat44d_set;
-        
         void ToJavaDp(JNIEnv* env, const DMat44 from, jobject to) {
             auto ax = from.GetAxisX();
             auto ay = from.GetAxisY();
             auto az = from.GetAxisZ();
             auto tl = from.GetTranslation();
-            env->CallObjectMethod(to, JtMat44d_set,
+            JNI_JtMat44d_set(env, to,
                 ax.GetX(), ay.GetX(), az.GetX(), tl.GetX(),
                 ax.GetY(), ay.GetY(), az.GetY(), tl.GetY(),
                 ax.GetZ(), ay.GetZ(), az.GetZ(), tl.GetZ(),
-                0.0f, 0.0f, 0.0f
-            );
+                0.0f,      0.0f,      0.0f);
         }
         
         #ifdef JPH_DOUBLE_PRECISION
@@ -28,9 +26,6 @@ import io.github.aecsocket.jniglue.JniNative;
             ToJavaDp(env, from, to);
         }
         #endif""")
-@JniInit("""
-        JtMat44d = env->FindClass("jolt/math/JtMat44d");
-        JtMat44d_set = env->GetMethodID(JtMat44d, "set", "(FFFDFFFDFFFDFFF)V");""")
 public final class JtMat44d {
     public static final JtMat44d IDENTITY = new JtMat44d(
             1f, 0f, 0f, 0.0,
@@ -59,6 +54,7 @@ public final class JtMat44d {
         );
     }
 
+    @JniCallback
     public void set(
             float n00, float n01, float n02, double n03,
             float n10, float n11, float n12, double n13,

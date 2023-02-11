@@ -4,7 +4,8 @@ import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
 
 @JniInclude("<Jolt/Physics/Collision/ObjectLayer.h>")
-@JniType("ObjectLayerPairFilterImpl")
+@JniReferenced
+@JniTypeMapping("ObjectLayerPairFilterImpl")
 @JniHeader("""
         class ObjectLayerPairFilterImpl : JNINative, ObjectLayerPairFilter {
         public:
@@ -12,7 +13,7 @@ import jolt.JoltNative;
             
             bool ShouldCollide(ObjectLayer inLayer1, ObjectLayer inLayer2) const override {
                 JNIEnv* env = jniThread.getEnv();
-                return env->CallBooleanMethod(obj, ObjectLayerPairFilter_shouldCollide,
+                return JNI_ObjectLayerPairFilter_shouldCollide(env, obj,
                     inLayer1, inLayer2);
             }
         };""")

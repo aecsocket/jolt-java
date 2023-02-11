@@ -4,7 +4,8 @@ import io.github.aecsocket.jniglue.*;
 import jolt.JoltNative;
 
 @JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>")
-@JniType("BroadPhaseLayerInterfaceImpl")
+@JniReferenced
+@JniTypeMapping("BroadPhaseLayerInterfaceImpl")
 @JniHeader("""
         class BroadPhaseLayerInterfaceImpl : JNINative, BroadPhaseLayerInterface {
         public:
@@ -12,14 +13,14 @@ import jolt.JoltNative;
             
             uint GetNumBroadPhaseLayers() const override {
                 JNIEnv* env = jniThread.getEnv();
-                uint res = env->CallIntMethod(obj, BroadPhaseLayerInterface_getNumBroadPhaseLayers);
+                uint res = JNI_BroadPhaseLayerInterface_getNumBroadPhaseLayers(env, obj);
                 env->ExceptionCheck();
                 return res;
             }
             
             BroadPhaseLayer GetBroadPhaseLayer(ObjectLayer inLayer) const override {
                 JNIEnv* env = jniThread.getEnv();
-                uint8 res = env->CallByteMethod(obj, BroadPhaseLayerInterface_getBroadPhaseLayer,
+                uint8 res = JNI_BroadPhaseLayerInterface_getBroadPhaseLayer(env, obj,
                     inLayer);
                 env->ExceptionCheck();
                 return BroadPhaseLayer(res);
@@ -28,7 +29,7 @@ import jolt.JoltNative;
         #if defined(JPH_EXTERNAL_PROFILE) || defined(JPH_PROFILE_ENABLED)
             const char* GetBroadPhaseLayerName(BroadPhaseLayer inLayer) const override {
                 JNIEnv* env = jniThread.getEnv();
-                jstring res = (jstring) env->CallObjectMethod(obj, BroadPhaseLayerInterface_getBroadPhaseLayerName,
+                jstring res = JNI_BroadPhaseLayerInterface_getBroadPhaseLayerName(env, obj,
                     (BroadPhaseLayer::Type) inLayer);
                 env->ExceptionCheck();
                 return env->GetStringUTFChars(res, 0);

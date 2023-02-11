@@ -6,7 +6,7 @@ import jolt.physics.collision.PhysicsMaterial;
 import javax.annotation.Nullable;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/CapsuleShape.h>")
-@JniType("CapsuleShapeSettings")
+@JniTypeMapping("CapsuleShapeSettings")
 public final class CapsuleShapeSettings extends ConvexShapeSettings {
     private CapsuleShapeSettings(long address) { super(address); }
     public static CapsuleShapeSettings ref(long address) { return address == 0 ? null : new CapsuleShapeSettings(address); }

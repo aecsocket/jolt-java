@@ -1,17 +1,16 @@
 package jolt.math;
 
-import jolt.JoltNative;
+import io.github.aecsocket.jniglue.JniCallback;
+import io.github.aecsocket.jniglue.JniReferenced;
+import jolt.JoltEnvironment;
 import io.github.aecsocket.jniglue.JniHeader;
-import io.github.aecsocket.jniglue.JniInit;
 import io.github.aecsocket.jniglue.JniNative;
 
-@JniNative(JoltNative.MODEL)
+@JniNative(JoltEnvironment.JNI_MODEL)
+@JniReferenced
 @JniHeader("""
-        jclass JtVec3f;
-        jmethodID JtVec3f_set;
-        
         void ToJavaSp(JNIEnv* env, const Vec3 from, jobject to) {
-            env->CallObjectMethod(to, JtVec3f_set,
+            JNI_JtVec3f_set(env, to,
                 from.GetX(), from.GetY(), from.GetZ());
         }
         
@@ -20,9 +19,6 @@ import io.github.aecsocket.jniglue.JniNative;
             ToJavaSp(env, from, to);
         }
         #endif""")
-@JniInit("""
-        JtVec3f = env->FindClass("jolt/math/JtVec3f");
-        JtVec3f_set = env->GetMethodID(JtVec3f, "set", "(FFF)V");""")
 public final class JtVec3f {
     public static final JtVec3f ZERO = new JtVec3f(0f, 0f, 0f);
 
@@ -33,6 +29,7 @@ public final class JtVec3f {
     public JtVec3f() {}
     public JtVec3f(float x, float y, float z) { set(x, y, z); }
 
+    @JniCallback
     public void set(float x, float y, float z) {
         this.x = x;
         this.y = y;

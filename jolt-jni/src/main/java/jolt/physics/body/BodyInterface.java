@@ -1,16 +1,16 @@
 package jolt.physics.body;
 
+import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniBindSelf;
-import io.github.aecsocket.jniglue.JniType;
 import jolt.math.JtQuat;
 import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;
 import jolt.physics.Activation;
 
 @JniInclude("<Jolt/Physics/Body/BodyInterface.h>")
-@JniType("BodyInterface")
+@JniTypeMapping("BodyInterface")
 public final class BodyInterface extends JoltNative {
     private static final String OUT_OF_BODIES = "Out of bodies";
 
