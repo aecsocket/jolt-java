@@ -20,14 +20,14 @@ afterEvaluate {
         tasks {
             val assembleNatives = register<Exec>("assembleNatives") {
                 dependsOn(":jolt-jni:compileJava")
+                val bindingsDir = File("$rootDir/JoltJNIBindings")
 
                 doFirst {
                     println("Assembling natives $buildType $flavor $features")
                 }
 
-                workingDir = File("$rootDir/JoltJNIBindings")
-                commandLine = listOf(
-                    "./${nativesExt.buildScriptName.get()}",
+                workingDir = bindingsDir
+                commandLine = nativesExt.buildScriptBase.get() + listOf(
                     buildDir.absolutePath,
                     buildType.key,
                     "$makeWorkers"
