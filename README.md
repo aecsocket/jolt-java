@@ -31,10 +31,10 @@ Platforms:
 Build types (change with Gradle flag `-PbuildType=` or property `buildType`):
 - `debug`
 - `release`
-- `distribution`
+- `distribution` (default)
 
 Flavors (change with Gradle flag `-Pflavor=` or property `flavor`):
-- `sp` (single-precision floating point)
+- `sp` (single-precision floating point, default)
 - `dp` (double-precision floating point)
 
 ## Usage
@@ -46,22 +46,25 @@ repositories {
 
 dependencies {
     implementation("io.github.aecsocket", "jolt-jni", "VERSION")
-  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-linux", "VERSION")
-  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-windows", "VERSION")
-  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos", "VERSION")
-  runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos-arm64", "VERSION")
+    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-linux", "VERSION")
+    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-windows", "VERSION")
+    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos", "VERSION")
+    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos-arm64", "VERSION")
 }
 ```
 
 Usage is very similar to JoltPhysics. See [HelloJolt.java](jolt-jni-test/src/test/java/jolt/HelloJolt.java) to get a
 minimal implementation.
 
-### Entry point
-
-Use `jolt.JoltEnvironment.load()` to load the native libraries from the jar (in `jolt/`), or load them yourself using
-`System.load`. Afterwards, run some Jolt setup:
+### Setup
 
 ```java
+// Load the native libraries from the jar (in `jolt/`)
+JoltEnvironment.load();
+// Or load them manually
+// System.load("name-of-lib-file");
+
+// Do some Jolt setup
 JoltEnvironment.registerDefaultAllocator();
 RTTIFactory.setInstance(new RTTIFactory());
 JoltEnvironment.registerTypes();

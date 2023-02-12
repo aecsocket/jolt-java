@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @JniNative(JoltEnvironment.JNI_MODEL)
-@JniPriority(NativePriority.EARLY)
+@JniPriority(NativePriority.EARLIEST)
 @JniInclude("""
         <cstdint>
         <Jolt/Jolt.h>
