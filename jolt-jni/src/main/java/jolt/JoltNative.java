@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 
 @JniNative(JoltEnvironment.JNI_MODEL)
+@JniPriority(NativePriority.EARLY)
 @JniHeader("""
         class JNINative {
         public:
