@@ -3,6 +3,7 @@ import org.gradle.internal.os.OperatingSystem
 
 abstract class NativesExtension {
     abstract val platformPredicate: Property<(OperatingSystem) -> Boolean>
+    abstract val buildScriptName: Property<String>
     abstract val sourceLibraryName: Property<String>
     abstract val targetLibraryName: Property<String>
 }

@@ -14,7 +14,6 @@ plugins {
 rootProject.name = "jolt-jni-parent"
 
 include("jolt-jni")
-include("jolt-jni-bindings")
 include("jolt-jni-kotlin")
 include("jolt-jni-natives-linux")
 include("jolt-jni-natives-windows")

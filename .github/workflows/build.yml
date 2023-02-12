@@ -12,7 +12,7 @@ jobs:
     if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ ubuntu-latest, macos-latest ]
         include:
           - os: ubuntu-latest
             publish-api: true
@@ -29,18 +29,14 @@ jobs:
           java-version: 17
       - name: "Setup Gradle"
         uses: gradle/gradle-build-action@v2
-      - name: "Setup Ninja"
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: ninja-build
       - name: "Run Gradle build"
         run: ./gradlew build
-#      - name: "Get version type (sh)"
+#      - name: "sh: Get version type"
 #        if: ${{ matrix.os != 'windows-latest' }}
 #        run: |
 #          version_type=$(./gradlew -q --console=plain --no-daemon printVersionType)
 #          echo version_type=$version_type >> $GITHUB_ENV
-#      - name: "Get version type (ps)"
+#      - name: "pwsh: Get version type"
 #        if: ${{ matrix.os == 'windows-latest' }}
 #        run: |
 #          $version_type = ./gradlew -q --console=plain --no-daemon printVersionType

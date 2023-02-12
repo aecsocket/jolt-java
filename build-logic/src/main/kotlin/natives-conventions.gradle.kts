@@ -4,12 +4,13 @@ plugins {
     id("java-conventions")
 }
 
-val bindings = project(":jolt-jni-bindings")
 val nativesExt = extensions.create("natives", NativesExtension::class)
 
 dependencies {
     implementation(project(":jolt-jni"))
 }
+
+val makeWorkers = kotlin.math.min(32, Runtime.getRuntime().availableProcessors())
 
 afterEvaluate {
     val os = OperatingSystem.current()
@@ -17,9 +18,28 @@ afterEvaluate {
         apply(plugin = "publishing-conventions")
 
         tasks {
+            val assembleNatives = register<Exec>("assembleNatives") {
+                dependsOn(":jolt-jni:compileJava")
+
+                doFirst {
+                    println("Assembling natives $buildType $flavor $features")
+                }
+
+                workingDir = File("$rootDir/JoltJNIBindings")
+                commandLine = listOf(
+                    "./${nativesExt.buildScriptName.get()}",
+                    buildDir.absolutePath,
+                    buildType.key,
+                    "$makeWorkers"
+                )
+                features.forEach { feature ->
+                    environment[feature.cmakeFlag()] = "ON"
+                }
+            }
+
             jar {
-                dependsOn(bindings.tasks["assembleNatives"])
-                from("${bindings.buildDir}/${nativesExt.sourceLibraryName.get()}") {
+                dependsOn(assembleNatives.get())
+                from("$buildDir/${nativesExt.sourceLibraryName.get()}") {
                     into("jolt/")
                     rename { nativesExt.targetLibraryName.get() }
                 }
