@@ -29,6 +29,10 @@ jobs:
           java-version: 17
       - name: "Setup Gradle"
         uses: gradle/gradle-build-action@v2
+      - name: "Setup Ninja"
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: ninja-build
       - name: "Run Gradle build"
         run: ./gradlew build
 #      - name: "Get version type (sh)"

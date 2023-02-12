@@ -8,10 +8,10 @@ val Project.ciPublishApi: Provider<Boolean>
     get() = providers.environmentVariable("CI_PUBLISH_API").map { it.toBoolean() }.orElse(false)
 
 val Project.buildType: JoltBuildType
-    get() = (findProperty("buildType") as? String)?.toUpperCase()?.let { JoltBuildType.valueOf(it) } ?: JoltBuildType.DEBUG
+    get() = (findProperty("buildType")?.toString())?.toUpperCase()?.let { JoltBuildType.valueOf(it) } ?: JoltBuildType.DEBUG
 
 val Project.flavor: JoltFlavor
-    get() = (findProperty("flavor") as? String)?.toUpperCase()?.let { JoltFlavor.valueOf(it) } ?: JoltFlavor.SP
+    get() = (findProperty("flavor")?.toString())?.toUpperCase()?.let { JoltFlavor.valueOf(it) } ?: JoltFlavor.SP
 
 val Project.features: List<JoltFeature>
     get() = listOfNotNull(

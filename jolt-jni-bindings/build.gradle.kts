@@ -22,11 +22,11 @@ tasks {
         workingDir = projectDir
         commandLine = listOf(
             "cmake",
-            "-S.",
-            "-Bbuild",
-            "-DCMAKE_BUILD_TYPE=${buildType.key}",
+            "-S=.",
+            "-B=build",
+            "-G=Ninja",
+            "-DCMAKE_BUILD_TYPE=$buildType.key",
             "-DCMAKE_CXX_COMPILER=g++",
-            "-GNinja",
         )
         features.forEach { feature ->
             environment[feature.cmakeFlag()] = "ON"

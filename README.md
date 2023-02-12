@@ -72,6 +72,8 @@ JoltEnvironment.registerTypes();
 
 ## Building from source
 
+You need [Ninja](https://ninja-build.org/manual.html) installed.
+
 ```sh
 git clone https://github.com/aecsocket/jolt-jni
 cd jolt-jni
