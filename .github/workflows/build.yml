@@ -12,7 +12,7 @@ jobs:
     if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ ubuntu-latest ] # TODO windows-latest, macos-latest
         include:
           - os: ubuntu-latest
             publish-api: true
@@ -30,7 +30,7 @@ jobs:
       - name: "Setup Gradle"
         uses: gradle/gradle-build-action@v2
       - name: "Run Gradle build"
-        run: ./gradlew generateNatives build
+        run: ./gradlew assembleNatives build
 #      - name: "Get version type (sh)"
 #        if: ${{ matrix.os != 'windows-latest' }}
 #        run: |

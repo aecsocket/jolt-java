@@ -133,3 +133,6 @@ build
 **/resources/jolt/*.so
 **/resources/jolt/*.dll
 **/resources/jolt/*.dylib
+
+# C++
+cmake-build-*/

@@ -68,7 +68,7 @@ public final class JoltEnvironment {
         if (loaded.getAndSet(true)) return;
 
         var platform = JniPlatform.get();
-        var libName = platform.mapLibraryName("jolt-jni-bindings");
+        var libName = platform.mapLibraryName("JoltJNI");
 
         String resourcePath = "jolt/" + switch (platform) {
             case LINUX -> "linux/";

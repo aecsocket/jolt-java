@@ -16,11 +16,10 @@ val Project.flavor: JoltFlavor
 val Project.features: List<JoltFeature>
     get() = listOfNotNull(
         if (flavor == JoltFlavor.DP) JoltFeature.DOUBLE_PRECISION else null,
-        // JoltFeature.IPO,
         JoltFeature.USE_SSE4_1,
         JoltFeature.USE_SSE4_2,
-        // JoltFeature.USE_AVX,
-        // JoltFeature.USE_AVX2,
+        JoltFeature.USE_AVX,
+        JoltFeature.USE_AVX2,
         // JoltFeature.USE_AVX512,
         JoltFeature.USE_LZCNT,
         JoltFeature.USE_TZCNT,

@@ -18,10 +18,8 @@ afterEvaluate {
 
         tasks {
             jar {
-                bindings.tasks.withType<LinkSharedLibrary> {
-                    this@jar.dependsOn(this)
-                }
-                from("${bindings.buildDir}/lib/main/release/${nativesExt.bindingsFileName.get()}") {
+                dependsOn(bindings.tasks["assembleNatives"])
+                from("${bindings.buildDir}/${nativesExt.bindingsFileName.get()}") {
                     into("jolt/${nativesExt.destInnerDir.get()}")
                 }
             }

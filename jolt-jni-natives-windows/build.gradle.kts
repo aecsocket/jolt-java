@@ -4,6 +4,6 @@ plugins {
 
 natives {
     platformPredicate.set { it.isWindows }
-    bindingsFileName.set("jolt-jni-bindings.dll")
+    bindingsFileName.set("JoltJNI.dll")
     destInnerDir.set("windows")
 }

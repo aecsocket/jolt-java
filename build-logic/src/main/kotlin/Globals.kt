@@ -11,7 +11,6 @@ enum class JoltFlavor {
 
 enum class JoltFeature {
     DOUBLE_PRECISION,
-    IPO,
     USE_SSE4_1,
     USE_SSE4_2,
     USE_AVX,
@@ -21,8 +20,6 @@ enum class JoltFeature {
     USE_TZCNT,
     USE_F16C,
     USE_FMADD;
-
-    fun macro() = "JPH_$name"
 
     fun cmakeFlag() = "JOLT_JNI_$name"
 }

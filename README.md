@@ -73,5 +73,5 @@ JoltEnvironment.registerTypes();
 git clone https://github.com/aecsocket/jolt-jni
 cd jolt-jni
 git submodule update --init
-./gradlew generateNatives build
+./gradlew build
 ```
