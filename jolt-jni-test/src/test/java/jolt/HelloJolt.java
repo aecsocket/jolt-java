@@ -42,7 +42,7 @@ public final class HelloJolt {
 
         // Some Jolt setup - this must be performed in this exact order
         JoltEnvironment.registerDefaultAllocator();
-        RTTIFactory rttiFactory = new RTTIFactory();
+        var rttiFactory = new RTTIFactory();
         RTTIFactory.setInstance(rttiFactory);
         JoltEnvironment.registerTypes();
 
@@ -51,18 +51,18 @@ public final class HelloJolt {
         // The TempAllocator dedicates a block of memory to the physics simulation,
         // so that it does not have to be reallocated every time.
         // We allocate 10MB here.
-        TempAllocator tempAllocator = TempAllocatorImpl.ofBytes(10 * 1024 * 1024);
+        var tempAllocator = TempAllocatorImpl.ofBytes(10 * 1024 * 1024);
         // The JobSystem determines how the physics simulation will be run.
         // You should use your own implementation to run jobs on your own worker threads,
         // but a ThreadPool implementation is provided.
-        JobSystem jobSystem = new JobSystemThreadPool(
+        var jobSystem = new JobSystemThreadPool(
                 PhysicsSettings.MAX_PHYSICS_JOBS,
                 PhysicsSettings.MAX_PHYSICS_BARRIERS,
                 Math.min(16, Math.max(1, Runtime.getRuntime().availableProcessors() - 1))
         );
 
         // This maps broadphase layers to object layers.
-        BroadPhaseLayerInterface bpLayerInterface = new BroadPhaseLayerInterface() {
+        var bpLayerInterface = new BroadPhaseLayerInterface() {
             @Override
             public int getNumBroadPhaseLayers() {
                 return 2;
@@ -90,7 +90,7 @@ public final class HelloJolt {
         };
 
         // Determines whether objects in an object layer collide with objects in a broadphase layer.
-        ObjectVsBroadPhaseLayerFilter objBpLayerFilter = new ObjectVsBroadPhaseLayerFilter() {
+        var objBpLayerFilter = new ObjectVsBroadPhaseLayerFilter() {
             // Kotlin: ObjectLayer(layer1), BroadPhaseLayer(layer2)
             @Override
             public boolean shouldCollide(int layer1, byte layer2) {
@@ -103,7 +103,7 @@ public final class HelloJolt {
         };
 
         // Determines whether objects in one object layer collide with objects in another object layer.
-        ObjectLayerPairFilter objLayerPairFilter = new ObjectLayerPairFilter() {
+        var objLayerPairFilter = new ObjectLayerPairFilter() {
             // Kotlin: ObjectLayer(layer1), ObjectLayer(layer2)
             @Override
             public boolean shouldCollide(int layer1, int layer2) {
@@ -116,7 +116,7 @@ public final class HelloJolt {
         };
 
         // Allocates and creates our PhysicsSystem in which bodies will be simulated
-        PhysicsSystem physicsSystem = new PhysicsSystem();
+        var physicsSystem = new PhysicsSystem();
         physicsSystem.init(
                 // maxBodies: maximum number of bodies in the system - adding more will throw an exception
                 // for a real project use ~65536
@@ -139,7 +139,7 @@ public final class HelloJolt {
 
         // Optional: called when bodies activate and go to sleep
         // The callbacks here must be thread safe
-        BodyActivationListener bodyActivationListener = new BodyActivationListener() {
+        var bodyActivationListener = new BodyActivationListener() {
             // Kotlin: BodyId(bodyId)
             @Override
             public void onBodyActivated(int bodyId, long bodyUserData) {
@@ -156,7 +156,7 @@ public final class HelloJolt {
 
         // Optional: called when bodies (are about to) collide and separate
         // The callbacks here must be thread safe
-        ContactListener contactListener = new ContactListener() {
+        var contactListener = new ContactListener() {
             @Override
             public ValidateResult onContactValidate(Body body1, Body body2, JtVec3f baseOffset, CollideShapeResult collisionResult) {
                 System.out.println("Contact validate callback");
@@ -189,8 +189,8 @@ public final class HelloJolt {
         // Create the settings for the box shape we are about to make
         // NOTE: The math classes provided by JoltJNI (Jt-) are purely data wrappers around Jolt types.
         // They do not provide linear algebra functionality, and you are expected to convert to/from your own types.
-        // Especially matrices, in which the 4th row 4th col element is always 1.0!
-        BoxShapeSettings floorShapeSettings = new BoxShapeSettings(new JtVec3f(100.0f, 1.0f, 100.0f));
+        // In matrices, the 4th row 4th col element is always 1.0.
+        var floorShapeSettings = new BoxShapeSettings(new JtVec3f(100.0f, 1.0f, 100.0f));
         // And create the shape itself - this may throw an exception
         Shape floorShape = floorShapeSettings.create();
 
@@ -199,7 +199,7 @@ public final class HelloJolt {
         // If you know for certain which precision level you are dealing with, you don't have to have a conditional call here.
         // However this is conditional since this is a test case.
         // Kotlin: BodyCreationSettingsDp/Sp(..., ObjectLayer)
-        BodyCreationSettings floorSettings = doublePrecision
+        var floorSettings = doublePrecision
                 ? BodyCreationSettings.dp(floorShape, new JtVec3d(0.0, -1.0, 0.0), JtQuat.IDENTITY, MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
                 : BodyCreationSettings.sp(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.IDENTITY, MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
         // Create the rigid body itself - this may throw an exception if there are no bodies left
@@ -209,14 +209,14 @@ public final class HelloJolt {
         bodyInterface.addBody(floor.getId(), Activation.DONT_ACTIVATE);
 
         // Shorthand version of the above, creating a dynamic sphere
-        BodyCreationSettings sphereSettings = doublePrecision
+        var sphereSettings = doublePrecision
                 ? BodyCreationSettings.dp(new SphereShape(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.IDENTITY, MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
                 : BodyCreationSettings.sp(new SphereShape(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
         int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
         bodyInterface.setLinearVelocity(sphereId, new JtVec3f(0.0f, -5.0f, 0.0f));
 
-        float deltaTime = 1 / 60.0f;
+        var deltaTime = 1 / 60.0f;
 
         // Optional: improve collision detection performance after adding a batch of objects
         physicsSystem.optimizeBroadPhase();
