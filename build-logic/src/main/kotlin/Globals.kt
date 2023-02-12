@@ -26,9 +26,3 @@ enum class JoltFeature {
 
     fun cmakeFlag() = "JOLT_JNI_$name"
 }
-
-val buildType = JoltBuildType.DISTRIBUTION
-val flavor = JoltFlavor.DP
-val features = listOfNotNull(
-    if (flavor == JoltFlavor.DP) JoltFeature.DOUBLE_PRECISION else null
-)

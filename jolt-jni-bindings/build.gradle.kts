@@ -8,7 +8,7 @@ val baseProject: Project = projects.joltJni.dependencyProject
 library {
     binaries.configureEach {
         val compileTask = compileTask.get()
-        compileTask.compilerArgs.addAll(listOf("--std=c++17"))
+        compileTask.compilerArgs.addAll(listOf("--std=c++17", "-flto"))
         // include generated native code
         compileTask.dependsOn(baseProject.tasks["compileJava"])
         compileTask.includes("${baseProject.buildDir}/generated/sources/annotationProcessor/java/main/jolt")

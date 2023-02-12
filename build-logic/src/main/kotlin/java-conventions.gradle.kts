@@ -12,6 +12,4 @@ indra {
 
 repositories {
     mavenCentral()
-
-    mavenLocal() // todo
 }

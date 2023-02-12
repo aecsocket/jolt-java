@@ -1,12 +1,18 @@
 plugins {
-    id("publishing-conventions")
+    id("java-conventions")
+}
+
+if (!ci.get() || ciPublishApi.get()) {
+    plugins.apply("publishing-conventions")
 }
 
 dependencies {
-    implementation(libs.findBugs)
+    compileOnlyApi(libs.findBugs)
     implementation(libs.jniGlueAnnotations)
     annotationProcessor(libs.jniGlueProcessor)
     implementation(libs.cpuFeaturesJni)
+
+    testImplementation(libs.findBugs)
 }
 
 tasks.register("writeToolchainPath", WriteToolchainPath::class) {
