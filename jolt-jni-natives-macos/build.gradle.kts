@@ -4,6 +4,6 @@ plugins {
 
 natives {
     platformPredicate.set { it.isMacOsX }
-    bindingsFileName.set("libJoltJNI.dylib")
-    destInnerDir.set("macos")
+    sourceLibraryName.set("libJoltJNI.dylib")
+    targetLibraryName.set("libJoltJNI-macos.dylib")
 }

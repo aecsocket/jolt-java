@@ -15,22 +15,27 @@ tasks {
     register<Exec>("assembleNatives") {
         dependsOn(javaSource.tasks["compileJava"])
 
-        val buildDir = "build"
-
         doFirst {
             println("Assembling natives $buildType $flavor $features")
         }
 
         workingDir = projectDir
-        commandLine = listOf("cmake", "-S.", "-B$buildDir", "-G Unix Makefiles", "-DCMAKE_BUILD_TYPE=${buildType.key}", "-DCMAKE_CXX_COMPILER=clang++")
+        commandLine = listOf(
+            "cmake",
+            "-S.",
+            "-Bbuild",
+            "-DCMAKE_BUILD_TYPE=${buildType.key}",
+            "-DCMAKE_CXX_COMPILER=g++",
+            "-GNinja",
+        )
         features.forEach { feature ->
             environment[feature.cmakeFlag()] = "ON"
         }
 
         doLast {
             exec {
-                workingDir = projectDir.resolve(buildDir)
-                commandLine = listOf("make", "-j$makeWorkers")
+                workingDir = buildDir
+                commandLine = listOf("ninja", "-j$makeWorkers")
             }
         }
     }

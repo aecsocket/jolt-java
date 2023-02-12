@@ -19,8 +19,9 @@ afterEvaluate {
         tasks {
             jar {
                 dependsOn(bindings.tasks["assembleNatives"])
-                from("${bindings.buildDir}/${nativesExt.bindingsFileName.get()}") {
-                    into("jolt/${nativesExt.destInnerDir.get()}")
+                from("${bindings.buildDir}/${nativesExt.sourceLibraryName.get()}") {
+                    into("jolt/")
+                    rename { nativesExt.targetLibraryName.get() }
                 }
             }
         }

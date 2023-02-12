@@ -68,22 +68,22 @@ public final class JoltEnvironment {
         if (loaded.getAndSet(true)) return;
 
         var platform = JniPlatform.get();
-        var libName = platform.mapLibraryName("JoltJNI");
+        var libName = switch (platform) {
+            case LINUX -> "libJoltJNI-linux.so";
+            case WINDOWS -> "libJoltJNI-windows.dll";
+            case MACOS -> "libJoltJNI-macos.dylib";
+            case MACOS_ARM64 -> "libJoltJNI-macos-arm64.dylib";
+        };
 
-        String resourcePath = "jolt/" + switch (platform) {
-            case LINUX -> "linux/";
-            case WINDOWS -> "windows/";
-            case MACOS -> "macos/";
-            case MACOS_ARM64 -> "macos_arm64/";
-        } + libName;
+        String resourcePath = "jolt/" + libName;
         try (var libIn = CpuFeatures.class.getClassLoader().getResourceAsStream(resourcePath)) {
             if (libIn == null)
-                throw new IllegalStateException("No JNI library in JAR " + resourcePath);
+                throw new RuntimeException("No JNI library in JAR " + resourcePath);
             var libFile = Files.createTempFile(libName, null);
             Files.copy(libIn, libFile, StandardCopyOption.REPLACE_EXISTING);
             System.load(libFile.toAbsolutePath().toString());
         } catch (IOException ex) {
-            throw new IllegalStateException("Could not load JNI library", ex);
+            throw new RuntimeException("Could not load JNI library", ex);
         }
     }
 

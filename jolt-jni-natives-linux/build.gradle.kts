@@ -4,6 +4,6 @@ plugins {
 
 natives {
     platformPredicate.set { it.isLinux }
-    bindingsFileName.set("libJoltJNI.so")
-    destInnerDir.set("linux")
+    sourceLibraryName.set("libJoltJNI.so")
+    targetLibraryName.set("libJoltJNI-linux.so")
 }
