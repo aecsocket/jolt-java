@@ -4,7 +4,7 @@ plugins {
 
 natives {
     platformPredicate.set { it.isLinux }
-    buildScriptName.set("build.sh")
+    buildScriptBase.add("./build.sh")
     sourceLibraryName.set("libJoltJNI.so")
     targetLibraryName.set("libJoltJNI-linux.so")
 }
