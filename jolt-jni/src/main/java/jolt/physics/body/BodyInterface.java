@@ -39,6 +39,10 @@ public final class BodyInterface extends JoltNative {
     @JniBindSelf("self->RemoveBody(BodyID(bodyId));")
     private static native void _removeBody(long _a, int bodyId);
 
+    public boolean isAdded(int bodyId) { return _isAdded(address, bodyId); }
+    @JniBindSelf("return self->IsAdded(BodyID(bodyId));")
+    private static native boolean _isAdded(long _a, int bodyId);
+
     public int createAndAddBody(BodyCreationSettings settings, Activation activationMode) {
         int res = _createAndAddBody(address, settings.getAddress(), activationMode.ordinal());
         if (!BodyIds.isValid(res)) throw new IllegalStateException(OUT_OF_BODIES);
@@ -64,7 +68,6 @@ public final class BodyInterface extends JoltNative {
     private static native void _deactivateBody(long _a, int bodyId);
 
     // transform
-    // TODO double-precision
 
     public void getPositionAndRotationSp(int bodyId, JtVec3f outPosition, JtQuat outRotation) { _getPositionAndRotationSp(address, bodyId, outPosition, outRotation); }
     @JniBindSelf("""

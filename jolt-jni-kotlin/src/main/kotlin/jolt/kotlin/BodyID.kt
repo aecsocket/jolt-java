@@ -17,6 +17,8 @@ fun BodyInterface.addBody(id: BodyId, activationMode: Activation) =
     addBody(id.id, activationMode)
 fun BodyInterface.removeBody(id: BodyId) =
     removeBody(id.id)
+fun BodyInterface.isAdded(id: BodyId) =
+    isAdded(id.id)
 
 fun BodyInterface.isActive(id: BodyId) =
     isActive(id.id)
