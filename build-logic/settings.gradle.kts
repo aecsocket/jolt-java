@@ -6,5 +6,5 @@ plugins {
 }
 
 extensions.configure<PolyglotVersionCatalogExtension> {
-    from(ConfigFormats.HOCON, file("../gradle/libs.versions.conf"))
+    from(ConfigFormats.YAML, file("../gradle/libs.versions.yml"))
 }

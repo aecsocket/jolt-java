@@ -1,5 +1,4 @@
 plugins {
-    id("java-conventions")
     id("net.kyori.indra.publishing")
 }
 

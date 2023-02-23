@@ -16,6 +16,7 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 import jolt.physics.constraint.Constraint;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 
 /**
  * The main class for the physics system. It contains all rigid bodies and simulates them.
@@ -80,7 +81,52 @@ public final class PhysicsSystem extends JoltNative {
             long objectLayerPairFilter
     );
 
-    // getters
+
+    // listeners
+
+    /**
+     * Listener that is notified whenever a body is activated/deactivated.
+     */
+    public @Nullable BodyActivationListener getBodyActivationListener() { return BodyActivationListener.ref(_getBodyActivationListener(address)); }
+    @JniBindSelf("return (jlong) self->GetBodyActivationListener();")
+    private static native long _getBodyActivationListener(long _a);
+
+    /**
+     * Listener that is notified whenever a body is activated/deactivated.
+     */
+    public void setBodyActivationListener(@Nullable BodyActivationListener value) { _setBodyActivationListener(address, ptr(value)); }
+    @JniBindSelf("self->SetBodyActivationListener((BodyActivationListener*) value);")
+    private static native void _setBodyActivationListener(long _a, long value);
+
+    /**
+     * Listener that is notified whenever a contact point between two bodies is added/updated/removed.
+     */
+    public @Nullable ContactListener getContactListener() { return ContactListener.ref(_getContactListener(address)); }
+    @JniBindSelf("return (jlong) self->GetContactListener();")
+    private static native long _getContactListener(long _a);
+
+    /**
+     * Listener that is notified whenever a contact point between two bodies is added/updated/removed.
+     */
+    public void setContactListener(@Nullable ContactListener value) { _setContactListener(address, ptr(value)); }
+    @JniBindSelf("self->SetContactListener((ContactListener*) value);")
+    private static native void _setContactListener(long _a, long value);
+
+    // properties
+
+    /**
+     * Control the main constants of the physics simulation.
+     */
+    public PhysicsSettings getPhysicsSettings() { return PhysicsSettings.ref(_getPhysicsSettings(address)); }
+    @JniBindSelf("return (jlong) &self->GetPhysicsSettings();")
+    private static native long _getPhysicsSettings(long _a);
+
+    /**
+     * Control the main constants of the physics simulation.
+     */
+    public void setPhysicsSettings(PhysicsSettings value) { _setPhysicsSettings(address, value.getAddress()); }
+    @JniBindSelf("self->SetPhysicsSettings(*((PhysicsSettings*) value));")
+    private static native void _setPhysicsSettings(long _a, long value);
 
     /**
      * Access to the body interface. This interface allows to create / remove bodies and to change their properties.
@@ -122,48 +168,16 @@ public final class PhysicsSystem extends JoltNative {
     private static native long _getNarrowPhaseQueryNoLock(long _a);
 
     /**
-     * Gets the current amount of bodies that are in the body manager.
-     */
-    public int getNumBodies() { return _getNumBodies(address); }
-    @JniBindSelf("return self->GetNumBodies();")
-    private static native int _getNumBodies(long _a);
-
-    /**
-     * Gets the current amount of active bodies that are in the body manager.
-     */
-    public int getNumActiveBodies() { return _getNumActiveBodies(address); }
-    @JniBindSelf("return self->GetNumActiveBodies();")
-    private static native int _getNumActiveBodies(long _a);
-
-    /**
-     * Get the maximum amount of bodies that this physics system supports.
-     */
-    public int getMaxBodies() { return _getMaxBodies(address); }
-    @JniBindSelf("return self->GetMaxBodies();")
-    private static native int _getMaxBodies(long _a);
-
-    // properties
-
-    /**
-     * Control the main constants of the physics simulation.
-     */
-    public PhysicsSettings getPhysicsSettings() { return PhysicsSettings.ref(_getPhysicsSettings(address)); }
-    @JniBindSelf("return (jlong) &self->GetPhysicsSettings();")
-    private static native long _getPhysicsSettings(long _a);
-
-    /**
-     * Control the main constants of the physics simulation.
-     */
-    public void setPhysicsSettings(PhysicsSettings value) { _setPhysicsSettings(address, value.getAddress()); }
-    @JniBindSelf("self->SetPhysicsSettings(*((PhysicsSettings*) value));")
-    private static native void _setPhysicsSettings(long _a, long value);
-
-    /**
      * Add constraint to the world.
      */
     public void addConstraint(Constraint constraint) { _addConstraint(address, constraint.getAddress()); }
     @JniBindSelf("self->AddConstraint((Constraint*) constraint);")
     private static native void _addConstraint(long _a, long constraint);
+
+    public void addConstraints(Constraint... constraints) { _addConstraints(address, addressesOf(constraints)); }
+    public void addConstraints(Collection<Constraint> constraints) { _addConstraints(address, addressesOf(constraints)); }
+    @JniBindSelf("self->AddConstraints((Constraint**) env->GetLongArrayElements(constraints, JNI_FALSE), env->GetArrayLength(constraints));")
+    private static native void _addConstraints(long _a, long[] constraints);
 
     /**
      * Remove constraint from the world.
@@ -172,51 +186,10 @@ public final class PhysicsSystem extends JoltNative {
     @JniBindSelf("self->RemoveConstraint((Constraint*) constraint);")
     private static native void _removeConstraint(long _a, long constraint);
 
-    // TODO GetConstraints()
-
-    public JtVec3f getGravity(JtVec3f out) {
-        _getGravity(address, out);
-        return out;
-    }
-    public JtVec3f getGravity() { return getGravity(new JtVec3f()); }
-    @JniBindSelf("ToJavaSp(env, self->GetGravity(), out);")
-    private static native void _getGravity(long _a, JtVec3f out);
-
-    public void setGravity(JtVec3f value) { _setGravity(address, value.x, value.y, value.z); }
-    @JniBindSelf("self->SetGravity(Vec3(valueX, valueY, valueZ));")
-    private static native void _setGravity(long _a, float valueX, float valueY, float valueZ);
-
-    // listeners
-
-    /**
-     * Listener that is notified whenever a body is activated/deactivated.
-     */
-    public @Nullable BodyActivationListener getBodyActivationListener() { return BodyActivationListener.ref(_getBodyActivationListener(address)); }
-    @JniBindSelf("return (jlong) self->GetBodyActivationListener();")
-    private static native long _getBodyActivationListener(long _a);
-
-    /**
-     * Listener that is notified whenever a body is activated/deactivated.
-     */
-    public void setBodyActivationListener(@Nullable BodyActivationListener value) { _setBodyActivationListener(address, ptr(value)); }
-    @JniBindSelf("self->SetBodyActivationListener((BodyActivationListener*) value);")
-    private static native void _setBodyActivationListener(long _a, long value);
-
-    /**
-     * Listener that is notified whenever a contact point between two bodies is added/updated/removed.
-     */
-    public @Nullable ContactListener getContactListener() { return ContactListener.ref(_getContactListener(address)); }
-    @JniBindSelf("return (jlong) self->GetContactListener();")
-    private static native long _getContactListener(long _a);
-
-    /**
-     * Listener that is notified whenever a contact point between two bodies is added/updated/removed.
-     */
-    public void setContactListener(@Nullable ContactListener value) { _setContactListener(address, ptr(value)); }
-    @JniBindSelf("self->SetContactListener((ContactListener*) value);")
-    private static native void _setContactListener(long _a, long value);
-
-    // functions
+    public void removeConstraints(Constraint... constraints) { _removeConstraints(address, addressesOf(constraints)); }
+    public void removeConstraints(Collection<Constraint> constraints) { _removeConstraints(address, addressesOf(constraints)); }
+    @JniBindSelf("self->RemoveConstraints((Constraint**) env->GetLongArrayElements(constraints, JNI_FALSE), env->GetArrayLength(constraints));")
+    private static native void _removeConstraints(long _a, long[] constraints);
 
     /**
      * Optimize the broadphase, needed only if you've added many bodies prior to calling Update() for the first time.
@@ -224,6 +197,14 @@ public final class PhysicsSystem extends JoltNative {
     public void optimizeBroadPhase() { _optimizeBroadPhase(address); }
     @JniBindSelf("self->OptimizeBroadPhase();")
     private static native void _optimizeBroadPhase(long _a);
+
+    public void addStepListener(PhysicsStepListener value) { _addStepListener(address, value.getAddress()); }
+    @JniBindSelf("self->AddStepListener((PhysicsStepListener*) value);")
+    private static native void _addStepListener(long _a, long value);
+
+    public void removeStepListener(PhysicsStepListener value) { _removeStepListener(address, value.getAddress()); }
+    @JniBindSelf("self->RemoveStepListener((PhysicsStepListener*) value);")
+    private static native void _removeStepListener(long _a, long value);
 
     /**
      * Simulate the system.
@@ -253,4 +234,39 @@ public final class PhysicsSystem extends JoltNative {
             long _a, float deltaTime, int collisionSteps, int integrationSubSteps,
             long tempAllocator, long jobSystem
     );
+
+    // TODO Save/RestoreState
+
+    public JtVec3f getGravity(JtVec3f out) {
+        _getGravity(address, out);
+        return out;
+    }
+    public JtVec3f getGravity() { return getGravity(new JtVec3f()); }
+    @JniBindSelf("ToJavaSp(env, self->GetGravity(), out);")
+    private static native void _getGravity(long _a, JtVec3f out);
+
+    public void setGravity(JtVec3f value) { _setGravity(address, value.x, value.y, value.z); }
+    @JniBindSelf("self->SetGravity(Vec3(valueX, valueY, valueZ));")
+    private static native void _setGravity(long _a, float valueX, float valueY, float valueZ);
+
+    /**
+     * Gets the current amount of bodies that are in the body manager.
+     */
+    public int getNumBodies() { return _getNumBodies(address); }
+    @JniBindSelf("return self->GetNumBodies();")
+    private static native int _getNumBodies(long _a);
+
+    /**
+     * Gets the current amount of active bodies that are in the body manager.
+     */
+    public int getNumActiveBodies() { return _getNumActiveBodies(address); }
+    @JniBindSelf("return self->GetNumActiveBodies();")
+    private static native int _getNumActiveBodies(long _a);
+
+    /**
+     * Get the maximum amount of bodies that this physics system supports.
+     */
+    public int getMaxBodies() { return _getMaxBodies(address); }
+    @JniBindSelf("return self->GetMaxBodies();")
+    private static native int _getMaxBodies(long _a);
 }

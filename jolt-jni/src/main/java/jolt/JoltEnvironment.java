@@ -61,8 +61,14 @@ public final class JoltEnvironment {
     private JoltEnvironment() {}
 
     public static final String JNI_MODEL = "jolt/JoltJNI";
+    public static final String JOLT_VERSION = "2.0.1";
+
     private static final AtomicBoolean loaded = new AtomicBoolean(false);
     private static int features = -1;
+
+    public static boolean isLoaded() {
+        return loaded.get();
+    }
 
     public static void load() {
         if (loaded.getAndSet(true)) return;
