@@ -1,3 +1,6 @@
 package jolt.physics.collision.broadphase;
 
-public record BroadPhaseCastResult(int bodyId, float fraction) {}
+public record BroadPhaseCastResult(
+        int bodyId,
+        float fraction
+) {}
