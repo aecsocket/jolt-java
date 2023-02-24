@@ -26,7 +26,7 @@ public class ShapeSettings extends ConvexShape {
     @JniBindSelf("""
             ShapeSettings::ShapeResult result = self->Create();
             if (result.HasError()) {
-                env->ThrowNew(jni_RuntimeException, result.GetError().c_str());
+                jniThrow(env, result.GetError().c_str());
                 return (jlong) nullptr;
             }
             return (jlong) result.Get().GetPtr();""")

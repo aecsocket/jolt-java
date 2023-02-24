@@ -23,18 +23,18 @@ import io.github.aecsocket.jniglue.JniNative;
         }
         #endif""")
 public final class JtMat44f {
-    public static final JtMat44f IDENTITY = new JtMat44f(
+    private static final JtMat44f IDENTITY = new JtMat44f(
             1f, 0f, 0f, 0f,
             0f, 1f, 0f, 0f,
             0f, 0f, 1f, 0f,
             0f, 0f, 0f
     );
-    public static final JtMat44f ZERO = new JtMat44f(
-            0f, 0f, 0f, 0f,
-            0f, 0f, 0f, 0f,
-            0f, 0f, 0f, 0f,
-            0f, 0f, 0f
-    );
+
+    public static JtMat44f identity() {
+        var result = new JtMat44f();
+        result.set(IDENTITY);
+        return result;
+    }
 
     public float n00; public float n01; public float n02; public float n03;
     public float n10; public float n11; public float n12; public float n13;

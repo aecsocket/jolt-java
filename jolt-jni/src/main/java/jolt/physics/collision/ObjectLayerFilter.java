@@ -46,7 +46,7 @@ public class ObjectLayerFilter extends JoltNative {
 
     public boolean shouldCollide(byte layer) { throw unimplemented(); }
     @JniCallback
-    private native boolean _shouldCollide(byte layer);
+    private boolean _shouldCollide(byte layer) { return shouldCollide(layer); }
 
     private static class Passthrough extends ObjectLayerFilter {
         @Override

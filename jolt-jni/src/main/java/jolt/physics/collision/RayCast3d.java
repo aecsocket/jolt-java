@@ -14,7 +14,9 @@ public final class RayCast3d {
     public JtVec3f direction = new JtVec3f();
 
     public RayCast3d() {}
-    public RayCast3d(JtVec3d origin, JtVec3f direction) { set(origin, direction); }
+    public RayCast3d(JtVec3d origin, JtVec3f direction) {
+        set(origin, direction);
+    }
 
     @JniCallback
     public void set(

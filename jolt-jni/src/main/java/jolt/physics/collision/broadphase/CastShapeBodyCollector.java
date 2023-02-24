@@ -9,27 +9,27 @@ import jolt.physics.collision.CollisionCollector;
         <Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>
         <Jolt/Physics/Collision/CastResult.h>""")
 @JniReferenced
-@JniTypeMapping("RayCastBodyCollectorImpl")
+@JniTypeMapping("CastShapeBodyCollectorImpl")
 @JniHeader("""
-        class RayCastBodyCollectorImpl : JNINative, RayCastBodyCollector {
+        class CastShapeBodyCollectorImpl : JNINative, CastShapeBodyCollector {
         public:
-            RayCastBodyCollectorImpl(JNIEnv* env, jobject obj) : JNINative(env, obj) {}
+            CastShapeBodyCollectorImpl(JNIEnv* env, jobject obj) : JNINative(env, obj) {}
             
             void OnBody(const Body &inBody) override {
                 JNIEnv* env = jniThread.getEnv();
-                JNI_RayCastBodyCollector_onBody(env, obj,
+                JNI_CastShapeBodyCollector_onBody(env, obj,
                     (jlong) &inBody);
             }
             
             void AddHit(const CollisionCollector::ResultType &inResult) override {
                 JNIEnv* env = jniThread.getEnv();
-                JNI_RayCastBodyCollector_addHit(env, obj,
+                JNI_CastShapeBodyCollector_addHit(env, obj,
                     inResult.mBodyID.GetIndexAndSequenceNumber(), inResult.mFraction);
             }
         };""")
-public class RayCastBodyCollector extends JoltNative implements CollisionCollector<BroadPhaseCastResult> {
-    private RayCastBodyCollector(long address) { super(address); }
-    public static RayCastBodyCollector ref(long address) { return address == 0 ? null : new RayCastBodyCollector(address); }
+public class CastShapeBodyCollector extends JoltNative implements CollisionCollector<BroadPhaseCastResult> {
+    private CastShapeBodyCollector(long address) { super(address); }
+    public static CastShapeBodyCollector ref(long address) { return address == 0 ? null : new CastShapeBodyCollector(address); }
 
     @Override
     public void delete() {
@@ -40,8 +40,8 @@ public class RayCastBodyCollector extends JoltNative implements CollisionCollect
     @JniBindDelete
     private static native void _delete(long _a);
 
-    public RayCastBodyCollector() { address = _ctor(); }
-    @JniBind("return (jlong) new RayCastBodyCollectorImpl(env, obj);")
+    public CastShapeBodyCollector() { address = _ctor(); }
+    @JniBind("return (jlong) new CastShapeBodyCollectorImpl(env, obj);")
     private native long _ctor();
 
     public void onBody(Body body) {}

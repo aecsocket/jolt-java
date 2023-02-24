@@ -23,7 +23,7 @@ import jolt.math.JtMat44f;
         }""")
 public final class MassProperties {
     public float mass = 0.0f;
-    public JtMat44f inertia = JtMat44f.ZERO;
+    public JtMat44f inertia = new JtMat44f();
 
     public MassProperties() {}
     public MassProperties(float mass, JtMat44f inertia) {

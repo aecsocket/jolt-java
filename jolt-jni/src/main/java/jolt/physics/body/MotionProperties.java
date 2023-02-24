@@ -14,7 +14,8 @@ public final class MotionProperties extends JoltNative {
 
     public void setMassProperties(MassProperties value) {
         JtMat44f inertia = value.inertia;
-        _setMassProperties(address, value.mass,
+        _setMassProperties(
+                address, value.mass,
                 inertia.n00, inertia.n01, inertia.n02, inertia.n03,
                 inertia.n10, inertia.n11, inertia.n12, inertia.n13,
                 inertia.n20, inertia.n21, inertia.n22, inertia.n23,

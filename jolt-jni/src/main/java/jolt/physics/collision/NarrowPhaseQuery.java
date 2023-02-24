@@ -1,8 +1,11 @@
 package jolt.physics.collision;
 
+import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniInclude;
+import jolt.physics.body.BodyFilter;
+import jolt.physics.collision.broadphase.BroadPhaseLayerFilter;
 
 @JniInclude("<Jolt/Physics/Collision/NarrowPhaseQuery.h>")
 @JniTypeMapping("NarrowPhaseQuery")
@@ -10,6 +13,78 @@ public class NarrowPhaseQuery extends JoltNative {
     protected NarrowPhaseQuery(long address) { super(address); }
     public static NarrowPhaseQuery ref(long address) { return address == 0 ? null : new NarrowPhaseQuery(address); }
 
+    public boolean castRaySp(RayCast3f ray, RayCastResult hit, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter) {
+        return _castRaySp(
+                address,
+                ray.origin.x, ray.origin.y, ray.origin.z,
+                ray.direction.x, ray.direction.y, ray.direction.z,
+                hit,
+                broadPhaseLayerFilter.getAddress(), objectLayerFilter.getAddress(), bodyFilter.getAddress()
+        );
+    }
+    @JniBindSelf("""
+            #ifndef JPH_DOUBLE_PRECISION
+            RayCast ray;
+            ray.mOrigin = Vec3(rayOriginX, rayOriginY, rayOriginZ);
+            ray.mDirection = Vec3(rayDirectionX, rayDirectionY, rayDirectionZ);
+            RayCastResult cHit;
+            bool result = self->CastRay(
+                ray,
+                cHit,
+                *((BroadPhaseLayerFilter*) broadPhaseLayerFilter),
+                *((ObjectLayerFilter*) objectLayerFilter),
+                *((BodyFilter*) bodyFilter)
+            );
+            ToJava(env, cHit, hit);
+            return result;
+            #else
+            (void)self;
+            jniThrow(env, WRONG_PRECISION);
+            return JNI_FALSE;
+            #endif""")
+    private static native boolean _castRaySp(
+            long _a,
+            float rayOriginX, float rayOriginY, float rayOriginZ,
+            float rayDirectionX, float rayDirectionY, float rayDirectionZ,
+            RayCastResult hit,
+            long broadPhaseLayerFilter, long objectLayerFilter, long bodyFilter
+    );
 
+    public boolean castRayDp(RayCast3d ray, RayCastResult hit, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter) {
+        return _castRayDp(
+                address,
+                ray.origin.x, ray.origin.y, ray.origin.z,
+                ray.direction.x, ray.direction.y, ray.direction.z,
+                hit,
+                broadPhaseLayerFilter.getAddress(), objectLayerFilter.getAddress(), bodyFilter.getAddress()
+        );
+    }
+    @JniBindSelf("""
+            #ifdef JPH_DOUBLE_PRECISION
+            RRayCast ray;
+            ray.mOrigin = DVec3(rayOriginX, rayOriginY, rayOriginZ);
+            ray.mDirection = Vec3(rayDirectionX, rayDirectionY, rayDirectionZ);
+            RayCastResult cHit;
+            bool result = self->CastRay(
+                ray,
+                cHit,
+                *((BroadPhaseLayerFilter*) broadPhaseLayerFilter),
+                *((ObjectLayerFilter*) objectLayerFilter),
+                *((BodyFilter*) bodyFilter)
+            );
+            ToJava(env, cHit, hit);
+            return result;
+            #else
+            (void)self;
+            jniThrow(env, WRONG_PRECISION);
+            return JNI_FALSE;
+            #endif""")
+    private static native boolean _castRayDp(
+            long _a,
+            double rayOriginX, double rayOriginY, double rayOriginZ,
+            float rayDirectionX, float rayDirectionY, float rayDirectionZ,
+            RayCastResult hit,
+            long broadPhaseLayerFilter, long objectLayerFilter, long bodyFilter
+    );
 }
 

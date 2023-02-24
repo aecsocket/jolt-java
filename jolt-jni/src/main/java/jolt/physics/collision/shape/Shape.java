@@ -5,7 +5,7 @@ import jolt.JoltNative;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniInclude;
-import jolt.math.JtAABox;
+import jolt.geometry.AABox;
 import jolt.math.JtVec3f;
 import jolt.physics.body.MassProperties;
 
@@ -38,13 +38,13 @@ public class Shape extends JoltNative {
     @JniBindSelf("ToJavaSp(env, self->GetCenterOfMass(), out);")
     private static native void _getCenterOfMass(long _a, JtVec3f out);
 
-    public JtAABox getLocalBounds(JtAABox out) {
+    public AABox getLocalBounds(AABox out) {
         _getLocalBounds(address, out);
         return out;
     }
-    public JtAABox getLocalBounds() { return getLocalBounds(new JtAABox()); }
+    public AABox getLocalBounds() { return getLocalBounds(new AABox()); }
     @JniBindSelf("ToJava(env, self->GetLocalBounds(), out);")
-    private static native void _getLocalBounds(long _a, JtAABox out);
+    private static native void _getLocalBounds(long _a, AABox out);
 
     public float getInnerRadius() { return _getInnerRadius(address); }
     @JniBindSelf("return self->GetInnerRadius();")

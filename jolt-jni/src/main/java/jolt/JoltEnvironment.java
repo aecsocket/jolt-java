@@ -16,6 +16,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
         <Jolt/Jolt.h>
         <Jolt/RegisterTypes.h>""")
 @JniHeader("""
+        #ifdef JPH_DOUBLE_PRECISION
+        #define WRONG_PRECISION "Attempting to use single-precision method with double-precision natives"
+        #else
+        #define WRONG_PRECISION "Attempting to use double-precision method with single-precision natives"
+        #endif
+        
         using uint = unsigned int;
         using uint8 = uint8_t;
         using uint16 = uint16_t;
@@ -50,13 +56,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
         
         static thread_local JNIThreadEnv jniThread;
         
-        jclass jni_RuntimeException;""")
+        void jniThrow(JNIEnv* env, const char* message) {
+            env->ThrowNew(env->FindClass("java/lang/RuntimeException"), message);
+        }""")
 @JniOnLoad("""
         javaVm = vm;
-        jniThread = JNIThreadEnv(env);
-        
-        jni_RuntimeException = env->FindClass("java/lang/RuntimeException");
-        if (env->ExceptionCheck()) return JNI_ERR;""")
+        jniThread = JNIThreadEnv(env);""")
 public final class JoltEnvironment {
     private JoltEnvironment() {}
 
