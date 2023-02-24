@@ -74,7 +74,8 @@ public final class BodyInterface extends JoltNative {
             RVec3 position;
             Quat rotation;
             self->GetPositionAndRotation(BodyID(bodyId), position, rotation);
-            ToJava(env, position, outPosition);""")
+            ToJava(env, position, outPosition);
+            ToJava(env, rotation, outRotation);""")
     private static native void _getPositionAndRotationSp(long _a, int bodyId, JtVec3f outPosition, JtQuat outRotation);
 
     public void getPositionAndRotationDp(int bodyId, JtVec3d outPosition, JtQuat outRotation) { _getPositionAndRotationDp(address, bodyId, outPosition, outRotation); }
@@ -82,7 +83,8 @@ public final class BodyInterface extends JoltNative {
             RVec3 position;
             Quat rotation;
             self->GetPositionAndRotation(BodyID(bodyId), position, rotation);
-            ToJava(env, position, outPosition);""")
+            ToJava(env, position, outPosition);
+            ToJava(env, rotation, outRotation);""")
     private static native void _getPositionAndRotationDp(long _a, int bodyId, JtVec3d outPosition, JtQuat outRotation);
 
     public void setPositionAndRotationSp(int bodyId, JtVec3f position, JtQuat rotation, Activation activationMode) {
