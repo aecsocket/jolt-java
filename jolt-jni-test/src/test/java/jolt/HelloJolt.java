@@ -115,7 +115,7 @@ public final class HelloJolt {
         };
 
         // Allocates and creates our PhysicsSystem in which bodies will be simulated
-        var physicsSystem = new PhysicsSystem();
+        var physicsSystem = PhysicsSystem.create();
         physicsSystem.init(
                 // maxBodies: maximum number of bodies in the system - adding more will throw an exception
                 // for a real project use ~65536
@@ -163,12 +163,12 @@ public final class HelloJolt {
             }
 
             @Override
-            public void onContactAdded(BodyImpl body1, BodyImpl body2, ContactManifold manifold, ContactSettings settings) {
+            public void onContactAdded(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
                 System.out.println("A contact was added");
             }
 
             @Override
-            public void onContactPersisted(BodyImpl body1, BodyImpl body2, ContactManifold manifold, ContactSettings settings) {
+            public void onContactPersisted(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
                 System.out.println("A contact was persisted");
             }
 
@@ -181,7 +181,7 @@ public final class HelloJolt {
 
         // The BodyInterface is the main way to interact with bodies
         // Here we use the locking variant, but if you are an advanced user you can use the -NoLock version
-        BodyInterface bodyInterface = physicsSystem.getBodyInterface();
+        MutableBodyInterface bodyInterface = physicsSystem.getBodyInterface();
 
         // Create the rigid body for the floor
 
@@ -203,7 +203,7 @@ public final class HelloJolt {
                 : BodyCreationSettings.sp(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
         // Create the rigid body itself - this may throw an exception if there are no bodies left
         // (as opposed to Jolt, which will return null)
-        BodyImpl floor = bodyInterface.createBody(floorSettings);
+        Body floor = bodyInterface.createBody(floorSettings);
         // Add the body to the world via its ID, and it is not active by default
         bodyInterface.addBody(floor.getId(), Activation.DONT_ACTIVATE);
 

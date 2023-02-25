@@ -11,7 +11,7 @@ import jolt.physics.Activation;
 
 @JniInclude("<Jolt/Physics/Body/BodyInterface.h>")
 @JniTypeMapping("BodyInterface")
-public final class BodyInterfaceImpl extends JoltNativeImpl {
+final class BodyInterfaceImpl extends JoltNativeImpl implements MutableBodyInterface {
     private static final String OUT_OF_BODIES = "Out of bodies";
 
     private BodyInterface(long address) { super(address); }

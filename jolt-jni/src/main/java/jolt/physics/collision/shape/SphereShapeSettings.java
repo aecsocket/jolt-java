@@ -1,7 +1,6 @@
 package jolt.physics.collision.shape;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.physics.collision.PhysicsMaterial;
 
 import javax.annotation.Nullable;
 

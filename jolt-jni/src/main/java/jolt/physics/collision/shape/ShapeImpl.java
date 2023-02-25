@@ -11,7 +11,7 @@ import jolt.physics.body.MassProperties;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/Shape.h>")
 @JniTypeMapping("Shape")
-class ShapeImpl extends JoltNativeImpl implements MutableShape {
+non-sealed class ShapeImpl extends JoltNativeImpl implements MutableShape {
     ShapeImpl(long address) { super(address); }
 
     @Override

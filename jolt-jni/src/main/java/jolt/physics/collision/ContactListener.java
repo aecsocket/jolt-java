@@ -4,7 +4,6 @@ import io.github.aecsocket.jniglue.*;
 import jolt.JoltNativeImpl;
 import jolt.math.JtVec3f;
 import jolt.physics.body.Body;
-import jolt.physics.body.BodyImpl;
 import jolt.physics.collision.shape.SubShapeIdPair;
 
 @JniInclude("<Jolt/Physics/Collision/ContactListener.h>")

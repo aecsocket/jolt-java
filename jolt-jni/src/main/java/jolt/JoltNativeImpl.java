@@ -24,7 +24,7 @@ import java.util.Objects;
         protected:
             jobject obj;
         };""")
-public class JoltNativeImpl implements JoltNative {
+public abstract class JoltNativeImpl implements JoltNative {
     protected static final String NATIVE_OBJECT_DELETED = "Native object is already deleted";
     protected static final String DELETING_GLOBAL = "Cannot delete global object reference";
     protected static final String NOT_LOADED = "Native libraries are not loaded";
@@ -32,12 +32,9 @@ public class JoltNativeImpl implements JoltNative {
     protected long address;
 
     protected JoltNativeImpl(long address) {
-        if (address == 0)
-            throw new IllegalArgumentException("Creating object with null address");
+        if (address == 0) throw new IllegalArgumentException("Creating object with null address");
         this.address = address;
     }
-    // although this *can* return null, we leave the nullability ambiguous
-    public static JoltNativeImpl ref(long address) { return address == 0 ? null : new JoltNativeImpl(address); }
     public static long ptr(@Nullable JoltNativeImpl obj) { return obj == null ? 0 : obj.address; }
 
     protected static RuntimeException unimplemented() {
@@ -49,16 +46,17 @@ public class JoltNativeImpl implements JoltNative {
     @Override
     public final long getAddress() { return address; }
 
-    /**
-     * Frees this object on the native side. The object <i>must not</i> be accessed after this is called.
-     */
-    @Override
-    public void delete() { throw unimplemented(); }
+    protected abstract void deleteInternal();
 
     @Override
-    public String toString() {
-        return String.format("%s*%xd", getClass().getName(), address);
+    public void delete() {
+        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
+        deleteInternal();
+        address = 0;
     }
+
+    @Override
+    public String toString() { return String.format("%s*%xd", getClass().getName(), address); }
 
     @Override
     public boolean equals(Object o) {

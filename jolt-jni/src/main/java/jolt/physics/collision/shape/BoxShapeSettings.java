@@ -3,7 +3,6 @@ package jolt.physics.collision.shape;
 import io.github.aecsocket.jniglue.*;
 import jolt.math.JtVec3f;
 import jolt.physics.PhysicsSettings;
-import jolt.physics.collision.PhysicsMaterial;
 
 import javax.annotation.Nullable;
 
