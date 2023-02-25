@@ -1,9 +1,10 @@
 package jolt.physics.collision;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import jolt.math.JtVec3f;
 import jolt.physics.body.Body;
+import jolt.physics.body.BodyImpl;
 import jolt.physics.collision.shape.SubShapeIdPair;
 
 @JniInclude("<Jolt/Physics/Collision/ContactListener.h>")
@@ -38,7 +39,7 @@ import jolt.physics.collision.shape.SubShapeIdPair;
                     (jlong) &inSubShapePair);
             }
         };""")
-public class ContactListener extends JoltNative {
+public class ContactListener extends JoltNativeImpl {
     private ContactListener(long address) { super(address); }
     public static ContactListener ref(long address) { return address == 0 ? null : new ContactListener(address); }
 

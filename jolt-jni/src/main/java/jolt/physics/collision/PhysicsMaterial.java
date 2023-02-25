@@ -1,13 +1,13 @@
 package jolt.physics.collision;
 
 import io.github.aecsocket.jniglue.JniTypeMapping;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
 
 @JniInclude("<Jolt/Physics/Collision/PhysicsMaterial.h>")
 @JniTypeMapping("PhysicsMaterial")
-public class PhysicsMaterial extends JoltNative {
+public class PhysicsMaterial extends JoltNativeImpl {
     private PhysicsMaterial(long address) { super(address); }
     public static PhysicsMaterial ref(long address) { return address == 0 ? null : new PhysicsMaterial(address); }
 

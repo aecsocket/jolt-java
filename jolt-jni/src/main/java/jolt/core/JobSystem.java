@@ -1,7 +1,7 @@
 package jolt.core;
 
 import io.github.aecsocket.jniglue.JniTypeMapping;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
 
@@ -36,7 +36,7 @@ import io.github.aecsocket.jniglue.JniInclude;
  * Jobs are guaranteed to be started in the order that their dependency counter becomes zero (in case they're scheduled on a background thread)
  * or in the order they're added to the barrier (when dependency count is zero and when executing on the thread that calls WaitForJobs).
  */
-public class JobSystem extends JoltNative {
+public class JobSystem extends JoltNativeImpl {
     protected JobSystem(long address) { super(address); }
     public static JobSystem ref(long address) { return address == 0 ? null : new JobSystem(address); }
 

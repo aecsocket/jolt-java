@@ -1,7 +1,7 @@
 package jolt.physics.body;
 
 import io.github.aecsocket.jniglue.JniTypeMapping;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniBindSelf;
 import jolt.math.JtQuat;
@@ -11,7 +11,7 @@ import jolt.physics.Activation;
 
 @JniInclude("<Jolt/Physics/Body/BodyInterface.h>")
 @JniTypeMapping("BodyInterface")
-public final class BodyInterface extends JoltNative {
+public final class BodyInterfaceImpl extends JoltNativeImpl {
     private static final String OUT_OF_BODIES = "Out of bodies";
 
     private BodyInterface(long address) { super(address); }
@@ -19,10 +19,10 @@ public final class BodyInterface extends JoltNative {
 
     // add/remove
 
-    public Body createBody(BodyCreationSettings settings) {
+    public BodyImpl createBody(BodyCreationSettings settings) {
         long body = _createBody(address, settings.getAddress());
         if (body == 0) throw new IllegalStateException(OUT_OF_BODIES);
-        return Body.ref(body);
+        return BodyImpl.ref(body);
     }
     @JniBindSelf("return (jlong) self->CreateBody(*((BodyCreationSettings*) settings));")
     private static native long _createBody(long _a, long settings);
@@ -204,27 +204,27 @@ public final class BodyInterface extends JoltNative {
     private static native void _setLinearVelocity(long _a, int bodyId, float valueX, float valueY, float valueZ);
 
     // advanced
-    public Body createBodyWithId(int bodyId, BodyCreationSettings settings) {
+    public BodyImpl createBodyWithId(int bodyId, BodyCreationSettings settings) {
         long body = _createBodyWithId(address, bodyId, settings.getAddress());
         if (body == 0) throw new IllegalStateException(OUT_OF_BODIES);
-        return Body.ref(body);
+        return BodyImpl.ref(body);
     }
     @JniBindSelf("return (jlong) self->CreateBodyWithID(BodyID(bodyId), *((BodyCreationSettings*) settings));")
     private static native long _createBodyWithId(long _a, int bodyId, long settings);
 
-    public Body createBodyWithoutId(BodyCreationSettings settings) { return Body.ref(_createBodyWithoutId(address, settings.getAddress())); }
+    public BodyImpl createBodyWithoutId(BodyCreationSettings settings) { return BodyImpl.ref(_createBodyWithoutId(address, settings.getAddress())); }
     @JniBindSelf("return (jlong) self->CreateBodyWithoutID(*((BodyCreationSettings*) settings));")
     private static native long _createBodyWithoutId(long _a, long settings);
 
-    public void destroyBodyWithoutId(Body body) { _destroyBodyWithoutId(address, body.getAddress()); }
+    public void destroyBodyWithoutId(BodyImpl body) { _destroyBodyWithoutId(address, body.getAddress()); }
     @JniBindSelf("self->DestroyBodyWithoutID((Body*) body);")
     private static native void _destroyBodyWithoutId(long _a, long body);
 
-    public boolean assignBodyId(Body body) { return _assignBodyId0(address, body.getAddress()); }
+    public boolean assignBodyId(BodyImpl body) { return _assignBodyId0(address, body.getAddress()); }
     @JniBindSelf("return self->AssignBodyID((Body*) body);")
     private static native boolean _assignBodyId0(long _a, long body);
 
-    public boolean assignBodyId(Body body, int bodyId) { return _assignBodyId1(address, body.getAddress(), bodyId); }
+    public boolean assignBodyId(BodyImpl body, int bodyId) { return _assignBodyId1(address, body.getAddress(), bodyId); }
     @JniBindSelf("return self->AssignBodyID((Body*) body, BodyID(bodyId));")
     private static native boolean _assignBodyId1(long _a, long body, int bodyId);
 }

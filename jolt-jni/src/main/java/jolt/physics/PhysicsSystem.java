@@ -3,7 +3,7 @@ package jolt.physics;
 import io.github.aecsocket.jniglue.*;
 import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import jolt.math.JtVec3f;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
@@ -27,7 +27,7 @@ import java.util.Collection;
  */
 @JniInclude("<Jolt/Physics/PhysicsSystem.h>")
 @JniTypeMapping("PhysicsSystem")
-public final class PhysicsSystem extends JoltNative {
+public final class PhysicsSystem extends JoltNativeImpl {
     private PhysicsSystem(long address) { super(address); }
     public static PhysicsSystem ref(long address) { return address == 0 ? null : new PhysicsSystem(address); }
 

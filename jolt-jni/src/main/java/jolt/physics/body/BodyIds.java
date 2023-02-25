@@ -1,11 +1,11 @@
 package jolt.physics.body;
 
 import jolt.JoltEnvironment;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import io.github.aecsocket.jniglue.JniNative;
 
 @JniNative(JoltEnvironment.JNI_MODEL)
-public final class BodyIds extends JoltNative {
+public final class BodyIds extends JoltNativeImpl {
     private BodyIds() {}
 
     public static final int INVALID = 0xffffffff;

@@ -1,7 +1,7 @@
 package jolt.physics;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/PhysicsStepListener.h>")
 @JniReferenced
@@ -17,7 +17,7 @@ import jolt.JoltNative;
                     inDeltaTime, (jlong) &inPhysicsSystem);
             }
         };""")
-public class PhysicsStepListener extends JoltNative {
+public class PhysicsStepListener extends JoltNativeImpl {
     private PhysicsStepListener(long address) { super(address); }
     public static PhysicsStepListener ref(long address) { return address == 0 ? null : new PhysicsStepListener(address); }
 

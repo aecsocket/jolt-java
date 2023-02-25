@@ -1,7 +1,7 @@
 package jolt.physics.collision.broadphase;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>")
 @JniReferenced
@@ -36,7 +36,7 @@ import jolt.JoltNative;
             }
         #endif
         };""")
-public class BroadPhaseLayerInterface extends JoltNative {
+public class BroadPhaseLayerInterface extends JoltNativeImpl {
     private BroadPhaseLayerInterface(long address) { super(address); }
     public static BroadPhaseLayerInterface ref(long address) { return address == 0 ? null : new BroadPhaseLayerInterface(address); }
 

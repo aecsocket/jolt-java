@@ -1,42 +1,59 @@
 package jolt.physics.body;
 
-import io.github.aecsocket.jniglue.JniBindSelf;
-import io.github.aecsocket.jniglue.JniInclude;
-import io.github.aecsocket.jniglue.JniTypeMapping;
 import jolt.JoltNative;
 import jolt.math.JtMat44f;
+import jolt.math.JtQuat;
+import jolt.math.JtVec3f;
 
-@JniInclude("<Jolt/Physics/Body/MotionProperties.h>")
-@JniTypeMapping("MotionProperties")
-public final class MotionProperties extends JoltNative {
-    private MotionProperties(long address) { super(address); }
-    public static MotionProperties ref(long address) { return address == 0 ? null : new MotionProperties(address); }
+public sealed interface MotionProperties extends JoltNative permits MutableMotionProperties {
+    static MotionProperties ref(long address) { return address == 0 ? null : new MotionPropertiesImpl(address); }
 
-    public void setMassProperties(MassProperties value) {
-        JtMat44f inertia = value.inertia;
-        _setMassProperties(
-                address, value.mass,
-                inertia.n00, inertia.n01, inertia.n02, inertia.n03,
-                inertia.n10, inertia.n11, inertia.n12, inertia.n13,
-                inertia.n20, inertia.n21, inertia.n22, inertia.n23,
-                inertia.n30, inertia.n31, inertia.n32
-        );
-    }
-    @JniBindSelf("""
-            MassProperties value;
-            value.mMass = mass;
-            value.mInertia = Mat44(
-                Vec4(inertia00, inertia01, inertia02, inertia03),
-                Vec4(inertia10, inertia11, inertia12, inertia13),
-                Vec4(inertia20, inertia21, inertia22, inertia23),
-                Vec4(inertia30, inertia31, inertia32, 1.0f)
-            );
-            self->SetMassProperties(value);""")
-    private static native void _setMassProperties(
-            long _a, float mass,
-            float inertia00, float inertia01, float inertia02, float inertia03,
-            float inertia10, float inertia11, float inertia12, float inertia13,
-            float inertia20, float inertia21, float inertia22, float inertia23,
-            float inertia30, float inertia31, float inertia32
-    );
+    MotionQuality getMotionQuality();
+
+    JtVec3f getLinearVelocity(JtVec3f out);
+    default JtVec3f getLinearVelocity() { return getLinearVelocity(new JtVec3f()); }
+
+    JtVec3f getAngularVelocity(JtVec3f out);
+    default JtVec3f getAngularVelocity() { return getAngularVelocity(new JtVec3f()); }
+
+    float getMaxLinearVelocity();
+
+    float getMaxAngularVelocity();
+
+    float getLinearDamping();
+
+    float getAngularDamping();
+
+    float getGravityFactor();
+
+    float getInverseMass();
+
+    float getInverseMassUnchecked();
+
+    JtVec3f getInverseInertiaDiagonal(JtVec3f out);
+    default JtVec3f getInverseInertiaDiagonal() { return getInverseInertiaDiagonal(new JtVec3f()); }
+
+    JtQuat getInertiaRotation(JtQuat out);
+    default JtQuat getInertiaRotation() { return getInertiaRotation(new JtQuat()); }
+
+    JtMat44f getLocalSpaceInverseInertia(JtMat44f out);
+    default JtMat44f getLocalSpaceInverseInertia() { return getLocalSpaceInverseInertia(new JtMat44f()); }
+
+    JtMat44f getLocalSpaceInverseInertiaUnchecked(JtMat44f out);
+    default JtMat44f getLocalSpaceInverseInertiaUnchecked() { return getLocalSpaceInverseInertiaUnchecked(new JtMat44f()); }
+
+    JtMat44f getInverseInertiaForRotation(JtMat44f rotation, JtMat44f out);
+    default JtMat44f getInverseInertiaForRotation(JtMat44f rotation) { return getInverseInertiaForRotation(rotation, new JtMat44f()); }
+
+    JtVec3f multiplyWorldSpaceInverseInertiaByVector(JtQuat bodyRotation, JtVec3f v, JtVec3f out);
+    default JtVec3f multiplyWorldSpaceInverseInertiaByVector(JtQuat bodyRotation, JtVec3f v) { return multiplyWorldSpaceInverseInertiaByVector(bodyRotation, v, new JtVec3f()); }
+
+    JtVec3f getPointVelocityCOM(JtVec3f pointRelativeToCOM, JtVec3f out);
+    default JtVec3f getPointVelocityCOM(JtVec3f pointRelativeToCOM) { return getPointVelocityCOM(pointRelativeToCOM, new JtVec3f()); }
+
+    JtVec3f getAccumulatedForce(JtVec3f out);
+    default JtVec3f getAccumulatedForce() { return getAccumulatedForce(new JtVec3f()); }
+
+    JtVec3f getAccumulatedTorque(JtVec3f out);
+    default JtVec3f getAccumulatedTorque() { return getAccumulatedTorque(new JtVec3f()); }
 }

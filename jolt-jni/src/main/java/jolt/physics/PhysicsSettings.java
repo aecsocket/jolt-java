@@ -1,13 +1,13 @@
 package jolt.physics;
 
 import io.github.aecsocket.jniglue.JniTypeMapping;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniInclude;
 
 @JniInclude("<Jolt/Physics/PhysicsSettings.h>")
 @JniTypeMapping("PhysicsSettings")
-public final class PhysicsSettings extends JoltNative {
+public final class PhysicsSettings extends JoltNativeImpl {
     /**
      * How much padding to add around objects.
      */

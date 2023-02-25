@@ -1,7 +1,7 @@
 package jolt.physics.body;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import jolt.math.JtMat44f;
 import jolt.math.JtQuat;
 import jolt.math.JtVec3d;
@@ -11,7 +11,7 @@ import jolt.physics.collision.shape.ShapeSettings;
 
 @JniInclude("<Jolt/Physics/Body/BodyCreationSettings.h>")
 @JniTypeMapping("BodyCreationSettings")
-public final class BodyCreationSettings extends JoltNative {
+public final class BodyCreationSettings extends JoltNativeImpl {
     private BodyCreationSettings(long address) { super(address); }
     public static BodyCreationSettings ref(long address) { return address == 0 ? null : new BodyCreationSettings(address); }
 
@@ -29,7 +29,7 @@ public final class BodyCreationSettings extends JoltNative {
             JtVec3f position,
             JtQuat rotation,
             MotionType motionType,
-            int objectLayer
+            short objectLayer
     ) {
         return new BodyCreationSettings(_sp0(
                 shape.getAddress(),
@@ -52,7 +52,7 @@ public final class BodyCreationSettings extends JoltNative {
             float positionX, float positionY, float positionZ,
             float rotationX, float rotationY, float rotationZ, float rotationW,
             int motionType,
-            int objectLayer
+            short objectLayer
     );
 
     public static BodyCreationSettings sp(
@@ -60,7 +60,7 @@ public final class BodyCreationSettings extends JoltNative {
             JtVec3f position,
             JtQuat rotation,
             MotionType motionType,
-            int objectLayer
+            short objectLayer
     ) {
         return new BodyCreationSettings(_sp1(
                 shape.getAddress(),
@@ -84,7 +84,7 @@ public final class BodyCreationSettings extends JoltNative {
             float positionX, float positionY, float positionZ,
             float rotationX, float rotationY, float rotationZ, float rotationW,
             int motionType,
-            int objectLayer
+            short objectLayer
     );
 
     public static BodyCreationSettings dp(
@@ -92,7 +92,7 @@ public final class BodyCreationSettings extends JoltNative {
             JtVec3d position,
             JtQuat rotation,
             MotionType motionType,
-            int objectLayer
+            short objectLayer
     ) {
         return new BodyCreationSettings(_dp0(
                 shape.getAddress(),
@@ -115,7 +115,7 @@ public final class BodyCreationSettings extends JoltNative {
             double positionX, double positionY, double positionZ,
             float rotationX, float rotationY, float rotationZ, float rotationW,
             int motionType,
-            int objectLayer
+            short objectLayer
     );
 
     public static BodyCreationSettings dp(
@@ -123,7 +123,7 @@ public final class BodyCreationSettings extends JoltNative {
             JtVec3d position,
             JtQuat rotation,
             MotionType motionType,
-            int objectLayer
+            short objectLayer
     ) {
         return new BodyCreationSettings(_dp1(
                 shape.getAddress(),
@@ -146,7 +146,7 @@ public final class BodyCreationSettings extends JoltNative {
             double positionX, double positionY, double positionZ,
             float rotationX, float rotationY, float rotationZ, float rotationW,
             int motionType,
-            int objectLayer
+            short objectLayer
     );
 
     public ShapeSettings getShapeSettings() { return ShapeSettings.ref(_getShapeSettings(address)); }

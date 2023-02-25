@@ -4,11 +4,11 @@ import io.github.aecsocket.jniglue.JniBind;
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniTypeMapping;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Body/BodyLock.h>")
 @JniTypeMapping("BodyLockWrite")
-public final class BodyLockWrite extends JoltNative implements BodyLockBase {
+public final class BodyLockWrite extends JoltNativeImpl implements BodyLockBase {
     private BodyLockWrite(long address) { super(address); }
     public static BodyLockWrite ref(long address) { return address == 0 ? null : new BodyLockWrite(address); }
 
@@ -29,7 +29,7 @@ public final class BodyLockWrite extends JoltNative implements BodyLockBase {
     private static native boolean _succeededAndIsInBroadPhase(long _a);
 
     @Override
-    public Body getBody() { return Body.ref(_getBody(address)); }
+    public BodyImpl getBody() { return BodyImpl.ref(_getBody(address)); }
     @JniBindSelf("return (jlong) &self->GetBody();")
     private static native long _getBody(long _a);
 }

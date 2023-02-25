@@ -4,7 +4,6 @@ import jolt.math.JtQuat
 import jolt.math.JtVec3d
 import jolt.math.JtVec3f
 import jolt.physics.Activation
-import jolt.physics.body.Body
 import jolt.physics.body.BodyInterface
 
 @JvmInline

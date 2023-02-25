@@ -2,7 +2,7 @@ package jolt.physics.collision.broadphase;
 
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniTypeMapping;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import io.github.aecsocket.jniglue.JniInclude;
 import jolt.geometry.AABox;
 import jolt.geometry.OrientedBox;
@@ -15,7 +15,7 @@ import jolt.physics.collision.RayCast3f;
         <Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>
         <Jolt/Physics/Collision/RayCast.h>""")
 @JniTypeMapping("BroadPhaseQuery")
-public class BroadPhaseQuery extends JoltNative {
+public class BroadPhaseQuery extends JoltNativeImpl {
     protected BroadPhaseQuery(long address) { super(address); }
     public static BroadPhaseQuery ref(long address) { return address == 0 ? null : new BroadPhaseQuery(address); }
 

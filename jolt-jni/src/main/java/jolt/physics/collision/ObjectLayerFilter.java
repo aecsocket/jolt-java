@@ -2,8 +2,7 @@ package jolt.physics.collision;
 
 import io.github.aecsocket.jniglue.*;
 import jolt.JoltEnvironment;
-import jolt.JoltNative;
-import jolt.physics.collision.broadphase.BroadPhaseLayerFilter;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Collision/ObjectLayer.h>")
 @JniReferenced
@@ -19,7 +18,7 @@ import jolt.physics.collision.broadphase.BroadPhaseLayerFilter;
                     inLayer);
             }
         };""")
-public class ObjectLayerFilter extends JoltNative {
+public class ObjectLayerFilter extends JoltNativeImpl {
     private ObjectLayerFilter(long address) { super(address); }
     public static ObjectLayerFilter ref(long address) { return address == 0 ? null : new ObjectLayerFilter(address); }
 
@@ -44,16 +43,16 @@ public class ObjectLayerFilter extends JoltNative {
     @JniBind("return (jlong) new BroadPhaseLayerFilterImpl(env, obj);")
     private native long _ctor();
 
-    public boolean shouldCollide(byte layer) { throw unimplemented(); }
+    public boolean shouldCollide(short layer) { throw unimplemented(); }
     @JniCallback
-    private boolean _shouldCollide(byte layer) { return shouldCollide(layer); }
+    private boolean _shouldCollide(short layer) { return shouldCollide(layer); }
 
     private static class Passthrough extends ObjectLayerFilter {
         @Override
         public void delete() { throw new IllegalStateException(DELETING_GLOBAL); }
 
         @Override
-        public boolean shouldCollide(byte layer) {
+        public boolean shouldCollide(short layer) {
             return true;
         }
     }

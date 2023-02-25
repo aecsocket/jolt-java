@@ -1,7 +1,7 @@
 package jolt.physics.body;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Body/BodyActivationListener.h>")
 @JniReferenced
@@ -23,7 +23,7 @@ import jolt.JoltNative;
                     inBodyID.GetIndexAndSequenceNumber(), inBodyUserData);
             }
         };""")
-public class BodyActivationListener extends JoltNative {
+public class BodyActivationListener extends JoltNativeImpl {
     private BodyActivationListener(long address) { super(address); }
     public static BodyActivationListener ref(long address) { return address == 0 ? null : new BodyActivationListener(address); }
 

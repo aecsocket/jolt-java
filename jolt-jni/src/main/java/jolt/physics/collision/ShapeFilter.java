@@ -2,7 +2,7 @@ package jolt.physics.collision;
 
 import io.github.aecsocket.jniglue.*;
 import jolt.JoltEnvironment;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Collision/ShapeFilter.h>")
 @JniReferenced
@@ -24,7 +24,7 @@ import jolt.JoltNative;
                     inSubShapeID1.GetValue(), inSubShapeID2.GetValue());
             }
         };""")
-public class ShapeFilter extends JoltNative {
+public class ShapeFilter extends JoltNativeImpl {
     private ShapeFilter(long address) { super(address); }
     public static ShapeFilter ref(long address) { return address == 0 ? null : new ShapeFilter(address); }
 

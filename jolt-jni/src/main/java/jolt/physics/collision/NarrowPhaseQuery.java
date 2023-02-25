@@ -2,7 +2,7 @@ package jolt.physics.collision;
 
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniTypeMapping;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 import io.github.aecsocket.jniglue.JniInclude;
 import jolt.physics.body.BodyFilter;
 import jolt.physics.collision.broadphase.BroadPhaseLayerFilter;
@@ -10,7 +10,7 @@ import jolt.physics.collision.shape.CastRayCollector;
 
 @JniInclude("<Jolt/Physics/Collision/NarrowPhaseQuery.h>")
 @JniTypeMapping("NarrowPhaseQuery")
-public class NarrowPhaseQuery extends JoltNative {
+public class NarrowPhaseQuery extends JoltNativeImpl {
     protected NarrowPhaseQuery(long address) { super(address); }
     public static NarrowPhaseQuery ref(long address) { return address == 0 ? null : new NarrowPhaseQuery(address); }
 
@@ -38,8 +38,7 @@ public class NarrowPhaseQuery extends JoltNative {
             ToJava(env, cHit, hit);
             return result;
             #else
-            (void)self;
-            JniThrow(env, WRONG_PRECISION);
+            THROW_WRONG_PRECISION
             return JNI_FALSE;
             #endif""")
     private static native boolean _getCastRaySp(
@@ -73,8 +72,7 @@ public class NarrowPhaseQuery extends JoltNative {
             ToJava(env, cHit, hit);
             return result;
             #else
-            (void)self;
-            JniThrow(env, WRONG_PRECISION);
+            THROW_WRONG_PRECISION
             return JNI_FALSE;
             #endif""")
     private static native boolean _getCastRayDp(
@@ -110,8 +108,7 @@ public class NarrowPhaseQuery extends JoltNative {
                 *((ShapeFilter*) shapeFilter)
             );
             #else
-            (void)self;
-            JniThrow(env, WRONG_PRECISION);
+            THROW_WRONG_PRECISION
             #endif""")
     private static native void _collectCastRaySp(
             long _a,
@@ -146,8 +143,7 @@ public class NarrowPhaseQuery extends JoltNative {
                 *((ShapeFilter*) shapeFilter)
             );
             #else
-            (void)self;
-            JniThrow(env, WRONG_PRECISION);
+            THROW_WRONG_PRECISION
             #endif""")
     private static native void _collectCastRayDp(
             long _a,

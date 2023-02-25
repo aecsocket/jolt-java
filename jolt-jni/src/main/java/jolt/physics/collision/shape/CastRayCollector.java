@@ -1,8 +1,8 @@
 package jolt.physics.collision.shape;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.JoltNative;
-import jolt.physics.body.Body;
+import jolt.JoltNativeImpl;
+import jolt.physics.body.BodyImpl;
 import jolt.physics.collision.CollisionCollector;
 import jolt.physics.collision.RayCastResult;
 
@@ -26,7 +26,7 @@ import jolt.physics.collision.RayCastResult;
                     inResult.mBodyID.GetIndexAndSequenceNumber(), inResult.mFraction, inResult.mSubShapeID2.GetValue());
             }
         };""")
-public class CastRayCollector extends JoltNative implements CollisionCollector<RayCastResult> {
+public class CastRayCollector extends JoltNativeImpl implements CollisionCollector<RayCastResult> {
     private CastRayCollector(long address) { super(address); }
     public static CastRayCollector ref(long address) { return address == 0 ? null : new CastRayCollector(address); }
 
@@ -43,9 +43,9 @@ public class CastRayCollector extends JoltNative implements CollisionCollector<R
     @JniBind("return (jlong) new CastRayCollectorImpl(env, obj);")
     private native long _ctor();
 
-    public void onBody(Body body) {}
+    public void onBody(BodyImpl body) {}
     @JniCallback
-    private void _onBody(long body) { onBody(Body.ref(body)); }
+    private void _onBody(long body) { onBody(BodyImpl.ref(body)); }
 
     @Override
     public void addHit(RayCastResult result) {}

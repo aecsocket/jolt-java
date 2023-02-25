@@ -18,9 +18,9 @@ import java.util.List;
 
 public final class HelloJolt {
     // Kotlin: ObjectLayer(0)
-    public static final int OBJECT_LAYER_NON_MOVING = 0;
+    public static final short OBJECT_LAYER_NON_MOVING = 0;
     // Kotlin: ObjectLayer(1)
-    public static final int OBJECT_LAYER_MOVING = 1;
+    public static final short OBJECT_LAYER_MOVING = 1;
 
     // Kotlin: BroadPhaseLayer(0)
     public static final int BP_LAYER_NON_MOVING = 0;
@@ -105,7 +105,7 @@ public final class HelloJolt {
         var objLayerPairFilter = new ObjectLayerPairFilter() {
             // Kotlin: ObjectLayer(layer1), ObjectLayer(layer2)
             @Override
-            public boolean shouldCollide(int layer1, int layer2) {
+            public boolean shouldCollide(short layer1, short layer2) {
                 return switch (layer1) {
                     case OBJECT_LAYER_NON_MOVING -> layer2 == OBJECT_LAYER_MOVING;
                     case OBJECT_LAYER_MOVING -> true;
@@ -163,12 +163,12 @@ public final class HelloJolt {
             }
 
             @Override
-            public void onContactAdded(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
+            public void onContactAdded(BodyImpl body1, BodyImpl body2, ContactManifold manifold, ContactSettings settings) {
                 System.out.println("A contact was added");
             }
 
             @Override
-            public void onContactPersisted(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
+            public void onContactPersisted(BodyImpl body1, BodyImpl body2, ContactManifold manifold, ContactSettings settings) {
                 System.out.println("A contact was persisted");
             }
 
@@ -203,7 +203,7 @@ public final class HelloJolt {
                 : BodyCreationSettings.sp(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
         // Create the rigid body itself - this may throw an exception if there are no bodies left
         // (as opposed to Jolt, which will return null)
-        Body floor = bodyInterface.createBody(floorSettings);
+        BodyImpl floor = bodyInterface.createBody(floorSettings);
         // Add the body to the world via its ID, and it is not active by default
         bodyInterface.addBody(floor.getId(), Activation.DONT_ACTIVATE);
 

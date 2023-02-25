@@ -29,7 +29,6 @@ public final class JtMat44f {
             0f, 0f, 1f, 0f,
             0f, 0f, 0f
     );
-
     public static JtMat44f identity() {
         var result = new JtMat44f();
         result.set(IDENTITY);

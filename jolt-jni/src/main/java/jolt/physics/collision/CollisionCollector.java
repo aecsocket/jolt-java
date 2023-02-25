@@ -1,11 +1,11 @@
 package jolt.physics.collision;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.physics.body.Body;
+import jolt.physics.body.BodyImpl;
 
 @JniInclude("<Jolt/Physics/Collision/CollisionCollector.h>")
 public interface CollisionCollector<R> {
-    void onBody(Body body);
+    void onBody(BodyImpl body);
 
     void addHit(R result);
 }

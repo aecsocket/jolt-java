@@ -9,7 +9,7 @@ import jolt.physics.collision.shape.Shape
 import jolt.physics.collision.shape.ShapeSettings
 
 @JvmInline
-value class ObjectLayer(val id: Int)
+value class ObjectLayer(val id: Short)
 
 fun BodyCreationSettingsSp(
     shape: ShapeSettings,

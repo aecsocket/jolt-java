@@ -22,6 +22,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
         #define WRONG_PRECISION "Attempting to use double-precision method with single-precision natives"
         #endif
         
+        #define THROW_WRONG_PRECISION (void)self; JniThrow(env, WRONG_PRECISION);
+        
         using uint = unsigned int;
         using uint8 = uint8_t;
         using uint16 = uint16_t;

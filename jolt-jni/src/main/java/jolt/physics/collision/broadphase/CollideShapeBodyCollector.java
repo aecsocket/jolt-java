@@ -1,8 +1,8 @@
 package jolt.physics.collision.broadphase;
 
 import io.github.aecsocket.jniglue.*;
-import jolt.JoltNative;
-import jolt.physics.body.Body;
+import jolt.JoltNativeImpl;
+import jolt.physics.body.BodyImpl;
 import jolt.physics.collision.CollisionCollector;
 
 @JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>")
@@ -25,7 +25,7 @@ import jolt.physics.collision.CollisionCollector;
                     inResult.GetIndexAndSequenceNumber());
             }
         };""")
-public class CollideShapeBodyCollector extends JoltNative implements CollisionCollector<Integer> {
+public class CollideShapeBodyCollector extends JoltNativeImpl implements CollisionCollector<Integer> {
     private CollideShapeBodyCollector(long address) { super(address); }
     public static CollideShapeBodyCollector ref(long address) { return address == 0 ? null : new CollideShapeBodyCollector(address); }
 
@@ -42,9 +42,9 @@ public class CollideShapeBodyCollector extends JoltNative implements CollisionCo
     @JniBind("return (jlong) new CollideShapeBodyCollectorImpl(env, obj);")
     private native long _ctor();
 
-    public void onBody(Body body) {}
+    public void onBody(BodyImpl body) {}
     @JniCallback
-    private void _onBody(long body) { onBody(Body.ref(body)); }
+    private void _onBody(long body) { onBody(BodyImpl.ref(body)); }
 
     public void addHit(int result) {}
     @Deprecated

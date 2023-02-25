@@ -20,8 +20,6 @@ import io.github.aecsocket.jniglue.JniNative;
         }
         #endif""")
 public final class JtVec3f {
-    public static final JtVec3f ZERO = new JtVec3f(0f, 0f, 0f);
-
     public float x;
     public float y;
     public float z;

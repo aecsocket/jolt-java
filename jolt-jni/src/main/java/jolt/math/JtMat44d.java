@@ -27,12 +27,17 @@ import io.github.aecsocket.jniglue.JniNative;
         }
         #endif""")
 public final class JtMat44d {
-    public static final JtMat44d IDENTITY = new JtMat44d(
+    private static final JtMat44d IDENTITY = new JtMat44d(
             1f, 0f, 0f, 0.0,
             0f, 1f, 0f, 0.0,
             0f, 0f, 1f, 0.0,
             0f, 0f, 0f
     );
+    public static JtMat44d identity() {
+        var result = new JtMat44d();
+        result.set(IDENTITY);
+        return result;
+    }
 
     public float n00; public float n01; public float n02; public double n03;
     public float n10; public float n11; public float n12; public double n13;

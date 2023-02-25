@@ -2,7 +2,7 @@ package jolt.physics.body;
 
 import io.github.aecsocket.jniglue.*;
 import jolt.JoltEnvironment;
-import jolt.JoltNative;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Body/BodyFilter.h>")
 @JniReferenced
@@ -24,7 +24,7 @@ import jolt.JoltNative;
                     (jlong) &inBody);
             }
         };""")
-public class BodyFilter extends JoltNative {
+public class BodyFilter extends JoltNativeImpl {
     private BodyFilter(long address) { super(address); }
     public static BodyFilter ref(long address) { return address == 0 ? null : new BodyFilter(address); }
 
@@ -53,9 +53,9 @@ public class BodyFilter extends JoltNative {
     @JniCallback
     private boolean _shouldCollide(int bodyId) { return shouldCollide(bodyId); }
 
-    public boolean shouldCollideLocked(Body body) { throw unimplemented(); }
+    public boolean shouldCollideLocked(BodyImpl body) { throw unimplemented(); }
     @JniCallback
-    private boolean _shouldCollideLocked(long body) { return shouldCollideLocked(Body.ref(body)); }
+    private boolean _shouldCollideLocked(long body) { return shouldCollideLocked(BodyImpl.ref(body)); }
 
     private static class Passthrough extends BodyFilter {
         @Override
@@ -67,7 +67,7 @@ public class BodyFilter extends JoltNative {
         }
 
         @Override
-        public boolean shouldCollideLocked(Body body) {
+        public boolean shouldCollideLocked(BodyImpl body) {
             return true;
         }
     }
