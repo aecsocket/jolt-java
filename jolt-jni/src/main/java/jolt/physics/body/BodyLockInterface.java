@@ -30,7 +30,7 @@ public final class BodyLockInterface extends JoltNativeImpl {
     @JniBindSelf("self->UnlockWrite((SharedMutex*) mutex);")
     private static native void _unlockWrite(long _a, long mutex);
 
-    public @Nullable BodyImpl tryGetBody(int bodyId) { return BodyImpl.ref(_tryGetBody(address, bodyId)); }
+    public @Nullable MutableBody tryGetBody(int bodyId) { return MutableBody.ref(_tryGetBody(address, bodyId)); }
     @JniBindSelf("return (jlong) self->TryGetBody(BodyID(bodyId));")
     private static native long _tryGetBody(long _a, int bodyId);
 }

@@ -155,7 +155,7 @@ final class PhysicsSystemImpl extends JoltNativeImpl implements MutablePhysicsSy
     @JniBindSelf("""
             jlong* cConstraints = env->GetLongArrayElements(constraints, JNI_FALSE);
             self->AddConstraints((Constraint**) cConstraints, env->GetArrayLength(constraints));
-            env->ReleaseLongArrayElements(constraints, cConstraints, 0)""")
+            env->ReleaseLongArrayElements(constraints, cConstraints, 0);""")
     private static native void _addConstraints(long _a, long[] constraints);
 
     @Override

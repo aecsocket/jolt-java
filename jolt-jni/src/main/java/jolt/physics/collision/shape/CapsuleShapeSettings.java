@@ -1,26 +1,25 @@
 package jolt.physics.collision.shape;
 
-import jolt.math.JtVec3f;
-import jolt.physics.PhysicsSettings;
 import jolt.physics.collision.PhysicsMaterial;
 
 import javax.annotation.Nullable;
 
-public sealed interface BoxShape extends ConvexShape permits BoxShapeImpl {
-    static BoxShape ref(long address) { return address == 0 ? null : new BoxShapeImpl(address); }
+public sealed interface CapsuleShapeSettings extends ConvexShapeSettings permits CapsuleShapeSettingsImpl {
+    static CapsuleShapeSettings ref(long address) { return address == 0 ? null : new CapsuleShapeSettingsImpl(address); }
 
-    static BoxShape create(JtVec3f halfExtent, float convexRadius, @Nullable PhysicsMaterial material) {
-        return new BoxShapeImpl(halfExtent, convexRadius, material);
+    static CapsuleShapeSettings create(float halfHeightOfCylinder, float radius, @Nullable PhysicsMaterial material) {
+        return new CapsuleShapeSettingsImpl(halfHeightOfCylinder, radius, material);
     }
 
-    static BoxShape create(JtVec3f halfExtent, float convexRadius) {
-        return new BoxShapeImpl(halfExtent, convexRadius, null);
+    static CapsuleShapeSettings create(float halfHeightOfCylinder, float radius) {
+        return new CapsuleShapeSettingsImpl(halfHeightOfCylinder, radius, null);
     }
 
-    static BoxShape create(JtVec3f halfExtent) {
-        return new BoxShapeImpl(halfExtent, PhysicsSettings.DEFAULT_CONVEX_RADIUS, null);
-    }
+    float getRadius();
 
-    JtVec3f getHalfExtent(JtVec3f out);
-    default JtVec3f getHalfExtent() { return getHalfExtent(new JtVec3f()); }
+    void setRadius(float radius);
+
+    float getHalfHeightOfCylinder();
+
+    void setHalfHeightOfCylinder(float halfHeightOfCylinder);
 }

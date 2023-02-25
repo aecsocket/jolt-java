@@ -29,7 +29,7 @@ public final class BodyLockRead extends JoltNativeImpl implements BodyLockBase {
     private static native boolean _succeededAndIsInBroadPhase(long _a);
 
     @Override
-    public BodyImpl getBody() { return BodyImpl.ref(_getBody(address)); }
+    public Body getBody() { return Body.ref(_getBody(address)); }
     @JniBindSelf("return (jlong) &self->GetBody();")
     private static native long _getBody(long _a);
 }

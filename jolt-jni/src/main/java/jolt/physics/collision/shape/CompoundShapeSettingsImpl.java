@@ -6,12 +6,12 @@ import jolt.math.JtVec3f;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/CompoundShape.h>")
 @JniTypeMapping("CompoundShapeSettings")
-public class CompoundShapeSettings extends ShapeSettings {
-    protected CompoundShapeSettings(long address) { super(address); }
-    public static CompoundShapeSettings ref(long address) { return address == 0 ? null : new CompoundShapeSettings(address); }
+sealed class CompoundShapeSettingsImpl extends ShapeSettingsImpl implements CompoundShapeSettings permits StaticCompoundShapeSettingsImpl {
+    CompoundShapeSettingsImpl(long address) { super(address); }
 
-    protected CompoundShapeSettings() {}
+    CompoundShapeSettingsImpl() {}
 
+    @Override
     public void addShape(JtVec3f position, JtQuat rotation, ShapeSettings shape, int userData) {
         _addShape0(
                 address,
@@ -37,6 +37,7 @@ public class CompoundShapeSettings extends ShapeSettings {
             int userData
     );
 
+    @Override
     public void addShape(JtVec3f position, JtQuat rotation, Shape shape, int userData) {
         _addShape1(
                 address,
@@ -61,6 +62,4 @@ public class CompoundShapeSettings extends ShapeSettings {
             long shape,
             int userData
     );
-
-    // TODO get mSubShapes
 }

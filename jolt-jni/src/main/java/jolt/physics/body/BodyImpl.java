@@ -57,7 +57,7 @@ final class BodyImpl extends JoltNativeImpl implements MutableBody {
 
     @Override
     public boolean isSensor() { return _isSensor(address); }
-    @JniBindSelf("self->IsSensor();")
+    @JniBindSelf("return self->IsSensor();")
     private static native boolean _isSensor(long _a);
 
     @Override
@@ -220,7 +220,7 @@ final class BodyImpl extends JoltNativeImpl implements MutableBody {
     }
     @JniBindSelf("""
             #ifdef JPH_DOUBLE_PRECISION
-            ToJavaDp(env, self->GetPointVelocity(DVec3(pointX, pointY, pointZ)), out);
+            ToJavaSp(env, self->GetPointVelocity(DVec3(pointX, pointY, pointZ)), out);
             #else
             THROW_WRONG_PRECISION
             #endif""")
@@ -403,7 +403,7 @@ final class BodyImpl extends JoltNativeImpl implements MutableBody {
     }
     @JniBindSelf("""
             #ifdef JPH_DOUBLE_PRECISION
-            self->MoveKinematic(DVec3(targetPositionX, targetPositionY, targetPositionZ), Quat(targetRotationX, targetRotationY, targetRotationZ), deltaTime);
+            self->MoveKinematic(DVec3(targetPositionX, targetPositionY, targetPositionZ), Quat(targetRotationX, targetRotationY, targetRotationZ, targetRotationW), deltaTime);
             #else
             THROW_WRONG_PRECISION
             #endif""")
@@ -438,7 +438,7 @@ final class BodyImpl extends JoltNativeImpl implements MutableBody {
             );
             #else
             THROW_WRONG_PRECISION
-            return JNI_FALSE
+            return JNI_FALSE;
             #endif""")
     private static native boolean _applyBuoyancyImpulseSp(
             long _a,
@@ -474,7 +474,7 @@ final class BodyImpl extends JoltNativeImpl implements MutableBody {
             );
             #else
             THROW_WRONG_PRECISION
-            return JNI_FALSE
+            return JNI_FALSE;
             #endif""")
     private static native boolean _applyBuoyancyImpulseDp(
             long _a,
@@ -698,7 +698,7 @@ final class BodyImpl extends JoltNativeImpl implements MutableBody {
     }
     @JniBindSelf("""
             #ifdef JPH_DOUBLE_PRECISION
-            ToJavaDp(env, self->GetWorldSpaceSurfaceNormal(SubShapeIDOf(subShapeId), DVec3(positionX, positionY, positionZ)), out);
+            ToJavaSp(env, self->GetWorldSpaceSurfaceNormal(SubShapeIDOf(subShapeId), DVec3(positionX, positionY, positionZ)), out);
             #else
             THROW_WRONG_PRECISION
             #endif""")

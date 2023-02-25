@@ -57,9 +57,9 @@ public class BroadPhaseLayerInterface extends JoltNativeImpl {
     @JniCallback
     private int _getNumBroadPhaseLayers() { return getNumBroadPhaseLayers(); }
 
-    public byte getBroadPhaseLayer(int layer) { throw unimplemented(); }
+    public byte getBroadPhaseLayer(short layer) { throw unimplemented(); }
     @JniCallback
-    private byte _getBroadPhaseLayer(int layer) { return getBroadPhaseLayer(layer); }
+    private byte _getBroadPhaseLayer(short layer) { return getBroadPhaseLayer(layer); }
 
     public String getBroadPhaseLayerName(byte layer) { throw unimplemented(); }
     @JniCallback

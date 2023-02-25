@@ -34,7 +34,7 @@ public class ObjectVsBroadPhaseLayerFilter extends JoltNativeImpl {
     @JniBind("return (jlong) new ObjectVsBroadPhaseLayerFilterImpl(env, obj);")
     private native long _ctor();
 
-    public boolean shouldCollide(int layer1, byte layer2) { throw unimplemented(); }
+    public boolean shouldCollide(short layer1, byte layer2) { throw unimplemented(); }
     @JniCallback
-    private boolean _shouldCollide(int layer1, byte layer2) { return shouldCollide(layer1, layer2); }
+    private boolean _shouldCollide(short layer1, byte layer2) { return shouldCollide(layer1, layer2); }
 }

@@ -9,7 +9,7 @@ import jolt.physics.body.MassProperties;
 import jolt.physics.collision.PhysicsMaterial;
 import jolt.physics.collision.TransformedShape;
 
-public sealed interface Shape extends JoltNative permits CompoundShape, ConvexShape, ShapeImpl {
+public sealed interface Shape extends JoltNative permits ConvexShape, CompoundShape, ShapeImpl {
     static Shape ref(long address) { return address == 0 ? null : new ShapeImpl(address); }
 
     ShapeType getType();

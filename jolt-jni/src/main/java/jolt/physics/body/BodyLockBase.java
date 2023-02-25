@@ -5,5 +5,5 @@ public sealed interface BodyLockBase permits BodyLockRead, BodyLockWrite {
 
     boolean succeededAndIsInBroadPhase();
 
-    BodyImpl getBody();
+    Body getBody();
 }

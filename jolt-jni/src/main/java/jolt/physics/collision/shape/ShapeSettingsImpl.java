@@ -8,22 +8,16 @@ import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/Shape.h>")
 @JniTypeMapping("ShapeSettings")
-public class ShapeSettings extends JoltNativeImpl {
-    protected ShapeSettings(long address) { super(address); }
-    public static ShapeSettings ref(long address) { return address == 0 ? null : new ShapeSettings(address); }
+sealed class ShapeSettingsImpl extends JoltNativeImpl implements ShapeSettings permits ConvexShapeSettingsImpl, CompoundShapeSettingsImpl {
+    ShapeSettingsImpl(long address) { super(address); }
+
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
+
+    protected ShapeSettingsImpl() {}
 
     @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
-    }
-    @JniBindDelete
-    private static native void _delete(long _a);
-
-    protected ShapeSettings() {}
-
-    public Shape create() { return Shape.ref(_create(address)); }
+    public Shape createShape() { return Shape.ref(_createShape(address)); }
     @JniBindSelf("""
             ShapeSettings::ShapeResult result = self->Create();
             if (result.HasError()) {
@@ -31,5 +25,15 @@ public class ShapeSettings extends JoltNativeImpl {
                 return (jlong) nullptr;
             }
             return (jlong) result.Get().GetPtr();""")
-    private static native long _create(long _a);
+    private static native long _createShape(long _a);
+
+    @Override
+    public long getUserData() { return _getUserData(address); }
+    @JniBindSelf("return self->mUserData;")
+    private static native long _getUserData(long _a);
+
+    @Override
+    public void setUserData(long userData) { _setUserData(address, userData); }
+    @JniBindSelf("self->mUserData = value;")
+    private static native void _setUserData(long _a, long value);
 }

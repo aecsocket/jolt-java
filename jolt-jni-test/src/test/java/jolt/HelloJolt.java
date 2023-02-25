@@ -5,6 +5,7 @@ import jolt.math.JtQuat;
 import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;
 import jolt.physics.Activation;
+import jolt.physics.PhysicsSettings;
 import jolt.physics.PhysicsSystem;
 import jolt.physics.body.*;
 import jolt.physics.collision.*;
@@ -68,7 +69,7 @@ public final class HelloJolt {
 
             // Kotlin: ObjectLayer(layer)
             @Override
-            public byte getBroadPhaseLayer(int layer) {
+            public byte getBroadPhaseLayer(short layer) {
                 return switch (layer) {
                     case 0 -> BP_LAYER_NON_MOVING;
                     case 1 -> BP_LAYER_MOVING;
@@ -91,7 +92,7 @@ public final class HelloJolt {
         var objBpLayerFilter = new ObjectVsBroadPhaseLayerFilter() {
             // Kotlin: ObjectLayer(layer1), BroadPhaseLayer(layer2)
             @Override
-            public boolean shouldCollide(int layer1, byte layer2) {
+            public boolean shouldCollide(short layer1, byte layer2) {
                 return switch (layer1) {
                     case OBJECT_LAYER_NON_MOVING -> layer2 == BP_LAYER_MOVING;
                     case OBJECT_LAYER_MOVING -> true;
@@ -188,9 +189,9 @@ public final class HelloJolt {
         // NOTE: The math classes provided by JoltJNI (Jt-) are purely data wrappers around Jolt types.
         // They do not provide linear algebra functionality, and you are expected to convert to/from your own types.
         // In matrices, the 4th row 4th col element is always 1.0.
-        var floorShapeSettings = new BoxShapeSettings(new JtVec3f(100.0f, 1.0f, 100.0f));
+        var floorShapeSettings = BoxShapeSettings.create(new JtVec3f(100.0f, 1.0f, 100.0f));
         // And create the shape itself - this may throw an exception
-        Shape floorShape = floorShapeSettings.create();
+        Shape floorShape = floorShapeSettings.createShape();
 
         // Create the settings for the rigid body
         // NOTE: This is precision-dependent. Use `sp` for single precision, or `dp` for double precision.
@@ -208,8 +209,8 @@ public final class HelloJolt {
 
         // Shorthand version of the above, creating a dynamic sphere
         var sphereSettings = doublePrecision
-                ? BodyCreationSettings.dp(new SphereShape(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
-                : BodyCreationSettings.sp(new SphereShape(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
+                ? BodyCreationSettings.dp(SphereShape.create(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
+                : BodyCreationSettings.sp(SphereShape.create(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
         int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
         bodyInterface.setLinearVelocity(sphereId, new JtVec3f(0.0f, -5.0f, 0.0f));

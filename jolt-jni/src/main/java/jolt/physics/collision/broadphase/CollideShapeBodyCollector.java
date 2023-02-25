@@ -2,7 +2,7 @@ package jolt.physics.collision.broadphase;
 
 import io.github.aecsocket.jniglue.*;
 import jolt.JoltNativeImpl;
-import jolt.physics.body.BodyImpl;
+import jolt.physics.body.Body;
 import jolt.physics.collision.CollisionCollector;
 
 @JniInclude("<Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>")
@@ -42,9 +42,9 @@ public class CollideShapeBodyCollector extends JoltNativeImpl implements Collisi
     @JniBind("return (jlong) new CollideShapeBodyCollectorImpl(env, obj);")
     private native long _ctor();
 
-    public void onBody(BodyImpl body) {}
+    public void onBody(Body body) {}
     @JniCallback
-    private void _onBody(long body) { onBody(BodyImpl.ref(body)); }
+    private void _onBody(long body) { onBody(Body.ref(body)); }
 
     public void addHit(int result) {}
     @Deprecated

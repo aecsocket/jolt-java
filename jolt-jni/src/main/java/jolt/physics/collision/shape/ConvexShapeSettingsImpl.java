@@ -1,23 +1,41 @@
 package jolt.physics.collision.shape;
 
 import io.github.aecsocket.jniglue.JniBindDelete;
+import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniTypeMapping;
+import jolt.UnimplementedMethodException;
+import jolt.physics.collision.PhysicsMaterial;
+
+import javax.annotation.Nullable;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/ConvexShape.h>")
 @JniTypeMapping("ConvexShapeSettings")
-public class ConvexShapeSettings extends ShapeSettings {
-    protected ConvexShapeSettings(long address) { super(address); }
-    public static ConvexShapeSettings ref(long address) { return address == 0 ? null : new ConvexShapeSettings(address); }
+sealed class ConvexShapeSettingsImpl extends ShapeSettingsImpl implements ConvexShapeSettings permits SphereShapeSettingsImpl, BoxShapeSettingsImpl, CapsuleShapeSettingsImpl {
+    ConvexShapeSettingsImpl(long address) { super(address); }
+
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
+
+    protected ConvexShapeSettingsImpl() {}
 
     @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
-    }
-    @JniBindDelete
-    private static native void _delete(long _a);
+    public float getDensity() { return _getDensity(address); }
+    @JniBindSelf("return self->mDensity;")
+    private static native float _getDensity(long _a);
 
-    protected ConvexShapeSettings() {}
+    @Override
+    public void setDensity(float density) { _setDensity(address, density); }
+    @JniBindSelf("self->SetDensity(value);")
+    private static native void _setDensity(long _a, float value);
+
+    @Override
+    public @Nullable PhysicsMaterial getMaterial() {
+        throw new UnimplementedMethodException(); // TODO
+    }
+
+    @Override
+    public void setMaterial(@Nullable PhysicsMaterial material) {
+        throw new UnimplementedMethodException(); // TODO
+    }
 }

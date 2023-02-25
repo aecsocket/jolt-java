@@ -249,7 +249,7 @@ final class MotionPropertiesImpl extends JoltNativeImpl implements MutableMotion
                     Vec4(rotation00, rotation01, rotation02, rotation03),
                     Vec4(rotation10, rotation11, rotation12, rotation13),
                     Vec4(rotation20, rotation21, rotation22, rotation23),
-                    Vec3(rotation30, rotation31, rotation32),
+                    Vec3(rotation30, rotation31, rotation32)
                 )),
                 out
             );""")

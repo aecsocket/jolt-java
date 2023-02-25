@@ -2,7 +2,7 @@ package jolt.physics.collision.shape;
 
 import io.github.aecsocket.jniglue.*;
 import jolt.JoltNativeImpl;
-import jolt.physics.body.BodyImpl;
+import jolt.physics.body.Body;
 import jolt.physics.collision.CollisionCollector;
 import jolt.physics.collision.RayCastResult;
 
@@ -43,9 +43,9 @@ public class CastRayCollector extends JoltNativeImpl implements CollisionCollect
     @JniBind("return (jlong) new CastRayCollectorImpl(env, obj);")
     private native long _ctor();
 
-    public void onBody(BodyImpl body) {}
+    public void onBody(Body body) {}
     @JniCallback
-    private void _onBody(long body) { onBody(BodyImpl.ref(body)); }
+    private void _onBody(long body) { onBody(Body.ref(body)); }
 
     @Override
     public void addHit(RayCastResult result) {}

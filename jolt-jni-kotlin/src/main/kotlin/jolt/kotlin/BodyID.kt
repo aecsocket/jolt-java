@@ -5,34 +5,35 @@ import jolt.math.JtVec3d
 import jolt.math.JtVec3f
 import jolt.physics.Activation
 import jolt.physics.body.BodyInterface
+import jolt.physics.body.MutableBodyInterface
 
 @JvmInline
 value class BodyId(val id: Int)
 
-fun BodyInterface.destroyBody(id: BodyId) =
+fun MutableBodyInterface.destroyBody(id: BodyId) =
     destroyBody(id.id)
 
-fun BodyInterface.addBody(id: BodyId, activationMode: Activation) =
+fun MutableBodyInterface.addBody(id: BodyId, activationMode: Activation) =
     addBody(id.id, activationMode)
-fun BodyInterface.removeBody(id: BodyId) =
+fun MutableBodyInterface.removeBody(id: BodyId) =
     removeBody(id.id)
 fun BodyInterface.isAdded(id: BodyId) =
     isAdded(id.id)
 
 fun BodyInterface.isActive(id: BodyId) =
     isActive(id.id)
-fun BodyInterface.activateBody(id: BodyId) =
+fun MutableBodyInterface.activateBody(id: BodyId) =
     activateBody(id.id)
-fun BodyInterface.deactivateBody(id: BodyId) =
+fun MutableBodyInterface.deactivateBody(id: BodyId) =
     deactivateBody(id.id)
 
 fun BodyInterface.getPositionAndRotationSp(id: BodyId, outPosition: JtVec3f, outRotation: JtQuat) =
     getPositionAndRotationSp(id.id, outPosition, outRotation)
 fun BodyInterface.getPositionAndRotationDp(id: BodyId, outPosition: JtVec3d, outRotation: JtQuat) =
     getPositionAndRotationDp(id.id, outPosition, outRotation)
-fun BodyInterface.setPositionAndRotationSp(id: BodyId, position: JtVec3f, rotation: JtQuat, activationMode: Activation) =
+fun MutableBodyInterface.setPositionAndRotationSp(id: BodyId, position: JtVec3f, rotation: JtQuat, activationMode: Activation) =
     setPositionAndRotationSp(id.id, position, rotation, activationMode)
-fun BodyInterface.setPositionAndRotationDp(id: BodyId, position: JtVec3d, rotation: JtQuat, activationMode: Activation) =
+fun MutableBodyInterface.setPositionAndRotationDp(id: BodyId, position: JtVec3d, rotation: JtQuat, activationMode: Activation) =
     setPositionAndRotationDp(id.id, position, rotation, activationMode)
 
 fun BodyInterface.getPositionSp(id: BodyId, out: JtVec3f) =
@@ -43,9 +44,9 @@ fun BodyInterface.getPositionDp(id: BodyId, out: JtVec3d) =
     getPositionDp(id.id, out)
 fun BodyInterface.getPositionDp(id: BodyId) =
     getPositionDp(id.id)
-fun BodyInterface.setPositionSp(id: BodyId, value: JtVec3f, activationMode: Activation) =
+fun MutableBodyInterface.setPositionSp(id: BodyId, value: JtVec3f, activationMode: Activation) =
     setPositionSp(id.id, value, activationMode)
-fun BodyInterface.setPositionDp(id: BodyId, value: JtVec3d, activationMode: Activation) =
+fun MutableBodyInterface.setPositionDp(id: BodyId, value: JtVec3d, activationMode: Activation) =
     setPositionDp(id.id, value, activationMode)
 
 fun BodyInterface.getCenterOfMassPositionSp(id: BodyId, out: JtVec3f) =
