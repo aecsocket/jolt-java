@@ -32,6 +32,8 @@ public final class HelloJolt {
 
     @Test
     public void testJolt() {
+        // handle SIGSEGV nostop noprint
+
         // Finds the platform-specific `.dll` or `.so` in the JAR, located in `jolt/`, and loads it
         JoltEnvironment.load();
 

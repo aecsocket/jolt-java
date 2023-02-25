@@ -56,7 +56,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
         
         static thread_local JNIThreadEnv jniThread;
         
-        void jniThrow(JNIEnv* env, const char* message) {
+        void JniThrow(JNIEnv* env, const char* message) {
             env->ThrowNew(env->FindClass("java/lang/RuntimeException"), message);
         }""")
 @JniOnLoad("""

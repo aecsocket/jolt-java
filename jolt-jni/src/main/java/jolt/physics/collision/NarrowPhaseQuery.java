@@ -39,7 +39,7 @@ public class NarrowPhaseQuery extends JoltNative {
             return result;
             #else
             (void)self;
-            jniThrow(env, WRONG_PRECISION);
+            JniThrow(env, WRONG_PRECISION);
             return JNI_FALSE;
             #endif""")
     private static native boolean _getCastRaySp(
@@ -74,7 +74,7 @@ public class NarrowPhaseQuery extends JoltNative {
             return result;
             #else
             (void)self;
-            jniThrow(env, WRONG_PRECISION);
+            JniThrow(env, WRONG_PRECISION);
             return JNI_FALSE;
             #endif""")
     private static native boolean _getCastRayDp(
@@ -111,7 +111,7 @@ public class NarrowPhaseQuery extends JoltNative {
             );
             #else
             (void)self;
-            jniThrow(env, WRONG_PRECISION);
+            JniThrow(env, WRONG_PRECISION);
             #endif""")
     private static native void _collectCastRaySp(
             long _a,
@@ -147,7 +147,7 @@ public class NarrowPhaseQuery extends JoltNative {
             );
             #else
             (void)self;
-            jniThrow(env, WRONG_PRECISION);
+            JniThrow(env, WRONG_PRECISION);
             #endif""")
     private static native void _collectCastRayDp(
             long _a,

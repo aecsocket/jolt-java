@@ -7,6 +7,7 @@ import jolt.JoltNative;
 import jolt.math.JtVec3f;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
+import jolt.physics.body.BodyLockInterface;
 import jolt.physics.collision.ContactListener;
 import jolt.physics.collision.NarrowPhaseQuery;
 import jolt.physics.collision.ObjectLayerPairFilter;
@@ -248,6 +249,14 @@ public final class PhysicsSystem extends JoltNative {
     public void setGravity(JtVec3f value) { _setGravity(address, value.x, value.y, value.z); }
     @JniBindSelf("self->SetGravity(Vec3(valueX, valueY, valueZ));")
     private static native void _setGravity(long _a, float valueX, float valueY, float valueZ);
+
+    public BodyLockInterface getBodyLockInterface() { return BodyLockInterface.ref(_getBodyLockInterface(address)); }
+    @JniBindSelf("return (jlong) &self->GetBodyLockInterface();")
+    private static native long _getBodyLockInterface(long _a);
+
+    public BodyLockInterface getBodyLockInterfaceNoLock() { return BodyLockInterface.ref(_getBodyLockInterfaceNoLock(address)); }
+    @JniBindSelf("return (jlong) &self->GetBodyLockInterfaceNoLock();")
+    private static native long _getBodyLockInterfaceNoLock(long _a);
 
     /**
      * Gets the current amount of bodies that are in the body manager.
