@@ -189,15 +189,15 @@ public final class HelloJolt {
         // NOTE: The math classes provided by JoltJNI (Jt-) are purely data wrappers around Jolt types.
         // They do not provide linear algebra functionality, and you are expected to convert to/from your own types.
         // In matrices, the 4th row 4th col element is always 1.0.
-        var floorShapeSettings = BoxShapeSettings.create(new JtVec3f(100.0f, 1.0f, 100.0f));
+        var floorShapeSettings = new BoxShapeSettings(new JtVec3f(100.0f, 1.0f, 100.0f));
         // And create the shape itself - this may throw an exception
-        Shape floorShape = floorShapeSettings.createShape();
+        Shape floorShape = floorShapeSettings.create();
 
         // Create the settings for the rigid body
         // NOTE: This is precision-dependent. Use `sp` for single precision, or `dp` for double precision.
         // If you know for certain which precision level you are dealing with, you don't have to have a conditional call here.
         // However this is conditional since this is a test case.
-        // Kotlin: BodyCreationSettingsDp/Sp(..., ObjectLayer)
+        // Kotlin: bodyCreationSettingsDp/Sp(..., ObjectLayer)
         var floorSettings = doublePrecision
                 ? BodyCreationSettings.dp(floorShape, new JtVec3d(0.0, -1.0, 0.0), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
                 : BodyCreationSettings.sp(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
@@ -209,8 +209,8 @@ public final class HelloJolt {
 
         // Shorthand version of the above, creating a dynamic sphere
         var sphereSettings = doublePrecision
-                ? BodyCreationSettings.dp(SphereShape.create(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
-                : BodyCreationSettings.sp(SphereShape.create(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
+                ? BodyCreationSettings.dp(new SphereShape(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
+                : BodyCreationSettings.sp(new SphereShape(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
         int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
         bodyInterface.setLinearVelocity(sphereId, new JtVec3f(0.0f, -5.0f, 0.0f));

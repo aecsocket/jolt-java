@@ -1,17 +1,27 @@
 package jolt.physics.collision.shape;
 
+import io.github.aecsocket.jniglue.*;
+import jolt.UnimplementedMethodException;
 import jolt.geometry.AABox;
 import jolt.geometry.OrientedBox;
 
-public sealed interface CompoundShape extends Shape permits StaticCompoundShape, CompoundShapeImpl {
-    static CompoundShape ref(long address) { return address == 0 ? null : new CompoundShapeImpl(address); }
+@JniInclude("<Jolt/Physics/Collision/Shape/CompoundShape.h>")
+@JniTypeMapping("CompoundShape")
+public sealed class CompoundShape extends Shape permits StaticCompoundShape {
+    protected CompoundShape(long address) { super(address); }
+    public static CompoundShape ref(long address) { return address == 0 ? null : new CompoundShape(address); }
 
-    int[] getIntersectingSubShapes(AABox box);
+    protected CompoundShape() {}
 
-    int[] getIntersectingSubShapes(OrientedBox box);
+    public final int[] getIntersectingSubShapes(AABox box) {
+        throw new UnimplementedMethodException(); // TODO
+    }
 
-    // todo getsubshapes
+    public final int[] getIntersectingSubShapes(OrientedBox box) {
+        throw new UnimplementedMethodException(); // TODO
+    }
 
-    int getNumSubShapes();
-
+    public final int getNumSubShapes() { return _getNumSubShapes(address); }
+    @JniBindSelf("return self->GetNumSubShapes();")
+    private static native int _getNumSubShapes(long _a);
 }

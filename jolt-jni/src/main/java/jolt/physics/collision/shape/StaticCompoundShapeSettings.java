@@ -1,19 +1,28 @@
 package jolt.physics.collision.shape;
 
+import io.github.aecsocket.jniglue.*;
 import jolt.core.TempAllocator;
-import jolt.math.JtVec3f;
-import jolt.physics.PhysicsSettings;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
+@JniInclude("<Jolt/Physics/Collision/Shape/StaticCompoundShape.h>")
+@JniTypeMapping("StaticCompoundShapeSettings")
+public final class StaticCompoundShapeSettings extends CompoundShapeSettings {
+    private StaticCompoundShapeSettings(long address) { super(address); }
+    public static StaticCompoundShapeSettings ref(long address) { return address == 0 ? null : new StaticCompoundShapeSettings(address); }
 
-public sealed interface StaticCompoundShapeSettings extends CompoundShapeSettings permits StaticCompoundShapeSettingsImpl {
-    static StaticCompoundShapeSettings ref(long address) { return address == 0 ? null : new StaticCompoundShapeSettingsImpl(address); }
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
 
-    static StaticCompoundShapeSettings create() {
-        return new StaticCompoundShapeSettingsImpl();
-    }
+    public StaticCompoundShapeSettings() { address = _ctor(); }
+    @JniBind("return (jlong) new StaticCompoundShapeSettings();")
+    private static native long _ctor();
 
-    // TODO shape result refs
-    Shape createShape(TempAllocator tempAllocator);
+    public Shape create(TempAllocator tempAllocator) { return Shape.ref(_create(address, tempAllocator.getAddress())); }
+    @JniBindSelf("""
+            ShapeSettings::ShapeResult result = self->Create(*((TempAllocator*) tempAllocator));
+            if (result.HasError()) {
+                JniThrow(env, result.GetError().c_str());
+                return (jlong) nullptr;
+            }
+            return (jlong) result.Get().GetPtr();""")
+    private static native long _create(long _a, long tempAllocator);
 }

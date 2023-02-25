@@ -11,7 +11,7 @@ import jolt.physics.collision.shape.ShapeSettings
 @JvmInline
 value class ObjectLayer(val id: Short)
 
-fun BodyCreationSettingsSp(
+fun bodyCreationSettingsSp(
     shape: ShapeSettings,
     position: JtVec3f,
     rotation: JtQuat,
@@ -19,7 +19,7 @@ fun BodyCreationSettingsSp(
     objectLayer: ObjectLayer,
 ) = BodyCreationSettings.sp(shape, position, rotation, motionType, objectLayer.id)
 
-fun BodyCreationSettingsSp(
+fun bodyCreationSettingsSp(
     shape: Shape,
     position: JtVec3f,
     rotation: JtQuat,
@@ -27,7 +27,7 @@ fun BodyCreationSettingsSp(
     objectLayer: ObjectLayer,
 ) = BodyCreationSettings.sp(shape, position, rotation, motionType, objectLayer.id)
 
-fun BodyCreationSettingsDp(
+fun bodyCreationSettingsDp(
     shape: ShapeSettings,
     position: JtVec3d,
     rotation: JtQuat,
@@ -35,7 +35,7 @@ fun BodyCreationSettingsDp(
     objectLayer: ObjectLayer,
 ) = BodyCreationSettings.dp(shape, position, rotation, motionType, objectLayer.id)
 
-fun BodyCreationSettingsDp(
+fun bodyCreationSettingsDp(
     shape: Shape,
     position: JtVec3d,
     rotation: JtQuat,

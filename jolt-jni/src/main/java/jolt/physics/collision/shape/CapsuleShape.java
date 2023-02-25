@@ -1,21 +1,34 @@
 package jolt.physics.collision.shape;
 
+import io.github.aecsocket.jniglue.*;
 import jolt.physics.collision.PhysicsMaterial;
 
 import javax.annotation.Nullable;
 
-public sealed interface CapsuleShape extends ConvexShape permits CapsuleShapeImpl {
-    static CapsuleShape ref(long address) { return address == 0 ? null : new CapsuleShapeImpl(address); }
+@JniInclude("<Jolt/Physics/Collision/Shape/CapsuleShape.h>")
+@JniTypeMapping("CapsuleShape")
+public final class CapsuleShape extends ConvexShape {
+    private CapsuleShape(long address) { super(address); }
+    public static CapsuleShape ref(long address) { return address == 0 ? null : new CapsuleShape(address); }
 
-    static CapsuleShape create(float halfHeightOfCylinder, float radius, @Nullable PhysicsMaterial material) {
-        return new CapsuleShapeImpl(halfHeightOfCylinder, radius, material);
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
+
+    public CapsuleShape(float halfHeightOfCylinder, float radius, @Nullable PhysicsMaterial material) {
+        address = _ctor(halfHeightOfCylinder, radius, ptr(material));
+    }
+    @JniBind("return (jlong) new CapsuleShape(halfHeightOfCylinder, radius, (PhysicsMaterial*) material);")
+    private static native long _ctor(float halfHeightOfCylinder, float radius, long material);
+
+    public CapsuleShape(float halfHeightOfCylinder, float radius) {
+        this(halfHeightOfCylinder, radius, null);
     }
 
-    static CapsuleShape create(float halfHeightOfCylinder, float radius) {
-        return new CapsuleShapeImpl(halfHeightOfCylinder, radius, null);
-    }
+    public float getRadius() { return _getRadius(address); }
+    @JniBindSelf("return self->GetRadius();")
+    private static native float _getRadius(long _a);
 
-    float getRadius();
-
-    float getHalfHeightOfCylinder();
+    public float getHalfHeightOfCylinder() { return _getHalfHeightOfCylinder(address); }
+    @JniBindSelf("return self->GetHalfHeightOfCylinder();")
+    private static native float _getHalfHeightOfCylinder(long _a);
 }
