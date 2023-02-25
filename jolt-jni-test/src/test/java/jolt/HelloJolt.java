@@ -115,7 +115,7 @@ public final class HelloJolt {
         };
 
         // Allocates and creates our PhysicsSystem in which bodies will be simulated
-        var physicsSystem = PhysicsSystem.create();
+        var physicsSystem = new PhysicsSystem();
         physicsSystem.init(
                 // maxBodies: maximum number of bodies in the system - adding more will throw an exception
                 // for a real project use ~65536
@@ -181,7 +181,7 @@ public final class HelloJolt {
 
         // The BodyInterface is the main way to interact with bodies
         // Here we use the locking variant, but if you are an advanced user you can use the -NoLock version
-        MutableBodyInterface bodyInterface = physicsSystem.getBodyInterface();
+        BodyInterface bodyInterface = physicsSystem.getBodyInterface();
 
         // Create the rigid body for the floor
 
