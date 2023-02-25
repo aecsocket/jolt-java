@@ -14,7 +14,12 @@ import io.github.aecsocket.jniglue.JniNative;
                 from.GetX(), from.GetY(), from.GetZ(), from.GetW());
         }""")
 public final class JtQuat {
-    public static final JtQuat IDENTITY = new JtQuat(0f, 0f, 0f, 1f);
+    private static final JtQuat IDENTITY = new JtQuat(0f, 0f, 0f, 1f);
+    public static JtQuat identity() {
+        var result = new JtQuat();
+        result.set(IDENTITY);
+        return result;
+    }
 
     public float x;
     public float y;

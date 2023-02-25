@@ -11,10 +11,7 @@ import jolt.physics.body.*;
 import jolt.physics.collision.*;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface;
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
-import jolt.physics.collision.shape.BoxShapeSettings;
-import jolt.physics.collision.shape.Shape;
-import jolt.physics.collision.shape.SphereShape;
-import jolt.physics.collision.shape.SubShapeIdPair;
+import jolt.physics.collision.shape.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -202,8 +199,8 @@ public final class HelloJolt {
         // However this is conditional since this is a test case.
         // Kotlin: BodyCreationSettingsDp/Sp(..., ObjectLayer)
         var floorSettings = doublePrecision
-                ? BodyCreationSettings.dp(floorShape, new JtVec3d(0.0, -1.0, 0.0), JtQuat.IDENTITY, MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
-                : BodyCreationSettings.sp(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.IDENTITY, MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
+                ? BodyCreationSettings.dp(floorShape, new JtVec3d(0.0, -1.0, 0.0), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
+                : BodyCreationSettings.sp(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
         // Create the rigid body itself - this may throw an exception if there are no bodies left
         // (as opposed to Jolt, which will return null)
         Body floor = bodyInterface.createBody(floorSettings);
@@ -212,8 +209,8 @@ public final class HelloJolt {
 
         // Shorthand version of the above, creating a dynamic sphere
         var sphereSettings = doublePrecision
-                ? BodyCreationSettings.dp(new SphereShape(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.IDENTITY, MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
-                : BodyCreationSettings.sp(new SphereShape(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.IDENTITY, MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
+                ? BodyCreationSettings.dp(new SphereShape(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
+                : BodyCreationSettings.sp(new SphereShape(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
         int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
         bodyInterface.setLinearVelocity(sphereId, new JtVec3f(0.0f, -5.0f, 0.0f));
