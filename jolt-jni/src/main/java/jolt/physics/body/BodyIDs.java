@@ -7,8 +7,8 @@ import io.github.aecsocket.jniglue.JniNative;
 import java.util.Collection;
 
 @JniNative(JoltEnvironment.JNI_MODEL)
-public final class BodyIds extends JoltNativeImpl {
-    private BodyIds() {}
+public final class BodyIDs extends JoltNativeImpl {
+    private BodyIDs() {}
 
     public static final int INVALID = 0xffffffff;
     public static final int MAX_BODY_INDEX = 0x7fffff;

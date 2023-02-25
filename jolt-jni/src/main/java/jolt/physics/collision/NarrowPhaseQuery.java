@@ -14,8 +14,8 @@ public class NarrowPhaseQuery extends JoltNativeImpl {
     protected NarrowPhaseQuery(long address) { super(address); }
     public static NarrowPhaseQuery ref(long address) { return address == 0 ? null : new NarrowPhaseQuery(address); }
 
-    public boolean getCastRaySp(RayCast3f ray, RayCastResult hit, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter) {
-        return _getCastRaySp(
+    public boolean castRaySp(RayCast3f ray, RayCastResult hit, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter) {
+        return _castRaySp0(
                 address,
                 ray.origin.x, ray.origin.y, ray.origin.z, ray.direction.x, ray.direction.y, ray.direction.z,
                 hit,
@@ -41,15 +41,15 @@ public class NarrowPhaseQuery extends JoltNativeImpl {
             THROW_WRONG_PRECISION
             return JNI_FALSE;
             #endif""")
-    private static native boolean _getCastRaySp(
+    private static native boolean _castRaySp0(
             long _a,
             float rayOriginX, float rayOriginY, float rayOriginZ, float rayDirectionX, float rayDirectionY, float rayDirectionZ,
             RayCastResult hit,
             long broadPhaseLayerFilter, long objectLayerFilter, long bodyFilter
     );
 
-    public boolean getCastRayDp(RayCast3d ray, RayCastResult hit, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter) {
-        return _getCastRayDp(
+    public boolean castRayDp(RayCast3d ray, RayCastResult hit, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter) {
+        return _castRayDp0(
                 address,
                 ray.origin.x, ray.origin.y, ray.origin.z, ray.direction.x, ray.direction.y, ray.direction.z,
                 hit,
@@ -75,15 +75,15 @@ public class NarrowPhaseQuery extends JoltNativeImpl {
             THROW_WRONG_PRECISION
             return JNI_FALSE;
             #endif""")
-    private static native boolean _getCastRayDp(
+    private static native boolean _castRayDp0(
             long _a,
             double rayOriginX, double rayOriginY, double rayOriginZ, float rayDirectionX, float rayDirectionY, float rayDirectionZ,
             RayCastResult hit,
             long broadPhaseLayerFilter, long objectLayerFilter, long bodyFilter
     );
 
-    public void collectCastRaySp(RayCast3f ray, RayCastSettings settings, CastRayCollector collector, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter, ShapeFilter shapeFilter) {
-        _collectCastRaySp(
+    public void castRaySp(RayCast3f ray, RayCastSettings settings, CastRayCollector collector, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter, ShapeFilter shapeFilter) {
+        _castRaySp1(
                 address,
                 ray.origin.x, ray.origin.y, ray.origin.z, ray.direction.x, ray.direction.y, ray.direction.z,
                 settings.backFaceMode().ordinal(), settings.treatConvexAsSolid(),
@@ -110,15 +110,15 @@ public class NarrowPhaseQuery extends JoltNativeImpl {
             #else
             THROW_WRONG_PRECISION
             #endif""")
-    private static native void _collectCastRaySp(
+    private static native void _castRaySp1(
             long _a,
             float rayOriginX, float rayOriginY, float rayOriginZ, float rayDirectionX, float rayDirectionY, float rayDirectionZ,
             int settingsBackFaceMode, boolean settingsTreatConvexAsSolid,
             long collector, long broadPhaseLayerFilter, long objectLayerFilter, long bodyFilter, long shapeFilter
     );
 
-    public void collectCastRayDp(RayCast3d ray, RayCastSettings settings, CastRayCollector collector, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter, ShapeFilter shapeFilter) {
-        _collectCastRayDp(
+    public void castRayDp(RayCast3d ray, RayCastSettings settings, CastRayCollector collector, BroadPhaseLayerFilter broadPhaseLayerFilter, ObjectLayerFilter objectLayerFilter, BodyFilter bodyFilter, ShapeFilter shapeFilter) {
+        _castRayDp1(
                 address,
                 ray.origin.x, ray.origin.y, ray.origin.z, ray.direction.x, ray.direction.y, ray.direction.z,
                 settings.backFaceMode().ordinal(), settings.treatConvexAsSolid(),
@@ -145,7 +145,7 @@ public class NarrowPhaseQuery extends JoltNativeImpl {
             #else
             THROW_WRONG_PRECISION
             #endif""")
-    private static native void _collectCastRayDp(
+    private static native void _castRayDp1(
             long _a,
             double rayOriginX, double rayOriginY, double rayOriginZ, float rayDirectionX, float rayDirectionY, float rayDirectionZ,
             int settingsBackFaceMode, boolean settingsTreatConvexAsSolid,

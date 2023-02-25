@@ -139,13 +139,13 @@ public final class HelloJolt {
         // Optional: called when bodies activate and go to sleep
         // The callbacks here must be thread safe
         var bodyActivationListener = new BodyActivationListener() {
-            // Kotlin: BodyId(bodyId)
+            // Kotlin: BodyID(bodyId)
             @Override
             public void onBodyActivated(int bodyId, long bodyUserData) {
                 System.out.println("A body got activated");
             }
 
-            // Kotlin: BodyId(bodyId)
+            // Kotlin: BodyID(bodyId)
             @Override
             public void onBodyDeactivated(int bodyId, long bodyUserData) {
                 System.out.println("A body went to sleep");
@@ -173,7 +173,7 @@ public final class HelloJolt {
             }
 
             @Override
-            public void onContactRemoved(SubShapeIdPair subShapePair) {
+            public void onContactRemoved(SubShapeIDPair subShapePair) {
                 System.out.println("A contact was removed");
             }
         };
@@ -194,13 +194,13 @@ public final class HelloJolt {
         Shape floorShape = floorShapeSettings.create();
 
         // Create the settings for the rigid body
-        // NOTE: This is precision-dependent. Use `sp` for single precision, or `dp` for double precision.
+        // NOTE: This is precision-dependent.
         // If you know for certain which precision level you are dealing with, you don't have to have a conditional call here.
         // However this is conditional since this is a test case.
-        // Kotlin: bodyCreationSettingsDp/Sp(..., ObjectLayer)
+        // Kotlin: bodyCreationSettings(..., ObjectLayer)
         var floorSettings = doublePrecision
-                ? BodyCreationSettings.dp(floorShape, new JtVec3d(0.0, -1.0, 0.0), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
-                : BodyCreationSettings.sp(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
+                ? new BodyCreationSettings(floorShape, new JtVec3d(0.0, -1.0, 0.0), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING)
+                : new BodyCreationSettings(floorShape, new JtVec3f(0.0f, -1.0f, 0.0f), JtQuat.identity(), MotionType.STATIC, OBJECT_LAYER_NON_MOVING);
         // Create the rigid body itself - this may throw an exception if there are no bodies left
         // (as opposed to Jolt, which will return null)
         Body floor = bodyInterface.createBody(floorSettings);
@@ -209,8 +209,8 @@ public final class HelloJolt {
 
         // Shorthand version of the above, creating a dynamic sphere
         var sphereSettings = doublePrecision
-                ? BodyCreationSettings.dp(new SphereShape(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
-                : BodyCreationSettings.sp(new SphereShape(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
+                ? new BodyCreationSettings(new SphereShape(0.5f), new JtVec3d(0.0, 2.0, 0.0), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING)
+                : new BodyCreationSettings(new SphereShape(0.5f), new JtVec3f(0.0f, 2.0f, 0.0f), JtQuat.identity(), MotionType.DYNAMIC, OBJECT_LAYER_MOVING);
         int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
         bodyInterface.setLinearVelocity(sphereId, new JtVec3f(0.0f, -5.0f, 0.0f));
@@ -224,7 +224,7 @@ public final class HelloJolt {
         while (bodyInterface.isActive(sphereId)) {
             ++step;
 
-            // Use Object here just so we don't tie ourselves to either JtVec3f ot JtVec3d
+            // Use Object here just so we don't tie ourselves to either JtVec3f or JtVec3d
             Object position = doublePrecision
                     ? bodyInterface.getCenterOfMassPositionDp(sphereId)
                     : bodyInterface.getCenterOfMassPositionSp(sphereId);

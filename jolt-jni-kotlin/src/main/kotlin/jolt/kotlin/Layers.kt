@@ -11,37 +11,37 @@ import jolt.physics.collision.shape.ShapeSettings
 @JvmInline
 value class ObjectLayer(val id: Short)
 
-fun bodyCreationSettingsSp(
+fun BodyCreationSettings(
     shape: ShapeSettings,
     position: JtVec3f,
     rotation: JtQuat,
     motionType: MotionType,
     objectLayer: ObjectLayer,
-) = BodyCreationSettings.sp(shape, position, rotation, motionType, objectLayer.id)
+) = BodyCreationSettings(shape, position, rotation, motionType, objectLayer.id)
 
-fun bodyCreationSettingsSp(
-    shape: Shape,
-    position: JtVec3f,
-    rotation: JtQuat,
-    motionType: MotionType,
-    objectLayer: ObjectLayer,
-) = BodyCreationSettings.sp(shape, position, rotation, motionType, objectLayer.id)
-
-fun bodyCreationSettingsDp(
+fun BodyCreationSettings(
     shape: ShapeSettings,
     position: JtVec3d,
     rotation: JtQuat,
     motionType: MotionType,
     objectLayer: ObjectLayer,
-) = BodyCreationSettings.dp(shape, position, rotation, motionType, objectLayer.id)
+) = BodyCreationSettings(shape, position, rotation, motionType, objectLayer.id)
 
-fun bodyCreationSettingsDp(
+fun BodyCreationSettings(
+    shape: Shape,
+    position: JtVec3f,
+    rotation: JtQuat,
+    motionType: MotionType,
+    objectLayer: ObjectLayer,
+) = BodyCreationSettings(shape, position, rotation, motionType, objectLayer.id)
+
+fun BodyCreationSettings(
     shape: Shape,
     position: JtVec3d,
     rotation: JtQuat,
     motionType: MotionType,
     objectLayer: ObjectLayer,
-) = BodyCreationSettings.dp(shape, position, rotation, motionType, objectLayer.id)
+) = BodyCreationSettings(shape, position, rotation, motionType, objectLayer.id)
 
 @JvmInline
 value class BroadPhaseLayer(val id: Byte)

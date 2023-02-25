@@ -13,5 +13,5 @@ import io.github.aecsocket.jniglue.JniInclude;
             result.SetValue(value);
             return result;
         }""")
-public final class SubShapeIds {
+public final class SubShapeIDs {
 }

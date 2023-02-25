@@ -7,9 +7,9 @@ import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/SubShapeIDPair.h>")
 @JniTypeMapping("SubShapeIDPair")
-public final class SubShapeIdPair extends JoltNativeImpl {
-    private SubShapeIdPair(long address) { super(address); }
-    public static SubShapeIdPair ref(long address) { return address == 0 ? null : new SubShapeIdPair(address); }
+public final class SubShapeIDPair extends JoltNativeImpl {
+    private SubShapeIDPair(long address) { super(address); }
+    public static SubShapeIDPair ref(long address) { return address == 0 ? null : new SubShapeIDPair(address); }
 
     public int getBody1Id() { return _getBody1Id(address); }
     @JniBindSelf("return self->GetBody1ID().GetIndexAndSequenceNumber();")

@@ -24,14 +24,14 @@ public sealed interface MutableBodyInterface extends BodyInterface permits BodyI
 
     MutableBody[] unassignBodyIds(int... bodyIds);
     default List<MutableBody> unassignBodyIds(Collection<Integer> bodyIds) {
-        return Arrays.asList(unassignBodyIds(BodyIds.ints(bodyIds)));
+        return Arrays.asList(unassignBodyIds(BodyIDs.ints(bodyIds)));
     }
 
     void destroyBody(int bodyId);
 
     void destroyBodies(int... bodyIds);
     default void destroyBodies(Collection<Integer> bodyIds) {
-        destroyBodies(BodyIds.ints(bodyIds));
+        destroyBodies(BodyIDs.ints(bodyIds));
     }
 
     void addBody(int bodyId, Activation activationMode);
@@ -46,13 +46,13 @@ public sealed interface MutableBodyInterface extends BodyInterface permits BodyI
 
     void activateBodies(int... bodyIds);
     default void activateBodies(Collection<Integer> bodyIds) {
-        activateBodies(BodyIds.ints(bodyIds));
+        activateBodies(BodyIDs.ints(bodyIds));
     }
 
     void deactivateBody(int bodyId);
     void deactivateBodies(int... bodyIds);
     default void deactivateBodies(Collection<Integer> bodyIds) {
-        deactivateBodies(BodyIds.ints(bodyIds));
+        deactivateBodies(BodyIDs.ints(bodyIds));
     }
 
     // TODO
