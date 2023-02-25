@@ -4,7 +4,6 @@ import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
 import jolt.math.JtVec3f;
 import jolt.physics.body.BodyActivationListener;
-import jolt.physics.body.BodyInterface;
 import jolt.physics.body.MutableBodyInterface;
 import jolt.physics.collision.ContactListener;
 import jolt.physics.collision.ObjectLayerPairFilter;

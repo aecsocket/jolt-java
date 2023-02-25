@@ -5,7 +5,6 @@ import jolt.math.JtQuat;
 import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;
 import jolt.physics.Activation;
-import jolt.physics.PhysicsSettings;
 import jolt.physics.PhysicsSystem;
 import jolt.physics.body.*;
 import jolt.physics.collision.*;

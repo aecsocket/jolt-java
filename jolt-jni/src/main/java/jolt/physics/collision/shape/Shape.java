@@ -4,21 +4,21 @@ import jolt.JoltNative;
 import jolt.geometry.AABox;
 import jolt.math.JtMat44f;
 import jolt.math.JtQuat;
-import jolt.math.JtVec3d;
 import jolt.math.JtVec3f;
 import jolt.physics.body.MassProperties;
 import jolt.physics.collision.PhysicsMaterial;
-import jolt.physics.collision.RayCast3f;
 import jolt.physics.collision.TransformedShape;
 
-public sealed interface Shape extends JoltNative permits MutableShape {
+public sealed interface Shape extends JoltNative permits CompoundShape, ConvexShape, ShapeImpl {
     static Shape ref(long address) { return address == 0 ? null : new ShapeImpl(address); }
 
     ShapeType getType();
 
     ShapeSubType getSubType();
 
-    int getUserData();
+    long getUserData();
+
+    void setUserData(long userData);
 
     boolean mustBeStatic();
 
@@ -35,9 +35,13 @@ public sealed interface Shape extends JoltNative permits MutableShape {
 
     float getInnerRadius();
 
-    MassProperties getMassProperties();
+    MassProperties getMassProperties(MassProperties out);
+    default MassProperties getMassProperties() { return getMassProperties(new MassProperties()); }
 
     PhysicsMaterial getMaterial(int subShapeId);
+
+    JtVec3f getSurfaceNormal(int subShapeId, JtVec3f localSurfacePosition, JtVec3f out);
+    default JtVec3f getSurfaceNormal(int subShapeId, JtVec3f localSurfacePosition) { return getSurfaceNormal(subShapeId, localSurfacePosition, new JtVec3f()); }
 
     // TODO getSupportingFace
 

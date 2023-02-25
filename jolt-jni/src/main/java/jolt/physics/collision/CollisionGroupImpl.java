@@ -12,15 +12,10 @@ final class CollisionGroupImpl extends JoltNativeImpl implements MutableCollisio
 
     // TODO
     @Override
-    public GroupFilter getGroupFilter() { return new GroupFilter() {}; }
-
-    @Override
     public void setGroupFilter(GroupFilter value) {}
 
     @Override
-    public int getGroupId() { return _getGroupId(address); }
-    @JniBindSelf("return self->GetGroupID();")
-    private static native int _getGroupId(long _a);
+    public GroupFilter getGroupFilter() { return new GroupFilter() {}; }
 
     @Override
     public void setGroupId(int value) { _setGroupId(address, value); }
@@ -28,14 +23,19 @@ final class CollisionGroupImpl extends JoltNativeImpl implements MutableCollisio
     private static native void _setGroupId(long _a, int value);
 
     @Override
-    public int getSubGroupId() { return _getSubGroupId(address); }
-    @JniBindSelf("return self->GetSubGroupID();")
-    private static native int _getSubGroupId(long _a);
+    public int getGroupId() { return _getGroupId(address); }
+    @JniBindSelf("return self->GetGroupID();")
+    private static native int _getGroupId(long _a);
 
     @Override
     public void setSubGroupId(int value) { _setSubGroupId(address, value); }
     @JniBindSelf("self->SetSubGroupID(value);")
     private static native void _setSubGroupId(long _a, int value);
+
+    @Override
+    public int getSubGroupId() { return _getSubGroupId(address); }
+    @JniBindSelf("return self->GetSubGroupID();")
+    private static native int _getSubGroupId(long _a);
 
     @Override
     public boolean canCollide(CollisionGroup other) { return _canCollide(address, other.getAddress()); }

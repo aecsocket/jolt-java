@@ -8,6 +8,8 @@ import jolt.physics.collision.TransformedShape;
 import jolt.physics.collision.shape.Shape;
 
 public sealed interface BodyInterface extends JoltNative permits MutableBodyInterface {
+    static BodyInterface ref(long address) { return address == 0 ? null : new BodyInterfaceImpl(address); }
+
     MutableBody createBodyWithoutId(BodyCreationSettings settings);
 
     void destroyBodyWithoutId(MutableBody body);
@@ -25,6 +27,8 @@ public sealed interface BodyInterface extends JoltNative permits MutableBodyInte
     short getObjectLayer(int bodyId);
 
     void getPositionAndRotationSp(int bodyId, JtVec3f outPosition, JtQuat outRotation);
+
+    void getPositionAndRotationDp(int bodyId, JtVec3d outPosition, JtQuat outRotation);
 
     JtVec3f getPositionSp(int bodyId, JtVec3f out);
     default JtVec3f getPositionSp(int bodyId) { return getPositionSp(bodyId, new JtVec3f()); }
@@ -52,10 +56,6 @@ public sealed interface BodyInterface extends JoltNative permits MutableBodyInte
 
     JtMat44d getCenterOfMassTransformDp(int bodyId, JtMat44d out);
     default JtMat44d getCenterOfMassTransformDp(int bodyId) { return getCenterOfMassTransformDp(bodyId, new JtMat44d()); }
-
-    //void moveKinematicSp(int bodyId, JtVec3f targetPosition, JtQuat targetRotation, float deltaTime);
-
-    //void moveKinematicDp(int bodyId, JtVec3d targetPosition, JtQuat targetRotation, float deltaTime);
 
     void getLinearAndAngularVelocity(int bodyId, JtVec3f outLinearVelocity, JtVec3f outAngularVelocity);
 

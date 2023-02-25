@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.List;
 
 public sealed interface MutableBodyInterface extends BodyInterface permits BodyInterfaceImpl {
+    static MutableBodyInterface ref(long address) { return address == 0 ? null : new BodyInterfaceImpl(address); }
+
     MutableBody createBody(BodyCreationSettings settings);
 
     MutableBody createBodyWithId(int bodyId, BodyCreationSettings settings);
@@ -58,7 +60,7 @@ public sealed interface MutableBodyInterface extends BodyInterface permits BodyI
 
     void activateConstraint(TwoBodyConstraint constraint);
 
-    void setObjectLayer(int bodyId, short objectLayer);
+    void setObjectLayer(int bodyId, short layer);
 
     void setPositionAndRotationSp(int bodyId, JtVec3f position, JtQuat rotation, Activation activationMode);
 

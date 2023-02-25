@@ -18,14 +18,8 @@ public final class JobSystemThreadPool extends JobSystem {
     private JobSystemThreadPool(long address) { super(address); }
     public static JobSystemThreadPool ref(long address) { return address == 0 ? null : new JobSystemThreadPool(address); }
 
-    @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
-    }
-    @JniBindDelete
-    private static native void _delete(long _a);
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
 
     /**
      * Creates a thread pool.

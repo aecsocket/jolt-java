@@ -14,14 +14,8 @@ public final class TempAllocatorImpl extends TempAllocator {
     private TempAllocatorImpl(long address) { super(address); }
     public static TempAllocatorImpl ref(long address) { return address == 0 ? null : new TempAllocatorImpl(address); }
 
-    @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
-    }
-    @JniBindDelete
-    private static native void _delete(long _a);
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
 
     /**
      * Constructs the allocator with a maximum allocatable size of inSize, in bytes.

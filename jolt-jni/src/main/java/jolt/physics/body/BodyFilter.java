@@ -36,14 +36,8 @@ public class BodyFilter extends JoltNativeImpl {
         return passthrough;
     }
 
-    @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
-    }
-    @JniBindDelete
-    private static native void _delete(long _a);
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
 
     public BodyFilter() { address = _ctor(); }
     @JniBind("return (jlong) new BodyFilterImpl(env, obj);")
@@ -53,9 +47,9 @@ public class BodyFilter extends JoltNativeImpl {
     @JniCallback
     private boolean _shouldCollide(int bodyId) { return shouldCollide(bodyId); }
 
-    public boolean shouldCollideLocked(BodyImpl body) { throw unimplemented(); }
+    public boolean shouldCollideLocked(Body body) { throw unimplemented(); }
     @JniCallback
-    private boolean _shouldCollideLocked(long body) { return shouldCollideLocked(BodyImpl.ref(body)); }
+    private boolean _shouldCollideLocked(long body) { return shouldCollideLocked(Body.ref(body)); }
 
     private static class Passthrough extends BodyFilter {
         @Override
@@ -67,7 +61,7 @@ public class BodyFilter extends JoltNativeImpl {
         }
 
         @Override
-        public boolean shouldCollideLocked(BodyImpl body) {
+        public boolean shouldCollideLocked(Body body) {
             return true;
         }
     }

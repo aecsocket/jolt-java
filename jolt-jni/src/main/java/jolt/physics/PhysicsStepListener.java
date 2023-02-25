@@ -21,14 +21,8 @@ public class PhysicsStepListener extends JoltNativeImpl {
     private PhysicsStepListener(long address) { super(address); }
     public static PhysicsStepListener ref(long address) { return address == 0 ? null : new PhysicsStepListener(address); }
 
-    @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
-    }
-    @JniBindDelete
-    private static native void _delete(long _a);
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
 
     public PhysicsStepListener() { address = _ctor(); }
     @JniBind("return (jlong) new PhysicsStepListenerImpl(env, obj);")

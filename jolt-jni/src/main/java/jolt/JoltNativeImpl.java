@@ -46,7 +46,7 @@ public abstract class JoltNativeImpl implements JoltNative {
     @Override
     public final long getAddress() { return address; }
 
-    protected abstract void deleteInternal();
+    protected void deleteInternal() { throw unimplemented(); }
 
     @Override
     public void delete() {

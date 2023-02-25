@@ -2,7 +2,6 @@ package jolt.physics.collision.shape;
 
 import io.github.aecsocket.jniglue.*;
 import jolt.math.JtVec3f;
-import jolt.physics.PhysicsSettings;
 
 import javax.annotation.Nullable;
 
@@ -11,6 +10,7 @@ import javax.annotation.Nullable;
 public final class BoxShapeSettings extends ConvexShapeSettings {
     private BoxShapeSettings(long address) { super(address); }
     public static BoxShapeSettings ref(long address) { return address == 0 ? null : new BoxShapeSettings(address); }
+
 
     @Override
     public void delete() {

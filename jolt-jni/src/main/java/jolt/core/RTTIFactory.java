@@ -14,14 +14,8 @@ public final class RTTIFactory extends JoltNativeImpl {
     private RTTIFactory(long address) { this.address = address; }
     public static RTTIFactory ref(long address) { return address == 0 ? null : new RTTIFactory(address); }
 
-    @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
-    }
-    @JniBindDelete
-    private static native void _delete(long _a);
+    @Override protected void deleteInternal() { _delete(address); }
+    @JniBindDelete private static native void _delete(long _a);
 
     public RTTIFactory() { address = _ctor(); }
     @JniBind("return (jlong) new Factory();")

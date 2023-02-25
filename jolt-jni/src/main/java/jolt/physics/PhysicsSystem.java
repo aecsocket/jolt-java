@@ -18,7 +18,8 @@ public sealed interface PhysicsSystem extends JoltNative permits MutablePhysicsS
 
     @Nullable ContactListener getContactListener();
 
-    PhysicsSettings getPhysicsSettings();
+    PhysicsSettings getPhysicsSettings(PhysicsSettings out);
+    default PhysicsSettings getPhysicsSettings() { return getPhysicsSettings(new PhysicsSettings()); }
 
     BodyInterface getBodyInterface();
 

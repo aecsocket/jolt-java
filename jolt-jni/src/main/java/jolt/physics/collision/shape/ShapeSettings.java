@@ -4,10 +4,11 @@ import io.github.aecsocket.jniglue.JniBindDelete;
 import io.github.aecsocket.jniglue.JniInclude;
 import io.github.aecsocket.jniglue.JniBindSelf;
 import io.github.aecsocket.jniglue.JniTypeMapping;
+import jolt.JoltNativeImpl;
 
 @JniInclude("<Jolt/Physics/Collision/Shape/Shape.h>")
 @JniTypeMapping("ShapeSettings")
-public class ShapeSettings extends ConvexShape {
+public class ShapeSettings extends JoltNativeImpl {
     protected ShapeSettings(long address) { super(address); }
     public static ShapeSettings ref(long address) { return address == 0 ? null : new ShapeSettings(address); }
 
