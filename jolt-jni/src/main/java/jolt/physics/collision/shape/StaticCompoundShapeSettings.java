@@ -1,34 +1,26 @@
 package jolt.physics.collision.shape;
 
-import io.github.aecsocket.jniglue.*;
-import jolt.core.TempAllocator;
+import jolt.math.JtVec3f;
+import jolt.physics.PhysicsSettings;
+import jolt.physics.collision.PhysicsMaterial;
 
-@JniInclude("<Jolt/Physics/Collision/Shape/StaticCompoundShape.h>")
-@JniTypeMapping("StaticCompoundShapeSettings")
-public final class StaticCompoundShapeSettings extends CompoundShapeSettings {
-    private StaticCompoundShapeSettings(long address) { super(address); }
-    public static StaticCompoundShapeSettings ref(long address) { return address == 0 ? null : new StaticCompoundShapeSettings(address); }
+import javax.annotation.Nullable;
 
-    @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
+public sealed interface BoxShape extends ConvexShape permits BoxShapeImpl {
+    static BoxShape ref(long address) { return address == 0 ? null : new BoxShapeImpl(address); }
+
+    static BoxShape create(JtVec3f halfExtent, float convexRadius, @Nullable PhysicsMaterial material) {
+        return new BoxShapeImpl(halfExtent, convexRadius, material);
     }
-    @JniBindDelete
-    private static native void _delete(long _a);
 
-    public StaticCompoundShapeSettings() { address = _ctor(); }
-    @JniBind("return (jlong) new StaticCompoundShapeSettings();")
-    private static native long _ctor();
+    static BoxShape create(JtVec3f halfExtent, float convexRadius) {
+        return new BoxShapeImpl(halfExtent, convexRadius, null);
+    }
 
-    public Shape create(TempAllocator tempAllocator) { return Shape.ref(_create(address, tempAllocator.getAddress())); }
-    @JniBindSelf("""
-            ShapeSettings::ShapeResult result = self->Create(*((TempAllocator*) tempAllocator));
-            if (result.HasError()) {
-                JniThrow(env, result.GetError().c_str());
-                return (jlong) nullptr;
-            }
-            return (jlong) result.Get().GetPtr();""")
-    private static native long _create(long _a, long tempAllocator);
+    static BoxShape create(JtVec3f halfExtent) {
+        return new BoxShapeImpl(halfExtent, PhysicsSettings.DEFAULT_CONVEX_RADIUS, null);
+    }
+
+    JtVec3f getHalfExtent(JtVec3f out);
+    default JtVec3f getHalfExtent() { return getHalfExtent(new JtVec3f()); }
 }

@@ -1,37 +1,32 @@
 package jolt.physics.collision.shape;
 
-import io.github.aecsocket.jniglue.*;
+import jolt.math.JtVec3f;
+import jolt.physics.PhysicsSettings;
+import jolt.physics.collision.PhysicsMaterial;
 
 import javax.annotation.Nullable;
 
-@JniInclude("<Jolt/Physics/Collision/Shape/SphereShape.h>")
-@JniTypeMapping("SphereShapeSettings")
-public final class SphereShapeSettings extends ConvexShapeSettings {
-    private SphereShapeSettings(long address) { super(address); }
-    public static SphereShapeSettings ref(long address) { return address == 0 ? null : new SphereShapeSettings(address); }
+public sealed interface SphereShapeSettings extends ConvexShapeSettings permits BoxShapeSettingsImpl {
+    static SphereShapeSettings ref(long address) { return address == 0 ? null : new BoxShapeSettingsImpl(address); }
 
-    @Override
-    public void delete() {
-        if (address == 0L) throw new IllegalStateException(NATIVE_OBJECT_DELETED);
-        _delete(address);
-        address = 0;
+    static SphereShapeSettings create(JtVec3f halfExtent, float convexRadius, @Nullable PhysicsMaterial material) {
+        return new BoxShapeSettingsImpl(halfExtent, convexRadius, material);
     }
-    @JniBindDelete
-    private static native void _delete(long _a);
 
-    public SphereShapeSettings(float radius, @Nullable PhysicsMaterial material) {
-        address = _ctor(radius, ptr(material));
+    static SphereShapeSettings create(JtVec3f halfExtent, float convexRadius) {
+        return new BoxShapeSettingsImpl(halfExtent, convexRadius, null);
     }
-    @JniBind("return (jlong) new SphereShapeSettings(radius, (PhysicsMaterial*) material);")
-    private static native long _ctor(float radius, long material);
 
-    public SphereShapeSettings(float radius) { this(radius, null); }
+    static SphereShapeSettings create(JtVec3f halfExtent) {
+        return new BoxShapeSettingsImpl(halfExtent, PhysicsSettings.DEFAULT_CONVEX_RADIUS, null);
+    }
 
-    public float getRadius() { return _getRadius(address); }
-    @JniBindSelf("return self->mRadius;")
-    private static native float _getRadius(long _a);
+    JtVec3f getHalfExtent(JtVec3f out);
+    default JtVec3f getHalfExtent() { return getHalfExtent(new JtVec3f()); }
 
-    public void setRadius(float value) { _setRadius(address, value); }
-    @JniBindSelf("self->mRadius = value;")
-    private static native void _setRadius(long _a, float value);
+    void setHalfExtent(JtVec3f halfExtent);
+
+    float getConvexRadius();
+
+    void setConvexRadius(float convexRadius);
 }
