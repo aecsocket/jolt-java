@@ -25,7 +25,7 @@ afterEvaluate {
                 "cmake",
                 "-S", ".",                                  // source at `JoltPhysicsC/`
                 "-B", file(nativesBuildDir).absolutePath,   // put makefiles into this project's `build/natives/`
-                "-G", nativesExt.generator.get(),           // use the platform-specific generator
+                "-G", "Ninja",           // use the platform-specific generator
                 "-DCMAKE_BUILD_TYPE=Distribution",          // release build type
             )
 
@@ -33,7 +33,7 @@ afterEvaluate {
                 exec {
                     workingDir = file(nativesBuildDir)
                     commandLine = listOf(
-                        nativesExt.generatorBinary.get(),
+                        "ninja",
                         "-j$workers"
                     )
                 }

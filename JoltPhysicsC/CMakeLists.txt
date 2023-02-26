@@ -118,7 +118,7 @@ elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR "${CMAKE_SYSTEM_NAME}" STREQU
 		# Somehow -Wcomment doesn't want to be turned off from code and we need this because Doxygen MathJax uses it
 		# Also disable -Wstringop-overflow or it will generate false positives that can't be disabled from code when link-time optimizations are enabled
 		# Also turn off automatic fused multiply add contractions, there doesn't seem to be a way to do this selectively through the macro JPH_PRECISE_MATH_OFF
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-comment -Wno-stringop-overflow -ffp-contract=off -Wno-unused-function") # JoltJava: add -Wno-unused-function
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-comment -Wno-stringop-overflow -ffp-contract=off -Wno-unused-function -Wno-unused-variable") # JoltJava: add -Wno-unused-function -Wno-unused-variable
 	else()
 		# Do not use -ffast-math since it cannot be turned off in a single compilation unit under clang, see Core.h
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffp-model=precise")
@@ -186,5 +186,6 @@ add_library(JoltJava SHARED
   ${JOLTC_PHYSICS_ROOT}/JoltPhysicsC.h
   ${JOLTC_PHYSICS_ROOT}/JoltPhysicsC_Extensions.cpp)
 target_include_directories(JoltJava PUBLIC ${PHYSICS_REPO_ROOT})
+target_link_libraries(JoltJava Jolt)
 
 # JoltJava: remove everything under the "root CMakeLists" check

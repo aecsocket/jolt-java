@@ -6,5 +6,9 @@ public final class HelloJolt {
     @Test
     public void helloJolt() {
         Jolt.load();
+
+        Jolt.registerDefaultAllocator();
+        Jolt.createFactory();
+        Jolt.registerTypes();
     }
 }

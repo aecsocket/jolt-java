@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static jolt.headers.JoltPhysicsC.*;
+
 public final class Jolt {
     private Jolt() {}
 
@@ -47,5 +49,21 @@ public final class Jolt {
         } catch (IOException ex) {
             throw new RuntimeException("Could not load native library", ex);
         }
+    }
+
+    public static void registerDefaultAllocator() {
+        JPC_RegisterDefaultAllocator();
+    }
+
+    public static void createFactory() {
+        JPC_CreateFactory();
+    }
+
+    public static void destroyFactory() {
+        JPC_DestroyFactory();
+    }
+
+    public static void registerTypes() {
+        JPC_RegisterTypes();
     }
 }
