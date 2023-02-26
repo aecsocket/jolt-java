@@ -4,12 +4,12 @@ enum class JoltBuildType(val key: String) {
     DISTRIBUTION    ("Distribution")
 }
 
-enum class JoltFlavor {
+enum class JoltBuildFlavor {
     SP,
     DP
 }
 
-enum class JoltFeature {
+enum class JoltBuildFeature {
     DOUBLE_PRECISION,
     USE_SSE4_1,
     USE_SSE4_2,
@@ -21,5 +21,5 @@ enum class JoltFeature {
     USE_F16C,
     USE_FMADD;
 
-    fun cmakeFlag() = "JOLT_JNI_$name"
+    fun cmakeFlag() = "JOLT_JAVA_$name"
 }

@@ -5,22 +5,20 @@ metadata:
 versions:
   indra: 3.0.1
   kotlin: 1.8.10
+  jextract: 0.3.1
   findBugs: 3.0.2
-  jniGlue: 1.2.2-SNAPSHOT
-  cpuFeaturesJni: 1.0.1
+  cpuFeaturesJava: 2.0.0
   jUnit: 5.9.2
 
 dependencies:
   indraCommon: { group: net.kyori, name: indra-common, version: { ref: indra } }
   indraPublishingSonatype: { group: net.kyori, name: indra-publishing-sonatype, version: { ref: indra } }
   kotlin: { group: org.jetbrains.kotlin, name: kotlin-gradle-plugin, version: { ref: kotlin } }
+  jextract: { group: gradle.plugin.io.github.krakowski, name: gradle-jextract, version: { ref: jextract } }
   findBugs: { group: com.google.code.findbugs, name: jsr305, version: { ref: findBugs } }
-  jniGlueAnnotations: { group: io.github.aecsocket, name: jni-glue-annotations, version: { ref: jniGlue } }
-  jniGlueProcessor: { group: io.github.aecsocket, name: jni-glue-processor, version: { ref: jniGlue } }
-  cpuFeaturesJni: { group: io.github.aecsocket, name: cpu-features-jni, version: { ref: cpuFeaturesJni } }
-  cpuFeaturesJniNativesLinux: { group: io.github.aecsocket, name: cpu-features-jni-natives-linux, version: { ref: cpuFeaturesJni } }
-  cpuFeaturesJniNativesWindows: { group: io.github.aecsocket, name: cpu-features-jni-natives-windows, version: { ref: cpuFeaturesJni } }
-  cpuFeaturesJniNativesMacos: { group: io.github.aecsocket, name: cpu-features-jni-natives-macos, version: { ref: cpuFeaturesJni } }
-  cpuFeaturesJniNativesMacosArm64: { group: io.github.aecsocket, name: cpu-features-jni-natives-macos-arm64, version: { ref: cpuFeaturesJni } }
+  cpuFeaturesJava: { group: io.github.aecsocket, name: cpu-features-java, version: { ref: cpuFeaturesJava } }
+  cpuFeaturesJavaNativesLinuxX86: { group: io.github.aecsocket, name: cpu-features-java-natives-linux-x86, version: { ref: cpuFeaturesJava } }
+  cpuFeaturesJavaNativesWindowsX86: { group: io.github.aecsocket, name: cpu-features-java-natives-windows-x86, version: { ref: cpuFeaturesJava } }
+  cpuFeaturesJavaNativesMacosX86: { group: io.github.aecsocket, name: cpu-features-java-natives-macos-x86, version: { ref: cpuFeaturesJava } }
   jUnitJupiterApi: { group: org.junit.jupiter, name: junit-jupiter-api, version: { ref: jUnit } }
   jUnitJupiterEngine: { group: org.junit.jupiter, name: junit-jupiter-engine, version: { ref: jUnit } }

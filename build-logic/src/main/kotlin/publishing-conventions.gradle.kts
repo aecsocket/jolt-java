@@ -11,7 +11,7 @@ signing {
 }
 
 indra {
-    github("aecsocket", "jolt-jni")
+    github("aecsocket", "jolt-java")
     mitLicense()
 
     configurePublications {

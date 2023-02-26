@@ -11,12 +11,10 @@ plugins {
     id("ca.stellardrift.polyglot-version-catalogs") version "6.0.1"
 }
 
-rootProject.name = "jolt-jni-parent"
+rootProject.name = "jolt-java"
 
-include("jolt-jni")
-include("jolt-jni-kotlin")
-include("jolt-jni-natives-linux")
-include("jolt-jni-natives-windows")
-include("jolt-jni-natives-macos")
-include("jolt-jni-natives-macos-arm64")
-include("jolt-jni-test")
+include("jolt-java-headers")
+include("jolt-java-kotlin")
+include("jolt-java-natives-linux-x86")
+include("jolt-java-natives-windows-x86")
+include("jolt-java-natives-macos-x86")

@@ -134,5 +134,5 @@ build
 **/resources/jolt/*.dll
 **/resources/jolt/*.dylib
 
-# C++
+# CMake
 cmake-build-*/

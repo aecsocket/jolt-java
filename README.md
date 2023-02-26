@@ -1,12 +1,13 @@
 <div align="center">
 
-# JoltJni
-[![License](https://img.shields.io/github/license/aecsocket/jolt-jni)](LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/aecsocket/jolt-jni/build.yml)](https://github.com/aecsocket/jolt-jni/actions/workflows/build.yml)
-![Release](https://img.shields.io/maven-central/v/io.github.aecsocket/jolt-jni?label=release)
-![Snapshot](https://img.shields.io/nexus/s/io.github.aecsocket/jolt-jni?label=snapshot&server=https%3A%2F%2Fs01.oss.sonatype.org)
+# JoltJava
+[![License](https://img.shields.io/github/license/aecsocket/jolt-java)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/aecsocket/jolt-java/build.yml)](https://github.com/aecsocket/jolt-java/actions/workflows/build.yml)
+![Release](https://img.shields.io/maven-central/v/io.github.aecsocket/jolt-java?label=release)
+![Snapshot](https://img.shields.io/nexus/s/io.github.aecsocket/jolt-java?label=snapshot&server=https%3A%2F%2Fs01.oss.sonatype.org)
 
-Java bindings for [JoltPhysics](https://github.com/jrouwe/JoltPhysics)
+Java bindings for [JoltPhysics](https://github.com/jrouwe/JoltPhysics) using
+[zig-gamedev JoltPhysicsC](https://github.com/michal-z/zig-gamedev/tree/main/libs/zphysics/libs)
 
 </div>
 
@@ -16,9 +17,9 @@ These bindings are still feature-incomplete and unstable.
 
 Features:
 - [ ] Geometry types
-  - [x] Primitives
+  - [ ] Primitives
   - [ ] Meshes
-- [x] Rigid bodies
+- [ ] Rigid bodies
 - [ ] Joints
 - [ ] Vehicles
 - [ ] Characters
@@ -26,14 +27,14 @@ Features:
 Platforms:
 - Linux (x86_64)
 - Windows (x86_64)
-- MacOS (x86_64, arm64)
+- MacOS (x86_64)
 
 Build types (change with Gradle flag `-PbuildType=` or property `buildType`):
 - `debug`
 - `release`
 - `distribution` (default)
 
-Flavors (change with Gradle flag `-Pflavor=` or property `flavor`):
+Flavors (change with Gradle flag `-PbuildFlavor=` or property `buildFlavor`):
 - `sp` (single-precision floating point, default)
 - `dp` (double-precision floating point)
 
@@ -45,15 +46,14 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.aecsocket", "jolt-jni", "VERSION")
-    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-linux", "VERSION")
-    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-windows", "VERSION")
-    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos", "VERSION")
-    runtimeOnly("io.github.aecsocket", "jolt-jni-natives-macos-arm64", "VERSION")
+    implementation("io.github.aecsocket", "jolt-java", "VERSION")
+    runtimeOnly("io.github.aecsocket", "jolt-java-natives-linux-x86", "VERSION")
+    runtimeOnly("io.github.aecsocket", "jolt-java-natives-windows-x86", "VERSION")
+    runtimeOnly("io.github.aecsocket", "jolt-java-natives-macos-x86", "VERSION")
 }
 ```
 
-Usage is very similar to JoltPhysics. See [HelloJolt.java](jolt-jni-test/src/test/java/jolt/HelloJolt.java) to get a
+Usage is very similar to JoltPhysics. See [HelloJolt.java](src/test/java/jolt/HelloJolt.java) to get a
 minimal implementation.
 
 ### Setup
@@ -72,10 +72,10 @@ JoltEnvironment.registerTypes();
 
 ## Building from source
 
-You need [Ninja](https://ninja-build.org/manual.html) installed.
+On Windows, you need [Ninja](https://ninja-build.org/manual.html) installed.
 
 ```sh
-git clone https://github.com/aecsocket/jolt-jni
-cd jolt-jni
+git clone https://github.com/aecsocket/jolt-java
+cd jolt-java
 ./gradlew build
 ```

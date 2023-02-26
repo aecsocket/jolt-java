@@ -1,5 +1,4 @@
 plugins {
-    base
     id("net.kyori.indra.publishing.sonatype")
 }
 
