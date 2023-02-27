@@ -2,27 +2,29 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_ContactManifold {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("base_offset"),
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("normal"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("penetration_depth"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("shape1_sub_shape_id"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("shape2_sub_shape_id"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("base_offset"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("normal"),
+        Constants$root.C_FLOAT$LAYOUT.withName("penetration_depth"),
+        Constants$root.C_INT$LAYOUT.withName("shape1_sub_shape_id"),
+        Constants$root.C_INT$LAYOUT.withName("shape2_sub_shape_id"),
         MemoryLayout.paddingLayout(32),
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
-            MemoryLayout.sequenceLayout(64, MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT)).withName("points")
+            MemoryLayout.sequenceLayout(64, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         ).withName("shape1_relative_contact"),
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
-            MemoryLayout.sequenceLayout(64, MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT)).withName("points")
+            MemoryLayout.sequenceLayout(64, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         ).withName("shape2_relative_contact")
     ).withName("JPC_ContactManifold");
     public static MemoryLayout $LAYOUT() {
@@ -85,9 +87,9 @@ public class JPC_ContactManifold {
     public static class shape1_relative_contact {
 
         static final  GroupLayout shape1_relative_contact$struct$LAYOUT = MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
-            MemoryLayout.sequenceLayout(64, MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT)).withName("points")
+            MemoryLayout.sequenceLayout(64, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         );
         public static MemoryLayout $LAYOUT() {
             return shape1_relative_contact.shape1_relative_contact$struct$LAYOUT;
@@ -116,7 +118,7 @@ public class JPC_ContactManifold {
         public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
             return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
     public static MemorySegment shape1_relative_contact$slice(MemorySegment seg) {
@@ -125,7 +127,7 @@ public class JPC_ContactManifold {
     public static class shape2_relative_contact {
 
         static final  GroupLayout shape2_relative_contact$struct$LAYOUT = MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
             MemoryLayout.sequenceLayout(64, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         );
@@ -156,7 +158,7 @@ public class JPC_ContactManifold {
         public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
             return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
     public static MemorySegment shape2_relative_contact$slice(MemorySegment seg) {
@@ -167,7 +169,7 @@ public class JPC_ContactManifold {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

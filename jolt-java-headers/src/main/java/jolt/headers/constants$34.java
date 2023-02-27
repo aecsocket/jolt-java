@@ -3,10 +3,19 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$34 {
 
+    static final FunctionDescriptor JPC_SphereShapeSettings_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SphereShapeSettings_GetRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_SphereShapeSettings_GetRadius",
+        constants$34.JPC_SphereShapeSettings_GetRadius$FUNC
+    );
     static final FunctionDescriptor JPC_SphereShapeSettings_SetRadius$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -50,14 +59,6 @@ class constants$34 {
     static final MethodHandle JPC_TriangleShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
         "JPC_TriangleShapeSettings_GetConvexRadius",
         constants$34.JPC_TriangleShapeSettings_GetConvexRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_TriangleShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_TriangleShapeSettings_SetConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_TriangleShapeSettings_SetConvexRadius",
-        constants$34.JPC_TriangleShapeSettings_SetConvexRadius$FUNC
     );
 }
 

@@ -3,10 +3,23 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$41 {
 
+    static final FunctionDescriptor JPC_MeshShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_Create",
+        constants$41.JPC_MeshShapeSettings_Create$FUNC
+    );
     static final FunctionDescriptor JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -42,13 +55,6 @@ class constants$41 {
     static final MethodHandle JPC_Shape_Release$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_Release",
         constants$41.JPC_Shape_Release$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetRefCount$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetRefCount",
-        constants$41.JPC_Shape_GetRefCount$FUNC
     );
 }
 

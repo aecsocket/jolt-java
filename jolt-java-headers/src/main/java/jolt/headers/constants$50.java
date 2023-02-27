@@ -3,10 +3,19 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$50 {
 
+    static final FunctionDescriptor JPC_Body_GetRestitution$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetRestitution$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetRestitution",
+        constants$50.JPC_Body_GetRestitution$FUNC
+    );
     static final FunctionDescriptor JPC_Body_SetRestitution$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -46,14 +55,6 @@ class constants$50 {
     static final MethodHandle JPC_Body_GetAngularVelocity$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetAngularVelocity",
         constants$50.JPC_Body_GetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetAnglularVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetAnglularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetAnglularVelocity",
-        constants$50.JPC_Body_SetAnglularVelocity$FUNC
     );
 }
 

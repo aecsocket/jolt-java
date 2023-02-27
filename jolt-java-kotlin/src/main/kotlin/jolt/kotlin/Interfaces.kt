@@ -1,5 +1,7 @@
 package jolt.kotlin
 
+import jolt.physics.body.BodyActivationListener
+import jolt.physics.body.BodyActivationListenerFunctions
 import jolt.physics.collision.ObjectLayerPairFilter
 import jolt.physics.collision.ObjectLayerPairFilterFunctions
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface
@@ -29,4 +31,13 @@ fun ObjectLayerPairFilter(
     shouldCollide: (layer1: ObjectLayer, layer2: ObjectLayer) -> Boolean,
 ) = ObjectLayerPairFilter.of(memory, object : ObjectLayerPairFilterFunctions {
     override fun shouldCollide(layer1: Short, layer2: Short) = shouldCollide(ObjectLayer(layer1), ObjectLayer(layer2))
+})
+
+fun BodyActivationListener(
+    memory: MemorySession,
+    onBodyActivated: (bodyId: BodyID, bodyUserData: Long) -> Unit,
+    onBodyDeactivated: (bodyId: BodyID, bodyUserData: Long) -> Unit,
+) = BodyActivationListener.of(memory, object : BodyActivationListenerFunctions {
+    override fun onBodyActivated(bodyId: Int, bodyUserData: Long) = onBodyActivated(BodyID(bodyId), bodyUserData)
+    override fun onBodyDeactivated(bodyId: Int, bodyUserData: Long) = onBodyDeactivated(BodyID(bodyId), bodyUserData)
 })

@@ -4,14 +4,15 @@ package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_ObjectLayerPairFilterVTable {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
-        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
-        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("ShouldCollide")
+        Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
+        Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
+        Constants$root.C_POINTER$LAYOUT.withName("ShouldCollide")
     ).withName("JPC_ObjectLayerPairFilterVTable");
     public static MemoryLayout $LAYOUT() {
         return JPC_ObjectLayerPairFilterVTable.$struct$LAYOUT;
@@ -48,19 +49,19 @@ public class JPC_ObjectLayerPairFilterVTable {
     public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ObjectLayerPairFilterVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final FunctionDescriptor ShouldCollide$FUNC = FunctionDescriptor.of(jolt.headers.Constants$root.C_BOOL$LAYOUT,
-        jolt.headers.Constants$root.C_POINTER$LAYOUT,
-        jolt.headers.Constants$root.C_SHORT$LAYOUT,
+    static final FunctionDescriptor ShouldCollide$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
         Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle ShouldCollide$MH = jolt.headers.RuntimeHelper.downcallHandle(
+    static final MethodHandle ShouldCollide$MH = RuntimeHelper.downcallHandle(
         JPC_ObjectLayerPairFilterVTable.ShouldCollide$FUNC
     );
     public interface ShouldCollide {
 
         boolean apply(MemoryAddress _x0, short _x1, short _x2);
         static MemorySegment allocate(ShouldCollide fi, MemorySession session) {
-            return jolt.headers.RuntimeHelper.upcallStub(ShouldCollide.class, fi, JPC_ObjectLayerPairFilterVTable.ShouldCollide$FUNC, session);
+            return RuntimeHelper.upcallStub(ShouldCollide.class, fi, JPC_ObjectLayerPairFilterVTable.ShouldCollide$FUNC, session);
         }
         static ShouldCollide ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -98,7 +99,7 @@ public class JPC_ObjectLayerPairFilterVTable {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

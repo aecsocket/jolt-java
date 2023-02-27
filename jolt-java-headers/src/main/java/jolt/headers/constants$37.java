@@ -3,10 +3,20 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$37 {
 
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_SetBottomRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_SetBottomRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_SetBottomRadius",
+        constants$37.JPC_TaperedCapsuleShapeSettings_SetBottomRadius$FUNC
+    );
     static final FunctionDescriptor JPC_CylinderShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -44,13 +54,6 @@ class constants$37 {
     static final MethodHandle JPC_CylinderShapeSettings_SetHalfHeight$MH = RuntimeHelper.downcallHandle(
         "JPC_CylinderShapeSettings_SetHalfHeight",
         constants$37.JPC_CylinderShapeSettings_SetHalfHeight$FUNC
-    );
-    static final FunctionDescriptor JPC_CylinderShapeSettings_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CylinderShapeSettings_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_CylinderShapeSettings_GetRadius",
-        constants$37.JPC_CylinderShapeSettings_GetRadius$FUNC
     );
 }
 

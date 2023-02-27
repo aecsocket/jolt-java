@@ -2,16 +2,18 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class __atomic_wide_counter {
 
     static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
-        jolt.headers.Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
+        Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__low"),
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__high")
+            Constants$root.C_INT$LAYOUT.withName("__low"),
+            Constants$root.C_INT$LAYOUT.withName("__high")
         ).withName("__value32")
     );
     public static MemoryLayout $LAYOUT() {
@@ -36,7 +38,7 @@ public class __atomic_wide_counter {
     public static class __value32 {
 
         static final  GroupLayout __value32$struct$LAYOUT = MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__low"),
+            Constants$root.C_INT$LAYOUT.withName("__low"),
             Constants$root.C_INT$LAYOUT.withName("__high")
         );
         public static MemoryLayout $LAYOUT() {
@@ -79,7 +81,7 @@ public class __atomic_wide_counter {
         public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
             return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
     public static MemorySegment __value32$slice(MemorySegment seg) {
@@ -90,7 +92,7 @@ public class __atomic_wide_counter {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

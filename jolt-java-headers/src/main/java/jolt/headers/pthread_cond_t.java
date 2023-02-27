@@ -2,7 +2,9 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class pthread_cond_t {
@@ -10,26 +12,26 @@ public class pthread_cond_t {
     static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
         MemoryLayout.structLayout(
             MemoryLayout.unionLayout(
-                jolt.headers.Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
+                Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
                 MemoryLayout.structLayout(
-                    jolt.headers.Constants$root.C_INT$LAYOUT.withName("__low"),
-                    jolt.headers.Constants$root.C_INT$LAYOUT.withName("__high")
+                    Constants$root.C_INT$LAYOUT.withName("__low"),
+                    Constants$root.C_INT$LAYOUT.withName("__high")
                 ).withName("__value32")
             ).withName("__wseq"),
             MemoryLayout.unionLayout(
-                jolt.headers.Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
+                Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
                 MemoryLayout.structLayout(
-                    jolt.headers.Constants$root.C_INT$LAYOUT.withName("__low"),
-                    jolt.headers.Constants$root.C_INT$LAYOUT.withName("__high")
+                    Constants$root.C_INT$LAYOUT.withName("__low"),
+                    Constants$root.C_INT$LAYOUT.withName("__high")
                 ).withName("__value32")
             ).withName("__g1_start"),
-            MemoryLayout.sequenceLayout(2, jolt.headers.Constants$root.C_INT$LAYOUT).withName("__g_refs"),
-            MemoryLayout.sequenceLayout(2, jolt.headers.Constants$root.C_INT$LAYOUT).withName("__g_size"),
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__g1_orig_size"),
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__wrefs"),
-            MemoryLayout.sequenceLayout(2, jolt.headers.Constants$root.C_INT$LAYOUT).withName("__g_signals")
+            MemoryLayout.sequenceLayout(2, Constants$root.C_INT$LAYOUT).withName("__g_refs"),
+            MemoryLayout.sequenceLayout(2, Constants$root.C_INT$LAYOUT).withName("__g_size"),
+            Constants$root.C_INT$LAYOUT.withName("__g1_orig_size"),
+            Constants$root.C_INT$LAYOUT.withName("__wrefs"),
+            MemoryLayout.sequenceLayout(2, Constants$root.C_INT$LAYOUT).withName("__g_signals")
         ).withName("__data"),
-        MemoryLayout.sequenceLayout(48, jolt.headers.Constants$root.C_CHAR$LAYOUT).withName("__size"),
+        MemoryLayout.sequenceLayout(48, Constants$root.C_CHAR$LAYOUT).withName("__size"),
         Constants$root.C_LONG_LONG$LAYOUT.withName("__align")
     );
     public static MemoryLayout $LAYOUT() {
@@ -62,7 +64,7 @@ public class pthread_cond_t {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

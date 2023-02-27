@@ -2,13 +2,19 @@ package jolt;
 
 import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
+import jolt.math.RVec3;
+import jolt.math.Vec3;
 import jolt.physics.PhysicsSystem;
-import jolt.physics.collision.ObjectLayerPairFilter;
-import jolt.physics.collision.ObjectLayerPairFilterFunctions;
+import jolt.physics.body.BodyActivationListener;
+import jolt.physics.body.BodyActivationListenerFunctions;
+import jolt.physics.body.BodyInterface;
+import jolt.physics.collision.*;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterfaceFunctions;
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilterFunctions;
+import jolt.physics.collision.shape.BoxShapeSettings;
+import jolt.physics.collision.shape.Shape;
 import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.MemorySession;
@@ -74,7 +80,7 @@ public final class HelloJolt {
                 }
             });
 
-            var physicsSystem = new PhysicsSystem(
+            var physicsSystem = PhysicsSystem.create(
                     1024,
                     0,
                     1024,
@@ -83,6 +89,50 @@ public final class HelloJolt {
                     objBpLayerFilter,
                     objLayerPairFilter
             );
+
+            var bodyActivationListener = BodyActivationListener.of(memory, new BodyActivationListenerFunctions() {
+                @Override
+                public void onBodyActivated(int bodyId, long bodyUserData) {
+                    System.out.println("A body got activated");
+                }
+
+                @Override
+                public void onBodyDeactivated(int bodyId, long bodyUserData) {
+                    System.out.println("A body went to sleep");
+                }
+            });
+            physicsSystem.setBodyActivationListener(bodyActivationListener);
+
+            var contactListener = ContactListener.of(memory, new ContactListenerFunctions() {
+                @Override
+                public ValidateResult onContactValidate(int body1, int body2, RVec3 baseOffset, CollideShapeResult collisionResult) {
+                    System.out.println("Contact validate callback");
+                    return ValidateResult.ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR;
+                }
+
+                @Override
+                public void onContactAdded(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                    System.out.println("A contact was added");
+                }
+
+                @Override
+                public void onContactPersisted(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                    System.out.println("A contact was persisted");
+                }
+
+                @Override
+                public void onContactRemoved(int subShapeIdPair) {
+                    System.out.println("A contact was removed");
+                }
+            });
+            physicsSystem.setContactListener(contactListener);
+
+            BodyInterface bodyInterface = physicsSystem.getBodyInterface();
+
+            var floorShapeSettings = BoxShapeSettings.create(new Vec3(100.0f, 1.0f, 100.0f));
+            Shape floorShape = floorShapeSettings.create();
+
+            // TODO
 
             // Clean up memory
             physicsSystem.delete();

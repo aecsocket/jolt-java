@@ -3,10 +3,20 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$39 {
 
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius",
+        constants$39.JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC
+    );
     static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -45,14 +55,6 @@ class constants$39 {
     static final MethodHandle JPC_HeightFieldShapeSettings_SetOffset$MH = RuntimeHelper.downcallHandle(
         "JPC_HeightFieldShapeSettings_SetOffset",
         constants$39.JPC_HeightFieldShapeSettings_SetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetScale",
-        constants$39.JPC_HeightFieldShapeSettings_GetScale$FUNC
     );
 }
 

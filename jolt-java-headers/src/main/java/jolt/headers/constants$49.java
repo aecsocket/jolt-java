@@ -3,10 +3,19 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$49 {
 
+    static final FunctionDescriptor JPC_Body_GetCollisionGroup$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetCollisionGroup$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetCollisionGroup",
+        constants$49.JPC_Body_GetCollisionGroup$FUNC
+    );
     static final FunctionDescriptor JPC_Body_SetCollisionGroup$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -44,13 +53,6 @@ class constants$49 {
     static final MethodHandle JPC_Body_SetFriction$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_SetFriction",
         constants$49.JPC_Body_SetFriction$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetRestitution$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetRestitution$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetRestitution",
-        constants$49.JPC_Body_GetRestitution$FUNC
     );
 }
 

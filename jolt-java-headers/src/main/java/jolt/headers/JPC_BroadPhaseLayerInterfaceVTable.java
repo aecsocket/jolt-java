@@ -4,15 +4,16 @@ package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_BroadPhaseLayerInterfaceVTable {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
-        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
-        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("GetNumBroadPhaseLayers"),
-        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("GetBroadPhaseLayer")
+        Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
+        Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
+        Constants$root.C_POINTER$LAYOUT.withName("GetNumBroadPhaseLayers"),
+        Constants$root.C_POINTER$LAYOUT.withName("GetBroadPhaseLayer")
     ).withName("JPC_BroadPhaseLayerInterfaceVTable");
     public static MemoryLayout $LAYOUT() {
         return JPC_BroadPhaseLayerInterfaceVTable.$struct$LAYOUT;
@@ -49,17 +50,17 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
     public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final FunctionDescriptor GetNumBroadPhaseLayers$FUNC = FunctionDescriptor.of(jolt.headers.Constants$root.C_INT$LAYOUT,
-        jolt.headers.Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor GetNumBroadPhaseLayers$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle GetNumBroadPhaseLayers$MH = jolt.headers.RuntimeHelper.downcallHandle(
+    static final MethodHandle GetNumBroadPhaseLayers$MH = RuntimeHelper.downcallHandle(
         JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$FUNC
     );
     public interface GetNumBroadPhaseLayers {
 
         int apply(MemoryAddress _x0);
         static MemorySegment allocate(GetNumBroadPhaseLayers fi, MemorySession session) {
-            return jolt.headers.RuntimeHelper.upcallStub(GetNumBroadPhaseLayers.class, fi, JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$FUNC, session);
+            return RuntimeHelper.upcallStub(GetNumBroadPhaseLayers.class, fi, JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$FUNC, session);
         }
         static GetNumBroadPhaseLayers ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -92,18 +93,18 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
     public static GetNumBroadPhaseLayers GetNumBroadPhaseLayers (MemorySegment segment, MemorySession session) {
         return GetNumBroadPhaseLayers.ofAddress(GetNumBroadPhaseLayers$get(segment), session);
     }
-    static final FunctionDescriptor GetBroadPhaseLayer$FUNC = FunctionDescriptor.of(jolt.headers.Constants$root.C_CHAR$LAYOUT,
-        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor GetBroadPhaseLayer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle GetBroadPhaseLayer$MH = jolt.headers.RuntimeHelper.downcallHandle(
+    static final MethodHandle GetBroadPhaseLayer$MH = RuntimeHelper.downcallHandle(
         JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$FUNC
     );
     public interface GetBroadPhaseLayer {
 
         byte apply(MemoryAddress _x0, short _x1);
         static MemorySegment allocate(GetBroadPhaseLayer fi, MemorySession session) {
-            return jolt.headers.RuntimeHelper.upcallStub(GetBroadPhaseLayer.class, fi, JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$FUNC, session);
+            return RuntimeHelper.upcallStub(GetBroadPhaseLayer.class, fi, JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$FUNC, session);
         }
         static GetBroadPhaseLayer ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -141,7 +142,7 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

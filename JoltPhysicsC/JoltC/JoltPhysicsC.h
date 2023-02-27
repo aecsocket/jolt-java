@@ -867,7 +867,10 @@ JPC_ConvexShapeSettings_SetDensity(JPC_ConvexShapeSettings *in_settings, float i
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_BoxShapeSettings *
-JPC_BoxShapeSettings_Create(const float in_half_extent[3]);
+JPC_BoxShapeSettings_Create0(const float in_half_extent[3], const float in_convex_radius);
+
+JPC_API JPC_BoxShapeSettings *
+JPC_BoxShapeSettings_Create1(const float in_half_extent[3]);
 
 JPC_API void
 JPC_BoxShapeSettings_GetHalfExtent(const JPC_BoxShapeSettings *in_settings, float out_half_extent[3]);
@@ -1381,7 +1384,35 @@ JPC_BodyID_IsInvalid(JPC_BodyID in_body_id);
 }
 #endif
 
-// JoltJava: structs for Java
+// JoltJava: Java support
 struct JPJ_BroadPhaseLayerInterface {
-    const JPC_BroadPhaseLayerInterfaceVTable *vtable;
+    const JPC_BroadPhaseLayerInterfaceVTable* vtable;
+};
+
+struct JPJ_ObjectVsBroadPhaseLayerFilter {
+    const JPC_ObjectVsBroadPhaseLayerFilterVTable* vtable;
+};
+
+struct JPJ_BroadPhaseLayerFilter {
+    const JPC_BroadPhaseLayerFilterVTable* vtable;
+};
+
+struct JPJ_ObjectLayerPairFilter {
+    const JPC_ObjectLayerPairFilterVTable* vtable;
+};
+
+struct JPJ_ObjectLayerFilter {
+    const JPC_ObjectLayerFilterVTable* vtable;
+};
+
+struct JPJ_BodyActivationListener {
+    const JPC_BodyActivationListenerVTable* vtable;
+};
+
+struct JPJ_BodyFilter {
+    const JPC_BodyFilterVTable* vtable;
+};
+
+struct JPJ_ContactListener {
+    const JPC_ContactListenerVTable* vtable;
 };

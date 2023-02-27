@@ -2,19 +2,22 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 public interface __compar_fn_t {
 
     int apply(MemoryAddress _x0, MemoryAddress _x1);
     static MemorySegment allocate(__compar_fn_t fi, MemorySession session) {
-        return jolt.headers.RuntimeHelper.upcallStub(__compar_fn_t.class, fi, jolt.headers.constants$14.__compar_fn_t$FUNC, session);
+        return RuntimeHelper.upcallStub(__compar_fn_t.class, fi, constants$14.__compar_fn_t$FUNC, session);
     }
     static __compar_fn_t ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (MemoryAddress __x0, MemoryAddress __x1) -> {
             try {
-                return (int) jolt.headers.constants$14.__compar_fn_t$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1);
+                return (int)constants$14.__compar_fn_t$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

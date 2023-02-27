@@ -3,10 +3,21 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$54 {
 
+    static final FunctionDescriptor JPC_Body_GetWorldTransform$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetWorldTransform$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetWorldTransform",
+        constants$54.JPC_Body_GetWorldTransform$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetCenterOfMassPosition$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -48,13 +59,6 @@ class constants$54 {
     static final MethodHandle JPC_Body_GetMotionProperties$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetMotionProperties",
         constants$54.JPC_Body_GetMotionProperties$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetUserData",
-        constants$54.JPC_Body_GetUserData$FUNC
     );
 }
 

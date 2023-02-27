@@ -2,21 +2,23 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class __pthread_mutex_s {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__lock"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__count"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__owner"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__nusers"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__kind"),
-        jolt.headers.Constants$root.C_SHORT$LAYOUT.withName("__spins"),
-        jolt.headers.Constants$root.C_SHORT$LAYOUT.withName("__elision"),
+        Constants$root.C_INT$LAYOUT.withName("__lock"),
+        Constants$root.C_INT$LAYOUT.withName("__count"),
+        Constants$root.C_INT$LAYOUT.withName("__owner"),
+        Constants$root.C_INT$LAYOUT.withName("__nusers"),
+        Constants$root.C_INT$LAYOUT.withName("__kind"),
+        Constants$root.C_SHORT$LAYOUT.withName("__spins"),
+        Constants$root.C_SHORT$LAYOUT.withName("__elision"),
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__prev"),
+            Constants$root.C_POINTER$LAYOUT.withName("__prev"),
             Constants$root.C_POINTER$LAYOUT.withName("__next")
         ).withName("__list")
     ).withName("__pthread_mutex_s");
@@ -143,7 +145,7 @@ public class __pthread_mutex_s {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

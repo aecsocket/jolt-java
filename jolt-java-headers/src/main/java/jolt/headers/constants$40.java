@@ -3,10 +3,20 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$40 {
 
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetScale",
+        constants$40.JPC_HeightFieldShapeSettings_GetScale$FUNC
+    );
     static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetScale$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -44,17 +54,6 @@ class constants$40 {
     static final MethodHandle JPC_HeightFieldShapeSettings_SetBitsPerSample$MH = RuntimeHelper.downcallHandle(
         "JPC_HeightFieldShapeSettings_SetBitsPerSample",
         constants$40.JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC
-    );
-    static final FunctionDescriptor JPC_MeshShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_Create",
-        constants$40.JPC_MeshShapeSettings_Create$FUNC
     );
 }
 

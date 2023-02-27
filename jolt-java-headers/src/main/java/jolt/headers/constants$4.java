@@ -3,8 +3,10 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$4 {
 
     static final FunctionDescriptor srandom$FUNC = FunctionDescriptor.ofVoid(

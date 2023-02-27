@@ -2,13 +2,15 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_MassProperties {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("mass"),
+        Constants$root.C_FLOAT$LAYOUT.withName("mass"),
         MemoryLayout.paddingLayout(96),
         MemoryLayout.sequenceLayout(16, Constants$root.C_FLOAT$LAYOUT).withName("inertia")
     ).withName("JPC_MassProperties");
@@ -39,7 +41,7 @@ public class JPC_MassProperties {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

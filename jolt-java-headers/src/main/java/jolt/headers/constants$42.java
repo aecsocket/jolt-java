@@ -3,10 +3,19 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$42 {
 
+    static final FunctionDescriptor JPC_Shape_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetRefCount$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetRefCount",
+        constants$42.JPC_Shape_GetRefCount$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -43,14 +52,6 @@ class constants$42 {
     static final MethodHandle JPC_BodyInterface_CreateBody$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_CreateBody",
         constants$42.JPC_BodyInterface_CreateBody$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_DestroyBody$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_DestroyBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_DestroyBody",
-        constants$42.JPC_BodyInterface_DestroyBody$FUNC
     );
 }
 

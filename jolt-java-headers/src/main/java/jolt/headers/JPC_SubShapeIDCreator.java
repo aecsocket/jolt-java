@@ -2,13 +2,15 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_SubShapeIDCreator {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("id"),
+        Constants$root.C_INT$LAYOUT.withName("id"),
         Constants$root.C_INT$LAYOUT.withName("current_bit")
     ).withName("JPC_SubShapeIDCreator");
     public static MemoryLayout $LAYOUT() {
@@ -51,7 +53,7 @@ public class JPC_SubShapeIDCreator {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

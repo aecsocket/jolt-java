@@ -3,10 +3,20 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$51 {
 
+    static final FunctionDescriptor JPC_Body_SetAnglularVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetAnglularVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetAnglularVelocity",
+        constants$51.JPC_Body_SetAnglularVelocity$FUNC
+    );
     static final FunctionDescriptor JPC_Body_SetAnglularVelocityClamped$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -49,14 +59,6 @@ class constants$51 {
     static final MethodHandle JPC_Body_AddForceAtPosition$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_AddForceAtPosition",
         constants$51.JPC_Body_AddForceAtPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_AddTorque$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_AddTorque$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddTorque",
-        constants$51.JPC_Body_AddTorque$FUNC
     );
 }
 

@@ -2,19 +2,21 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_SubShapeIDPair {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("body_id"),
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
+            Constants$root.C_INT$LAYOUT.withName("body_id"),
+            Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
         ).withName("first"),
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("body_id"),
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
+            Constants$root.C_INT$LAYOUT.withName("body_id"),
+            Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
         ).withName("second")
     ).withName("JPC_SubShapeIDPair");
     public static MemoryLayout $LAYOUT() {
@@ -23,8 +25,8 @@ public class JPC_SubShapeIDPair {
     public static class first {
 
         static final  GroupLayout first$struct$LAYOUT = MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("body_id"),
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
+            Constants$root.C_INT$LAYOUT.withName("body_id"),
+            Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
         );
         public static MemoryLayout $LAYOUT() {
             return first.first$struct$LAYOUT;
@@ -66,7 +68,7 @@ public class JPC_SubShapeIDPair {
         public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
             return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
     public static MemorySegment first$slice(MemorySegment seg) {
@@ -75,7 +77,7 @@ public class JPC_SubShapeIDPair {
     public static class second {
 
         static final  GroupLayout second$struct$LAYOUT = MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("body_id"),
+            Constants$root.C_INT$LAYOUT.withName("body_id"),
             Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
         );
         public static MemoryLayout $LAYOUT() {
@@ -118,7 +120,7 @@ public class JPC_SubShapeIDPair {
         public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
             return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
     public static MemorySegment second$slice(MemorySegment seg) {
@@ -129,7 +131,7 @@ public class JPC_SubShapeIDPair {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

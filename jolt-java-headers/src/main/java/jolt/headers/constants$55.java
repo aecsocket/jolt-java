@@ -3,10 +3,19 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$55 {
 
+    static final FunctionDescriptor JPC_Body_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetUserData",
+        constants$55.JPC_Body_GetUserData$FUNC
+    );
     static final FunctionDescriptor JPC_Body_SetUserData$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
@@ -46,7 +55,6 @@ class constants$55 {
         "JPC_BodyID_IsInvalid",
         constants$55.JPC_BodyID_IsInvalid$FUNC
     );
-    static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
 }
 
 

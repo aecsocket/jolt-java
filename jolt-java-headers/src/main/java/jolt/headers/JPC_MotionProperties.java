@@ -2,28 +2,30 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_MotionProperties {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("linear_velocity"),
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("angular_velocity"),
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("inv_inertia_diagnonal"),
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("inertia_rotation"),
-        MemoryLayout.sequenceLayout(3, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("force"),
-        MemoryLayout.sequenceLayout(3, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("torque"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("inv_mass"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("linear_damping"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("angular_daming"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("max_linear_velocity"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("max_angular_velocity"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("gravity_factor"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("index_in_active_bodies"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("island_index"),
-        jolt.headers.Constants$root.C_CHAR$LAYOUT.withName("motion_quality"),
-        jolt.headers.Constants$root.C_BOOL$LAYOUT.withName("allow_sleeping"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("linear_velocity"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("angular_velocity"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("inv_inertia_diagnonal"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("inertia_rotation"),
+        MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("force"),
+        MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("torque"),
+        Constants$root.C_FLOAT$LAYOUT.withName("inv_mass"),
+        Constants$root.C_FLOAT$LAYOUT.withName("linear_damping"),
+        Constants$root.C_FLOAT$LAYOUT.withName("angular_daming"),
+        Constants$root.C_FLOAT$LAYOUT.withName("max_linear_velocity"),
+        Constants$root.C_FLOAT$LAYOUT.withName("max_angular_velocity"),
+        Constants$root.C_FLOAT$LAYOUT.withName("gravity_factor"),
+        Constants$root.C_INT$LAYOUT.withName("index_in_active_bodies"),
+        Constants$root.C_INT$LAYOUT.withName("island_index"),
+        Constants$root.C_CHAR$LAYOUT.withName("motion_quality"),
+        Constants$root.C_BOOL$LAYOUT.withName("allow_sleeping"),
         MemoryLayout.paddingLayout(16),
         MemoryLayout.sequenceLayout(52, Constants$root.C_CHAR$LAYOUT).withName("reserved")
     ).withName("JPC_MotionProperties");
@@ -216,7 +218,7 @@ public class JPC_MotionProperties {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

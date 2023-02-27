@@ -828,7 +828,15 @@ JPC_ConvexShapeSettings_SetDensity(JPC_ConvexShapeSettings *in_settings, float i
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_BoxShapeSettings *
-JPC_BoxShapeSettings_Create(const float in_half_extent[3])
+JPC_BoxShapeSettings_Create0(const float in_half_extent[3], const float in_convex_radius)
+{
+    auto settings = new JPH::BoxShapeSettings(loadVec3(in_half_extent), in_convex_radius);
+    settings->AddRef();
+    return toJpc(settings);
+}
+
+JPC_API JPC_BoxShapeSettings *
+JPC_BoxShapeSettings_Create1(const float in_half_extent[3])
 {
     auto settings = new JPH::BoxShapeSettings(loadVec3(in_half_extent));
     settings->AddRef();

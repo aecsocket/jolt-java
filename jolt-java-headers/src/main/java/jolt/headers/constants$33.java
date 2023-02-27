@@ -3,10 +3,19 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$33 {
 
+    static final FunctionDescriptor JPC_BoxShapeSettings_Create1$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BoxShapeSettings_Create1$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShapeSettings_Create1",
+        constants$33.JPC_BoxShapeSettings_Create1$FUNC
+    );
     static final FunctionDescriptor JPC_BoxShapeSettings_GetHalfExtent$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -44,13 +53,6 @@ class constants$33 {
     static final MethodHandle JPC_SphereShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_SphereShapeSettings_Create",
         constants$33.JPC_SphereShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_SphereShapeSettings_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShapeSettings_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShapeSettings_GetRadius",
-        constants$33.JPC_SphereShapeSettings_GetRadius$FUNC
     );
 }
 

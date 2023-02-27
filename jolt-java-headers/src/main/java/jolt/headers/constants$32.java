@@ -3,8 +3,10 @@
 package jolt.headers;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
-
+import static java.lang.foreign.ValueLayout.*;
 class constants$32 {
 
     static final FunctionDescriptor JPC_ShapeSettings_SetUserData$FUNC = FunctionDescriptor.ofVoid(
@@ -45,12 +47,13 @@ class constants$32 {
         "JPC_ConvexShapeSettings_SetDensity",
         constants$32.JPC_ConvexShapeSettings_SetDensity$FUNC
     );
-    static final FunctionDescriptor JPC_BoxShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor JPC_BoxShapeSettings_Create0$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_BoxShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShapeSettings_Create",
-        constants$32.JPC_BoxShapeSettings_Create$FUNC
+    static final MethodHandle JPC_BoxShapeSettings_Create0$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShapeSettings_Create0",
+        constants$32.JPC_BoxShapeSettings_Create0$FUNC
     );
 }
 

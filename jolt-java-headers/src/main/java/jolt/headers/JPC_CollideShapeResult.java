@@ -2,28 +2,30 @@
 
 package jolt.headers;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public class JPC_CollideShapeResult {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("shape1_contact_point"),
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("shape2_contact_point"),
-        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("penetration_axis"),
-        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("penetration_depth"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("shape1_sub_shape_id"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("shape2_sub_shape_id"),
-        jolt.headers.Constants$root.C_INT$LAYOUT.withName("body2_id"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape1_contact_point"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape2_contact_point"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("penetration_axis"),
+        Constants$root.C_FLOAT$LAYOUT.withName("penetration_depth"),
+        Constants$root.C_INT$LAYOUT.withName("shape1_sub_shape_id"),
+        Constants$root.C_INT$LAYOUT.withName("shape2_sub_shape_id"),
+        Constants$root.C_INT$LAYOUT.withName("body2_id"),
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
-            MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT)).withName("points")
+            MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         ).withName("shape1_face"),
         MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
-            MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT)).withName("points")
+            MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         ).withName("shape2_face")
     ).withName("JPC_CollideShapeResult");
     public static MemoryLayout $LAYOUT() {
@@ -105,9 +107,9 @@ public class JPC_CollideShapeResult {
     public static class shape1_face {
 
         static final  GroupLayout shape1_face$struct$LAYOUT = MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
-            MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT)).withName("points")
+            MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         );
         public static MemoryLayout $LAYOUT() {
             return shape1_face.shape1_face$struct$LAYOUT;
@@ -136,7 +138,7 @@ public class JPC_CollideShapeResult {
         public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
             return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
     public static MemorySegment shape1_face$slice(MemorySegment seg) {
@@ -145,7 +147,7 @@ public class JPC_CollideShapeResult {
     public static class shape2_face {
 
         static final  GroupLayout shape2_face$struct$LAYOUT = MemoryLayout.structLayout(
-            jolt.headers.Constants$root.C_INT$LAYOUT.withName("num_points"),
+            Constants$root.C_INT$LAYOUT.withName("num_points"),
             MemoryLayout.paddingLayout(96),
             MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
         );
@@ -176,7 +178,7 @@ public class JPC_CollideShapeResult {
         public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
             return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
     public static MemorySegment shape2_face$slice(MemorySegment seg) {
@@ -187,7 +189,7 @@ public class JPC_CollideShapeResult {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 
