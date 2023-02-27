@@ -2,15 +2,14 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class JPC_BodyLockRead {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("lock_interface"),
-        Constants$root.C_POINTER$LAYOUT.withName("mutex"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("lock_interface"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("mutex"),
         Constants$root.C_POINTER$LAYOUT.withName("body")
     ).withName("JPC_BodyLockRead");
     public static MemoryLayout $LAYOUT() {
@@ -69,7 +68,7 @@ public class JPC_BodyLockRead {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

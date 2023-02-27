@@ -1380,3 +1380,8 @@ JPC_BodyID_IsInvalid(JPC_BodyID in_body_id);
 #ifdef __cplusplus
 }
 #endif
+
+// JoltJava: structs for Java
+struct JPJ_BroadPhaseLayerInterface {
+    const JPC_BroadPhaseLayerInterfaceVTable *vtable;
+};

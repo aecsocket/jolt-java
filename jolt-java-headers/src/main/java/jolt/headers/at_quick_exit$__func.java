@@ -2,22 +2,19 @@
 
 package jolt.headers;
 
-import java.lang.foreign.Addressable;
-import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.MemorySession;
+import java.lang.foreign.*;
 
 public interface at_quick_exit$__func {
 
     void apply();
     static MemorySegment allocate(at_quick_exit$__func fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(at_quick_exit$__func.class, fi, constants$11.at_quick_exit$__func$FUNC, session);
+        return jolt.headers.RuntimeHelper.upcallStub(at_quick_exit$__func.class, fi, jolt.headers.constants$11.at_quick_exit$__func$FUNC, session);
     }
     static at_quick_exit$__func ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$11.at_quick_exit$__func$MH.invokeExact((Addressable)symbol);
+                jolt.headers.constants$11.at_quick_exit$__func$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
 project(JoltJava CXX)
 
+# JoltJava: for JetBrains Fleet
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # When turning this option on, the library will be compiled using doubles for positions. This allows for much bigger worlds.
 option(DOUBLE_PRECISION "Use double precision math" OFF)
 
@@ -180,12 +183,12 @@ if (IOS)
 endif()
 
 # JoltJava: source JoltPhysicsC
-set(JOLTC_PHYSICS_ROOT ${PHYSICS_REPO_ROOT}/JoltC)
-add_library(JoltJava SHARED
-  ${JOLTC_PHYSICS_ROOT}/JoltPhysicsC.cpp
-  ${JOLTC_PHYSICS_ROOT}/JoltPhysicsC.h
-  ${JOLTC_PHYSICS_ROOT}/JoltPhysicsC_Extensions.cpp)
-target_include_directories(JoltJava PUBLIC ${PHYSICS_REPO_ROOT})
-target_link_libraries(JoltJava Jolt)
+set(JOLTC_ROOT ${PHYSICS_REPO_ROOT}/JoltC)
+add_library(JoltC SHARED
+  ${JOLTC_ROOT}/JoltPhysicsC.cpp
+  ${JOLTC_ROOT}/JoltPhysicsC.h
+  ${JOLTC_ROOT}/JoltPhysicsC_Extensions.cpp)
+target_include_directories(JoltC PUBLIC ${PHYSICS_REPO_ROOT})
+target_link_libraries(JoltC Jolt)
 
 # JoltJava: remove everything under the "root CMakeLists" check

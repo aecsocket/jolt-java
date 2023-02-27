@@ -2,10 +2,9 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class random_data {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(

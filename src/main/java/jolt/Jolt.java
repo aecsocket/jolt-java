@@ -27,15 +27,15 @@ public final class Jolt {
         CpuArchitecture arch = CpuArchitecture.get();
         String resourcePath = "jolt/" + switch (platform) {
             case LINUX -> switch (arch) {
-                case X86 -> "linux_x86/libJoltJava.so";
+                case X86 -> "linux_x86/libJoltC.so";
                 default -> throw new RuntimeException("Invalid architecture " + arch + " for Linux");
             };
             case WINDOWS -> switch (arch) {
-                case X86 -> "windows_x86/libJoltJava.dll";
+                case X86 -> "windows_x86/libJoltC.dll";
                 default -> throw new RuntimeException("Invalid architecture " + arch + " for Windows");
             };
             case MACOS -> switch (arch) {
-                case X86 -> "macos_x86/libJoltJava.dylib";
+                case X86 -> "macos_x86/libJoltC.dylib";
                 default -> throw new RuntimeException("Invalid architecture " + arch + " for MacOS");
             };
         };

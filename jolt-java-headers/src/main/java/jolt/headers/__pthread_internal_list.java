@@ -2,14 +2,13 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class __pthread_internal_list {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("__prev"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__prev"),
         Constants$root.C_POINTER$LAYOUT.withName("__next")
     ).withName("__pthread_internal_list");
     public static MemoryLayout $LAYOUT() {
@@ -52,7 +51,7 @@ public class __pthread_internal_list {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

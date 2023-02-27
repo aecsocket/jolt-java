@@ -2,20 +2,19 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class JPC_TransformedShape {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_position_com"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_rotation"),
-        Constants$root.C_POINTER$LAYOUT.withName("shape"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("shape_scale"),
-        Constants$root.C_INT$LAYOUT.withName("body_id"),
+        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("shape_position_com"),
+        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("shape_rotation"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("shape"),
+        MemoryLayout.sequenceLayout(3, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("shape_scale"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("body_id"),
         MemoryLayout.structLayout(
-            Constants$root.C_INT$LAYOUT.withName("id"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("id"),
             Constants$root.C_INT$LAYOUT.withName("current_bit")
         ).withName("sub_shape_id_creator")
     ).withName("JPC_TransformedShape");
@@ -71,7 +70,7 @@ public class JPC_TransformedShape {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

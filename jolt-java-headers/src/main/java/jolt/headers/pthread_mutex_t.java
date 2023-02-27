@@ -2,27 +2,26 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class pthread_mutex_t {
 
     static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
         MemoryLayout.structLayout(
-            Constants$root.C_INT$LAYOUT.withName("__lock"),
-            Constants$root.C_INT$LAYOUT.withName("__count"),
-            Constants$root.C_INT$LAYOUT.withName("__owner"),
-            Constants$root.C_INT$LAYOUT.withName("__nusers"),
-            Constants$root.C_INT$LAYOUT.withName("__kind"),
-            Constants$root.C_SHORT$LAYOUT.withName("__spins"),
-            Constants$root.C_SHORT$LAYOUT.withName("__elision"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__lock"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__count"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__owner"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__nusers"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("__kind"),
+            jolt.headers.Constants$root.C_SHORT$LAYOUT.withName("__spins"),
+            jolt.headers.Constants$root.C_SHORT$LAYOUT.withName("__elision"),
             MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("__prev"),
-                Constants$root.C_POINTER$LAYOUT.withName("__next")
+                jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__prev"),
+                jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__next")
             ).withName("__list")
         ).withName("__data"),
-        MemoryLayout.sequenceLayout(40, Constants$root.C_CHAR$LAYOUT).withName("__size"),
+        MemoryLayout.sequenceLayout(40, jolt.headers.Constants$root.C_CHAR$LAYOUT).withName("__size"),
         Constants$root.C_LONG_LONG$LAYOUT.withName("__align")
     );
     public static MemoryLayout $LAYOUT() {
@@ -55,7 +54,7 @@ public class pthread_mutex_t {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

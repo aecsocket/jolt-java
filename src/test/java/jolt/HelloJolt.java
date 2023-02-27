@@ -74,19 +74,18 @@ public final class HelloJolt {
                 }
             });
 
-//            var physicsSystem = new PhysicsSystem(
-//                    1024,
-//                    0,
-//                    1024,
-//                    1024,
-//                    bpLayerInterface,
-//                    objBpLayerFilter,
-//                    objLayerPairFilter
-//            );
-
+            var physicsSystem = new PhysicsSystem(
+                    1024,
+                    0,
+                    1024,
+                    1024,
+                    bpLayerInterface,
+                    objBpLayerFilter,
+                    objLayerPairFilter
+            );
 
             // Clean up memory
-            //physicsSystem.delete();
+            physicsSystem.delete();
 
             objLayerPairFilter.delete();
             objBpLayerFilter.delete();

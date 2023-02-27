@@ -2,24 +2,23 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class __pthread_rwlock_arch_t {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_INT$LAYOUT.withName("__readers"),
-        Constants$root.C_INT$LAYOUT.withName("__writers"),
-        Constants$root.C_INT$LAYOUT.withName("__wrphase_futex"),
-        Constants$root.C_INT$LAYOUT.withName("__writers_futex"),
-        Constants$root.C_INT$LAYOUT.withName("__pad3"),
-        Constants$root.C_INT$LAYOUT.withName("__pad4"),
-        Constants$root.C_INT$LAYOUT.withName("__cur_writer"),
-        Constants$root.C_INT$LAYOUT.withName("__shared"),
-        Constants$root.C_CHAR$LAYOUT.withName("__rwelision"),
-        MemoryLayout.sequenceLayout(7, Constants$root.C_CHAR$LAYOUT).withName("__pad1"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("__pad2"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__readers"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__writers"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__wrphase_futex"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__writers_futex"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__pad3"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__pad4"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__cur_writer"),
+        jolt.headers.Constants$root.C_INT$LAYOUT.withName("__shared"),
+        jolt.headers.Constants$root.C_CHAR$LAYOUT.withName("__rwelision"),
+        MemoryLayout.sequenceLayout(7, jolt.headers.Constants$root.C_CHAR$LAYOUT).withName("__pad1"),
+        jolt.headers.Constants$root.C_LONG_LONG$LAYOUT.withName("__pad2"),
         Constants$root.C_INT$LAYOUT.withName("__flags"),
         MemoryLayout.paddingLayout(32)
     ).withName("__pthread_rwlock_arch_t");
@@ -210,7 +209,7 @@ public class __pthread_rwlock_arch_t {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

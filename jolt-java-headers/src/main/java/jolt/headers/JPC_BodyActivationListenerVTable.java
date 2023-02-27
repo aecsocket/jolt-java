@@ -2,18 +2,17 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class JPC_BodyActivationListenerVTable {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
-        Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnBodyActivated"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnBodyDeactivated")
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("OnBodyActivated"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("OnBodyDeactivated")
     ).withName("JPC_BodyActivationListenerVTable");
     public static MemoryLayout $LAYOUT() {
         return JPC_BodyActivationListenerVTable.$struct$LAYOUT;
@@ -51,18 +50,18 @@ public class JPC_BodyActivationListenerVTable {
         JPC_BodyActivationListenerVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
     }
     static final FunctionDescriptor OnBodyActivated$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle OnBodyActivated$MH = RuntimeHelper.downcallHandle(
+    static final MethodHandle OnBodyActivated$MH = jolt.headers.RuntimeHelper.downcallHandle(
         JPC_BodyActivationListenerVTable.OnBodyActivated$FUNC
     );
     public interface OnBodyActivated {
 
         void apply(MemoryAddress _x0, MemoryAddress _x1, long _x2);
         static MemorySegment allocate(OnBodyActivated fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnBodyActivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyActivated$FUNC, session);
+            return jolt.headers.RuntimeHelper.upcallStub(OnBodyActivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyActivated$FUNC, session);
         }
         static OnBodyActivated ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -96,18 +95,18 @@ public class JPC_BodyActivationListenerVTable {
         return OnBodyActivated.ofAddress(OnBodyActivated$get(segment), session);
     }
     static final FunctionDescriptor OnBodyDeactivated$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle OnBodyDeactivated$MH = RuntimeHelper.downcallHandle(
+    static final MethodHandle OnBodyDeactivated$MH = jolt.headers.RuntimeHelper.downcallHandle(
         JPC_BodyActivationListenerVTable.OnBodyDeactivated$FUNC
     );
     public interface OnBodyDeactivated {
 
         void apply(MemoryAddress _x0, MemoryAddress _x1, long _x2);
         static MemorySegment allocate(OnBodyDeactivated fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnBodyDeactivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyDeactivated$FUNC, session);
+            return jolt.headers.RuntimeHelper.upcallStub(OnBodyDeactivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyDeactivated$FUNC, session);
         }
         static OnBodyDeactivated ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -145,7 +144,7 @@ public class JPC_BodyActivationListenerVTable {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

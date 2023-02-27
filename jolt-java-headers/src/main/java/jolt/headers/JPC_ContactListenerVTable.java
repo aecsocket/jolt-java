@@ -2,37 +2,36 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class JPC_ContactListenerVTable {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("OnContactValidate"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnContactAdded"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnContactPersisted"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnContactRemoved")
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("OnContactValidate"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("OnContactAdded"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("OnContactPersisted"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("OnContactRemoved")
     ).withName("JPC_ContactListenerVTable");
     public static MemoryLayout $LAYOUT() {
         return JPC_ContactListenerVTable.$struct$LAYOUT;
     }
-    static final FunctionDescriptor OnContactValidate$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor OnContactValidate$FUNC = FunctionDescriptor.of(jolt.headers.Constants$root.C_INT$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle OnContactValidate$MH = RuntimeHelper.downcallHandle(
+    static final MethodHandle OnContactValidate$MH = jolt.headers.RuntimeHelper.downcallHandle(
         JPC_ContactListenerVTable.OnContactValidate$FUNC
     );
     public interface OnContactValidate {
 
         int apply(MemoryAddress _x0, MemoryAddress _x1, MemoryAddress _x2, MemoryAddress _x3, MemoryAddress _x4);
         static MemorySegment allocate(OnContactValidate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnContactValidate.class, fi, JPC_ContactListenerVTable.OnContactValidate$FUNC, session);
+            return jolt.headers.RuntimeHelper.upcallStub(OnContactValidate.class, fi, JPC_ContactListenerVTable.OnContactValidate$FUNC, session);
         }
         static OnContactValidate ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -66,20 +65,20 @@ public class JPC_ContactListenerVTable {
         return OnContactValidate.ofAddress(OnContactValidate$get(segment), session);
     }
     static final FunctionDescriptor OnContactAdded$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle OnContactAdded$MH = RuntimeHelper.downcallHandle(
+    static final MethodHandle OnContactAdded$MH = jolt.headers.RuntimeHelper.downcallHandle(
         JPC_ContactListenerVTable.OnContactAdded$FUNC
     );
     public interface OnContactAdded {
 
         void apply(MemoryAddress _x0, MemoryAddress _x1, MemoryAddress _x2, MemoryAddress _x3, MemoryAddress _x4);
         static MemorySegment allocate(OnContactAdded fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnContactAdded.class, fi, JPC_ContactListenerVTable.OnContactAdded$FUNC, session);
+            return jolt.headers.RuntimeHelper.upcallStub(OnContactAdded.class, fi, JPC_ContactListenerVTable.OnContactAdded$FUNC, session);
         }
         static OnContactAdded ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -113,20 +112,20 @@ public class JPC_ContactListenerVTable {
         return OnContactAdded.ofAddress(OnContactAdded$get(segment), session);
     }
     static final FunctionDescriptor OnContactPersisted$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle OnContactPersisted$MH = RuntimeHelper.downcallHandle(
+    static final MethodHandle OnContactPersisted$MH = jolt.headers.RuntimeHelper.downcallHandle(
         JPC_ContactListenerVTable.OnContactPersisted$FUNC
     );
     public interface OnContactPersisted {
 
         void apply(MemoryAddress _x0, MemoryAddress _x1, MemoryAddress _x2, MemoryAddress _x3, MemoryAddress _x4);
         static MemorySegment allocate(OnContactPersisted fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnContactPersisted.class, fi, JPC_ContactListenerVTable.OnContactPersisted$FUNC, session);
+            return jolt.headers.RuntimeHelper.upcallStub(OnContactPersisted.class, fi, JPC_ContactListenerVTable.OnContactPersisted$FUNC, session);
         }
         static OnContactPersisted ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -160,17 +159,17 @@ public class JPC_ContactListenerVTable {
         return OnContactPersisted.ofAddress(OnContactPersisted$get(segment), session);
     }
     static final FunctionDescriptor OnContactRemoved$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+        jolt.headers.Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle OnContactRemoved$MH = RuntimeHelper.downcallHandle(
+    static final MethodHandle OnContactRemoved$MH = jolt.headers.RuntimeHelper.downcallHandle(
         JPC_ContactListenerVTable.OnContactRemoved$FUNC
     );
     public interface OnContactRemoved {
 
         void apply(MemoryAddress _x0, MemoryAddress _x1);
         static MemorySegment allocate(OnContactRemoved fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnContactRemoved.class, fi, JPC_ContactListenerVTable.OnContactRemoved$FUNC, session);
+            return jolt.headers.RuntimeHelper.upcallStub(OnContactRemoved.class, fi, JPC_ContactListenerVTable.OnContactRemoved$FUNC, session);
         }
         static OnContactRemoved ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
@@ -208,7 +207,7 @@ public class JPC_ContactListenerVTable {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

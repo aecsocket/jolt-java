@@ -2,48 +2,47 @@
 
 package jolt.headers;
 
-import java.lang.foreign.*;
 import java.lang.invoke.VarHandle;
-
-import static java.lang.foreign.ValueLayout.PathElement;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class JPC_BodyCreationSettings {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("position"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("rotation"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("linear_velocity"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("angular_velocity"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("user_data"),
-        Constants$root.C_SHORT$LAYOUT.withName("object_layer"),
+        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("position"),
+        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("rotation"),
+        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("linear_velocity"),
+        MemoryLayout.sequenceLayout(4, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("angular_velocity"),
+        jolt.headers.Constants$root.C_LONG_LONG$LAYOUT.withName("user_data"),
+        jolt.headers.Constants$root.C_SHORT$LAYOUT.withName("object_layer"),
         MemoryLayout.paddingLayout(48),
         MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("filter"),
-            Constants$root.C_INT$LAYOUT.withName("group_id"),
-            Constants$root.C_INT$LAYOUT.withName("sub_group_id")
+            jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("filter"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("group_id"),
+            jolt.headers.Constants$root.C_INT$LAYOUT.withName("sub_group_id")
         ).withName("collision_group"),
-        Constants$root.C_CHAR$LAYOUT.withName("motion_type"),
-        Constants$root.C_BOOL$LAYOUT.withName("allow_dynamic_or_kinematic"),
-        Constants$root.C_BOOL$LAYOUT.withName("is_sensor"),
-        Constants$root.C_CHAR$LAYOUT.withName("motion_quality"),
-        Constants$root.C_BOOL$LAYOUT.withName("allow_sleeping"),
+        jolt.headers.Constants$root.C_CHAR$LAYOUT.withName("motion_type"),
+        jolt.headers.Constants$root.C_BOOL$LAYOUT.withName("allow_dynamic_or_kinematic"),
+        jolt.headers.Constants$root.C_BOOL$LAYOUT.withName("is_sensor"),
+        jolt.headers.Constants$root.C_CHAR$LAYOUT.withName("motion_quality"),
+        jolt.headers.Constants$root.C_BOOL$LAYOUT.withName("allow_sleeping"),
         MemoryLayout.paddingLayout(24),
-        Constants$root.C_FLOAT$LAYOUT.withName("friction"),
-        Constants$root.C_FLOAT$LAYOUT.withName("restitution"),
-        Constants$root.C_FLOAT$LAYOUT.withName("linear_damping"),
-        Constants$root.C_FLOAT$LAYOUT.withName("angular_damping"),
-        Constants$root.C_FLOAT$LAYOUT.withName("max_linear_velocity"),
-        Constants$root.C_FLOAT$LAYOUT.withName("max_angular_velocity"),
-        Constants$root.C_FLOAT$LAYOUT.withName("gravity_factor"),
-        Constants$root.C_CHAR$LAYOUT.withName("override_mass_properties"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("friction"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("restitution"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("linear_damping"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("angular_damping"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("max_linear_velocity"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("max_angular_velocity"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("gravity_factor"),
+        jolt.headers.Constants$root.C_CHAR$LAYOUT.withName("override_mass_properties"),
         MemoryLayout.paddingLayout(24),
-        Constants$root.C_FLOAT$LAYOUT.withName("inertia_multiplier"),
+        jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("inertia_multiplier"),
         MemoryLayout.paddingLayout(32),
         MemoryLayout.structLayout(
-            Constants$root.C_FLOAT$LAYOUT.withName("mass"),
+            jolt.headers.Constants$root.C_FLOAT$LAYOUT.withName("mass"),
             MemoryLayout.paddingLayout(96),
-            MemoryLayout.sequenceLayout(16, Constants$root.C_FLOAT$LAYOUT).withName("inertia")
+            MemoryLayout.sequenceLayout(16, jolt.headers.Constants$root.C_FLOAT$LAYOUT).withName("inertia")
         ).withName("mass_properties_override"),
-        Constants$root.C_POINTER$LAYOUT.withName("reserved"),
+        jolt.headers.Constants$root.C_POINTER$LAYOUT.withName("reserved"),
         Constants$root.C_POINTER$LAYOUT.withName("shape")
     ).withName("JPC_BodyCreationSettings");
     public static MemoryLayout $LAYOUT() {
@@ -360,7 +359,7 @@ public class JPC_BodyCreationSettings {
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return jolt.headers.RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

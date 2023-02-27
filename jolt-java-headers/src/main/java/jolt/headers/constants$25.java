@@ -2,8 +2,8 @@
 
 package jolt.headers;
 
-import java.lang.foreign.FunctionDescriptor;
 import java.lang.invoke.MethodHandle;
+import java.lang.foreign.*;
 
 class constants$25 {
 
