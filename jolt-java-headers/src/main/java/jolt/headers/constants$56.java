@@ -9,6 +9,11 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$56 {
 
+    static final FunctionDescriptor JPC_GetFeatures$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle JPC_GetFeatures$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPC_GetFeatures",
+        constants$56.JPC_GetFeatures$FUNC
+    );
     static final FunctionDescriptor JPC_SphereShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );

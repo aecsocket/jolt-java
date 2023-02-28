@@ -5,7 +5,6 @@ import jolt.core.TempAllocator;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
 import jolt.math.Quat;
-import jolt.math.RVec3;
 import jolt.physics.Activation;
 import jolt.physics.PhysicsSystem;
 import jolt.physics.body.*;
@@ -34,7 +33,8 @@ public final class HelloJolt {
         Jolt.load();
 
         // TODO based on targeted lib
-        boolean doublePrecision = false;
+        boolean doublePrecision = Jolt.features().doublePrecision();
+        System.out.println("Features: " + Jolt.featureSet());
 
         Jolt.registerDefaultAllocator();
         Jolt.createFactory();
@@ -109,28 +109,51 @@ public final class HelloJolt {
             });
             physicsSystem.setBodyActivationListener(bodyActivationListener);
 
-            var contactListener = ContactListener.of(session, new ContactListenerFunctions() {
-                @Override
-                public ValidateResult onContactValidate(int body1, int body2, RVec3 baseOffset, CollideShapeResult collisionResult) {
-                    System.out.println("Contact validate callback");
-                    return ValidateResult.ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR;
-                }
+            var contactListener = doublePrecision
+                    ? ContactListener.of(session, new ContactListenerFunctions.D() {
+                        @Override
+                        public ValidateResult onContactValidate(int body1, int body2, DVec3 baseOffset, CollideShapeResult collisionResult) {
+                            System.out.println("Contact validate callback");
+                            return ValidateResult.ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR;
+                        }
 
-                @Override
-                public void onContactAdded(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
-                    System.out.println("A contact was added");
-                }
+                        @Override
+                        public void onContactAdded(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                            System.out.println("A contact was added");
+                        }
 
-                @Override
-                public void onContactPersisted(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
-                    System.out.println("A contact was persisted");
-                }
+                        @Override
+                        public void onContactPersisted(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                            System.out.println("A contact was persisted");
+                        }
 
-                @Override
-                public void onContactRemoved(SubShapeIDPair subShapeIdPair) {
-                    System.out.println("A contact was removed");
-                }
-            });
+                        @Override
+                        public void onContactRemoved(SubShapeIDPair subShapeIdPair) {
+                            System.out.println("A contact was removed");
+                        }
+                    })
+                    : ContactListener.of(session, new ContactListenerFunctions.F() {
+                        @Override
+                        public ValidateResult onContactValidate(int body1, int body2, FVec3 baseOffset, CollideShapeResult collisionResult) {
+                            System.out.println("Contact validate callback");
+                            return ValidateResult.ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR;
+                        }
+
+                        @Override
+                        public void onContactAdded(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                            System.out.println("A contact was added");
+                        }
+
+                        @Override
+                        public void onContactPersisted(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                            System.out.println("A contact was persisted");
+                        }
+
+                        @Override
+                        public void onContactRemoved(SubShapeIDPair subShapeIdPair) {
+                            System.out.println("A contact was removed");
+                        }
+                    });
             physicsSystem.setContactListener(contactListener);
 
             BodyInterface bodyInterface = physicsSystem.getBodyInterface();
@@ -138,7 +161,6 @@ public final class HelloJolt {
             var floorShapeSettings = BoxShapeSettings.create(new FVec3(100.0f, 1.0f, 100.0f));
             Shape floorShape = floorShapeSettings.create();
 
-            // TODO
             var floorSettings = doublePrecision
                     ? BodyCreationSettings.create(session, floorShape, new DVec3(0.0, -1.0, 0.0), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING)
                     : BodyCreationSettings.create(session, floorShape, new FVec3(0.0f, -1.0f, 0.0f), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING);
@@ -161,8 +183,8 @@ public final class HelloJolt {
                 ++step;
 
                 Object position = doublePrecision
-                        ? bodyInterface.getCenterOfMassPositionDp(sphereId)
-                        : bodyInterface.getCenterOfMassPositionSp(sphereId);
+                        ? bodyInterface.getCenterOfMassPositionD(sphereId)
+                        : bodyInterface.getCenterOfMassPositionF(sphereId);
                 FVec3 velocity = bodyInterface.getLinearVelocity(sphereId);
 
                 System.out.println("Step " + step + ": Position = " + position + ", Velocity = " + velocity);

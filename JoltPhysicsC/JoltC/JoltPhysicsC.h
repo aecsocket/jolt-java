@@ -1382,6 +1382,9 @@ JPC_API bool
 JPC_BodyID_IsInvalid(JPC_BodyID in_body_id);
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
+JPC_API uint32_t
+JPC_GetFeatures();
+
 JPC_API JPC_SphereShape *
 JPC_SphereShape_Create(float in_radius);
 

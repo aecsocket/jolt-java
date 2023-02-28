@@ -1,5 +1,6 @@
 package jolt.physics.collision;
 
+import jolt.Jolt;
 import jolt.SegmentedJoltNative;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
@@ -23,28 +24,56 @@ public final class ContactSettings extends SegmentedJoltNative {
         super(segment);
     }
 
-    public FVec3 getBaseOffsetSp() {
+    public FVec3 getBaseOffsetF() {
+        Jolt.assertSinglePrecision();
         return FVec3.read(base_offset$slice(segment).address());
     }
 
-    public DVec3 getBaseOffsetDp() {
+    public void setBaseOffsetF(FVec3 baseOffset) {
+        Jolt.assertSinglePrecision();
+        baseOffset.write(base_offset$slice(segment));
+    }
+
+    public DVec3 getBaseOffsetD() {
+        Jolt.assertDoublePrecision();
         return DVec3.read(base_offset$slice(segment).address());
+    }
+
+    public void setBaseOffsetD(DVec3 baseOffset) {
+        Jolt.assertDoublePrecision();
+        baseOffset.write(base_offset$slice(segment));
     }
 
     public FVec3 getWorldSpaceNormal() {
         return FVec3.read(normal$slice(segment).address());
     }
 
+    public void setWorldSpaceNormal(FVec3 worldSpaceNormal) {
+        worldSpaceNormal.write(normal$slice(segment));
+    }
+
     public float getPenetrationDepth() {
         return penetration_depth$get(segment);
+    }
+
+    public void setPenetrationDepth(float penetrationDepth) {
+        penetration_depth$set(segment, penetrationDepth);
     }
 
     public int getSubShapeId1() {
         return shape1_sub_shape_id$get(segment);
     }
 
+    public void setSubShapeId1(int subShapeId1) {
+        shape1_sub_shape_id$set(segment, subShapeId1);
+    }
+
     public int getSubShapeId2() {
         return shape2_sub_shape_id$get(segment);
+    }
+
+    public void setSubShapeId2(int subShapeId2) {
+        shape2_sub_shape_id$set(segment, subShapeId2);
     }
 
     // TODO getRelativeContactPointsOn1

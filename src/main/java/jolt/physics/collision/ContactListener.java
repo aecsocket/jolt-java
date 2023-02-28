@@ -1,6 +1,7 @@
 package jolt.physics.collision;
 
 import jolt.AddressedJoltNative;
+import jolt.Jolt;
 import jolt.headers.JPC_ContactListenerVTable;
 import jolt.headers.JPC_ContactListener;
 import jolt.physics.body.BodyIDs;
@@ -18,14 +19,7 @@ public final class ContactListener extends AddressedJoltNative {
         return address.address() == MemoryAddress.NULL ? null : new ContactListener(address);
     }
 
-    public static ContactListener of(MemorySession session, ContactListenerFunctions impl) {
-        var vtable = JPC_ContactListenerVTable.allocate(session);
-        MemorySegment onContactValidate = OnContactValidate.allocate((v0, v1, v2, v3, v4) -> {
-            try (var s = MemorySession.openConfined()) {
-                return impl.onContactValidate(BodyIDs.read(v1), BodyIDs.read(v2), null /* todo */, CollideShapeResult.at(s, v4)).ordinal();
-            }
-        }, session);
-        OnContactValidate$set(vtable, onContactValidate.address());
+    private static ContactListener of(MemorySession session, MemorySegment vtable, ContactListenerFunctions impl) {
         MemorySegment onContactAdded = OnContactAdded.allocate((v0, v1, v2, v3, v4) -> {
             try (var s = MemorySession.openConfined()) {
                 impl.onContactAdded(BodyIDs.read(v1), BodyIDs.read(v2), ContactManifold.at(s, v3), ContactSettings.at(s, v4));
@@ -48,6 +42,30 @@ public final class ContactListener extends AddressedJoltNative {
         var segment = JPC_ContactListener.allocate(session);
         vtable$set(segment, vtable.address());
         return new ContactListener(segment.address());
+    }
+
+    public static ContactListener of(MemorySession session, ContactListenerFunctions.F impl) {
+        Jolt.assertSinglePrecision();
+        var vtable = JPC_ContactListenerVTable.allocate(session);
+        MemorySegment onContactValidate = OnContactValidate.allocate((v0, v1, v2, v3, v4) -> {
+            try (var s = MemorySession.openConfined()) {
+                return impl.onContactValidate(BodyIDs.read(v1), BodyIDs.read(v2), null /* todo */, CollideShapeResult.at(s, v4)).ordinal();
+            }
+        }, session);
+        OnContactValidate$set(vtable, onContactValidate.address());
+        return of(session, vtable, impl);
+    }
+
+    public static ContactListener of(MemorySession session, ContactListenerFunctions.D impl) {
+        Jolt.assertDoublePrecision();
+        var vtable = JPC_ContactListenerVTable.allocate(session);
+        MemorySegment onContactValidate = OnContactValidate.allocate((v0, v1, v2, v3, v4) -> {
+            try (var s = MemorySession.openConfined()) {
+                return impl.onContactValidate(BodyIDs.read(v1), BodyIDs.read(v2), null /* todo */, CollideShapeResult.at(s, v4)).ordinal();
+            }
+        }, session);
+        OnContactValidate$set(vtable, onContactValidate.address());
+        return of(session, vtable, impl);
     }
 
     private ContactListener(MemoryAddress address) {

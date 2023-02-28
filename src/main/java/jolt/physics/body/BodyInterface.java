@@ -1,6 +1,7 @@
 package jolt.physics.body;
 
 import jolt.AddressedJoltNative;
+import jolt.Jolt;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
 import jolt.physics.Activation;
@@ -50,12 +51,14 @@ public final class BodyInterface extends AddressedJoltNative {
         return JPC_BodyInterface_IsActive(address, bodyId);
     }
 
-    public FVec3 getCenterOfMassPositionSp(int bodyId) {
+    public FVec3 getCenterOfMassPositionF(int bodyId) {
+        Jolt.assertSinglePrecision();
         // TODO
         return FVec3.ZERO;
     }
 
-    public DVec3 getCenterOfMassPositionDp(int bodyId) {
+    public DVec3 getCenterOfMassPositionD(int bodyId) {
+        Jolt.assertDoublePrecision();
         // TODO
         return DVec3.ZERO;
     }

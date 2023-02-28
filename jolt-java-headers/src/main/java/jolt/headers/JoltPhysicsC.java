@@ -4137,6 +4137,17 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_GetFeatures$MH() {
+        return RuntimeHelper.requireNonNull(constants$56.JPC_GetFeatures$MH,"JPC_GetFeatures");
+    }
+    public static int JPC_GetFeatures (Object... x0) {
+        var mh$ = JPC_GetFeatures$MH();
+        try {
+            return (int)mh$.invokeExact(x0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPC_SphereShape_Create$MH() {
         return RuntimeHelper.requireNonNull(constants$56.JPC_SphereShape_Create$MH,"JPC_SphereShape_Create");
     }

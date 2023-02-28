@@ -7,6 +7,8 @@ import cpufeatures.CpuPlatform;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static jolt.headers.JoltPhysicsC.*;
@@ -15,6 +17,8 @@ public final class Jolt {
     private Jolt() {}
 
     private static final AtomicBoolean loaded = new AtomicBoolean(false);
+    private static JoltFeatures features;
+    private static boolean doublePrecision;
 
     /**
      * Loads the native libraries from the JAR.
@@ -49,6 +53,34 @@ public final class Jolt {
         } catch (IOException ex) {
             throw new RuntimeException("Could not load native library", ex);
         }
+    }
+
+    public static JoltFeatures features() {
+        if (features == null) {
+            int bits = JPC_GetFeatures();
+            features = new JoltFeatures(
+                    (bits & 0x1) != 0
+            );
+            doublePrecision = features.doublePrecision();
+        }
+        return features;
+    }
+
+    public static Set<JoltFeature> featureSet() {
+        JoltFeatures features = features();
+        var result = new HashSet<JoltFeature>();
+        if (features.doublePrecision()) result.add(JoltFeature.DOUBLE_PRECISION);
+        return result;
+    }
+
+    public static void assertSinglePrecision() {
+        if (doublePrecision)
+            throw new RuntimeException("Attempting to use single-precision method with double-precision library");
+    }
+
+    public static void assertDoublePrecision() {
+        if (!doublePrecision)
+            throw new RuntimeException("Attempting to use double-precision method with single-precision library");
     }
 
     public static void registerDefaultAllocator() {
