@@ -26,8 +26,9 @@ public class JPC_MotionProperties {
         Constants$root.C_INT$LAYOUT.withName("island_index"),
         Constants$root.C_CHAR$LAYOUT.withName("motion_quality"),
         Constants$root.C_BOOL$LAYOUT.withName("allow_sleeping"),
-        MemoryLayout.paddingLayout(16),
-        MemoryLayout.sequenceLayout(52, Constants$root.C_CHAR$LAYOUT).withName("reserved")
+        MemoryLayout.paddingLayout(48),
+        MemoryLayout.sequenceLayout(76, Constants$root.C_CHAR$LAYOUT).withName("reserved"),
+        MemoryLayout.paddingLayout(32)
     ).withName("JPC_MotionProperties");
     public static MemoryLayout $LAYOUT() {
         return JPC_MotionProperties.$struct$LAYOUT;
@@ -211,7 +212,7 @@ public class JPC_MotionProperties {
         JPC_MotionProperties.allow_sleeping$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment reserved$slice(MemorySegment seg) {
-        return seg.asSlice(124, 52);
+        return seg.asSlice(128, 76);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }

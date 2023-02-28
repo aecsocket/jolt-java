@@ -10,7 +10,7 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_ContactManifold {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("base_offset"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_DOUBLE$LAYOUT).withName("base_offset"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("normal"),
         Constants$root.C_FLOAT$LAYOUT.withName("penetration_depth"),
         Constants$root.C_INT$LAYOUT.withName("shape1_sub_shape_id"),
@@ -31,10 +31,10 @@ public class JPC_ContactManifold {
         return JPC_ContactManifold.$struct$LAYOUT;
     }
     public static MemorySegment base_offset$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
+        return seg.asSlice(0, 32);
     }
     public static MemorySegment normal$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
+        return seg.asSlice(32, 16);
     }
     static final VarHandle penetration_depth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("penetration_depth"));
     public static VarHandle penetration_depth$VH() {
@@ -122,7 +122,7 @@ public class JPC_ContactManifold {
     }
 
     public static MemorySegment shape1_relative_contact$slice(MemorySegment seg) {
-        return seg.asSlice(48, 1040);
+        return seg.asSlice(64, 1040);
     }
     public static class shape2_relative_contact {
 
@@ -162,7 +162,7 @@ public class JPC_ContactManifold {
     }
 
     public static MemorySegment shape2_relative_contact$slice(MemorySegment seg) {
-        return seg.asSlice(1088, 1040);
+        return seg.asSlice(1104, 1040);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }

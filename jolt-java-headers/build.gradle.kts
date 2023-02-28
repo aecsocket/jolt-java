@@ -1,4 +1,5 @@
 import io.github.krakowski.jextract.JextractTask
+import io.github.krakowski.jextract.LibraryDefinition
 
 /* when using jextract:
  * 1. `apply false` -> `apply true`
@@ -15,14 +16,26 @@ plugins {
 
 publishIfNeeded()
 
+fun LibraryDefinition.defaults() {
+    className.set("JoltPhysicsC")
+    buildFeatures.forEach { feature ->
+        definedMacros.add(feature.macro())
+    }
+}
+
 tasks {
     withType<JextractTask> {
         header("$joltDir/JoltC/JoltPhysicsC.h") {
+            defaults()
             targetPackage.set("jolt.headers")
-            className.set("JoltPhysicsC")
-            buildFeatures.forEach { feature ->
-                macros.add(feature.macro())
-            }
+        }
+
+        header("$joltDir/JoltC/JoltPhysicsC.h") {
+            defaults()
+            targetPackage.set(when (buildFlavor) {
+                JoltBuildFlavor.SP -> "jolt.headers_f"
+                JoltBuildFlavor.DP -> "jolt.headers_d"
+            })
         }
     }
 }

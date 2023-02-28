@@ -388,7 +388,7 @@ public class JoltPhysicsC  {
         return (int)0L;
     }
     public static int JPC_DOUBLE_PRECISION() {
-        return (int)0L;
+        return (int)1L;
     }
     public static int JPC_BODY_ID_INDEX_BITS() {
         return (int)8388607L;
@@ -1596,7 +1596,7 @@ public class JoltPhysicsC  {
     public static OfLong int_fast64_t = Constants$root.C_LONG_LONG$LAYOUT;
     public static OfLong intptr_t = Constants$root.C_LONG_LONG$LAYOUT;
     public static OfLong intmax_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfFloat JPC_Real = Constants$root.C_FLOAT$LAYOUT;
+    public static OfDouble JPC_Real = Constants$root.C_DOUBLE$LAYOUT;
     public static int JPC_MAX_PHYSICS_JOBS() {
         return (int)2048L;
     }

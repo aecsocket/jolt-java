@@ -10,7 +10,7 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_BodyCreationSettings {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("position"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_DOUBLE$LAYOUT).withName("position"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("rotation"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("linear_velocity"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("angular_velocity"),
@@ -51,16 +51,16 @@ public class JPC_BodyCreationSettings {
         return JPC_BodyCreationSettings.$struct$LAYOUT;
     }
     public static MemorySegment position$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
+        return seg.asSlice(0, 32);
     }
     public static MemorySegment rotation$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static MemorySegment linear_velocity$slice(MemorySegment seg) {
         return seg.asSlice(32, 16);
     }
-    public static MemorySegment angular_velocity$slice(MemorySegment seg) {
+    public static MemorySegment linear_velocity$slice(MemorySegment seg) {
         return seg.asSlice(48, 16);
+    }
+    public static MemorySegment angular_velocity$slice(MemorySegment seg) {
+        return seg.asSlice(64, 16);
     }
     static final VarHandle user_data$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("user_data"));
     public static VarHandle user_data$VH() {
@@ -95,7 +95,7 @@ public class JPC_BodyCreationSettings {
         JPC_BodyCreationSettings.object_layer$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment collision_group$slice(MemorySegment seg) {
-        return seg.asSlice(80, 16);
+        return seg.asSlice(96, 16);
     }
     static final VarHandle motion_type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("motion_type"));
     public static VarHandle motion_type$VH() {
@@ -322,7 +322,7 @@ public class JPC_BodyCreationSettings {
         JPC_BodyCreationSettings.inertia_multiplier$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment mass_properties_override$slice(MemorySegment seg) {
-        return seg.asSlice(144, 80);
+        return seg.asSlice(160, 80);
     }
     static final VarHandle reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved"));
     public static VarHandle reserved$VH() {
