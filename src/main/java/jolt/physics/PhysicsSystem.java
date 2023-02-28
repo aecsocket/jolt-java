@@ -1,6 +1,8 @@
 package jolt.physics;
 
-import jolt.AbstractJoltNative;
+import jolt.AddressedJoltNative;
+import jolt.DestroyableJoltNative;
+import jolt.JoltNative;
 import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
 import jolt.physics.body.BodyActivationListener;
@@ -16,7 +18,7 @@ import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public final class PhysicsSystem extends AbstractJoltNative {
+public final class PhysicsSystem extends DestroyableJoltNative {
     public static PhysicsSystem at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new PhysicsSystem(address);
     }
@@ -56,7 +58,7 @@ public final class PhysicsSystem extends AbstractJoltNative {
     }
 
     public void setBodyActivationListener(@Nullable BodyActivationListener listener) {
-        JPC_PhysicsSystem_SetBodyActivationListener(address, addr(listener));
+        JPC_PhysicsSystem_SetBodyActivationListener(address, JoltNative.addr(listener));
     }
 
     public @Nullable ContactListener getContactListener() {
@@ -64,7 +66,7 @@ public final class PhysicsSystem extends AbstractJoltNative {
     }
 
     public void setContactListener(@Nullable ContactListener listener) {
-        JPC_PhysicsSystem_SetContactListener(address, addr(listener));
+        JPC_PhysicsSystem_SetContactListener(address, JoltNative.addr(listener));
     }
 
     public BodyInterface getBodyInterface() {

@@ -1,12 +1,12 @@
 package jolt.physics.collision.shape;
 
-import jolt.AbstractJoltNative;
+import jolt.AddressedJoltNative;
 
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public sealed class ShapeSettings extends AbstractJoltNative permits ConvexShapeSettings {
+public sealed class ShapeSettings extends AddressedJoltNative permits ConvexShapeSettings {
     public static ShapeSettings at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new ShapeSettings(address);
     }
@@ -14,9 +14,6 @@ public sealed class ShapeSettings extends AbstractJoltNative permits ConvexShape
     protected ShapeSettings(MemoryAddress address) {
         super(address);
     }
-
-    @Override
-    protected void destroyInternal() { /* todo */ }
 
     public Shape create() {
         var result = JPC_ShapeSettings_CreateShape(address);

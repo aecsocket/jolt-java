@@ -1,6 +1,6 @@
 package jolt.physics.collision.broadphase;
 
-import jolt.AbstractJoltNative;
+import jolt.AddressedJoltNative;
 import jolt.headers.JPC_ObjectVsBroadPhaseLayerFilterVTable;
 import jolt.headers.JPC_ObjectVsBroadPhaseLayerFilter;
 
@@ -11,7 +11,7 @@ import java.lang.foreign.MemorySession;
 import static jolt.headers.JPC_ObjectVsBroadPhaseLayerFilterVTable.*;
 import static jolt.headers.JPC_ObjectVsBroadPhaseLayerFilter.*;
 
-public final class ObjectVsBroadPhaseLayerFilter extends AbstractJoltNative {
+public final class ObjectVsBroadPhaseLayerFilter extends AddressedJoltNative {
     public static ObjectVsBroadPhaseLayerFilter at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new ObjectVsBroadPhaseLayerFilter(address);
     }
@@ -30,7 +30,4 @@ public final class ObjectVsBroadPhaseLayerFilter extends AbstractJoltNative {
     private ObjectVsBroadPhaseLayerFilter(MemoryAddress address) {
         super(address);
     }
-
-    @Override
-    protected void destroyInternal() {}
 }

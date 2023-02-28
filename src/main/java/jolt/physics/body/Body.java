@@ -1,12 +1,12 @@
 package jolt.physics.body;
 
-import jolt.AbstractJoltNative;
+import jolt.AddressedJoltNative;
 
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public final class Body extends AbstractJoltNative {
+public final class Body extends AddressedJoltNative {
     public static Body at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new Body(address);
     }
@@ -14,9 +14,6 @@ public final class Body extends AbstractJoltNative {
     private Body(MemoryAddress address) {
         super(address);
     }
-
-    @Override
-    protected void destroyInternal() {}
 
     public int getId() {
         return JPC_Body_GetID(address);

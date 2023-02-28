@@ -15,7 +15,7 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
     public static BoxShapeSettings create(FVec3 halfExtent, float convexRadius) {
         try (var session = MemorySession.openConfined()) {
             var address = JPC_BoxShapeSettings_Create0(
-                    allocateFVec3(session, halfExtent),
+                    halfExtent.allocate(session),
                     convexRadius
             );
             return new BoxShapeSettings(address);
@@ -25,7 +25,7 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
     public static BoxShapeSettings create(FVec3 halfExtent) {
         try (var session = MemorySession.openConfined()) {
             var address = JPC_BoxShapeSettings_Create1(
-                    allocateFVec3(session, halfExtent)
+                    halfExtent.allocate(session)
             );
             return new BoxShapeSettings(address);
         }
@@ -34,7 +34,4 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
     private BoxShapeSettings(MemoryAddress address) {
         super(address);
     }
-
-    @Override
-    protected void destroyInternal() { /* todo */ }
 }

@@ -1,12 +1,17 @@
 package jolt;
 
+import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 
-public abstract class SegmentedJoltNative extends AbstractJoltNative {
+public abstract class SegmentedJoltNative implements JoltNative {
     protected final MemorySegment segment;
 
     public SegmentedJoltNative(MemorySegment segment) {
-        super(segment.address());
         this.segment = segment;
+    }
+
+    @Override
+    public MemoryAddress address() {
+        return segment.address();
     }
 }

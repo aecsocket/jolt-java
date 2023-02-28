@@ -1,6 +1,6 @@
 package jolt.physics.body;
 
-import jolt.AbstractJoltNative;
+import jolt.AddressedJoltNative;
 import jolt.UnimplementedException;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
@@ -13,7 +13,7 @@ import java.lang.foreign.MemorySession;
 import static jolt.headers.JoltPhysicsC.*;
 import static jolt.headers.JPC_BodyCreationSettings.*;
 
-public final class BodyCreationSettings extends AbstractJoltNative {
+public final class BodyCreationSettings extends AddressedJoltNative {
     public static BodyCreationSettings at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new BodyCreationSettings(address);
     }
@@ -30,7 +30,7 @@ public final class BodyCreationSettings extends AbstractJoltNative {
         try (var session2 = MemorySession.openConfined()) {
             JPC_BodyCreationSettings_Set(
                     segment,
-                    shape.address(), allocateFVec3(session2, position), allocateQuat(session2, rotation),
+                    shape.address(), position.allocate(session2), rotation.allocate(session2),
                     (byte) motionType.ordinal(),
                     layer
             );
@@ -53,9 +53,4 @@ public final class BodyCreationSettings extends AbstractJoltNative {
     private BodyCreationSettings(MemoryAddress address) {
         super(address);
     }
-
-    @Override
-    protected void destroyInternal() {}
-
-
 }

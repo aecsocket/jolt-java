@@ -17,6 +17,7 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilterFunctions;
 import jolt.physics.collision.shape.BoxShapeSettings;
 import jolt.physics.collision.shape.Shape;
 import jolt.physics.collision.shape.SphereShape;
+import jolt.physics.collision.shape.SubShapeIDPair;
 import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.MemorySession;
@@ -126,7 +127,7 @@ public final class HelloJolt {
                 }
 
                 @Override
-                public void onContactRemoved(int subShapeIdPair) {
+                public void onContactRemoved(SubShapeIDPair subShapeIdPair) {
                     System.out.println("A contact was removed");
                 }
             });
@@ -177,16 +178,11 @@ public final class HelloJolt {
 
             bodyInterface.removeBody(sphereId);
             bodyInterface.destroyBody(sphereId);
-            
+
             bodyInterface.removeBody(floor.getId());
             bodyInterface.destroyBody(floor.getId());
 
-            // Clean up memory
             physicsSystem.destroy();
-
-            objLayerPairFilter.destroy();
-            objBpLayerFilter.destroy();
-            bpLayerInterface.destroy();
 
             jobSystem.destroy();
             tempAllocator.destroy();

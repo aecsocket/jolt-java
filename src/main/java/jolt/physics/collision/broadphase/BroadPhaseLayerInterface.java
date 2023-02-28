@@ -1,6 +1,6 @@
 package jolt.physics.collision.broadphase;
 
-import jolt.AbstractJoltNative;
+import jolt.AddressedJoltNative;
 import jolt.headers.JPC_BroadPhaseLayerInterface;
 import jolt.headers.JPC_BroadPhaseLayerInterfaceVTable;
 
@@ -9,7 +9,7 @@ import java.lang.foreign.*;
 import static jolt.headers.JPC_BroadPhaseLayerInterfaceVTable.*;
 import static jolt.headers.JPC_BroadPhaseLayerInterface.*;
 
-public final class BroadPhaseLayerInterface extends AbstractJoltNative {
+public final class BroadPhaseLayerInterface extends AddressedJoltNative {
     public static BroadPhaseLayerInterface at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(address);
     }
@@ -31,7 +31,4 @@ public final class BroadPhaseLayerInterface extends AbstractJoltNative {
     private BroadPhaseLayerInterface(MemoryAddress address) {
         super(address);
     }
-
-    @Override
-    protected void destroyInternal() {}
 }

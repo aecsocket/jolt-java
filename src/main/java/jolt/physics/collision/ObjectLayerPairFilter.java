@@ -1,6 +1,6 @@
 package jolt.physics.collision;
 
-import jolt.AbstractJoltNative;
+import jolt.AddressedJoltNative;
 import jolt.headers.JPC_ObjectLayerPairFilterVTable;
 import jolt.headers.JPC_ObjectLayerPairFilter;
 
@@ -11,7 +11,7 @@ import java.lang.foreign.MemorySession;
 import static jolt.headers.JPC_ObjectLayerPairFilterVTable.*;
 import static jolt.headers.JPC_ObjectLayerPairFilter.*;
 
-public final class ObjectLayerPairFilter extends AbstractJoltNative {
+public final class ObjectLayerPairFilter extends AddressedJoltNative {
     public static ObjectLayerPairFilter at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new ObjectLayerPairFilter(address);
     }
@@ -29,7 +29,4 @@ public final class ObjectLayerPairFilter extends AbstractJoltNative {
     private ObjectLayerPairFilter(MemoryAddress address) {
         super(address);
     }
-
-    @Override
-    protected void destroyInternal() {}
 }
