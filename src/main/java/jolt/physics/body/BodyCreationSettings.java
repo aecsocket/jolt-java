@@ -27,10 +27,10 @@ public final class BodyCreationSettings extends AddressedJoltNative {
             short layer
     ) {
         var segment = allocate(session);
-        try (var session2 = MemorySession.openConfined()) {
+        try (var s = MemorySession.openConfined()) {
             JPC_BodyCreationSettings_Set(
                     segment,
-                    shape.address(), position.allocate(session2), rotation.allocate(session2),
+                    shape.address(), position.allocate(s), rotation.allocate(s),
                     (byte) motionType.ordinal(),
                     layer
             );
@@ -46,8 +46,16 @@ public final class BodyCreationSettings extends AddressedJoltNative {
             MotionType motionType,
             short layer
     ) {
-        // TODO
-        throw new UnimplementedException();
+        var segment = allocate(session);
+        try (var s = MemorySession.openConfined()) {
+            JPC_BodyCreationSettings_Set(
+                    segment,
+                    shape.address(), position.allocate(s), rotation.allocate(s),
+                    (byte) motionType.ordinal(),
+                    layer
+            );
+        }
+        return new BodyCreationSettings(segment.address());
     }
 
     private BodyCreationSettings(MemoryAddress address) {

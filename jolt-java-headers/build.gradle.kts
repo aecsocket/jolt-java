@@ -20,6 +20,9 @@ tasks {
         header("$joltDir/JoltC/JoltPhysicsC.h") {
             targetPackage.set("jolt.headers")
             className.set("JoltPhysicsC")
+            buildFeatures.forEach { feature ->
+                macros.add(feature.macro())
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ project(JoltJava CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # When turning this option on, the library will be compiled using doubles for positions. This allows for much bigger worlds.
-option(DOUBLE_PRECISION "Use double precision math" OFF)
+option(DOUBLE_PRECISION "Use double precision math" $ENV{JPJ_DOUBLE_PRECISION})
 
 # When turning this option on, the library will be compiled with debug symbols
 option(GENERATE_DEBUG_SYMBOLS "Generate debug symbols" ON)
@@ -29,15 +29,15 @@ option(INTERPROCEDURAL_OPTIMIZATION "Enable interprocedural optimizations" ON)
 option(FLOATING_POINT_EXCEPTIONS_ENABLED "Enable floating point exceptions" ON)
 
 # Select X86 processor features to use (if everything is off it will be SSE2 compatible)
-option(USE_SSE4_1 "Enable SSE4.1" ON)
-option(USE_SSE4_2 "Enable SSE4.2" ON)
-option(USE_AVX "Enable AVX" ON)
-option(USE_AVX2 "Enable AVX2" ON)
-option(USE_AVX512 "Enable AVX512" OFF)
-option(USE_LZCNT "Enable LZCNT" ON)
-option(USE_TZCNT "Enable TZCNT" ON)
-option(USE_F16C "Enable F16C" ON)
-option(USE_FMADD "Enable FMADD" ON)
+option(USE_SSE4_1 "Enable SSE4.1" $ENV{JPJ_USE_SSE4_1})
+option(USE_SSE4_2 "Enable SSE4.2" $ENV{JPJ_USE_SSE4_2})
+option(USE_AVX "Enable AVX" $ENV{JPJ_USE_AVX})
+option(USE_AVX2 "Enable AVX2" $ENV{JPJ_USE_AVX2})
+option(USE_AVX512 "Enable AVX512" $ENV{JPJ_USE_AVX512})
+option(USE_LZCNT "Enable LZCNT" $ENV{JPJ_USE_LZCNT})
+option(USE_TZCNT "Enable TZCNT" $ENV{JPJ_USE_TZCNT})
+option(USE_F16C "Enable F16C" $ENV{JPJ_USE_F16C})
+option(USE_FMADD "Enable FMADD" $ENV{JPJ_USE_FMADD})
 
 include(CMakeDependentOption)
 

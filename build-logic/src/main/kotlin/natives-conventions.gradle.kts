@@ -28,6 +28,9 @@ afterEvaluate {
                 "-G", nativesExt.generator.get(),           // use the platform-specific generator
                 "-DCMAKE_BUILD_TYPE=Distribution",          // release build type
             )
+            buildFeatures.forEach { feature ->
+                environment[feature.cmakeFlag()] = "ON"
+            }
 
             doLast {
                 exec {

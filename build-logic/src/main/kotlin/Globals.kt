@@ -21,5 +21,7 @@ enum class JoltBuildFeature {
     USE_F16C,
     USE_FMADD;
 
-    fun cmakeFlag() = "JOLT_JAVA_$name"
+    fun macro() = "JPH_$name"
+
+    fun cmakeFlag() = "JPJ_$name"
 }
