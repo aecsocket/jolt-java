@@ -73,14 +73,22 @@ public final class Jolt {
         return result;
     }
 
+    public static boolean doublePrecision() { return doublePrecision; }
+
+    public static RuntimeException requireSinglePrecision() {
+        return new RuntimeException("Attempting to use single-precision method with double-precision library");
+    }
+
     public static void assertSinglePrecision() {
-        if (doublePrecision)
-            throw new RuntimeException("Attempting to use single-precision method with double-precision library");
+        if (doublePrecision) throw requireSinglePrecision();
+    }
+
+    public static RuntimeException requireDoublePrecision() {
+        return new RuntimeException("Attempting to use double-precision method with single-precision library");
     }
 
     public static void assertDoublePrecision() {
-        if (!doublePrecision)
-            throw new RuntimeException("Attempting to use double-precision method with single-precision library");
+        if (!doublePrecision) throw requireDoublePrecision();
     }
 
     public static void registerDefaultAllocator() {

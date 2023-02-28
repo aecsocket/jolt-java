@@ -1,7 +1,7 @@
 package jolt.physics.body;
 
 import jolt.AddressedJoltNative;
-import jolt.UnimplementedException;
+import jolt.Jolt;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
 import jolt.math.Quat;
@@ -13,9 +13,9 @@ import java.lang.foreign.MemorySession;
 import static jolt.headers.JoltPhysicsC.*;
 import static jolt.headers.JPC_BodyCreationSettings.*;
 
-public final class BodyCreationSettings extends AddressedJoltNative {
+public abstract sealed class BodyCreationSettings extends AddressedJoltNative permits BodyCreationSettings.F, BodyCreationSettings.D {
     public static BodyCreationSettings at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : new BodyCreationSettings(address);
+        return address.address() == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new BodyCreationSettings.D(address) : new BodyCreationSettings.F(address);
     }
 
     public static BodyCreationSettings create(
@@ -26,16 +26,17 @@ public final class BodyCreationSettings extends AddressedJoltNative {
             MotionType motionType,
             short layer
     ) {
-        var segment = allocate(session);
-        try (var s = MemorySession.openConfined()) {
-            JPC_BodyCreationSettings_Set(
+        Jolt.assertSinglePrecision();
+        var segment = jolt.headers_f.JPC_BodyCreationSettings.allocate(session);
+        try (var session2 = MemorySession.openConfined()) {
+            jolt.headers_f.JoltPhysicsC.JPC_BodyCreationSettings_Set(
                     segment,
-                    shape.address(), position.allocate(s), rotation.allocate(s),
+                    shape.address(), position.allocate(session2), rotation.allocate(session2),
                     (byte) motionType.ordinal(),
                     layer
             );
         }
-        return new BodyCreationSettings(segment.address());
+        return new BodyCreationSettings.F(segment.address());
     }
 
     public static BodyCreationSettings create(
@@ -46,19 +47,32 @@ public final class BodyCreationSettings extends AddressedJoltNative {
             MotionType motionType,
             short layer
     ) {
-        var segment = allocate(session);
-        try (var s = MemorySession.openConfined()) {
-            JPC_BodyCreationSettings_Set(
+        Jolt.assertDoublePrecision();
+        var segment = jolt.headers_d.JPC_BodyCreationSettings.allocate(session);
+        try (var session2 = MemorySession.openConfined()) {
+            jolt.headers_d.JoltPhysicsC.JPC_BodyCreationSettings_Set(
                     segment,
-                    shape.address(), position.allocate(s), rotation.allocate(s),
+                    shape.address(), position.allocate(session2), rotation.allocate(session2),
                     (byte) motionType.ordinal(),
                     layer
             );
         }
-        return new BodyCreationSettings(segment.address());
+        return new BodyCreationSettings.D(segment.address());
     }
 
     private BodyCreationSettings(MemoryAddress address) {
         super(address);
+    }
+
+    static final class F extends BodyCreationSettings {
+        private F(MemoryAddress address) {
+            super(address);
+        }
+    }
+
+    static final class D extends BodyCreationSettings {
+        private D(MemoryAddress address) {
+            super(address);
+        }
     }
 }

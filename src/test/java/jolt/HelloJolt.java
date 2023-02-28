@@ -32,7 +32,6 @@ public final class HelloJolt {
     public void helloJolt() {
         Jolt.load();
 
-        // TODO based on targeted lib
         boolean doublePrecision = Jolt.features().doublePrecision();
         System.out.println("Features: " + Jolt.featureSet());
 
@@ -170,6 +169,7 @@ public final class HelloJolt {
             var sphereSettings = doublePrecision
                     ? BodyCreationSettings.create(session, SphereShape.create(0.5f), new DVec3(0.0, 2.0, 0.0), Quat.IDENTITY, MotionType.DYNAMIC, OBJ_LAYER_MOVING)
                     : BodyCreationSettings.create(session, SphereShape.create(0.5f), new FVec3(0.0f, 2.0f, 0.0f), Quat.IDENTITY, MotionType.DYNAMIC, OBJ_LAYER_MOVING);
+
             int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
             bodyInterface.setLinearVelocity(sphereId, new FVec3(0.0f, -5.0f, 0.0f));
