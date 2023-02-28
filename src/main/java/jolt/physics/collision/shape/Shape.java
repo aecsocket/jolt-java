@@ -4,7 +4,7 @@ import jolt.AbstractJoltNative;
 
 import java.lang.foreign.MemoryAddress;
 
-public class Shape extends AbstractJoltNative {
+public sealed class Shape extends AbstractJoltNative permits ConvexShape {
     public static Shape at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new Shape(address);
     }
@@ -14,5 +14,5 @@ public class Shape extends AbstractJoltNative {
     }
 
     @Override
-    protected void deleteInternal() { /* todo */ }
+    protected void destroyInternal() { /* todo */ }
 }

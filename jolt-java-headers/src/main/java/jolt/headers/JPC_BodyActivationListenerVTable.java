@@ -18,34 +18,34 @@ public class JPC_BodyActivationListenerVTable {
     public static MemoryLayout $LAYOUT() {
         return JPC_BodyActivationListenerVTable.$struct$LAYOUT;
     }
-    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused0"));
+    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused0"));
     public static VarHandle __unused0$VH() {
         return JPC_BodyActivationListenerVTable.__unused0$VH;
     }
     public static MemoryAddress __unused0$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.__unused0$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.__unused0$VH.get(seg);
     }
     public static void __unused0$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.__unused0$VH.set(seg, x);
     }
     public static MemoryAddress __unused0$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused0$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.__unused0$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused1"));
+    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused1"));
     public static VarHandle __unused1$VH() {
         return JPC_BodyActivationListenerVTable.__unused1$VH;
     }
     public static MemoryAddress __unused1$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.__unused1$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.__unused1$VH.get(seg);
     }
     public static void __unused1$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.__unused1$VH.set(seg, x);
     }
     public static MemoryAddress __unused1$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
@@ -60,15 +60,15 @@ public class JPC_BodyActivationListenerVTable {
     );
     public interface OnBodyActivated {
 
-        void apply(MemoryAddress _x0, MemoryAddress _x1, long _x2);
+        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, long _x2);
         static MemorySegment allocate(OnBodyActivated fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnBodyActivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyActivated$FUNC, session);
         }
         static OnBodyActivated ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1, long __x2) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, long __x2) -> {
                 try {
-                    JPC_BodyActivationListenerVTable.OnBodyActivated$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1, __x2);
+                    JPC_BodyActivationListenerVTable.OnBodyActivated$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -76,18 +76,18 @@ public class JPC_BodyActivationListenerVTable {
         }
     }
 
-    static final VarHandle OnBodyActivated$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("OnBodyActivated"));
+    static final VarHandle OnBodyActivated$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnBodyActivated"));
     public static VarHandle OnBodyActivated$VH() {
         return JPC_BodyActivationListenerVTable.OnBodyActivated$VH;
     }
     public static MemoryAddress OnBodyActivated$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyActivated$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyActivated$VH.get(seg);
     }
     public static void OnBodyActivated$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.OnBodyActivated$VH.set(seg, x);
     }
     public static MemoryAddress OnBodyActivated$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyActivated$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyActivated$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void OnBodyActivated$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.OnBodyActivated$VH.set(seg.asSlice(index*sizeof()), x);
@@ -105,15 +105,15 @@ public class JPC_BodyActivationListenerVTable {
     );
     public interface OnBodyDeactivated {
 
-        void apply(MemoryAddress _x0, MemoryAddress _x1, long _x2);
+        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, long _x2);
         static MemorySegment allocate(OnBodyDeactivated fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnBodyDeactivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyDeactivated$FUNC, session);
         }
         static OnBodyDeactivated ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1, long __x2) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, long __x2) -> {
                 try {
-                    JPC_BodyActivationListenerVTable.OnBodyDeactivated$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1, __x2);
+                    JPC_BodyActivationListenerVTable.OnBodyDeactivated$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -121,18 +121,18 @@ public class JPC_BodyActivationListenerVTable {
         }
     }
 
-    static final VarHandle OnBodyDeactivated$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("OnBodyDeactivated"));
+    static final VarHandle OnBodyDeactivated$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnBodyDeactivated"));
     public static VarHandle OnBodyDeactivated$VH() {
         return JPC_BodyActivationListenerVTable.OnBodyDeactivated$VH;
     }
     public static MemoryAddress OnBodyDeactivated$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyDeactivated$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyDeactivated$VH.get(seg);
     }
     public static void OnBodyDeactivated$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.OnBodyDeactivated$VH.set(seg, x);
     }
     public static MemoryAddress OnBodyDeactivated$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyDeactivated$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyActivationListenerVTable.OnBodyDeactivated$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void OnBodyDeactivated$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyActivationListenerVTable.OnBodyDeactivated$VH.set(seg.asSlice(index*sizeof()), x);

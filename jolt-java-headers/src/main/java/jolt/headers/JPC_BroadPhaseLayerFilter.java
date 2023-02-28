@@ -7,29 +7,29 @@ import java.lang.invoke.VarHandle;
 import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
-public class JPJ_BroadPhaseLayerFilter {
+public class JPC_BroadPhaseLayerFilter {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         Constants$root.C_POINTER$LAYOUT.withName("vtable")
-    ).withName("JPJ_BroadPhaseLayerFilter");
+    ).withName("JPC_BroadPhaseLayerFilter");
     public static MemoryLayout $LAYOUT() {
-        return JPJ_BroadPhaseLayerFilter.$struct$LAYOUT;
+        return JPC_BroadPhaseLayerFilter.$struct$LAYOUT;
     }
-    static final VarHandle vtable$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("vtable"));
+    static final VarHandle vtable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("vtable"));
     public static VarHandle vtable$VH() {
-        return JPJ_BroadPhaseLayerFilter.vtable$VH;
+        return JPC_BroadPhaseLayerFilter.vtable$VH;
     }
     public static MemoryAddress vtable$get(MemorySegment seg) {
-        return (MemoryAddress)JPJ_BroadPhaseLayerFilter.vtable$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerFilter.vtable$VH.get(seg);
     }
     public static void vtable$set( MemorySegment seg, MemoryAddress x) {
-        JPJ_BroadPhaseLayerFilter.vtable$VH.set(seg, x);
+        JPC_BroadPhaseLayerFilter.vtable$VH.set(seg, x);
     }
     public static MemoryAddress vtable$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPJ_BroadPhaseLayerFilter.vtable$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerFilter.vtable$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void vtable$set(MemorySegment seg, long index, MemoryAddress x) {
-        JPJ_BroadPhaseLayerFilter.vtable$VH.set(seg.asSlice(index*sizeof()), x);
+        JPC_BroadPhaseLayerFilter.vtable$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }

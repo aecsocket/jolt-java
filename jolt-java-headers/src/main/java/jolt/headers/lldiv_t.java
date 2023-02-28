@@ -16,7 +16,7 @@ public class lldiv_t {
     public static MemoryLayout $LAYOUT() {
         return lldiv_t.$struct$LAYOUT;
     }
-    static final VarHandle quot$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("quot"));
+    static final VarHandle quot$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("quot"));
     public static VarHandle quot$VH() {
         return lldiv_t.quot$VH;
     }
@@ -32,7 +32,7 @@ public class lldiv_t {
     public static void quot$set(MemorySegment seg, long index, long x) {
         lldiv_t.quot$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle rem$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("rem"));
+    static final VarHandle rem$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rem"));
     public static VarHandle rem$VH() {
         return lldiv_t.rem$VH;
     }

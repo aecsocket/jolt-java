@@ -17,7 +17,7 @@ public class JPC_MassProperties {
     public static MemoryLayout $LAYOUT() {
         return JPC_MassProperties.$struct$LAYOUT;
     }
-    static final VarHandle mass$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("mass"));
+    static final VarHandle mass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("mass"));
     public static VarHandle mass$VH() {
         return JPC_MassProperties.mass$VH;
     }

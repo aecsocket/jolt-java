@@ -9,15 +9,15 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public interface __compar_fn_t {
 
-    int apply(MemoryAddress _x0, MemoryAddress _x1);
+    int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
     static MemorySegment allocate(__compar_fn_t fi, MemorySession session) {
         return RuntimeHelper.upcallStub(__compar_fn_t.class, fi, constants$14.__compar_fn_t$FUNC, session);
     }
     static __compar_fn_t ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (MemoryAddress __x0, MemoryAddress __x1) -> {
+        return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
             try {
-                return (int)constants$14.__compar_fn_t$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1);
+                return (int)constants$14.__compar_fn_t$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

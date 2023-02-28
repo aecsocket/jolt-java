@@ -17,23 +17,23 @@ public class JPC_CollisionGroup {
     public static MemoryLayout $LAYOUT() {
         return JPC_CollisionGroup.$struct$LAYOUT;
     }
-    static final VarHandle filter$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("filter"));
+    static final VarHandle filter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("filter"));
     public static VarHandle filter$VH() {
         return JPC_CollisionGroup.filter$VH;
     }
     public static MemoryAddress filter$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_CollisionGroup.filter$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_CollisionGroup.filter$VH.get(seg);
     }
     public static void filter$set( MemorySegment seg, MemoryAddress x) {
         JPC_CollisionGroup.filter$VH.set(seg, x);
     }
     public static MemoryAddress filter$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_CollisionGroup.filter$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_CollisionGroup.filter$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void filter$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_CollisionGroup.filter$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle group_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("group_id"));
+    static final VarHandle group_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("group_id"));
     public static VarHandle group_id$VH() {
         return JPC_CollisionGroup.group_id$VH;
     }
@@ -49,7 +49,7 @@ public class JPC_CollisionGroup {
     public static void group_id$set(MemorySegment seg, long index, int x) {
         JPC_CollisionGroup.group_id$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle sub_group_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("sub_group_id"));
+    static final VarHandle sub_group_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sub_group_id"));
     public static VarHandle sub_group_id$VH() {
         return JPC_CollisionGroup.sub_group_id$VH;
     }

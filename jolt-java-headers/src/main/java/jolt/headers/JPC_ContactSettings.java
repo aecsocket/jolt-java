@@ -18,7 +18,7 @@ public class JPC_ContactSettings {
     public static MemoryLayout $LAYOUT() {
         return JPC_ContactSettings.$struct$LAYOUT;
     }
-    static final VarHandle combined_friction$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("combined_friction"));
+    static final VarHandle combined_friction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("combined_friction"));
     public static VarHandle combined_friction$VH() {
         return JPC_ContactSettings.combined_friction$VH;
     }
@@ -34,7 +34,7 @@ public class JPC_ContactSettings {
     public static void combined_friction$set(MemorySegment seg, long index, float x) {
         JPC_ContactSettings.combined_friction$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle combined_restitution$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("combined_restitution"));
+    static final VarHandle combined_restitution$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("combined_restitution"));
     public static VarHandle combined_restitution$VH() {
         return JPC_ContactSettings.combined_restitution$VH;
     }
@@ -50,7 +50,7 @@ public class JPC_ContactSettings {
     public static void combined_restitution$set(MemorySegment seg, long index, float x) {
         JPC_ContactSettings.combined_restitution$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle is_sensor$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("is_sensor"));
+    static final VarHandle is_sensor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("is_sensor"));
     public static VarHandle is_sensor$VH() {
         return JPC_ContactSettings.is_sensor$VH;
     }

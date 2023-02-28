@@ -1,6 +1,8 @@
 package jolt.physics;
 
 import jolt.AbstractJoltNative;
+import jolt.core.JobSystem;
+import jolt.core.TempAllocator;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
 import jolt.physics.collision.ContactListener;
@@ -45,7 +47,7 @@ public final class PhysicsSystem extends AbstractJoltNative {
     }
 
     @Override
-    protected void deleteInternal() {
+    protected void destroyInternal() {
         JPC_PhysicsSystem_Destroy(address);
     }
 
@@ -67,5 +69,25 @@ public final class PhysicsSystem extends AbstractJoltNative {
 
     public BodyInterface getBodyInterface() {
         return BodyInterface.at(JPC_PhysicsSystem_GetBodyInterface(address));
+    }
+
+    public void optimizeBroadPhase() {
+        JPC_PhysicsSystem_OptimizeBroadPhase(address);
+    }
+
+    public void update(
+            float deltaTime,
+            int collisionSteps,
+            int integrationSubSteps,
+            TempAllocator tempAllocator,
+            JobSystem jobSystem
+    ) {
+        JPC_PhysicsSystem_Update(address,
+                deltaTime,
+                collisionSteps,
+                integrationSubSteps,
+                tempAllocator.address(),
+                jobSystem.address()
+        );
     }
 }

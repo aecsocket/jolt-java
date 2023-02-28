@@ -15,7 +15,7 @@ public class __once_flag {
     public static MemoryLayout $LAYOUT() {
         return __once_flag.$struct$LAYOUT;
     }
-    static final VarHandle __data$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__data"));
+    static final VarHandle __data$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__data"));
     public static VarHandle __data$VH() {
         return __once_flag.__data$VH;
     }

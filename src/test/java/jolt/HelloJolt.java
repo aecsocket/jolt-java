@@ -2,12 +2,13 @@ package jolt;
 
 import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
+import jolt.math.DVec3;
+import jolt.math.FVec3;
+import jolt.math.Quat;
 import jolt.math.RVec3;
-import jolt.math.Vec3;
+import jolt.physics.Activation;
 import jolt.physics.PhysicsSystem;
-import jolt.physics.body.BodyActivationListener;
-import jolt.physics.body.BodyActivationListenerFunctions;
-import jolt.physics.body.BodyInterface;
+import jolt.physics.body.*;
 import jolt.physics.collision.*;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterfaceFunctions;
@@ -15,6 +16,7 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilterFunctions;
 import jolt.physics.collision.shape.BoxShapeSettings;
 import jolt.physics.collision.shape.Shape;
+import jolt.physics.collision.shape.SphereShape;
 import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.MemorySession;
@@ -30,11 +32,14 @@ public final class HelloJolt {
     public void helloJolt() {
         Jolt.load();
 
+        // TODO based on targeted lib
+        boolean doublePrecision = false;
+
         Jolt.registerDefaultAllocator();
         Jolt.createFactory();
         Jolt.registerTypes();
 
-        try (var memory = MemorySession.openConfined()) {
+        try (var session = MemorySession.openConfined()) {
             var tempAllocator = new TempAllocator(10 * 1024 * 1024);
             var jobSystem = new JobSystem(
                     JobSystem.MAX_PHYSICS_JOBS,
@@ -42,7 +47,7 @@ public final class HelloJolt {
                     Math.min(16, Math.max(1, Runtime.getRuntime().availableProcessors() - 1))
             );
 
-            var bpLayerInterface = BroadPhaseLayerInterface.of(memory, new BroadPhaseLayerInterfaceFunctions() {
+            var bpLayerInterface = BroadPhaseLayerInterface.of(session, new BroadPhaseLayerInterfaceFunctions() {
                 @Override
                 public int getNumBroadPhaseLayers() {
                     return 2;
@@ -58,7 +63,7 @@ public final class HelloJolt {
                 }
             });
 
-            var objBpLayerFilter = ObjectVsBroadPhaseLayerFilter.of(memory, new ObjectVsBroadPhaseLayerFilterFunctions() {
+            var objBpLayerFilter = ObjectVsBroadPhaseLayerFilter.of(session, new ObjectVsBroadPhaseLayerFilterFunctions() {
                 @Override
                 public boolean shouldCollide(short layer1, byte layer2) {
                     return switch (layer1) {
@@ -69,7 +74,7 @@ public final class HelloJolt {
                 }
             });
 
-            var objLayerPairFilter = ObjectLayerPairFilter.of(memory, new ObjectLayerPairFilterFunctions() {
+            var objLayerPairFilter = ObjectLayerPairFilter.of(session, new ObjectLayerPairFilterFunctions() {
                 @Override
                 public boolean shouldCollide(short layer1, short layer2) {
                     return switch (layer1) {
@@ -90,7 +95,7 @@ public final class HelloJolt {
                     objLayerPairFilter
             );
 
-            var bodyActivationListener = BodyActivationListener.of(memory, new BodyActivationListenerFunctions() {
+            var bodyActivationListener = BodyActivationListener.of(session, new BodyActivationListenerFunctions() {
                 @Override
                 public void onBodyActivated(int bodyId, long bodyUserData) {
                     System.out.println("A body got activated");
@@ -103,7 +108,7 @@ public final class HelloJolt {
             });
             physicsSystem.setBodyActivationListener(bodyActivationListener);
 
-            var contactListener = ContactListener.of(memory, new ContactListenerFunctions() {
+            var contactListener = ContactListener.of(session, new ContactListenerFunctions() {
                 @Override
                 public ValidateResult onContactValidate(int body1, int body2, RVec3 baseOffset, CollideShapeResult collisionResult) {
                     System.out.println("Contact validate callback");
@@ -129,20 +134,62 @@ public final class HelloJolt {
 
             BodyInterface bodyInterface = physicsSystem.getBodyInterface();
 
-            var floorShapeSettings = BoxShapeSettings.create(new Vec3(100.0f, 1.0f, 100.0f));
+            var floorShapeSettings = BoxShapeSettings.create(new FVec3(100.0f, 1.0f, 100.0f));
             Shape floorShape = floorShapeSettings.create();
 
             // TODO
+            var floorSettings = doublePrecision
+                    ? BodyCreationSettings.create(session, floorShape, new DVec3(0.0, -1.0, 0.0), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING)
+                    : BodyCreationSettings.create(session, floorShape, new FVec3(0.0f, -1.0f, 0.0f), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING);
+            Body floor = bodyInterface.createBody(floorSettings);
+            bodyInterface.addBody(floor.getId(), Activation.DONT_ACTIVATE);
+
+            var sphereSettings = doublePrecision
+                    ? BodyCreationSettings.create(session, SphereShape.create(0.5f), new DVec3(0.0, 2.0, 0.0), Quat.IDENTITY, MotionType.DYNAMIC, OBJ_LAYER_MOVING)
+                    : BodyCreationSettings.create(session, SphereShape.create(0.5f), new FVec3(0.0f, 2.0f, 0.0f), Quat.IDENTITY, MotionType.DYNAMIC, OBJ_LAYER_MOVING);
+            int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
+
+            bodyInterface.setLinearVelocity(sphereId, new FVec3(0.0f, -5.0f, 0.0f));
+
+            var deltaTime = 1 / 60.0f;
+
+            physicsSystem.optimizeBroadPhase();
+
+            int step = 0;
+            while (bodyInterface.isActive(sphereId)) {
+                ++step;
+
+                Object position = doublePrecision
+                        ? bodyInterface.getCenterOfMassPositionDp(sphereId)
+                        : bodyInterface.getCenterOfMassPositionSp(sphereId);
+                FVec3 velocity = bodyInterface.getLinearVelocity(sphereId);
+
+                System.out.println("Step " + step + ": Position = " + position + ", Velocity = " + velocity);
+
+                physicsSystem.update(
+                        deltaTime,
+                        1,
+                        1,
+                        tempAllocator,
+                        jobSystem
+                );
+            }
+
+            bodyInterface.removeBody(sphereId);
+            bodyInterface.destroyBody(sphereId);
+            
+            bodyInterface.removeBody(floor.getId());
+            bodyInterface.destroyBody(floor.getId());
 
             // Clean up memory
-            physicsSystem.delete();
+            physicsSystem.destroy();
 
-            objLayerPairFilter.delete();
-            objBpLayerFilter.delete();
-            bpLayerInterface.delete();
+            objLayerPairFilter.destroy();
+            objBpLayerFilter.destroy();
+            bpLayerInterface.destroy();
 
-            jobSystem.delete();
-            tempAllocator.delete();
+            jobSystem.destroy();
+            tempAllocator.destroy();
             Jolt.destroyFactory();
         }
     }

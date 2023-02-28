@@ -15,18 +15,18 @@ public class __pthread_internal_slist {
     public static MemoryLayout $LAYOUT() {
         return __pthread_internal_slist.$struct$LAYOUT;
     }
-    static final VarHandle __next$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__next"));
+    static final VarHandle __next$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__next"));
     public static VarHandle __next$VH() {
         return __pthread_internal_slist.__next$VH;
     }
     public static MemoryAddress __next$get(MemorySegment seg) {
-        return (MemoryAddress)__pthread_internal_slist.__next$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)__pthread_internal_slist.__next$VH.get(seg);
     }
     public static void __next$set( MemorySegment seg, MemoryAddress x) {
         __pthread_internal_slist.__next$VH.set(seg, x);
     }
     public static MemoryAddress __next$get(MemorySegment seg, long index) {
-        return (MemoryAddress)__pthread_internal_slist.__next$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)__pthread_internal_slist.__next$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __next$set(MemorySegment seg, long index, MemoryAddress x) {
         __pthread_internal_slist.__next$VH.set(seg.asSlice(index*sizeof()), x);

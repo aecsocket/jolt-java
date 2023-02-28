@@ -17,7 +17,7 @@ public class JPC_RayCastResult {
     public static MemoryLayout $LAYOUT() {
         return JPC_RayCastResult.$struct$LAYOUT;
     }
-    static final VarHandle body_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("body_id"));
+    static final VarHandle body_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body_id"));
     public static VarHandle body_id$VH() {
         return JPC_RayCastResult.body_id$VH;
     }
@@ -33,7 +33,7 @@ public class JPC_RayCastResult {
     public static void body_id$set(MemorySegment seg, long index, int x) {
         JPC_RayCastResult.body_id$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle fraction$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("fraction"));
+    static final VarHandle fraction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fraction"));
     public static VarHandle fraction$VH() {
         return JPC_RayCastResult.fraction$VH;
     }
@@ -49,7 +49,7 @@ public class JPC_RayCastResult {
     public static void fraction$set(MemorySegment seg, long index, float x) {
         JPC_RayCastResult.fraction$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle sub_shape_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("sub_shape_id"));
+    static final VarHandle sub_shape_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sub_shape_id"));
     public static VarHandle sub_shape_id$VH() {
         return JPC_RayCastResult.sub_shape_id$VH;
     }

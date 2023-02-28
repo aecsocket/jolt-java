@@ -16,7 +16,7 @@ public class JPC_RayCastSettings {
     public static MemoryLayout $LAYOUT() {
         return JPC_RayCastSettings.$struct$LAYOUT;
     }
-    static final VarHandle back_face_mode$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("back_face_mode"));
+    static final VarHandle back_face_mode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("back_face_mode"));
     public static VarHandle back_face_mode$VH() {
         return JPC_RayCastSettings.back_face_mode$VH;
     }
@@ -32,7 +32,7 @@ public class JPC_RayCastSettings {
     public static void back_face_mode$set(MemorySegment seg, long index, byte x) {
         JPC_RayCastSettings.back_face_mode$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle treat_convex_as_solid$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("treat_convex_as_solid"));
+    static final VarHandle treat_convex_as_solid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("treat_convex_as_solid"));
     public static VarHandle treat_convex_as_solid$VH() {
         return JPC_RayCastSettings.treat_convex_as_solid$VH;
     }

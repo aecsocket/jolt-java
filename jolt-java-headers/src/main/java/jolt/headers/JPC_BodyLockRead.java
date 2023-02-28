@@ -17,50 +17,50 @@ public class JPC_BodyLockRead {
     public static MemoryLayout $LAYOUT() {
         return JPC_BodyLockRead.$struct$LAYOUT;
     }
-    static final VarHandle lock_interface$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("lock_interface"));
+    static final VarHandle lock_interface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lock_interface"));
     public static VarHandle lock_interface$VH() {
         return JPC_BodyLockRead.lock_interface$VH;
     }
     public static MemoryAddress lock_interface$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyLockRead.lock_interface$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyLockRead.lock_interface$VH.get(seg);
     }
     public static void lock_interface$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyLockRead.lock_interface$VH.set(seg, x);
     }
     public static MemoryAddress lock_interface$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyLockRead.lock_interface$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyLockRead.lock_interface$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void lock_interface$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyLockRead.lock_interface$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle mutex$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("mutex"));
+    static final VarHandle mutex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("mutex"));
     public static VarHandle mutex$VH() {
         return JPC_BodyLockRead.mutex$VH;
     }
     public static MemoryAddress mutex$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyLockRead.mutex$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyLockRead.mutex$VH.get(seg);
     }
     public static void mutex$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyLockRead.mutex$VH.set(seg, x);
     }
     public static MemoryAddress mutex$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyLockRead.mutex$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyLockRead.mutex$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void mutex$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyLockRead.mutex$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle body$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("body"));
+    static final VarHandle body$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body"));
     public static VarHandle body$VH() {
         return JPC_BodyLockRead.body$VH;
     }
     public static MemoryAddress body$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyLockRead.body$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyLockRead.body$VH.get(seg);
     }
     public static void body$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyLockRead.body$VH.set(seg, x);
     }
     public static MemoryAddress body$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyLockRead.body$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyLockRead.body$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void body$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyLockRead.body$VH.set(seg.asSlice(index*sizeof()), x);

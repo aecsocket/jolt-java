@@ -7,29 +7,29 @@ import java.lang.invoke.VarHandle;
 import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
-public class JPJ_BodyFilter {
+public class JPC_BroadPhaseLayerInterface {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         Constants$root.C_POINTER$LAYOUT.withName("vtable")
-    ).withName("JPJ_BodyFilter");
+    ).withName("JPC_BroadPhaseLayerInterface");
     public static MemoryLayout $LAYOUT() {
-        return JPJ_BodyFilter.$struct$LAYOUT;
+        return JPC_BroadPhaseLayerInterface.$struct$LAYOUT;
     }
-    static final VarHandle vtable$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("vtable"));
+    static final VarHandle vtable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("vtable"));
     public static VarHandle vtable$VH() {
-        return JPJ_BodyFilter.vtable$VH;
+        return JPC_BroadPhaseLayerInterface.vtable$VH;
     }
     public static MemoryAddress vtable$get(MemorySegment seg) {
-        return (MemoryAddress)JPJ_BodyFilter.vtable$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterface.vtable$VH.get(seg);
     }
     public static void vtable$set( MemorySegment seg, MemoryAddress x) {
-        JPJ_BodyFilter.vtable$VH.set(seg, x);
+        JPC_BroadPhaseLayerInterface.vtable$VH.set(seg, x);
     }
     public static MemoryAddress vtable$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPJ_BodyFilter.vtable$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterface.vtable$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void vtable$set(MemorySegment seg, long index, MemoryAddress x) {
-        JPJ_BodyFilter.vtable$VH.set(seg.asSlice(index*sizeof()), x);
+        JPC_BroadPhaseLayerInterface.vtable$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }

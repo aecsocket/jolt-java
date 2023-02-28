@@ -19,7 +19,7 @@ public class __atomic_wide_counter {
     public static MemoryLayout $LAYOUT() {
         return __atomic_wide_counter.$union$LAYOUT;
     }
-    static final VarHandle __value64$VH = $union$LAYOUT.varHandle(PathElement.groupElement("__value64"));
+    static final VarHandle __value64$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__value64"));
     public static VarHandle __value64$VH() {
         return __atomic_wide_counter.__value64$VH;
     }
@@ -44,7 +44,7 @@ public class __atomic_wide_counter {
         public static MemoryLayout $LAYOUT() {
             return __value32.__value32$struct$LAYOUT;
         }
-        static final VarHandle __low$VH = __value32$struct$LAYOUT.varHandle(PathElement.groupElement("__low"));
+        static final VarHandle __low$VH = __value32$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__low"));
         public static VarHandle __low$VH() {
             return __value32.__low$VH;
         }
@@ -60,7 +60,7 @@ public class __atomic_wide_counter {
         public static void __low$set(MemorySegment seg, long index, int x) {
             __value32.__low$VH.set(seg.asSlice(index*sizeof()), x);
         }
-        static final VarHandle __high$VH = __value32$struct$LAYOUT.varHandle(PathElement.groupElement("__high"));
+        static final VarHandle __high$VH = __value32$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__high"));
         public static VarHandle __high$VH() {
             return __value32.__high$VH;
         }

@@ -50,7 +50,7 @@ public class JPC_MotionProperties {
     public static MemorySegment torque$slice(MemorySegment seg) {
         return seg.asSlice(76, 12);
     }
-    static final VarHandle inv_mass$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("inv_mass"));
+    static final VarHandle inv_mass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("inv_mass"));
     public static VarHandle inv_mass$VH() {
         return JPC_MotionProperties.inv_mass$VH;
     }
@@ -66,7 +66,7 @@ public class JPC_MotionProperties {
     public static void inv_mass$set(MemorySegment seg, long index, float x) {
         JPC_MotionProperties.inv_mass$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle linear_damping$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("linear_damping"));
+    static final VarHandle linear_damping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("linear_damping"));
     public static VarHandle linear_damping$VH() {
         return JPC_MotionProperties.linear_damping$VH;
     }
@@ -82,7 +82,7 @@ public class JPC_MotionProperties {
     public static void linear_damping$set(MemorySegment seg, long index, float x) {
         JPC_MotionProperties.linear_damping$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle angular_daming$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("angular_daming"));
+    static final VarHandle angular_daming$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("angular_daming"));
     public static VarHandle angular_daming$VH() {
         return JPC_MotionProperties.angular_daming$VH;
     }
@@ -98,7 +98,7 @@ public class JPC_MotionProperties {
     public static void angular_daming$set(MemorySegment seg, long index, float x) {
         JPC_MotionProperties.angular_daming$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle max_linear_velocity$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("max_linear_velocity"));
+    static final VarHandle max_linear_velocity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_linear_velocity"));
     public static VarHandle max_linear_velocity$VH() {
         return JPC_MotionProperties.max_linear_velocity$VH;
     }
@@ -114,7 +114,7 @@ public class JPC_MotionProperties {
     public static void max_linear_velocity$set(MemorySegment seg, long index, float x) {
         JPC_MotionProperties.max_linear_velocity$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle max_angular_velocity$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("max_angular_velocity"));
+    static final VarHandle max_angular_velocity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_angular_velocity"));
     public static VarHandle max_angular_velocity$VH() {
         return JPC_MotionProperties.max_angular_velocity$VH;
     }
@@ -130,7 +130,7 @@ public class JPC_MotionProperties {
     public static void max_angular_velocity$set(MemorySegment seg, long index, float x) {
         JPC_MotionProperties.max_angular_velocity$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle gravity_factor$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("gravity_factor"));
+    static final VarHandle gravity_factor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("gravity_factor"));
     public static VarHandle gravity_factor$VH() {
         return JPC_MotionProperties.gravity_factor$VH;
     }
@@ -146,7 +146,7 @@ public class JPC_MotionProperties {
     public static void gravity_factor$set(MemorySegment seg, long index, float x) {
         JPC_MotionProperties.gravity_factor$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle index_in_active_bodies$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("index_in_active_bodies"));
+    static final VarHandle index_in_active_bodies$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("index_in_active_bodies"));
     public static VarHandle index_in_active_bodies$VH() {
         return JPC_MotionProperties.index_in_active_bodies$VH;
     }
@@ -162,7 +162,7 @@ public class JPC_MotionProperties {
     public static void index_in_active_bodies$set(MemorySegment seg, long index, int x) {
         JPC_MotionProperties.index_in_active_bodies$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle island_index$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("island_index"));
+    static final VarHandle island_index$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("island_index"));
     public static VarHandle island_index$VH() {
         return JPC_MotionProperties.island_index$VH;
     }
@@ -178,7 +178,7 @@ public class JPC_MotionProperties {
     public static void island_index$set(MemorySegment seg, long index, int x) {
         JPC_MotionProperties.island_index$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle motion_quality$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("motion_quality"));
+    static final VarHandle motion_quality$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("motion_quality"));
     public static VarHandle motion_quality$VH() {
         return JPC_MotionProperties.motion_quality$VH;
     }
@@ -194,7 +194,7 @@ public class JPC_MotionProperties {
     public static void motion_quality$set(MemorySegment seg, long index, byte x) {
         JPC_MotionProperties.motion_quality$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle allow_sleeping$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("allow_sleeping"));
+    static final VarHandle allow_sleeping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("allow_sleeping"));
     public static VarHandle allow_sleeping$VH() {
         return JPC_MotionProperties.allow_sleeping$VH;
     }

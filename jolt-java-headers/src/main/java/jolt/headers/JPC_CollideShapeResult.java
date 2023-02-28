@@ -40,7 +40,7 @@ public class JPC_CollideShapeResult {
     public static MemorySegment penetration_axis$slice(MemorySegment seg) {
         return seg.asSlice(32, 16);
     }
-    static final VarHandle penetration_depth$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("penetration_depth"));
+    static final VarHandle penetration_depth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("penetration_depth"));
     public static VarHandle penetration_depth$VH() {
         return JPC_CollideShapeResult.penetration_depth$VH;
     }
@@ -56,7 +56,7 @@ public class JPC_CollideShapeResult {
     public static void penetration_depth$set(MemorySegment seg, long index, float x) {
         JPC_CollideShapeResult.penetration_depth$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle shape1_sub_shape_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("shape1_sub_shape_id"));
+    static final VarHandle shape1_sub_shape_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("shape1_sub_shape_id"));
     public static VarHandle shape1_sub_shape_id$VH() {
         return JPC_CollideShapeResult.shape1_sub_shape_id$VH;
     }
@@ -72,7 +72,7 @@ public class JPC_CollideShapeResult {
     public static void shape1_sub_shape_id$set(MemorySegment seg, long index, int x) {
         JPC_CollideShapeResult.shape1_sub_shape_id$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle shape2_sub_shape_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("shape2_sub_shape_id"));
+    static final VarHandle shape2_sub_shape_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("shape2_sub_shape_id"));
     public static VarHandle shape2_sub_shape_id$VH() {
         return JPC_CollideShapeResult.shape2_sub_shape_id$VH;
     }
@@ -88,7 +88,7 @@ public class JPC_CollideShapeResult {
     public static void shape2_sub_shape_id$set(MemorySegment seg, long index, int x) {
         JPC_CollideShapeResult.shape2_sub_shape_id$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle body2_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("body2_id"));
+    static final VarHandle body2_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body2_id"));
     public static VarHandle body2_id$VH() {
         return JPC_CollideShapeResult.body2_id$VH;
     }
@@ -114,7 +114,7 @@ public class JPC_CollideShapeResult {
         public static MemoryLayout $LAYOUT() {
             return shape1_face.shape1_face$struct$LAYOUT;
         }
-        static final VarHandle num_points$VH = shape1_face$struct$LAYOUT.varHandle(PathElement.groupElement("num_points"));
+        static final VarHandle num_points$VH = shape1_face$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("num_points"));
         public static VarHandle num_points$VH() {
             return shape1_face.num_points$VH;
         }
@@ -154,7 +154,7 @@ public class JPC_CollideShapeResult {
         public static MemoryLayout $LAYOUT() {
             return shape2_face.shape2_face$struct$LAYOUT;
         }
-        static final VarHandle num_points$VH = shape2_face$struct$LAYOUT.varHandle(PathElement.groupElement("num_points"));
+        static final VarHandle num_points$VH = shape2_face$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("num_points"));
         public static VarHandle num_points$VH() {
             return shape2_face.num_points$VH;
         }

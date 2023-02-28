@@ -62,7 +62,7 @@ public class JPC_BodyCreationSettings {
     public static MemorySegment angular_velocity$slice(MemorySegment seg) {
         return seg.asSlice(48, 16);
     }
-    static final VarHandle user_data$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("user_data"));
+    static final VarHandle user_data$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("user_data"));
     public static VarHandle user_data$VH() {
         return JPC_BodyCreationSettings.user_data$VH;
     }
@@ -78,7 +78,7 @@ public class JPC_BodyCreationSettings {
     public static void user_data$set(MemorySegment seg, long index, long x) {
         JPC_BodyCreationSettings.user_data$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle object_layer$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("object_layer"));
+    static final VarHandle object_layer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("object_layer"));
     public static VarHandle object_layer$VH() {
         return JPC_BodyCreationSettings.object_layer$VH;
     }
@@ -97,7 +97,7 @@ public class JPC_BodyCreationSettings {
     public static MemorySegment collision_group$slice(MemorySegment seg) {
         return seg.asSlice(80, 16);
     }
-    static final VarHandle motion_type$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("motion_type"));
+    static final VarHandle motion_type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("motion_type"));
     public static VarHandle motion_type$VH() {
         return JPC_BodyCreationSettings.motion_type$VH;
     }
@@ -113,7 +113,7 @@ public class JPC_BodyCreationSettings {
     public static void motion_type$set(MemorySegment seg, long index, byte x) {
         JPC_BodyCreationSettings.motion_type$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle allow_dynamic_or_kinematic$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("allow_dynamic_or_kinematic"));
+    static final VarHandle allow_dynamic_or_kinematic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("allow_dynamic_or_kinematic"));
     public static VarHandle allow_dynamic_or_kinematic$VH() {
         return JPC_BodyCreationSettings.allow_dynamic_or_kinematic$VH;
     }
@@ -129,7 +129,7 @@ public class JPC_BodyCreationSettings {
     public static void allow_dynamic_or_kinematic$set(MemorySegment seg, long index, boolean x) {
         JPC_BodyCreationSettings.allow_dynamic_or_kinematic$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle is_sensor$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("is_sensor"));
+    static final VarHandle is_sensor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("is_sensor"));
     public static VarHandle is_sensor$VH() {
         return JPC_BodyCreationSettings.is_sensor$VH;
     }
@@ -145,7 +145,7 @@ public class JPC_BodyCreationSettings {
     public static void is_sensor$set(MemorySegment seg, long index, boolean x) {
         JPC_BodyCreationSettings.is_sensor$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle motion_quality$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("motion_quality"));
+    static final VarHandle motion_quality$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("motion_quality"));
     public static VarHandle motion_quality$VH() {
         return JPC_BodyCreationSettings.motion_quality$VH;
     }
@@ -161,7 +161,7 @@ public class JPC_BodyCreationSettings {
     public static void motion_quality$set(MemorySegment seg, long index, byte x) {
         JPC_BodyCreationSettings.motion_quality$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle allow_sleeping$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("allow_sleeping"));
+    static final VarHandle allow_sleeping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("allow_sleeping"));
     public static VarHandle allow_sleeping$VH() {
         return JPC_BodyCreationSettings.allow_sleeping$VH;
     }
@@ -177,7 +177,7 @@ public class JPC_BodyCreationSettings {
     public static void allow_sleeping$set(MemorySegment seg, long index, boolean x) {
         JPC_BodyCreationSettings.allow_sleeping$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle friction$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("friction"));
+    static final VarHandle friction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("friction"));
     public static VarHandle friction$VH() {
         return JPC_BodyCreationSettings.friction$VH;
     }
@@ -193,7 +193,7 @@ public class JPC_BodyCreationSettings {
     public static void friction$set(MemorySegment seg, long index, float x) {
         JPC_BodyCreationSettings.friction$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle restitution$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("restitution"));
+    static final VarHandle restitution$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("restitution"));
     public static VarHandle restitution$VH() {
         return JPC_BodyCreationSettings.restitution$VH;
     }
@@ -209,7 +209,7 @@ public class JPC_BodyCreationSettings {
     public static void restitution$set(MemorySegment seg, long index, float x) {
         JPC_BodyCreationSettings.restitution$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle linear_damping$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("linear_damping"));
+    static final VarHandle linear_damping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("linear_damping"));
     public static VarHandle linear_damping$VH() {
         return JPC_BodyCreationSettings.linear_damping$VH;
     }
@@ -225,7 +225,7 @@ public class JPC_BodyCreationSettings {
     public static void linear_damping$set(MemorySegment seg, long index, float x) {
         JPC_BodyCreationSettings.linear_damping$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle angular_damping$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("angular_damping"));
+    static final VarHandle angular_damping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("angular_damping"));
     public static VarHandle angular_damping$VH() {
         return JPC_BodyCreationSettings.angular_damping$VH;
     }
@@ -241,7 +241,7 @@ public class JPC_BodyCreationSettings {
     public static void angular_damping$set(MemorySegment seg, long index, float x) {
         JPC_BodyCreationSettings.angular_damping$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle max_linear_velocity$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("max_linear_velocity"));
+    static final VarHandle max_linear_velocity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_linear_velocity"));
     public static VarHandle max_linear_velocity$VH() {
         return JPC_BodyCreationSettings.max_linear_velocity$VH;
     }
@@ -257,7 +257,7 @@ public class JPC_BodyCreationSettings {
     public static void max_linear_velocity$set(MemorySegment seg, long index, float x) {
         JPC_BodyCreationSettings.max_linear_velocity$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle max_angular_velocity$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("max_angular_velocity"));
+    static final VarHandle max_angular_velocity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_angular_velocity"));
     public static VarHandle max_angular_velocity$VH() {
         return JPC_BodyCreationSettings.max_angular_velocity$VH;
     }
@@ -273,7 +273,7 @@ public class JPC_BodyCreationSettings {
     public static void max_angular_velocity$set(MemorySegment seg, long index, float x) {
         JPC_BodyCreationSettings.max_angular_velocity$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle gravity_factor$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("gravity_factor"));
+    static final VarHandle gravity_factor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("gravity_factor"));
     public static VarHandle gravity_factor$VH() {
         return JPC_BodyCreationSettings.gravity_factor$VH;
     }
@@ -289,7 +289,7 @@ public class JPC_BodyCreationSettings {
     public static void gravity_factor$set(MemorySegment seg, long index, float x) {
         JPC_BodyCreationSettings.gravity_factor$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle override_mass_properties$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("override_mass_properties"));
+    static final VarHandle override_mass_properties$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("override_mass_properties"));
     public static VarHandle override_mass_properties$VH() {
         return JPC_BodyCreationSettings.override_mass_properties$VH;
     }
@@ -305,7 +305,7 @@ public class JPC_BodyCreationSettings {
     public static void override_mass_properties$set(MemorySegment seg, long index, byte x) {
         JPC_BodyCreationSettings.override_mass_properties$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle inertia_multiplier$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("inertia_multiplier"));
+    static final VarHandle inertia_multiplier$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("inertia_multiplier"));
     public static VarHandle inertia_multiplier$VH() {
         return JPC_BodyCreationSettings.inertia_multiplier$VH;
     }
@@ -324,34 +324,34 @@ public class JPC_BodyCreationSettings {
     public static MemorySegment mass_properties_override$slice(MemorySegment seg) {
         return seg.asSlice(144, 80);
     }
-    static final VarHandle reserved$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("reserved"));
+    static final VarHandle reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved"));
     public static VarHandle reserved$VH() {
         return JPC_BodyCreationSettings.reserved$VH;
     }
     public static MemoryAddress reserved$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyCreationSettings.reserved$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyCreationSettings.reserved$VH.get(seg);
     }
     public static void reserved$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyCreationSettings.reserved$VH.set(seg, x);
     }
     public static MemoryAddress reserved$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyCreationSettings.reserved$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyCreationSettings.reserved$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void reserved$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyCreationSettings.reserved$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle shape$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("shape"));
+    static final VarHandle shape$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("shape"));
     public static VarHandle shape$VH() {
         return JPC_BodyCreationSettings.shape$VH;
     }
     public static MemoryAddress shape$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyCreationSettings.shape$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyCreationSettings.shape$VH.get(seg);
     }
     public static void shape$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyCreationSettings.shape$VH.set(seg, x);
     }
     public static MemoryAddress shape$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyCreationSettings.shape$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyCreationSettings.shape$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void shape$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyCreationSettings.shape$VH.set(seg.asSlice(index*sizeof()), x);

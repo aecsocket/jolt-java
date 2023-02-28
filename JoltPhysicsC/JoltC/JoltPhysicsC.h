@@ -192,6 +192,7 @@ typedef struct JPC_PhysicsSystem JPC_PhysicsSystem;
 typedef struct JPC_SharedMutex   JPC_SharedMutex;
 
 typedef struct JPC_Shape           JPC_Shape;
+typedef struct JPC_SphereShape     JPC_SphereShape;
 typedef struct JPC_PhysicsMaterial JPC_PhysicsMaterial;
 typedef struct JPC_GroupFilter     JPC_GroupFilter;
 //--------------------------------------------------------------------------------------------------
@@ -1380,39 +1381,42 @@ JPC_BodyID_GetSequenceNumber(JPC_BodyID in_body_id);
 JPC_API bool
 JPC_BodyID_IsInvalid(JPC_BodyID in_body_id);
 //--------------------------------------------------------------------------------------------------
+// JoltJava: Java support
+JPC_API JPC_SphereShape *
+JPC_SphereShape_Create(float in_radius);
+
+struct JPC_BroadPhaseLayerInterface {
+    const JPC_BroadPhaseLayerInterfaceVTable *vtable;
+};
+
+struct JPC_ObjectVsBroadPhaseLayerFilter {
+    const JPC_ObjectVsBroadPhaseLayerFilterVTable *vtable;
+};
+
+struct JPC_BroadPhaseLayerFilter {
+    const JPC_BroadPhaseLayerFilterVTable *vtable;
+};
+
+struct JPC_ObjectLayerPairFilter {
+    const JPC_ObjectLayerPairFilterVTable *vtable;
+};
+
+struct JPC_ObjectLayerFilter {
+    const JPC_ObjectLayerFilterVTable *vtable;
+};
+
+struct JPC_BodyActivationListener {
+    const JPC_BodyActivationListenerVTable *vtable;
+};
+
+struct JPC_BodyFilter {
+    const JPC_BodyFilterVTable *vtable;
+};
+
+struct JPC_ContactListener {
+    const JPC_ContactListenerVTable *vtable;
+};
+// END JoltJava
 #ifdef __cplusplus
 }
 #endif
-
-// JoltJava: Java support
-struct JPJ_BroadPhaseLayerInterface {
-    const JPC_BroadPhaseLayerInterfaceVTable* vtable;
-};
-
-struct JPJ_ObjectVsBroadPhaseLayerFilter {
-    const JPC_ObjectVsBroadPhaseLayerFilterVTable* vtable;
-};
-
-struct JPJ_BroadPhaseLayerFilter {
-    const JPC_BroadPhaseLayerFilterVTable* vtable;
-};
-
-struct JPJ_ObjectLayerPairFilter {
-    const JPC_ObjectLayerPairFilterVTable* vtable;
-};
-
-struct JPJ_ObjectLayerFilter {
-    const JPC_ObjectLayerFilterVTable* vtable;
-};
-
-struct JPJ_BodyActivationListener {
-    const JPC_BodyActivationListenerVTable* vtable;
-};
-
-struct JPJ_BodyFilter {
-    const JPC_BodyFilterVTable* vtable;
-};
-
-struct JPJ_ContactListener {
-    const JPC_ContactListenerVTable* vtable;
-};

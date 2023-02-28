@@ -46,39 +46,39 @@ public class JPC_Body {
     public static MemorySegment bounds_max$slice(MemorySegment seg) {
         return seg.asSlice(48, 16);
     }
-    static final VarHandle shape$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("shape"));
+    static final VarHandle shape$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("shape"));
     public static VarHandle shape$VH() {
         return JPC_Body.shape$VH;
     }
     public static MemoryAddress shape$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_Body.shape$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_Body.shape$VH.get(seg);
     }
     public static void shape$set( MemorySegment seg, MemoryAddress x) {
         JPC_Body.shape$VH.set(seg, x);
     }
     public static MemoryAddress shape$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_Body.shape$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_Body.shape$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void shape$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_Body.shape$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle motion_properties$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("motion_properties"));
+    static final VarHandle motion_properties$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("motion_properties"));
     public static VarHandle motion_properties$VH() {
         return JPC_Body.motion_properties$VH;
     }
     public static MemoryAddress motion_properties$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_Body.motion_properties$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_Body.motion_properties$VH.get(seg);
     }
     public static void motion_properties$set( MemorySegment seg, MemoryAddress x) {
         JPC_Body.motion_properties$VH.set(seg, x);
     }
     public static MemoryAddress motion_properties$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_Body.motion_properties$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_Body.motion_properties$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void motion_properties$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_Body.motion_properties$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle user_data$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("user_data"));
+    static final VarHandle user_data$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("user_data"));
     public static VarHandle user_data$VH() {
         return JPC_Body.user_data$VH;
     }
@@ -97,7 +97,7 @@ public class JPC_Body {
     public static MemorySegment collision_group$slice(MemorySegment seg) {
         return seg.asSlice(88, 16);
     }
-    static final VarHandle friction$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("friction"));
+    static final VarHandle friction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("friction"));
     public static VarHandle friction$VH() {
         return JPC_Body.friction$VH;
     }
@@ -113,7 +113,7 @@ public class JPC_Body {
     public static void friction$set(MemorySegment seg, long index, float x) {
         JPC_Body.friction$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle restitution$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("restitution"));
+    static final VarHandle restitution$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("restitution"));
     public static VarHandle restitution$VH() {
         return JPC_Body.restitution$VH;
     }
@@ -129,7 +129,7 @@ public class JPC_Body {
     public static void restitution$set(MemorySegment seg, long index, float x) {
         JPC_Body.restitution$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("id"));
+    static final VarHandle id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("id"));
     public static VarHandle id$VH() {
         return JPC_Body.id$VH;
     }
@@ -145,7 +145,7 @@ public class JPC_Body {
     public static void id$set(MemorySegment seg, long index, int x) {
         JPC_Body.id$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle object_layer$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("object_layer"));
+    static final VarHandle object_layer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("object_layer"));
     public static VarHandle object_layer$VH() {
         return JPC_Body.object_layer$VH;
     }
@@ -161,7 +161,7 @@ public class JPC_Body {
     public static void object_layer$set(MemorySegment seg, long index, short x) {
         JPC_Body.object_layer$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle broad_phase_layer$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("broad_phase_layer"));
+    static final VarHandle broad_phase_layer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("broad_phase_layer"));
     public static VarHandle broad_phase_layer$VH() {
         return JPC_Body.broad_phase_layer$VH;
     }
@@ -177,7 +177,7 @@ public class JPC_Body {
     public static void broad_phase_layer$set(MemorySegment seg, long index, byte x) {
         JPC_Body.broad_phase_layer$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle motion_type$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("motion_type"));
+    static final VarHandle motion_type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("motion_type"));
     public static VarHandle motion_type$VH() {
         return JPC_Body.motion_type$VH;
     }
@@ -193,7 +193,7 @@ public class JPC_Body {
     public static void motion_type$set(MemorySegment seg, long index, byte x) {
         JPC_Body.motion_type$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle flags$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("flags"));
+    static final VarHandle flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("flags"));
     public static VarHandle flags$VH() {
         return JPC_Body.flags$VH;
     }

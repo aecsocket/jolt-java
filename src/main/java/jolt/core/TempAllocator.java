@@ -10,7 +10,7 @@ public final class TempAllocator extends AbstractJoltNative {
     }
 
     @Override
-    protected void deleteInternal() {
+    protected void destroyInternal() {
         JPC_TempAllocator_Destroy(address);
     }
 }

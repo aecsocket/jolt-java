@@ -16,7 +16,7 @@ public sealed class ShapeSettings extends AbstractJoltNative permits ConvexShape
     }
 
     @Override
-    protected void deleteInternal() { /* todo */ }
+    protected void destroyInternal() { /* todo */ }
 
     public Shape create() {
         var result = JPC_ShapeSettings_CreateShape(address);

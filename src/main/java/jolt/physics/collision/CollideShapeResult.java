@@ -1,7 +1,7 @@
 package jolt.physics.collision;
 
 import jolt.SegmentedJoltNative;
-import jolt.math.Vec3;
+import jolt.math.FVec3;
 
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
@@ -23,18 +23,18 @@ public final class CollideShapeResult extends SegmentedJoltNative {
     }
 
     @Override
-    protected void deleteInternal() { throw cannotDelete(); }
+    protected void destroyInternal() { throw cannotDestroy(); }
 
-    public Vec3 getContactPointOn1() {
-        return readVec3(shape1_contact_point$slice(segment).address());
+    public FVec3 getContactPointOn1() {
+        return readFVec3(shape1_contact_point$slice(segment).address());
     }
 
-    public Vec3 getContactPointOn2() {
-        return readVec3(shape2_contact_point$slice(segment).address());
+    public FVec3 getContactPointOn2() {
+        return readFVec3(shape2_contact_point$slice(segment).address());
     }
 
-    public Vec3 getPenetrationAxis() {
-        return readVec3(penetration_axis$slice(segment).address());
+    public FVec3 getPenetrationAxis() {
+        return readFVec3(penetration_axis$slice(segment).address());
     }
 
     public float getPenetrationDepth() {

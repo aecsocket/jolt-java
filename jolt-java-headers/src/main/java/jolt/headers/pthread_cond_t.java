@@ -43,7 +43,7 @@ public class pthread_cond_t {
     public static MemorySegment __size$slice(MemorySegment seg) {
         return seg.asSlice(0, 48);
     }
-    static final VarHandle __align$VH = $union$LAYOUT.varHandle(PathElement.groupElement("__align"));
+    static final VarHandle __align$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__align"));
     public static VarHandle __align$VH() {
         return pthread_cond_t.__align$VH;
     }

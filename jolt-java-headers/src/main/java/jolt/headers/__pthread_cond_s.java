@@ -45,7 +45,7 @@ public class __pthread_cond_s {
     public static MemorySegment __g_size$slice(MemorySegment seg) {
         return seg.asSlice(24, 8);
     }
-    static final VarHandle __g1_orig_size$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__g1_orig_size"));
+    static final VarHandle __g1_orig_size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__g1_orig_size"));
     public static VarHandle __g1_orig_size$VH() {
         return __pthread_cond_s.__g1_orig_size$VH;
     }
@@ -61,7 +61,7 @@ public class __pthread_cond_s {
     public static void __g1_orig_size$set(MemorySegment seg, long index, int x) {
         __pthread_cond_s.__g1_orig_size$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __wrefs$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__wrefs"));
+    static final VarHandle __wrefs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__wrefs"));
     public static VarHandle __wrefs$VH() {
         return __pthread_cond_s.__wrefs$VH;
     }

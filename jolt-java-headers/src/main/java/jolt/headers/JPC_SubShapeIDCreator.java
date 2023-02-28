@@ -16,7 +16,7 @@ public class JPC_SubShapeIDCreator {
     public static MemoryLayout $LAYOUT() {
         return JPC_SubShapeIDCreator.$struct$LAYOUT;
     }
-    static final VarHandle id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("id"));
+    static final VarHandle id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("id"));
     public static VarHandle id$VH() {
         return JPC_SubShapeIDCreator.id$VH;
     }
@@ -32,7 +32,7 @@ public class JPC_SubShapeIDCreator {
     public static void id$set(MemorySegment seg, long index, int x) {
         JPC_SubShapeIDCreator.id$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle current_bit$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("current_bit"));
+    static final VarHandle current_bit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("current_bit"));
     public static VarHandle current_bit$VH() {
         return JPC_SubShapeIDCreator.current_bit$VH;
     }

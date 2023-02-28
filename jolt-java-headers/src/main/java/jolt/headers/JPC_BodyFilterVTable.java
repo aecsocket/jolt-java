@@ -18,34 +18,34 @@ public class JPC_BodyFilterVTable {
     public static MemoryLayout $LAYOUT() {
         return JPC_BodyFilterVTable.$struct$LAYOUT;
     }
-    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused0"));
+    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused0"));
     public static VarHandle __unused0$VH() {
         return JPC_BodyFilterVTable.__unused0$VH;
     }
     public static MemoryAddress __unused0$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyFilterVTable.__unused0$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.__unused0$VH.get(seg);
     }
     public static void __unused0$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyFilterVTable.__unused0$VH.set(seg, x);
     }
     public static MemoryAddress __unused0$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyFilterVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused0$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyFilterVTable.__unused0$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused1"));
+    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused1"));
     public static VarHandle __unused1$VH() {
         return JPC_BodyFilterVTable.__unused1$VH;
     }
     public static MemoryAddress __unused1$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyFilterVTable.__unused1$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.__unused1$VH.get(seg);
     }
     public static void __unused1$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyFilterVTable.__unused1$VH.set(seg, x);
     }
     public static MemoryAddress __unused1$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyFilterVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyFilterVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
@@ -59,15 +59,15 @@ public class JPC_BodyFilterVTable {
     );
     public interface ShouldCollide {
 
-        boolean apply(MemoryAddress _x0, MemoryAddress _x1);
+        boolean apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
         static MemorySegment allocate(ShouldCollide fi, MemorySession session) {
             return RuntimeHelper.upcallStub(ShouldCollide.class, fi, JPC_BodyFilterVTable.ShouldCollide$FUNC, session);
         }
         static ShouldCollide ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
                 try {
-                    return (boolean)JPC_BodyFilterVTable.ShouldCollide$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1);
+                    return (boolean)JPC_BodyFilterVTable.ShouldCollide$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -75,18 +75,18 @@ public class JPC_BodyFilterVTable {
         }
     }
 
-    static final VarHandle ShouldCollide$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("ShouldCollide"));
+    static final VarHandle ShouldCollide$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ShouldCollide"));
     public static VarHandle ShouldCollide$VH() {
         return JPC_BodyFilterVTable.ShouldCollide$VH;
     }
     public static MemoryAddress ShouldCollide$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyFilterVTable.ShouldCollide$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.ShouldCollide$VH.get(seg);
     }
     public static void ShouldCollide$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyFilterVTable.ShouldCollide$VH.set(seg, x);
     }
     public static MemoryAddress ShouldCollide$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyFilterVTable.ShouldCollide$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.ShouldCollide$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void ShouldCollide$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyFilterVTable.ShouldCollide$VH.set(seg.asSlice(index*sizeof()), x);
@@ -103,15 +103,15 @@ public class JPC_BodyFilterVTable {
     );
     public interface ShouldCollideLocked {
 
-        boolean apply(MemoryAddress _x0, MemoryAddress _x1);
+        boolean apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
         static MemorySegment allocate(ShouldCollideLocked fi, MemorySession session) {
             return RuntimeHelper.upcallStub(ShouldCollideLocked.class, fi, JPC_BodyFilterVTable.ShouldCollideLocked$FUNC, session);
         }
         static ShouldCollideLocked ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
                 try {
-                    return (boolean)JPC_BodyFilterVTable.ShouldCollideLocked$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1);
+                    return (boolean)JPC_BodyFilterVTable.ShouldCollideLocked$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -119,18 +119,18 @@ public class JPC_BodyFilterVTable {
         }
     }
 
-    static final VarHandle ShouldCollideLocked$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("ShouldCollideLocked"));
+    static final VarHandle ShouldCollideLocked$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ShouldCollideLocked"));
     public static VarHandle ShouldCollideLocked$VH() {
         return JPC_BodyFilterVTable.ShouldCollideLocked$VH;
     }
     public static MemoryAddress ShouldCollideLocked$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BodyFilterVTable.ShouldCollideLocked$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.ShouldCollideLocked$VH.get(seg);
     }
     public static void ShouldCollideLocked$set( MemorySegment seg, MemoryAddress x) {
         JPC_BodyFilterVTable.ShouldCollideLocked$VH.set(seg, x);
     }
     public static MemoryAddress ShouldCollideLocked$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BodyFilterVTable.ShouldCollideLocked$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BodyFilterVTable.ShouldCollideLocked$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void ShouldCollideLocked$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BodyFilterVTable.ShouldCollideLocked$VH.set(seg.asSlice(index*sizeof()), x);

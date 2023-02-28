@@ -9,6 +9,13 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$56 {
 
+    static final FunctionDescriptor JPC_SphereShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_SphereShape_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_SphereShape_Create",
+        constants$56.JPC_SphereShape_Create$FUNC
+    );
     static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
 }
 

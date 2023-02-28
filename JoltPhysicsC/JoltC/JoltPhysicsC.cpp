@@ -249,6 +249,14 @@ FN(toJpc)(JPH::EMotionType in) { return static_cast<JPC_MotionType>(in); }
 FN(toJpc)(JPH::EActivation in) { return static_cast<JPC_Activation>(in); }
 FN(toJpc)(JPH::EMotionQuality in) { return static_cast<JPC_MotionQuality>(in); }
 
+// JoltJava
+FN(toJph)(JPC_SphereShape *in) {
+    ENSURE_TYPE(in, JPH::SphereShape);
+    return reinterpret_cast<JPH::SphereShape *>(in);
+}
+FN(toJpc)(JPH::SphereShape *in) { assert(in); return reinterpret_cast<JPC_SphereShape *>(in); }
+// END JoltJava
+
 #undef FN
 
 static inline JPH::Vec3 loadVec3(const float in[3]) {
@@ -2101,3 +2109,12 @@ JPC_BodyID_IsInvalid(JPC_BodyID in_body_id)
     return JPH::BodyID(in_body_id).IsInvalid();
 }
 //--------------------------------------------------------------------------------------------------
+// JoltJava: Java support
+JPC_API JPC_SphereShape *
+JPC_SphereShape_Create(float in_radius)
+{
+    auto result = new JPH::SphereShape(in_radius);
+    result->AddRef();
+    return toJpc(result);
+}
+// END JoltJava

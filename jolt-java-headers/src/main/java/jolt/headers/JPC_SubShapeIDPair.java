@@ -31,7 +31,7 @@ public class JPC_SubShapeIDPair {
         public static MemoryLayout $LAYOUT() {
             return first.first$struct$LAYOUT;
         }
-        static final VarHandle body_id$VH = first$struct$LAYOUT.varHandle(PathElement.groupElement("body_id"));
+        static final VarHandle body_id$VH = first$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body_id"));
         public static VarHandle body_id$VH() {
             return first.body_id$VH;
         }
@@ -47,7 +47,7 @@ public class JPC_SubShapeIDPair {
         public static void body_id$set(MemorySegment seg, long index, int x) {
             first.body_id$VH.set(seg.asSlice(index*sizeof()), x);
         }
-        static final VarHandle sub_shape_id$VH = first$struct$LAYOUT.varHandle(PathElement.groupElement("sub_shape_id"));
+        static final VarHandle sub_shape_id$VH = first$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sub_shape_id"));
         public static VarHandle sub_shape_id$VH() {
             return first.sub_shape_id$VH;
         }
@@ -83,7 +83,7 @@ public class JPC_SubShapeIDPair {
         public static MemoryLayout $LAYOUT() {
             return second.second$struct$LAYOUT;
         }
-        static final VarHandle body_id$VH = second$struct$LAYOUT.varHandle(PathElement.groupElement("body_id"));
+        static final VarHandle body_id$VH = second$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body_id"));
         public static VarHandle body_id$VH() {
             return second.body_id$VH;
         }
@@ -99,7 +99,7 @@ public class JPC_SubShapeIDPair {
         public static void body_id$set(MemorySegment seg, long index, int x) {
             second.body_id$VH.set(seg.asSlice(index*sizeof()), x);
         }
-        static final VarHandle sub_shape_id$VH = second$struct$LAYOUT.varHandle(PathElement.groupElement("sub_shape_id"));
+        static final VarHandle sub_shape_id$VH = second$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sub_shape_id"));
         public static VarHandle sub_shape_id$VH() {
             return second.sub_shape_id$VH;
         }

@@ -29,18 +29,18 @@ public class JPC_TransformedShape {
     public static MemorySegment shape_rotation$slice(MemorySegment seg) {
         return seg.asSlice(16, 16);
     }
-    static final VarHandle shape$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("shape"));
+    static final VarHandle shape$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("shape"));
     public static VarHandle shape$VH() {
         return JPC_TransformedShape.shape$VH;
     }
     public static MemoryAddress shape$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_TransformedShape.shape$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_TransformedShape.shape$VH.get(seg);
     }
     public static void shape$set( MemorySegment seg, MemoryAddress x) {
         JPC_TransformedShape.shape$VH.set(seg, x);
     }
     public static MemoryAddress shape$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_TransformedShape.shape$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_TransformedShape.shape$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void shape$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_TransformedShape.shape$VH.set(seg.asSlice(index*sizeof()), x);
@@ -48,7 +48,7 @@ public class JPC_TransformedShape {
     public static MemorySegment shape_scale$slice(MemorySegment seg) {
         return seg.asSlice(40, 12);
     }
-    static final VarHandle body_id$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("body_id"));
+    static final VarHandle body_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body_id"));
     public static VarHandle body_id$VH() {
         return JPC_TransformedShape.body_id$VH;
     }

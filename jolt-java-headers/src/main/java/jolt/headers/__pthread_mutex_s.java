@@ -25,7 +25,7 @@ public class __pthread_mutex_s {
     public static MemoryLayout $LAYOUT() {
         return __pthread_mutex_s.$struct$LAYOUT;
     }
-    static final VarHandle __lock$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__lock"));
+    static final VarHandle __lock$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__lock"));
     public static VarHandle __lock$VH() {
         return __pthread_mutex_s.__lock$VH;
     }
@@ -41,7 +41,7 @@ public class __pthread_mutex_s {
     public static void __lock$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__lock$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __count$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__count"));
+    static final VarHandle __count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__count"));
     public static VarHandle __count$VH() {
         return __pthread_mutex_s.__count$VH;
     }
@@ -57,7 +57,7 @@ public class __pthread_mutex_s {
     public static void __count$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__count$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __owner$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__owner"));
+    static final VarHandle __owner$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__owner"));
     public static VarHandle __owner$VH() {
         return __pthread_mutex_s.__owner$VH;
     }
@@ -73,7 +73,7 @@ public class __pthread_mutex_s {
     public static void __owner$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__owner$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __nusers$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__nusers"));
+    static final VarHandle __nusers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__nusers"));
     public static VarHandle __nusers$VH() {
         return __pthread_mutex_s.__nusers$VH;
     }
@@ -89,7 +89,7 @@ public class __pthread_mutex_s {
     public static void __nusers$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__nusers$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __kind$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__kind"));
+    static final VarHandle __kind$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__kind"));
     public static VarHandle __kind$VH() {
         return __pthread_mutex_s.__kind$VH;
     }
@@ -105,7 +105,7 @@ public class __pthread_mutex_s {
     public static void __kind$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__kind$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __spins$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__spins"));
+    static final VarHandle __spins$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__spins"));
     public static VarHandle __spins$VH() {
         return __pthread_mutex_s.__spins$VH;
     }
@@ -121,7 +121,7 @@ public class __pthread_mutex_s {
     public static void __spins$set(MemorySegment seg, long index, short x) {
         __pthread_mutex_s.__spins$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __elision$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__elision"));
+    static final VarHandle __elision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__elision"));
     public static VarHandle __elision$VH() {
         return __pthread_mutex_s.__elision$VH;
     }

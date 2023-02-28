@@ -25,7 +25,7 @@ public class drand48_data {
     public static MemorySegment __old_x$slice(MemorySegment seg) {
         return seg.asSlice(6, 6);
     }
-    static final VarHandle __c$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__c"));
+    static final VarHandle __c$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__c"));
     public static VarHandle __c$VH() {
         return drand48_data.__c$VH;
     }
@@ -41,7 +41,7 @@ public class drand48_data {
     public static void __c$set(MemorySegment seg, long index, short x) {
         drand48_data.__c$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __init$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__init"));
+    static final VarHandle __init$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__init"));
     public static VarHandle __init$VH() {
         return drand48_data.__init$VH;
     }
@@ -57,7 +57,7 @@ public class drand48_data {
     public static void __init$set(MemorySegment seg, long index, short x) {
         drand48_data.__init$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __a$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__a"));
+    static final VarHandle __a$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__a"));
     public static VarHandle __a$VH() {
         return drand48_data.__a$VH;
     }

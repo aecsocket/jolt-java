@@ -13,7 +13,7 @@ public final class JobSystem extends AbstractJoltNative {
     }
 
     @Override
-    protected void deleteInternal() {
+    protected void destroyInternal() {
         JPC_JobSystem_Destroy(address);
     }
 }

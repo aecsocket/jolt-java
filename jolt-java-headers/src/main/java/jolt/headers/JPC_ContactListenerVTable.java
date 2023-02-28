@@ -30,15 +30,15 @@ public class JPC_ContactListenerVTable {
     );
     public interface OnContactValidate {
 
-        int apply(MemoryAddress _x0, MemoryAddress _x1, MemoryAddress _x2, MemoryAddress _x3, MemoryAddress _x4);
+        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4);
         static MemorySegment allocate(OnContactValidate fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnContactValidate.class, fi, JPC_ContactListenerVTable.OnContactValidate$FUNC, session);
         }
         static OnContactValidate ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1, MemoryAddress __x2, MemoryAddress __x3, MemoryAddress __x4) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4) -> {
                 try {
-                    return (int)JPC_ContactListenerVTable.OnContactValidate$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1, (Addressable)__x2, (Addressable)__x3, (Addressable)__x4);
+                    return (int)JPC_ContactListenerVTable.OnContactValidate$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -46,18 +46,18 @@ public class JPC_ContactListenerVTable {
         }
     }
 
-    static final VarHandle OnContactValidate$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("OnContactValidate"));
+    static final VarHandle OnContactValidate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnContactValidate"));
     public static VarHandle OnContactValidate$VH() {
         return JPC_ContactListenerVTable.OnContactValidate$VH;
     }
     public static MemoryAddress OnContactValidate$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactValidate$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactValidate$VH.get(seg);
     }
     public static void OnContactValidate$set( MemorySegment seg, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactValidate$VH.set(seg, x);
     }
     public static MemoryAddress OnContactValidate$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactValidate$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactValidate$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void OnContactValidate$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactValidate$VH.set(seg.asSlice(index*sizeof()), x);
@@ -77,15 +77,15 @@ public class JPC_ContactListenerVTable {
     );
     public interface OnContactAdded {
 
-        void apply(MemoryAddress _x0, MemoryAddress _x1, MemoryAddress _x2, MemoryAddress _x3, MemoryAddress _x4);
+        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4);
         static MemorySegment allocate(OnContactAdded fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnContactAdded.class, fi, JPC_ContactListenerVTable.OnContactAdded$FUNC, session);
         }
         static OnContactAdded ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1, MemoryAddress __x2, MemoryAddress __x3, MemoryAddress __x4) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4) -> {
                 try {
-                    JPC_ContactListenerVTable.OnContactAdded$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1, (Addressable)__x2, (Addressable)__x3, (Addressable)__x4);
+                    JPC_ContactListenerVTable.OnContactAdded$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -93,18 +93,18 @@ public class JPC_ContactListenerVTable {
         }
     }
 
-    static final VarHandle OnContactAdded$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("OnContactAdded"));
+    static final VarHandle OnContactAdded$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnContactAdded"));
     public static VarHandle OnContactAdded$VH() {
         return JPC_ContactListenerVTable.OnContactAdded$VH;
     }
     public static MemoryAddress OnContactAdded$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactAdded$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactAdded$VH.get(seg);
     }
     public static void OnContactAdded$set( MemorySegment seg, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactAdded$VH.set(seg, x);
     }
     public static MemoryAddress OnContactAdded$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactAdded$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactAdded$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void OnContactAdded$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactAdded$VH.set(seg.asSlice(index*sizeof()), x);
@@ -124,15 +124,15 @@ public class JPC_ContactListenerVTable {
     );
     public interface OnContactPersisted {
 
-        void apply(MemoryAddress _x0, MemoryAddress _x1, MemoryAddress _x2, MemoryAddress _x3, MemoryAddress _x4);
+        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4);
         static MemorySegment allocate(OnContactPersisted fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnContactPersisted.class, fi, JPC_ContactListenerVTable.OnContactPersisted$FUNC, session);
         }
         static OnContactPersisted ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1, MemoryAddress __x2, MemoryAddress __x3, MemoryAddress __x4) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4) -> {
                 try {
-                    JPC_ContactListenerVTable.OnContactPersisted$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1, (Addressable)__x2, (Addressable)__x3, (Addressable)__x4);
+                    JPC_ContactListenerVTable.OnContactPersisted$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -140,18 +140,18 @@ public class JPC_ContactListenerVTable {
         }
     }
 
-    static final VarHandle OnContactPersisted$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("OnContactPersisted"));
+    static final VarHandle OnContactPersisted$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnContactPersisted"));
     public static VarHandle OnContactPersisted$VH() {
         return JPC_ContactListenerVTable.OnContactPersisted$VH;
     }
     public static MemoryAddress OnContactPersisted$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactPersisted$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactPersisted$VH.get(seg);
     }
     public static void OnContactPersisted$set( MemorySegment seg, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactPersisted$VH.set(seg, x);
     }
     public static MemoryAddress OnContactPersisted$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactPersisted$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactPersisted$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void OnContactPersisted$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactPersisted$VH.set(seg.asSlice(index*sizeof()), x);
@@ -168,15 +168,15 @@ public class JPC_ContactListenerVTable {
     );
     public interface OnContactRemoved {
 
-        void apply(MemoryAddress _x0, MemoryAddress _x1);
+        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
         static MemorySegment allocate(OnContactRemoved fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnContactRemoved.class, fi, JPC_ContactListenerVTable.OnContactRemoved$FUNC, session);
         }
         static OnContactRemoved ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, MemoryAddress __x1) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
                 try {
-                    JPC_ContactListenerVTable.OnContactRemoved$MH.invokeExact((Addressable)symbol, (Addressable)__x0, (Addressable)__x1);
+                    JPC_ContactListenerVTable.OnContactRemoved$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -184,18 +184,18 @@ public class JPC_ContactListenerVTable {
         }
     }
 
-    static final VarHandle OnContactRemoved$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("OnContactRemoved"));
+    static final VarHandle OnContactRemoved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnContactRemoved"));
     public static VarHandle OnContactRemoved$VH() {
         return JPC_ContactListenerVTable.OnContactRemoved$VH;
     }
     public static MemoryAddress OnContactRemoved$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactRemoved$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactRemoved$VH.get(seg);
     }
     public static void OnContactRemoved$set( MemorySegment seg, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactRemoved$VH.set(seg, x);
     }
     public static MemoryAddress OnContactRemoved$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_ContactListenerVTable.OnContactRemoved$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.OnContactRemoved$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void OnContactRemoved$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ContactListenerVTable.OnContactRemoved$VH.set(seg.asSlice(index*sizeof()), x);

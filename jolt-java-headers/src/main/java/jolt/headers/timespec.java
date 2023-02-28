@@ -16,7 +16,7 @@ public class timespec {
     public static MemoryLayout $LAYOUT() {
         return timespec.$struct$LAYOUT;
     }
-    static final VarHandle tv_sec$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("tv_sec"));
+    static final VarHandle tv_sec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tv_sec"));
     public static VarHandle tv_sec$VH() {
         return timespec.tv_sec$VH;
     }
@@ -32,7 +32,7 @@ public class timespec {
     public static void tv_sec$set(MemorySegment seg, long index, long x) {
         timespec.tv_sec$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle tv_nsec$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("tv_nsec"));
+    static final VarHandle tv_nsec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tv_nsec"));
     public static VarHandle tv_nsec$VH() {
         return timespec.tv_nsec$VH;
     }

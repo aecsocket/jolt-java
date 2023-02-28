@@ -552,7 +552,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress l64a ( long __n) {
         var mh$ = l64a$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__n);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__n);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -736,7 +736,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress initstate ( int __seed,  Addressable __statebuf,  long __statelen) {
         var mh$ = initstate$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__seed, __statebuf, __statelen);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__seed, __statebuf, __statelen);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -747,7 +747,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress setstate ( Addressable __statebuf) {
         var mh$ = setstate$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__statebuf);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__statebuf);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -912,7 +912,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress seed48 ( Addressable __seed16v) {
         var mh$ = seed48$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__seed16v);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__seed16v);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1066,7 +1066,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress malloc ( long __size) {
         var mh$ = malloc$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1077,7 +1077,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress calloc ( long __nmemb,  long __size) {
         var mh$ = calloc$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__nmemb, __size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__nmemb, __size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1088,7 +1088,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress realloc ( Addressable __ptr,  long __size) {
         var mh$ = realloc$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__ptr, __size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__ptr, __size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1110,7 +1110,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress reallocarray ( Addressable __ptr,  long __nmemb,  long __size) {
         var mh$ = reallocarray$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__ptr, __nmemb, __size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__ptr, __nmemb, __size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1121,7 +1121,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress alloca ( long __size) {
         var mh$ = alloca$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1132,7 +1132,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress valloc ( long __size) {
         var mh$ = valloc$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1154,7 +1154,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress aligned_alloc ( long __alignment,  long __size) {
         var mh$ = aligned_alloc$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__alignment, __size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__alignment, __size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1242,7 +1242,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress getenv ( Addressable __name) {
         var mh$ = getenv$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__name);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1297,7 +1297,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress mktemp ( Addressable __template) {
         var mh$ = mktemp$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__template);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__template);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1330,7 +1330,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress mkdtemp ( Addressable __template) {
         var mh$ = mkdtemp$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__template);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__template);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1352,7 +1352,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress realpath ( Addressable __name,  Addressable __resolved) {
         var mh$ = realpath$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__name, __resolved);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__name, __resolved);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1363,7 +1363,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress bsearch ( Addressable __key,  Addressable __base,  long __nmemb,  long __size,  Addressable __compar) {
         var mh$ = bsearch$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__key, __base, __nmemb, __size, __compar);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__key, __base, __nmemb, __size, __compar);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1418,7 +1418,7 @@ public class JoltPhysicsC  {
     public static MemorySegment div ( SegmentAllocator allocator,  int __numer,  int __denom) {
         var mh$ = div$MH();
         try {
-            return (MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
+            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1429,7 +1429,7 @@ public class JoltPhysicsC  {
     public static MemorySegment ldiv ( SegmentAllocator allocator,  long __numer,  long __denom) {
         var mh$ = ldiv$MH();
         try {
-            return (MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
+            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1440,7 +1440,7 @@ public class JoltPhysicsC  {
     public static MemorySegment lldiv ( SegmentAllocator allocator,  long __numer,  long __denom) {
         var mh$ = lldiv$MH();
         try {
-            return (MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
+            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1451,7 +1451,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress ecvt ( double __value,  int __ndigit,  Addressable __decpt,  Addressable __sign) {
         var mh$ = ecvt$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__value, __ndigit, __decpt, __sign);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__value, __ndigit, __decpt, __sign);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1462,7 +1462,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress fcvt ( double __value,  int __ndigit,  Addressable __decpt,  Addressable __sign) {
         var mh$ = fcvt$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__value, __ndigit, __decpt, __sign);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__value, __ndigit, __decpt, __sign);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1473,7 +1473,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress gcvt ( double __value,  int __ndigit,  Addressable __buf) {
         var mh$ = gcvt$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(__value, __ndigit, __buf);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__value, __ndigit, __buf);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2163,7 +2163,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_TempAllocator_Create ( int in_size) {
         var mh$ = JPC_TempAllocator_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2185,7 +2185,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_JobSystem_Create ( int in_max_jobs,  int in_max_barriers,  int in_num_threads) {
         var mh$ = JPC_JobSystem_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_max_jobs, in_max_barriers, in_num_threads);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_max_jobs, in_max_barriers, in_num_threads);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2207,7 +2207,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_Create ( int in_max_bodies,  int in_num_body_mutexes,  int in_max_body_pairs,  int in_max_contact_constraints,  Addressable in_broad_phase_layer_interface,  Addressable in_object_vs_broad_phase_layer_filter,  Addressable in_object_layer_pair_filter) {
         var mh$ = JPC_PhysicsSystem_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_max_bodies, in_num_body_mutexes, in_max_body_pairs, in_max_contact_constraints, in_broad_phase_layer_interface, in_object_vs_broad_phase_layer_filter, in_object_layer_pair_filter);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_max_bodies, in_num_body_mutexes, in_max_body_pairs, in_max_contact_constraints, in_broad_phase_layer_interface, in_object_vs_broad_phase_layer_filter, in_object_layer_pair_filter);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2240,7 +2240,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetBodyActivationListener ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyActivationListener$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2262,7 +2262,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetContactListener ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetContactListener$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2328,7 +2328,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetBodyInterface ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyInterface$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2339,7 +2339,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetBodyInterfaceNoLock ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyInterfaceNoLock$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2372,7 +2372,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetBodyLockInterface ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyLockInterface$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2383,7 +2383,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetBodyLockInterfaceNoLock ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2394,7 +2394,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetNarrowPhaseQuery ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetNarrowPhaseQuery$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2405,7 +2405,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2438,7 +2438,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_PhysicsSystem_GetBodiesUnsafe ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodiesUnsafe$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_physics_system);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_physics_system);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2537,7 +2537,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_ShapeSettings_CreateShape ( Addressable in_settings) {
         var mh$ = JPC_ShapeSettings_CreateShape$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_settings);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_settings);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2570,7 +2570,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_ConvexShapeSettings_GetMaterial ( Addressable in_settings) {
         var mh$ = JPC_ConvexShapeSettings_GetMaterial$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_settings);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_settings);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2614,7 +2614,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_BoxShapeSettings_Create0 ( Addressable in_half_extent,  float in_convex_radius) {
         var mh$ = JPC_BoxShapeSettings_Create0$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_half_extent, in_convex_radius);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_half_extent, in_convex_radius);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2625,7 +2625,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_BoxShapeSettings_Create1 ( Addressable in_half_extent) {
         var mh$ = JPC_BoxShapeSettings_Create1$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_half_extent);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_half_extent);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2680,7 +2680,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_SphereShapeSettings_Create ( float in_radius) {
         var mh$ = JPC_SphereShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_radius);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_radius);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2713,7 +2713,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_TriangleShapeSettings_Create ( Addressable in_v1,  Addressable in_v2,  Addressable in_v3) {
         var mh$ = JPC_TriangleShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_v1, in_v2, in_v3);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_v1, in_v2, in_v3);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2768,7 +2768,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_CapsuleShapeSettings_Create ( float in_half_height_of_cylinder,  float in_radius) {
         var mh$ = JPC_CapsuleShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_half_height_of_cylinder, in_radius);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_half_height_of_cylinder, in_radius);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2823,7 +2823,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_TaperedCapsuleShapeSettings_Create ( float in_half_height,  float in_top_radius,  float in_bottom_radius) {
         var mh$ = JPC_TaperedCapsuleShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_half_height, in_top_radius, in_bottom_radius);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_half_height, in_top_radius, in_bottom_radius);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2900,7 +2900,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_CylinderShapeSettings_Create ( float in_half_height,  float in_radius) {
         var mh$ = JPC_CylinderShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_half_height, in_radius);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_half_height, in_radius);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -2977,7 +2977,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_ConvexHullShapeSettings_Create ( Addressable in_vertices,  int in_num_vertices,  int in_vertex_size) {
         var mh$ = JPC_ConvexHullShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_vertices, in_num_vertices, in_vertex_size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_vertices, in_num_vertices, in_vertex_size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -3054,7 +3054,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_HeightFieldShapeSettings_Create ( Addressable in_samples,  int in_height_field_size) {
         var mh$ = JPC_HeightFieldShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_samples, in_height_field_size);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_samples, in_height_field_size);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -3153,7 +3153,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_MeshShapeSettings_Create ( Addressable in_vertices,  int in_num_vertices,  int in_vertex_size,  Addressable in_indices,  int in_num_indices) {
         var mh$ = JPC_MeshShapeSettings_Create$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_vertices, in_num_vertices, in_vertex_size, in_indices, in_num_indices);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_vertices, in_num_vertices, in_vertex_size, in_indices, in_num_indices);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -3274,7 +3274,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_BodyInterface_CreateBody ( Addressable in_iface,  Addressable in_setting) {
         var mh$ = JPC_BodyInterface_CreateBody$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_iface, in_setting);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_iface, in_setting);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -3681,7 +3681,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_Body_GetCollisionGroup ( Addressable in_body) {
         var mh$ = JPC_Body_GetCollisionGroup$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_body);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_body);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -3978,7 +3978,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_Body_GetShape ( Addressable in_body) {
         var mh$ = JPC_Body_GetShape$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_body);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_body);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -4066,7 +4066,7 @@ public class JoltPhysicsC  {
     public static MemoryAddress JPC_Body_GetMotionProperties ( Addressable in_body) {
         var mh$ = JPC_Body_GetMotionProperties$MH();
         try {
-            return (MemoryAddress)mh$.invokeExact(in_body);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_body);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -4133,6 +4133,17 @@ public class JoltPhysicsC  {
         var mh$ = JPC_BodyID_IsInvalid$MH();
         try {
             return (boolean)mh$.invokeExact(in_body_id);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SphereShape_Create$MH() {
+        return RuntimeHelper.requireNonNull(constants$56.JPC_SphereShape_Create$MH,"JPC_SphereShape_Create");
+    }
+    public static MemoryAddress JPC_SphereShape_Create ( float in_radius) {
+        var mh$ = JPC_SphereShape_Create$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_radius);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

@@ -18,34 +18,34 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
     public static MemoryLayout $LAYOUT() {
         return JPC_BroadPhaseLayerInterfaceVTable.$struct$LAYOUT;
     }
-    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused0"));
+    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused0"));
     public static VarHandle __unused0$VH() {
         return JPC_BroadPhaseLayerInterfaceVTable.__unused0$VH;
     }
     public static MemoryAddress __unused0$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused0$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused0$VH.get(seg);
     }
     public static void __unused0$set( MemorySegment seg, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.__unused0$VH.set(seg, x);
     }
     public static MemoryAddress __unused0$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused0$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.__unused0$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused1"));
+    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused1"));
     public static VarHandle __unused1$VH() {
         return JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH;
     }
     public static MemoryAddress __unused1$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH.get(seg);
     }
     public static void __unused1$set( MemorySegment seg, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH.set(seg, x);
     }
     public static MemoryAddress __unused1$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
@@ -58,15 +58,15 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
     );
     public interface GetNumBroadPhaseLayers {
 
-        int apply(MemoryAddress _x0);
+        int apply(java.lang.foreign.MemoryAddress _x0);
         static MemorySegment allocate(GetNumBroadPhaseLayers fi, MemorySession session) {
             return RuntimeHelper.upcallStub(GetNumBroadPhaseLayers.class, fi, JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$FUNC, session);
         }
         static GetNumBroadPhaseLayers ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0) -> {
+            return (java.lang.foreign.MemoryAddress __x0) -> {
                 try {
-                    return (int)JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$MH.invokeExact((Addressable)symbol, (Addressable)__x0);
+                    return (int)JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -74,18 +74,18 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
         }
     }
 
-    static final VarHandle GetNumBroadPhaseLayers$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("GetNumBroadPhaseLayers"));
+    static final VarHandle GetNumBroadPhaseLayers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetNumBroadPhaseLayers"));
     public static VarHandle GetNumBroadPhaseLayers$VH() {
         return JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$VH;
     }
     public static MemoryAddress GetNumBroadPhaseLayers$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$VH.get(seg);
     }
     public static void GetNumBroadPhaseLayers$set( MemorySegment seg, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$VH.set(seg, x);
     }
     public static MemoryAddress GetNumBroadPhaseLayers$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void GetNumBroadPhaseLayers$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.GetNumBroadPhaseLayers$VH.set(seg.asSlice(index*sizeof()), x);
@@ -102,15 +102,15 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
     );
     public interface GetBroadPhaseLayer {
 
-        byte apply(MemoryAddress _x0, short _x1);
+        byte apply(java.lang.foreign.MemoryAddress _x0, short _x1);
         static MemorySegment allocate(GetBroadPhaseLayer fi, MemorySession session) {
             return RuntimeHelper.upcallStub(GetBroadPhaseLayer.class, fi, JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$FUNC, session);
         }
         static GetBroadPhaseLayer ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, short __x1) -> {
+            return (java.lang.foreign.MemoryAddress __x0, short __x1) -> {
                 try {
-                    return (byte)JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$MH.invokeExact((Addressable)symbol, (Addressable)__x0, __x1);
+                    return (byte)JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -118,18 +118,18 @@ public class JPC_BroadPhaseLayerInterfaceVTable {
         }
     }
 
-    static final VarHandle GetBroadPhaseLayer$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("GetBroadPhaseLayer"));
+    static final VarHandle GetBroadPhaseLayer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetBroadPhaseLayer"));
     public static VarHandle GetBroadPhaseLayer$VH() {
         return JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$VH;
     }
     public static MemoryAddress GetBroadPhaseLayer$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$VH.get(seg);
     }
     public static void GetBroadPhaseLayer$set( MemorySegment seg, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$VH.set(seg, x);
     }
     public static MemoryAddress GetBroadPhaseLayer$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void GetBroadPhaseLayer$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_BroadPhaseLayerInterfaceVTable.GetBroadPhaseLayer$VH.set(seg.asSlice(index*sizeof()), x);

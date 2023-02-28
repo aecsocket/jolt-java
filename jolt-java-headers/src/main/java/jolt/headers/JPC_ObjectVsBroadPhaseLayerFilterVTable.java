@@ -17,34 +17,34 @@ public class JPC_ObjectVsBroadPhaseLayerFilterVTable {
     public static MemoryLayout $LAYOUT() {
         return JPC_ObjectVsBroadPhaseLayerFilterVTable.$struct$LAYOUT;
     }
-    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused0"));
+    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused0"));
     public static VarHandle __unused0$VH() {
         return JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused0$VH;
     }
     public static MemoryAddress __unused0$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused0$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused0$VH.get(seg);
     }
     public static void __unused0$set( MemorySegment seg, MemoryAddress x) {
         JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused0$VH.set(seg, x);
     }
     public static MemoryAddress __unused0$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused0$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused0$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("__unused1"));
+    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused1"));
     public static VarHandle __unused1$VH() {
         return JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused1$VH;
     }
     public static MemoryAddress __unused1$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused1$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused1$VH.get(seg);
     }
     public static void __unused1$set( MemorySegment seg, MemoryAddress x) {
         JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused1$VH.set(seg, x);
     }
     public static MemoryAddress __unused1$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ObjectVsBroadPhaseLayerFilterVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
@@ -59,15 +59,15 @@ public class JPC_ObjectVsBroadPhaseLayerFilterVTable {
     );
     public interface ShouldCollide {
 
-        boolean apply(MemoryAddress _x0, short _x1, byte _x2);
+        boolean apply(java.lang.foreign.MemoryAddress _x0, short _x1, byte _x2);
         static MemorySegment allocate(ShouldCollide fi, MemorySession session) {
             return RuntimeHelper.upcallStub(ShouldCollide.class, fi, JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$FUNC, session);
         }
         static ShouldCollide ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (MemoryAddress __x0, short __x1, byte __x2) -> {
+            return (java.lang.foreign.MemoryAddress __x0, short __x1, byte __x2) -> {
                 try {
-                    return (boolean)JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$MH.invokeExact((Addressable)symbol, (Addressable)__x0, __x1, __x2);
+                    return (boolean)JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -75,18 +75,18 @@ public class JPC_ObjectVsBroadPhaseLayerFilterVTable {
         }
     }
 
-    static final VarHandle ShouldCollide$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("ShouldCollide"));
+    static final VarHandle ShouldCollide$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ShouldCollide"));
     public static VarHandle ShouldCollide$VH() {
         return JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$VH;
     }
     public static MemoryAddress ShouldCollide$get(MemorySegment seg) {
-        return (MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$VH.get(seg);
     }
     public static void ShouldCollide$set( MemorySegment seg, MemoryAddress x) {
         JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$VH.set(seg, x);
     }
     public static MemoryAddress ShouldCollide$get(MemorySegment seg, long index) {
-        return (MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void ShouldCollide$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ObjectVsBroadPhaseLayerFilterVTable.ShouldCollide$VH.set(seg.asSlice(index*sizeof()), x);

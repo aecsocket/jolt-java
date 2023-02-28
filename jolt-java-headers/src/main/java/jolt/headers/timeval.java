@@ -16,7 +16,7 @@ public class timeval {
     public static MemoryLayout $LAYOUT() {
         return timeval.$struct$LAYOUT;
     }
-    static final VarHandle tv_sec$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("tv_sec"));
+    static final VarHandle tv_sec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tv_sec"));
     public static VarHandle tv_sec$VH() {
         return timeval.tv_sec$VH;
     }
@@ -32,7 +32,7 @@ public class timeval {
     public static void tv_sec$set(MemorySegment seg, long index, long x) {
         timeval.tv_sec$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle tv_usec$VH = $struct$LAYOUT.varHandle(PathElement.groupElement("tv_usec"));
+    static final VarHandle tv_usec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tv_usec"));
     public static VarHandle tv_usec$VH() {
         return timeval.tv_usec$VH;
     }

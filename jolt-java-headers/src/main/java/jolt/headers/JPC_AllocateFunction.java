@@ -9,7 +9,7 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 public interface JPC_AllocateFunction {
 
-    Addressable apply(long in_size);
+    java.lang.foreign.Addressable apply(long in_size);
     static MemorySegment allocate(JPC_AllocateFunction fi, MemorySession session) {
         return RuntimeHelper.upcallStub(JPC_AllocateFunction.class, fi, constants$18.JPC_AllocateFunction$FUNC, session);
     }
@@ -17,7 +17,7 @@ public interface JPC_AllocateFunction {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _in_size) -> {
             try {
-                return (Addressable)(MemoryAddress)constants$18.JPC_AllocateFunction$MH.invokeExact((Addressable)symbol, _in_size);
+                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$18.JPC_AllocateFunction$MH.invokeExact((Addressable)symbol, _in_size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

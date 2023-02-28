@@ -1,31 +1,31 @@
 package jolt.physics.collision.broadphase;
 
 import jolt.AbstractJoltNative;
+import jolt.headers.JPC_BroadPhaseLayerInterface;
 import jolt.headers.JPC_BroadPhaseLayerInterfaceVTable;
-import jolt.headers.JPJ_BroadPhaseLayerInterface;
 
 import java.lang.foreign.*;
 
 import static jolt.headers.JPC_BroadPhaseLayerInterfaceVTable.*;
-import static jolt.headers.JPJ_BroadPhaseLayerInterface.*;
+import static jolt.headers.JPC_BroadPhaseLayerInterface.*;
 
 public final class BroadPhaseLayerInterface extends AbstractJoltNative {
     public static BroadPhaseLayerInterface at(MemoryAddress address) {
         return address.address() == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(address);
     }
 
-    public static BroadPhaseLayerInterface of(MemorySession memory, BroadPhaseLayerInterfaceFunctions impl) {
-        var vtable = JPC_BroadPhaseLayerInterfaceVTable.allocate(memory);
+    public static BroadPhaseLayerInterface of(MemorySession session, BroadPhaseLayerInterfaceFunctions impl) {
+        var vtable = JPC_BroadPhaseLayerInterfaceVTable.allocate(session);
         MemorySegment getNumBroadPhaseLayers = GetNumBroadPhaseLayers.allocate((v0) ->
-                impl.getNumBroadPhaseLayers(), memory);
+                impl.getNumBroadPhaseLayers(), session);
         GetNumBroadPhaseLayers$set(vtable, getNumBroadPhaseLayers.address());
         MemorySegment getBroadPhaseLayer = GetBroadPhaseLayer.allocate((v0, v1) ->
-                impl.getBroadPhaseLayer(v1), memory);
+                impl.getBroadPhaseLayer(v1), session);
         GetBroadPhaseLayer$set(vtable, getBroadPhaseLayer.address());
 
-        var handle = JPJ_BroadPhaseLayerInterface.allocate(memory);
-        vtable$set(handle, vtable.address());
-        return new BroadPhaseLayerInterface(handle.address());
+        var segment = JPC_BroadPhaseLayerInterface.allocate(session);
+        vtable$set(segment, vtable.address());
+        return new BroadPhaseLayerInterface(segment.address());
     }
 
     private BroadPhaseLayerInterface(MemoryAddress address) {
@@ -33,5 +33,5 @@ public final class BroadPhaseLayerInterface extends AbstractJoltNative {
     }
 
     @Override
-    protected void deleteInternal() {}
+    protected void destroyInternal() {}
 }
