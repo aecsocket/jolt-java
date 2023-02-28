@@ -15,7 +15,7 @@ import static jolt.headers.JPC_BodyCreationSettings.*;
 
 public abstract sealed class BodyCreationSettings extends AddressedJoltNative permits BodyCreationSettings.F, BodyCreationSettings.D {
     public static BodyCreationSettings at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new BodyCreationSettings.D(address) : new BodyCreationSettings.F(address);
+        return address.address() == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);
     }
 
     public static BodyCreationSettings create(

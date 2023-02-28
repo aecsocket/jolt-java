@@ -10,7 +10,7 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_Body {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_DOUBLE$LAYOUT).withName("position"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("position"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("rotation"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("bounds_min"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("bounds_max"),
@@ -29,22 +29,22 @@ public class JPC_Body {
         Constants$root.C_CHAR$LAYOUT.withName("broad_phase_layer"),
         Constants$root.C_CHAR$LAYOUT.withName("motion_type"),
         Constants$root.C_CHAR$LAYOUT.withName("flags"),
-        MemoryLayout.paddingLayout(184)
+        MemoryLayout.paddingLayout(56)
     ).withName("JPC_Body");
     public static MemoryLayout $LAYOUT() {
         return JPC_Body.$struct$LAYOUT;
     }
     public static MemorySegment position$slice(MemorySegment seg) {
-        return seg.asSlice(0, 32);
+        return seg.asSlice(0, 16);
     }
     public static MemorySegment rotation$slice(MemorySegment seg) {
-        return seg.asSlice(32, 16);
+        return seg.asSlice(16, 16);
     }
     public static MemorySegment bounds_min$slice(MemorySegment seg) {
-        return seg.asSlice(48, 16);
+        return seg.asSlice(32, 16);
     }
     public static MemorySegment bounds_max$slice(MemorySegment seg) {
-        return seg.asSlice(64, 16);
+        return seg.asSlice(48, 16);
     }
     static final VarHandle shape$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("shape"));
     public static VarHandle shape$VH() {
@@ -95,7 +95,7 @@ public class JPC_Body {
         JPC_Body.user_data$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment collision_group$slice(MemorySegment seg) {
-        return seg.asSlice(104, 16);
+        return seg.asSlice(88, 16);
     }
     static final VarHandle friction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("friction"));
     public static VarHandle friction$VH() {

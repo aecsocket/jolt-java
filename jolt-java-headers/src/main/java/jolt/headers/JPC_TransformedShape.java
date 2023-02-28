@@ -10,7 +10,7 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_TransformedShape {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_DOUBLE$LAYOUT).withName("shape_position_com"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_position_com"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_rotation"),
         Constants$root.C_POINTER$LAYOUT.withName("shape"),
         MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("shape_scale"),
@@ -18,17 +18,16 @@ public class JPC_TransformedShape {
         MemoryLayout.structLayout(
             Constants$root.C_INT$LAYOUT.withName("id"),
             Constants$root.C_INT$LAYOUT.withName("current_bit")
-        ).withName("sub_shape_id_creator"),
-        MemoryLayout.paddingLayout(128)
+        ).withName("sub_shape_id_creator")
     ).withName("JPC_TransformedShape");
     public static MemoryLayout $LAYOUT() {
         return JPC_TransformedShape.$struct$LAYOUT;
     }
     public static MemorySegment shape_position_com$slice(MemorySegment seg) {
-        return seg.asSlice(0, 32);
+        return seg.asSlice(0, 16);
     }
     public static MemorySegment shape_rotation$slice(MemorySegment seg) {
-        return seg.asSlice(32, 16);
+        return seg.asSlice(16, 16);
     }
     static final VarHandle shape$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("shape"));
     public static VarHandle shape$VH() {
@@ -47,7 +46,7 @@ public class JPC_TransformedShape {
         JPC_TransformedShape.shape$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment shape_scale$slice(MemorySegment seg) {
-        return seg.asSlice(56, 12);
+        return seg.asSlice(40, 12);
     }
     static final VarHandle body_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body_id"));
     public static VarHandle body_id$VH() {
@@ -66,7 +65,7 @@ public class JPC_TransformedShape {
         JPC_TransformedShape.body_id$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment sub_shape_id_creator$slice(MemorySegment seg) {
-        return seg.asSlice(72, 8);
+        return seg.asSlice(56, 8);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }

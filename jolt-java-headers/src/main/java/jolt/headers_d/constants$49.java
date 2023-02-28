@@ -9,50 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$49 {
 
-    static final FunctionDescriptor JPC_Body_GetCollisionGroup$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetCollisionGroup$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCollisionGroup",
-        constants$49.JPC_Body_GetCollisionGroup$FUNC
+    static final MethodHandle JPC_Body_IsDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsDynamic",
+        constants$49.JPC_Body_IsDynamic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_SetCollisionGroup$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_CanBeKinematicOrDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_SetCollisionGroup$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetCollisionGroup",
-        constants$49.JPC_Body_SetCollisionGroup$FUNC
+    static final MethodHandle JPC_Body_CanBeKinematicOrDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_CanBeKinematicOrDynamic",
+        constants$49.JPC_Body_CanBeKinematicOrDynamic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetAllowSleeping$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetAllowSleeping$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetAllowSleeping",
-        constants$49.JPC_Body_GetAllowSleeping$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetAllowSleeping$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Body_SetIsSensor$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_BOOL$LAYOUT
     );
-    static final MethodHandle JPC_Body_SetAllowSleeping$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetAllowSleeping",
-        constants$49.JPC_Body_SetAllowSleeping$FUNC
+    static final MethodHandle JPC_Body_SetIsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetIsSensor",
+        constants$49.JPC_Body_SetIsSensor$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetFriction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsSensor$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetFriction",
-        constants$49.JPC_Body_GetFriction$FUNC
+    static final MethodHandle JPC_Body_IsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsSensor",
+        constants$49.JPC_Body_IsSensor$FUNC
     );
-    static final FunctionDescriptor JPC_Body_SetFriction$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetMotionType",
+        constants$49.JPC_Body_GetMotionType$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle JPC_Body_SetFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetFriction",
-        constants$49.JPC_Body_SetFriction$FUNC
+    static final MethodHandle JPC_Body_SetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetMotionType",
+        constants$49.JPC_Body_SetMotionType$FUNC
     );
 }
 

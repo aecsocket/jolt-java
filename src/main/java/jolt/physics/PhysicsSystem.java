@@ -10,6 +10,7 @@ import jolt.physics.body.BodyInterface;
 import jolt.physics.collision.ContactListener;
 import jolt.physics.collision.ObjectLayerPairFilter;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface;
+import jolt.physics.collision.broadphase.BroadPhaseQuery;
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 
 import javax.annotation.Nullable;
@@ -53,24 +54,38 @@ public final class PhysicsSystem extends DestroyableJoltNative {
         JPC_PhysicsSystem_Destroy(address);
     }
 
-    public @Nullable BodyActivationListener getBodyActivationListener() {
-        return BodyActivationListener.at(JPC_PhysicsSystem_GetBodyActivationListener(address));
-    }
-
     public void setBodyActivationListener(@Nullable BodyActivationListener listener) {
         JPC_PhysicsSystem_SetBodyActivationListener(address, JoltNative.addr(listener));
     }
 
-    public @Nullable ContactListener getContactListener() {
-        return ContactListener.at(JPC_PhysicsSystem_GetContactListener(address));
+    public @Nullable BodyActivationListener getBodyActivationListener() {
+        return BodyActivationListener.at(JPC_PhysicsSystem_GetBodyActivationListener(address));
     }
 
     public void setContactListener(@Nullable ContactListener listener) {
         JPC_PhysicsSystem_SetContactListener(address, JoltNative.addr(listener));
     }
 
+    public @Nullable ContactListener getContactListener() {
+        return ContactListener.at(JPC_PhysicsSystem_GetContactListener(address));
+    }
+
+    // TODO setCombineFriction
+    // TODO setCombineRestitution
+
+    // TODO setPhysicsSettings
+    // TODO getPhysicsSettings
+
     public BodyInterface getBodyInterface() {
         return BodyInterface.at(JPC_PhysicsSystem_GetBodyInterface(address));
+    }
+
+    public BodyInterface getBodyInterfaceNoLock() {
+        return BodyInterface.at(JPC_PhysicsSystem_GetBodyInterfaceNoLock(address));
+    }
+
+    public BroadPhaseQuery getBroadPhaseQuery() {
+        return BroadPhaseQuery.at(JPC_PhysicsSystem_GetBroadPhaseQuery(address));
     }
 
     public void optimizeBroadPhase() {

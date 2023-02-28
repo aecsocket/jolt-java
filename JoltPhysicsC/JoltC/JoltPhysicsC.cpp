@@ -54,6 +54,12 @@ FN(toJph)(JPC_Body *in) { assert(in); return reinterpret_cast<JPH::Body *>(in); 
 FN(toJph)(const JPC_PhysicsMaterial *in) { return reinterpret_cast<const JPH::PhysicsMaterial *>(in); }
 FN(toJpc)(const JPH::PhysicsMaterial *in) { return reinterpret_cast<const JPC_PhysicsMaterial *>(in); }
 
+FN(toJph)(JPC_SphereShape *in) {
+    ENSURE_TYPE(in, JPH::SphereShape);
+    return reinterpret_cast<JPH::SphereShape *>(in);
+}
+FN(toJpc)(JPH::SphereShape *in) { assert(in); return reinterpret_cast<JPC_SphereShape *>(in); }
+
 FN(toJph)(const JPC_ShapeSettings *in) {
     ENSURE_TYPE(in, JPH::ShapeSettings);
     return reinterpret_cast<const JPH::ShapeSettings *>(in);
@@ -188,6 +194,10 @@ FN(toJpc)(const JPH::BodyLockInterface *in) {
     assert(in); return reinterpret_cast<const JPC_BodyLockInterface *>(in);
 }
 
+FN(toJpc)(const JPH::BroadPhaseQuery *in) {
+    assert(in); return reinterpret_cast<const JPC_BroadPhaseQuery *>(in);
+}
+
 FN(toJpc)(const JPH::NarrowPhaseQuery *in) {
     assert(in); return reinterpret_cast<const JPC_NarrowPhaseQuery *>(in);
 }
@@ -248,14 +258,6 @@ FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
 FN(toJpc)(JPH::EMotionType in) { return static_cast<JPC_MotionType>(in); }
 FN(toJpc)(JPH::EActivation in) { return static_cast<JPC_Activation>(in); }
 FN(toJpc)(JPH::EMotionQuality in) { return static_cast<JPC_MotionQuality>(in); }
-
-// JoltJava
-FN(toJph)(JPC_SphereShape *in) {
-    ENSURE_TYPE(in, JPH::SphereShape);
-    return reinterpret_cast<JPH::SphereShape *>(in);
-}
-FN(toJpc)(JPH::SphereShape *in) { assert(in); return reinterpret_cast<JPC_SphereShape *>(in); }
-// END JoltJava
 
 #undef FN
 
@@ -675,6 +677,12 @@ JPC_PhysicsSystem_GetBodyLockInterfaceNoLock(const JPC_PhysicsSystem *in_physics
     return toJpc(&toJph(in_physics_system)->GetBodyLockInterfaceNoLock());
 }
 //--------------------------------------------------------------------------------------------------
+JPC_API const JPC_BroadPhaseQuery *
+JPC_PhysicsSystem_GetBroadPhaseQuery(const JPC_PhysicsSystem *in_physics_system)
+{
+    return toJpc(&toJph(in_physics_system)->GetBroadPhaseQuery());
+}
+//--------------------------------------------------------------------------------------------------
 JPC_API const JPC_NarrowPhaseQuery *
 JPC_PhysicsSystem_GetNarrowPhaseQuery(const JPC_PhysicsSystem *in_physics_system)
 {
@@ -755,6 +763,18 @@ JPC_NarrowPhaseQuery_CastRay(const JPC_NarrowPhaseQuery *in_query,
             *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter,
         in_body_filter ?
             *static_cast<const JPH::BodyFilter *>(in_body_filter) : body_filter);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SphereShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SphereShape *
+JPC_SphereShape_Create(float in_radius)
+{
+    auto result = new JPH::SphereShape(in_radius);
+    result->AddRef();
+    return toJpc(result);
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -2111,20 +2131,12 @@ JPC_BodyID_IsInvalid(JPC_BodyID in_body_id)
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
 JPC_API uint32_t
-JPC_GetFeatures()
+JPJ_GetFeatures()
 {
     uint32_t features = 0;
     #if JPC_DOUBLE_PRECISION == 1
     features |= 0x1;
     #endif
     return features;
-}
-
-JPC_API JPC_SphereShape *
-JPC_SphereShape_Create(float in_radius)
-{
-    auto result = new JPH::SphereShape(in_radius);
-    result->AddRef();
-    return toJpc(result);
 }
 // END JoltJava

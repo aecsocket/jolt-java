@@ -11,16 +11,13 @@ import io.github.krakowski.jextract.LibraryDefinition
 
 plugins {
     id("java-conventions")
-    id("jextract-conventions") apply false
+    id("jextract-conventions") apply true
 }
 
 publishIfNeeded()
 
 fun LibraryDefinition.defaults() {
     className.set("JoltPhysicsC")
-    buildFeatures.forEach { feature ->
-        definedMacros.add(feature.macro())
-    }
 }
 
 tasks {
@@ -32,10 +29,13 @@ tasks {
 
         header("$joltDir/JoltC/JoltPhysicsC.h") {
             defaults()
-            targetPackage.set(when (buildFlavor) {
-                JoltBuildFlavor.SP -> "jolt.headers_f"
-                JoltBuildFlavor.DP -> "jolt.headers_d"
-            })
+            targetPackage.set("jolt.headers_f")
+        }
+
+        header("$joltDir/JoltC/JoltPhysicsC.h") {
+            defaults()
+            targetPackage.set("jolt.headers_d")
+            definedMacros.add("JPH_DOUBLE_PRECISION")
         }
     }
 }

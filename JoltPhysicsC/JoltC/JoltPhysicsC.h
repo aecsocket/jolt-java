@@ -174,7 +174,20 @@ typedef struct JPC_TempAllocator     JPC_TempAllocator;
 typedef struct JPC_JobSystem         JPC_JobSystem;
 typedef struct JPC_BodyInterface     JPC_BodyInterface;
 typedef struct JPC_BodyLockInterface JPC_BodyLockInterface;
+typedef struct JPC_BroadPhaseQuery   JPC_BroadPhaseQuery;
 typedef struct JPC_NarrowPhaseQuery  JPC_NarrowPhaseQuery;
+
+typedef struct JPC_Shape                JPC_Shape;
+typedef struct JPC_ConvexShape          JPC_ConvexShape;
+typedef struct JPC_BoxShape             JPC_BoxShape;
+typedef struct JPC_SphereShape          JPC_SphereShape;
+typedef struct JPC_TriangleShape        JPC_TriangleShape;
+typedef struct JPC_CapsuleShape         JPC_CapsuleShape;
+typedef struct JPC_TaperedCapsuleShape  JPC_TaperedCapsuleShape;
+typedef struct JPC_CylinderShape        JPC_CylinderShape;
+typedef struct JPC_ConvexHullShape      JPC_ConvexHullShape;
+typedef struct JPC_HeightFieldShape     JPC_HeightFieldShape;
+typedef struct JPC_MeshShape            JPC_MeshShape;
 
 typedef struct JPC_ShapeSettings               JPC_ShapeSettings;
 typedef struct JPC_ConvexShapeSettings         JPC_ConvexShapeSettings;
@@ -191,8 +204,6 @@ typedef struct JPC_MeshShapeSettings           JPC_MeshShapeSettings;
 typedef struct JPC_PhysicsSystem JPC_PhysicsSystem;
 typedef struct JPC_SharedMutex   JPC_SharedMutex;
 
-typedef struct JPC_Shape           JPC_Shape;
-typedef struct JPC_SphereShape     JPC_SphereShape;
 typedef struct JPC_PhysicsMaterial JPC_PhysicsMaterial;
 typedef struct JPC_GroupFilter     JPC_GroupFilter;
 //--------------------------------------------------------------------------------------------------
@@ -401,6 +412,13 @@ typedef struct JPC_RRayCast
     alignas(16) float       direction[4]; // length of the vector is important; 4th element is ignored
 } JPC_RRayCast;
 
+// NOTE: Needs to be kept in sync with JPH::RayCastResultBroadPhaseCastResult
+typedef struct JPC_BroadPhaseCastResult
+{
+    JPC_BodyID     body_id; // JPC_BODY_ID_INVALID
+    float          fraction; // 1.0 + JPC_FLT_EPSILON
+} JPC_BroadPhaseCastResult;
+
 // NOTE: Needs to be kept in sync with JPH::RayCastResult
 typedef struct JPC_RayCastResult
 {
@@ -415,6 +433,27 @@ typedef struct JPC_RayCastSettings
     JPC_BackFaceMode back_face_mode;
     bool             treat_convex_as_solid;
 } JPC_RayCastSettings;
+
+// NOTE: Needs to be kept in sync with JPH::AABox
+typedef struct JPC_AABox
+{
+    alignas(16) float   min[4]; // 4th element is ignored
+    alignas(16) float   max[4]; // 4th element is ignored
+} JPC_AABox;
+
+// NOTE: Needs to be kept in sync with JPH::OrientedBox
+typedef struct JPC_OrientedBox
+{
+    alignas(16) float   orientation[16];
+    alignas(16) float   half_extents[3];
+} JPC_OrientedBox;
+
+// NOTE: Needs to be kept in sync with JPH::AABoxCast
+typedef struct JPC_AABoxCast
+{
+    alignas(16) float   box[6];
+    alignas(16) float   direction[3];
+} JPC_AABoxCast;
 //--------------------------------------------------------------------------------------------------
 //
 // Interfaces (virtual tables)
@@ -532,6 +571,34 @@ typedef struct JPC_ContactListenerVTable
     void
     (*OnContactRemoved)(void *in_self, const JPC_SubShapeIDPair *in_sub_shape_pair);
 } JPC_ContactListenerVTable;
+
+typedef struct JPC_RayCastBodyCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnBody)(const void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(const void *in_self, JPC_BroadPhaseCastResult in_result);
+} JPC_RayCastBodyCollectorVTable;
+
+typedef struct JPC_CollideShapeBodyCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnBody)(const void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(const void *in_self, JPC_BodyID in_result);
+} JPC_CollideShapeBodyCollectorVTable;
 //--------------------------------------------------------------------------------------------------
 //
 // Misc functions
@@ -752,6 +819,9 @@ JPC_PhysicsSystem_GetBodyLockInterface(const JPC_PhysicsSystem *in_physics_syste
 JPC_API const JPC_BodyLockInterface *
 JPC_PhysicsSystem_GetBodyLockInterfaceNoLock(const JPC_PhysicsSystem *in_physics_system);
 
+JPC_API const JPC_BroadPhaseQuery *
+JPC_PhysicsSystem_GetBroadPhaseQuery(const JPC_PhysicsSystem *in_physics_system);
+
 JPC_API const JPC_NarrowPhaseQuery *
 JPC_PhysicsSystem_GetNarrowPhaseQuery(const JPC_PhysicsSystem *in_physics_system);
 
@@ -811,6 +881,53 @@ JPC_BodyLockInterface_UnlockWrite(const JPC_BodyLockInterface *in_lock_interface
                                   JPC_BodyLockWrite *io_lock);
 //--------------------------------------------------------------------------------------------------
 //
+// JPC_BroadPhaseQuery
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
+                            const JPC_RRayCast *in_ray,
+                            const void *io_collector,
+                            const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                            const void *in_object_layer_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
+                                 const JPC_AABox *in_box,
+                                 const void *io_collector,
+                                 const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                 const void *in_object_layer_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
+                                  const float in_center[3],
+                                  float in_radius,
+                                  const void *io_collector,
+                                  const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                  const void *in_object_layer_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
+                                 const float in_point[3],
+                                 const void *io_collector,
+                                 const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                 const void *in_object_layer_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
+                                       const JPC_OrientedBox *in_box,
+                                       const void *io_collector,
+                                       const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                       const void *in_object_layer_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
+                              const JPC_AABoxCast *in_box,
+                              const void *io_collector,
+                              const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                              const void *in_object_layer_filter); // Can be NULL (no filter)
+//--------------------------------------------------------------------------------------------------
+//
 // JPC_NarrowPhaseQuery
 //
 //--------------------------------------------------------------------------------------------------
@@ -822,6 +939,13 @@ JPC_NarrowPhaseQuery_CastRay(const JPC_NarrowPhaseQuery *in_query,
                              const void *in_object_layer_filter, // Can be NULL (no filter)
                              const void *in_body_filter); // Can be NULL (no filter)
 //--------------------------------------------------------------------------------------------------
+//
+// JPC_SphereShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SphereShape *
+JPC_SphereShape_Create(float in_radius);
+ //--------------------------------------------------------------------------------------------------
 //
 // JPC_ShapeSettings
 //
@@ -1383,41 +1507,46 @@ JPC_BodyID_IsInvalid(JPC_BodyID in_body_id);
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
 JPC_API uint32_t
-JPC_GetFeatures();
+JPJ_GetFeatures();
 
-JPC_API JPC_SphereShape *
-JPC_SphereShape_Create(float in_radius);
-
-struct JPC_BroadPhaseLayerInterface {
+struct JPJ_BroadPhaseLayerInterface {
     const JPC_BroadPhaseLayerInterfaceVTable *vtable;
 };
 
-struct JPC_ObjectVsBroadPhaseLayerFilter {
+struct JPJ_ObjectVsBroadPhaseLayerFilter {
     const JPC_ObjectVsBroadPhaseLayerFilterVTable *vtable;
 };
 
-struct JPC_BroadPhaseLayerFilter {
+struct JPJ_BroadPhaseLayerFilter {
     const JPC_BroadPhaseLayerFilterVTable *vtable;
 };
 
-struct JPC_ObjectLayerPairFilter {
+struct JPJ_ObjectLayerPairFilter {
     const JPC_ObjectLayerPairFilterVTable *vtable;
 };
 
-struct JPC_ObjectLayerFilter {
+struct JPJ_ObjectLayerFilter {
     const JPC_ObjectLayerFilterVTable *vtable;
 };
 
-struct JPC_BodyActivationListener {
+struct JPJ_BodyActivationListener {
     const JPC_BodyActivationListenerVTable *vtable;
 };
 
-struct JPC_BodyFilter {
+struct JPJ_BodyFilter {
     const JPC_BodyFilterVTable *vtable;
 };
 
-struct JPC_ContactListener {
+struct JPJ_ContactListener {
     const JPC_ContactListenerVTable *vtable;
+};
+
+struct JPJ_RayCastBodyCollector {
+    const JPC_RayCastBodyCollectorVTable *vtable;
+};
+
+struct JPJ_CollideShapeBodyCollector {
+    const JPC_CollideShapeBodyCollectorVTable *vtable;
 };
 // END JoltJava
 #ifdef __cplusplus

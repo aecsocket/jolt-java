@@ -9,51 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$32 {
 
-    static final FunctionDescriptor JPC_ShapeSettings_SetUserData$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BroadPhaseQuery_CastAABox$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle JPC_ShapeSettings_SetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeSettings_SetUserData",
-        constants$32.JPC_ShapeSettings_SetUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShapeSettings_GetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_GetMaterial",
-        constants$32.JPC_ConvexShapeSettings_GetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_SetMaterial$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ConvexShapeSettings_SetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_SetMaterial",
-        constants$32.JPC_ConvexShapeSettings_SetMaterial$FUNC
+    static final MethodHandle JPC_BroadPhaseQuery_CastAABox$MH = RuntimeHelper.downcallHandle(
+        "JPC_BroadPhaseQuery_CastAABox",
+        constants$32.JPC_BroadPhaseQuery_CastAABox$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_NarrowPhaseQuery_CastRay$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ConvexShapeSettings_GetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_GetDensity",
-        constants$32.JPC_ConvexShapeSettings_GetDensity$FUNC
+    static final MethodHandle JPC_NarrowPhaseQuery_CastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_NarrowPhaseQuery_CastRay",
+        constants$32.JPC_NarrowPhaseQuery_CastRay$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_SetDensity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_SphereShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_ConvexShapeSettings_SetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_SetDensity",
-        constants$32.JPC_ConvexShapeSettings_SetDensity$FUNC
+    static final MethodHandle JPC_SphereShape_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_SphereShape_Create",
+        constants$32.JPC_SphereShape_Create$FUNC
     );
-    static final FunctionDescriptor JPC_BoxShapeSettings_Create0$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor JPC_ShapeSettings_AddRef$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BoxShapeSettings_Create0$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShapeSettings_Create0",
-        constants$32.JPC_BoxShapeSettings_Create0$FUNC
+    static final MethodHandle JPC_ShapeSettings_AddRef$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_AddRef",
+        constants$32.JPC_ShapeSettings_AddRef$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_Release$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_Release$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_Release",
+        constants$32.JPC_ShapeSettings_Release$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_GetRefCount$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_GetRefCount",
+        constants$32.JPC_ShapeSettings_GetRefCount$FUNC
     );
 }
 

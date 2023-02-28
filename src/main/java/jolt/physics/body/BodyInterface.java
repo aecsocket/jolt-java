@@ -14,7 +14,7 @@ import static jolt.headers_f.JoltPhysicsC.*;
 
 public abstract sealed class BodyInterface extends AddressedJoltNative permits BodyInterface.F, BodyInterface.D {
     public static BodyInterface at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new BodyInterface.D(address) : new BodyInterface.F(address);
+        return address.address() == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);
     }
 
     private BodyInterface(MemoryAddress address) {
