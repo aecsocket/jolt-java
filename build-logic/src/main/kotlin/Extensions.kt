@@ -30,3 +30,9 @@ val Project.buildFeatures: List<JoltBuildFeature>
         JoltBuildFeature.USE_F16C,
         JoltBuildFeature.USE_FMADD
     )
+
+fun Project.publishIfNeeded() {
+    if (!ci.get() || ciPublishApi.get()) {
+        plugins.apply("publishing-conventions")
+    }
+}

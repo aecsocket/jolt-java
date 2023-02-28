@@ -10,9 +10,10 @@ import io.github.krakowski.jextract.JextractTask
 
 plugins {
     id("java-conventions")
-    id("publishing-conventions")
     id("jextract-conventions") apply false
 }
+
+publishIfNeeded()
 
 tasks {
     withType<JextractTask> {

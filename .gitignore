@@ -17,6 +17,7 @@ api/bin/
 
 # VS Code
 *bin/
+.vscode/
 
 # Fleet
 .fleet/
