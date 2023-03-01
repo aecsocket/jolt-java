@@ -1001,17 +1001,9 @@ JPC_ConvexShapeSettings_SetDensity(JPC_ConvexShapeSettings *in_settings, float i
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_BoxShapeSettings *
-JPC_BoxShapeSettings_Create0(const float in_half_extent[3], const float in_convex_radius)
+JPC_BoxShapeSettings_Create(const float in_half_extent[3], float in_convex_radius, const JPC_PhysicsMaterial *in_material)
 {
-    auto settings = new JPH::BoxShapeSettings(loadVec3(in_half_extent), in_convex_radius);
-    settings->AddRef();
-    return toJpc(settings);
-}
-
-JPC_API JPC_BoxShapeSettings *
-JPC_BoxShapeSettings_Create1(const float in_half_extent[3])
-{
-    auto settings = new JPH::BoxShapeSettings(loadVec3(in_half_extent));
+    auto settings = new JPH::BoxShapeSettings(loadVec3(in_half_extent), in_convex_radius, toJph(in_material));
     settings->AddRef();
     return toJpc(settings);
 }
@@ -1045,9 +1037,9 @@ JPC_BoxShapeSettings_SetConvexRadius(JPC_BoxShapeSettings *in_settings, float in
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_SphereShapeSettings *
-JPC_SphereShapeSettings_Create(float in_radius)
+JPC_SphereShapeSettings_Create(float in_radius, const JPC_PhysicsMaterial *in_material)
 {
-    auto settings = new JPH::SphereShapeSettings(in_radius);
+    auto settings = new JPH::SphereShapeSettings(in_radius, toJph(in_material));
     settings->AddRef();
     return toJpc(settings);
 }
@@ -1069,9 +1061,13 @@ JPC_SphereShapeSettings_SetRadius(JPC_SphereShapeSettings *in_settings, float in
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_TriangleShapeSettings *
-JPC_TriangleShapeSettings_Create(const float in_v1[3], const float in_v2[3], const float in_v3[3])
+JPC_TriangleShapeSettings_Create(const float in_v1[3],
+                                 const float in_v2[3],
+                                 const float in_v3[3],
+                                 float in_convex_radius,
+                                 const JPC_PhysicsMaterial *in_material)
 {
-    auto settings = new JPH::TriangleShapeSettings(loadVec3(in_v1), loadVec3(in_v2), loadVec3(in_v3));
+    auto settings = new JPH::TriangleShapeSettings(loadVec3(in_v1), loadVec3(in_v2), loadVec3(in_v3), in_convex_radius, toJph(in_material));
     settings->AddRef();
     return toJpc(settings);
 }
@@ -1117,9 +1113,11 @@ JPC_TriangleShapeSettings_SetConvexRadius(JPC_TriangleShapeSettings *in_settings
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_CapsuleShapeSettings *
-JPC_CapsuleShapeSettings_Create(float in_half_height_of_cylinder, float in_radius)
+JPC_CapsuleShapeSettings_Create(float in_half_height_of_cylinder,
+                                float in_radius,
+                                const JPC_PhysicsMaterial *in_material)
 {
-    auto settings = new JPH::CapsuleShapeSettings(in_half_height_of_cylinder, in_radius);
+    auto settings = new JPH::CapsuleShapeSettings(in_half_height_of_cylinder, in_radius, toJph(in_material));
     settings->AddRef();
     return toJpc(settings);
 }
@@ -1154,9 +1152,12 @@ JPC_CapsuleShapeSettings_SetRadius(JPC_CapsuleShapeSettings *in_settings, float 
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_TaperedCapsuleShapeSettings *
-JPC_TaperedCapsuleShapeSettings_Create(float in_half_height, float in_top_radius, float in_bottom_radius)
+JPC_TaperedCapsuleShapeSettings_Create(float in_half_height,
+                                       float in_top_radius,
+                                       float in_bottom_radius,
+                                       const JPC_PhysicsMaterial *in_material)
 {
-    auto settings = new JPH::TaperedCapsuleShapeSettings(in_half_height, in_top_radius, in_bottom_radius);
+    auto settings = new JPH::TaperedCapsuleShapeSettings(in_half_height, in_top_radius, in_bottom_radius, toJph(in_material));
     settings->AddRef();
     return toJpc(settings);
 }
@@ -1204,9 +1205,12 @@ JPC_TaperedCapsuleShapeSettings_SetBottomRadius(JPC_TaperedCapsuleShapeSettings 
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_CylinderShapeSettings *
-JPC_CylinderShapeSettings_Create(float in_half_height, float in_radius)
+JPC_CylinderShapeSettings_Create(float in_half_height,
+                                 float in_radius,
+                                 float in_convex_radius,
+                                 const JPC_PhysicsMaterial *in_material)
 {
-    auto settings = new JPH::CylinderShapeSettings(in_half_height, in_radius);
+    auto settings = new JPH::CylinderShapeSettings(in_half_height, in_radius, in_convex_radius, toJph(in_material));
     settings->AddRef();
     return toJpc(settings);
 }
@@ -1252,7 +1256,11 @@ JPC_CylinderShapeSettings_SetRadius(JPC_CylinderShapeSettings *in_settings, floa
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_ConvexHullShapeSettings *
-JPC_ConvexHullShapeSettings_Create(const void *in_vertices, uint32_t in_num_vertices, uint32_t in_vertex_size)
+JPC_ConvexHullShapeSettings_Create(const void *in_vertices,
+                                   uint32_t in_num_vertices,
+                                   uint32_t in_vertex_size,
+                                   float in_convex_radius,
+                                   const JPC_PhysicsMaterial *in_material)
 {
     assert(in_vertices && in_num_vertices >= 3);
     assert(in_vertex_size >= 3 * sizeof(float));
@@ -1266,7 +1274,7 @@ JPC_ConvexHullShapeSettings_Create(const void *in_vertices, uint32_t in_num_vert
         points.push_back(loadVec3(reinterpret_cast<const float *>(base)));
     }
 
-    auto settings = new JPH::ConvexHullShapeSettings(points);
+    auto settings = new JPH::ConvexHullShapeSettings(points, in_convex_radius, toJph(in_material));
     settings->AddRef();
     return toJpc(settings);
 }
@@ -1315,11 +1323,14 @@ JPC_ConvexHullShapeSettings_SetHullTolerance(JPC_ConvexHullShapeSettings *in_set
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_HeightFieldShapeSettings *
-JPC_HeightFieldShapeSettings_Create(const float *in_samples, uint32_t in_height_field_size)
+JPC_HeightFieldShapeSettings_Create(const float *in_samples,
+                                    uint32_t in_height_field_size,
+                                    float in_offset[3],
+                                    float in_scale[3])
 {
     assert(in_samples != nullptr && in_height_field_size >= 2);
     auto settings = new JPH::HeightFieldShapeSettings(
-        in_samples, JPH::Vec3(0,0,0), JPH::Vec3(1,1,1), in_height_field_size);
+        in_samples, loadVec3(in_offset), loadVec3(in_scale), in_height_field_size);
     settings->AddRef();
     return toJpc(settings);
 }

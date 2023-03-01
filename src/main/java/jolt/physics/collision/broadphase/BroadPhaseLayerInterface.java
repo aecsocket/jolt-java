@@ -10,8 +10,9 @@ import static jolt.headers.JPC_BroadPhaseLayerInterfaceVTable.*;
 import static jolt.headers.JPJ_BroadPhaseLayerInterface.*;
 
 public final class BroadPhaseLayerInterface extends AddressedJoltNative {
-    public static BroadPhaseLayerInterface at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(address);
+    public static BroadPhaseLayerInterface at(Addressable ptr) {
+        var address = ptr.address();
+        return address == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(address);
     }
 
     public static BroadPhaseLayerInterface of(MemorySession session, BroadPhaseLayerInterfaceFunctions impl) {

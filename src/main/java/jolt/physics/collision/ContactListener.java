@@ -8,7 +8,9 @@ import jolt.math.DVec3;
 import jolt.math.FVec3;
 import jolt.physics.body.BodyIDs;
 import jolt.physics.collision.shape.SubShapeIDPair;
+import jolt.physics.collision.shape.TriangleShapeSettings;
 
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
@@ -17,8 +19,9 @@ import static jolt.headers.JPC_ContactListenerVTable.*;
 import static jolt.headers.JPJ_ContactListener.*;
 
 public final class ContactListener extends AddressedJoltNative {
-    public static ContactListener at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : new ContactListener(address);
+    public static ContactListener at(Addressable ptr) {
+        var address = ptr.address();
+        return address == MemoryAddress.NULL ? null : new ContactListener(address);
     }
 
     private static ContactListener of(MemorySession session, MemorySegment vtable, ContactListenerFunctions impl) {

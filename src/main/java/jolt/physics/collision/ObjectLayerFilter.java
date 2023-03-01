@@ -10,8 +10,9 @@ import static jolt.headers.JPC_ObjectLayerFilterVTable.*;
 import static jolt.headers.JPJ_ObjectLayerFilter.*;
 
 public final class ObjectLayerFilter extends AddressedJoltNative {
-    public static ObjectLayerFilter at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : new ObjectLayerFilter(address);
+    public static ObjectLayerFilter at(Addressable ptr) {
+        var address = ptr.address();
+        return address == MemoryAddress.NULL ? null : new ObjectLayerFilter(address);
     }
 
     public static ObjectLayerFilter of(MemorySession session, ObjectLayerFilterFunctions impl) {

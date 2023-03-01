@@ -4,12 +4,16 @@ import cpufeatures.CpuArchitecture;
 import cpufeatures.CpuFeatures;
 import cpufeatures.CpuPlatform;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
+import java.lang.foreign.MemoryAddress;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -85,6 +89,21 @@ public final class Jolt {
 
     public static RuntimeException requireDoublePrecision() {
         return new RuntimeException("Attempting to use double-precision method with single-precision library");
+    }
+
+    public static MemoryAddress ptr(@Nullable JoltNative obj) {
+        return obj == null ? MemoryAddress.NULL : obj.address();
+    }
+
+    public static <T extends Destroyable> void use(T obj, Consumer<T> block) {
+        block.accept(obj);
+        obj.destroy();
+    }
+
+    public static <T extends Destroyable, R> R use(T obj, Function<T, R> block) {
+        var result = block.apply(obj);
+        obj.destroy();
+        return result;
     }
 
     public static void assertDoublePrecision() {

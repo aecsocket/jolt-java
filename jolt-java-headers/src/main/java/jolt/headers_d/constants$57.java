@@ -9,8 +9,19 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$57 {
 
+    static final FunctionDescriptor JPC_BodyID_IsInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyID_IsInvalid$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyID_IsInvalid",
+        constants$57.JPC_BodyID_IsInvalid$FUNC
+    );
+    static final FunctionDescriptor JPJ_GetFeatures$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle JPJ_GetFeatures$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPJ_GetFeatures",
+        constants$57.JPJ_GetFeatures$FUNC
+    );
     static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
-    static final MemorySegment __FD_ZERO_STOS$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("stosq");
 }
 
 

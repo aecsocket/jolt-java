@@ -6,6 +6,7 @@ import jolt.math.DVec3;
 import jolt.math.FVec3;
 import jolt.physics.Activation;
 
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
@@ -13,8 +14,9 @@ import java.lang.foreign.MemorySession;
 import static jolt.headers_f.JoltPhysicsC.*;
 
 public abstract sealed class BodyInterface extends AddressedJoltNative permits BodyInterface.F, BodyInterface.D {
-    public static BodyInterface at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);
+    public static BodyInterface at(Addressable ptr) {
+        var address = ptr.address();
+        return address == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);
     }
 
     private BodyInterface(MemoryAddress address) {
@@ -57,7 +59,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative permits B
 
     public FVec3 getLinearVelocity(int bodyId) {
         try (var session = MemorySession.openConfined()) {
-            MemorySegment out = FVec3.ZERO.allocate(session);
+            var out = FVec3.ZERO.allocate(session);
             JPC_BodyInterface_GetLinearVelocity(address, bodyId, out);
             return FVec3.read(out.address());
         }
@@ -71,7 +73,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative permits B
         @Override
         public FVec3 getCenterOfMassPositionF(int bodyId) {
             try (var session = MemorySession.openConfined()) {
-                MemorySegment out = FVec3.ZERO.allocate(session);
+                var out = FVec3.ZERO.allocate(session);
                 jolt.headers_f.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(address, bodyId, out);
                 return FVec3.read(out.address());
             }
@@ -96,7 +98,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative permits B
         @Override
         public DVec3 getCenterOfMassPositionD(int bodyId) {
             try (var session = MemorySession.openConfined()) {
-                MemorySegment out = DVec3.ZERO.allocate(session);
+                var out = DVec3.ZERO.allocate(session);
                 jolt.headers_d.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(address, bodyId, out);
                 return DVec3.read(out.address());
             }

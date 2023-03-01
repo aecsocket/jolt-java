@@ -9,6 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$47 {
 
+    static final FunctionDescriptor JPC_BodyInterface_AddForce$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddForce$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddForce",
+        constants$47.JPC_BodyInterface_AddForce$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AddForceAtPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddForceAtPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddForceAtPosition",
+        constants$47.JPC_BodyInterface_AddForceAtPosition$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_AddTorque$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -46,22 +65,6 @@ class constants$47 {
     static final MethodHandle JPC_BodyInterface_AddImpulseAtPosition$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_AddImpulseAtPosition",
         constants$47.JPC_BodyInterface_AddImpulseAtPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_AddAngularImpulse$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_AddAngularImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_AddAngularImpulse",
-        constants$47.JPC_BodyInterface_AddAngularImpulse$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetID$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetID$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetID",
-        constants$47.JPC_Body_GetID$FUNC
     );
 }
 

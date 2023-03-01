@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$49 {
 
+    static final FunctionDescriptor JPC_Body_CanBeKinematicOrDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_CanBeKinematicOrDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_CanBeKinematicOrDynamic",
+        constants$49.JPC_Body_CanBeKinematicOrDynamic$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_SetIsSensor$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_BOOL$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetIsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetIsSensor",
+        constants$49.JPC_Body_SetIsSensor$FUNC
+    );
     static final FunctionDescriptor JPC_Body_IsSensor$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -37,20 +52,6 @@ class constants$49 {
     static final MethodHandle JPC_Body_GetBroadPhaseLayer$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetBroadPhaseLayer",
         constants$49.JPC_Body_GetBroadPhaseLayer$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetObjectLayer$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetObjectLayer",
-        constants$49.JPC_Body_GetObjectLayer$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetCollisionGroup$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetCollisionGroup$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCollisionGroup",
-        constants$49.JPC_Body_GetCollisionGroup$FUNC
     );
 }
 

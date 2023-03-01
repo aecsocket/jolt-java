@@ -992,10 +992,9 @@ JPC_ConvexShapeSettings_SetDensity(JPC_ConvexShapeSettings *in_settings, float i
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_BoxShapeSettings *
-JPC_BoxShapeSettings_Create0(const float in_half_extent[3], const float in_convex_radius);
-
-JPC_API JPC_BoxShapeSettings *
-JPC_BoxShapeSettings_Create1(const float in_half_extent[3]);
+JPC_BoxShapeSettings_Create(const float in_half_extent[3],
+                            float in_convex_radius,
+                            const JPC_PhysicsMaterial *in_material);
 
 JPC_API void
 JPC_BoxShapeSettings_GetHalfExtent(const JPC_BoxShapeSettings *in_settings, float out_half_extent[3]);
@@ -1014,7 +1013,7 @@ JPC_BoxShapeSettings_SetConvexRadius(JPC_BoxShapeSettings *in_settings, float in
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_SphereShapeSettings *
-JPC_SphereShapeSettings_Create(float in_radius);
+JPC_SphereShapeSettings_Create(float in_radius, const JPC_PhysicsMaterial *in_material);
 
 JPC_API float
 JPC_SphereShapeSettings_GetRadius(const JPC_SphereShapeSettings *in_settings);
@@ -1027,7 +1026,11 @@ JPC_SphereShapeSettings_SetRadius(JPC_SphereShapeSettings *in_settings, float in
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_TriangleShapeSettings *
-JPC_TriangleShapeSettings_Create(const float in_v1[3], const float in_v2[3], const float in_v3[3]);
+JPC_TriangleShapeSettings_Create(const float in_v1[3],
+                                 const float in_v2[3],
+                                 const float in_v3[3],
+                                 float in_convex_radius,
+                                 const JPC_PhysicsMaterial *in_material);
 
 JPC_API void
 JPC_TriangleShapeSettings_SetVertices(JPC_TriangleShapeSettings *in_settings,
@@ -1051,7 +1054,9 @@ JPC_TriangleShapeSettings_SetConvexRadius(JPC_TriangleShapeSettings *in_settings
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_CapsuleShapeSettings *
-JPC_CapsuleShapeSettings_Create(float in_half_height_of_cylinder, float in_radius);
+JPC_CapsuleShapeSettings_Create(float in_half_height_of_cylinder,
+                                float in_radius,
+                                const JPC_PhysicsMaterial *in_material);
 
 JPC_API float
 JPC_CapsuleShapeSettings_GetHalfHeight(const JPC_CapsuleShapeSettings *in_settings);
@@ -1070,7 +1075,10 @@ JPC_CapsuleShapeSettings_SetRadius(JPC_CapsuleShapeSettings *in_settings, float 
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_TaperedCapsuleShapeSettings *
-JPC_TaperedCapsuleShapeSettings_Create(float in_half_height, float in_top_radius, float in_bottom_radius);
+JPC_TaperedCapsuleShapeSettings_Create(float in_half_height,
+                                       float in_top_radius,
+                                       float in_bottom_radius,
+                                       const JPC_PhysicsMaterial *in_material);
 
 JPC_API float
 JPC_TaperedCapsuleShapeSettings_GetHalfHeight(const JPC_TaperedCapsuleShapeSettings *in_settings);
@@ -1096,7 +1104,10 @@ JPC_TaperedCapsuleShapeSettings_SetBottomRadius(JPC_TaperedCapsuleShapeSettings 
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_CylinderShapeSettings *
-JPC_CylinderShapeSettings_Create(float in_half_height, float in_radius);
+JPC_CylinderShapeSettings_Create(float in_half_height,
+                                 float in_radius,
+                                 float in_convex_radius,
+                                 const JPC_PhysicsMaterial *in_material);
 
 JPC_API float
 JPC_CylinderShapeSettings_GetConvexRadius(const JPC_CylinderShapeSettings *in_settings);
@@ -1121,7 +1132,11 @@ JPC_CylinderShapeSettings_SetRadius(JPC_CylinderShapeSettings *in_settings, floa
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_ConvexHullShapeSettings *
-JPC_ConvexHullShapeSettings_Create(const void *in_vertices, uint32_t in_num_vertices, uint32_t in_vertex_size);
+JPC_ConvexHullShapeSettings_Create(const void *in_vertices,
+                                   uint32_t in_num_vertices,
+                                   uint32_t in_vertex_size,
+                                   float in_convex_radius,
+                                   const JPC_PhysicsMaterial *in_material);
 
 JPC_API float
 JPC_ConvexHullShapeSettings_GetMaxConvexRadius(const JPC_ConvexHullShapeSettings *in_settings);
@@ -1147,7 +1162,7 @@ JPC_ConvexHullShapeSettings_SetHullTolerance(JPC_ConvexHullShapeSettings *in_set
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_HeightFieldShapeSettings *
-JPC_HeightFieldShapeSettings_Create(const float *in_samples, uint32_t in_height_field_size);
+JPC_HeightFieldShapeSettings_Create(const float *in_samples, uint32_t in_height_field_size, float in_offset[3], float in_scale[3]);
 
 JPC_API void
 JPC_HeightFieldShapeSettings_GetOffset(const JPC_HeightFieldShapeSettings *in_settings, float out_offset[3]);

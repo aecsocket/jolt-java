@@ -17,7 +17,7 @@ public interface on_exit$__func {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int __x0, java.lang.foreign.MemoryAddress __x1) -> {
             try {
-                constants$11.on_exit$__func$MH.invokeExact((Addressable)symbol, __x0, (java.lang.foreign.Addressable)__x1);
+                constants$12.on_exit$__func$MH.invokeExact((Addressable)symbol, __x0, (java.lang.foreign.Addressable)__x1);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

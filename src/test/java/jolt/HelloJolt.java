@@ -157,8 +157,11 @@ public final class HelloJolt {
 
             BodyInterface bodyInterface = physicsSystem.getBodyInterface();
 
-            var floorShapeSettings = BoxShapeSettings.create(new FVec3(100.0f, 1.0f, 100.0f));
-            Shape floorShape = floorShapeSettings.create();
+            // Destroyable classes do not implement AutoCloseable due to excessive "try-with-resources" warnings
+            // use Jolt.use instead
+            Shape floorShape = Jolt.use(BoxShapeSettings.create(new FVec3(100.0f, 1.0f, 100.0f)), floorShapeSettings -> {
+                return floorShapeSettings.create();
+            });
 
             var floorSettings = doublePrecision
                     ? BodyCreationSettings.create(session, floorShape, new DVec3(0.0, -1.0, 0.0), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING)

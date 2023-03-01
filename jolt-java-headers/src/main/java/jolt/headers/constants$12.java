@@ -9,6 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$12 {
 
+    static final FunctionDescriptor on_exit$__func$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle on_exit$__func$MH = RuntimeHelper.downcallHandle(
+        constants$12.on_exit$__func$FUNC
+    );
+    static final FunctionDescriptor on_exit$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle on_exit$MH = RuntimeHelper.downcallHandle(
+        "on_exit",
+        constants$12.on_exit$FUNC
+    );
+    static final FunctionDescriptor exit$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle exit$MH = RuntimeHelper.downcallHandle(
+        "exit",
+        constants$12.exit$FUNC
+    );
     static final FunctionDescriptor quick_exit$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
@@ -29,29 +51,6 @@ class constants$12 {
     static final MethodHandle getenv$MH = RuntimeHelper.downcallHandle(
         "getenv",
         constants$12.getenv$FUNC
-    );
-    static final FunctionDescriptor putenv$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle putenv$MH = RuntimeHelper.downcallHandle(
-        "putenv",
-        constants$12.putenv$FUNC
-    );
-    static final FunctionDescriptor setenv$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle setenv$MH = RuntimeHelper.downcallHandle(
-        "setenv",
-        constants$12.setenv$FUNC
-    );
-    static final FunctionDescriptor unsetenv$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle unsetenv$MH = RuntimeHelper.downcallHandle(
-        "unsetenv",
-        constants$12.unsetenv$FUNC
     );
 }
 

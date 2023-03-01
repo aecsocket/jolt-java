@@ -9,6 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$25 {
 
+    static final FunctionDescriptor JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector",
+        constants$25.JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_GetPointVelocityCOM$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetPointVelocityCOM$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetPointVelocityCOM",
+        constants$25.JPC_MotionProperties_GetPointVelocityCOM$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_GetMaxLinearVelocity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetMaxLinearVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetMaxLinearVelocity",
+        constants$25.JPC_MotionProperties_GetMaxLinearVelocity$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_SetMaxLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -31,29 +57,6 @@ class constants$25 {
     static final MethodHandle JPC_MotionProperties_SetMaxAngularVelocity$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_SetMaxAngularVelocity",
         constants$25.JPC_MotionProperties_SetMaxAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_TempAllocator_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_TempAllocator_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_TempAllocator_Create",
-        constants$25.JPC_TempAllocator_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_TempAllocator_Destroy$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_TempAllocator_Destroy$MH = RuntimeHelper.downcallHandle(
-        "JPC_TempAllocator_Destroy",
-        constants$25.JPC_TempAllocator_Destroy$FUNC
-    );
-    static final FunctionDescriptor JPC_JobSystem_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_JobSystem_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_JobSystem_Create",
-        constants$25.JPC_JobSystem_Create$FUNC
     );
 }
 

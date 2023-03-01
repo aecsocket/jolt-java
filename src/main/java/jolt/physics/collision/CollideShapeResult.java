@@ -4,6 +4,7 @@ import jolt.SegmentedJoltNative;
 import jolt.headers.JPC_CollideShapeResult;
 import jolt.math.FVec3;
 
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
@@ -15,8 +16,8 @@ public final class CollideShapeResult extends SegmentedJoltNative {
         return segment.address() == MemoryAddress.NULL ? null : new CollideShapeResult(segment);
     }
 
-    public static CollideShapeResult at(MemorySession session, MemoryAddress address) {
-        return at(ofAddress(address, session));
+    public static CollideShapeResult at(MemorySession session, Addressable ptr) {
+        return at(ofAddress(ptr.address(), session));
     }
 
     public static CollideShapeResult allocate(MemorySession session) {

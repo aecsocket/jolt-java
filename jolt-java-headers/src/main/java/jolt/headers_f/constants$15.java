@@ -9,6 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$15 {
 
+    static final FunctionDescriptor bsearch$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle bsearch$MH = RuntimeHelper.downcallHandle(
+        "bsearch",
+        constants$15.bsearch$FUNC
+    );
+    static final FunctionDescriptor qsort$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle qsort$MH = RuntimeHelper.downcallHandle(
+        "qsort",
+        constants$15.qsort$FUNC
+    );
+    static final FunctionDescriptor abs$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle abs$MH = RuntimeHelper.downcallHandle(
+        "abs",
+        constants$15.abs$FUNC
+    );
     static final FunctionDescriptor labs$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
@@ -33,38 +61,6 @@ class constants$15 {
     static final MethodHandle div$MH = RuntimeHelper.downcallHandle(
         "div",
         constants$15.div$FUNC
-    );
-    static final FunctionDescriptor ldiv$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("quot"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("rem")
-    ),
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle ldiv$MH = RuntimeHelper.downcallHandle(
-        "ldiv",
-        constants$15.ldiv$FUNC
-    );
-    static final FunctionDescriptor lldiv$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("quot"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("rem")
-    ),
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle lldiv$MH = RuntimeHelper.downcallHandle(
-        "lldiv",
-        constants$15.lldiv$FUNC
-    );
-    static final FunctionDescriptor ecvt$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ecvt$MH = RuntimeHelper.downcallHandle(
-        "ecvt",
-        constants$15.ecvt$FUNC
     );
 }
 

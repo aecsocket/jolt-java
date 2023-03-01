@@ -1,5 +1,6 @@
 package jolt.math;
 
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
@@ -9,7 +10,8 @@ import static jolt.headers.JoltPhysicsC.C_FLOAT;
 public record Quat(float x, float y, float z, float w) {
     public static final Quat IDENTITY = new Quat(0f, 0f, 0f, 0f);
 
-    public static Quat read(MemoryAddress address) {
+    public static Quat read(Addressable addressable) {
+        var address = addressable.address();
         return new Quat(
                 address.getAtIndex(C_FLOAT, 0),
                 address.getAtIndex(C_FLOAT, 1),

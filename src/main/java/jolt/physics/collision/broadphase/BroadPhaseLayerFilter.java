@@ -3,6 +3,7 @@ package jolt.physics.collision.broadphase;
 import jolt.AddressedJoltNative;
 import jolt.headers.JPJ_BroadPhaseLayerFilter;
 import jolt.headers.JPC_BroadPhaseLayerFilterVTable;
+import jolt.physics.body.BodyActivationListener;
 
 import java.lang.foreign.*;
 
@@ -10,8 +11,9 @@ import static jolt.headers.JPC_BroadPhaseLayerFilterVTable.*;
 import static jolt.headers.JPJ_BroadPhaseLayerFilter.*;
 
 public final class BroadPhaseLayerFilter extends AddressedJoltNative {
-    public static BroadPhaseLayerFilter at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : new BroadPhaseLayerFilter(address);
+    public static BroadPhaseLayerFilter at(Addressable ptr) {
+        var address = ptr.address();
+        return address == MemoryAddress.NULL ? null : new BroadPhaseLayerFilter(address);
     }
 
     public static BroadPhaseLayerFilter of(MemorySession session, BroadPhaseLayerFilterFunctions impl) {

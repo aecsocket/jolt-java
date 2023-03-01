@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$56 {
 
+    static final FunctionDescriptor JPC_Body_GetMotionProperties$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetMotionProperties$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetMotionProperties",
+        constants$56.JPC_Body_GetMotionProperties$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetUserData",
+        constants$56.JPC_Body_GetUserData$FUNC
+    );
     static final FunctionDescriptor JPC_Body_SetUserData$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
@@ -40,18 +54,6 @@ class constants$56 {
     static final MethodHandle JPC_BodyID_GetSequenceNumber$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyID_GetSequenceNumber",
         constants$56.JPC_BodyID_GetSequenceNumber$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyID_IsInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyID_IsInvalid$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_IsInvalid",
-        constants$56.JPC_BodyID_IsInvalid$FUNC
-    );
-    static final FunctionDescriptor JPJ_GetFeatures$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle JPJ_GetFeatures$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPJ_GetFeatures",
-        constants$56.JPJ_GetFeatures$FUNC
     );
 }
 

@@ -5,6 +5,7 @@ import jolt.SegmentedJoltNative;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
 
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
@@ -16,8 +17,8 @@ public final class ContactSettings extends SegmentedJoltNative {
         return segment.address() == MemoryAddress.NULL ? null : new ContactSettings(segment);
     }
 
-    public static ContactSettings at(MemorySession session, MemoryAddress address) {
-        return at(ofAddress(address, session));
+    public static ContactSettings at(MemorySession session, Addressable ptr) {
+        return at(ofAddress(ptr.address(), session));
     }
 
     private ContactSettings(MemorySegment segment) {

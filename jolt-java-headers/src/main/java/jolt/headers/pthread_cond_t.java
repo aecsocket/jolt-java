@@ -12,19 +12,19 @@ public class pthread_cond_t {
     static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
         MemoryLayout.structLayout(
             MemoryLayout.unionLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("__wseq"),
+                Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
                 MemoryLayout.structLayout(
                     Constants$root.C_INT$LAYOUT.withName("__low"),
                     Constants$root.C_INT$LAYOUT.withName("__high")
-                ).withName("__wseq32")
-            ).withName("$anon$0"),
+                ).withName("__value32")
+            ).withName("__wseq"),
             MemoryLayout.unionLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("__g1_start"),
+                Constants$root.C_LONG_LONG$LAYOUT.withName("__value64"),
                 MemoryLayout.structLayout(
                     Constants$root.C_INT$LAYOUT.withName("__low"),
                     Constants$root.C_INT$LAYOUT.withName("__high")
-                ).withName("__g1_start32")
-            ).withName("$anon$1"),
+                ).withName("__value32")
+            ).withName("__g1_start"),
             MemoryLayout.sequenceLayout(2, Constants$root.C_INT$LAYOUT).withName("__g_refs"),
             MemoryLayout.sequenceLayout(2, Constants$root.C_INT$LAYOUT).withName("__g_size"),
             Constants$root.C_INT$LAYOUT.withName("__g1_orig_size"),

@@ -1,6 +1,5 @@
 package jolt.physics.collision;
 
-import jolt.headers.JPC_RRayCast;
 import jolt.math.FVec3;
 
 import java.lang.foreign.MemoryAddress;

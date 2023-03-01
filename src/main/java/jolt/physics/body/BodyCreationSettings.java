@@ -7,6 +7,7 @@ import jolt.math.FVec3;
 import jolt.math.Quat;
 import jolt.physics.collision.shape.Shape;
 
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySession;
 
@@ -14,8 +15,9 @@ import static jolt.headers.JoltPhysicsC.*;
 import static jolt.headers.JPC_BodyCreationSettings.*;
 
 public abstract sealed class BodyCreationSettings extends AddressedJoltNative permits BodyCreationSettings.F, BodyCreationSettings.D {
-    public static BodyCreationSettings at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);
+    public static BodyCreationSettings at(Addressable ptr) {
+        var address = ptr.address();
+        return address == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);
     }
 
     public static BodyCreationSettings create(

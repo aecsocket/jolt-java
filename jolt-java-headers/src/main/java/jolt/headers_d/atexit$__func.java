@@ -17,7 +17,7 @@ public interface atexit$__func {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$10.atexit$__func$MH.invokeExact((Addressable)symbol);
+                constants$11.atexit$__func$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }
