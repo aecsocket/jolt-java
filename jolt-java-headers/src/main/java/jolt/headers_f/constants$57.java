@@ -9,19 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$57 {
 
-    static final FunctionDescriptor JPC_BodyID_IsInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor JPC_Body_GetPointVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyID_IsInvalid$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_IsInvalid",
-        constants$57.JPC_BodyID_IsInvalid$FUNC
+    static final MethodHandle JPC_Body_GetPointVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetPointVelocity",
+        constants$57.JPC_Body_GetPointVelocity$FUNC
     );
-    static final FunctionDescriptor JPJ_GetFeatures$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle JPJ_GetFeatures$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPJ_GetFeatures",
-        constants$57.JPJ_GetFeatures$FUNC
+    static final FunctionDescriptor JPC_Body_AddForce$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
+    static final MethodHandle JPC_Body_AddForce$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_AddForce",
+        constants$57.JPC_Body_AddForce$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_AddForceAtPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_AddForceAtPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_AddForceAtPosition",
+        constants$57.JPC_Body_AddForceAtPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_AddTorque$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_AddTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_AddTorque",
+        constants$57.JPC_Body_AddTorque$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetInverseInertia$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetInverseInertia$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetInverseInertia",
+        constants$57.JPC_Body_GetInverseInertia$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_AddImpulse$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_AddImpulse$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_AddImpulse",
+        constants$57.JPC_Body_AddImpulse$FUNC
+    );
 }
 
 

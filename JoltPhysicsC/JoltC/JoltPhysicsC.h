@@ -405,6 +405,13 @@ typedef struct JPC_BodyLockWrite
     JPC_Body *                   body;
 } JPC_BodyLockWrite;
 
+// NOTE: Needs to be kept in sync with JPH::RayCast
+typedef struct JPC_RayCast
+{
+    alignas(16) float       origin[4]; // 4th element is ignored
+    alignas(16) float       direction[4]; // length of the vector is important; 4th element is ignored
+} JPC_RayCast;
+
 // NOTE: Needs to be kept in sync with JPH::RRayCast
 typedef struct JPC_RRayCast
 {
@@ -444,14 +451,14 @@ typedef struct JPC_AABox
 // NOTE: Needs to be kept in sync with JPH::OrientedBox
 typedef struct JPC_OrientedBox
 {
-    alignas(16) float   orientation[16];
+    alignas(64) float   orientation[16];
     alignas(16) float   half_extents[3];
 } JPC_OrientedBox;
 
 // NOTE: Needs to be kept in sync with JPH::AABoxCast
 typedef struct JPC_AABoxCast
 {
-    alignas(16) float   box[6];
+    JPC_AABox           box;
     alignas(16) float   direction[3];
 } JPC_AABoxCast;
 //--------------------------------------------------------------------------------------------------
@@ -944,8 +951,66 @@ JPC_NarrowPhaseQuery_CastRay(const JPC_NarrowPhaseQuery *in_query,
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_SphereShape *
-JPC_SphereShape_Create(float in_radius);
- //--------------------------------------------------------------------------------------------------
+JPC_SphereShape_Create(float in_radius, const JPC_PhysicsMaterial *in_material);
+
+JPC_API float
+JPC_SphereShape_GetRadius(const JPC_SphereShape *in_shape);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_BoxShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_BoxShape *
+JPC_BoxShape_Create(const float in_half_extent[3], float in_convex_radius, const JPC_PhysicsMaterial *in_material);
+
+JPC_API void
+JPC_BoxShape_GetHalfExtent(const JPC_BoxShape *in_shape, float out_half_extent[3]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_TriangleShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_TriangleShape *
+JPC_TriangleShape_Create(const float in_v1[3],
+                         const float in_v2[3],
+                         const float in_v3[3],
+                         float in_convex_radius,
+                         const JPC_PhysicsMaterial *in_material);
+
+JPC_API float
+JPC_TriangleShape_GetConvexRadius(const JPC_TriangleShape *in_shape);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CapsuleShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_CapsuleShape *
+JPC_CapsuleShape_Create(float in_half_height_of_cylinder,
+                        float in_radius,
+                        const JPC_PhysicsMaterial *in_material);
+
+JPC_API float
+JPC_CapsuleShape_GetRadius(const JPC_CapsuleShape *in_shape);
+
+JPC_API float
+JPC_CapsuleShape_GetHalfHeightOfCylinder(const JPC_CapsuleShape *in_shape);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CylinderShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_CylinderShape *
+JPC_CylinderShape_Create(float in_half_height,
+                         float in_radius,
+                         float in_convex_radius,
+                         const JPC_PhysicsMaterial *in_material);
+
+JPC_API float
+JPC_CylinderShape_GetHalfHeight(const JPC_CylinderShape *in_shape);
+
+JPC_API float
+JPC_CylinderShape_GetRadius(const JPC_CylinderShape *in_shape);
+//--------------------------------------------------------------------------------------------------
 //
 // JPC_ShapeSettings
 //
@@ -1231,6 +1296,68 @@ JPC_Shape_GetUserData(const JPC_Shape *in_shape);
 
 JPC_API void
 JPC_Shape_SetUserData(JPC_Shape *in_shape, uint64_t in_user_data);
+
+JPC_API bool
+JPC_Shape_MustBeStatic(const JPC_Shape *in_shape);
+
+JPC_API void
+JPC_Shape_GetCenterOfMass(const JPC_Shape *in_shape, float out_center_of_mass[3]);
+
+JPC_API JPC_AABox
+JPC_Shape_GetLocalBounds(const JPC_Shape *in_shape);
+
+JPC_API uint32_t
+JPC_Shape_GetSubShapeIDBitsRecursive(const JPC_Shape *in_shape);
+
+JPC_API JPC_AABox
+JPC_Shape_GetWorldSpaceBounds(const JPC_Shape *in_shape,
+                              const float in_center_of_mass_transform[16],
+                              const float in_scale[3]);
+
+JPC_API float
+JPC_Shape_GetInnerRadius(const JPC_Shape *in_shape);
+
+// TODO
+//JPC_API void
+//JPC_Shape_GetMassProperties(const JPC_Shape *in_shape, JPC_MassProperties* out_mass_properties);
+
+JPC_API const JPC_PhysicsMaterial *
+JPC_Shape_GetMaterial(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id);
+
+JPC_API void
+JPC_Shape_GetSurfaceNormal(const JPC_Shape *in_shape,
+                           JPC_SubShapeID in_sub_shape_id,
+                           const float in_local_surface_position[3],
+                           float out_surface_normal[3]);
+
+// TODO GetSupportingFace
+
+JPC_API uint64_t
+JPC_Shape_GetSubShapeUserData(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id);
+
+// TODO GetSubShapeTransformedShape
+
+JPC_API float
+JPC_Shape_GetVolume(const JPC_Shape *in_shape);
+
+JPC_API bool
+JPC_Shape_IsValidScale(const JPC_Shape *in_shape, const float in_scale[3]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConvexShape (-> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConvexShape_SetMaterial(JPC_ConvexShape *in_shape, const JPC_PhysicsMaterial *in_material);
+
+JPC_API const JPC_PhysicsMaterial *
+JPC_ConvexShape_GetMaterial(const JPC_ConvexShape *in_shape);
+
+JPC_API void
+JPC_ConvexShape_SetDensity(JPC_ConvexShape *in_shape, float in_density);
+
+JPC_API float
+JPC_ConvexShape_GetDensity(const JPC_ConvexShape *in_shape);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_BodyInterface

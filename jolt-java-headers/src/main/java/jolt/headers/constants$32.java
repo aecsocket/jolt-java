@@ -33,32 +33,36 @@ class constants$32 {
         constants$32.JPC_NarrowPhaseQuery_CastRay$FUNC
     );
     static final FunctionDescriptor JPC_SphereShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle JPC_SphereShape_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_SphereShape_Create",
         constants$32.JPC_SphereShape_Create$FUNC
     );
-    static final FunctionDescriptor JPC_ShapeSettings_AddRef$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SphereShape_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ShapeSettings_AddRef$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeSettings_AddRef",
-        constants$32.JPC_ShapeSettings_AddRef$FUNC
+    static final MethodHandle JPC_SphereShape_GetRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_SphereShape_GetRadius",
+        constants$32.JPC_SphereShape_GetRadius$FUNC
     );
-    static final FunctionDescriptor JPC_ShapeSettings_Release$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BoxShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ShapeSettings_Release$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeSettings_Release",
-        constants$32.JPC_ShapeSettings_Release$FUNC
+    static final MethodHandle JPC_BoxShape_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShape_Create",
+        constants$32.JPC_BoxShape_Create$FUNC
     );
-    static final FunctionDescriptor JPC_ShapeSettings_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_BoxShape_GetHalfExtent$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ShapeSettings_GetRefCount$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeSettings_GetRefCount",
-        constants$32.JPC_ShapeSettings_GetRefCount$FUNC
+    static final MethodHandle JPC_BoxShape_GetHalfExtent$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShape_GetHalfExtent",
+        constants$32.JPC_BoxShape_GetHalfExtent$FUNC
     );
 }
 

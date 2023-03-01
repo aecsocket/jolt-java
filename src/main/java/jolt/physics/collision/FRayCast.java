@@ -10,8 +10,8 @@ public record FRayCast(FVec3 origin, FVec3 direction) {
     public static FRayCast read(MemorySession session, MemoryAddress address) {
         MemorySegment segment = jolt.headers_f.JPC_RRayCast.ofAddress(address, session);
         return new FRayCast(
-                FVec3.read(jolt.headers_f.JPC_RRayCast.origin$slice(segment).address()),
-                FVec3.read(jolt.headers_f.JPC_RRayCast.direction$slice(segment).address())
+                FVec3.read(jolt.headers_f.JPC_RRayCast.origin$slice(segment)),
+                FVec3.read(jolt.headers_f.JPC_RRayCast.direction$slice(segment))
         );
     }
 

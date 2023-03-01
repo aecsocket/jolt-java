@@ -9,55 +9,48 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$53 {
 
-    static final FunctionDescriptor JPC_Body_AddForceAtPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsKinematic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_AddForceAtPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddForceAtPosition",
-        constants$53.JPC_Body_AddForceAtPosition$FUNC
+    static final MethodHandle JPC_Body_IsKinematic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsKinematic",
+        constants$53.JPC_Body_IsKinematic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_AddTorque$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_AddTorque$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddTorque",
-        constants$53.JPC_Body_AddTorque$FUNC
+    static final MethodHandle JPC_Body_IsDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsDynamic",
+        constants$53.JPC_Body_IsDynamic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetInverseInertia$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_CanBeKinematicOrDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetInverseInertia$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetInverseInertia",
-        constants$53.JPC_Body_GetInverseInertia$FUNC
+    static final MethodHandle JPC_Body_CanBeKinematicOrDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_CanBeKinematicOrDynamic",
+        constants$53.JPC_Body_CanBeKinematicOrDynamic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_AddImpulse$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Body_SetIsSensor$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_BOOL$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetIsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetIsSensor",
+        constants$53.JPC_Body_SetIsSensor$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_IsSensor$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_AddImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddImpulse",
-        constants$53.JPC_Body_AddImpulse$FUNC
+    static final MethodHandle JPC_Body_IsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsSensor",
+        constants$53.JPC_Body_IsSensor$FUNC
     );
-    static final FunctionDescriptor JPC_Body_AddImpulseAtPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_AddImpulseAtPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddImpulseAtPosition",
-        constants$53.JPC_Body_AddImpulseAtPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_AddAngularImpulse$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_AddAngularImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddAngularImpulse",
-        constants$53.JPC_Body_AddAngularImpulse$FUNC
+    static final MethodHandle JPC_Body_GetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetMotionType",
+        constants$53.JPC_Body_GetMotionType$FUNC
     );
 }
 

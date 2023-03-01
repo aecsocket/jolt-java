@@ -10,7 +10,8 @@ import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySession;
 
-public abstract sealed class BroadPhaseQuery extends AddressedJoltNative permits BroadPhaseQuery.F, BroadPhaseQuery.D {
+public abstract sealed class BroadPhaseQuery extends AddressedJoltNative
+        permits BroadPhaseQuery.F, BroadPhaseQuery.D {
     public static BroadPhaseQuery at(Addressable ptr) {
         var address = ptr.address();
         return address == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);

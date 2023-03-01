@@ -1,5 +1,9 @@
 package jolt.physics.collision.shape;
 
+import jolt.Jolt;
+import jolt.physics.collision.PhysicsMaterial;
+
+import javax.annotation.Nullable;
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
@@ -11,12 +15,20 @@ public final class SphereShape extends ConvexShape {
         return address == MemoryAddress.NULL ? null : new SphereShape(address);
     }
 
-    public static SphereShape create(float radius) {
-        var address = JPC_SphereShape_Create(radius);
+    public static SphereShape create(float radius, @Nullable PhysicsMaterial material) {
+        var address = JPC_SphereShape_Create(radius, Jolt.ptr(material));
         return new SphereShape(address);
+    }
+
+    public static SphereShape create(float radius) {
+        return create(radius, null);
     }
 
     private SphereShape(MemoryAddress address) {
         super(address);
+    }
+
+    public float getRadius() {
+        return JPC_SphereShape_GetRadius(address);
     }
 }

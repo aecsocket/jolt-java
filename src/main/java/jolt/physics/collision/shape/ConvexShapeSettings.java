@@ -1,7 +1,9 @@
 package jolt.physics.collision.shape;
 
+import jolt.Jolt;
 import jolt.physics.collision.PhysicsMaterial;
 
+import javax.annotation.Nullable;
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
@@ -19,12 +21,12 @@ public sealed class ConvexShapeSettings extends ShapeSettings
         super(address);
     }
 
-    public PhysicsMaterial getMaterial() {
+    public @Nullable PhysicsMaterial getMaterial() {
         return PhysicsMaterial.at(JPC_ConvexShapeSettings_GetMaterial(address));
     }
 
-    public void setMaterial(PhysicsMaterial material) {
-        JPC_ConvexShapeSettings_SetMaterial(address, material.address());
+    public void setMaterial(@Nullable PhysicsMaterial material) {
+        JPC_ConvexShapeSettings_SetMaterial(address, Jolt.ptr(material));
     }
 
     public float getDensity() {

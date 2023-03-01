@@ -12,7 +12,7 @@ public class JPC_OrientedBox {
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         MemoryLayout.sequenceLayout(16, Constants$root.C_FLOAT$LAYOUT).withName("orientation"),
         MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("half_extents"),
-        MemoryLayout.paddingLayout(32)
+        MemoryLayout.paddingLayout(416)
     ).withName("JPC_OrientedBox");
     public static MemoryLayout $LAYOUT() {
         return JPC_OrientedBox.$struct$LAYOUT;

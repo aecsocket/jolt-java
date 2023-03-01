@@ -3,6 +3,7 @@ package jolt.math;
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
+import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JoltPhysicsC.C_FLOAT;
 
@@ -43,26 +44,26 @@ public record FVec3(float x, float y, float z) {
 
     public static void write(MemorySegment segment, FVec3... values) {
         for (int i = 0; i < values.length; i++) {
-            var value = values[i];
-            segment.setAtIndex(C_FLOAT, i * 3L,     value.x);
-            segment.setAtIndex(C_FLOAT, i * 3L + 1, value.y);
-            segment.setAtIndex(C_FLOAT, i * 3L + 2, value.z);
+            var v = values[i];
+            segment.setAtIndex(C_FLOAT, i * 3L,     v.x);
+            segment.setAtIndex(C_FLOAT, i * 3L + 1, v.y);
+            segment.setAtIndex(C_FLOAT, i * 3L + 2, v.z);
         }
     }
 
-    public MemorySegment allocate(MemorySession session) {
-        return session.allocateArray(C_FLOAT, x, y, z);
+    public MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocateArray(C_FLOAT, x, y, z);
     }
 
-    public static MemorySegment allocate(MemorySession session, FVec3... values) {
+    public static MemorySegment allocate(SegmentAllocator allocator, FVec3... values) {
         float[] components = new float[values.length * 3];
         for (int i = 0; i < values.length; i++) {
-            var value = values[i];
-            components[i * 3    ] = value.x;
-            components[i * 3 + 1] = value.y;
-            components[i * 3 + 2] = value.z;
+            var v = values[i];
+            components[i * 3    ] = v.x;
+            components[i * 3 + 1] = v.y;
+            components[i * 3 + 2] = v.z;
         }
-        return session.allocateArray(C_FLOAT, components);
+        return allocator.allocateArray(C_FLOAT, components);
     }
 
     @Override

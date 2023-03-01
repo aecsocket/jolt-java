@@ -17,7 +17,7 @@ public final class Body extends AddressedJoltNative {
         super(address);
     }
 
-    public int getId() {
+    public int getID() {
         return JPC_Body_GetID(address);
     }
 }

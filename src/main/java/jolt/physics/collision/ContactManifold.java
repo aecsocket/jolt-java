@@ -25,7 +25,7 @@ public final class ContactManifold extends SegmentedJoltNative {
     }
 
     public FVec3 getBaseOffsetSp() {
-        return FVec3.read(base_offset$slice(segment).address());
+        return FVec3.read(base_offset$slice(segment));
     }
 
     public void setBaseOffset(FVec3 baseOffset) {
@@ -41,7 +41,7 @@ public final class ContactManifold extends SegmentedJoltNative {
     }
 
     public FVec3 getWorldSpaceNormal() {
-        return FVec3.read(normal$slice(segment).address());
+        return FVec3.read(normal$slice(segment));
     }
 
     public void setWorldSpaceNormal(FVec3 worldSpaceNormal) {

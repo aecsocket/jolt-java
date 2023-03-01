@@ -1,6 +1,5 @@
 package jolt.physics.collision.shape;
 
-import jolt.AddressedJoltNative;
 import jolt.DestroyableJoltNative;
 
 import java.lang.foreign.Addressable;
@@ -8,7 +7,8 @@ import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public sealed class ShapeSettings extends DestroyableJoltNative permits ConvexShapeSettings {
+public sealed class ShapeSettings extends DestroyableJoltNative
+        permits ConvexShapeSettings {
     public static ShapeSettings at(Addressable ptr) {
         var address = ptr.address();
         return address == MemoryAddress.NULL ? null : new ShapeSettings(address);

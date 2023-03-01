@@ -5,34 +5,10 @@ import jolt.physics.collision.shape.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
+import static jolt.Utils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public final class TestShapeSettingsCoverage {
-    // arbitrary constants for testing, we don't care about their actual values
-    private static final Random RANDOM = ThreadLocalRandom.current();
-    private static final int RANDOM_POOL_SIZE = 8;
-
-    private static final float F1 = RANDOM.nextFloat();
-    private static final float F2 = RANDOM.nextFloat();
-    private static final float F3 = RANDOM.nextFloat();
-    private static final float F4 = RANDOM.nextFloat();
-    private static final float F5 = RANDOM.nextFloat();
-    private static final float F6 = RANDOM.nextFloat();
-    private static final float F7 = RANDOM.nextFloat();
-    private static final float F8 = RANDOM.nextFloat();
-
-    private static final FVec3 FVEC3_1 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    private static final FVec3 FVEC3_2 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    private static final FVec3 FVEC3_3 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    private static final FVec3 FVEC3_4 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    private static final FVec3 FVEC3_5 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    private static final FVec3 FVEC3_6 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    private static final FVec3 FVEC3_7 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    private static final FVec3 FVEC3_8 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-
+public final class TestShapeSettings {
     @BeforeAll
     public static void setUp() {
         Jolt.load();
@@ -42,9 +18,16 @@ public final class TestShapeSettingsCoverage {
         Jolt.registerTypes();
     }
 
+    private void shape(ShapeSettings obj) {
+        obj.setUserData(J1);
+        assertEquals(J1, obj.getUserData());
+    }
+
     private void convex(ConvexShapeSettings obj) {
         obj.setDensity(F8);
         assertEquals(F8, obj.getDensity());
+
+        shape(obj);
     }
 
     @Test
@@ -81,12 +64,15 @@ public final class TestShapeSettingsCoverage {
             assertEquals(FVEC3_1, vertices.v1());
             assertEquals(FVEC3_2, vertices.v2());
             assertEquals(FVEC3_3, vertices.v3());
+            assertEquals(F1, obj.getConvexRadius());
 
             obj.setVertices(FVEC3_4, FVEC3_5, FVEC3_6);
             vertices = obj.getVertices();
             assertEquals(FVEC3_4, vertices.v1());
             assertEquals(FVEC3_5, vertices.v2());
             assertEquals(FVEC3_6, vertices.v3());
+            obj.setConvexRadius(F2);
+            assertEquals(F2, obj.getConvexRadius());
 
             convex(obj);
         });

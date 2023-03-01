@@ -14,7 +14,8 @@ import java.lang.foreign.MemorySession;
 import static jolt.headers.JoltPhysicsC.*;
 import static jolt.headers.JPC_BodyCreationSettings.*;
 
-public abstract sealed class BodyCreationSettings extends AddressedJoltNative permits BodyCreationSettings.F, BodyCreationSettings.D {
+public abstract sealed class BodyCreationSettings extends AddressedJoltNative
+        permits BodyCreationSettings.F, BodyCreationSettings.D {
     public static BodyCreationSettings at(Addressable ptr) {
         var address = ptr.address();
         return address == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);

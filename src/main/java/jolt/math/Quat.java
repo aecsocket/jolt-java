@@ -1,9 +1,6 @@
 package jolt.math;
 
-import java.lang.foreign.Addressable;
-import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.MemorySession;
+import java.lang.foreign.*;
 
 import static jolt.headers.JoltPhysicsC.C_FLOAT;
 
@@ -27,8 +24,8 @@ public record Quat(float x, float y, float z, float w) {
         segment.setAtIndex(C_FLOAT, 3, w);
     }
 
-    public MemorySegment allocate(MemorySession session) {
-        return session.allocateArray(C_FLOAT, x, y, z, w);
+    public MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocateArray(C_FLOAT, x, y, z, w);
     }
 
     @Override

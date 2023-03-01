@@ -9,11 +9,14 @@
 #include <Jolt/Core/TempAllocator.h>
 #include <Jolt/Core/Memory.h>
 #include <Jolt/Core/JobSystemThreadPool.h>
+#include <Jolt/Geometry/OrientedBox.h>
 #include <Jolt/Physics/PhysicsSettings.h>
 #include <Jolt/Physics/PhysicsSystem.h>
 #include <Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>
 #include <Jolt/Physics/Collision/NarrowPhaseQuery.h>
 #include <Jolt/Physics/Collision/CollideShape.h>
+#include <Jolt/Physics/Collision/RayCast.h>
+#include <Jolt/Physics/Collision/AABoxCast.h>
 #include <Jolt/Physics/Collision/Shape/BoxShape.h>
 #include <Jolt/Physics/Collision/Shape/SphereShape.h>
 #include <Jolt/Physics/Collision/Shape/TriangleShape.h>
@@ -54,12 +57,6 @@ FN(toJph)(JPC_Body *in) { assert(in); return reinterpret_cast<JPH::Body *>(in); 
 
 FN(toJph)(const JPC_PhysicsMaterial *in) { return reinterpret_cast<const JPH::PhysicsMaterial *>(in); }
 FN(toJpc)(const JPH::PhysicsMaterial *in) { return reinterpret_cast<const JPC_PhysicsMaterial *>(in); }
-
-FN(toJph)(JPC_SphereShape *in) {
-    ENSURE_TYPE(in, JPH::SphereShape);
-    return reinterpret_cast<JPH::SphereShape *>(in);
-}
-FN(toJpc)(JPH::SphereShape *in) { assert(in); return reinterpret_cast<JPC_SphereShape *>(in); }
 
 FN(toJph)(const JPC_ShapeSettings *in) {
     ENSURE_TYPE(in, JPH::ShapeSettings);
@@ -212,6 +209,11 @@ FN(toJph)(const JPC_Shape *in) { assert(in); return reinterpret_cast<const JPH::
 FN(toJpc)(JPH::Shape *in) { assert(in); return reinterpret_cast<JPC_Shape *>(in); }
 FN(toJph)(JPC_Shape *in) { assert(in); return reinterpret_cast<JPH::Shape *>(in); }
 
+FN(toJpc)(const JPH::ConvexShape *in) { assert(in); return reinterpret_cast<const JPC_ConvexShape *>(in); }
+FN(toJph)(const JPC_ConvexShape *in) { assert(in); return reinterpret_cast<const JPH::ConvexShape *>(in); }
+FN(toJpc)(JPH::ConvexShape *in) { assert(in); return reinterpret_cast<JPC_ConvexShape *>(in); }
+FN(toJph)(JPC_ConvexShape *in) { assert(in); return reinterpret_cast<JPH::ConvexShape *>(in); }
+
 FN(toJpc)(const JPH::BodyInterface *in) { assert(in); return reinterpret_cast<const JPC_BodyInterface *>(in); }
 FN(toJph)(const JPC_BodyInterface *in) { assert(in); return reinterpret_cast<const JPH::BodyInterface *>(in); }
 FN(toJpc)(JPH::BodyInterface *in) { assert(in); return reinterpret_cast<JPC_BodyInterface *>(in); }
@@ -219,10 +221,99 @@ FN(toJph)(JPC_BodyInterface *in) { assert(in); return reinterpret_cast<JPH::Body
 
 FN(toJpc)(const JPH::TransformedShape *in) { assert(in); return reinterpret_cast<const JPC_TransformedShape *>(in); }
 
+FN(toJpc)(const JPH::MassProperties *in) { assert(in); return reinterpret_cast<const JPC_MassProperties *>(in); }
 FN(toJph)(const JPC_MassProperties *in) { assert(in); return reinterpret_cast<const JPH::MassProperties *>(in); }
+FN(toJpc)(JPH::MassProperties *in) { assert(in); return reinterpret_cast<JPC_MassProperties *>(in); }
+FN(toJph)(JPC_MassProperties *in) { assert(in); return reinterpret_cast<JPH::MassProperties *>(in); }
 
 FN(toJph)(JPC_BodyLockRead *in) { assert(in); return reinterpret_cast<const JPH::BodyLockRead *>(in); }
 FN(toJph)(JPC_BodyLockWrite *in) { assert(in); return reinterpret_cast<const JPH::BodyLockWrite *>(in); }
+
+FN(toJph)(const JPC_SphereShape *in) { assert(in); return reinterpret_cast<const JPH::SphereShape *>(in); }
+FN(toJpc)(const JPH::SphereShape *in) { assert(in); return reinterpret_cast<const JPC_SphereShape *>(in); }
+FN(toJph)(JPC_SphereShape *in) { assert(in); return reinterpret_cast<JPH::SphereShape *>(in); }
+FN(toJpc)(JPH::SphereShape *in) { assert(in); return reinterpret_cast<JPC_SphereShape *>(in); }
+
+FN(toJph)(const JPC_BoxShape *in) { assert(in); return reinterpret_cast<const JPH::BoxShape *>(in); }
+FN(toJpc)(const JPH::BoxShape *in) { assert(in); return reinterpret_cast<const JPC_BoxShape *>(in); }
+FN(toJph)(JPC_BoxShape *in) { assert(in); return reinterpret_cast<JPH::BoxShape *>(in); }
+FN(toJpc)(JPH::BoxShape *in) { assert(in); return reinterpret_cast<JPC_BoxShape *>(in); }
+
+FN(toJph)(const JPC_TriangleShape *in) { assert(in); return reinterpret_cast<const JPH::TriangleShape *>(in); }
+FN(toJpc)(const JPH::TriangleShape *in) { assert(in); return reinterpret_cast<const JPC_TriangleShape *>(in); }
+FN(toJph)(JPC_TriangleShape *in) { assert(in); return reinterpret_cast<JPH::TriangleShape *>(in); }
+FN(toJpc)(JPH::TriangleShape *in) { assert(in); return reinterpret_cast<JPC_TriangleShape *>(in); }
+
+FN(toJph)(const JPC_CapsuleShape *in) { assert(in); return reinterpret_cast<const JPH::CapsuleShape *>(in); }
+FN(toJpc)(const JPH::CapsuleShape *in) { assert(in); return reinterpret_cast<const JPC_CapsuleShape *>(in); }
+FN(toJph)(JPC_CapsuleShape *in) { assert(in); return reinterpret_cast<JPH::CapsuleShape *>(in); }
+FN(toJpc)(JPH::CapsuleShape *in) { assert(in); return reinterpret_cast<JPC_CapsuleShape *>(in); }
+
+FN(toJph)(const JPC_TaperedCapsuleShape *in) { assert(in); return reinterpret_cast<const JPH::TaperedCapsuleShape *>(in); }
+FN(toJpc)(const JPH::TaperedCapsuleShape *in) { assert(in); return reinterpret_cast<const JPC_TaperedCapsuleShape *>(in); }
+FN(toJph)(JPC_TaperedCapsuleShape *in) { assert(in); return reinterpret_cast<JPH::TaperedCapsuleShape *>(in); }
+FN(toJpc)(JPH::TaperedCapsuleShape *in) { assert(in); return reinterpret_cast<JPC_TaperedCapsuleShape *>(in); }
+
+FN(toJph)(const JPC_CylinderShape *in) { assert(in); return reinterpret_cast<const JPH::CylinderShape *>(in); }
+FN(toJpc)(const JPH::CylinderShape *in) { assert(in); return reinterpret_cast<const JPC_CylinderShape *>(in); }
+FN(toJph)(JPC_CylinderShape *in) { assert(in); return reinterpret_cast<JPH::CylinderShape *>(in); }
+FN(toJpc)(JPH::CylinderShape *in) { assert(in); return reinterpret_cast<JPC_CylinderShape *>(in); }
+
+FN(toJph)(const JPC_ConvexHullShape *in) { assert(in); return reinterpret_cast<const JPH::ConvexHullShape *>(in); }
+FN(toJpc)(const JPH::ConvexHullShape *in) { assert(in); return reinterpret_cast<const JPC_ConvexHullShape *>(in); }
+FN(toJph)(JPC_ConvexHullShape *in) { assert(in); return reinterpret_cast<JPH::ConvexHullShape *>(in); }
+FN(toJpc)(JPH::ConvexHullShape *in) { assert(in); return reinterpret_cast<JPC_ConvexHullShape *>(in); }
+
+FN(toJph)(const JPC_BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPH::BroadPhaseCastResult *>(in); }
+FN(toJpc)(const JPH::BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPC_BroadPhaseCastResult *>(in); }
+FN(toJph)(JPC_BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<JPH::BroadPhaseCastResult *>(in); }
+FN(toJpc)(JPH::BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<JPC_BroadPhaseCastResult *>(in); }
+
+FN(toJph)(const JPC_RayCastResult *in) { assert(in); return reinterpret_cast<const JPH::RayCastResult *>(in); }
+FN(toJpc)(const JPH::RayCastResult *in) { assert(in); return reinterpret_cast<const JPC_RayCastResult *>(in); }
+FN(toJph)(JPC_RayCastResult *in) { assert(in); return reinterpret_cast<JPH::RayCastResult *>(in); }
+FN(toJpc)(JPH::RayCastResult *in) { assert(in); return reinterpret_cast<JPC_RayCastResult *>(in); }
+
+FN(toJph)(const JPC_RayCastSettings *in) { assert(in); return reinterpret_cast<const JPH::RayCastSettings *>(in); }
+FN(toJpc)(const JPH::RayCastSettings *in) { assert(in); return reinterpret_cast<const JPC_RayCastSettings *>(in); }
+FN(toJph)(JPC_RayCastSettings *in) { assert(in); return reinterpret_cast<JPH::RayCastSettings *>(in); }
+FN(toJpc)(JPH::RayCastSettings *in) { assert(in); return reinterpret_cast<JPC_RayCastSettings *>(in); }
+
+FN(toJph)(const JPC_AABox *in) { assert(in); return reinterpret_cast<const JPH::AABox *>(in); }
+FN(toJpc)(const JPH::AABox *in) { assert(in); return reinterpret_cast<const JPC_AABox *>(in); }
+FN(toJph)(JPC_AABox *in) { assert(in); return reinterpret_cast<JPH::AABox *>(in); }
+FN(toJpc)(JPH::AABox *in) { assert(in); return reinterpret_cast<JPC_AABox *>(in); }
+
+/*
+ * static inline JPH::AABox loadAABox(const JPC_AABox in) {
+    return {loadVec3(in.min), loadVec3(in.max)};
+}
+
+static inline JPH::OrientedBox loadOrientedBox(const JPC_OrientedBox in) {
+    return {loadMat44(in.orientation), loadVec3(in.half_extents)};
+}
+
+static inline JPH::RayCast loadRayCast(const JPC_RayCast in) {
+    auto result = JPH::RayCast();
+    result.mOrigin = loadVec3(in.origin);
+    result.mDirection = loadVec3(in.direction);
+    return result;
+}
+
+static inline JPH::RRayCast loadRRayCast(const JPC_RRayCast in) {
+    auto result = JPH::RRayCast();
+    result.mOrigin = loadRVec3(in.origin);
+    result.mDirection = loadVec3(in.direction);
+    return result;
+}
+
+static inline JPH::AABoxCast loadAABoxCast(const JPC_AABoxCast in) {
+    auto result = JPH::AABoxCast();
+    result.mBox = loadAABox(in.box);
+    result.mDirection = loadVec3(in.direction);
+    return result;
+}
+ */
 
 FN(toJpc)(const JPH::BodyCreationSettings *in) {
     assert(in); return reinterpret_cast<const JPC_BodyCreationSettings *>(in);
@@ -267,6 +358,15 @@ static inline JPH::Vec3 loadVec3(const float in[3]) {
     return JPH::Vec3(*reinterpret_cast<const JPH::Float3 *>(in));
 }
 
+static inline JPH::RVec3 loadRVec3(const JPC_Real in[3]) {
+    assert(in != nullptr);
+#if JPC_DOUBLE_PRECISION == 0
+    return JPH::Vec3(*reinterpret_cast<const JPH::Float3 *>(in));
+#else
+    return JPH::DVec3(in[0], in[1], in[2]);
+#endif
+}
+
 static inline JPH::Vec4 loadVec4(const float in[4]) {
     assert(in != nullptr);
     return JPH::Vec4::sLoadFloat4(reinterpret_cast<const JPH::Float4 *>(in));
@@ -277,13 +377,38 @@ static inline JPH::Mat44 loadMat44(const float in[16]) {
     return JPH::Mat44::sLoadFloat4x4(reinterpret_cast<const JPH::Float4 *>(in));
 }
 
-static inline JPH::RVec3 loadRVec3(const JPC_Real in[3]) {
-    assert(in != nullptr);
-#if JPC_DOUBLE_PRECISION == 0
-    return JPH::Vec3(*reinterpret_cast<const JPH::Float3 *>(in));
-#else
-    return JPH::DVec3(in[0], in[1], in[2]);
-#endif
+static inline JPH::AABox loadAABox(const JPC_AABox in) {
+    return {loadVec3(in.min), loadVec3(in.max)};
+}
+
+static inline JPH::OrientedBox loadOrientedBox(const JPC_OrientedBox in) {
+    return {loadMat44(in.orientation), loadVec3(in.half_extents)};
+}
+
+static inline JPH::RayCast loadRayCast(const JPC_RayCast in) {
+    auto result = JPH::RayCast();
+    result.mOrigin = loadVec3(in.origin);
+    result.mDirection = loadVec3(in.direction);
+    return result;
+}
+
+static inline JPH::RRayCast loadRRayCast(const JPC_RRayCast in) {
+    auto result = JPH::RRayCast();
+    result.mOrigin = loadRVec3(in.origin);
+    result.mDirection = loadVec3(in.direction);
+    return result;
+}
+
+static inline JPH::AABoxCast loadAABoxCast(const JPC_AABoxCast in) {
+    auto result = JPH::AABoxCast();
+    result.mBox = loadAABox(in.box);
+    result.mDirection = loadVec3(in.direction);
+    return result;
+}
+
+static inline void storeVec3(float out[3], JPH::Vec3Arg in) {
+    assert(out != nullptr);
+    in.StoreFloat3(reinterpret_cast<JPH::Float3 *>(out));
 }
 
 static inline void storeRVec3(JPC_Real out[3], JPH::RVec3Arg in) {
@@ -295,11 +420,6 @@ static inline void storeRVec3(JPC_Real out[3], JPH::RVec3Arg in) {
 #endif
 }
 
-static inline void storeVec3(float out[3], JPH::Vec3Arg in) {
-    assert(out != nullptr);
-    in.StoreFloat3(reinterpret_cast<JPH::Float3 *>(out));
-}
-
 static inline void storeVec4(float out[4], JPH::Vec4Arg in) {
     assert(out != nullptr);
     in.StoreFloat4(reinterpret_cast<JPH::Float4 *>(out));
@@ -308,6 +428,31 @@ static inline void storeVec4(float out[4], JPH::Vec4Arg in) {
 static inline void storeMat44(float out[16], JPH::Mat44Arg in) {
     assert(out != nullptr);
     in.StoreFloat4x4(reinterpret_cast<JPH::Float4 *>(out));
+}
+
+static inline void storeAABox(JPC_AABox out, const JPH::AABox in) {
+    storeVec3(out.min, in.mMin);
+    storeVec3(out.max, in.mMax);
+}
+
+static inline void storeOrientedBox(JPC_OrientedBox out, const JPH::OrientedBox in) {
+    storeMat44(out.orientation, in.mOrientation);
+    storeVec3(out.half_extents, in.mHalfExtents);
+}
+
+static inline void storeRayCast(JPC_RayCast out, const JPH::RayCast in) {
+    storeVec3(out.origin, in.mOrigin);
+    storeVec3(out.direction, in.mDirection);
+}
+
+static inline void storeRRayCast(JPC_RRayCast out, const JPH::RRayCast in) {
+    storeRVec3(out.origin, in.mOrigin);
+    storeVec3(out.direction, in.mDirection);
+}
+
+static inline void storeAABoxCast(JPC_AABoxCast out, const JPH::AABoxCast in) {
+    storeAABox(out.box, in.mBox);
+    storeVec3(out.direction, in.mDirection);
 }
 
 #ifdef JPH_ENABLE_ASSERTS
@@ -909,17 +1054,129 @@ JPC_NarrowPhaseQuery_CastRay(const JPC_NarrowPhaseQuery *in_query,
         in_body_filter ?
             *static_cast<const JPH::BodyFilter *>(in_body_filter) : body_filter);
 }
+////--------------------------------------------------------------------------------------------------
+////
+//// JPC_SphereShape (-> JPC_ConvexShape -> JPC_Shape)
+////
+////--------------------------------------------------------------------------------------------------
+//JPC_API JPC_SphereShape *
+//JPC_SphereShape_Create(float in_radius)
+//{
+//    auto result = new JPH::SphereShape(in_radius);
+//    result->AddRef();
+//    return toJpc(result);
+//}
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_SphereShape (-> JPC_ConvexShape -> JPC_Shape)
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_SphereShape *
-JPC_SphereShape_Create(float in_radius)
+JPC_SphereShape_Create(float in_radius, const JPC_PhysicsMaterial *in_material)
 {
-    auto result = new JPH::SphereShape(in_radius);
+    auto result = new JPH::SphereShape(in_radius, toJph(in_material));
     result->AddRef();
     return toJpc(result);
+}
+
+JPC_API float
+JPC_SphereShape_GetRadius(const JPC_SphereShape *in_shape)
+{
+    return toJph(in_shape)->GetRadius();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_BoxShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_BoxShape *
+JPC_BoxShape_Create(const float in_half_extent[3], float in_convex_radius, const JPC_PhysicsMaterial *in_material)
+{
+    auto result = new JPH::BoxShape(loadVec3(in_half_extent), in_convex_radius, toJph(in_material));
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API void
+JPC_BoxShape_GetHalfExtent(const JPC_BoxShape *in_shape, float out_half_extent[3])
+{
+    storeVec3(out_half_extent, toJph(in_shape)->GetHalfExtent());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_TriangleShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_TriangleShape *
+JPC_TriangleShape_Create(const float in_v1[3],
+                         const float in_v2[3],
+                         const float in_v3[3],
+                         float in_convex_radius,
+                         const JPC_PhysicsMaterial *in_material)
+{
+    auto result = new JPH::TriangleShape(loadVec3(in_v1), loadVec3(in_v2), loadVec3(in_v3), in_convex_radius, toJph(in_material));
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API float
+JPC_TriangleShape_GetConvexRadius(const JPC_TriangleShape *in_shape)
+{
+    return toJph(in_shape)->GetConvexRadius();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CapsuleShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_CapsuleShape *
+JPC_CapsuleShape_Create(float in_half_height_of_cylinder,
+                        float in_radius,
+                        const JPC_PhysicsMaterial *in_material)
+{
+    auto result = new JPH::CapsuleShape(in_half_height_of_cylinder, in_radius, toJph(in_material));
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API float
+JPC_CapsuleShape_GetRadius(const JPC_CapsuleShape *in_shape)
+{
+    return toJph(in_shape)->GetRadius();
+}
+
+JPC_API float
+JPC_CapsuleShape_GetHalfHeightOfCylinder(const JPC_CapsuleShape *in_shape)
+{
+    return toJph(in_shape)->GetHalfHeightOfCylinder();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CylinderShape (-> JPC_ConvexShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_CylinderShape *
+JPC_CylinderShape_Create(float in_half_height,
+                         float in_radius,
+                         float in_convex_radius,
+                         const JPC_PhysicsMaterial *in_material)
+{
+    auto result = new JPH::CylinderShape(in_half_height, in_radius, in_convex_radius, toJph(in_material));
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API float
+JPC_CylinderShape_GetHalfHeight(const JPC_CylinderShape *in_shape)
+{
+    return toJph(in_shape)->GetHalfHeight();
+}
+
+JPC_API float
+JPC_CylinderShape_GetRadius(const JPC_CylinderShape *in_shape)
+{
+    return toJph(in_shape)->GetRadius();
+
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -1485,6 +1742,118 @@ JPC_API void
 JPC_Shape_SetUserData(JPC_Shape *in_shape, uint64_t in_user_data)
 {
     return toJph(in_shape)->SetUserData(in_user_data);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_Shape_MustBeStatic(const JPC_Shape *in_shape)
+{
+    return toJph(in_shape)->MustBeStatic();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_Shape_GetCenterOfMass(const JPC_Shape *in_shape, float out_center_of_mass[3])
+{
+    storeVec3(out_center_of_mass, toJph(in_shape)->GetCenterOfMass());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_AABox
+JPC_Shape_GetLocalBounds(const JPC_Shape *in_shape)
+{
+    auto result = toJph(in_shape)->GetLocalBounds();
+    return *toJpc(&result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API uint32_t
+JPC_Shape_GetSubShapeIDBitsRecursive(const JPC_Shape *in_shape)
+{
+    return toJph(in_shape)->GetSubShapeIDBitsRecursive();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_AABox
+JPC_Shape_GetWorldSpaceBounds(const JPC_Shape *in_shape,
+                              const float in_center_of_mass_transform[16],
+                              const float in_scale[3])
+{
+    auto result = toJph(in_shape)->GetWorldSpaceBounds(
+            loadMat44(in_center_of_mass_transform),
+            loadVec3(in_scale)
+    );
+    return *toJpc(&result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_Shape_GetInnerRadius(const JPC_Shape *in_shape)
+{
+    return toJph(in_shape)->GetInnerRadius();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_PhysicsMaterial *
+JPC_Shape_GetMaterial(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id)
+{
+    return toJpc(toJph(in_shape)->GetMaterial(*toJph(&in_sub_shape_id)));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_Shape_GetSurfaceNormal(const JPC_Shape *in_shape,
+                           JPC_SubShapeID in_sub_shape_id,
+                           const float in_local_surface_position[3],
+                           float out_surface_normal[3])
+{
+    storeVec3(out_surface_normal, toJph(in_shape)->GetSurfaceNormal(*toJph(&in_sub_shape_id), loadVec3(in_local_surface_position)));
+}
+//--------------------------------------------------------------------------------------------------
+
+// TODO GetSupportingFace
+
+//--------------------------------------------------------------------------------------------------
+JPC_API uint64_t
+JPC_Shape_GetSubShapeUserData(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id)
+{
+    return toJph(in_shape)->GetSubShapeUserData(*toJph(&in_sub_shape_id));
+}
+//--------------------------------------------------------------------------------------------------
+
+// TODO GetSubShapeTransformedShape
+
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_Shape_GetVolume(const JPC_Shape *in_shape)
+{
+    return toJph(in_shape)->GetVolume();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_Shape_IsValidScale(const JPC_Shape *in_shape, const float in_scale[3])
+{
+    return toJph(in_shape)->IsValidScale(loadVec3(in_scale));
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConvexShape (-> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConvexShape_SetMaterial(JPC_ConvexShape *in_shape, const JPC_PhysicsMaterial *in_material)
+{
+    toJph(in_shape)->SetMaterial(toJph(in_material));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_PhysicsMaterial *
+JPC_ConvexShape_GetMaterial(const JPC_ConvexShape *in_shape)
+{
+    return toJpc(toJph(in_shape)->GetMaterial());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConvexShape_SetDensity(JPC_ConvexShape *in_shape, float in_density)
+{
+    return toJph(in_shape)->SetDensity(in_density);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_ConvexShape_GetDensity(const JPC_ConvexShape *in_shape)
+{
+    return toJph(in_shape)->GetDensity();
 }
 //--------------------------------------------------------------------------------------------------
 //

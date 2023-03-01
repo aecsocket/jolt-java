@@ -16,7 +16,7 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilterFunctions;
 import jolt.physics.collision.shape.BoxShapeSettings;
 import jolt.physics.collision.shape.Shape;
 import jolt.physics.collision.shape.SphereShape;
-import jolt.physics.collision.shape.SubShapeIDPair;
+import jolt.physics.collision.shape.SubShapeIdPair;
 import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.MemorySession;
@@ -127,7 +127,7 @@ public final class HelloJolt {
                         }
 
                         @Override
-                        public void onContactRemoved(SubShapeIDPair subShapeIdPair) {
+                        public void onContactRemoved(SubShapeIdPair subShapeIdPair) {
                             System.out.println("A contact was removed");
                         }
                     })
@@ -149,7 +149,7 @@ public final class HelloJolt {
                         }
 
                         @Override
-                        public void onContactRemoved(SubShapeIDPair subShapeIdPair) {
+                        public void onContactRemoved(SubShapeIdPair subShapeIdPair) {
                             System.out.println("A contact was removed");
                         }
                     });
@@ -167,7 +167,7 @@ public final class HelloJolt {
                     ? BodyCreationSettings.create(session, floorShape, new DVec3(0.0, -1.0, 0.0), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING)
                     : BodyCreationSettings.create(session, floorShape, new FVec3(0.0f, -1.0f, 0.0f), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING);
             Body floor = bodyInterface.createBody(floorSettings);
-            bodyInterface.addBody(floor.getId(), Activation.DONT_ACTIVATE);
+            bodyInterface.addBody(floor.getID(), Activation.DONT_ACTIVATE);
 
             var sphereSettings = doublePrecision
                     ? BodyCreationSettings.create(session, SphereShape.create(0.5f), new DVec3(0.0, 2.0, 0.0), Quat.IDENTITY, MotionType.DYNAMIC, OBJ_LAYER_MOVING)
@@ -204,8 +204,8 @@ public final class HelloJolt {
             bodyInterface.removeBody(sphereId);
             bodyInterface.destroyBody(sphereId);
 
-            bodyInterface.removeBody(floor.getId());
-            bodyInterface.destroyBody(floor.getId());
+            bodyInterface.removeBody(floor.getID());
+            bodyInterface.destroyBody(floor.getID());
 
             physicsSystem.destroy();
 

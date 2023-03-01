@@ -27,7 +27,7 @@ public final class ContactSettings extends SegmentedJoltNative {
 
     public FVec3 getBaseOffsetF() {
         Jolt.assertSinglePrecision();
-        return FVec3.read(base_offset$slice(segment).address());
+        return FVec3.read(base_offset$slice(segment));
     }
 
     public void setBaseOffsetF(FVec3 baseOffset) {
@@ -46,7 +46,7 @@ public final class ContactSettings extends SegmentedJoltNative {
     }
 
     public FVec3 getWorldSpaceNormal() {
-        return FVec3.read(normal$slice(segment).address());
+        return FVec3.read(normal$slice(segment));
     }
 
     public void setWorldSpaceNormal(FVec3 worldSpaceNormal) {

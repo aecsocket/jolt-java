@@ -13,7 +13,8 @@ import java.lang.foreign.MemorySession;
 
 import static jolt.headers_f.JoltPhysicsC.*;
 
-public abstract sealed class BodyInterface extends AddressedJoltNative permits BodyInterface.F, BodyInterface.D {
+public abstract sealed class BodyInterface extends AddressedJoltNative
+        permits BodyInterface.F, BodyInterface.D {
     public static BodyInterface at(Addressable ptr) {
         var address = ptr.address();
         return address == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(address) : new F(address);
@@ -61,7 +62,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative permits B
         try (var session = MemorySession.openConfined()) {
             var out = FVec3.ZERO.allocate(session);
             JPC_BodyInterface_GetLinearVelocity(address, bodyId, out);
-            return FVec3.read(out.address());
+            return FVec3.read(out);
         }
     }
 
@@ -75,7 +76,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative permits B
             try (var session = MemorySession.openConfined()) {
                 var out = FVec3.ZERO.allocate(session);
                 jolt.headers_f.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(address, bodyId, out);
-                return FVec3.read(out.address());
+                return FVec3.read(out);
             }
         }
 

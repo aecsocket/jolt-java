@@ -29,7 +29,7 @@ public final class CollideShapeResult extends SegmentedJoltNative {
     }
 
     public FVec3 getContactPointOn1() {
-        return FVec3.read(shape1_contact_point$slice(segment).address());
+        return FVec3.read(shape1_contact_point$slice(segment));
     }
 
     public void setContactPointOn1(FVec3 contactPointOn1) {
@@ -37,7 +37,7 @@ public final class CollideShapeResult extends SegmentedJoltNative {
     }
 
     public FVec3 getContactPointOn2() {
-        return FVec3.read(shape2_contact_point$slice(segment).address());
+        return FVec3.read(shape2_contact_point$slice(segment));
     }
 
     public void setContactPointOn2(FVec3 contactPointOn2) {
@@ -45,7 +45,7 @@ public final class CollideShapeResult extends SegmentedJoltNative {
     }
 
     public FVec3 getPenetrationAxis() {
-        return FVec3.read(penetration_axis$slice(segment).address());
+        return FVec3.read(penetration_axis$slice(segment));
     }
 
     public void setPenetrationAxis(FVec3 penetrationAxis) {

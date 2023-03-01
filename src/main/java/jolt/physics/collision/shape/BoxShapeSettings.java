@@ -42,7 +42,7 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
         try (var session = MemorySession.openConfined()) {
             var out = FVec3.ZERO.allocate(session);
             JPC_BoxShapeSettings_GetHalfExtent(address, out);
-            return FVec3.read(out.address());
+            return FVec3.read(out);
         }
     }
 

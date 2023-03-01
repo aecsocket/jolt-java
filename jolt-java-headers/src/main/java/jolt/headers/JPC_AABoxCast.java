@@ -10,8 +10,10 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_AABoxCast {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(6, Constants$root.C_FLOAT$LAYOUT).withName("box"),
-        MemoryLayout.paddingLayout(64),
+        MemoryLayout.structLayout(
+            MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("min"),
+            MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("max")
+        ).withName("box"),
         MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("direction"),
         MemoryLayout.paddingLayout(32)
     ).withName("JPC_AABoxCast");
@@ -19,7 +21,7 @@ public class JPC_AABoxCast {
         return JPC_AABoxCast.$struct$LAYOUT;
     }
     public static MemorySegment box$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
+        return seg.asSlice(0, 32);
     }
     public static MemorySegment direction$slice(MemorySegment seg) {
         return seg.asSlice(32, 12);
