@@ -484,7 +484,7 @@ HeightFieldShape::HeightFieldShape(const HeightFieldShapeSettings &inSettings, S
 		// Get target buffer
 		range_dst = &cur_range_vector->front();
 
-		// Combine the results of 2x2 ranges
+		// fn the results of 2x2 ranges
 		for (uint y = 0; y < n; ++y)
 			for (uint x = 0; x < n; ++x)
 			{

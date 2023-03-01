@@ -64,7 +64,7 @@ public abstract sealed class BroadPhaseQuery extends AddressedJoltNative
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
         ) {
-            throw Jolt.requireSinglePrecision();
+            throw Jolt.tryingDoublePrecision();
         }
     }
 
@@ -80,7 +80,7 @@ public abstract sealed class BroadPhaseQuery extends AddressedJoltNative
                 BroadPhaseLayerFilter broadPhaseLayerFilter,
                 ObjectLayerFilter objectLayerFilter
         ) {
-            throw Jolt.requireDoublePrecision();
+            throw Jolt.tryingSinglePrecision();
         }
 
         @Override

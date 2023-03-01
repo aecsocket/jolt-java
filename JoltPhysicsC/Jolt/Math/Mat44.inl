@@ -270,7 +270,7 @@ Vec3 Mat44::operator * (Vec3Arg inV) const
 	Type t = vmulq_f32(mCol[0].mValue, vdupq_laneq_f32(inV.mValue, 0));
 	t = vmlaq_f32(t, mCol[1].mValue, vdupq_laneq_f32(inV.mValue, 1));
 	t = vmlaq_f32(t, mCol[2].mValue, vdupq_laneq_f32(inV.mValue, 2));
-	t = vaddq_f32(t, mCol[3].mValue); // Don't combine this with the first mul into a fused multiply add, causes precision issues
+	t = vaddq_f32(t, mCol[3].mValue); // Don't fn this with the first mul into a fused multiply add, causes precision issues
 	return Vec3::sFixW(t);
 #else
 	return Vec3(

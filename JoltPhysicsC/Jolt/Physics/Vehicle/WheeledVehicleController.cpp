@@ -536,7 +536,7 @@ void WheeledVehicleController::PostCollide(float inDeltaTime, PhysicsSystem &inP
 		WheelWV *w = static_cast<WheelWV *>(w_base);
 		const WheelSettingsWV *settings = w->GetSettings();
 
-		// Combine brake with hand brake torque
+		// fn brake with hand brake torque
 		float brake_torque = mBrakeInput * settings->mMaxBrakeTorque + mHandBrakeInput * settings->mMaxHandBrakeTorque;
 		if (brake_torque > 0.0f)
 		{

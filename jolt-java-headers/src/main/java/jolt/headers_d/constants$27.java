@@ -39,19 +39,14 @@ class constants$27 {
         "JPC_PhysicsSystem_GetContactListener",
         constants$27.JPC_PhysicsSystem_GetContactListener$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor JPC_PhysicsSystem_SetCombineFriction$x0$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_GetNumBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumBodies",
-        constants$27.JPC_PhysicsSystem_GetNumBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumActiveBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetNumActiveBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumActiveBodies",
-        constants$27.JPC_PhysicsSystem_GetNumActiveBodies$FUNC
+    static final MethodHandle JPC_PhysicsSystem_SetCombineFriction$x0$MH = RuntimeHelper.downcallHandle(
+        constants$27.JPC_PhysicsSystem_SetCombineFriction$x0$FUNC
     );
 }
 

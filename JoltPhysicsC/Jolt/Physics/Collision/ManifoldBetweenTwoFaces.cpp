@@ -56,7 +56,7 @@ void PruneContactPoints(Vec3Arg inPenetrationAxis, ContactPoints &ioContactPoint
 	}
 	Vec3 point1v = projected[point1];
 
-	// Find point furthest from the first point forming a line segment with point1. Again combine this with the heuristic
+	// Find point furthest from the first point forming a line segment with point1. Again fn this with the heuristic
 	// for deepest point as per above.
 	uint point2 = uint(-1);
 	val = -FLT_MAX;

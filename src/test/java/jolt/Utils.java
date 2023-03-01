@@ -10,7 +10,6 @@ final class Utils {
 
     // arbitrary constants for testing, we don't care about their actual values
     static final Random RANDOM = ThreadLocalRandom.current();
-    static final int RANDOM_POOL_SIZE = 8;
 
     static final float F1 = RANDOM.nextFloat();
     static final float F2 = RANDOM.nextFloat();

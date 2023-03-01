@@ -31,6 +31,7 @@ public final class RayCastBodyCollector extends AddressedJoltNative {
         MemorySegment addHit = AddHit.allocate((v0, v1) -> {
             impl.addHit(BroadPhaseCastResult.at(v1));
         }, session);
+        AddHit$set(vtable, addHit.address());
 
         var segment = JPJ_RayCastBodyCollector.allocate(session);
         vtable$set(segment, vtable.address());

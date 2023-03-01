@@ -606,6 +606,17 @@ typedef struct JPC_CollideShapeBodyCollectorVTable
     void
     (*AddHit)(const void *in_self, JPC_BodyID in_result);
 } JPC_CollideShapeBodyCollectorVTable;
+
+// TODO combine
+//typedef struct JPC_CombineFunctor
+//{
+//    // Required, *cannot* be NULL.
+//    float
+//    (*fn)(const JPC_Body *in_body_1,
+//          const JPC_SubShapeID in_sub_shape_id_1,
+//          const JPC_Body *in_body_2,
+//          const JPC_SubShapeID in_sub_shape_id_2);
+//} JPC_CombineFunctor;
 //--------------------------------------------------------------------------------------------------
 //
 // Misc functions
@@ -787,6 +798,15 @@ JPC_PhysicsSystem_SetContactListener(JPC_PhysicsSystem *in_physics_system, void 
 
 JPC_API void *
 JPC_PhysicsSystem_GetContactListener(const JPC_PhysicsSystem *in_physics_system);
+
+// TODO combine
+//JPC_API void
+//JPC_PhysicsSystem_SetCombineFriction(JPC_PhysicsSystem *in_physics_system,
+//                                     const JPC_CombineFunctor *in_combine);
+//
+//JPC_API void
+//JPC_PhysicsSystem_SetCombineRestitution(JPC_PhysicsSystem *in_physics_system,
+//                                        const JPC_CombineFunctor *in_combine);
 
 JPC_API uint32_t
 JPC_PhysicsSystem_GetNumBodies(const JPC_PhysicsSystem *in_physics_system);

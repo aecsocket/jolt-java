@@ -9,10 +9,7 @@ import jolt.physics.Activation;
 import jolt.physics.PhysicsSystem;
 import jolt.physics.body.*;
 import jolt.physics.collision.*;
-import jolt.physics.collision.broadphase.BroadPhaseLayerInterface;
-import jolt.physics.collision.broadphase.BroadPhaseLayerInterfaceFunctions;
-import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
-import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilterFunctions;
+import jolt.physics.collision.broadphase.*;
 import jolt.physics.collision.shape.BoxShapeSettings;
 import jolt.physics.collision.shape.Shape;
 import jolt.physics.collision.shape.SphereShape;
@@ -181,6 +178,8 @@ public final class HelloJolt {
 
             physicsSystem.optimizeBroadPhase();
 
+            BroadPhaseQuery q = physicsSystem.getBroadPhaseQuery();
+
             int step = 0;
             while (bodyInterface.isActive(sphereId)) {
                 ++step;
@@ -191,6 +190,23 @@ public final class HelloJolt {
                 FVec3 velocity = bodyInterface.getLinearVelocity(sphereId);
 
                 System.out.println("Step " + step + ": Position = " + position + ", Velocity = " + velocity);
+
+                q.castRayF(
+                        new FRayCast(new FVec3(0.0f, 0.0f, 0.0f), new FVec3(1.0f, 0.0f, 0.0f)),
+                        RayCastBodyCollector.of(session, new RayCastBodyCollectorFunctions() {
+                            @Override
+                            public void onBody(Body body) {
+                                System.out.println("q: body");
+                            }
+
+                            @Override
+                            public void addHit(BroadPhaseCastResult result) {
+                                System.out.println("q: result");
+                            }
+                        }),
+                        BroadPhaseLayerFilter.passthrough(),
+                        ObjectLayerFilter.passthrough()
+                );
 
                 physicsSystem.update(
                         deltaTime,

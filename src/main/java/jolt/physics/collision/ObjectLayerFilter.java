@@ -3,6 +3,7 @@ package jolt.physics.collision;
 import jolt.AddressedJoltNative;
 import jolt.headers.JPJ_ObjectLayerFilter;
 import jolt.headers.JPC_ObjectLayerFilterVTable;
+import jolt.physics.collision.broadphase.BroadPhaseLayerFilter;
 
 import java.lang.foreign.*;
 
@@ -24,6 +25,15 @@ public final class ObjectLayerFilter extends AddressedJoltNative {
         var segment = JPJ_ObjectLayerFilter.allocate(session);
         vtable$set(segment, vtable.address());
         return new ObjectLayerFilter(segment.address());
+    }
+
+    private static ObjectLayerFilter passthrough;
+
+    public static ObjectLayerFilter passthrough() {
+        if (passthrough == null) {
+            passthrough = ObjectLayerFilter.of(MemorySession.global(), x -> true);
+        }
+        return passthrough;
     }
 
     private ObjectLayerFilter(MemoryAddress address) {

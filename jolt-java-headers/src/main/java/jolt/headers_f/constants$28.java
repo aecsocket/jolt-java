@@ -9,49 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$28 {
 
-    static final FunctionDescriptor JPC_PhysicsSystem_GetMaxBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetMaxBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetMaxBodies",
-        constants$28.JPC_PhysicsSystem_GetMaxBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetGravity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_SetCombineFriction$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_GetGravity$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetGravity",
-        constants$28.JPC_PhysicsSystem_GetGravity$FUNC
+    static final MethodHandle JPC_PhysicsSystem_SetCombineFriction$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_SetCombineFriction",
+        constants$28.JPC_PhysicsSystem_SetCombineFriction$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_SetGravity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_SetCombineRestitution$x0$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_SetCombineRestitution$x0$MH = RuntimeHelper.downcallHandle(
+        constants$28.JPC_PhysicsSystem_SetCombineRestitution$x0$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_SetCombineRestitution$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_SetGravity$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_SetGravity",
-        constants$28.JPC_PhysicsSystem_SetGravity$FUNC
+    static final MethodHandle JPC_PhysicsSystem_SetCombineRestitution$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_SetCombineRestitution",
+        constants$28.JPC_PhysicsSystem_SetCombineRestitution$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyInterface$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNumBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_GetBodyInterface$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetBodyInterface",
-        constants$28.JPC_PhysicsSystem_GetBodyInterface$FUNC
+    static final MethodHandle JPC_PhysicsSystem_GetNumBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNumBodies",
+        constants$28.JPC_PhysicsSystem_GetNumBodies$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyInterfaceNoLock$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNumActiveBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_GetBodyInterfaceNoLock$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetBodyInterfaceNoLock",
-        constants$28.JPC_PhysicsSystem_GetBodyInterfaceNoLock$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_OptimizeBroadPhase$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_OptimizeBroadPhase$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_OptimizeBroadPhase",
-        constants$28.JPC_PhysicsSystem_OptimizeBroadPhase$FUNC
+    static final MethodHandle JPC_PhysicsSystem_GetNumActiveBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNumActiveBodies",
+        constants$28.JPC_PhysicsSystem_GetNumActiveBodies$FUNC
     );
 }
 

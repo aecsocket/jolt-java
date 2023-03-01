@@ -8,7 +8,6 @@ import jolt.physics.Activation;
 
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
 import static jolt.headers_f.JoltPhysicsC.*;
@@ -82,7 +81,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
 
         @Override
         public DVec3 getCenterOfMassPositionD(int bodyId) {
-            throw Jolt.requireSinglePrecision();
+            throw Jolt.tryingDoublePrecision();
         }
     }
 
@@ -93,7 +92,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
 
         @Override
         public FVec3 getCenterOfMassPositionF(int bodyId) {
-            throw Jolt.requireDoublePrecision();
+            throw Jolt.tryingSinglePrecision();
         }
 
         @Override

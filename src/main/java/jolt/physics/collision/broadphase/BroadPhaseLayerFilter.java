@@ -27,6 +27,15 @@ public final class BroadPhaseLayerFilter extends AddressedJoltNative {
         return new BroadPhaseLayerFilter(segment.address());
     }
 
+    private static BroadPhaseLayerFilter passthrough;
+
+    public static BroadPhaseLayerFilter passthrough() {
+        if (passthrough == null) {
+            passthrough = BroadPhaseLayerFilter.of(MemorySession.global(), x -> true);
+        }
+        return passthrough;
+    }
+
     private BroadPhaseLayerFilter(MemoryAddress address) {
         super(address);
     }

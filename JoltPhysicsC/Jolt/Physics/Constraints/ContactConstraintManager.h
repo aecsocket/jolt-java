@@ -40,7 +40,7 @@ public:
 	void						SetContactListener(ContactListener *inListener)						{ mContactListener = inListener; }
 	ContactListener *			GetContactListener() const											{ return mContactListener; }
 
-	/// Callback function to combine the restitution or friction of two bodies
+	/// Callback function to fn the restitution or friction of two bodies
 	/// Note that when merging manifolds (when PhysicsSettings::mUseManifoldReduction is true) you will only get a callback for the merged manifold.
 	/// It is not possible in that case to get all sub shape ID pairs that were colliding, you'll get the first encountered pair.
 	using CombineFunction = float (*)(const Body &inBody1, const SubShapeID &inSubShapeID1, const Body &inBody2, const SubShapeID &inSubShapeID2);
@@ -197,7 +197,7 @@ public:
 	/// Solve position constraints.
 	/// This is using the approach described in 'Modeling and Solving Constraints' by Erin Catto presented at GDC 2007.
 	/// On slide 78 it is suggested to split up the Baumgarte stabilization for positional drift so that it does not
-	/// actually add to the momentum. We combine an Euler velocity integrate + a position integrate and then discard the velocity
+	/// actually add to the momentum. We fn an Euler velocity integrate + a position integrate and then discard the velocity
 	/// change.
 	///
 	/// Constraint force:
@@ -473,7 +473,7 @@ private:
 	/// Listener that is notified whenever a contact point between two bodies is added/updated/removed
 	ContactListener *			mContactListener = nullptr;
 
-	/// Functions that are used to combine friction and restitution of 2 bodies
+	/// Functions that are used to fn friction and restitution of 2 bodies
 	CombineFunction				mCombineFriction = [](const Body &inBody1, const SubShapeID &, const Body &inBody2, const SubShapeID &) { return sqrt(inBody1.GetFriction() * inBody2.GetFriction()); };
 	CombineFunction				mCombineRestitution = [](const Body &inBody1, const SubShapeID &, const Body &inBody2, const SubShapeID &) { return max(inBody1.GetRestitution(), inBody2.GetRestitution()); };
 

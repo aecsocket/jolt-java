@@ -50,6 +50,9 @@ JPH_SUPPRESS_WARNINGS
 FN(toJph)(JPC_BodyID in) { return JPH::BodyID(in); }
 FN(toJpc)(JPH::BodyID in) { return in.GetIndexAndSequenceNumber(); }
 
+FN(subShapeIDJph)(JPC_SubShapeID in) { auto r = JPH::SubShapeID(); r.SetValue(in); return r; }
+FN(subShapeIDJpc)(JPH::SubShapeID in) { return in.GetValue(); }
+
 FN(toJpc)(const JPH::Body *in) { assert(in); return reinterpret_cast<const JPC_Body *>(in); }
 FN(toJph)(const JPC_Body *in) { assert(in); return reinterpret_cast<const JPH::Body *>(in); }
 FN(toJpc)(JPH::Body *in) { assert(in); return reinterpret_cast<JPC_Body *>(in); }
@@ -183,8 +186,6 @@ FN(toJph)(const JPC_CollisionGroup *in) { assert(in); return reinterpret_cast<co
 FN(toJpc)(const JPH::CollisionGroup *in) { assert(in); return reinterpret_cast<const JPC_CollisionGroup *>(in); }
 FN(toJpc)(JPH::CollisionGroup *in) { assert(in); return reinterpret_cast<JPC_CollisionGroup *>(in); }
 
-FN(toJph)(const JPC_SubShapeID *in) { assert(in); return reinterpret_cast<const JPH::SubShapeID *>(in); }
-
 FN(toJph)(const JPC_BodyLockInterface *in) {
     assert(in); return reinterpret_cast<const JPH::BodyLockInterface *>(in);
 }
@@ -283,37 +284,6 @@ FN(toJph)(const JPC_AABox *in) { assert(in); return reinterpret_cast<const JPH::
 FN(toJpc)(const JPH::AABox *in) { assert(in); return reinterpret_cast<const JPC_AABox *>(in); }
 FN(toJph)(JPC_AABox *in) { assert(in); return reinterpret_cast<JPH::AABox *>(in); }
 FN(toJpc)(JPH::AABox *in) { assert(in); return reinterpret_cast<JPC_AABox *>(in); }
-
-/*
- * static inline JPH::AABox loadAABox(const JPC_AABox in) {
-    return {loadVec3(in.min), loadVec3(in.max)};
-}
-
-static inline JPH::OrientedBox loadOrientedBox(const JPC_OrientedBox in) {
-    return {loadMat44(in.orientation), loadVec3(in.half_extents)};
-}
-
-static inline JPH::RayCast loadRayCast(const JPC_RayCast in) {
-    auto result = JPH::RayCast();
-    result.mOrigin = loadVec3(in.origin);
-    result.mDirection = loadVec3(in.direction);
-    return result;
-}
-
-static inline JPH::RRayCast loadRRayCast(const JPC_RRayCast in) {
-    auto result = JPH::RRayCast();
-    result.mOrigin = loadRVec3(in.origin);
-    result.mDirection = loadVec3(in.direction);
-    return result;
-}
-
-static inline JPH::AABoxCast loadAABoxCast(const JPC_AABoxCast in) {
-    auto result = JPH::AABoxCast();
-    result.mBox = loadAABox(in.box);
-    result.mDirection = loadVec3(in.direction);
-    return result;
-}
- */
 
 FN(toJpc)(const JPH::BodyCreationSettings *in) {
     assert(in); return reinterpret_cast<const JPC_BodyCreationSettings *>(in);
@@ -747,6 +717,85 @@ JPC_PhysicsSystem_GetContactListener(const JPC_PhysicsSystem *in_physics_system)
         return nullptr;
     return listener->c_listener;
 }
+//--------------------------------------------------------------------------------------------------
+// TODO this is way too complicated for my limited C++ knowledge
+//class ContactCombineFunctor {
+//public:
+//    explicit ContactCombineFunctor(float (*fn)(
+//            const JPC_Body *,
+//            const JPC_SubShapeID,
+//            const JPC_Body *,
+//            const JPC_SubShapeID)) : mFn(fn) {}
+//
+//    float operator () (
+//            const JPH::Body &inBody1,
+//            const JPH::SubShapeID &inSubShapeID1,
+//            const JPH::Body &inBody2,
+//            const JPH::SubShapeID &inSubShapeID2
+//    ) {
+//        return mFn(toJpc(&inBody1), toJpc(inSubShapeID1), toJpc(&inBody2), toJpc(inSubShapeID2));
+//    }
+//
+//    JPH::ContactConstraintManager::CombineFunction thing() {
+//        return [this](
+//                const JPH::Body &inBody1,
+//                const JPH::SubShapeID &inSubShapeID1,
+//                const JPH::Body &inBody2,
+//                const JPH::SubShapeID &inSubShapeID2
+//        ) -> float {
+//            return mFn(toJpc(&inBody1), toJpc(inSubShapeID1), toJpc(&inBody2), toJpc(inSubShapeID2));
+//        }
+//    }
+//
+//private:
+//    float (*mFn)(const JPC_Body *, const JPC_SubShapeID, const JPC_Body *, const JPC_SubShapeID);
+//};
+//
+//JPC_API void
+//JPC_PhysicsSystem_SetCombineFriction(JPC_PhysicsSystem *in_physics_system,
+//                                     const JPC_CombineFunctor *in_combine)
+//{
+//    ContactCombineFunctor functor(in_combine->fn);
+//    toJph(in_physics_system)->SetCombineFriction(functor);
+//}
+//class CombineFunctor {
+//public:
+//    explicit CombineFunctor(float (*mCombine)(const JPC_Body *in_body_1,
+//                                     const JPC_SubShapeID in_sub_shape_id_1,
+//                                     const JPC_Body *in_body_2,
+//                                     const JPC_SubShapeID in_sub_shape_id_2)) : mCombine(mCombine) {}
+//
+//    float operator() (const JPH::Body &inBody1,
+//                      const JPH::SubShapeID &inSubShapeID1,
+//                      const JPH::Body &inBody2,
+//                      const JPH::SubShapeID &inSubShapeID2) const {
+//        return mCombine(toJpc(&inBody1), toJpc(inSubShapeID1), toJpc(&inBody2), toJpc(inSubShapeID2));
+//    }
+//private:
+//    float
+//    (*mCombine)(const JPC_Body *in_body_1,
+//                const JPC_SubShapeID in_sub_shape_id_1,
+//                const JPC_Body *in_body_2,
+//                const JPC_SubShapeID in_sub_shape_id_2);
+//};
+//
+//JPC_API void
+//JPC_PhysicsSystem_SetCombineFriction(JPC_PhysicsSystem *in_physics_system,
+//                                     float
+//                                     (*in_combine)(const JPC_Body *in_body_1,
+//                                                   JPC_SubShapeID in_sub_shape_id_1,
+//                                                   const JPC_Body *in_body_2,
+//                                                   JPC_SubShapeID in_sub_shape_id_2))
+//{
+//    CombineFunctor fn(in_combine);
+//
+//    auto function = reinterpret_cast<JPH::ContactConstraintManager::CombineFunction>(&CombineFunctor::operator());
+//    toJph(in_physics_system)->SetCombineFriction(function);
+//}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_PhysicsSystem_SetCombineRestitution(JPC_PhysicsSystem *in_physics_system,
+                                        float (*in_combine)(const JPC_Body *in_body_1, JPC_SubShapeID in_sub_shape_id_1, JPC_Body *in_body_2, JPC_SubShapeID in_sub_shape_id_2));
 //--------------------------------------------------------------------------------------------------
 JPC_API uint32_t
 JPC_PhysicsSystem_GetNumBodies(const JPC_PhysicsSystem *in_physics_system)
@@ -1790,7 +1839,7 @@ JPC_Shape_GetInnerRadius(const JPC_Shape *in_shape)
 JPC_API const JPC_PhysicsMaterial *
 JPC_Shape_GetMaterial(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id)
 {
-    return toJpc(toJph(in_shape)->GetMaterial(*toJph(&in_sub_shape_id)));
+    return toJpc(toJph(in_shape)->GetMaterial(subShapeIDJph(in_sub_shape_id)));
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -1799,7 +1848,7 @@ JPC_Shape_GetSurfaceNormal(const JPC_Shape *in_shape,
                            const float in_local_surface_position[3],
                            float out_surface_normal[3])
 {
-    storeVec3(out_surface_normal, toJph(in_shape)->GetSurfaceNormal(*toJph(&in_sub_shape_id), loadVec3(in_local_surface_position)));
+    storeVec3(out_surface_normal, toJph(in_shape)->GetSurfaceNormal(subShapeIDJph(in_sub_shape_id), loadVec3(in_local_surface_position)));
 }
 //--------------------------------------------------------------------------------------------------
 
@@ -1809,7 +1858,7 @@ JPC_Shape_GetSurfaceNormal(const JPC_Shape *in_shape,
 JPC_API uint64_t
 JPC_Shape_GetSubShapeUserData(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id)
 {
-    return toJph(in_shape)->GetSubShapeUserData(*toJph(&in_sub_shape_id));
+    return toJph(in_shape)->GetSubShapeUserData(subShapeIDJph(in_sub_shape_id));
 }
 //--------------------------------------------------------------------------------------------------
 
@@ -2412,7 +2461,7 @@ JPC_Body_GetWorldSpaceSurfaceNormal(const JPC_Body *in_body,
                                     float out_normal_vector[3])
 {
     const JPH::Vec3 v = toJph(in_body)->GetWorldSpaceSurfaceNormal(
-        *toJph(&in_sub_shape_id), loadRVec3(in_position));
+            subShapeIDJph(in_sub_shape_id), loadRVec3(in_position));
     storeVec3(out_normal_vector, v);
 }
 //--------------------------------------------------------------------------------------------------
