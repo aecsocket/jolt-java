@@ -3,7 +3,7 @@ package jolt.physics.collision;
 import jolt.AddressedJoltNative;
 import jolt.Jolt;
 import jolt.headers.JPC_ContactListenerVTable;
-import jolt.headers.JPC_ContactListener;
+import jolt.headers.JPJ_ContactListener;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
 import jolt.physics.body.BodyIDs;
@@ -14,7 +14,7 @@ import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JPC_ContactListenerVTable.*;
-import static jolt.headers.JPC_ContactListener.*;
+import static jolt.headers.JPJ_ContactListener.*;
 
 public final class ContactListener extends AddressedJoltNative {
     public static ContactListener at(MemoryAddress address) {
@@ -41,7 +41,7 @@ public final class ContactListener extends AddressedJoltNative {
         }, session);
         OnContactRemoved$set(vtable, onContactRemoved.address());
 
-        var segment = JPC_ContactListener.allocate(session);
+        var segment = JPJ_ContactListener.allocate(session);
         vtable$set(segment, vtable.address());
         return new ContactListener(segment.address());
     }

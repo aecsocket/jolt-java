@@ -9,26 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$20 {
 
-    static final FunctionDescriptor JPC_RegisterCustomAllocator$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_RegisterCustomAllocator$MH = RuntimeHelper.downcallHandle(
-        "JPC_RegisterCustomAllocator",
-        constants$20.JPC_RegisterCustomAllocator$FUNC
-    );
-    static final FunctionDescriptor JPC_CreateFactory$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle JPC_CreateFactory$MH = RuntimeHelper.downcallHandle(
-        "JPC_CreateFactory",
-        constants$20.JPC_CreateFactory$FUNC
-    );
-    static final FunctionDescriptor JPC_DestroyFactory$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle JPC_DestroyFactory$MH = RuntimeHelper.downcallHandle(
-        "JPC_DestroyFactory",
-        constants$20.JPC_DestroyFactory$FUNC
-    );
     static final FunctionDescriptor JPC_RegisterTypes$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle JPC_RegisterTypes$MH = RuntimeHelper.downcallHandle(
         "JPC_RegisterTypes",
@@ -52,6 +32,29 @@ class constants$20 {
     static final MethodHandle JPC_BodyCreationSettings_Set$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyCreationSettings_Set",
         constants$20.JPC_BodyCreationSettings_Set$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_GetMotionQuality$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetMotionQuality$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetMotionQuality",
+        constants$20.JPC_MotionProperties_GetMotionQuality$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_GetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetLinearVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetLinearVelocity",
+        constants$20.JPC_MotionProperties_GetLinearVelocity$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_SetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_SetLinearVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_SetLinearVelocity",
+        constants$20.JPC_MotionProperties_SetLinearVelocity$FUNC
     );
 }
 

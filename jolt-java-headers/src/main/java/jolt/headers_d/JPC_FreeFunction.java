@@ -17,7 +17,7 @@ public interface JPC_FreeFunction {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _in_block) -> {
             try {
-                constants$19.JPC_FreeFunction$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_in_block);
+                constants$18.JPC_FreeFunction$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_in_block);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

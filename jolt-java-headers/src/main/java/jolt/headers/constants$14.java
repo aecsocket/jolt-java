@@ -9,28 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$14 {
 
-    static final FunctionDescriptor mkstemps$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle mkstemps$MH = RuntimeHelper.downcallHandle(
-        "mkstemps",
-        constants$14.mkstemps$FUNC
-    );
-    static final FunctionDescriptor mkdtemp$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle mkdtemp$MH = RuntimeHelper.downcallHandle(
-        "mkdtemp",
-        constants$14.mkdtemp$FUNC
-    );
-    static final FunctionDescriptor system$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle system$MH = RuntimeHelper.downcallHandle(
-        "system",
-        constants$14.system$FUNC
-    );
     static final FunctionDescriptor realpath$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -45,6 +23,34 @@ class constants$14 {
     );
     static final MethodHandle __compar_fn_t$MH = RuntimeHelper.downcallHandle(
         constants$14.__compar_fn_t$FUNC
+    );
+    static final FunctionDescriptor bsearch$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle bsearch$MH = RuntimeHelper.downcallHandle(
+        "bsearch",
+        constants$14.bsearch$FUNC
+    );
+    static final FunctionDescriptor qsort$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle qsort$MH = RuntimeHelper.downcallHandle(
+        "qsort",
+        constants$14.qsort$FUNC
+    );
+    static final FunctionDescriptor abs$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle abs$MH = RuntimeHelper.downcallHandle(
+        "abs",
+        constants$14.abs$FUNC
     );
 }
 

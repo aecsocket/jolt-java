@@ -9,27 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$43 {
 
-    static final FunctionDescriptor JPC_Shape_AddRef$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_AddRef$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_AddRef",
-        constants$43.JPC_Shape_AddRef$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_Release$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_Release$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_Release",
-        constants$43.JPC_Shape_Release$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetRefCount$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetRefCount",
-        constants$43.JPC_Shape_GetRefCount$FUNC
-    );
     static final FunctionDescriptor JPC_Shape_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -50,6 +29,30 @@ class constants$43 {
     static final MethodHandle JPC_Shape_GetUserData$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_GetUserData",
         constants$43.JPC_Shape_GetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_SetUserData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_SetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_SetUserData",
+        constants$43.JPC_Shape_SetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_CreateBody$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_CreateBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateBody",
+        constants$43.JPC_BodyInterface_CreateBody$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_DestroyBody$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_DestroyBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_DestroyBody",
+        constants$43.JPC_BodyInterface_DestroyBody$FUNC
     );
 }
 

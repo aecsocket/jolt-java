@@ -9,30 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$41 {
 
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetOffset$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetOffset$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetOffset",
-        constants$41.JPC_HeightFieldShapeSettings_GetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetOffset$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetOffset$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetOffset",
-        constants$41.JPC_HeightFieldShapeSettings_SetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetScale",
-        constants$41.JPC_HeightFieldShapeSettings_GetScale$FUNC
-    );
     static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetScale$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -55,6 +31,32 @@ class constants$41 {
     static final MethodHandle JPC_HeightFieldShapeSettings_SetBlockSize$MH = RuntimeHelper.downcallHandle(
         "JPC_HeightFieldShapeSettings_SetBlockSize",
         constants$41.JPC_HeightFieldShapeSettings_SetBlockSize$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetBitsPerSample$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetBitsPerSample",
+        constants$41.JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_SetBitsPerSample$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_SetBitsPerSample",
+        constants$41.JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC
+    );
+    static final FunctionDescriptor JPC_MeshShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_Create",
+        constants$41.JPC_MeshShapeSettings_Create$FUNC
     );
 }
 

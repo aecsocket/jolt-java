@@ -57,7 +57,7 @@ public final class Jolt {
 
     public static JoltFeatures features() {
         if (features == null) {
-            int bits = JPC_GetFeatures();
+            int bits = JPJ_GetFeatures();
             features = new JoltFeatures(
                     (bits & 0x1) != 0
             );

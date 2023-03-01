@@ -2,14 +2,14 @@ package jolt.physics.body;
 
 import jolt.AddressedJoltNative;
 import jolt.headers.JPC_BodyActivationListenerVTable;
-import jolt.headers.JPC_BodyActivationListener;
+import jolt.headers.JPJ_BodyActivationListener;
 
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JPC_BodyActivationListenerVTable.*;
-import static jolt.headers.JPC_BodyActivationListener.*;
+import static jolt.headers.JPJ_BodyActivationListener.*;
 
 public final class BodyActivationListener extends AddressedJoltNative {
     public static BodyActivationListener at(MemoryAddress address) {
@@ -25,7 +25,7 @@ public final class BodyActivationListener extends AddressedJoltNative {
                 impl.onBodyDeactivated(BodyIDs.read(v1), v2), session);
         OnBodyDeactivated$set(vtable, onBodyDeactivated.address());
 
-        var segment = JPC_BodyActivationListener.allocate(session);
+        var segment = JPJ_BodyActivationListener.allocate(session);
         vtable$set(segment, vtable.address());
         return new BodyActivationListener(segment.address());
     }

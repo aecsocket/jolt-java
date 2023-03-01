@@ -9,36 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$32 {
 
-    static final FunctionDescriptor JPC_BroadPhaseQuery_CastAABox$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BroadPhaseQuery_CastAABox$MH = RuntimeHelper.downcallHandle(
-        "JPC_BroadPhaseQuery_CastAABox",
-        constants$32.JPC_BroadPhaseQuery_CastAABox$FUNC
-    );
-    static final FunctionDescriptor JPC_NarrowPhaseQuery_CastRay$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_NarrowPhaseQuery_CastRay$MH = RuntimeHelper.downcallHandle(
-        "JPC_NarrowPhaseQuery_CastRay",
-        constants$32.JPC_NarrowPhaseQuery_CastRay$FUNC
-    );
-    static final FunctionDescriptor JPC_SphereShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShape_Create",
-        constants$32.JPC_SphereShape_Create$FUNC
-    );
     static final FunctionDescriptor JPC_ShapeSettings_AddRef$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -59,6 +29,28 @@ class constants$32 {
     static final MethodHandle JPC_ShapeSettings_GetRefCount$MH = RuntimeHelper.downcallHandle(
         "JPC_ShapeSettings_GetRefCount",
         constants$32.JPC_ShapeSettings_GetRefCount$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_CreateShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_CreateShape",
+        constants$32.JPC_ShapeSettings_CreateShape$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_GetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_GetUserData",
+        constants$32.JPC_ShapeSettings_GetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_SetUserData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_SetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_SetUserData",
+        constants$32.JPC_ShapeSettings_SetUserData$FUNC
     );
 }
 

@@ -7,29 +7,29 @@ import java.lang.invoke.VarHandle;
 import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
-public class JPJ_CollideShapeBodyCollector {
+public class JPC_CollideShapeBodyCollector {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         Constants$root.C_POINTER$LAYOUT.withName("vtable")
-    ).withName("JPJ_CollideShapeBodyCollector");
+    ).withName("JPC_CollideShapeBodyCollector");
     public static MemoryLayout $LAYOUT() {
-        return JPJ_CollideShapeBodyCollector.$struct$LAYOUT;
+        return JPC_CollideShapeBodyCollector.$struct$LAYOUT;
     }
     static final VarHandle vtable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("vtable"));
     public static VarHandle vtable$VH() {
-        return JPJ_CollideShapeBodyCollector.vtable$VH;
+        return JPC_CollideShapeBodyCollector.vtable$VH;
     }
     public static MemoryAddress vtable$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)JPJ_CollideShapeBodyCollector.vtable$VH.get(seg);
+        return (java.lang.foreign.MemoryAddress)JPC_CollideShapeBodyCollector.vtable$VH.get(seg);
     }
     public static void vtable$set( MemorySegment seg, MemoryAddress x) {
-        JPJ_CollideShapeBodyCollector.vtable$VH.set(seg, x);
+        JPC_CollideShapeBodyCollector.vtable$VH.set(seg, x);
     }
     public static MemoryAddress vtable$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)JPJ_CollideShapeBodyCollector.vtable$VH.get(seg.asSlice(index*sizeof()));
+        return (java.lang.foreign.MemoryAddress)JPC_CollideShapeBodyCollector.vtable$VH.get(seg.asSlice(index*sizeof()));
     }
     public static void vtable$set(MemorySegment seg, long index, MemoryAddress x) {
-        JPJ_CollideShapeBodyCollector.vtable$VH.set(seg.asSlice(index*sizeof()), x);
+        JPC_CollideShapeBodyCollector.vtable$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
