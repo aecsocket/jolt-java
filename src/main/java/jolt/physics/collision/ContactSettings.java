@@ -10,15 +10,16 @@ import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
+import static jolt.headers.JPC_CollideShapeResult.ofAddress;
 import static jolt.headers.JPC_ContactManifold.*;
 
 public final class ContactSettings extends SegmentedJoltNative {
     public static ContactSettings at(MemorySegment segment) {
-        return segment.address() == MemoryAddress.NULL ? null : new ContactSettings(segment);
+        return new ContactSettings(segment);
     }
 
     public static ContactSettings at(MemorySession session, Addressable ptr) {
-        return at(ofAddress(ptr.address(), session));
+        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
     }
 
     private ContactSettings(MemorySegment segment) {

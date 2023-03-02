@@ -932,6 +932,28 @@ JPC_BodyLockInterface_UnlockWrite(const JPC_BodyLockInterface *in_lock_interface
                                   JPC_BodyLockWrite *io_lock);
 //--------------------------------------------------------------------------------------------------
 //
+// JPC_RayCastBodyCollector
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RayCastBodyCollector_Reset(JPC_RayCastBodyCollector *in_collector);
+
+JPC_API void
+JPC_RayCastBodyCollector_UpdateEarlyOutFraction(JPC_RayCastBodyCollector *in_collector, float in_fraction);
+
+JPC_API void
+JPC_RayCastBodyCollector_ResetEarlyOutFraction(JPC_RayCastBodyCollector *in_collector, float in_fraction);
+
+JPC_API void
+JPC_RayCastBodyCollector_ForceEarlyOut(JPC_RayCastBodyCollector *in_collector);
+
+JPC_API bool
+JPC_RayCastBodyCollector_ShouldEarlyOut(JPC_RayCastBodyCollector *in_collector);
+
+JPC_API float
+JPC_RayCastBodyCollector_GetEarlyOutFraction(JPC_RayCastBodyCollector *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
 // JPC_BroadPhaseQuery
 //
 //--------------------------------------------------------------------------------------------------
@@ -1379,7 +1401,12 @@ JPC_Shape_GetSurfaceNormal(const JPC_Shape *in_shape,
 JPC_API uint64_t
 JPC_Shape_GetSubShapeUserData(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id);
 
-// TODO GetSubShapeTransformedShape
+JPC_API JPC_TransformedShape
+JPC_Shape_GetSubShapeTransformedShape(const JPC_Shape *in_shape,
+                                      JPC_SubShapeID in_sub_shape_id,
+                                      const float in_position_com[3],
+                                      const float in_rotation[4],
+                                      const float in_scale[3]);
 
 JPC_API float
 JPC_Shape_GetVolume(const JPC_Shape *in_shape);

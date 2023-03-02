@@ -3,6 +3,7 @@ package jolt.physics.collision;
 import jolt.SegmentedJoltNative;
 import jolt.headers.JPC_CollideShapeResult;
 import jolt.math.FVec3;
+import jolt.physics.collision.shape.SubShapeIdPair;
 
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
@@ -13,11 +14,11 @@ import static jolt.headers.JPC_CollideShapeResult.*;
 
 public final class CollideShapeResult extends SegmentedJoltNative {
     public static CollideShapeResult at(MemorySegment segment) {
-        return segment.address() == MemoryAddress.NULL ? null : new CollideShapeResult(segment);
+        return new CollideShapeResult(segment);
     }
 
     public static CollideShapeResult at(MemorySession session, Addressable ptr) {
-        return at(ofAddress(ptr.address(), session));
+        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
     }
 
     public static CollideShapeResult allocate(MemorySession session) {

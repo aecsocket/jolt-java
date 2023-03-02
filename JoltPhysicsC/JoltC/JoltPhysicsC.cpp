@@ -193,14 +193,6 @@ FN(toJpc)(const JPH::BodyLockInterface *in) {
     assert(in); return reinterpret_cast<const JPC_BodyLockInterface *>(in);
 }
 
-FN(toJpc)(const JPH::BroadPhaseQuery *in) {
-    assert(in); return reinterpret_cast<const JPC_BroadPhaseQuery *>(in);
-}
-
-FN(toJpc)(const JPH::NarrowPhaseQuery *in) {
-    assert(in); return reinterpret_cast<const JPC_NarrowPhaseQuery *>(in);
-}
-
 FN(toJph)(const JPC_PhysicsSystem *in) { assert(in); return reinterpret_cast<const JPH::PhysicsSystem *>(in); }
 FN(toJph)(JPC_PhysicsSystem *in) { assert(in); return reinterpret_cast<JPH::PhysicsSystem *>(in); }
 FN(toJpc)(JPH::PhysicsSystem *in) { assert(in); return reinterpret_cast<JPC_PhysicsSystem *>(in); }
@@ -219,8 +211,6 @@ FN(toJpc)(const JPH::BodyInterface *in) { assert(in); return reinterpret_cast<co
 FN(toJph)(const JPC_BodyInterface *in) { assert(in); return reinterpret_cast<const JPH::BodyInterface *>(in); }
 FN(toJpc)(JPH::BodyInterface *in) { assert(in); return reinterpret_cast<JPC_BodyInterface *>(in); }
 FN(toJph)(JPC_BodyInterface *in) { assert(in); return reinterpret_cast<JPH::BodyInterface *>(in); }
-
-FN(toJpc)(const JPH::TransformedShape *in) { assert(in); return reinterpret_cast<const JPC_TransformedShape *>(in); }
 
 FN(toJpc)(const JPH::MassProperties *in) { assert(in); return reinterpret_cast<const JPC_MassProperties *>(in); }
 FN(toJph)(const JPC_MassProperties *in) { assert(in); return reinterpret_cast<const JPH::MassProperties *>(in); }
@@ -285,6 +275,11 @@ FN(toJpc)(const JPH::AABox *in) { assert(in); return reinterpret_cast<const JPC_
 FN(toJph)(JPC_AABox *in) { assert(in); return reinterpret_cast<JPH::AABox *>(in); }
 FN(toJpc)(JPH::AABox *in) { assert(in); return reinterpret_cast<JPC_AABox *>(in); }
 
+FN(toJpc)(const JPH::TransformedShape *in) { assert(in); return reinterpret_cast<const JPC_TransformedShape *>(in); }
+FN(toJph)(const JPC_TransformedShape *in) { assert(in); return reinterpret_cast<const JPH::TransformedShape *>(in); }
+FN(toJpc)(JPH::TransformedShape *in) { assert(in); return reinterpret_cast<JPC_TransformedShape *>(in); }
+FN(toJph)(JPC_TransformedShape *in) { assert(in); return reinterpret_cast<JPH::TransformedShape *>(in); }
+
 FN(toJpc)(const JPH::BodyCreationSettings *in) {
     assert(in); return reinterpret_cast<const JPC_BodyCreationSettings *>(in);
 }
@@ -296,6 +291,21 @@ FN(toJpc)(const JPH::MotionProperties *in) { assert(in); return reinterpret_cast
 FN(toJph)(const JPC_MotionProperties *in) { assert(in); return reinterpret_cast<const JPH::MotionProperties *>(in); }
 FN(toJpc)(JPH::MotionProperties *in) { assert(in); return reinterpret_cast<JPC_MotionProperties *>(in); }
 FN(toJph)(JPC_MotionProperties *in) { assert(in); return reinterpret_cast<JPH::MotionProperties *>(in); }
+
+FN(toJpc)(const JPH::RayCastBodyCollector *in) { assert(in); return reinterpret_cast<const JPC_RayCastBodyCollector *>(in); }
+FN(toJph)(const JPC_RayCastBodyCollector *in) { assert(in); return reinterpret_cast<const JPH::RayCastBodyCollector *>(in); }
+FN(toJpc)(JPH::RayCastBodyCollector *in) { assert(in); return reinterpret_cast<JPC_RayCastBodyCollector *>(in); }
+FN(toJph)(JPC_RayCastBodyCollector *in) { assert(in); return reinterpret_cast<JPH::RayCastBodyCollector *>(in); }
+
+FN(toJpc)(const JPH::BroadPhaseQuery *in) { assert(in); return reinterpret_cast<const JPC_BroadPhaseQuery *>(in); }
+FN(toJph)(const JPC_BroadPhaseQuery *in) { assert(in); return reinterpret_cast<const JPH::BroadPhaseQuery *>(in); }
+FN(toJpc)(JPH::BroadPhaseQuery *in) { assert(in); return reinterpret_cast<JPC_BroadPhaseQuery *>(in); }
+FN(toJph)(JPC_BroadPhaseQuery *in) { assert(in); return reinterpret_cast<JPH::BroadPhaseQuery *>(in); }
+
+FN(toJpc)(const JPH::NarrowPhaseQuery *in) { assert(in); return reinterpret_cast<const JPC_NarrowPhaseQuery *>(in); }
+FN(toJph)(const JPC_NarrowPhaseQuery *in) { assert(in); return reinterpret_cast<const JPH::NarrowPhaseQuery *>(in); }
+FN(toJpc)(JPH::NarrowPhaseQuery *in) { assert(in); return reinterpret_cast<JPC_NarrowPhaseQuery *>(in); }
+FN(toJph)(JPC_NarrowPhaseQuery *in) { assert(in); return reinterpret_cast<JPH::NarrowPhaseQuery *>(in); }
 
 FN(toJpc)(const JPH::SubShapeIDPair *in) {
     assert(in); return reinterpret_cast<const JPC_SubShapeIDPair *>(in);
@@ -335,6 +345,11 @@ static inline JPH::RVec3 loadRVec3(const JPC_Real in[3]) {
 #else
     return JPH::DVec3(in[0], in[1], in[2]);
 #endif
+}
+
+static inline JPH::Quat loadQuat(const float in[4]) {
+    assert(in != nullptr);
+    return {in[0], in[1], in[2], in[3]};
 }
 
 static inline JPH::Vec4 loadVec4(const float in[4]) {
@@ -388,6 +403,14 @@ static inline void storeRVec3(JPC_Real out[3], JPH::RVec3Arg in) {
 #else
     in.StoreDouble3(reinterpret_cast<JPH::Double3 *>(out));
 #endif
+}
+
+static inline void storeQuat(float out[4], JPH::QuatArg in) {
+    assert(out != nullptr);
+    out[0] = in.GetX();
+    out[1] = in.GetY();
+    out[2] = in.GetZ();
+    out[3] = in.GetW();
 }
 
 static inline void storeVec4(float out[4], JPH::Vec4Arg in) {
@@ -930,6 +953,46 @@ JPC_BodyLockInterface_UnlockWrite(const JPC_BodyLockInterface *in_lock_interface
 }
 //--------------------------------------------------------------------------------------------------
 //
+// JPC_RayCastBodyCollector
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RayCastBodyCollector_Reset(JPC_RayCastBodyCollector *in_collector)
+{
+    toJph(in_collector)->Reset();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RayCastBodyCollector_UpdateEarlyOutFraction(JPC_RayCastBodyCollector *in_collector, float in_fraction)
+{
+    toJph(in_collector)->UpdateEarlyOutFraction(in_fraction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RayCastBodyCollector_ResetEarlyOutFraction(JPC_RayCastBodyCollector *in_collector, float in_fraction)
+{
+    toJph(in_collector)->ResetEarlyOutFraction(in_fraction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RayCastBodyCollector_ForceEarlyOut(JPC_RayCastBodyCollector *in_collector)
+{
+    toJph(in_collector)->ForceEarlyOut();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_RayCastBodyCollector_ShouldEarlyOut(JPC_RayCastBodyCollector *in_collector)
+{
+    return toJph(in_collector)->ShouldEarlyOut();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_RayCastBodyCollector_GetEarlyOutFraction(JPC_RayCastBodyCollector *in_collector)
+{
+    return toJph(in_collector)->GetEarlyOutFraction();
+}
+//--------------------------------------------------------------------------------------------------
+//
 // JPC_BroadPhaseQuery
 //
 //--------------------------------------------------------------------------------------------------
@@ -940,13 +1003,10 @@ JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
                             const void *in_broad_phase_layer_filter,
                             const void *in_object_layer_filter)
 {
-    assert(in_query && in_ray && io_collector);
-
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
-    auto query = reinterpret_cast<const JPH::BroadPhaseQuery *>(in_query);
-    query->CastRay(
+    toJph(in_query)->CastRay(
         *reinterpret_cast<const JPH::RayCast *>(in_ray),
         *reinterpret_cast<JPH::RayCastBodyCollector *>(io_collector),
         in_broad_phase_layer_filter ?
@@ -955,7 +1015,7 @@ JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
         in_object_layer_filter ?
             *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
 }
-
+//--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
                                  const JPC_AABox *in_box,
@@ -963,13 +1023,10 @@ JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
                                  const void *in_broad_phase_layer_filter,
                                  const void *in_object_layer_filter)
 {
-    assert(in_query && in_box && io_collector);
-
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
-    auto query = reinterpret_cast<const JPH::BroadPhaseQuery *>(in_query);
-    query->CollideAABox(
+    toJph(in_query)->CollideAABox(
         *reinterpret_cast<const JPH::AABox *>(in_box),
         *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
         in_broad_phase_layer_filter ?
@@ -978,7 +1035,7 @@ JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
         in_object_layer_filter ?
             *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
 }
-
+//--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
                                   const float in_center[3],
@@ -987,13 +1044,10 @@ JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
                                   const void *in_broad_phase_layer_filter,
                                   const void *in_object_layer_filter)
 {
-    assert(in_query && io_collector);
-
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
-    auto query = reinterpret_cast<const JPH::BroadPhaseQuery *>(in_query);
-    query->CollideSphere(
+    toJph(in_query)->CollideSphere(
         loadVec3(in_center),
         in_radius,
         *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
@@ -1003,7 +1057,7 @@ JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
         in_object_layer_filter ?
             *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
 }
-
+//--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
                                  const float in_point[3],
@@ -1011,13 +1065,10 @@ JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
                                  const void *in_broad_phase_layer_filter,
                                  const void *in_object_layer_filter)
 {
-    assert(in_query && io_collector);
-
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
-    auto query = reinterpret_cast<const JPH::BroadPhaseQuery *>(in_query);
-    query->CollidePoint(
+    toJph(in_query)->CollidePoint(
         loadVec3(in_point),
         *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
         in_broad_phase_layer_filter ?
@@ -1026,7 +1077,7 @@ JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
         in_object_layer_filter ?
             *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
 }
-
+//--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
                                        const JPC_OrientedBox *in_box,
@@ -1034,13 +1085,10 @@ JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
                                        const void *in_broad_phase_layer_filter,
                                        const void *in_object_layer_filter)
 {
-    assert(in_query && io_collector);
-
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
-    auto query = reinterpret_cast<const JPH::BroadPhaseQuery *>(in_query);
-    query->CollideOrientedBox(
+    toJph(in_query)->CollideOrientedBox(
         *reinterpret_cast<const JPH::OrientedBox *>(in_box),
         *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
         in_broad_phase_layer_filter ?
@@ -1049,7 +1097,7 @@ JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
         in_object_layer_filter ?
             *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
 }
-
+//--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
                               const JPC_AABoxCast *in_box,
@@ -1057,13 +1105,10 @@ JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
                               const void *in_broad_phase_layer_filter,
                               const void *in_object_layer_filter)
 {
-    assert(in_query && io_collector);
-
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
-    auto query = reinterpret_cast<const JPH::BroadPhaseQuery *>(in_query);
-    query->CastAABox(
+    toJph(in_query)->CastAABox(
         *reinterpret_cast<const JPH::AABoxCast *>(in_box),
         *reinterpret_cast<JPH::CastShapeBodyCollector *>(io_collector),
         in_broad_phase_layer_filter ?
@@ -1085,14 +1130,11 @@ JPC_NarrowPhaseQuery_CastRay(const JPC_NarrowPhaseQuery *in_query,
                              const void *in_object_layer_filter,
                              const void *in_body_filter)
 {
-    assert(in_query && in_ray && io_hit);
-
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
     const JPH::BodyFilter body_filter{};
 
-    auto query = reinterpret_cast<const JPH::NarrowPhaseQuery *>(in_query);
-    return query->CastRay(
+    return toJph(in_query)->CastRay(
         *reinterpret_cast<const JPH::RRayCast *>(in_ray),
         *reinterpret_cast<JPH::RayCastResult *>(io_hit),
         in_broad_phase_layer_filter ?
@@ -1861,9 +1903,17 @@ JPC_Shape_GetSubShapeUserData(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_s
     return toJph(in_shape)->GetSubShapeUserData(subShapeIDJph(in_sub_shape_id));
 }
 //--------------------------------------------------------------------------------------------------
-
-// TODO GetSubShapeTransformedShape
-
+JPC_API JPC_TransformedShape
+JPC_Shape_GetSubShapeTransformedShape(const JPC_Shape *in_shape,
+                                      JPC_SubShapeID in_sub_shape_id,
+                                      const float in_position_com[3],
+                                      const float in_rotation[4],
+                                      const float in_scale[3])
+{
+    JPH::SubShapeID outRemainder;
+    auto result = toJph(in_shape)->GetSubShapeTransformedShape(subShapeIDJph(in_sub_shape_id), loadVec3(in_position_com), loadQuat(in_rotation), loadVec3(in_scale), outRemainder);
+    return *toJpc(&result);
+}
 //--------------------------------------------------------------------------------------------------
 JPC_API float
 JPC_Shape_GetVolume(const JPC_Shape *in_shape)

@@ -9,15 +9,16 @@ import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
+import static jolt.headers.JPC_CollideShapeResult.ofAddress;
 import static jolt.headers.JPC_ContactManifold.*;
 
 public final class ContactManifold extends SegmentedJoltNative {
     public static ContactManifold at(MemorySegment segment) {
-        return segment.address() == MemoryAddress.NULL ? null : new ContactManifold(segment);
+        return new ContactManifold(segment);
     }
 
     public static ContactManifold at(MemorySession session, Addressable ptr) {
-        return at(ofAddress(ptr.address(), session));
+        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
     }
 
     private ContactManifold(MemorySegment segment) {

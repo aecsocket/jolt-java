@@ -9,51 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$43 {
 
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius",
+        constants$43.JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_GetHullTolerance$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_GetHullTolerance",
+        constants$43.JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_SetHullTolerance$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_SetHullTolerance",
+        constants$43.JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetScale",
-        constants$43.JPC_HeightFieldShapeSettings_GetScale$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_Create",
+        constants$43.JPC_HeightFieldShapeSettings_Create$FUNC
     );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetScale$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetOffset$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetScale",
-        constants$43.JPC_HeightFieldShapeSettings_SetScale$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetOffset$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetOffset",
+        constants$43.JPC_HeightFieldShapeSettings_GetOffset$FUNC
     );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBlockSize$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetOffset$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetBlockSize$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetBlockSize",
-        constants$43.JPC_HeightFieldShapeSettings_GetBlockSize$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBlockSize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetBlockSize$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetBlockSize",
-        constants$43.JPC_HeightFieldShapeSettings_SetBlockSize$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetBitsPerSample$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetBitsPerSample",
-        constants$43.JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetBitsPerSample$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetBitsPerSample",
-        constants$43.JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_SetOffset$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_SetOffset",
+        constants$43.JPC_HeightFieldShapeSettings_SetOffset$FUNC
     );
 }
 

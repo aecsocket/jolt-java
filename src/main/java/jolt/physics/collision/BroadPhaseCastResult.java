@@ -10,14 +10,15 @@ import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JPC_BroadPhaseCastResult.*;
+import static jolt.headers.JPC_CollideShapeResult.ofAddress;
 
 public final class BroadPhaseCastResult extends SegmentedJoltNative {
     public static BroadPhaseCastResult at(MemorySegment segment) {
-        return segment.address() == MemoryAddress.NULL ? null : new BroadPhaseCastResult(segment);
+        return new BroadPhaseCastResult(segment);
     }
 
     public static BroadPhaseCastResult at(MemorySession session, Addressable ptr) {
-        return at(ofAddress(ptr.address(), session));
+        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
     }
 
     public static BroadPhaseCastResult allocate(MemorySession session) {

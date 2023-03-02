@@ -4,7 +4,9 @@ import jolt.DestroyableJoltNative;
 import jolt.geometry.AABox;
 import jolt.math.FMat44;
 import jolt.math.FVec3;
+import jolt.math.Quat;
 import jolt.physics.collision.PhysicsMaterial;
+import jolt.physics.collision.TransformedShape;
 
 import javax.annotation.Nullable;
 import java.lang.foreign.Addressable;
@@ -96,11 +98,34 @@ public sealed class Shape extends DestroyableJoltNative
         }
     }
 
+    // TODO getSupportingFace
+
     public long getSubShapeUserData(int subShapeId) {
         return JPC_Shape_GetSubShapeUserData(address, subShapeId);
     }
 
-    // TODO geSubShapeTransformedShape
+    // TODO
+//    public TransformedShape getSubShapeTransformedShape(MemorySession session, int subShapeId, FVec3 positionCOM, Quat rotation, FVec3 scale) {
+//
+//        try (var session = MemorySession.openConfined()) {
+//            return TransformedShape.at(JPC_Shape_GetSubShapeTransformedShape(session, address,
+//                    subShapeId,
+//                    positionCOM.allocate(session),
+//                    rotation.allocate(session),
+//                    scale.allocate(session)
+//            ));
+//        }
+//    }
+
+    // TODO getSubmergedVolume
+    // TODO castRay
+    // TODO castRay
+    // TODO collidePoint
+    // TODO collectTransformedShapes
+    // TODO transformShape
+    // TODO scaleShape
+    // TODO getTrianglesStart
+    // TODO getTrianglesNext
 
     public float getVolume() {
         return JPC_Shape_GetVolume(address);
