@@ -1,20 +1,22 @@
 package jolt;
 
 import jolt.physics.collision.shape.*;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static jolt.Utils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class TestShape {
+final class TestShape {
     @BeforeAll
-    public static void setUp() {
-        Jolt.load();
+    static void beforeAll() {
+        setUpAll();
+    }
 
-        Jolt.registerDefaultAllocator();
-        Jolt.createFactory();
-        Jolt.registerTypes();
+    @AfterAll
+    static void afterAll() {
+        tearDownAll();
     }
 
     private void shape(Shape obj) {
@@ -30,7 +32,7 @@ public final class TestShape {
     }
 
     @Test
-    public void sphere() {
+    void sphere() {
         Jolt.use(SphereShape.create(F1), obj -> {
             assertEquals(F1, obj.getRadius());
 
@@ -39,7 +41,7 @@ public final class TestShape {
     }
 
     @Test
-    public void box() {
+    void box() {
         Jolt.use(BoxShape.create(FVEC3_1, F1), obj -> {
             assertEquals(FVEC3_1, obj.getHalfExtent());
 
@@ -48,7 +50,7 @@ public final class TestShape {
     }
 
     @Test
-    public void triangle() {
+    void triangle() {
         Jolt.use(TriangleShape.create(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
             assertEquals(F1, obj.getConvexRadius());
 
@@ -57,7 +59,7 @@ public final class TestShape {
     }
 
     @Test
-    public void capsule() {
+    void capsule() {
         Jolt.use(CapsuleShape.create(F1, F2), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
@@ -68,11 +70,11 @@ public final class TestShape {
 
     /* nothing to test
     @Test
-    public void taperedCylinder() {}
+    void taperedCylinder() {}
      */
 
     @Test
-    public void cylinder() {
+    void cylinder() {
         Jolt.use(CylinderShape.create(F1, F2, F3), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
@@ -83,7 +85,7 @@ public final class TestShape {
 
     /* nothing to test
     @Test
-    public void convexHull() {
+    void convexHull() {
     }
      */
 }

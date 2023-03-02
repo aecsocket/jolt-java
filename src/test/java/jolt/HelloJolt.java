@@ -17,6 +17,7 @@ import jolt.physics.collision.shape.SubShapeIdPair;
 import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.MemorySession;
+import java.util.ArrayList;
 
 public final class HelloJolt {
     public static final byte BP_LAYER_NON_MOVING = 0;
@@ -44,7 +45,7 @@ public final class HelloJolt {
                     Math.min(16, Math.max(1, Runtime.getRuntime().availableProcessors() - 1))
             );
 
-            var bpLayerInterface = BroadPhaseLayerInterface.of(session, new BroadPhaseLayerInterfaceFunctions() {
+            var bpLayerInterface = BroadPhaseLayerInterface.of(session, new BroadPhaseLayerInterfaceFn() {
                 @Override
                 public int getNumBroadPhaseLayers() {
                     return 2;
@@ -60,7 +61,7 @@ public final class HelloJolt {
                 }
             });
 
-            var objBpLayerFilter = ObjectVsBroadPhaseLayerFilter.of(session, new ObjectVsBroadPhaseLayerFilterFunctions() {
+            var objBpLayerFilter = ObjectVsBroadPhaseLayerFilter.of(session, new ObjectVsBroadPhaseLayerFilterFn() {
                 @Override
                 public boolean shouldCollide(short layer1, byte layer2) {
                     return switch (layer1) {
@@ -71,7 +72,7 @@ public final class HelloJolt {
                 }
             });
 
-            var objLayerPairFilter = ObjectLayerPairFilter.of(session, new ObjectLayerPairFilterFunctions() {
+            var objLayerPairFilter = ObjectLayerPairFilter.of(session, new ObjectLayerPairFilterFn() {
                 @Override
                 public boolean shouldCollide(short layer1, short layer2) {
                     return switch (layer1) {
@@ -106,7 +107,7 @@ public final class HelloJolt {
             physicsSystem.setBodyActivationListener(bodyActivationListener);
 
             var contactListener = doublePrecision
-                    ? ContactListener.of(session, new ContactListenerFunctions.D() {
+                    ? ContactListener.of(session, new ContactListenerFn.D() {
                         @Override
                         public ValidateResult onContactValidate(int body1, int body2, DVec3 baseOffset, CollideShapeResult collisionResult) {
                             System.out.println("Contact validate callback");
@@ -128,7 +129,7 @@ public final class HelloJolt {
                             System.out.println("A contact was removed");
                         }
                     })
-                    : ContactListener.of(session, new ContactListenerFunctions.F() {
+                    : ContactListener.of(session, new ContactListenerFn.F() {
                         @Override
                         public ValidateResult onContactValidate(int body1, int body2, FVec3 baseOffset, CollideShapeResult collisionResult) {
                             System.out.println("Contact validate callback");
@@ -178,8 +179,6 @@ public final class HelloJolt {
 
             physicsSystem.optimizeBroadPhase();
 
-            BroadPhaseQuery q = physicsSystem.getBroadPhaseQuery();
-
             int step = 0;
             while (bodyInterface.isActive(sphereId)) {
                 ++step;
@@ -190,23 +189,6 @@ public final class HelloJolt {
                 FVec3 velocity = bodyInterface.getLinearVelocity(sphereId);
 
                 System.out.println("Step " + step + ": Position = " + position + ", Velocity = " + velocity);
-
-                q.castRayF(
-                        new FRayCast(new FVec3(0.0f, 0.0f, 0.0f), new FVec3(1.0f, 0.0f, 0.0f)),
-                        RayCastBodyCollector.of(session, new RayCastBodyCollectorFunctions() {
-                            @Override
-                            public void onBody(Body body) {
-                                System.out.println("q: body");
-                            }
-
-                            @Override
-                            public void addHit(BroadPhaseCastResult result) {
-                                System.out.println("q: result");
-                            }
-                        }),
-                        BroadPhaseLayerFilter.passthrough(),
-                        ObjectLayerFilter.passthrough()
-                );
 
                 physicsSystem.update(
                         deltaTime,

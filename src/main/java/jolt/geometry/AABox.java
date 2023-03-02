@@ -9,7 +9,7 @@ import java.lang.foreign.SegmentAllocator;
 import static jolt.headers.JPC_AABox.*;
 
 public record AABox(FVec3 min, FVec3 max) {
-    public static final AABox ZERO = new AABox(FVec3.ZERO, FVec3.ZERO);
+    public static final AABox UNIT = new AABox(FVec3.ZERO, FVec3.ONE);
 
     public static AABox read(MemorySegment segment) {
         return new AABox(

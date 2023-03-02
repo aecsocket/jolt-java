@@ -935,8 +935,8 @@ JPC_BodyLockInterface_UnlockWrite(const JPC_BodyLockInterface *in_lock_interface
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
-                            const JPC_RRayCast *in_ray,
-                            void *io_collector,
+                            const JPC_RayCast *in_ray,
+                            JPC_RayCastBodyCollector *io_collector,
                             const void *in_broad_phase_layer_filter,
                             const void *in_object_layer_filter)
 {
@@ -959,7 +959,7 @@ JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
 JPC_API void
 JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
                                  const JPC_AABox *in_box,
-                                 void *io_collector,
+                                 JPC_CollideShapeBodyCollector *io_collector,
                                  const void *in_broad_phase_layer_filter,
                                  const void *in_object_layer_filter)
 {
@@ -983,7 +983,7 @@ JPC_API void
 JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
                                   const float in_center[3],
                                   float in_radius,
-                                  void *io_collector,
+                                  JPC_CollideShapeBodyCollector *io_collector,
                                   const void *in_broad_phase_layer_filter,
                                   const void *in_object_layer_filter)
 {
@@ -1007,7 +1007,7 @@ JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
 JPC_API void
 JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
                                  const float in_point[3],
-                                 void *io_collector,
+                                 JPC_CollideShapeBodyCollector *io_collector,
                                  const void *in_broad_phase_layer_filter,
                                  const void *in_object_layer_filter)
 {
@@ -1030,7 +1030,7 @@ JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
 JPC_API void
 JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
                                        const JPC_OrientedBox *in_box,
-                                       void *io_collector,
+                                       JPC_CollideShapeBodyCollector *io_collector,
                                        const void *in_broad_phase_layer_filter,
                                        const void *in_object_layer_filter)
 {
@@ -1053,7 +1053,7 @@ JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
 JPC_API void
 JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
                               const JPC_AABoxCast *in_box,
-                              void *io_collector,
+                              JPC_CollideShapeBodyCollector *io_collector,
                               const void *in_broad_phase_layer_filter,
                               const void *in_object_layer_filter)
 {

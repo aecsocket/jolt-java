@@ -9,6 +9,7 @@ import static jolt.headers.JoltPhysicsC.C_FLOAT;
 
 public record FVec3(float x, float y, float z) {
     public static final FVec3 ZERO = new FVec3(0.0f, 0.0f, 0.0f);
+    public static final FVec3 ONE = new FVec3(1.0f, 1.0f, 1.0f);
 
     public FVec3 negate() {
         return new FVec3(-x, -y, -z);

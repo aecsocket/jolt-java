@@ -23,7 +23,7 @@ public final class ContactListener extends AddressedJoltNative {
         return address == MemoryAddress.NULL ? null : new ContactListener(address);
     }
 
-    private static ContactListener of(MemorySession session, MemorySegment vtable, ContactListenerFunctions impl) {
+    private static ContactListener of(MemorySession session, MemorySegment vtable, ContactListenerFn impl) {
         MemorySegment onContactAdded = OnContactAdded.allocate((v0, v1, v2, v3, v4) -> {
             try (var s = MemorySession.openConfined()) {
                 impl.onContactAdded(BodyIds.read(v1), BodyIds.read(v2), ContactManifold.at(s, v3), ContactSettings.at(s, v4));
@@ -48,7 +48,7 @@ public final class ContactListener extends AddressedJoltNative {
         return new ContactListener(segment.address());
     }
 
-    public static ContactListener of(MemorySession session, ContactListenerFunctions.F impl) {
+    public static ContactListener of(MemorySession session, ContactListenerFn.F impl) {
         Jolt.assertSinglePrecision();
         var vtable = JPC_ContactListenerVTable.allocate(session);
         MemorySegment onContactValidate = OnContactValidate.allocate((v0, v1, v2, v3, v4) -> {
@@ -60,7 +60,7 @@ public final class ContactListener extends AddressedJoltNative {
         return of(session, vtable, impl);
     }
 
-    public static ContactListener of(MemorySession session, ContactListenerFunctions.D impl) {
+    public static ContactListener of(MemorySession session, ContactListenerFn.D impl) {
         Jolt.assertDoublePrecision();
         var vtable = JPC_ContactListenerVTable.allocate(session);
         MemorySegment onContactValidate = OnContactValidate.allocate((v0, v1, v2, v3, v4) -> {

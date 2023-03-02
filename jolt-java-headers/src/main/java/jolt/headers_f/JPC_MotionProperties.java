@@ -12,13 +12,13 @@ public class JPC_MotionProperties {
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("linear_velocity"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("angular_velocity"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("inv_inertia_diagnonal"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("inv_inertia_diagonal"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("inertia_rotation"),
         MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("force"),
         MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("torque"),
         Constants$root.C_FLOAT$LAYOUT.withName("inv_mass"),
         Constants$root.C_FLOAT$LAYOUT.withName("linear_damping"),
-        Constants$root.C_FLOAT$LAYOUT.withName("angular_daming"),
+        Constants$root.C_FLOAT$LAYOUT.withName("angular_damping"),
         Constants$root.C_FLOAT$LAYOUT.withName("max_linear_velocity"),
         Constants$root.C_FLOAT$LAYOUT.withName("max_angular_velocity"),
         Constants$root.C_FLOAT$LAYOUT.withName("gravity_factor"),
@@ -38,7 +38,7 @@ public class JPC_MotionProperties {
     public static MemorySegment angular_velocity$slice(MemorySegment seg) {
         return seg.asSlice(16, 16);
     }
-    public static MemorySegment inv_inertia_diagnonal$slice(MemorySegment seg) {
+    public static MemorySegment inv_inertia_diagonal$slice(MemorySegment seg) {
         return seg.asSlice(32, 16);
     }
     public static MemorySegment inertia_rotation$slice(MemorySegment seg) {
@@ -82,21 +82,21 @@ public class JPC_MotionProperties {
     public static void linear_damping$set(MemorySegment seg, long index, float x) {
         JPC_MotionProperties.linear_damping$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle angular_daming$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("angular_daming"));
-    public static VarHandle angular_daming$VH() {
-        return JPC_MotionProperties.angular_daming$VH;
+    static final VarHandle angular_damping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("angular_damping"));
+    public static VarHandle angular_damping$VH() {
+        return JPC_MotionProperties.angular_damping$VH;
     }
-    public static float angular_daming$get(MemorySegment seg) {
-        return (float)JPC_MotionProperties.angular_daming$VH.get(seg);
+    public static float angular_damping$get(MemorySegment seg) {
+        return (float)JPC_MotionProperties.angular_damping$VH.get(seg);
     }
-    public static void angular_daming$set( MemorySegment seg, float x) {
-        JPC_MotionProperties.angular_daming$VH.set(seg, x);
+    public static void angular_damping$set( MemorySegment seg, float x) {
+        JPC_MotionProperties.angular_damping$VH.set(seg, x);
     }
-    public static float angular_daming$get(MemorySegment seg, long index) {
-        return (float)JPC_MotionProperties.angular_daming$VH.get(seg.asSlice(index*sizeof()));
+    public static float angular_damping$get(MemorySegment seg, long index) {
+        return (float)JPC_MotionProperties.angular_damping$VH.get(seg.asSlice(index*sizeof()));
     }
-    public static void angular_daming$set(MemorySegment seg, long index, float x) {
-        JPC_MotionProperties.angular_daming$VH.set(seg.asSlice(index*sizeof()), x);
+    public static void angular_damping$set(MemorySegment seg, long index, float x) {
+        JPC_MotionProperties.angular_damping$VH.set(seg.asSlice(index*sizeof()), x);
     }
     static final VarHandle max_linear_velocity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_linear_velocity"));
     public static VarHandle max_linear_velocity$VH() {

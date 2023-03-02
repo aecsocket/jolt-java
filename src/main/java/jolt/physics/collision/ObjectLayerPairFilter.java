@@ -18,7 +18,7 @@ public final class ObjectLayerPairFilter extends AddressedJoltNative {
         return address == MemoryAddress.NULL ? null : new ObjectLayerPairFilter(address);
     }
 
-    public static ObjectLayerPairFilter of(MemorySession session, ObjectLayerPairFilterFunctions impl) {
+    public static ObjectLayerPairFilter of(MemorySession session, ObjectLayerPairFilterFn impl) {
         var vtable = JPC_ObjectLayerPairFilterVTable.allocate(session);
         MemorySegment shouldCollide = ShouldCollide.allocate((v0, v1, v2) -> impl.shouldCollide(v1, v2), session);
         ShouldCollide$set(vtable, shouldCollide.address());

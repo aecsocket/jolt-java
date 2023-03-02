@@ -1,5 +1,5 @@
 package jolt.physics.collision.broadphase;
 
-public interface BroadPhaseLayerFilterFunctions {
+public interface BroadPhaseLayerFilterFn {
     boolean shouldCollide(byte layer);
 }

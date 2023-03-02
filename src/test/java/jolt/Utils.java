@@ -31,4 +31,16 @@ final class Utils {
     static final FVec3 FVEC3_6 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
     static final FVec3 FVEC3_7 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
     static final FVec3 FVEC3_8 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+
+    static void setUpAll() {
+        Jolt.load();
+
+        Jolt.registerDefaultAllocator();
+        Jolt.createFactory();
+        Jolt.registerTypes();
+    }
+
+    static void tearDownAll() {
+        Jolt.destroyFactory();
+    }
 }

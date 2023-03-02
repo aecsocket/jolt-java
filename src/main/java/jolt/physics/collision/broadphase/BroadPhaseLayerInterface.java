@@ -15,7 +15,7 @@ public final class BroadPhaseLayerInterface extends AddressedJoltNative {
         return address == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(address);
     }
 
-    public static BroadPhaseLayerInterface of(MemorySession session, BroadPhaseLayerInterfaceFunctions impl) {
+    public static BroadPhaseLayerInterface of(MemorySession session, BroadPhaseLayerInterfaceFn impl) {
         var vtable = JPC_BroadPhaseLayerInterfaceVTable.allocate(session);
         MemorySegment getNumBroadPhaseLayers = GetNumBroadPhaseLayers.allocate((v0) ->
                 impl.getNumBroadPhaseLayers(), session);

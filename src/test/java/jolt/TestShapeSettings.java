@@ -2,20 +2,22 @@ package jolt;
 
 import jolt.math.FVec3;
 import jolt.physics.collision.shape.*;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static jolt.Utils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public final class TestShapeSettings {
+final class TestShapeSettings {
     @BeforeAll
-    public static void setUp() {
-        Jolt.load();
+    static void beforeAll() {
+        setUpAll();
+    }
 
-        Jolt.registerDefaultAllocator();
-        Jolt.createFactory();
-        Jolt.registerTypes();
+    @AfterAll
+    static void afterAll() {
+        tearDownAll();
     }
 
     private void shape(ShapeSettings obj) {
@@ -31,7 +33,7 @@ public final class TestShapeSettings {
     }
 
     @Test
-    public void sphere() {
+    void sphere() {
         Jolt.use(SphereShapeSettings.create(F1), obj -> {
             assertEquals(F1, obj.getRadius());
 
@@ -43,7 +45,7 @@ public final class TestShapeSettings {
     }
 
     @Test
-    public void box() {
+    void box() {
         Jolt.use(BoxShapeSettings.create(FVEC3_1, F1), obj -> {
             assertEquals(FVEC3_1, obj.getHalfExtent());
             assertEquals(F1, obj.getConvexRadius());
@@ -58,7 +60,7 @@ public final class TestShapeSettings {
     }
 
     @Test
-    public void triangle() {
+    void triangle() {
         Jolt.use(TriangleShapeSettings.create(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
             var vertices = obj.getVertices();
             assertEquals(FVEC3_1, vertices.v1());
@@ -79,7 +81,7 @@ public final class TestShapeSettings {
     }
 
     @Test
-    public void capsule() {
+    void capsule() {
         Jolt.use(CapsuleShapeSettings.create(F1, F2), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
@@ -94,7 +96,7 @@ public final class TestShapeSettings {
     }
 
     @Test
-    public void taperedCapsule() {
+    void taperedCapsule() {
         Jolt.use(TaperedCapsuleShapeSettings.create(F1, F2, F3), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getTopRadius());
@@ -112,7 +114,7 @@ public final class TestShapeSettings {
     }
 
     @Test
-    public void cylinder() {
+    void cylinder() {
         Jolt.use(CylinderShapeSettings.create(F1, F2, F3), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
@@ -130,7 +132,7 @@ public final class TestShapeSettings {
     }
 
     @Test
-    public void convexHull() {
+    void convexHull() {
         Jolt.use(ConvexHullShapeSettings.create(new FVec3[] { FVEC3_1, FVEC3_2, FVEC3_3, FVEC3_4 }, F1), obj -> {
             // TODO test point access
             assertEquals(F1, obj.getMaxConvexRadius());

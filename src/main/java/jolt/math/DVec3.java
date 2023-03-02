@@ -9,6 +9,7 @@ import static jolt.headers.JoltPhysicsC.C_DOUBLE;
 
 public record DVec3(double x, double y, double z) {
     public static final DVec3 ZERO = new DVec3(0.0, 0.0, 0.0);
+    public static final DVec3 ONE = new DVec3(1.0, 1.0, 1.0);
 
     public DVec3 negate() {
         return new DVec3(-x, -y, -z);

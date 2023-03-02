@@ -12,6 +12,7 @@ public class JPC_RayCastBodyCollectorVTable {
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
         Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
+        Constants$root.C_POINTER$LAYOUT.withName("Reset"),
         Constants$root.C_POINTER$LAYOUT.withName("OnBody"),
         Constants$root.C_POINTER$LAYOUT.withName("AddHit")
     ).withName("JPC_RayCastBodyCollectorVTable");
@@ -49,6 +50,49 @@ public class JPC_RayCastBodyCollectorVTable {
     }
     public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_RayCastBodyCollectorVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
+    }
+    static final FunctionDescriptor Reset$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle Reset$MH = RuntimeHelper.downcallHandle(
+        JPC_RayCastBodyCollectorVTable.Reset$FUNC
+    );
+    public interface Reset {
+
+        void apply(java.lang.foreign.MemoryAddress _x0);
+        static MemorySegment allocate(Reset fi, MemorySession session) {
+            return RuntimeHelper.upcallStub(Reset.class, fi, JPC_RayCastBodyCollectorVTable.Reset$FUNC, session);
+        }
+        static Reset ofAddress(MemoryAddress addr, MemorySession session) {
+            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+            return (java.lang.foreign.MemoryAddress __x0) -> {
+                try {
+                    JPC_RayCastBodyCollectorVTable.Reset$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
+                } catch (Throwable ex$) {
+                    throw new AssertionError("should not reach here", ex$);
+                }
+            };
+        }
+    }
+
+    static final VarHandle Reset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reset"));
+    public static VarHandle Reset$VH() {
+        return JPC_RayCastBodyCollectorVTable.Reset$VH;
+    }
+    public static MemoryAddress Reset$get(MemorySegment seg) {
+        return (java.lang.foreign.MemoryAddress)JPC_RayCastBodyCollectorVTable.Reset$VH.get(seg);
+    }
+    public static void Reset$set( MemorySegment seg, MemoryAddress x) {
+        JPC_RayCastBodyCollectorVTable.Reset$VH.set(seg, x);
+    }
+    public static MemoryAddress Reset$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemoryAddress)JPC_RayCastBodyCollectorVTable.Reset$VH.get(seg.asSlice(index*sizeof()));
+    }
+    public static void Reset$set(MemorySegment seg, long index, MemoryAddress x) {
+        JPC_RayCastBodyCollectorVTable.Reset$VH.set(seg.asSlice(index*sizeof()), x);
+    }
+    public static Reset Reset (MemorySegment segment, MemorySession session) {
+        return Reset.ofAddress(Reset$get(segment), session);
     }
     static final FunctionDescriptor OnBody$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
