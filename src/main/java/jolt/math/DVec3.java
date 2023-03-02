@@ -1,74 +1,84 @@
 package jolt.math;
 
-import java.lang.foreign.Addressable;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.MemorySession;
-import java.lang.foreign.SegmentAllocator;
+import jolt.SegmentedJoltNative;
+
+import java.lang.foreign.*;
 
 import static jolt.headers.JoltPhysicsC.C_DOUBLE;
 
-public record DVec3(double x, double y, double z) {
-    public static final DVec3 ZERO = new DVec3(0.0, 0.0, 0.0);
-    public static final DVec3 ONE = new DVec3(1.0, 1.0, 1.0);
-
-    public DVec3 negate() {
-        return new DVec3(-x, -y, -z);
+public final class DVec3 extends SegmentedJoltNative {
+    public static DVec3 at(MemorySegment segment) {
+        return new DVec3(segment);
     }
 
-    public static DVec3 read(Addressable addressable) {
-        var address = addressable.address();
-        return new DVec3(
-                address.getAtIndex(C_DOUBLE, 0),
-                address.getAtIndex(C_DOUBLE, 1),
-                address.getAtIndex(C_DOUBLE, 2)
-        );
+    public static DVec3 at(MemorySession session, Addressable ptr) {
+        return ptr.address() == null ? null : at(MemorySegment.ofAddress(ptr.address(), 3 * C_DOUBLE.byteSize(), session));
     }
 
-    public static DVec3[] read(Addressable addressable, int size) {
-        var address = addressable.address();
-        var result = new DVec3[size];
-        for (int i = 0; i < size; i++) {
-            result[i] = new DVec3(
-                    address.getAtIndex(C_DOUBLE, i * 3L),
-                    address.getAtIndex(C_DOUBLE, i * 3L + 1),
-                    address.getAtIndex(C_DOUBLE, i * 3L + 2)
-            );
+    public static DVec3 create(MemorySession session, double x, double y, double z) {
+        var segment = session.allocateArray(C_DOUBLE, x, y, z);
+        return new DVec3(segment);
+    }
+
+    public static DVec3 create(MemorySession session, double s) {
+        return create(session, s, s, s);
+    }
+
+    public static DVec3 create(MemorySession session) {
+        return create(session, 0.0, 0.0, 0.0);
+    }
+
+    private DVec3(MemorySegment segment) {
+        super(segment);
+    }
+
+    public double[] components() {
+        return segment.toArray(C_DOUBLE);
+    }
+
+    public double get(int index) {
+        return segment.getAtIndex(C_DOUBLE, index);
+    }
+
+    public void set(int index, double value) {
+        segment.setAtIndex(C_DOUBLE, index, value);
+    }
+
+    public double getX() { return get(0); }
+    public void setX(double x) { set(0, x); }
+
+    public double getY() { return get(1); }
+    public void setY(double y) { set(1, y); }
+
+    public double getZ() { return get(2); }
+    public void setZ(double z) { set(2, z); }
+
+    public void read(MemoryAddress address) {
+        for (int i = 0; i < 3; i++) {
+            set(i, address.getAtIndex(C_DOUBLE, i));
         }
-        return result;
     }
 
     public void write(MemorySegment segment) {
-        segment.setAtIndex(C_DOUBLE, 0, x);
-        segment.setAtIndex(C_DOUBLE, 1, y);
-        segment.setAtIndex(C_DOUBLE, 2, z);
-    }
-
-    public static void write(MemorySegment segment, DVec3... values) {
-        for (int i = 0; i < values.length; i++) {
-            var v = values[i];
-            segment.setAtIndex(C_DOUBLE, i * 3L,     v.x);
-            segment.setAtIndex(C_DOUBLE, i * 3L + 1, v.y);
-            segment.setAtIndex(C_DOUBLE, i * 3L + 2, v.z);
+        for (int i = 0; i < 3; i++) {
+            segment.setAtIndex(C_DOUBLE, i, get(i));
         }
     }
 
-    public MemorySegment allocate(SegmentAllocator allocator) {
-        return allocator.allocateArray(C_DOUBLE, x, y, z);
-    }
-
-    public static MemorySegment allocate(SegmentAllocator allocator, DVec3... values) {
-        double[] components = new double[values.length * 3];
-        for (int i = 0; i < values.length; i++) {
-            var v = values[i];
-            components[i * 3    ] = v.x;
-            components[i * 3 + 1] = v.y;
-            components[i * 3 + 2] = v.z;
-        }
-        return allocator.allocateArray(C_DOUBLE, components);
+    public void set(DVec3 v) {
+        read(v.address());
     }
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ", " + z + ")";
+        return "(%f, %f, %f)".formatted(getX(), getY(), getZ());
+    }
+
+    public static MemorySegment allocate(SegmentAllocator allocator, DVec3... values) {
+        var segment = allocator.allocate(values.length * 3 * C_DOUBLE.byteSize());
+        for (int i = 0; i < values.length; i++) {
+            values[i].write(segment.asSlice(i * 3 * C_DOUBLE.byteSize()));
+        }
+        return segment;
     }
 }

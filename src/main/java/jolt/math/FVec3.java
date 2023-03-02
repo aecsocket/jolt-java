@@ -1,74 +1,84 @@
 package jolt.math;
 
-import java.lang.foreign.Addressable;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.MemorySession;
-import java.lang.foreign.SegmentAllocator;
+import jolt.SegmentedJoltNative;
 
-import static jolt.headers.JoltPhysicsC.C_FLOAT;
+import java.lang.foreign.*;
 
-public record FVec3(float x, float y, float z) {
-    public static final FVec3 ZERO = new FVec3(0.0f, 0.0f, 0.0f);
-    public static final FVec3 ONE = new FVec3(1.0f, 1.0f, 1.0f);
+import static jolt.headers.JoltPhysicsC.*;
 
-    public FVec3 negate() {
-        return new FVec3(-x, -y, -z);
+public final class FVec3 extends SegmentedJoltNative {
+    public static FVec3 at(MemorySegment segment) {
+        return new FVec3(segment);
     }
 
-    public static FVec3 read(Addressable addressable) {
-        var address = addressable.address();
-        return new FVec3(
-                address.getAtIndex(C_FLOAT, 0),
-                address.getAtIndex(C_FLOAT, 1),
-                address.getAtIndex(C_FLOAT, 2)
-        );
+    public static FVec3 at(MemorySession session, Addressable ptr) {
+        return ptr.address() == null ? null : at(MemorySegment.ofAddress(ptr.address(), 3 * C_FLOAT.byteSize(), session));
     }
 
-    public static FVec3[] read(Addressable addressable, int size) {
-        var address = addressable.address();
-        var result = new FVec3[size];
-        for (int i = 0; i < size; i++) {
-            result[i] = new FVec3(
-                    address.getAtIndex(C_FLOAT, i * 3L),
-                    address.getAtIndex(C_FLOAT, i * 3L + 1),
-                    address.getAtIndex(C_FLOAT, i * 3L + 2)
-            );
+    public static FVec3 create(MemorySession session, float x, float y, float z) {
+        var segment = session.allocateArray(C_FLOAT, x, y, z);
+        return new FVec3(segment);
+    }
+
+    public static FVec3 create(MemorySession session, float s) {
+        return create(session, s, s, s);
+    }
+
+    public static FVec3 create(MemorySession session) {
+        return create(session, 0.0f, 0.0f, 0.0f);
+    }
+
+    private FVec3(MemorySegment segment) {
+        super(segment);
+    }
+
+    public float[] components() {
+        return segment.toArray(C_FLOAT);
+    }
+
+    public float get(int index) {
+        return segment.getAtIndex(C_FLOAT, index);
+    }
+
+    public void set(int index, float value) {
+        segment.setAtIndex(C_FLOAT, index, value);
+    }
+
+    public float getX() { return get(0); }
+    public void setX(float x) { set(0, x); }
+
+    public float getY() { return get(1); }
+    public void setY(float y) { set(1, y); }
+
+    public float getZ() { return get(2); }
+    public void setZ(float z) { set(2, z); }
+
+    public void read(MemoryAddress address) {
+        for (int i = 0; i < 3; i++) {
+            set(i, address.getAtIndex(C_FLOAT, i));
         }
-        return result;
     }
 
     public void write(MemorySegment segment) {
-        segment.setAtIndex(C_FLOAT, 0, x);
-        segment.setAtIndex(C_FLOAT, 1, y);
-        segment.setAtIndex(C_FLOAT, 2, z);
-    }
-
-    public static void write(MemorySegment segment, FVec3... values) {
-        for (int i = 0; i < values.length; i++) {
-            var v = values[i];
-            segment.setAtIndex(C_FLOAT, i * 3L,     v.x);
-            segment.setAtIndex(C_FLOAT, i * 3L + 1, v.y);
-            segment.setAtIndex(C_FLOAT, i * 3L + 2, v.z);
+        for (int i = 0; i < 3; i++) {
+            segment.setAtIndex(C_FLOAT, i, get(i));
         }
     }
 
-    public MemorySegment allocate(SegmentAllocator allocator) {
-        return allocator.allocateArray(C_FLOAT, x, y, z);
-    }
-
-    public static MemorySegment allocate(SegmentAllocator allocator, FVec3... values) {
-        float[] components = new float[values.length * 3];
-        for (int i = 0; i < values.length; i++) {
-            var v = values[i];
-            components[i * 3    ] = v.x;
-            components[i * 3 + 1] = v.y;
-            components[i * 3 + 2] = v.z;
-        }
-        return allocator.allocateArray(C_FLOAT, components);
+    public void set(FVec3 v) {
+        read(v.address());
     }
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ", " + z + ")";
+        return "(%f, %f, %f)".formatted(getX(), getY(), getZ());
+    }
+
+    public static MemorySegment allocate(SegmentAllocator allocator, FVec3... values) {
+        var segment = allocator.allocate(values.length * 3 * C_FLOAT.byteSize());
+        for (int i = 0; i < values.length; i++) {
+            values[i].write(segment.asSlice(i * 3 * C_FLOAT.byteSize()));
+        }
+        return segment;
     }
 }

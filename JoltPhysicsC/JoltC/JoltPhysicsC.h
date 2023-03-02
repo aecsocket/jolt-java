@@ -450,7 +450,7 @@ typedef struct JPC_AABox
 typedef struct JPC_OrientedBox
 {
     alignas(64) float   orientation[16];
-    alignas(16) float   half_extents[3];
+    alignas(16) float   half_extent[3];
 } JPC_OrientedBox;
 
 // NOTE: Needs to be kept in sync with JPH::AABoxCast

@@ -367,7 +367,7 @@ static inline JPH::AABox loadAABox(const JPC_AABox in) {
 }
 
 static inline JPH::OrientedBox loadOrientedBox(const JPC_OrientedBox in) {
-    return {loadMat44(in.orientation), loadVec3(in.half_extents)};
+    return {loadMat44(in.orientation), loadVec3(in.half_extent)};
 }
 
 static inline JPH::RayCast loadRayCast(const JPC_RayCast in) {

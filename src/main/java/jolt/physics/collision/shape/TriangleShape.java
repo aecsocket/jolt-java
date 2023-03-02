@@ -7,7 +7,6 @@ import jolt.physics.collision.PhysicsMaterial;
 import javax.annotation.Nullable;
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -18,16 +17,14 @@ public final class TriangleShape extends ConvexShape {
     }
 
     public static TriangleShape create(FVec3 v1, FVec3 v2, FVec3 v3, float convexRadius, @Nullable PhysicsMaterial material) {
-        try (var session = MemorySession.openConfined()) {
-            var address = JPC_TriangleShape_Create(
-                    v1.allocate(session),
-                    v2.allocate(session),
-                    v3.allocate(session),
-                    convexRadius,
-                    Jolt.ptr(material)
-            );
-            return new TriangleShape(address);
-        }
+        var address = JPC_TriangleShape_Create(
+                v1.address(),
+                v2.address(),
+                v3.address(),
+                convexRadius,
+                Jolt.ptr(material)
+        );
+        return new TriangleShape(address);
     }
 
     public static TriangleShape create(FVec3 v1, FVec3 v2, FVec3 v3, float convexRadius) {

@@ -3,7 +3,6 @@ package jolt;
 import jolt.geometry.AABox;
 import jolt.geometry.AABoxCast;
 import jolt.geometry.OrientedBox;
-import jolt.math.FMat44;
 import jolt.math.FVec3;
 import jolt.physics.collision.BroadPhaseCastResult;
 import jolt.physics.collision.FRayCast;

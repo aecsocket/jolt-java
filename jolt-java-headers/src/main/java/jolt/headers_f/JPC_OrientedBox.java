@@ -11,7 +11,7 @@ public class JPC_OrientedBox {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         MemoryLayout.sequenceLayout(16, Constants$root.C_FLOAT$LAYOUT).withName("orientation"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("half_extents"),
+        MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("half_extent"),
         MemoryLayout.paddingLayout(416)
     ).withName("JPC_OrientedBox");
     public static MemoryLayout $LAYOUT() {
@@ -20,7 +20,7 @@ public class JPC_OrientedBox {
     public static MemorySegment orientation$slice(MemorySegment seg) {
         return seg.asSlice(0, 64);
     }
-    public static MemorySegment half_extents$slice(MemorySegment seg) {
+    public static MemorySegment half_extent$slice(MemorySegment seg) {
         return seg.asSlice(64, 12);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }

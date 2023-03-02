@@ -1,78 +1,152 @@
 package jolt.physics.collision;
 
+import jolt.Jolt;
 import jolt.SegmentedJoltNative;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
 
 import java.lang.foreign.Addressable;
-import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
-import static jolt.headers.JPC_CollideShapeResult.ofAddress;
 import static jolt.headers.JPC_ContactManifold.*;
 
-public final class ContactManifold extends SegmentedJoltNative {
+public abstract sealed class ContactManifold extends SegmentedJoltNative
+        permits ContactManifold.F, ContactManifold.D {
     public static ContactManifold at(MemorySegment segment) {
-        return new ContactManifold(segment);
+        return Jolt.doublePrecision() ? new D(segment) : new F(segment);
     }
 
     public static ContactManifold at(MemorySession session, Addressable ptr) {
-        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
+        return ptr.address() == null ? null : at(Jolt.doublePrecision()
+                ? jolt.headers_d.JPC_ContactManifold.ofAddress(ptr.address(), session)
+                : jolt.headers_f.JPC_ContactManifold.ofAddress(ptr.address(), session));
     }
 
     private ContactManifold(MemorySegment segment) {
         super(segment);
     }
 
-    public FVec3 getBaseOffsetSp() {
-        return FVec3.read(base_offset$slice(segment));
-    }
+    public abstract FVec3 getBaseOffsetF();
 
-    public void setBaseOffset(FVec3 baseOffset) {
-        baseOffset.write(base_offset$slice(segment));
-    }
+    public abstract DVec3 getBaseOffsetD();
 
-    public DVec3 getBaseOffsetDp() {
-        return DVec3.read(base_offset$slice(segment).address());
-    }
+    public abstract FVec3 getWorldSpaceNormal();
 
-    public void setBaseOffset(DVec3 baseOffset) {
-        baseOffset.write(base_offset$slice(segment));
-    }
+    public abstract float getPenetrationDepth();
 
-    public FVec3 getWorldSpaceNormal() {
-        return FVec3.read(normal$slice(segment));
-    }
+    public abstract void setPenetrationDepth(float penetrationDepth);
 
-    public void setWorldSpaceNormal(FVec3 worldSpaceNormal) {
-        worldSpaceNormal.write(normal$slice(segment));
-    }
+    public abstract int getSubShapeId1();
 
-    public float getPenetrationDepth() {
-        return penetration_depth$get(segment);
-    }
+    public abstract void setSubShapeId1(int subShapeId1);
 
-    public void setPenetrationDepth(float penetrationDepth) {
-        penetration_depth$set(segment, penetrationDepth);
-    }
+    public abstract int getSubShapeId2();
 
-    public int getSubShapeId1() {
-        return shape1_sub_shape_id$get(segment);
-    }
-
-    public void setSubShapeId1(int subShapeId1) {
-        shape1_sub_shape_id$set(segment, subShapeId1);
-    }
-
-    public int getSubShapeId2() {
-        return shape2_sub_shape_id$get(segment);
-    }
-
-    public void setSubShapeId2(int subShapeId2) {
-        shape2_sub_shape_id$set(segment, subShapeId2);
-    }
+    public abstract void setSubShapeId2(int subShapeId2);
 
     // TODO getRelativeContactPointsOn1
     // TODO getRelativeContactPointsOn2
+
+    protected static final class F extends ContactManifold {
+        private F(MemorySegment segment) {
+            super(segment);
+        }
+
+        @Override
+        public FVec3 getBaseOffsetF() {
+            return FVec3.at(jolt.headers_f.JPC_ContactManifold.base_offset$slice(segment));
+        }
+
+        @Override
+        public DVec3 getBaseOffsetD() {
+            throw Jolt.tryingDoublePrecision();
+        }
+
+        @Override
+        public FVec3 getWorldSpaceNormal() {
+            return FVec3.at(jolt.headers_f.JPC_ContactManifold.normal$slice(segment));
+        }
+
+        @Override
+        public float getPenetrationDepth() {
+            return jolt.headers_f.JPC_ContactManifold.penetration_depth$get(segment);
+        }
+
+        @Override
+        public void setPenetrationDepth(float penetrationDepth) {
+            jolt.headers_f.JPC_ContactManifold.penetration_depth$set(segment, penetrationDepth);
+        }
+
+        @Override
+        public int getSubShapeId1() {
+            return jolt.headers_f.JPC_ContactManifold.shape1_sub_shape_id$get(segment);
+        }
+
+        @Override
+        public void setSubShapeId1(int subShapeId1) {
+            jolt.headers_f.JPC_ContactManifold.shape1_sub_shape_id$set(segment, subShapeId1);
+        }
+
+        @Override
+        public int getSubShapeId2() {
+            return jolt.headers_f.JPC_ContactManifold.shape2_sub_shape_id$get(segment);
+        }
+
+        @Override
+        public void setSubShapeId2(int subShapeId2) {
+            jolt.headers_f.JPC_ContactManifold.shape2_sub_shape_id$set(segment, subShapeId2);
+        }
+    }
+
+    protected static final class D extends ContactManifold {
+        private D(MemorySegment segment) {
+            super(segment);
+        }
+
+        @Override
+        public FVec3 getBaseOffsetF() {
+            throw Jolt.tryingSinglePrecision();
+        }
+
+        @Override
+        public DVec3 getBaseOffsetD() {
+            return DVec3.at(jolt.headers_d.JPC_ContactManifold.base_offset$slice(segment));
+        }
+
+        @Override
+        public FVec3 getWorldSpaceNormal() {
+            return FVec3.at(jolt.headers_d.JPC_ContactManifold.normal$slice(segment));
+        }
+
+        @Override
+        public float getPenetrationDepth() {
+            return jolt.headers_d.JPC_ContactManifold.penetration_depth$get(segment);
+        }
+
+        @Override
+        public void setPenetrationDepth(float penetrationDepth) {
+            jolt.headers_d.JPC_ContactManifold.penetration_depth$set(segment, penetrationDepth);
+        }
+
+        @Override
+        public int getSubShapeId1() {
+            return jolt.headers_d.JPC_ContactManifold.shape1_sub_shape_id$get(segment);
+        }
+
+        @Override
+        public void setSubShapeId1(int subShapeId1) {
+            jolt.headers_d.JPC_ContactManifold.shape1_sub_shape_id$set(segment, subShapeId1);
+        }
+
+        @Override
+        public int getSubShapeId2() {
+            return jolt.headers_d.JPC_ContactManifold.shape2_sub_shape_id$get(segment);
+        }
+
+        @Override
+        public void setSubShapeId2(int subShapeId2) {
+            jolt.headers_d.JPC_ContactManifold.shape2_sub_shape_id$set(segment, subShapeId2);
+        }
+    }
 }

@@ -11,9 +11,6 @@ import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySession;
 
-import static jolt.headers.JoltPhysicsC.*;
-import static jolt.headers.JPC_BodyCreationSettings.*;
-
 public abstract sealed class BodyCreationSettings extends AddressedJoltNative
         permits BodyCreationSettings.F, BodyCreationSettings.D {
     public static BodyCreationSettings at(Addressable ptr) {
@@ -31,14 +28,12 @@ public abstract sealed class BodyCreationSettings extends AddressedJoltNative
     ) {
         Jolt.assertSinglePrecision();
         var segment = jolt.headers_f.JPC_BodyCreationSettings.allocate(session);
-        try (var session2 = MemorySession.openConfined()) {
-            jolt.headers_f.JoltPhysicsC.JPC_BodyCreationSettings_Set(
-                    segment,
-                    shape.address(), position.allocate(session2), rotation.allocate(session2),
-                    (byte) motionType.ordinal(),
-                    layer
-            );
-        }
+        jolt.headers_f.JoltPhysicsC.JPC_BodyCreationSettings_Set(
+                segment,
+                shape.address(), position.address(), rotation.address(),
+                (byte) motionType.ordinal(),
+                layer
+        );
         return new BodyCreationSettings.F(segment.address());
     }
 
@@ -52,14 +47,12 @@ public abstract sealed class BodyCreationSettings extends AddressedJoltNative
     ) {
         Jolt.assertDoublePrecision();
         var segment = jolt.headers_d.JPC_BodyCreationSettings.allocate(session);
-        try (var session2 = MemorySession.openConfined()) {
-            jolt.headers_d.JoltPhysicsC.JPC_BodyCreationSettings_Set(
-                    segment,
-                    shape.address(), position.allocate(session2), rotation.allocate(session2),
-                    (byte) motionType.ordinal(),
-                    layer
-            );
-        }
+        jolt.headers_d.JoltPhysicsC.JPC_BodyCreationSettings_Set(
+                segment,
+                shape.address(), position.address(), rotation.address(),
+                (byte) motionType.ordinal(),
+                layer
+        );
         return new BodyCreationSettings.D(segment.address());
     }
 

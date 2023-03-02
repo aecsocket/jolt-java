@@ -35,7 +35,6 @@ public final class RayCastBodyCollector extends AddressedJoltNative {
         MemorySegment onBody = OnBody.allocate((v0, v1) ->
                 impl.onBody(Body.at(v1.address())), session);
         OnBody$set(vtable, onBody.address());
-        @SuppressWarnings("DataFlowIssue")
         MemorySegment addHit = AddHit.allocate((v0, v1) -> {
             impl.addHit(BroadPhaseCastResult.at(v1));
         }, session);

@@ -25,16 +25,14 @@ public final class TriangleShapeSettings extends ConvexShapeSettings {
             float convexRadius,
             @Nullable PhysicsMaterial material
     ) {
-        try (var session = MemorySession.openConfined()) {
-            var address = JPC_TriangleShapeSettings_Create(
-                    v1.allocate(session),
-                    v2.allocate(session),
-                    v3.allocate(session),
-                    convexRadius,
-                    Jolt.ptr(material)
-            );
-            return new TriangleShapeSettings(address);
-        }
+        var address = JPC_TriangleShapeSettings_Create(
+                v1.address(),
+                v2.address(),
+                v3.address(),
+                convexRadius,
+                Jolt.ptr(material)
+        );
+        return new TriangleShapeSettings(address);
     }
 
     public static TriangleShapeSettings create(FVec3 v1, FVec3 v2, FVec3 v3, float convexRadius) {
@@ -49,26 +47,16 @@ public final class TriangleShapeSettings extends ConvexShapeSettings {
         super(address);
     }
 
-    public record Vertices(FVec3 v1, FVec3 v2, FVec3 v3) {}
-
-    public Vertices getVertices() {
-        try (var session = MemorySession.openConfined()) {
-            var v1 = FVec3.ZERO.allocate(session);
-            var v2 = FVec3.ZERO.allocate(session);
-            var v3 = FVec3.ZERO.allocate(session);
-            JPC_TriangleShapeSettings_GetVertices(address, v1, v2, v3);
-            return new Vertices(FVec3.read(v1), FVec3.read(v2), FVec3.read(v3));
-        }
+    public void getVertices(FVec3 outV1, FVec3 outV2, FVec3 outV3) {
+        JPC_TriangleShapeSettings_GetVertices(address, outV1.address(), outV2.address(), outV3.address());
     }
 
     public void setVertices(FVec3 v1, FVec3 v2, FVec3 v3) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_TriangleShapeSettings_SetVertices(address,
-                    v1.allocate(session),
-                    v2.allocate(session),
-                    v3.allocate(session)
-            );
-        }
+        JPC_TriangleShapeSettings_SetVertices(address,
+                v1.address(),
+                v2.address(),
+                v3.address()
+        );
     }
 
     public float getConvexRadius() {

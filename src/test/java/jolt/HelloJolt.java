@@ -17,7 +17,6 @@ import jolt.physics.collision.shape.SubShapeIdPair;
 import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.MemorySession;
-import java.util.ArrayList;
 
 public final class HelloJolt {
     public static final byte BP_LAYER_NON_MOVING = 0;
@@ -157,23 +156,43 @@ public final class HelloJolt {
 
             // Destroyable classes do not implement AutoCloseable due to excessive "try-with-resources" warnings
             // use Jolt.use instead
-            Shape floorShape = Jolt.use(BoxShapeSettings.create(new FVec3(100.0f, 1.0f, 100.0f)), floorShapeSettings -> {
+            Shape floorShape = Jolt.use(BoxShapeSettings.create(
+                    FVec3.create(session, 100.0f, 1.0f, 100.0f)
+            ), floorShapeSettings -> {
                 return floorShapeSettings.create();
             });
 
             var floorSettings = doublePrecision
-                    ? BodyCreationSettings.create(session, floorShape, new DVec3(0.0, -1.0, 0.0), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING)
-                    : BodyCreationSettings.create(session, floorShape, new FVec3(0.0f, -1.0f, 0.0f), Quat.IDENTITY, MotionType.STATIC, OBJ_LAYER_NON_MOVING);
+                    ? BodyCreationSettings.create(session,
+                            floorShape,
+                            DVec3.create(session, 0.0, -1.0, 0.0),
+                            Quat.createIdentity(session),
+                            MotionType.STATIC, OBJ_LAYER_NON_MOVING
+                    ) : BodyCreationSettings.create(session,
+                            floorShape,
+                            FVec3.create(session, 0.0f, -1.0f, 0.0f),
+                            Quat.createIdentity(session),
+                            MotionType.STATIC, OBJ_LAYER_NON_MOVING
+                    );
             Body floor = bodyInterface.createBody(floorSettings);
             bodyInterface.addBody(floor.getID(), Activation.DONT_ACTIVATE);
 
             var sphereSettings = doublePrecision
-                    ? BodyCreationSettings.create(session, SphereShape.create(0.5f), new DVec3(0.0, 2.0, 0.0), Quat.IDENTITY, MotionType.DYNAMIC, OBJ_LAYER_MOVING)
-                    : BodyCreationSettings.create(session, SphereShape.create(0.5f), new FVec3(0.0f, 2.0f, 0.0f), Quat.IDENTITY, MotionType.DYNAMIC, OBJ_LAYER_MOVING);
+                    ? BodyCreationSettings.create(session,
+                            SphereShape.create(0.5f),
+                            DVec3.create(session, 0.0, 2.0, 0.0),
+                            Quat.createIdentity(session),
+                            MotionType.DYNAMIC, OBJ_LAYER_MOVING
+                    ) : BodyCreationSettings.create(session,
+                            SphereShape.create(0.5f),
+                            FVec3.create(session, 0.0f, 2.0f, 0.0f),
+                            Quat.createIdentity(session),
+                            MotionType.DYNAMIC, OBJ_LAYER_MOVING
+                    );
 
             int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
-            bodyInterface.setLinearVelocity(sphereId, new FVec3(0.0f, -5.0f, 0.0f));
+            bodyInterface.setLinearVelocity(sphereId, FVec3.create(session, 0.0f, -5.0f, 0.0f));
 
             var deltaTime = 1 / 60.0f;
 
@@ -183,10 +202,18 @@ public final class HelloJolt {
             while (bodyInterface.isActive(sphereId)) {
                 ++step;
 
-                Object position = doublePrecision
-                        ? bodyInterface.getCenterOfMassPositionD(sphereId)
-                        : bodyInterface.getCenterOfMassPositionF(sphereId);
-                FVec3 velocity = bodyInterface.getLinearVelocity(sphereId);
+                Object position;
+                if (doublePrecision) {
+                    DVec3 out = DVec3.create(session);
+                    bodyInterface.getCenterOfMassPosition(sphereId, out);
+                    position = out;
+                } else {
+                    FVec3 out = FVec3.create(session);
+                    bodyInterface.getCenterOfMassPosition(sphereId, out);
+                    position = out;
+                }
+                FVec3 velocity = FVec3.create(session);
+                bodyInterface.getLinearVelocity(sphereId, velocity);
 
                 System.out.println("Step " + step + ": Position = " + position + ", Velocity = " + velocity);
 

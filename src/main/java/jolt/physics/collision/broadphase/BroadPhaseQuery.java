@@ -31,14 +31,12 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_BroadPhaseQuery_CastRay(address,
-                    ray.allocate(session),
-                    collector.address(),
-                    broadPhaseLayerFilter.address(),
-                    objectLayerFilter.address()
-            );
-        }
+        JPC_BroadPhaseQuery_CastRay(address,
+                ray.address(),
+                collector.address(),
+                broadPhaseLayerFilter.address(),
+                objectLayerFilter.address()
+        );
     }
 
     public void collideAABox(
@@ -47,14 +45,12 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_BroadPhaseQuery_CollideAABox(address,
-                    box.allocate(session),
-                    collector.address(),
-                    broadPhaseLayerFilter.address(),
-                    objectLayerFilter.address()
-            );
-        }
+        JPC_BroadPhaseQuery_CollideAABox(address,
+                box.address(),
+                collector.address(),
+                broadPhaseLayerFilter.address(),
+                objectLayerFilter.address()
+        );
     }
 
     public void collideSphere(
@@ -64,15 +60,13 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_BroadPhaseQuery_CollideSphere(address,
-                    center.allocate(session),
-                    radius,
-                    collector.address(),
-                    broadPhaseLayerFilter.address(),
-                    objectLayerFilter.address()
-            );
-        }
+        JPC_BroadPhaseQuery_CollideSphere(address,
+                center.address(),
+                radius,
+                collector.address(),
+                broadPhaseLayerFilter.address(),
+                objectLayerFilter.address()
+        );
     }
 
     public void collidePoint(
@@ -81,14 +75,12 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_BroadPhaseQuery_CollidePoint(address,
-                    point.allocate(session),
-                    collector.address(),
-                    broadPhaseLayerFilter.address(),
-                    objectLayerFilter.address()
-            );
-        }
+        JPC_BroadPhaseQuery_CollidePoint(address,
+                point.address(),
+                collector.address(),
+                broadPhaseLayerFilter.address(),
+                objectLayerFilter.address()
+        );
     }
 
     public void collideOrientedBox(
@@ -97,14 +89,12 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_BroadPhaseQuery_CollideOrientedBox(address,
-                    box.allocate(session),
-                    collector.address(),
-                    broadPhaseLayerFilter.address(),
-                    objectLayerFilter.address()
-            );
-        }
+        JPC_BroadPhaseQuery_CollideOrientedBox(address,
+                box.address(),
+                collector.address(),
+                broadPhaseLayerFilter.address(),
+                objectLayerFilter.address()
+        );
     }
 
     public void castAABox(
@@ -113,13 +103,11 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_BroadPhaseQuery_CastAABox(address,
-                    box.allocate(session),
-                    collector.address(),
-                    broadPhaseLayerFilter.address(),
-                    objectLayerFilter.address()
-            );
-        }
+        JPC_BroadPhaseQuery_CastAABox(address,
+                box.address(),
+                collector.address(),
+                broadPhaseLayerFilter.address(),
+                objectLayerFilter.address()
+        );
     }
 }

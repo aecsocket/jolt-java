@@ -8,7 +8,6 @@ import jolt.physics.Activation;
 
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySession;
 
 import static jolt.headers_f.JoltPhysicsC.*;
 
@@ -44,25 +43,19 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     }
 
     public void setLinearVelocity(int bodyId, FVec3 linearVelocity) {
-        try (var session = MemorySession.openConfined()) {
-            JPC_BodyInterface_SetLinearVelocity(address, bodyId, linearVelocity.allocate(session));
-        }
+        JPC_BodyInterface_SetLinearVelocity(address, bodyId, linearVelocity.address());
     }
 
     public boolean isActive(int bodyId) {
         return JPC_BodyInterface_IsActive(address, bodyId);
     }
 
-    public abstract FVec3 getCenterOfMassPositionF(int bodyId);
+    public abstract void getCenterOfMassPosition(int bodyId, FVec3 out);
 
-    public abstract DVec3 getCenterOfMassPositionD(int bodyId);
+    public abstract void getCenterOfMassPosition(int bodyId, DVec3 out);
 
-    public FVec3 getLinearVelocity(int bodyId) {
-        try (var session = MemorySession.openConfined()) {
-            var out = FVec3.ZERO.allocate(session);
-            JPC_BodyInterface_GetLinearVelocity(address, bodyId, out);
-            return FVec3.read(out);
-        }
+    public void getLinearVelocity(int bodyId, FVec3 out) {
+        JPC_BodyInterface_GetLinearVelocity(address, bodyId, out.address());
     }
 
     protected static final class F extends BodyInterface {
@@ -71,16 +64,12 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public FVec3 getCenterOfMassPositionF(int bodyId) {
-            try (var session = MemorySession.openConfined()) {
-                var out = FVec3.ZERO.allocate(session);
-                jolt.headers_f.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(address, bodyId, out);
-                return FVec3.read(out);
-            }
+        public void getCenterOfMassPosition(int bodyId, FVec3 out) {
+            jolt.headers_f.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(address, bodyId, out.address());
         }
 
         @Override
-        public DVec3 getCenterOfMassPositionD(int bodyId) {
+        public void getCenterOfMassPosition(int bodyId, DVec3 out) {
             throw Jolt.tryingDoublePrecision();
         }
     }
@@ -91,17 +80,13 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public FVec3 getCenterOfMassPositionF(int bodyId) {
+        public void getCenterOfMassPosition(int bodyId, FVec3 out) {
             throw Jolt.tryingSinglePrecision();
         }
 
         @Override
-        public DVec3 getCenterOfMassPositionD(int bodyId) {
-            try (var session = MemorySession.openConfined()) {
-                var out = DVec3.ZERO.allocate(session);
-                jolt.headers_d.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(address, bodyId, out);
-                return DVec3.read(out.address());
-            }
+        public void getCenterOfMassPosition(int bodyId, DVec3 out) {
+            jolt.headers_d.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(address, bodyId, out.address());
         }
     }
 }

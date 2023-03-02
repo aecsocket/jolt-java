@@ -2,33 +2,35 @@ package jolt.physics.collision;
 
 import jolt.Jolt;
 import jolt.SegmentedJoltNative;
-import jolt.math.DVec3;
 import jolt.math.FVec3;
 
 import java.lang.foreign.Addressable;
-import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JPC_CollideShapeResult.ofAddress;
 import static jolt.headers.JPC_ContactManifold.*;
 
-public final class ContactSettings extends SegmentedJoltNative {
+public abstract sealed class ContactSettings extends SegmentedJoltNative
+        permits ContactSettings.F, ContactSettings.D {
     public static ContactSettings at(MemorySegment segment) {
-        return new ContactSettings(segment);
+        return Jolt.doublePrecision() ? new D(segment) : new F(segment);
     }
 
     public static ContactSettings at(MemorySession session, Addressable ptr) {
-        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
+        return ptr.address() == null ? null : at(Jolt.doublePrecision()
+                ? jolt.headers_d.JPC_ContactSettings.ofAddress(ptr.address(), session)
+                : jolt.headers_f.JPC_ContactSettings.ofAddress(ptr.address(), session));
     }
 
     private ContactSettings(MemorySegment segment) {
         super(segment);
     }
 
+    // TODO THIS!!
     public FVec3 getBaseOffsetF() {
         Jolt.assertSinglePrecision();
-        return FVec3.read(base_offset$slice(segment));
+        return FVec3.at(base_offset$slice(segment));
     }
 
     public void setBaseOffsetF(FVec3 baseOffset) {

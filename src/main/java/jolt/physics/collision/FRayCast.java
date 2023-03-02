@@ -1,28 +1,49 @@
 package jolt.physics.collision;
 
+import jolt.SegmentedJoltNative;
 import jolt.math.FVec3;
 
-import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
-public record FRayCast(FVec3 origin, FVec3 direction) {
-    public static FRayCast read(MemorySession session, MemoryAddress address) {
-        MemorySegment segment = jolt.headers_f.JPC_RRayCast.ofAddress(address, session);
-        return new FRayCast(
-                FVec3.read(jolt.headers_f.JPC_RRayCast.origin$slice(segment)),
-                FVec3.read(jolt.headers_f.JPC_RRayCast.direction$slice(segment))
-        );
+import static jolt.headers.JPC_RayCast.*;
+
+public final class FRayCast extends SegmentedJoltNative {
+    public static FRayCast at(MemorySegment segment) {
+        return new FRayCast(segment);
     }
 
-    public void write(MemorySegment segment) {
-        origin.write(jolt.headers_f.JPC_RRayCast.origin$slice(segment));
-        direction.write(jolt.headers_f.JPC_RRayCast.direction$slice(segment));
+    public static FRayCast at(MemorySession session, Addressable ptr) {
+        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
     }
 
-    public MemorySegment allocate(MemorySession session) {
-        MemorySegment segment = jolt.headers_f.JPC_RRayCast.allocate(session);
-        write(segment);
-        return segment;
+    public static FRayCast create(MemorySession session, FVec3 origin, FVec3 direction) {
+        var segment = allocate(session);
+        origin.write(origin$slice(segment));
+        direction.write(direction$slice(segment));
+        return new FRayCast(segment);
+    }
+
+    private FRayCast(MemorySegment segment) {
+        super(segment);
+    }
+
+    public FVec3 getOrigin() {
+        return FVec3.at(origin$slice(segment));
+    }
+
+    public FVec3 getDirection() {
+        return FVec3.at(direction$slice(segment));
+    }
+
+    public void set(FRayCast r) {
+        getOrigin().set(r.getOrigin());
+        getDirection().set(r.getDirection());
+    }
+
+    @Override
+    public String toString() {
+        return "FRayCast(origin=%s, direction=%s)".formatted(getOrigin(), getDirection());
     }
 }

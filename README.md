@@ -56,18 +56,21 @@ dependencies {
 Usage is very similar to JoltPhysics. See [HelloJolt.java](src/test/java/jolt/HelloJolt.java) to get a
 minimal implementation.
 
+**Note:** these bindings are fairly low-level. For some classes such as the vector and matrix classes, you are expected
+to write your own wrappers around them.
+
 ### Setup
 
 ```java
 // Load the native libraries from the jar (in `jolt/`)
-JoltEnvironment.load();
+Jolt.load();
 // Or load them manually
 // System.load("name-of-lib-file");
 
 // Do some Jolt setup
-JoltEnvironment.registerDefaultAllocator();
-RTTIFactory.setInstance(new RTTIFactory());
-JoltEnvironment.registerTypes();
+Jolt.registerDefaultAllocator();
+Jolt.createFactory();
+Jolt.registerTypes();
 ```
 
 ## Building from source

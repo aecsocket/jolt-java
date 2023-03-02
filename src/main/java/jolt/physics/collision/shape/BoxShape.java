@@ -18,10 +18,8 @@ public final class BoxShape extends ConvexShape {
     }
 
     public static BoxShape create(FVec3 halfExtent, float convexRadius, @Nullable PhysicsMaterial material) {
-        try (var session = MemorySession.openConfined()) {
-            var address = JPC_BoxShape_Create(halfExtent.allocate(session), convexRadius, Jolt.ptr(material));
-            return new BoxShape(address);
-        }
+        var address = JPC_BoxShape_Create(halfExtent.address(), convexRadius, Jolt.ptr(material));
+        return new BoxShape(address);
     }
 
     public static BoxShape create(FVec3 halfExtent, float convexRadius) {
@@ -36,11 +34,7 @@ public final class BoxShape extends ConvexShape {
         super(address);
     }
 
-    public FVec3 getHalfExtent() {
-        try (var session = MemorySession.openConfined()) {
-            var out = FVec3.ZERO.allocate(session);
-            JPC_BoxShape_GetHalfExtent(address, out);
-            return FVec3.read(out);
-        }
+    public void getHalfExtent(FVec3 out) {
+        JPC_BoxShape_GetHalfExtent(address, out.address());
     }
 }

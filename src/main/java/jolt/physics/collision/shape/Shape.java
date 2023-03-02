@@ -4,9 +4,7 @@ import jolt.DestroyableJoltNative;
 import jolt.geometry.AABox;
 import jolt.math.FMat44;
 import jolt.math.FVec3;
-import jolt.math.Quat;
 import jolt.physics.collision.PhysicsMaterial;
-import jolt.physics.collision.TransformedShape;
 
 import javax.annotation.Nullable;
 import java.lang.foreign.Addressable;
@@ -53,31 +51,20 @@ public sealed class Shape extends DestroyableJoltNative
         return JPC_Shape_MustBeStatic(address);
     }
 
-    public FVec3 getCenterOfMass() {
-        try (var session = MemorySession.openConfined()) {
-            var out = FVec3.ZERO.allocate(session);
-            JPC_Shape_GetCenterOfMass(address, out);
-            return FVec3.read(out);
-        }
+    public void getCenterOfMass(FVec3 out) {
+        JPC_Shape_GetCenterOfMass(address, out.address());
     }
 
-    public AABox getLocalBounds() {
-        try (var session = MemorySession.openConfined()) {
-            return AABox.read(JPC_Shape_GetLocalBounds(session, address));
-        }
+    public void getLocalBounds(AABox out) {
+        JPC_Shape_GetLocalBounds(address, out.address());
     }
 
     public int getSubShapeIDBitsRecursive() {
         return JPC_Shape_GetSubShapeIDBitsRecursive(address);
     }
 
-    public AABox getWorldSpaceBounds(FMat44 comTransform, FVec3 scale) {
-        try (var session = MemorySession.openConfined()) {
-            return AABox.read(JPC_Shape_GetWorldSpaceBounds(session, address,
-                    comTransform.allocate(session),
-                    scale.allocate(session)
-            ));
-        }
+    public void getWorldSpaceBounds(FMat44 comTransform, FVec3 scale, AABox out) {
+        JPC_Shape_GetWorldSpaceBounds(address, comTransform.address(), scale.address(), out.address());
     }
 
     public float getInnerRadius() {
@@ -90,12 +77,8 @@ public sealed class Shape extends DestroyableJoltNative
         return PhysicsMaterial.at(JPC_Shape_GetMaterial(address, subShapeId));
     }
 
-    public FVec3 getSurfaceNormal(int subShapeId, FVec3 localSurfacePosition) {
-        try (var session = MemorySession.openConfined()) {
-            var out = FVec3.ZERO.allocate(session);
-            JPC_Shape_GetSurfaceNormal(address, subShapeId, localSurfacePosition.allocate(session), out);
-            return FVec3.read(out);
-        }
+    public void getSurfaceNormal(int subShapeId, FVec3 localSurfacePosition, FVec3 out) {
+        JPC_Shape_GetSurfaceNormal(address, subShapeId, localSurfacePosition.address(), out);
     }
 
     // TODO getSupportingFace
@@ -132,8 +115,6 @@ public sealed class Shape extends DestroyableJoltNative
     }
 
     public boolean isValidScale(FVec3 scale) {
-        try (var session = MemorySession.openConfined()) {
-            return JPC_Shape_IsValidScale(address, scale.allocate(session));
-        }
+        return JPC_Shape_IsValidScale(address, scale.address());
     }
 }

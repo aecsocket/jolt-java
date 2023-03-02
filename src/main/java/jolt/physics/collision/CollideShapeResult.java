@@ -30,27 +30,15 @@ public final class CollideShapeResult extends SegmentedJoltNative {
     }
 
     public FVec3 getContactPointOn1() {
-        return FVec3.read(shape1_contact_point$slice(segment));
-    }
-
-    public void setContactPointOn1(FVec3 contactPointOn1) {
-        contactPointOn1.write(shape1_contact_point$slice(segment));
+        return FVec3.at(shape1_contact_point$slice(segment));
     }
 
     public FVec3 getContactPointOn2() {
-        return FVec3.read(shape2_contact_point$slice(segment));
-    }
-
-    public void setContactPointOn2(FVec3 contactPointOn2) {
-        contactPointOn2.write(shape2_contact_point$slice(segment));
+        return FVec3.at(shape2_contact_point$slice(segment));
     }
 
     public FVec3 getPenetrationAxis() {
-        return FVec3.read(penetration_axis$slice(segment));
-    }
-
-    public void setPenetrationAxis(FVec3 penetrationAxis) {
-        penetrationAxis.write(penetration_axis$slice(segment));
+        return FVec3.at(penetration_axis$slice(segment));
     }
 
     public float getPenetrationDepth() {
@@ -94,9 +82,12 @@ public final class CollideShapeResult extends SegmentedJoltNative {
 
     public CollideShapeResult reversed(MemorySession session) {
         var result = allocate(session);
-        result.setContactPointOn2(getContactPointOn1());
-        result.setContactPointOn1(getContactPointOn2());
-        result.setPenetrationAxis(getPenetrationAxis().negate());
+        result.getContactPointOn2().set(getContactPointOn1());
+        result.getContactPointOn1().set(getContactPointOn2());
+        try (var s = MemorySession.openConfined()) {
+            var penetrationAxis = getPenetrationAxis();
+            result.getPenetrationAxis().set(FVec3.create(s, -penetrationAxis.getX(), -penetrationAxis.getY(), -penetrationAxis.getZ()));
+        }
         result.setPenetrationDepth(getPenetrationDepth());
         result.setSubShapeId2(getSubShapeId1());
         result.setSubShapeId1(getSubShapeId2());

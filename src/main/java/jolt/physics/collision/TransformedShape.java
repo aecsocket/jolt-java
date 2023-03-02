@@ -20,7 +20,9 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
     }
 
     public static TransformedShape at(MemorySession session, Addressable ptr) {
-        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
+        return ptr.address() == null ? null : at(Jolt.doublePrecision()
+                ? jolt.headers_d.JPC_TransformedShape.ofAddress(ptr.address(), session)
+                : jolt.headers_f.JPC_TransformedShape.ofAddress(ptr.address(), session));
     }
 
     private TransformedShape(MemorySegment segment) {
@@ -70,7 +72,7 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
         
         @Override
         public FVec3 getShapePositionCOMF() {
-            return FVec3.read(jolt.headers_f.JPC_TransformedShape.shape_position_com$slice(segment));
+            return FVec3.at(jolt.headers_f.JPC_TransformedShape.shape_position_com$slice(segment));
         }
         
         @Override
@@ -90,7 +92,7 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
         
         @Override
         public Quat getShapeRotation() {
-            return Quat.read(jolt.headers_f.JPC_TransformedShape.shape_rotation$slice(segment));
+            return Quat.at(jolt.headers_f.JPC_TransformedShape.shape_rotation$slice(segment));
         }
         
         @Override
@@ -110,7 +112,7 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
         
         @Override
         public FVec3 getShapeScale() {
-            return FVec3.read(jolt.headers_f.JPC_TransformedShape.shape_scale$slice(segment));
+            return FVec3.at(jolt.headers_f.JPC_TransformedShape.shape_scale$slice(segment));
         }
         
         @Override
@@ -146,7 +148,7 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
 
         @Override
         public DVec3 getShapePositionCOMD() {
-            return DVec3.read(jolt.headers_d.JPC_TransformedShape.shape_position_com$slice(segment));
+            return DVec3.at(jolt.headers_d.JPC_TransformedShape.shape_position_com$slice(segment));
         }
 
         @Override
@@ -156,7 +158,7 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
 
         @Override
         public Quat getShapeRotation() {
-            return Quat.read(jolt.headers_d.JPC_TransformedShape.shape_rotation$slice(segment));
+            return Quat.at(jolt.headers_d.JPC_TransformedShape.shape_rotation$slice(segment));
         }
 
         @Override
@@ -176,7 +178,7 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
 
         @Override
         public FVec3 getShapeScale() {
-            return FVec3.read(jolt.headers_d.JPC_TransformedShape.shape_scale$slice(segment));
+            return FVec3.at(jolt.headers_d.JPC_TransformedShape.shape_scale$slice(segment));
         }
 
         @Override

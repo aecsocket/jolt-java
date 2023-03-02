@@ -1,29 +1,49 @@
 package jolt.geometry;
 
-import jolt.headers.JPC_AABoxCast;
+import jolt.SegmentedJoltNative;
 import jolt.math.FVec3;
 
+import java.lang.foreign.Addressable;
 import java.lang.foreign.MemorySegment;
-import java.lang.foreign.SegmentAllocator;
+import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JPC_AABoxCast.*;
 
-public record AABoxCast(AABox box, FVec3 direction) {
-    public static AABoxCast read(MemorySegment segment) {
-        return new AABoxCast(
-                AABox.read(box$slice(segment)),
-                FVec3.read(direction$slice(segment))
-        );
+public final class AABoxCast extends SegmentedJoltNative {
+    public static AABoxCast at(MemorySegment segment) {
+        return new AABoxCast(segment);
     }
 
-    public void write(MemorySegment segment) {
-        box.write(box$slice(segment));
-        direction.write(direction$slice(segment));
+    public static AABoxCast at(MemorySession session, Addressable ptr) {
+        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
     }
 
-    public MemorySegment allocate(SegmentAllocator allocator) {
-        var segment = JPC_AABoxCast.allocate(allocator);
-        write(segment);
-        return segment;
+    public static AABoxCast create(MemorySession session, AABox box, FVec3 direction) {
+        var segment = allocate(session);
+        AABox.at(box$slice(segment)).set(box);
+        FVec3.at(direction$slice(segment)).set(direction);
+        return new AABoxCast(segment);
+    }
+
+    private AABoxCast(MemorySegment segment) {
+        super(segment);
+    }
+
+    public AABox getBox() {
+        return AABox.at(box$slice(segment));
+    }
+
+    public FVec3 getDirection() {
+        return FVec3.at(direction$slice(segment));
+    }
+
+    public void set(AABoxCast b) {
+        getBox().set(b.getBox());
+        getDirection().set(b.getDirection());
+    }
+
+    @Override
+    public String toString() {
+        return "AABoxCast(box=%s, direction=%s)".formatted(getBox(), getDirection());
     }
 }
