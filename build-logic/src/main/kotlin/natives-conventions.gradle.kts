@@ -20,13 +20,17 @@ afterEvaluate {
         val assembleNatives = register<Exec>("assembleNatives") {
             group = "build natives"
 
+            doFirst {
+                println("Assembling natives $buildType $buildFlavor ${buildFeatures.joinToString(" ")}")
+            }
+
             workingDir = file(joltDir)
             commandLine = listOf(
                 "cmake",
                 "-S", ".",                                  // source at `JoltPhysicsC/`
                 "-B", file(nativesBuildDir).absolutePath,   // put makefiles into this project's `build/natives/`
                 "-G", nativesExt.generator.get(),           // use the platform-specific generator
-                "-DCMAKE_BUILD_TYPE=Distribution",          // release build type
+                "-DCMAKE_BUILD_TYPE=${buildType.key}",          // release build type
             )
             buildFeatures.forEach { feature ->
                 environment[feature.cmakeFlag()] = "ON"

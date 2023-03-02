@@ -1,11 +1,9 @@
 // JoltPhysicsC v0.0.4 - C API for Jolt Physics C++ library
 
 #pragma once
-#include <stdlib.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdalign.h>
-#include <float.h>
+#include <cstdlib>
+#include <cstdint>
+#include <cfloat>
 //--------------------------------------------------------------------------------------------------
 //
 // Const
@@ -34,8 +32,6 @@ typedef float JPC_Real;
 #define JPC_RVEC_ALIGN alignas(16)
 #endif
 
-#define JPC_PI 3.14159265358979323846f
-
 #define JPC_COLLISION_GROUP_INVALID_GROUP 0xffffffff
 #define JPC_COLLISION_GROUP_INVALID_SUB_GROUP 0xffffffff
 
@@ -45,8 +41,6 @@ typedef float JPC_Real;
 #define JPC_BODY_ID_SEQUENCE_SHIFT 24
 
 #define JPC_SUB_SHAPE_ID_EMPTY 0xffffffff
-
-#define JPC_FLT_EPSILON FLT_EPSILON
 
 #ifdef __cplusplus
 extern "C" {
@@ -223,14 +217,14 @@ typedef struct JPC_MotionProperties
 {
     alignas(16) float  linear_velocity[4]; // 4th element is ignored
     alignas(16) float  angular_velocity[4]; // 4th element is ignored
-    alignas(16) float  inv_inertia_diagnonal[4]; // 4th element is ignored
+    alignas(16) float  inv_inertia_diagonal[4]; // 4th element is ignored
     alignas(16) float  inertia_rotation[4];
 
     float              force[3];
     float              torque[3];
     float              inv_mass;
     float              linear_damping;
-    float              angular_daming;
+    float              angular_damping;
     float              max_linear_velocity;
     float              max_angular_velocity;
     float              gravity_factor;
@@ -1559,10 +1553,10 @@ JPC_API void
 JPC_Body_GetAngularVelocity(const JPC_Body *in_body, float out_angular_velocity[3]);
 
 JPC_API void
-JPC_Body_SetAnglularVelocity(JPC_Body *in_body, const float in_angular_velocity[3]);
+JPC_Body_SetAngularVelocity(JPC_Body *in_body, const float in_angular_velocity[3]);
 
 JPC_API void
-JPC_Body_SetAnglularVelocityClamped(JPC_Body *in_body, const float in_angular_velocity[3]);
+JPC_Body_SetAngularVelocityClamped(JPC_Body *in_body, const float in_angular_velocity[3]);
 
 JPC_API void
 JPC_Body_GetPointVelocityCOM(const JPC_Body *in_body,

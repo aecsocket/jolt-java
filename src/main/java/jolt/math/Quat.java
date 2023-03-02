@@ -5,7 +5,7 @@ import java.lang.foreign.*;
 import static jolt.headers.JoltPhysicsC.C_FLOAT;
 
 public record Quat(float x, float y, float z, float w) {
-    public static final Quat IDENTITY = new Quat(0f, 0f, 0f, 0f);
+    public static final Quat IDENTITY = new Quat(0f, 0f, 0f, 1f);
 
     public static Quat read(Addressable addressable) {
         var address = addressable.address();
