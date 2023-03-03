@@ -1,23 +1,13 @@
 package jolt.physics.body;
 
-import jolt.AddressedJoltNative;
+import jolt.JoltNative;
 
-import java.lang.foreign.*;
+import java.lang.foreign.MemoryAddress;
 
-import static jolt.headers.JoltPhysicsC.*;
-
-public final class Body extends AddressedJoltNative {
-    // START Jolt-Pointer
-    private Body(MemoryAddress handle) {
-        super(handle);
+public sealed interface Body extends JoltNative permits MutableBody {
+    static Body at(MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new BodyImpl(addr);
     }
 
-    public static Body at(MemoryAddress addr) {
-        return addr == MemoryAddress.NULL ? null : new Body(addr);
-    }
-    // END Jolt-Pointer
-
-    public int getID() {
-        return JPC_Body_GetID(handle);
-    }
+    int getId();
 }

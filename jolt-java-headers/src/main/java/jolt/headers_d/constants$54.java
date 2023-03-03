@@ -9,61 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$54 {
 
-    static final FunctionDescriptor JPC_BodyInterface_GetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_CreateAndAddBody$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetAngularVelocity",
-        constants$54.JPC_BodyInterface_GetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetPointVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetPointVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetPointVelocity",
-        constants$54.JPC_BodyInterface_GetPointVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetCenterOfMassPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetCenterOfMassPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetCenterOfMassPosition",
-        constants$54.JPC_BodyInterface_GetCenterOfMassPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_IsActive$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_IsActive$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_IsActive",
-        constants$54.JPC_BodyInterface_IsActive$FUNC
+    static final MethodHandle JPC_BodyInterface_CreateAndAddBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateAndAddBody",
+        constants$54.JPC_BodyInterface_CreateAndAddBody$FUNC
     );
-    static final FunctionDescriptor JPC_BodyInterface_SetPositionRotationAndVelocity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_AddBodiesPrepare$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddBodiesPrepare$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddBodiesPrepare",
+        constants$54.JPC_BodyInterface_AddBodiesPrepare$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AddBodiesFinalize$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_SetPositionRotationAndVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetPositionRotationAndVelocity",
-        constants$54.JPC_BodyInterface_SetPositionRotationAndVelocity$FUNC
+    static final MethodHandle JPC_BodyInterface_AddBodiesFinalize$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddBodiesFinalize",
+        constants$54.JPC_BodyInterface_AddBodiesFinalize$FUNC
     );
-    static final FunctionDescriptor JPC_BodyInterface_AddForce$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_AddBodiesAbort$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_AddForce$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_AddForce",
-        constants$54.JPC_BodyInterface_AddForce$FUNC
+    static final MethodHandle JPC_BodyInterface_AddBodiesAbort$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddBodiesAbort",
+        constants$54.JPC_BodyInterface_AddBodiesAbort$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_RemoveBodies$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_RemoveBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_RemoveBodies",
+        constants$54.JPC_BodyInterface_RemoveBodies$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_ActivateBody$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_ActivateBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_ActivateBody",
+        constants$54.JPC_BodyInterface_ActivateBody$FUNC
     );
 }
 

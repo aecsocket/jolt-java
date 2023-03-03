@@ -9,57 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$62 {
 
-    static final FunctionDescriptor JPC_Body_ApplyBuoyancyImpulse$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_SetRestitution$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_Body_ApplyBuoyancyImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_ApplyBuoyancyImpulse",
-        constants$62.JPC_Body_ApplyBuoyancyImpulse$FUNC
+    static final MethodHandle JPC_BodyInterface_SetRestitution$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetRestitution",
+        constants$62.JPC_BodyInterface_SetRestitution$FUNC
     );
-    static final FunctionDescriptor JPC_Body_IsInBroadPhase$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_IsInBroadPhase$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_IsInBroadPhase",
-        constants$62.JPC_Body_IsInBroadPhase$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_IsCollisionCacheInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_IsCollisionCacheInvalid$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_IsCollisionCacheInvalid",
-        constants$62.JPC_Body_IsCollisionCacheInvalid$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetShape",
-        constants$62.JPC_Body_GetShape$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetPosition$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_GetRestitution$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetPosition",
-        constants$62.JPC_Body_GetPosition$FUNC
+    static final MethodHandle JPC_BodyInterface_GetRestitution$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetRestitution",
+        constants$62.JPC_BodyInterface_GetRestitution$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetRotation$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_SetFriction$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetRotation",
-        constants$62.JPC_Body_GetRotation$FUNC
+    static final MethodHandle JPC_BodyInterface_SetFriction$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetFriction",
+        constants$62.JPC_BodyInterface_SetFriction$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetFriction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetFriction$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetFriction",
+        constants$62.JPC_BodyInterface_GetFriction$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_SetGravityFactor$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_SetGravityFactor$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetGravityFactor",
+        constants$62.JPC_BodyInterface_SetGravityFactor$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetGravityFactor$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetGravityFactor$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetGravityFactor",
+        constants$62.JPC_BodyInterface_GetGravityFactor$FUNC
     );
 }
 

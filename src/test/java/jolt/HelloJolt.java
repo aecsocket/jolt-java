@@ -175,7 +175,7 @@ public final class HelloJolt {
                             MotionType.STATIC, OBJ_LAYER_NON_MOVING
                     );
             Body floor = bodyInterface.createBody(floorSettings);
-            bodyInterface.addBody(floor.getID(), Activation.DONT_ACTIVATE);
+            bodyInterface.addBody(floor.getId(), Activation.DONT_ACTIVATE);
 
             var sphereSettings = doublePrecision
                     ? BodyCreationSettings.of(session,
@@ -205,11 +205,11 @@ public final class HelloJolt {
                 Object position;
                 if (doublePrecision) {
                     DVec3 out = DVec3.of(session);
-                    bodyInterface.getCenterOfMassPosition(sphereId, out);
+                    bodyInterface.getCOMPosition(sphereId, out);
                     position = out;
                 } else {
                     FVec3 out = FVec3.of(session);
-                    bodyInterface.getCenterOfMassPosition(sphereId, out);
+                    bodyInterface.getCOMPosition(sphereId, out);
                     position = out;
                 }
                 FVec3 velocity = FVec3.of(session);
@@ -229,8 +229,8 @@ public final class HelloJolt {
             bodyInterface.removeBody(sphereId);
             bodyInterface.destroyBody(sphereId);
 
-            bodyInterface.removeBody(floor.getID());
-            bodyInterface.destroyBody(floor.getID());
+            bodyInterface.removeBody(floor.getId());
+            bodyInterface.destroyBody(floor.getId());
 
             physicsSystem.destroy();
 

@@ -9,56 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$61 {
 
-    static final FunctionDescriptor JPC_Body_AddTorque$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_AddAngularImpulse$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_AddTorque$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddTorque",
-        constants$61.JPC_Body_AddTorque$FUNC
+    static final MethodHandle JPC_BodyInterface_AddAngularImpulse$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddAngularImpulse",
+        constants$61.JPC_BodyInterface_AddAngularImpulse$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetInverseInertia$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_SetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetMotionType",
+        constants$61.JPC_BodyInterface_SetMotionType$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetMotionType",
+        constants$61.JPC_BodyInterface_GetMotionType$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_SetMotionQuality$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_SetMotionQuality$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetMotionQuality",
+        constants$61.JPC_BodyInterface_SetMotionQuality$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetMotionQuality$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetMotionQuality$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetMotionQuality",
+        constants$61.JPC_BodyInterface_GetMotionQuality$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetInverseInertia$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetInverseInertia$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetInverseInertia",
-        constants$61.JPC_Body_GetInverseInertia$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_AddImpulse$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_AddImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddImpulse",
-        constants$61.JPC_Body_AddImpulse$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_AddImpulseAtPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_AddImpulseAtPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddImpulseAtPosition",
-        constants$61.JPC_Body_AddImpulseAtPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_AddAngularImpulse$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_AddAngularImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddAngularImpulse",
-        constants$61.JPC_Body_AddAngularImpulse$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_MoveKinematic$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_Body_MoveKinematic$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_MoveKinematic",
-        constants$61.JPC_Body_MoveKinematic$FUNC
+    static final MethodHandle JPC_BodyInterface_GetInverseInertia$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetInverseInertia",
+        constants$61.JPC_BodyInterface_GetInverseInertia$FUNC
     );
 }
 

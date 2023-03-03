@@ -157,6 +157,8 @@ typedef uint32_t JPC_SubShapeID;
 typedef uint32_t JPC_CollisionGroupID;
 typedef uint32_t JPC_CollisionSubGroupID;
 
+typedef void * JPC_BodyInterfaceAddState;
+
 // Must be 16 byte aligned
 typedef void *(*JPC_AllocateFunction)(size_t in_size);
 typedef void (*JPC_FreeFunction)(void *in_block);
@@ -1544,8 +1546,38 @@ JPC_ConvexShape_GetDensity(const JPC_ConvexShape *in_shape);
 JPC_API JPC_Body *
 JPC_BodyInterface_CreateBody(JPC_BodyInterface *in_iface, const JPC_BodyCreationSettings *in_setting);
 
+JPC_API JPC_Body *
+JPC_BodyInterface_CreateBodyWithID(JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id,
+                                   const JPC_BodyCreationSettings *in_settings);
+
+JPC_API JPC_Body *
+JPC_BodyInterface_CreateBodyWithoutID(JPC_BodyInterface *in_iface,
+                                      const JPC_BodyCreationSettings *in_settings);
+
+JPC_API void
+JPC_BodyInterface_DestroyBodyWithoutID(JPC_BodyInterface *in_iface, JPC_Body *in_body);
+
+JPC_API bool
+JPC_BodyInterface_AssignNextBodyID(JPC_BodyInterface *in_iface, JPC_Body *in_body);
+
+JPC_API bool
+JPC_BodyInterface_AssignBodyID(JPC_BodyInterface *in_iface, JPC_Body *in_body, JPC_BodyID in_body_id);
+
+JPC_API JPC_Body *
+JPC_BodyInterface_UnassignBodyID(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_UnassignBodyIDs(JPC_BodyInterface *in_iface,
+                                  const JPC_BodyID *in_body_ids,
+                                  int in_number,
+                                  JPC_Body **out_bodies);
+
 JPC_API void
 JPC_BodyInterface_DestroyBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_DestroyBodies(JPC_BodyInterface *in_iface, const JPC_BodyID *in_body_ids, int in_number);
 
 JPC_API void
 JPC_BodyInterface_AddBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, JPC_Activation in_mode);
@@ -1553,12 +1585,155 @@ JPC_BodyInterface_AddBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, JP
 JPC_API void
 JPC_BodyInterface_RemoveBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
 
+JPC_API bool
+JPC_BodyInterface_IsAdded(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
 JPC_API JPC_BodyID
 JPC_BodyInterface_CreateAndAddBody(JPC_BodyInterface *in_iface,
                                    const JPC_BodyCreationSettings *in_settings,
                                    JPC_Activation in_mode);
+
+JPC_API JPC_BodyInterfaceAddState
+JPC_BodyInterface_AddBodiesPrepare(JPC_BodyInterface *in_iface,
+                                   JPC_BodyID *io_bodies,
+                                   int in_number);
+
+JPC_API void
+JPC_BodyInterface_AddBodiesFinalize(JPC_BodyInterface *in_iface,
+                                    JPC_BodyID *io_bodies,
+                                    int in_number,
+                                    JPC_BodyInterfaceAddState *in_add_state,
+                                    JPC_Activation in_activation_mode);
+
+JPC_API void
+JPC_BodyInterface_AddBodiesAbort(JPC_BodyInterface *in_iface,
+                                 JPC_BodyID *io_bodies,
+                                 int in_number,
+                                 JPC_BodyInterfaceAddState *in_add_state);
+
+JPC_API void
+JPC_BodyInterface_RemoveBodies(JPC_BodyInterface *in_iface,
+                               JPC_BodyID *io_bodies,
+                               int in_number);
+
+JPC_API void
+JPC_BodyInterface_ActivateBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_ActivateBodies(JPC_BodyInterface *in_iface,
+                                 const JPC_BodyID *in_body_ids,
+                                 int in_number);
+
+JPC_API void
+JPC_BodyInterface_DeactivateBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_DeactivateBodies(JPC_BodyInterface *in_iface,
+                                   const JPC_BodyID *in_body_ids,
+                                   int in_number);
+
 JPC_API bool
-JPC_BodyInterface_IsAdded(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+JPC_BodyInterface_IsActive(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
+// TODO constraint
+//JPC_API JPC_TwoBodyConstraint *
+//JPC_BodyInterface_CreateConstraint(JPC_BodyInterface *in_iface,
+//                                   const JPC_TwoBodyConstraintSettings *in_settings,
+//                                   JPC_BodyID in_body_id1,
+//                                   JPC_BodyID in_body_id2);
+//
+//JPC_API void
+//JPC_BodyInterface_ActivateConstraint(JPC_BodyInterface *in_iface,
+//                                     const JPC_TwoBodyConstraint *in_constraint);
+
+JPC_API const JPC_Shape *
+JPC_BodyInterface_GetShape(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_SetShape(const JPC_BodyInterface *in_iface,
+                           JPC_BodyID in_body_id,
+                           const JPC_Shape *in_shape,
+                           bool in_update_mass_properties,
+                           JPC_Activation in_activation_mode);
+
+JPC_API void
+JPC_BodyInterface_NotifyShapeChanged(const JPC_BodyInterface *in_iface,
+                                     JPC_BodyID in_body_id,
+                                     const float in_previous_center_of_mass[3],
+                                     bool in_update_mass_properties,
+                                     JPC_Activation in_activation_mode);
+
+JPC_API void
+JPC_BodyInterface_SetObjectLayer(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, JPC_ObjectLayer in_layer);
+
+JPC_API JPC_ObjectLayer
+JPC_BodyInterface_GetObjectLayer(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_SetPositionAndRotation(JPC_BodyInterface *in_iface,
+                                         JPC_BodyID in_body_id,
+                                         const JPC_Real in_position[3],
+                                         const float in_rotation[4],
+                                         JPC_Activation in_activation_mode);
+
+JPC_API void
+JPC_BodyInterface_SetPositionAndRotationWhenChanged(JPC_BodyInterface *in_iface,
+                                                    JPC_BodyID in_body_id,
+                                                    const JPC_Real in_position[3],
+                                                    const float in_rotation[4],
+                                                    JPC_Activation in_activation_mode);
+
+JPC_API void
+JPC_BodyInterface_GetPositionAndRotation(const JPC_BodyInterface *in_iface,
+                                         JPC_BodyID in_body_id,
+                                         JPC_Real out_position[3],
+                                         float out_rotation[4]);
+
+JPC_API void
+JPC_BodyInterface_SetPosition(JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              const JPC_Real in_position[3],
+                              JPC_Activation in_activation_mode);
+
+JPC_API void
+JPC_BodyInterface_GetPosition(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              JPC_Real out_position[3]);
+
+JPC_API void
+JPC_BodyInterface_GetCenterOfMassPosition(const JPC_BodyInterface *in_iface,
+                                          JPC_BodyID in_body_id,
+                                          JPC_Real out_position[3]);
+
+JPC_API void
+JPC_BodyInterface_SetRotation(JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              const float in_rotation[4],
+                              JPC_Activation in_activation_mode);
+
+JPC_API void
+JPC_BodyInterface_GetRotation(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              float out_rotation[4]);
+
+JPC_API void
+JPC_BodyInterface_GetWorldTransform(const JPC_BodyInterface *in_iface,
+                                    JPC_BodyID in_body_id,
+                                    float out_rotation[9],
+                                    JPC_Real out_translation[3]);
+
+JPC_API void
+JPC_BodyInterface_GetCenterOfMassTransform(const JPC_BodyInterface *in_iface,
+                                           JPC_BodyID in_body_id,
+                                           float out_rotation[9],
+                                           JPC_Real out_translation[3]);
+
+JPC_API void
+JPC_BodyInterface_MoveKinematic(JPC_BodyInterface *in_iface,
+                                JPC_BodyID in_body_id,
+                                const JPC_Real in_target_position[3],
+                                const float in_target_rotation[4],
+                                float in_delta_time);
 
 JPC_API void
 JPC_BodyInterface_SetLinearAndAngularVelocity(JPC_BodyInterface *in_iface,
@@ -1597,14 +1772,9 @@ JPC_BodyInterface_GetAngularVelocity(const JPC_BodyInterface *in_iface,
                                      float out_velocity[3]);
 JPC_API void
 JPC_BodyInterface_GetPointVelocity(const JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id,
                                    const JPC_Real in_point[3],
                                    float out_velocity[3]);
-JPC_API void
-JPC_BodyInterface_GetCenterOfMassPosition(const JPC_BodyInterface *in_iface,
-                                          JPC_BodyID in_body_id,
-                                          JPC_Real out_position[3]);
-JPC_API bool
-JPC_BodyInterface_IsActive(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id);
 
 JPC_API void
 JPC_BodyInterface_SetPositionRotationAndVelocity(JPC_BodyInterface *in_iface,
@@ -1613,6 +1783,7 @@ JPC_BodyInterface_SetPositionRotationAndVelocity(JPC_BodyInterface *in_iface,
                                                  const float in_rotation[4],
                                                  const float in_linear_velocity[3],
                                                  const float in_angular_velocity[3]);
+
 JPC_API void
 JPC_BodyInterface_AddForce(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, const float in_force[3]);
 
@@ -1639,6 +1810,75 @@ JPC_BodyInterface_AddImpulseAtPosition(JPC_BodyInterface *in_iface,
                                        const JPC_Real in_position[3]);
 JPC_API void
 JPC_BodyInterface_AddAngularImpulse(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, const float in_impulse[3]);
+
+JPC_API void
+JPC_BodyInterface_SetMotionType(JPC_BodyInterface *in_iface,
+                                JPC_BodyID in_body_id,
+                                JPC_MotionType in_motion_type,
+                                JPC_Activation in_activation_mode);
+
+JPC_API JPC_MotionType
+JPC_BodyInterface_GetMotionType(const JPC_BodyInterface *in_iface,
+                                JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_SetMotionQuality(JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id,
+                                   JPC_MotionQuality in_motion_quality);
+
+JPC_API JPC_MotionQuality
+JPC_BodyInterface_GetMotionQuality(const JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_GetInverseInertia(const JPC_BodyInterface *in_iface,
+                                    JPC_BodyID in_body_id,
+                                    float out_inverse_inertia[16]);
+
+JPC_API void
+JPC_BodyInterface_SetRestitution(JPC_BodyInterface *in_iface,
+                                 JPC_BodyID in_body_id,
+                                 float in_restitution);
+
+JPC_API float
+JPC_BodyInterface_GetRestitution(const JPC_BodyInterface *in_iface,
+                                 JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_SetFriction(JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              float in_friction);
+
+JPC_API float
+JPC_BodyInterface_GetFriction(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_SetGravityFactor(JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id,
+                                   float in_gravity_factor);
+
+JPC_API float
+JPC_BodyInterface_GetGravityFactor(const JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id);
+
+JPC_API void
+JPC_BodyInterface_GetTransformedShape(const JPC_BodyInterface *in_iface,
+                                      JPC_BodyID in_body_id,
+                                      JPC_TransformedShape *out_shape);
+
+JPC_API uint64_t
+JPC_BodyInterface_GetUserData(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id);
+
+JPC_API const JPC_PhysicsMaterial *
+JPC_BodyInterface_GetMaterial(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              JPC_SubShapeID in_sub_shape_id);
+
+JPC_API void
+JPC_BodyInterface_InvalidateContactCache(JPC_BodyInterface *in_iface,
+                                         JPC_BodyID in_body_id);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_Body

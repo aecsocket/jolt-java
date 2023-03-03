@@ -9,51 +9,48 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$64 {
 
-    static final FunctionDescriptor JPC_Body_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsStatic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetUserData",
-        constants$64.JPC_Body_GetUserData$FUNC
+    static final MethodHandle JPC_Body_IsStatic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsStatic",
+        constants$64.JPC_Body_IsStatic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_SetUserData$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetUserData",
-        constants$64.JPC_Body_SetUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetWorldSpaceSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsKinematic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetWorldSpaceSurfaceNormal$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetWorldSpaceSurfaceNormal",
-        constants$64.JPC_Body_GetWorldSpaceSurfaceNormal$FUNC
+    static final MethodHandle JPC_Body_IsKinematic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsKinematic",
+        constants$64.JPC_Body_IsKinematic$FUNC
     );
-    static final FunctionDescriptor JPC_BodyID_GetIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor JPC_Body_IsDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyID_GetIndex$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_GetIndex",
-        constants$64.JPC_BodyID_GetIndex$FUNC
+    static final MethodHandle JPC_Body_IsDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsDynamic",
+        constants$64.JPC_Body_IsDynamic$FUNC
     );
-    static final FunctionDescriptor JPC_BodyID_GetSequenceNumber$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor JPC_Body_CanBeKinematicOrDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyID_GetSequenceNumber$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_GetSequenceNumber",
-        constants$64.JPC_BodyID_GetSequenceNumber$FUNC
+    static final MethodHandle JPC_Body_CanBeKinematicOrDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_CanBeKinematicOrDynamic",
+        constants$64.JPC_Body_CanBeKinematicOrDynamic$FUNC
     );
-    static final FunctionDescriptor JPC_BodyID_IsInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor JPC_Body_SetIsSensor$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_BOOL$LAYOUT
     );
-    static final MethodHandle JPC_BodyID_IsInvalid$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_IsInvalid",
-        constants$64.JPC_BodyID_IsInvalid$FUNC
+    static final MethodHandle JPC_Body_SetIsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetIsSensor",
+        constants$64.JPC_Body_SetIsSensor$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_IsSensor$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsSensor",
+        constants$64.JPC_Body_IsSensor$FUNC
     );
 }
 

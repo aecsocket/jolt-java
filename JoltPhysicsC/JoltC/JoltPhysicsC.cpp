@@ -47,11 +47,16 @@ JPH_SUPPRESS_WARNINGS
 
 #define FN(name) static auto name
 
-FN(toJph)(JPC_BodyID in) { return JPH::BodyID(in); }
 FN(toJpc)(JPH::BodyID in) { return in.GetIndexAndSequenceNumber(); }
+FN(toJph)(JPC_BodyID in) { return JPH::BodyID(in); }
 
 FN(subShapeIDJph)(JPC_SubShapeID in) { auto r = JPH::SubShapeID(); r.SetValue(in); return r; }
 FN(subShapeIDJpc)(JPH::SubShapeID in) { return in.GetValue(); }
+
+FN(toJpc)(const JPH::BodyID *in) { assert(in); return reinterpret_cast<const JPC_BodyID *>(in); }
+FN(toJph)(const JPC_BodyID *in) { assert(in); return reinterpret_cast<const JPH::BodyID *>(in); }
+FN(toJpc)(JPH::BodyID *in) { assert(in); return reinterpret_cast<JPC_BodyID *>(in); }
+FN(toJph)(JPC_BodyID *in) { assert(in); return reinterpret_cast<JPH::BodyID *>(in); }
 
 FN(toJpc)(const JPH::Body *in) { assert(in); return reinterpret_cast<const JPC_Body *>(in); }
 FN(toJph)(const JPC_Body *in) { assert(in); return reinterpret_cast<const JPH::Body *>(in); }
@@ -358,12 +363,25 @@ FN(toJpc)(JPH::ContactSettings *in) {
 }
 
 FN(toJpc)(JPH::BroadPhaseLayer in) { return static_cast<JPC_BroadPhaseLayer>(in); }
+FN(broadPhaseLayerToJph)(JPC_BroadPhaseLayer in) { return static_cast<JPH::BroadPhaseLayer>(in); }
+
 FN(toJpc)(JPH::ObjectLayer in) { return static_cast<JPC_ObjectLayer>(in); }
+FN(objectLayerToJph)(JPC_ObjectLayer in) { return static_cast<JPH::ObjectLayer>(in); }
+
 FN(toJpc)(JPH::EShapeType in) { return static_cast<JPC_ShapeType>(in); }
+FN(shapeTypeToJph)(JPC_ShapeType in) { return static_cast<JPH::EShapeType>(in); }
+
 FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
+FN(shapeSubTypeToJph)(JPC_ShapeSubType in) { return static_cast<JPH::EShapeSubType>(in); }
+
 FN(toJpc)(JPH::EMotionType in) { return static_cast<JPC_MotionType>(in); }
+FN(motionTypeToJph)(JPC_MotionType in) { return static_cast<JPH::EMotionType>(in); }
+
 FN(toJpc)(JPH::EActivation in) { return static_cast<JPC_Activation>(in); }
+FN(activationToJph)(JPC_Activation in) { return static_cast<JPH::EActivation>(in); }
+
 FN(toJpc)(JPH::EMotionQuality in) { return static_cast<JPC_MotionQuality>(in); }
+FN(motionQualityToJph)(JPC_MotionQuality in) { return static_cast<JPH::EMotionQuality>(in); }
 
 #undef FN
 
@@ -372,18 +390,18 @@ static inline JPH::Vec3 loadVec3(const float in[3]) {
     return JPH::Vec3(*reinterpret_cast<const JPH::Float3 *>(in));
 }
 
+static inline JPH::DVec3 loadDVec3(const double in[3]) {
+    assert(in != nullptr);
+    return JPH::DVec3(*reinterpret_cast<const JPH::Double3 *>(in));
+}
+
 static inline JPH::RVec3 loadRVec3(const JPC_Real in[3]) {
     assert(in != nullptr);
 #if JPC_DOUBLE_PRECISION == 0
-    return JPH::Vec3(*reinterpret_cast<const JPH::Float3 *>(in));
+    return loadVec3(in);
 #else
-    return JPH::DVec3(in[0], in[1], in[2]);
+    return loadDVec3(in);
 #endif
-}
-
-static inline JPH::Quat loadQuat(const float in[4]) {
-    assert(in != nullptr);
-    return {in[0], in[1], in[2], in[3]};
 }
 
 static inline JPH::Vec4 loadVec4(const float in[4]) {
@@ -391,9 +409,43 @@ static inline JPH::Vec4 loadVec4(const float in[4]) {
     return JPH::Vec4::sLoadFloat4(reinterpret_cast<const JPH::Float4 *>(in));
 }
 
+static inline JPH::Quat loadQuat(const float in[4]) {
+    assert(in != nullptr);
+    return {in[0], in[1], in[2], in[3]};
+}
+
 static inline JPH::Mat44 loadMat44(const float in[16]) {
     assert(in != nullptr);
     return JPH::Mat44::sLoadFloat4x4(reinterpret_cast<const JPH::Float4 *>(in));
+}
+
+static inline JPH::Mat44 loadMat44(const float in_rotation[9], const float in_translation[3]) {
+    assert(in != nullptr);
+    JPH::Mat44 result{};
+    result.SetColumn3(0, loadVec3(&in_rotation[0]));
+    result.SetColumn3(1, loadVec3(&in_rotation[3]));
+    result.SetColumn3(2, loadVec3(&in_rotation[6]));
+    result.SetTranslation(loadVec3(in_translation));
+    return result;
+}
+
+static inline JPH::DMat44 loadDMat44(const float in_rotation[9], const double in_translation[3]) {
+    assert(in != nullptr);
+    JPH::DMat44 result{};
+    result.SetColumn3(0, loadVec3(&in_rotation[0]));
+    result.SetColumn3(1, loadVec3(&in_rotation[3]));
+    result.SetColumn3(2, loadVec3(&in_rotation[6]));
+    result.SetTranslation(loadDVec3(in_translation));
+    return result;
+}
+
+static inline JPH::RMat44 loadRMat44(const float in_rotation[9], const JPC_Real in_translation[3]) {
+    assert(in != nullptr);
+#if JPC_DOUBLE_PRECISION == 0
+    return loadMat44(in_rotation, in_translation);
+#else
+    return loadDMat44(in_rotation, in_translation);
+#endif
 }
 
 static inline void storeVec3(float out[3], JPH::Vec3Arg in) {
@@ -401,12 +453,16 @@ static inline void storeVec3(float out[3], JPH::Vec3Arg in) {
     in.StoreFloat3(reinterpret_cast<JPH::Float3 *>(out));
 }
 
-static inline void storeRVec3(JPC_Real out[3], JPH::RVec3Arg in) {
+static inline void storeDVec3(double out[3], JPH::DVec3Arg in) {
     assert(out != nullptr);
-#if JPC_DOUBLE_PRECISION == 0
-    in.StoreFloat3(reinterpret_cast<JPH::Float3 *>(out));
-#else
     in.StoreDouble3(reinterpret_cast<JPH::Double3 *>(out));
+}
+
+static inline void storeRVec3(JPC_Real out[3], JPH::RVec3Arg in) {
+#if JPC_DOUBLE_PRECISION == 0
+    storeVec3(out, in);
+#else
+    storeDVec3(out, in);
 #endif
 }
 
@@ -426,6 +482,30 @@ static inline void storeVec4(float out[4], JPH::Vec4Arg in) {
 static inline void storeMat44(float out[16], JPH::Mat44Arg in) {
     assert(out != nullptr);
     in.StoreFloat4x4(reinterpret_cast<JPH::Float4 *>(out));
+}
+
+static inline void storeMat44(float out_rotation[9], float out_translation[3], JPH::Mat44Arg in) {
+    assert(out != nullptr);
+    storeVec3(&out_rotation[0], in.GetColumn3(0));
+    storeVec3(&out_rotation[3], in.GetColumn3(1));
+    storeVec3(&out_rotation[6], in.GetColumn3(2));
+    storeVec3(out_translation, in.GetTranslation());
+}
+
+static inline void storeDMat44(float out_rotation[9], double out_translation[3], JPH::DMat44Arg in) {
+    assert(out != nullptr);
+    storeVec3(&out_rotation[0], in.GetColumn3(0));
+    storeVec3(&out_rotation[3], in.GetColumn3(1));
+    storeVec3(&out_rotation[6], in.GetColumn3(2));
+    storeDVec3(&out_translation[0], in.GetTranslation());
+}
+
+static inline void storeRMat44(float out_rotation[9], JPC_Real out_translation[3], JPH::RMat44Arg in) {
+#if JPC_DOUBLE_PRECISION == 0
+    storeMat44(out_rotation, out_translation, in);
+#else
+    storeDMat44(out_rotation, out_translation, in);
+#endif
 }
 
 #ifdef JPH_ENABLE_ASSERTS
@@ -2049,6 +2129,58 @@ JPC_BodyInterface_CreateBody(JPC_BodyInterface *in_iface, const JPC_BodyCreation
     return toJpc(toJph(in_iface)->CreateBody(*toJph(in_settings)));
 }
 //--------------------------------------------------------------------------------------------------
+JPC_API JPC_Body *
+JPC_BodyInterface_CreateBodyWithID(JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id,
+                                   const JPC_BodyCreationSettings *in_settings)
+{
+    return toJpc(toJph(in_iface)->CreateBodyWithID(toJph(in_body_id), *toJph(in_settings)));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_Body *
+JPC_BodyInterface_CreateBodyWithoutID(JPC_BodyInterface *in_iface,
+                                      const JPC_BodyCreationSettings *in_settings)
+{
+    return toJpc(toJph(in_iface)->CreateBodyWithoutID(*toJph(in_settings)));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_DestroyBodyWithoutID(JPC_BodyInterface *in_iface, JPC_Body *in_body)
+{
+    toJph(in_iface)->DestroyBodyWithoutID(toJph(in_body));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_BodyInterface_AssignNextBodyID(JPC_BodyInterface *in_iface, JPC_Body *in_body)
+{
+    return toJph(in_iface)->AssignBodyID(toJph(in_body));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_BodyInterface_AssignBodyID(JPC_BodyInterface *in_iface, JPC_Body *in_body, JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->AssignBodyID(toJph(in_body), toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_Body *
+JPC_BodyInterface_UnassignBodyID(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+{
+    return toJpc(toJph(in_iface)->UnassignBodyID(toJph(in_body_id)));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_UnassignBodyIDs(JPC_BodyInterface *in_iface,
+                                  const JPC_BodyID *in_body_ids,
+                                  int in_number,
+                                  JPC_Body **out_bodies)
+{
+    toJph(in_iface)->UnassignBodyIDs(
+            toJph(in_body_ids),
+            in_number,
+            reinterpret_cast<JPH::Body **>(out_bodies)
+    );
+}
+//--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BodyInterface_DestroyBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
 {
@@ -2056,15 +2188,27 @@ JPC_BodyInterface_DestroyBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
+JPC_BodyInterface_DestroyBodies(JPC_BodyInterface *in_iface, const JPC_BodyID *in_body_ids, int in_number)
+{
+    toJph(in_iface)->DestroyBodies(toJph(in_body_ids), in_number);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
 JPC_BodyInterface_AddBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, JPC_Activation in_mode)
 {
-    toJph(in_iface)->AddBody(toJph(in_body_id), static_cast<JPH::EActivation>(in_mode));
+    toJph(in_iface)->AddBody(toJph(in_body_id), activationToJph(in_mode));
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BodyInterface_RemoveBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
 {
     toJph(in_iface)->RemoveBody(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_BodyInterface_IsAdded(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->IsAdded(toJph(in_body_id));
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_BodyID
@@ -2076,10 +2220,241 @@ JPC_BodyInterface_CreateAndAddBody(JPC_BodyInterface *in_iface,
         static_cast<JPH::EActivation>(in_mode)));
 }
 //--------------------------------------------------------------------------------------------------
-JPC_API bool
-JPC_BodyInterface_IsAdded(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+JPC_API JPC_BodyInterfaceAddState
+JPC_BodyInterface_AddBodiesPrepare(JPC_BodyInterface *in_iface, JPC_BodyID *io_bodies, int in_number)
 {
-    return toJph(in_iface)->IsAdded(toJph(in_body_id));
+    return toJph(in_iface)->AddBodiesPrepare(toJph(io_bodies), in_number);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_AddBodiesFinalize(JPC_BodyInterface *in_iface,
+                                    JPC_BodyID *io_bodies,
+                                    int in_number,
+                                    JPC_BodyInterfaceAddState *in_add_state,
+                                    JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->AddBodiesFinalize(
+            toJph(io_bodies),
+            in_number,
+            in_add_state,
+            activationToJph(in_activation_mode)
+    );
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_AddBodiesAbort(JPC_BodyInterface *in_iface,
+                                 JPC_BodyID *io_bodies,
+                                 int in_number,
+                                 JPC_BodyInterfaceAddState *in_add_state)
+{
+    toJph(in_iface)->AddBodiesAbort(toJph(io_bodies), in_number, in_add_state);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_RemoveBodies(JPC_BodyInterface *in_iface,
+                               JPC_BodyID *io_bodies,
+                               int in_number)
+{
+    toJph(in_iface)->RemoveBodies(toJph(io_bodies), in_number);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_ActivateBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+{
+    toJph(in_iface)->ActivateBody(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_ActivateBodies(JPC_BodyInterface *in_iface,
+                                 const JPC_BodyID *in_body_ids,
+                                 int in_number)
+{
+    toJph(in_iface)->ActivateBodies(toJph(in_body_ids), in_number);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_DeactivateBody(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+{
+    toJph(in_iface)->DeactivateBody(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_BodyInterface_IsActive(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->IsActive(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_Shape *
+JPC_BodyInterface_GetShape(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+{
+    auto result = toJph(in_iface)->GetShape(toJph(in_body_id));
+    result->AddRef();
+    return toJpc(result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetShape(const JPC_BodyInterface *in_iface,
+                           JPC_BodyID in_body_id,
+                           const JPC_Shape *in_shape,
+                           bool in_update_mass_properties,
+                           JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->SetShape(
+            toJph(in_body_id),
+            toJph(in_shape),
+            in_update_mass_properties,
+            activationToJph(in_activation_mode)
+    );
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_NotifyShapeChanged(const JPC_BodyInterface *in_iface,
+                                     JPC_BodyID in_body_id,
+                                     const float in_previous_center_of_mass[3],
+                                     bool in_update_mass_properties,
+                                     JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->NotifyShapeChanged(
+            toJph(in_body_id),
+            loadVec3(in_previous_center_of_mass),
+            in_update_mass_properties,
+            activationToJph(in_activation_mode)
+    );
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetObjectLayer(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, JPC_ObjectLayer in_layer)
+{
+    toJph(in_iface)->SetObjectLayer(toJph(in_body_id), objectLayerToJph(in_layer));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ObjectLayer
+JPC_BodyInterface_GetObjectLayer(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->GetObjectLayer(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetPositionAndRotation(JPC_BodyInterface *in_iface,
+                                         JPC_BodyID in_body_id,
+                                         const JPC_Real in_position[3],
+                                         const float in_rotation[4],
+                                         JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->SetPositionAndRotation(
+            toJph(in_body_id),
+            loadRVec3(in_position),
+            loadQuat(in_rotation),
+            activationToJph(in_activation_mode)
+    );
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetPositionAndRotationWhenChanged(JPC_BodyInterface *in_iface,
+                                                    JPC_BodyID in_body_id,
+                                                    const JPC_Real in_position[3],
+                                                    const float in_rotation[4],
+                                                    JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->SetPositionAndRotationWhenChanged(
+            toJph(in_body_id),
+            loadRVec3(in_position),
+            loadQuat(in_rotation),
+            activationToJph(in_activation_mode)
+    );
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetPositionAndRotation(const JPC_BodyInterface *in_iface,
+                                         JPC_BodyID in_body_id,
+                                         JPC_Real out_position[3],
+                                         float out_rotation[4])
+{
+    JPH::RVec3 position;
+    JPH::Quat rotation;
+    toJph(in_iface)->GetPositionAndRotation(toJph(in_body_id), position, rotation);
+    storeRVec3(out_position, position);
+    storeQuat(out_rotation, rotation);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetPosition(JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              const JPC_Real in_position[3],
+                              JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->SetPosition(toJph(in_body_id), loadRVec3(in_position), activationToJph(in_activation_mode));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetPosition(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              JPC_Real out_position[3])
+{
+    auto result = toJph(in_iface)->GetPosition(toJph(in_body_id));
+    storeRVec3(out_position, result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetCenterOfMassPosition(const JPC_BodyInterface *in_iface,
+                                          JPC_BodyID in_body_id,
+                                          JPC_Real out_position[3])
+{
+    auto result = toJph(in_iface)->GetCenterOfMassPosition(toJph(in_body_id));
+    storeRVec3(out_position, result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetRotation(JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              const float in_rotation[4],
+                              JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->SetRotation(toJph(in_body_id), loadQuat(in_rotation), activationToJph(in_activation_mode));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetRotation(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              float out_rotation[4])
+{
+    auto result = toJph(in_iface)->GetRotation(toJph(in_body_id));
+    storeQuat(out_rotation, result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetWorldTransform(const JPC_BodyInterface *in_iface,
+                                    JPC_BodyID in_body_id,
+                                    float out_rotation[9],
+                                    JPC_Real out_translation[3])
+{
+    auto result = toJph(in_iface)->GetWorldTransform(toJph(in_body_id));
+    storeRMat44(out_rotation, out_translation, result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetCenterOfMassTransform(const JPC_BodyInterface *in_iface,
+                                           JPC_BodyID in_body_id,
+                                           float out_rotation[9],
+                                           JPC_Real out_translation[3])
+{
+    auto result = toJph(in_iface)->GetCenterOfMassTransform(toJph(in_body_id));
+    storeRMat44(out_rotation, out_translation, result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_MoveKinematic(JPC_BodyInterface *in_iface,
+                                JPC_BodyID in_body_id,
+                                const JPC_Real in_target_position[3],
+                                const float in_target_rotation[4],
+                                float in_delta_time)
+{
+    toJph(in_iface)->MoveKinematic(
+            toJph(in_body_id),
+            loadRVec3(in_target_position),
+            loadQuat(in_target_rotation),
+            in_delta_time
+    );
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -2164,20 +2539,6 @@ JPC_BodyInterface_GetPointVelocity(const JPC_BodyInterface *in_iface,
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
-JPC_BodyInterface_GetCenterOfMassPosition(const JPC_BodyInterface *in_iface,
-                                          JPC_BodyID in_body_id,
-                                          JPC_Real out_position[3])
-{
-    storeRVec3(out_position, toJph(in_iface)->GetCenterOfMassPosition(toJph(in_body_id)));
-}
-//--------------------------------------------------------------------------------------------------
-JPC_API bool
-JPC_BodyInterface_IsActive(const JPC_BodyInterface *in_iface, JPC_BodyID in_body_id)
-{
-    return toJph(in_iface)->IsActive(toJph(in_body_id));
-}
-//--------------------------------------------------------------------------------------------------
-JPC_API void
 JPC_BodyInterface_SetPositionRotationAndVelocity(JPC_BodyInterface *in_iface,
                                                  JPC_BodyID in_body_id,
                                                  const JPC_Real in_position[3],
@@ -2242,6 +2603,116 @@ JPC_API void
 JPC_BodyInterface_AddAngularImpulse(JPC_BodyInterface *in_iface, JPC_BodyID in_body_id, const float in_impulse[3])
 {
     toJph(in_iface)->AddAngularImpulse(toJph(in_body_id), loadVec3(in_impulse));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetMotionType(JPC_BodyInterface *in_iface,
+                                JPC_BodyID in_body_id,
+                                JPC_MotionType in_motion_type,
+                                JPC_Activation in_activation_mode)
+{
+    toJph(in_iface)->SetMotionType(
+            toJph(in_body_id), motionTypeToJph(in_motion_type), activationToJph(in_activation_mode));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_MotionType
+JPC_BodyInterface_GetMotionType(const JPC_BodyInterface *in_iface,
+                                JPC_BodyID in_body_id)
+{
+    return toJpc(toJph(in_iface)->GetMotionType(toJph(in_body_id)));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetMotionQuality(JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id,
+                                   JPC_MotionQuality in_motion_quality)
+{
+    toJph(in_iface)->SetMotionQuality(toJph(in_body_id), motionQualityToJph(in_motion_quality));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetInverseInertia(const JPC_BodyInterface *in_iface,
+                                    JPC_BodyID in_body_id,
+                                    float out_inverse_inertia[16])
+{
+    auto result = toJph(in_iface)->GetInverseInertia(toJph(in_body_id));
+    storeMat44(out_inverse_inertia, result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetRestitution(JPC_BodyInterface *in_iface,
+                                 JPC_BodyID in_body_id,
+                                 float in_restitution)
+{
+    toJph(in_iface)->SetRestitution(toJph(in_body_id), in_restitution);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_BodyInterface_GetRestitution(const JPC_BodyInterface *in_iface,
+                                 JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->GetRestitution(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetFriction(JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              float in_friction)
+{
+    toJph(in_iface)->SetFriction(toJph(in_body_id), in_friction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_BodyInterface_GetFriction(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->GetFriction(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_SetGravityFactor(JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id,
+                                   float in_gravity_factor)
+{
+    toJph(in_iface)->SetGravityFactor(toJph(in_body_id), in_gravity_factor);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_BodyInterface_GetGravityFactor(const JPC_BodyInterface *in_iface,
+                                   JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->GetGravityFactor(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_GetTransformedShape(const JPC_BodyInterface *in_iface,
+                                      JPC_BodyID in_body_id,
+                                      JPC_TransformedShape *out_shape)
+{
+    auto out = toJph(in_iface)->GetTransformedShape(toJph(in_body_id));
+    *out_shape = *toJpc(&out);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API uint64_t
+JPC_BodyInterface_GetUserData(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id)
+{
+    return toJph(in_iface)->GetUserData(toJph(in_body_id));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_PhysicsMaterial *
+JPC_BodyInterface_GetMaterial(const JPC_BodyInterface *in_iface,
+                              JPC_BodyID in_body_id,
+                              JPC_SubShapeID in_sub_shape_id)
+{
+    return toJpc(toJph(in_iface)->GetMaterial(toJph(in_body_id), subShapeIDJph(in_sub_shape_id)));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyInterface_InvalidateContactCache(JPC_BodyInterface *in_iface,
+                                         JPC_BodyID in_body_id)
+{
+    toJph(in_iface)->InvalidateContactCache(toJph(in_body_id));
 }
 //--------------------------------------------------------------------------------------------------
 //
