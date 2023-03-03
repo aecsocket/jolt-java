@@ -101,6 +101,16 @@ public final class FMat44 extends SegmentedJoltNative {
         read(m.address());
     }
 
+    public boolean equalValue(FVec3 v) {
+        float[] ours = components();
+        float[] theirs = v.components();
+        for (int i = 0; i < 16; i++) {
+            if (Float.compare(ours[i], theirs[i]) != 0)
+                return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         float[] values = components();

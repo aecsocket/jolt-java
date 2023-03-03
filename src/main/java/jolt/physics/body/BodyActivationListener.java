@@ -18,7 +18,7 @@ public final class BodyActivationListener extends AddressedJoltNative {
         return address == MemoryAddress.NULL ? null : new BodyActivationListener(address);
     }
 
-    public static BodyActivationListener of(MemorySession session, BodyActivationListenerFunctions impl) {
+    public static BodyActivationListener of(MemorySession session, BodyActivationListenerFn impl) {
         var vtable = JPC_BodyActivationListenerVTable.allocate(session);
         MemorySegment onBodyActivated = OnBodyActivated.allocate((v0, v1, v2) ->
                 impl.onBodyActivated(BodyIds.read(v1), v2), session);

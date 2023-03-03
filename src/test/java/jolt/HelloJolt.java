@@ -92,7 +92,7 @@ public final class HelloJolt {
                     objLayerPairFilter
             );
 
-            var bodyActivationListener = BodyActivationListener.of(session, new BodyActivationListenerFunctions() {
+            var bodyActivationListener = BodyActivationListener.of(session, new BodyActivationListenerFn() {
                 @Override
                 public void onBodyActivated(int bodyId, long bodyUserData) {
                     System.out.println("A body got activated");

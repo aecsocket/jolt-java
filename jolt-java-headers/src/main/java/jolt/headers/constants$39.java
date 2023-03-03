@@ -9,30 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$39 {
 
-    static final FunctionDescriptor JPC_TriangleShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_TriangleShapeSettings_SetConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_TriangleShapeSettings_SetConvexRadius",
-        constants$39.JPC_TriangleShapeSettings_SetConvexRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_CapsuleShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CapsuleShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShapeSettings_Create",
-        constants$39.JPC_CapsuleShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_CapsuleShapeSettings_GetHalfHeight$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CapsuleShapeSettings_GetHalfHeight$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShapeSettings_GetHalfHeight",
-        constants$39.JPC_CapsuleShapeSettings_GetHalfHeight$FUNC
-    );
     static final FunctionDescriptor JPC_CapsuleShapeSettings_SetHalfHeight$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -55,6 +31,31 @@ class constants$39 {
     static final MethodHandle JPC_CapsuleShapeSettings_SetRadius$MH = RuntimeHelper.downcallHandle(
         "JPC_CapsuleShapeSettings_SetRadius",
         constants$39.JPC_CapsuleShapeSettings_SetRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_Create",
+        constants$39.JPC_TaperedCapsuleShapeSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_GetHalfHeight$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_GetHalfHeight$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_GetHalfHeight",
+        constants$39.JPC_TaperedCapsuleShapeSettings_GetHalfHeight$FUNC
+    );
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_SetHalfHeight$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_SetHalfHeight$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_SetHalfHeight",
+        constants$39.JPC_TaperedCapsuleShapeSettings_SetHalfHeight$FUNC
     );
 }
 

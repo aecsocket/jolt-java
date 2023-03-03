@@ -9,29 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$44 {
 
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetScale",
-        constants$44.JPC_HeightFieldShapeSettings_GetScale$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetScale$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetScale",
-        constants$44.JPC_HeightFieldShapeSettings_SetScale$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBlockSize$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetBlockSize$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetBlockSize",
-        constants$44.JPC_HeightFieldShapeSettings_GetBlockSize$FUNC
-    );
     static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBlockSize$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -54,6 +31,32 @@ class constants$44 {
     static final MethodHandle JPC_HeightFieldShapeSettings_SetBitsPerSample$MH = RuntimeHelper.downcallHandle(
         "JPC_HeightFieldShapeSettings_SetBitsPerSample",
         constants$44.JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC
+    );
+    static final FunctionDescriptor JPC_MeshShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_Create",
+        constants$44.JPC_MeshShapeSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf",
+        constants$44.JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC
+    );
+    static final FunctionDescriptor JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf",
+        constants$44.JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC
     );
 }
 

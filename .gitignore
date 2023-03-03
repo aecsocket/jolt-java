@@ -137,3 +137,6 @@ build
 
 # CMake
 cmake-build-*/
+
+# JExtract (temp)
+jextract-19/

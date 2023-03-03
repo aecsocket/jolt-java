@@ -9,32 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$38 {
 
-    static final FunctionDescriptor JPC_SphereShapeSettings_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShapeSettings_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShapeSettings_GetRadius",
-        constants$38.JPC_SphereShapeSettings_GetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_SphereShapeSettings_SetRadius$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShapeSettings_SetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShapeSettings_SetRadius",
-        constants$38.JPC_SphereShapeSettings_SetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_TriangleShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_TriangleShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_TriangleShapeSettings_Create",
-        constants$38.JPC_TriangleShapeSettings_Create$FUNC
-    );
     static final FunctionDescriptor JPC_TriangleShapeSettings_SetVertices$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -61,6 +35,30 @@ class constants$38 {
     static final MethodHandle JPC_TriangleShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
         "JPC_TriangleShapeSettings_GetConvexRadius",
         constants$38.JPC_TriangleShapeSettings_GetConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_TriangleShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_TriangleShapeSettings_SetConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_TriangleShapeSettings_SetConvexRadius",
+        constants$38.JPC_TriangleShapeSettings_SetConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_CapsuleShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CapsuleShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_CapsuleShapeSettings_Create",
+        constants$38.JPC_CapsuleShapeSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_CapsuleShapeSettings_GetHalfHeight$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CapsuleShapeSettings_GetHalfHeight$MH = RuntimeHelper.downcallHandle(
+        "JPC_CapsuleShapeSettings_GetHalfHeight",
+        constants$38.JPC_CapsuleShapeSettings_GetHalfHeight$FUNC
     );
 }
 

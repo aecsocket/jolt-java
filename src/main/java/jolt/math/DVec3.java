@@ -69,6 +69,16 @@ public final class DVec3 extends SegmentedJoltNative {
         read(v.address());
     }
 
+    public boolean equalValue(DVec3 v) {
+        double[] ours = components();
+        double[] theirs = v.components();
+        for (int i = 0; i < 3; i++) {
+            if (Double.compare(ours[i], theirs[i]) != 0)
+                return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "(%f, %f, %f)".formatted(getX(), getY(), getZ());

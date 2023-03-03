@@ -5,6 +5,8 @@ import jolt.math.FVec3;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 final class Utils {
     private Utils() {}
 
@@ -23,14 +25,14 @@ final class Utils {
     static final long J1 = RANDOM.nextLong();
     static final long J2 = RANDOM.nextLong();
 
-    static final FVec3 FVEC3_1 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_2 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_3 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_4 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_5 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_6 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_7 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_8 = new FVec3(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_1 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_2 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_3 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_4 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_5 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_6 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_7 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_8 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
 
     static void setUpAll() {
         Jolt.load();
@@ -42,5 +44,21 @@ final class Utils {
 
     static void tearDownAll() {
         Jolt.destroyFactory();
+    }
+
+    static void assertEqualValue(FVec3 expected, FVec3 actual) {
+        assertTrue(expected.equalValue(actual));
+    }
+
+    static void assertEqualValue(DVec3 expected, DVec3 actual) {
+        assertTrue(expected.equalValue(actual));
+    }
+
+    static void assertEqualValue(FMat44 expected, FMat44 actual) {
+        assertTrue(expected.equalValue(actual));
+    }
+
+    static void assertEqualValue(DMat44 expected, DMat44 actual) {
+        assertTrue(expected.equalValue(actual));
     }
 }

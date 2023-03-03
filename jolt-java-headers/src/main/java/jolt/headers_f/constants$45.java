@@ -9,32 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$45 {
 
-    static final FunctionDescriptor JPC_MeshShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_Create",
-        constants$45.JPC_MeshShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf",
-        constants$45.JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC
-    );
-    static final FunctionDescriptor JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf",
-        constants$45.JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC
-    );
     static final FunctionDescriptor JPC_MeshShapeSettings_Sanitize$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -55,6 +29,27 @@ class constants$45 {
     static final MethodHandle JPC_Shape_Release$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_Release",
         constants$45.JPC_Shape_Release$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetRefCount$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetRefCount",
+        constants$45.JPC_Shape_GetRefCount$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetType",
+        constants$45.JPC_Shape_GetType$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetSubType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetSubType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetSubType",
+        constants$45.JPC_Shape_GetSubType$FUNC
     );
 }
 

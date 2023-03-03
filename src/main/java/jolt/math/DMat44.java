@@ -101,6 +101,16 @@ public final class DMat44 extends SegmentedJoltNative {
         read(m.address());
     }
 
+    public boolean equalValue(DMat44 v) {
+        double[] ours = components();
+        double[] theirs = v.components();
+        for (int i = 0; i < 16; i++) {
+            if (Double.compare(ours[i], theirs[i]) != 0)
+                return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         double[] values = components();

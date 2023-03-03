@@ -604,7 +604,7 @@ typedef struct JPC_RayCastBodyCollectorVTable
     void
     (*Reset)(const JPC_RayCastBodyCollector *in_self);
 
-    // Optional, can be NULL.
+    // Required, *cannot* be NULL.
     void
     (*OnBody)(const JPC_RayCastBodyCollector *in_self, JPC_Body in_body);
 
@@ -1369,16 +1369,17 @@ JPC_Shape_MustBeStatic(const JPC_Shape *in_shape);
 JPC_API void
 JPC_Shape_GetCenterOfMass(const JPC_Shape *in_shape, float out_center_of_mass[3]);
 
-JPC_API JPC_AABox
-JPC_Shape_GetLocalBounds(const JPC_Shape *in_shape);
+JPC_API void
+JPC_Shape_GetLocalBounds(const JPC_Shape *in_shape, JPC_AABox *out_local_bounds);
 
 JPC_API uint32_t
 JPC_Shape_GetSubShapeIDBitsRecursive(const JPC_Shape *in_shape);
 
-JPC_API JPC_AABox
+JPC_API void
 JPC_Shape_GetWorldSpaceBounds(const JPC_Shape *in_shape,
                               const float in_center_of_mass_transform[16],
-                              const float in_scale[3]);
+                              const float in_scale[3],
+                              JPC_AABox *out_world_space_bounds);
 
 JPC_API float
 JPC_Shape_GetInnerRadius(const JPC_Shape *in_shape);

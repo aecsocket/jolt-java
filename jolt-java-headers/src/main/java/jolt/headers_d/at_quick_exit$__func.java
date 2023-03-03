@@ -11,7 +11,7 @@ public interface at_quick_exit$__func {
 
     void apply();
     static MemorySegment allocate(at_quick_exit$__func fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(at_quick_exit$__func.class, fi, constants$11.at_quick_exit$__func$FUNC, session);
+        return RuntimeHelper.upcallStub(at_quick_exit$__func.class, fi, constants$10.at_quick_exit$__func$FUNC, session);
     }
     static at_quick_exit$__func ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);

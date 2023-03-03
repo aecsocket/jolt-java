@@ -69,6 +69,16 @@ public final class FVec3 extends SegmentedJoltNative {
         read(v.address());
     }
 
+    public boolean equalValue(FVec3 v) {
+        float[] ours = components();
+        float[] theirs = v.components();
+        for (int i = 0; i < 3; i++) {
+            if (Float.compare(ours[i], theirs[i]) != 0)
+                return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "(%f, %f, %f)".formatted(getX(), getY(), getZ());

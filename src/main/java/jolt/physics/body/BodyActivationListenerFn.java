@@ -1,6 +1,6 @@
 package jolt.physics.body;
 
-public interface BodyActivationListenerFunctions {
+public interface BodyActivationListenerFn {
     void onBodyActivated(int bodyId, long bodyUserData);
 
     void onBodyDeactivated(int bodyId, long bodyUserData);

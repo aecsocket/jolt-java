@@ -9,19 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$19 {
 
-    static final FunctionDescriptor JPC_FreeFunction$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_FreeFunction$MH = RuntimeHelper.downcallHandle(
-        constants$19.JPC_FreeFunction$FUNC
-    );
-    static final FunctionDescriptor JPC_AlignedAllocateFunction$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle JPC_AlignedAllocateFunction$MH = RuntimeHelper.downcallHandle(
-        constants$19.JPC_AlignedAllocateFunction$FUNC
-    );
     static final FunctionDescriptor JPC_AlignedFreeFunction$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -32,6 +19,26 @@ class constants$19 {
     static final MethodHandle JPC_RegisterDefaultAllocator$MH = RuntimeHelper.downcallHandle(
         "JPC_RegisterDefaultAllocator",
         constants$19.JPC_RegisterDefaultAllocator$FUNC
+    );
+    static final FunctionDescriptor JPC_RegisterCustomAllocator$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RegisterCustomAllocator$MH = RuntimeHelper.downcallHandle(
+        "JPC_RegisterCustomAllocator",
+        constants$19.JPC_RegisterCustomAllocator$FUNC
+    );
+    static final FunctionDescriptor JPC_CreateFactory$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle JPC_CreateFactory$MH = RuntimeHelper.downcallHandle(
+        "JPC_CreateFactory",
+        constants$19.JPC_CreateFactory$FUNC
+    );
+    static final FunctionDescriptor JPC_DestroyFactory$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle JPC_DestroyFactory$MH = RuntimeHelper.downcallHandle(
+        "JPC_DestroyFactory",
+        constants$19.JPC_DestroyFactory$FUNC
     );
 }
 

@@ -25,6 +25,12 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
                 : jolt.headers_f.JPC_TransformedShape.ofAddress(ptr.address(), session));
     }
 
+    public static TransformedShape create(MemorySession session) {
+        return Jolt.doublePrecision()
+                ? new D(jolt.headers_d.JPC_TransformedShape.allocate(session))
+                : new F(jolt.headers_f.JPC_TransformedShape.allocate(session));
+    }
+
     private TransformedShape(MemorySegment segment) {
         super(segment);
     }
@@ -41,23 +47,15 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
 
     public abstract FVec3 getShapePositionCOMF();
 
-    public abstract void setShapePositionCOMF(FVec3 shapePositionCOM);
-
     public abstract DVec3 getShapePositionCOMD();
 
-    public abstract void setShapePositionCOMD(DVec3 shapePositionCOM);
-
     public abstract Quat getShapeRotation();
-
-    public abstract void setShapeRotation(Quat shapeRotation);
 
     public abstract Shape getShape();
 
     public abstract void setShape(Shape shape);
 
     public abstract FVec3 getShapeScale();
-
-    public abstract void setShapeScale(FVec3 shapeScale);
 
     public abstract int getBodyId();
 
@@ -76,28 +74,13 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
         }
         
         @Override
-        public void setShapePositionCOMF(FVec3 shapePositionCOM) {
-            shapePositionCOM.write(jolt.headers_f.JPC_TransformedShape.shape_position_com$slice(segment));
-        }
-        
-        @Override
         public DVec3 getShapePositionCOMD() {
-            throw Jolt.tryingDoublePrecision();
-        }
-        
-        @Override
-        public void setShapePositionCOMD(DVec3 shapePositionCOM) {
             throw Jolt.tryingDoublePrecision();
         }
         
         @Override
         public Quat getShapeRotation() {
             return Quat.at(jolt.headers_f.JPC_TransformedShape.shape_rotation$slice(segment));
-        }
-        
-        @Override
-        public void setShapeRotation(Quat shapeRotation) {
-            shapeRotation.write(jolt.headers_f.JPC_TransformedShape.shape_rotation$slice(segment));
         }
         
         @Override
@@ -113,11 +96,6 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
         @Override
         public FVec3 getShapeScale() {
             return FVec3.at(jolt.headers_f.JPC_TransformedShape.shape_scale$slice(segment));
-        }
-        
-        @Override
-        public void setShapeScale(FVec3 shapeScale) {
-            shapeScale.write(jolt.headers_f.JPC_TransformedShape.shape_scale$slice(segment));
         }
         
         @Override
@@ -142,28 +120,13 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
         }
 
         @Override
-        public void setShapePositionCOMF(FVec3 shapePositionCOM) {
-            throw Jolt.tryingSinglePrecision();
-        }
-
-        @Override
         public DVec3 getShapePositionCOMD() {
             return DVec3.at(jolt.headers_d.JPC_TransformedShape.shape_position_com$slice(segment));
         }
 
         @Override
-        public void setShapePositionCOMD(DVec3 shapePositionCOM) {
-            shapePositionCOM.write(jolt.headers_d.JPC_TransformedShape.shape_position_com$slice(segment));
-        }
-
-        @Override
         public Quat getShapeRotation() {
             return Quat.at(jolt.headers_d.JPC_TransformedShape.shape_rotation$slice(segment));
-        }
-
-        @Override
-        public void setShapeRotation(Quat shapeRotation) {
-            shapeRotation.write(jolt.headers_d.JPC_TransformedShape.shape_rotation$slice(segment));
         }
 
         @Override
@@ -179,11 +142,6 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
         @Override
         public FVec3 getShapeScale() {
             return FVec3.at(jolt.headers_d.JPC_TransformedShape.shape_scale$slice(segment));
-        }
-
-        @Override
-        public void setShapeScale(FVec3 shapeScale) {
-            shapeScale.write(jolt.headers_d.JPC_TransformedShape.shape_scale$slice(segment));
         }
 
         @Override

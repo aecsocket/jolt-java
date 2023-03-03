@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static jolt.Utils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-final class TestShapeSettings {
+final class TestShapeSettings extends MemoriedTest {
     @BeforeAll
     static void beforeAll() {
         setUpAll();
@@ -18,6 +18,16 @@ final class TestShapeSettings {
     @AfterAll
     static void afterAll() {
         tearDownAll();
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        setUpMemory();
+    }
+
+    @AfterEach
+    void afterEach() {
+        tearDownMemory();
     }
 
     private void shape(ShapeSettings obj) {
@@ -47,11 +57,11 @@ final class TestShapeSettings {
     @Test
     void box() {
         Jolt.use(BoxShapeSettings.create(FVEC3_1, F1), obj -> {
-            assertEquals(FVEC3_1, obj.getHalfExtent());
+            assertEqualValue(FVEC3_1, obj.getHalfExtent());
             assertEquals(F1, obj.getConvexRadius());
 
             obj.setHalfExtent(FVEC3_2);
-            assertEquals(FVEC3_2, obj.getHalfExtent());
+            assertEqualValue(FVEC3_2, obj.getHalfExtent());
             obj.setConvexRadius(F2);
             assertEquals(F2, obj.getConvexRadius());
 
@@ -62,17 +72,19 @@ final class TestShapeSettings {
     @Test
     void triangle() {
         Jolt.use(TriangleShapeSettings.create(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
-            var vertices = obj.getVertices();
-            assertEquals(FVEC3_1, vertices.v1());
-            assertEquals(FVEC3_2, vertices.v2());
-            assertEquals(FVEC3_3, vertices.v3());
-            assertEquals(F1, obj.getConvexRadius());
+            FVec3 v1 = FVec3.create(session);
+            FVec3 v2 = FVec3.create(session);
+            FVec3 v3 = FVec3.create(session);
+            obj.getVertices(v1, v2, v3);
+            assertEqualValue(FVEC3_1, v1);
+            assertEqualValue(FVEC3_2, v2);
+            assertEqualValue(FVEC3_3, v3);
 
             obj.setVertices(FVEC3_4, FVEC3_5, FVEC3_6);
-            vertices = obj.getVertices();
-            assertEquals(FVEC3_4, vertices.v1());
-            assertEquals(FVEC3_5, vertices.v2());
-            assertEquals(FVEC3_6, vertices.v3());
+            obj.getVertices(v1, v2, v3);
+            assertEqualValue(FVEC3_4, v1);
+            assertEqualValue(FVEC3_5, v2);
+            assertEqualValue(FVEC3_6, v3);
             obj.setConvexRadius(F2);
             assertEquals(F2, obj.getConvexRadius());
 

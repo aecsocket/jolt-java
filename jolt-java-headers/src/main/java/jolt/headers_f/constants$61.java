@@ -9,33 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$61 {
 
-    static final FunctionDescriptor JPC_Body_GetCenterOfMassTransform$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetCenterOfMassTransform$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCenterOfMassTransform",
-        constants$61.JPC_Body_GetCenterOfMassTransform$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetInverseCenterOfMassTransform$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetInverseCenterOfMassTransform$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetInverseCenterOfMassTransform",
-        constants$61.JPC_Body_GetInverseCenterOfMassTransform$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetWorldSpaceBounds",
-        constants$61.JPC_Body_GetWorldSpaceBounds$FUNC
-    );
     static final FunctionDescriptor JPC_Body_GetMotionProperties$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -57,6 +30,30 @@ class constants$61 {
     static final MethodHandle JPC_Body_SetUserData$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_SetUserData",
         constants$61.JPC_Body_SetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetWorldSpaceSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetWorldSpaceSurfaceNormal$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetWorldSpaceSurfaceNormal",
+        constants$61.JPC_Body_GetWorldSpaceSurfaceNormal$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyID_GetIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyID_GetIndex$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyID_GetIndex",
+        constants$61.JPC_BodyID_GetIndex$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyID_GetSequenceNumber$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyID_GetSequenceNumber$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyID_GetSequenceNumber",
+        constants$61.JPC_BodyID_GetSequenceNumber$FUNC
     );
 }
 

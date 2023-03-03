@@ -78,7 +78,7 @@ public sealed class Shape extends DestroyableJoltNative
     }
 
     public void getSurfaceNormal(int subShapeId, FVec3 localSurfacePosition, FVec3 out) {
-        JPC_Shape_GetSurfaceNormal(address, subShapeId, localSurfacePosition.address(), out);
+        JPC_Shape_GetSurfaceNormal(address, subShapeId, localSurfacePosition.address(), out.address());
     }
 
     // TODO getSupportingFace

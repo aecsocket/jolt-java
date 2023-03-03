@@ -270,11 +270,6 @@ FN(toJpc)(const JPH::RayCastSettings *in) { assert(in); return reinterpret_cast<
 FN(toJph)(JPC_RayCastSettings *in) { assert(in); return reinterpret_cast<JPH::RayCastSettings *>(in); }
 FN(toJpc)(JPH::RayCastSettings *in) { assert(in); return reinterpret_cast<JPC_RayCastSettings *>(in); }
 
-FN(toJph)(const JPC_AABox *in) { assert(in); return reinterpret_cast<const JPH::AABox *>(in); }
-FN(toJpc)(const JPH::AABox *in) { assert(in); return reinterpret_cast<const JPC_AABox *>(in); }
-FN(toJph)(JPC_AABox *in) { assert(in); return reinterpret_cast<JPH::AABox *>(in); }
-FN(toJpc)(JPH::AABox *in) { assert(in); return reinterpret_cast<JPC_AABox *>(in); }
-
 FN(toJpc)(const JPH::TransformedShape *in) { assert(in); return reinterpret_cast<const JPC_TransformedShape *>(in); }
 FN(toJph)(const JPC_TransformedShape *in) { assert(in); return reinterpret_cast<const JPH::TransformedShape *>(in); }
 FN(toJpc)(JPH::TransformedShape *in) { assert(in); return reinterpret_cast<JPC_TransformedShape *>(in); }
@@ -423,29 +418,14 @@ static inline void storeMat44(float out[16], JPH::Mat44Arg in) {
     in.StoreFloat4x4(reinterpret_cast<JPH::Float4 *>(out));
 }
 
-static inline void storeAABox(JPC_AABox out, const JPH::AABox in) {
-    storeVec3(out.min, in.mMin);
-    storeVec3(out.max, in.mMax);
+static inline void storeAABox(JPC_AABox *out, const JPH::AABox in) {
+    storeVec3(out->min, in.mMin);
+    storeVec3(out->max, in.mMax);
 }
 
-static inline void storeOrientedBox(JPC_OrientedBox out, const JPH::OrientedBox in) {
-    storeMat44(out.orientation, in.mOrientation);
-    storeVec3(out.half_extents, in.mHalfExtents);
-}
-
-static inline void storeRayCast(JPC_RayCast out, const JPH::RayCast in) {
-    storeVec3(out.origin, in.mOrigin);
-    storeVec3(out.direction, in.mDirection);
-}
-
-static inline void storeRRayCast(JPC_RRayCast out, const JPH::RRayCast in) {
-    storeRVec3(out.origin, in.mOrigin);
-    storeVec3(out.direction, in.mDirection);
-}
-
-static inline void storeAABoxCast(JPC_AABoxCast out, const JPH::AABoxCast in) {
-    storeAABox(out.box, in.mBox);
-    storeVec3(out.direction, in.mDirection);
+static inline void storeOrientedBox(JPC_OrientedBox *out, const JPH::OrientedBox in) {
+    storeMat44(out->orientation, in.mOrientation);
+    storeVec3(out->half_extent, in.mHalfExtents);
 }
 
 #ifdef JPH_ENABLE_ASSERTS
@@ -1847,11 +1827,10 @@ JPC_Shape_GetCenterOfMass(const JPC_Shape *in_shape, float out_center_of_mass[3]
     storeVec3(out_center_of_mass, toJph(in_shape)->GetCenterOfMass());
 }
 //--------------------------------------------------------------------------------------------------
-JPC_API JPC_AABox
-JPC_Shape_GetLocalBounds(const JPC_Shape *in_shape)
+JPC_API void
+JPC_Shape_GetLocalBounds(const JPC_Shape *in_shape, JPC_AABox *out_local_bounds)
 {
-    auto result = toJph(in_shape)->GetLocalBounds();
-    return *toJpc(&result);
+    storeAABox(out_local_bounds, toJph(in_shape)->GetLocalBounds());
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API uint32_t
@@ -1860,16 +1839,16 @@ JPC_Shape_GetSubShapeIDBitsRecursive(const JPC_Shape *in_shape)
     return toJph(in_shape)->GetSubShapeIDBitsRecursive();
 }
 //--------------------------------------------------------------------------------------------------
-JPC_API JPC_AABox
+JPC_API void
 JPC_Shape_GetWorldSpaceBounds(const JPC_Shape *in_shape,
                               const float in_center_of_mass_transform[16],
-                              const float in_scale[3])
+                              const float in_scale[3],
+                              JPC_AABox *out_world_space_bounds)
 {
-    auto result = toJph(in_shape)->GetWorldSpaceBounds(
+    storeAABox(out_world_space_bounds, toJph(in_shape)->GetWorldSpaceBounds(
             loadMat44(in_center_of_mass_transform),
             loadVec3(in_scale)
-    );
-    return *toJpc(&result);
+    ));
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API float

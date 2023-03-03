@@ -9,28 +9,6 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$9 {
 
-    static final FunctionDescriptor arc4random_uniform$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle arc4random_uniform$MH = RuntimeHelper.downcallHandle(
-        "arc4random_uniform",
-        constants$9.arc4random_uniform$FUNC
-    );
-    static final FunctionDescriptor malloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle malloc$MH = RuntimeHelper.downcallHandle(
-        "malloc",
-        constants$9.malloc$FUNC
-    );
-    static final FunctionDescriptor calloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle calloc$MH = RuntimeHelper.downcallHandle(
-        "calloc",
-        constants$9.calloc$FUNC
-    );
     static final FunctionDescriptor realloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
@@ -38,13 +16,6 @@ class constants$9 {
     static final MethodHandle realloc$MH = RuntimeHelper.downcallHandle(
         "realloc",
         constants$9.realloc$FUNC
-    );
-    static final FunctionDescriptor free$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle free$MH = RuntimeHelper.downcallHandle(
-        "free",
-        constants$9.free$FUNC
     );
     static final FunctionDescriptor reallocarray$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -54,6 +25,36 @@ class constants$9 {
     static final MethodHandle reallocarray$MH = RuntimeHelper.downcallHandle(
         "reallocarray",
         constants$9.reallocarray$FUNC
+    );
+    static final FunctionDescriptor free$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle free$MH = RuntimeHelper.downcallHandle(
+        "free",
+        constants$9.free$FUNC
+    );
+    static final FunctionDescriptor alloca$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle alloca$MH = RuntimeHelper.downcallHandle(
+        "alloca",
+        constants$9.alloca$FUNC
+    );
+    static final FunctionDescriptor valloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle valloc$MH = RuntimeHelper.downcallHandle(
+        "valloc",
+        constants$9.valloc$FUNC
+    );
+    static final FunctionDescriptor posix_memalign$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle posix_memalign$MH = RuntimeHelper.downcallHandle(
+        "posix_memalign",
+        constants$9.posix_memalign$FUNC
     );
 }
 
