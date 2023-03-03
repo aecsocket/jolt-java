@@ -4,18 +4,14 @@ import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 
 public abstract class SegmentedJoltNative implements JoltNative {
-    protected final MemorySegment segment;
+    protected final MemorySegment handle;
 
-    public SegmentedJoltNative(MemorySegment segment) {
-        this.segment = segment;
-    }
-
-    public MemorySegment getMemorySegment() {
-        return segment;
+    protected SegmentedJoltNative(MemorySegment handle) {
+        this.handle = handle;
     }
 
     @Override
     public MemoryAddress address() {
-        return segment.address();
+        return handle.address();
     }
 }

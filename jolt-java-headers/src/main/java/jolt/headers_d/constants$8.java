@@ -42,20 +42,18 @@ class constants$8 {
         "lcong48_r",
         constants$8.lcong48_r$FUNC
     );
-    static final FunctionDescriptor malloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor arc4random$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle arc4random$MH = RuntimeHelper.downcallHandle(
+        "arc4random",
+        constants$8.arc4random$FUNC
+    );
+    static final FunctionDescriptor arc4random_buf$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle malloc$MH = RuntimeHelper.downcallHandle(
-        "malloc",
-        constants$8.malloc$FUNC
-    );
-    static final FunctionDescriptor calloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle calloc$MH = RuntimeHelper.downcallHandle(
-        "calloc",
-        constants$8.calloc$FUNC
+    static final MethodHandle arc4random_buf$MH = RuntimeHelper.downcallHandle(
+        "arc4random_buf",
+        constants$8.arc4random_buf$FUNC
     );
 }
 

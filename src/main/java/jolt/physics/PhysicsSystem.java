@@ -14,18 +14,22 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 
 import javax.annotation.Nullable;
 
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class PhysicsSystem extends DestroyableJoltNative {
-    public static PhysicsSystem at(Addressable ptr) {
-        var address = ptr.address();
-        return address == MemoryAddress.NULL ? null : new PhysicsSystem(address);
+    // START Jolt-Pointer
+    private PhysicsSystem(MemoryAddress handle) {
+        super(handle);
     }
 
-    public static PhysicsSystem create(
+    public static PhysicsSystem at(MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new PhysicsSystem(addr);
+    }
+    // END Jolt-Pointer
+
+    public static PhysicsSystem of(
             int maxBodies,
             int numBodyMutexes,
             int maxBodyPairs,
@@ -34,7 +38,7 @@ public final class PhysicsSystem extends DestroyableJoltNative {
             ObjectVsBroadPhaseLayerFilter objectVsBroadPhaseLayerFilter,
             ObjectLayerPairFilter objectLayerPairFilter
     ) {
-        var address = JPC_PhysicsSystem_Create(
+        return new PhysicsSystem(JPC_PhysicsSystem_Create(
                 maxBodies,
                 numBodyMutexes,
                 maxBodyPairs,
@@ -42,55 +46,55 @@ public final class PhysicsSystem extends DestroyableJoltNative {
                 broadPhaseLayerInterface.address(),
                 objectVsBroadPhaseLayerFilter.address(),
                 objectLayerPairFilter.address()
-        );
-        return new PhysicsSystem(address);
-    }
-
-    private PhysicsSystem(MemoryAddress address) {
-        super(address);
+        ));
     }
 
     @Override
     protected void destroyInternal() {
-        JPC_PhysicsSystem_Destroy(address);
+        JPC_PhysicsSystem_Destroy(handle);
     }
 
     public void setBodyActivationListener(@Nullable BodyActivationListener listener) {
-        JPC_PhysicsSystem_SetBodyActivationListener(address, Jolt.ptr(listener));
+        JPC_PhysicsSystem_SetBodyActivationListener(handle, Jolt.ptr(listener));
     }
 
     public @Nullable BodyActivationListener getBodyActivationListener() {
-        return BodyActivationListener.at(JPC_PhysicsSystem_GetBodyActivationListener(address));
+        return BodyActivationListener.at(JPC_PhysicsSystem_GetBodyActivationListener(handle));
     }
 
     public void setContactListener(@Nullable ContactListener listener) {
-        JPC_PhysicsSystem_SetContactListener(address, Jolt.ptr(listener));
+        JPC_PhysicsSystem_SetContactListener(handle, Jolt.ptr(listener));
     }
 
     public @Nullable ContactListener getContactListener() {
-        return ContactListener.at(JPC_PhysicsSystem_GetContactListener(address));
+        return ContactListener.at(JPC_PhysicsSystem_GetContactListener(handle));
     }
 
     // TODO setCombineFriction
     // TODO setCombineRestitution
 
-    // TODO setPhysicsSettings
-    // TODO getPhysicsSettings
+    public void setPhysicsSettings(PhysicsSettings settings) {
+        JPC_PhysicsSystem_SetPhysicsSettings(handle, settings.address());
+    }
+
+    public void getPhysicsSettings(PhysicsSettings out) {
+        JPC_PhysicsSystem_GetPhysicsSettings(handle, out.address());
+    }
 
     public BodyInterface getBodyInterface() {
-        return BodyInterface.at(JPC_PhysicsSystem_GetBodyInterface(address));
+        return BodyInterface.at(JPC_PhysicsSystem_GetBodyInterface(handle));
     }
 
     public BodyInterface getBodyInterfaceNoLock() {
-        return BodyInterface.at(JPC_PhysicsSystem_GetBodyInterfaceNoLock(address));
+        return BodyInterface.at(JPC_PhysicsSystem_GetBodyInterfaceNoLock(handle));
     }
 
     public BroadPhaseQuery getBroadPhaseQuery() {
-        return BroadPhaseQuery.at(JPC_PhysicsSystem_GetBroadPhaseQuery(address));
+        return BroadPhaseQuery.at(JPC_PhysicsSystem_GetBroadPhaseQuery(handle));
     }
 
     public void optimizeBroadPhase() {
-        JPC_PhysicsSystem_OptimizeBroadPhase(address);
+        JPC_PhysicsSystem_OptimizeBroadPhase(handle);
     }
 
     public void update(
@@ -100,7 +104,7 @@ public final class PhysicsSystem extends DestroyableJoltNative {
             TempAllocator tempAllocator,
             JobSystem jobSystem
     ) {
-        JPC_PhysicsSystem_Update(address,
+        JPC_PhysicsSystem_Update(handle,
                 deltaTime,
                 collisionSteps,
                 integrationSubSteps,

@@ -9,52 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$23 {
 
-    static final FunctionDescriptor JPC_MotionProperties_SetGravityFactor$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_MotionProperties_ClampAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_ClampAngularVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_ClampAngularVelocity",
+        constants$23.JPC_MotionProperties_ClampAngularVelocity$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_GetLinearDamping$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetLinearDamping$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetLinearDamping",
+        constants$23.JPC_MotionProperties_GetLinearDamping$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_SetLinearDamping$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_SetGravityFactor$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetGravityFactor",
-        constants$23.JPC_MotionProperties_SetGravityFactor$FUNC
+    static final MethodHandle JPC_MotionProperties_SetLinearDamping$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_SetLinearDamping",
+        constants$23.JPC_MotionProperties_SetLinearDamping$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_SetMassProperties$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_MotionProperties_GetAngularDamping$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_SetMassProperties$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetMassProperties",
-        constants$23.JPC_MotionProperties_SetMassProperties$FUNC
+    static final MethodHandle JPC_MotionProperties_GetAngularDamping$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetAngularDamping",
+        constants$23.JPC_MotionProperties_GetAngularDamping$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_GetInverseMass$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetInverseMass$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetInverseMass",
-        constants$23.JPC_MotionProperties_GetInverseMass$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_SetInverseMass$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_MotionProperties_SetAngularDamping$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_SetInverseMass$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetInverseMass",
-        constants$23.JPC_MotionProperties_SetInverseMass$FUNC
+    static final MethodHandle JPC_MotionProperties_SetAngularDamping$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_SetAngularDamping",
+        constants$23.JPC_MotionProperties_SetAngularDamping$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_GetInverseInertiaDiagonal$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_MotionProperties_GetGravityFactor$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_GetInverseInertiaDiagonal$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetInverseInertiaDiagonal",
-        constants$23.JPC_MotionProperties_GetInverseInertiaDiagonal$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetInertiaRotation$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetInertiaRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetInertiaRotation",
-        constants$23.JPC_MotionProperties_GetInertiaRotation$FUNC
+    static final MethodHandle JPC_MotionProperties_GetGravityFactor$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetGravityFactor",
+        constants$23.JPC_MotionProperties_GetGravityFactor$FUNC
     );
 }
 

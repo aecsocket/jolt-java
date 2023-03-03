@@ -2,9 +2,7 @@ package jolt;
 
 import jolt.math.FVec3;
 import jolt.physics.collision.shape.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static jolt.Utils.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,7 +42,7 @@ final class TestShapeSettings extends MemoriedTest {
 
     @Test
     void sphere() {
-        Jolt.use(SphereShapeSettings.create(F1), obj -> {
+        Jolt.use(SphereShapeSettings.of(F1), obj -> {
             assertEquals(F1, obj.getRadius());
 
             obj.setRadius(F2);
@@ -56,12 +54,15 @@ final class TestShapeSettings extends MemoriedTest {
 
     @Test
     void box() {
-        Jolt.use(BoxShapeSettings.create(FVEC3_1, F1), obj -> {
-            assertEqualValue(FVEC3_1, obj.getHalfExtent());
+        Jolt.use(BoxShapeSettings.of(FVEC3_1, F1), obj -> {
+            FVec3 halfExtent = FVec3.of(session);
+            obj.getHalfExtent(halfExtent);
+            assertEqualValue(FVEC3_1, halfExtent);
             assertEquals(F1, obj.getConvexRadius());
 
             obj.setHalfExtent(FVEC3_2);
-            assertEqualValue(FVEC3_2, obj.getHalfExtent());
+            obj.getHalfExtent(halfExtent);
+            assertEqualValue(FVEC3_2, halfExtent);
             obj.setConvexRadius(F2);
             assertEquals(F2, obj.getConvexRadius());
 
@@ -71,10 +72,10 @@ final class TestShapeSettings extends MemoriedTest {
 
     @Test
     void triangle() {
-        Jolt.use(TriangleShapeSettings.create(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
-            FVec3 v1 = FVec3.create(session);
-            FVec3 v2 = FVec3.create(session);
-            FVec3 v3 = FVec3.create(session);
+        Jolt.use(TriangleShapeSettings.of(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
+            FVec3 v1 = FVec3.of(session);
+            FVec3 v2 = FVec3.of(session);
+            FVec3 v3 = FVec3.of(session);
             obj.getVertices(v1, v2, v3);
             assertEqualValue(FVEC3_1, v1);
             assertEqualValue(FVEC3_2, v2);
@@ -94,7 +95,7 @@ final class TestShapeSettings extends MemoriedTest {
 
     @Test
     void capsule() {
-        Jolt.use(CapsuleShapeSettings.create(F1, F2), obj -> {
+        Jolt.use(CapsuleShapeSettings.of(F1, F2), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
 
@@ -109,7 +110,7 @@ final class TestShapeSettings extends MemoriedTest {
 
     @Test
     void taperedCapsule() {
-        Jolt.use(TaperedCapsuleShapeSettings.create(F1, F2, F3), obj -> {
+        Jolt.use(TaperedCapsuleShapeSettings.of(F1, F2, F3), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getTopRadius());
             assertEquals(F3, obj.getBottomRadius());
@@ -127,7 +128,7 @@ final class TestShapeSettings extends MemoriedTest {
 
     @Test
     void cylinder() {
-        Jolt.use(CylinderShapeSettings.create(F1, F2, F3), obj -> {
+        Jolt.use(CylinderShapeSettings.of(F1, F2, F3), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
             assertEquals(F3, obj.getConvexRadius());
@@ -145,7 +146,7 @@ final class TestShapeSettings extends MemoriedTest {
 
     @Test
     void convexHull() {
-        Jolt.use(ConvexHullShapeSettings.create(new FVec3[] { FVEC3_1, FVEC3_2, FVEC3_3, FVEC3_4 }, F1), obj -> {
+        Jolt.use(ConvexHullShapeSettings.of(new FVec3[] { FVEC3_1, FVEC3_2, FVEC3_3, FVEC3_4 }, F1), obj -> {
             // TODO test point access
             assertEquals(F1, obj.getMaxConvexRadius());
 

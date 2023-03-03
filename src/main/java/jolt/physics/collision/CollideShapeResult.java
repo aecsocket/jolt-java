@@ -1,99 +1,84 @@
 package jolt.physics.collision;
 
 import jolt.SegmentedJoltNative;
-import jolt.headers.JPC_CollideShapeResult;
 import jolt.math.FVec3;
-import jolt.physics.collision.shape.SubShapeIdPair;
 
-import java.lang.foreign.Addressable;
-import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.MemorySession;
+import java.lang.foreign.*;
 
 import static jolt.headers.JPC_CollideShapeResult.*;
+import static jolt.headers.JoltPhysicsC.*;
 
 public final class CollideShapeResult extends SegmentedJoltNative {
+    // START Jolt-Value
+    private CollideShapeResult(MemorySegment handle) {
+        super(handle);
+    }
+
     public static CollideShapeResult at(MemorySegment segment) {
         return new CollideShapeResult(segment);
     }
 
-    public static CollideShapeResult at(MemorySession session, Addressable ptr) {
-        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
+    public static CollideShapeResult at(MemorySession alloc, MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new CollideShapeResult(ofAddress(addr, alloc));
     }
 
-    public static CollideShapeResult allocate(MemorySession session) {
-        return new CollideShapeResult(JPC_CollideShapeResult.allocate(session));
+    public static CollideShapeResult of(SegmentAllocator alloc) {
+        return new CollideShapeResult(allocate(alloc));
     }
-
-    private CollideShapeResult(MemorySegment segment) {
-        super(segment);
-    }
+    // END Jolt-Value
 
     public FVec3 getContactPointOn1() {
-        return FVec3.at(shape1_contact_point$slice(segment));
+        return FVec3.at(shape1_contact_point$slice(handle));
     }
 
     public FVec3 getContactPointOn2() {
-        return FVec3.at(shape2_contact_point$slice(segment));
+        return FVec3.at(shape2_contact_point$slice(handle));
     }
 
     public FVec3 getPenetrationAxis() {
-        return FVec3.at(penetration_axis$slice(segment));
+        return FVec3.at(penetration_axis$slice(handle));
     }
 
     public float getPenetrationDepth() {
-        return penetration_depth$get(segment);
+        return penetration_depth$get(handle);
     }
 
     public void setPenetrationDepth(float penetrationDepth) {
-        penetration_depth$set(segment, penetrationDepth);
+        penetration_depth$set(handle, penetrationDepth);
     }
 
     public int getSubShapeId1() {
-        return shape1_sub_shape_id$get(segment);
+        return shape1_sub_shape_id$get(handle);
     }
 
     public void setSubShapeId1(int subShapeId1) {
-        shape1_sub_shape_id$set(segment, subShapeId1);
+        shape1_sub_shape_id$set(handle, subShapeId1);
     }
 
     public int getSubShapeId2() {
-        return shape2_sub_shape_id$get(segment);
+        return shape2_sub_shape_id$get(handle);
     }
 
     public void setSubShapeId2(int subShapeId2) {
-        shape2_sub_shape_id$set(segment, subShapeId2);
+        shape2_sub_shape_id$set(handle, subShapeId2);
     }
 
     public int getBodyId2() {
-        return body2_id$get(segment);
+        return body2_id$get(handle);
     }
 
     public void setBodyId2(int bodyId2) {
-        body2_id$set(segment, bodyId2);
+        body2_id$set(handle, bodyId2);
     }
 
     // TODO getShape1Face
     // TODO getShape2Face
 
     public float getEarlyOutFraction() {
-        return -getPenetrationDepth();
+        return JPC_CollideShapeResult_GetEarlyOutFraction(address());
     }
 
-    public CollideShapeResult reversed(MemorySession session) {
-        var result = allocate(session);
-        result.getContactPointOn2().set(getContactPointOn1());
-        result.getContactPointOn1().set(getContactPointOn2());
-        try (var s = MemorySession.openConfined()) {
-            var penetrationAxis = getPenetrationAxis();
-            result.getPenetrationAxis().set(FVec3.create(s, -penetrationAxis.getX(), -penetrationAxis.getY(), -penetrationAxis.getZ()));
-        }
-        result.setPenetrationDepth(getPenetrationDepth());
-        result.setSubShapeId2(getSubShapeId1());
-        result.setSubShapeId1(getSubShapeId2());
-        result.setBodyId2(getBodyId2());
-        // TODO setShape2Face
-        // TODO setShape1Face
-        return result;
+    public void reversed(CollideShapeResult out) {
+        JPC_CollideShapeResult_Reversed(address(), out.address());
     }
 }

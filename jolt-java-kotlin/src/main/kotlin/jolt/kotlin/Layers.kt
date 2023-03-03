@@ -20,4 +20,4 @@ fun BodyCreationSettings(
     rotation: Quat,
     motionType: MotionType,
     layer: ObjectLayer
-) = BodyCreationSettings.create(session, shape, position, rotation, motionType, layer.layer)
+) = BodyCreationSettings.of(session, shape, position, rotation, motionType, layer.layer)

@@ -37,8 +37,8 @@ public final class HelloJolt {
         Jolt.registerTypes();
 
         try (var session = MemorySession.openConfined()) {
-            var tempAllocator = new TempAllocator(10 * 1024 * 1024);
-            var jobSystem = new JobSystem(
+            var tempAllocator = TempAllocator.of(10 * 1024 * 1024);
+            var jobSystem = JobSystem.of(
                     JobSystem.MAX_PHYSICS_JOBS,
                     JobSystem.MAX_PHYSICS_BARRIERS,
                     Math.min(16, Math.max(1, Runtime.getRuntime().availableProcessors() - 1))
@@ -82,7 +82,7 @@ public final class HelloJolt {
                 }
             });
 
-            var physicsSystem = PhysicsSystem.create(
+            var physicsSystem = PhysicsSystem.of(
                     1024,
                     0,
                     1024,
@@ -156,43 +156,43 @@ public final class HelloJolt {
 
             // Destroyable classes do not implement AutoCloseable due to excessive "try-with-resources" warnings
             // use Jolt.use instead
-            Shape floorShape = Jolt.use(BoxShapeSettings.create(
-                    FVec3.create(session, 100.0f, 1.0f, 100.0f)
+            Shape floorShape = Jolt.use(BoxShapeSettings.of(
+                    FVec3.of(session, 100.0f, 1.0f, 100.0f)
             ), floorShapeSettings -> {
                 return floorShapeSettings.create();
             });
 
             var floorSettings = doublePrecision
-                    ? BodyCreationSettings.create(session,
+                    ? BodyCreationSettings.of(session,
                             floorShape,
-                            DVec3.create(session, 0.0, -1.0, 0.0),
-                            Quat.createIdentity(session),
+                            DVec3.of(session, 0.0, -1.0, 0.0),
+                            Quat.ofIdentity(session),
                             MotionType.STATIC, OBJ_LAYER_NON_MOVING
-                    ) : BodyCreationSettings.create(session,
+                    ) : BodyCreationSettings.of(session,
                             floorShape,
-                            FVec3.create(session, 0.0f, -1.0f, 0.0f),
-                            Quat.createIdentity(session),
+                            FVec3.of(session, 0.0f, -1.0f, 0.0f),
+                            Quat.ofIdentity(session),
                             MotionType.STATIC, OBJ_LAYER_NON_MOVING
                     );
             Body floor = bodyInterface.createBody(floorSettings);
             bodyInterface.addBody(floor.getID(), Activation.DONT_ACTIVATE);
 
             var sphereSettings = doublePrecision
-                    ? BodyCreationSettings.create(session,
-                            SphereShape.create(0.5f),
-                            DVec3.create(session, 0.0, 2.0, 0.0),
-                            Quat.createIdentity(session),
+                    ? BodyCreationSettings.of(session,
+                            SphereShape.of(0.5f),
+                            DVec3.of(session, 0.0, 2.0, 0.0),
+                            Quat.ofIdentity(session),
                             MotionType.DYNAMIC, OBJ_LAYER_MOVING
-                    ) : BodyCreationSettings.create(session,
-                            SphereShape.create(0.5f),
-                            FVec3.create(session, 0.0f, 2.0f, 0.0f),
-                            Quat.createIdentity(session),
+                    ) : BodyCreationSettings.of(session,
+                            SphereShape.of(0.5f),
+                            FVec3.of(session, 0.0f, 2.0f, 0.0f),
+                            Quat.ofIdentity(session),
                             MotionType.DYNAMIC, OBJ_LAYER_MOVING
                     );
 
             int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
-            bodyInterface.setLinearVelocity(sphereId, FVec3.create(session, 0.0f, -5.0f, 0.0f));
+            bodyInterface.setLinearVelocity(sphereId, FVec3.of(session, 0.0f, -5.0f, 0.0f));
 
             var deltaTime = 1 / 60.0f;
 
@@ -204,15 +204,15 @@ public final class HelloJolt {
 
                 Object position;
                 if (doublePrecision) {
-                    DVec3 out = DVec3.create(session);
+                    DVec3 out = DVec3.of(session);
                     bodyInterface.getCenterOfMassPosition(sphereId, out);
                     position = out;
                 } else {
-                    FVec3 out = FVec3.create(session);
+                    FVec3 out = FVec3.of(session);
                     bodyInterface.getCenterOfMassPosition(sphereId, out);
                     position = out;
                 }
-                FVec3 velocity = FVec3.create(session);
+                FVec3 velocity = FVec3.of(session);
                 bodyInterface.getLinearVelocity(sphereId, velocity);
 
                 System.out.println("Step " + step + ": Position = " + position + ", Velocity = " + velocity);

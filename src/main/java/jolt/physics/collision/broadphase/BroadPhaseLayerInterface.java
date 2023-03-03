@@ -10,26 +10,27 @@ import static jolt.headers.JPC_BroadPhaseLayerInterfaceVTable.*;
 import static jolt.headers.JPJ_BroadPhaseLayerInterface.*;
 
 public final class BroadPhaseLayerInterface extends AddressedJoltNative {
-    public static BroadPhaseLayerInterface at(Addressable ptr) {
-        var address = ptr.address();
-        return address == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(address);
+    // START Jolt-Pointer
+    private BroadPhaseLayerInterface(MemoryAddress handle) {
+        super(handle);
     }
 
-    public static BroadPhaseLayerInterface of(MemorySession session, BroadPhaseLayerInterfaceFn impl) {
-        var vtable = JPC_BroadPhaseLayerInterfaceVTable.allocate(session);
+    public static BroadPhaseLayerInterface at(MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(addr);
+    }
+    // END Jolt-Pointer
+
+    public static BroadPhaseLayerInterface of(MemorySession arena, BroadPhaseLayerInterfaceFn impl) {
+        var vtable = JPC_BroadPhaseLayerInterfaceVTable.allocate(arena);
         MemorySegment getNumBroadPhaseLayers = GetNumBroadPhaseLayers.allocate((v0) ->
-                impl.getNumBroadPhaseLayers(), session);
+                impl.getNumBroadPhaseLayers(), arena);
         GetNumBroadPhaseLayers$set(vtable, getNumBroadPhaseLayers.address());
         MemorySegment getBroadPhaseLayer = GetBroadPhaseLayer.allocate((v0, v1) ->
-                impl.getBroadPhaseLayer(v1), session);
+                impl.getBroadPhaseLayer(v1), arena);
         GetBroadPhaseLayer$set(vtable, getBroadPhaseLayer.address());
 
-        var segment = JPJ_BroadPhaseLayerInterface.allocate(session);
+        var segment = JPJ_BroadPhaseLayerInterface.allocate(arena);
         vtable$set(segment, vtable.address());
         return new BroadPhaseLayerInterface(segment.address());
-    }
-
-    private BroadPhaseLayerInterface(MemoryAddress address) {
-        super(address);
     }
 }

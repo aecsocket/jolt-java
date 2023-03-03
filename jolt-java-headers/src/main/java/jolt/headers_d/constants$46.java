@@ -9,50 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$46 {
 
-    static final FunctionDescriptor JPC_Shape_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetUserData",
-        constants$46.JPC_Shape_GetUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_SetUserData$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_SetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_SetUserData",
-        constants$46.JPC_Shape_SetUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_MustBeStatic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_MustBeStatic$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_MustBeStatic",
-        constants$46.JPC_Shape_MustBeStatic$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetCenterOfMass$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetOffset$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetCenterOfMass$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetCenterOfMass",
-        constants$46.JPC_Shape_GetCenterOfMass$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetOffset$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetOffset",
+        constants$46.JPC_HeightFieldShapeSettings_GetOffset$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetLocalBounds$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetOffset$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetLocalBounds$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetLocalBounds",
-        constants$46.JPC_Shape_GetLocalBounds$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_SetOffset$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_SetOffset",
+        constants$46.JPC_HeightFieldShapeSettings_SetOffset$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetSubShapeIDBitsRecursive$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetSubShapeIDBitsRecursive$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSubShapeIDBitsRecursive",
-        constants$46.JPC_Shape_GetSubShapeIDBitsRecursive$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetScale",
+        constants$46.JPC_HeightFieldShapeSettings_GetScale$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetScale$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_SetScale$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_SetScale",
+        constants$46.JPC_HeightFieldShapeSettings_SetScale$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBlockSize$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetBlockSize$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetBlockSize",
+        constants$46.JPC_HeightFieldShapeSettings_GetBlockSize$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBlockSize$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_SetBlockSize$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_SetBlockSize",
+        constants$46.JPC_HeightFieldShapeSettings_SetBlockSize$FUNC
     );
 }
 

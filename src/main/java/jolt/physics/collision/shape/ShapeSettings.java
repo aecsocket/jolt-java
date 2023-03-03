@@ -9,30 +9,31 @@ import static jolt.headers.JoltPhysicsC.*;
 
 public sealed class ShapeSettings extends DestroyableJoltNative
         permits ConvexShapeSettings {
-    public static ShapeSettings at(Addressable ptr) {
-        var address = ptr.address();
-        return address == MemoryAddress.NULL ? null : new ShapeSettings(address);
+    // START Jolt-Pointer-Protected
+    protected ShapeSettings(MemoryAddress handle) {
+        super(handle);
     }
 
-    protected ShapeSettings(MemoryAddress address) {
-        super(address);
+    public static ShapeSettings at(MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new ShapeSettings(addr);
     }
+    // END Jolt-Pointer-Protected
 
     @Override
     protected void destroyInternal() {
-        JPC_ShapeSettings_Release(address);
+        JPC_ShapeSettings_Release(handle);
     }
 
     public long getUserData() {
-        return JPC_ShapeSettings_GetUserData(address);
+        return JPC_ShapeSettings_GetUserData(handle);
     }
 
     public void setUserData(long userData) {
-        JPC_ShapeSettings_SetUserData(address, userData);
+        JPC_ShapeSettings_SetUserData(handle, userData);
     }
 
     public Shape create() {
-        var result = JPC_ShapeSettings_CreateShape(address);
+        var result = JPC_ShapeSettings_CreateShape(handle);
         if (result == null)
             throw new RuntimeException("Could not create shape");
         return Shape.at(result);

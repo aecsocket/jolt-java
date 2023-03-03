@@ -1,14 +1,13 @@
 package jolt;
 
+import jolt.math.FVec3;
 import jolt.physics.collision.shape.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static jolt.Utils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-final class TestShape {
+final class TestShape extends MemoriedTest {
     @BeforeAll
     static void beforeAll() {
         setUpAll();
@@ -17,6 +16,16 @@ final class TestShape {
     @AfterAll
     static void afterAll() {
         tearDownAll();
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        setUpMemory();
+    }
+
+    @AfterEach
+    void afterEach() {
+        tearDownMemory();
     }
 
     private void shape(Shape obj) {
@@ -33,7 +42,7 @@ final class TestShape {
 
     @Test
     void sphere() {
-        Jolt.use(SphereShape.create(F1), obj -> {
+        Jolt.use(SphereShape.of(F1), obj -> {
             assertEquals(F1, obj.getRadius());
 
             convex(obj);
@@ -42,8 +51,10 @@ final class TestShape {
 
     @Test
     void box() {
-        Jolt.use(BoxShape.create(FVEC3_1, F1), obj -> {
-            assertEquals(FVEC3_1, obj.getHalfExtent());
+        Jolt.use(BoxShape.of(FVEC3_1, F1), obj -> {
+            FVec3 halfExtent = FVec3.of(session);
+            obj.getHalfExtent(halfExtent);
+            assertEqualValue(FVEC3_1, halfExtent);
 
             convex(obj);
         });
@@ -51,7 +62,7 @@ final class TestShape {
 
     @Test
     void triangle() {
-        Jolt.use(TriangleShape.create(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
+        Jolt.use(TriangleShape.of(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
             assertEquals(F1, obj.getConvexRadius());
 
             convex(obj);
@@ -60,7 +71,7 @@ final class TestShape {
 
     @Test
     void capsule() {
-        Jolt.use(CapsuleShape.create(F1, F2), obj -> {
+        Jolt.use(CapsuleShape.of(F1, F2), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
 
@@ -75,7 +86,7 @@ final class TestShape {
 
     @Test
     void cylinder() {
-        Jolt.use(CylinderShape.create(F1, F2, F3), obj -> {
+        Jolt.use(CylinderShape.of(F1, F2, F3), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
 

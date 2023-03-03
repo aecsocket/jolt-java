@@ -1,7 +1,11 @@
 package jolt;
 
+import jolt.math.DMat44;
+import jolt.math.DVec3;
+import jolt.math.FMat44;
 import jolt.math.FVec3;
 
+import java.lang.foreign.MemorySession;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,14 +29,14 @@ final class Utils {
     static final long J1 = RANDOM.nextLong();
     static final long J2 = RANDOM.nextLong();
 
-    static final FVec3 FVEC3_1 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_2 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_3 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_4 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_5 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_6 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_7 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
-    static final FVec3 FVEC3_8 = FVec3.create(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_1 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_2 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_3 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_4 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_5 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_6 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_7 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
+    static final FVec3 FVEC3_8 = FVec3.of(MemorySession.global(), RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat());
 
     static void setUpAll() {
         Jolt.load();

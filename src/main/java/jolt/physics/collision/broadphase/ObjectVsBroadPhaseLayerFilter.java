@@ -1,6 +1,7 @@
 package jolt.physics.collision.broadphase;
 
 import jolt.AddressedJoltNative;
+import jolt.SegmentedJoltNative;
 import jolt.headers.JPC_ObjectVsBroadPhaseLayerFilterVTable;
 import jolt.headers.JPJ_ObjectVsBroadPhaseLayerFilter;
 
@@ -12,22 +13,33 @@ import static jolt.headers.JPC_ObjectVsBroadPhaseLayerFilterVTable.*;
 import static jolt.headers.JPJ_ObjectVsBroadPhaseLayerFilter.*;
 
 public final class ObjectVsBroadPhaseLayerFilter extends AddressedJoltNative {
-    public static ObjectVsBroadPhaseLayerFilter at(MemoryAddress address) {
-        return address.address() == MemoryAddress.NULL ? null : new ObjectVsBroadPhaseLayerFilter(address);
+    // START Jolt-Pointer
+    private ObjectVsBroadPhaseLayerFilter(MemoryAddress handle) {
+        super(handle);
     }
 
-    public static ObjectVsBroadPhaseLayerFilter of(MemorySession session, ObjectVsBroadPhaseLayerFilterFn impl) {
-        var vtable = JPC_ObjectVsBroadPhaseLayerFilterVTable.allocate(session);
+    public static ObjectVsBroadPhaseLayerFilter at(MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new ObjectVsBroadPhaseLayerFilter(addr);
+    }
+    // END Jolt-Pointer
+
+    public static ObjectVsBroadPhaseLayerFilter of(MemorySession arena, ObjectVsBroadPhaseLayerFilterFn impl) {
+        var vtable = JPC_ObjectVsBroadPhaseLayerFilterVTable.allocate(arena);
         MemorySegment shouldCollide = ShouldCollide.allocate((v0, v1, v2) ->
-                impl.shouldCollide(v1, v2), session);
+                impl.shouldCollide(v1, v2), arena);
         ShouldCollide$set(vtable, shouldCollide.address());
 
-        var segment = JPJ_ObjectVsBroadPhaseLayerFilter.allocate(session);
+        var segment = JPJ_ObjectVsBroadPhaseLayerFilter.allocate(arena);
         vtable$set(segment, vtable.address());
         return new ObjectVsBroadPhaseLayerFilter(segment.address());
     }
 
-    private ObjectVsBroadPhaseLayerFilter(MemoryAddress address) {
-        super(address);
+    private static ObjectVsBroadPhaseLayerFilter passthrough;
+
+    public static ObjectVsBroadPhaseLayerFilter passthrough() {
+        if (passthrough == null) {
+            passthrough = ObjectVsBroadPhaseLayerFilter.of(MemorySession.global(), (a, b) -> true);
+        }
+        return passthrough;
     }
 }

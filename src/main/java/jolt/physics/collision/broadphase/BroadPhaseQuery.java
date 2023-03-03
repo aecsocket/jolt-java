@@ -1,7 +1,6 @@
 package jolt.physics.collision.broadphase;
 
 import jolt.AddressedJoltNative;
-import jolt.Jolt;
 import jolt.geometry.AABox;
 import jolt.geometry.AABoxCast;
 import jolt.geometry.OrientedBox;
@@ -9,21 +8,20 @@ import jolt.math.FVec3;
 import jolt.physics.collision.FRayCast;
 import jolt.physics.collision.ObjectLayerFilter;
 
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class BroadPhaseQuery extends AddressedJoltNative {
-    public static BroadPhaseQuery at(Addressable ptr) {
-        var address = ptr.address();
-        return address == MemoryAddress.NULL ? null : new BroadPhaseQuery(address);
+    // START Jolt-Pointer
+    private BroadPhaseQuery(MemoryAddress handle) {
+        super(handle);
     }
 
-    private BroadPhaseQuery(MemoryAddress address) {
-        super(address);
+    public static BroadPhaseQuery at(MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new BroadPhaseQuery(addr);
     }
+    // END Jolt-Pointer
 
     public void castRay(
             FRayCast ray,
@@ -31,7 +29,7 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        JPC_BroadPhaseQuery_CastRay(address,
+        JPC_BroadPhaseQuery_CastRay(handle,
                 ray.address(),
                 collector.address(),
                 broadPhaseLayerFilter.address(),
@@ -45,7 +43,7 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        JPC_BroadPhaseQuery_CollideAABox(address,
+        JPC_BroadPhaseQuery_CollideAABox(handle,
                 box.address(),
                 collector.address(),
                 broadPhaseLayerFilter.address(),
@@ -60,7 +58,7 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        JPC_BroadPhaseQuery_CollideSphere(address,
+        JPC_BroadPhaseQuery_CollideSphere(handle,
                 center.address(),
                 radius,
                 collector.address(),
@@ -75,7 +73,7 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        JPC_BroadPhaseQuery_CollidePoint(address,
+        JPC_BroadPhaseQuery_CollidePoint(handle,
                 point.address(),
                 collector.address(),
                 broadPhaseLayerFilter.address(),
@@ -89,7 +87,7 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        JPC_BroadPhaseQuery_CollideOrientedBox(address,
+        JPC_BroadPhaseQuery_CollideOrientedBox(handle,
                 box.address(),
                 collector.address(),
                 broadPhaseLayerFilter.address(),
@@ -99,11 +97,11 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
 
     public void castAABox(
             AABoxCast box,
-            CollideShapeBodyCollector collector,
+            CastShapeBodyCollector collector,
             BroadPhaseLayerFilter broadPhaseLayerFilter,
             ObjectLayerFilter objectLayerFilter
     ) {
-        JPC_BroadPhaseQuery_CastAABox(address,
+        JPC_BroadPhaseQuery_CastAABox(handle,
                 box.address(),
                 collector.address(),
                 broadPhaseLayerFilter.address(),

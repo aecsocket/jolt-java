@@ -6,8 +6,6 @@ import jolt.physics.collision.broadphase.BroadPhaseLayerInterface;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterfaceFn;
 import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 
-import java.lang.foreign.MemorySession;
-
 class PhysicsSystemTest extends MemoriedTest {
     static final byte BP_LAYER_NON_MOVING = 0;
     static final byte BP_LAYER_MOVING = 1;
@@ -46,7 +44,7 @@ class PhysicsSystemTest extends MemoriedTest {
             case OBJ_LAYER_MOVING -> true;
             default -> false;
         });
-        physics = PhysicsSystem.create(
+        physics = PhysicsSystem.of(
                 1024, 0, 1024, 1024,
                 bpLayerIface,
                 objBpLayerIface,

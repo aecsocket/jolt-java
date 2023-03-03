@@ -460,8 +460,37 @@ typedef struct JPC_AABoxCast
     alignas(16) float   direction[3];
 } JPC_AABoxCast;
 
+typedef struct JPC_PhysicsSettings
+{
+    int   max_in_flight_body_pairs; // 16384
+    int   step_listeners_batch_size; // 8
+    int   step_listener_batches_per_job; // 1
+    float baumgarte; // 0.2f
+    float speculative_contact_distance; // 0.02f
+    float penetration_slop; // 0.02f
+    float linear_cast_threshold; // 0.75f
+    float linear_cast_max_penetration; // 0.25f
+    float manifold_tolerance_sq; // 1.0e-6f
+    float max_penetration_distance; // 0.2f
+    float body_pair_cache_max_delta_position_sq; // 0.001f * 0.001f
+    float body_pair_cache_cos_max_delta_rotation_div_2; // cos(2 degrees / 2)
+    float contact_normal_cos_max_delta_rotation; // cos(5 degrees)
+    float contact_point_preserve_lambda_max_dist_sq; // 0.01f * 0.01f
+    int   num_velocity_steps; // 10
+    int   num_position_steps; // 2
+    float min_velocity_for_restitution; // 1.0f
+    float time_before_sleep; // 0.5f
+    float point_velocity_sleep_threshold; // 0.03f
+    bool  constraint_warm_start; // true
+    bool  use_body_pair_contact_cache; // true
+    bool  use_manifold_reduction; // true
+    bool  allow_sleeping; // true
+    bool  check_active_edges; // true
+} JPC_PhysicsSettings;
+
 typedef struct JPC_RayCastBodyCollectorVTable      JPC_RayCastBodyCollectorVTable;
 typedef struct JPC_CollideShapeBodyCollectorVTable JPC_CollideShapeBodyCollectorVTable;
+typedef struct JPC_CastShapeBodyCollectorVTable    JPC_CastShapeBodyCollectorVTable;
 
 typedef struct JPC_RayCastBodyCollector
 {
@@ -476,6 +505,13 @@ typedef struct JPC_CollideShapeBodyCollector
     float                                      early_out_fraction;
     const JPC_TransformedShape *               context;
 } JPC_CollideShapeBodyCollector;
+
+typedef struct JPC_CastShapeBodyCollector
+{
+    const JPC_CastShapeBodyCollectorVTable *vtable;
+    float                                  early_out_fraction;
+    const JPC_TransformedShape *           context;
+} JPC_CastShapeBodyCollector;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -624,12 +660,30 @@ typedef struct JPC_CollideShapeBodyCollectorVTable
 
     // Optional, can be NULL.
     void
-    (*OnBody)(const void *in_self, JPC_Body in_body);
+    (*OnBody)(const JPC_RayCastBodyCollector *in_self, JPC_Body in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(const void *in_self, JPC_BodyID in_result);
+    (*AddHit)(const JPC_RayCastBodyCollector *in_self, JPC_BodyID in_result);
 } JPC_CollideShapeBodyCollectorVTable;
+
+typedef struct JPC_CastShapeBodyCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*Reset)(const JPC_CastShapeBodyCollectorVTable *in_self);
+
+    // Optional, can be NULL.
+    void
+    (*OnBody)(const JPC_CastShapeBodyCollectorVTable *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(const JPC_CastShapeBodyCollectorVTable *in_self, JPC_BroadPhaseCastResult in_result);
+} JPC_CastShapeBodyCollectorVTable;
 
 // TODO combine
 //typedef struct JPC_CombineFunctor
@@ -673,6 +727,15 @@ JPC_BodyCreationSettings_Set(JPC_BodyCreationSettings *out_settings,
                              const float in_rotation[4],
                              JPC_MotionType in_motion_type,
                              JPC_ObjectLayer in_layer);
+
+JPC_API void
+JPC_PhysicsSettings_SetDefault(JPC_PhysicsSettings *out_settings);
+
+JPC_API float
+JPC_CollideShapeResult_GetEarlyOutFraction(JPC_CollideShapeResult *in_settings);
+
+JPC_API void
+JPC_CollideShapeResult_Reversed(JPC_CollideShapeResult *in_settings, JPC_CollideShapeResult *out_settings);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_MotionProperties
@@ -832,6 +895,14 @@ JPC_PhysicsSystem_GetContactListener(const JPC_PhysicsSystem *in_physics_system)
 //JPC_PhysicsSystem_SetCombineRestitution(JPC_PhysicsSystem *in_physics_system,
 //                                        const JPC_CombineFunctor *in_combine);
 
+JPC_API void
+JPC_PhysicsSystem_SetPhysicsSettings(JPC_PhysicsSystem *in_physics_system,
+                                     const JPC_PhysicsSettings *in_settings);
+
+JPC_API void
+JPC_PhysicsSystem_GetPhysicsSettings(const JPC_PhysicsSystem *in_physics_system,
+                                     JPC_PhysicsSettings *out_settings);
+
 JPC_API uint32_t
 JPC_PhysicsSystem_GetNumBodies(const JPC_PhysicsSystem *in_physics_system);
 
@@ -949,9 +1020,44 @@ JPC_RayCastBodyCollector_ForceEarlyOut(JPC_RayCastBodyCollector *in_collector);
 
 JPC_API bool
 JPC_RayCastBodyCollector_ShouldEarlyOut(JPC_RayCastBodyCollector *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CollideShapeBodyCollector
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollideShapeBodyCollector_Reset(JPC_CollideShapeBodyCollector *in_collector);
 
-JPC_API float
-JPC_RayCastBodyCollector_GetEarlyOutFraction(JPC_RayCastBodyCollector *in_collector);
+JPC_API void
+JPC_CollideShapeBodyCollector_UpdateEarlyOutFraction(JPC_CollideShapeBodyCollector *in_collector, float in_fraction);
+
+JPC_API void
+JPC_CollideShapeBodyCollector_ResetEarlyOutFraction(JPC_CollideShapeBodyCollector *in_collector, float in_fraction);
+
+JPC_API void
+JPC_CollideShapeBodyCollector_ForceEarlyOut(JPC_CollideShapeBodyCollector *in_collector);
+
+JPC_API bool
+JPC_CollideShapeBodyCollector_ShouldEarlyOut(JPC_CollideShapeBodyCollector *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CastShapeBodyCollector
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CastShapeBodyCollector_Reset(JPC_CastShapeBodyCollector *in_collector);
+
+JPC_API void
+JPC_CastShapeBodyCollector_UpdateEarlyOutFraction(JPC_CastShapeBodyCollector *in_collector, float in_fraction);
+
+JPC_API void
+JPC_CastShapeBodyCollector_ResetEarlyOutFraction(JPC_CastShapeBodyCollector *in_collector, float in_fraction);
+
+JPC_API void
+JPC_CastShapeBodyCollector_ForceEarlyOut(JPC_CastShapeBodyCollector *in_collector);
+
+JPC_API bool
+JPC_CastShapeBodyCollector_ShouldEarlyOut(JPC_CastShapeBodyCollector *in_collector);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_BroadPhaseQuery
@@ -996,7 +1102,7 @@ JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
 JPC_API void
 JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
                               const JPC_AABoxCast *in_box,
-                              JPC_CollideShapeBodyCollector *io_collector,
+                              JPC_CastShapeBodyCollector *io_collector,
                               const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
                               const void *in_object_layer_filter); // Can be NULL (no filter)
 //--------------------------------------------------------------------------------------------------

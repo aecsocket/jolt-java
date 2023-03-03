@@ -4,19 +4,21 @@ import jolt.AddressedJoltNative;
 import jolt.headers.JPC_ObjectLayerPairFilterVTable;
 import jolt.headers.JPJ_ObjectLayerPairFilter;
 
-import java.lang.foreign.Addressable;
-import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.MemorySession;
+import java.lang.foreign.*;
 
 import static jolt.headers.JPC_ObjectLayerPairFilterVTable.*;
 import static jolt.headers.JPJ_ObjectLayerPairFilter.*;
 
 public final class ObjectLayerPairFilter extends AddressedJoltNative {
-    public static ObjectLayerPairFilter at(Addressable ptr) {
-        var address = ptr.address();
-        return address == MemoryAddress.NULL ? null : new ObjectLayerPairFilter(address);
+    // START Jolt-Pointer
+    private ObjectLayerPairFilter(MemoryAddress handle) {
+        super(handle);
     }
+
+    public static ObjectLayerPairFilter at(MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new ObjectLayerPairFilter(addr);
+    }
+    // END Jolt-Pointer
 
     public static ObjectLayerPairFilter of(MemorySession session, ObjectLayerPairFilterFn impl) {
         var vtable = JPC_ObjectLayerPairFilterVTable.allocate(session);
@@ -27,8 +29,13 @@ public final class ObjectLayerPairFilter extends AddressedJoltNative {
         vtable$set(handle, vtable.address());
         return new ObjectLayerPairFilter(handle.address());
     }
+    
+    private static ObjectLayerPairFilter passthrough;
 
-    private ObjectLayerPairFilter(MemoryAddress address) {
-        super(address);
+    public static ObjectLayerPairFilter passthrough() {
+        if (passthrough == null) {
+            passthrough = ObjectLayerPairFilter.of(MemorySession.global(), (a, b) -> true);
+        }
+        return passthrough;
     }
 }

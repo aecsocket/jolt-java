@@ -275,12 +275,20 @@ FN(toJph)(const JPC_TransformedShape *in) { assert(in); return reinterpret_cast<
 FN(toJpc)(JPH::TransformedShape *in) { assert(in); return reinterpret_cast<JPC_TransformedShape *>(in); }
 FN(toJph)(JPC_TransformedShape *in) { assert(in); return reinterpret_cast<JPH::TransformedShape *>(in); }
 
-FN(toJpc)(const JPH::BodyCreationSettings *in) {
-    assert(in); return reinterpret_cast<const JPC_BodyCreationSettings *>(in);
-}
-FN(toJph)(const JPC_BodyCreationSettings *in) {
-    assert(in); return reinterpret_cast<const JPH::BodyCreationSettings *>(in);
-}
+FN(toJpc)(const JPH::BodyCreationSettings *in) { assert(in); return reinterpret_cast<const JPC_BodyCreationSettings *>(in); }
+FN(toJph)(const JPC_BodyCreationSettings *in) { assert(in); return reinterpret_cast<const JPH::BodyCreationSettings *>(in); }
+FN(toJpc)(JPH::BodyCreationSettings *in) { assert(in); return reinterpret_cast<JPC_BodyCreationSettings *>(in); }
+FN(toJph)(JPC_BodyCreationSettings *in) { assert(in); return reinterpret_cast<JPH::BodyCreationSettings *>(in); }
+
+FN(toJpc)(const JPH::PhysicsSettings *in) { assert(in); return reinterpret_cast<const JPC_PhysicsSettings *>(in); }
+FN(toJph)(const JPC_PhysicsSettings *in) { assert(in); return reinterpret_cast<const JPH::PhysicsSettings *>(in); }
+FN(toJpc)(JPH::PhysicsSettings *in) { assert(in); return reinterpret_cast<JPC_PhysicsSettings *>(in); }
+FN(toJph)(JPC_PhysicsSettings *in) { assert(in); return reinterpret_cast<JPH::PhysicsSettings *>(in); }
+
+FN(toJpc)(const JPH::CollideShapeResult *in) { assert(in); return reinterpret_cast<const JPC_CollideShapeResult *>(in); }
+FN(toJph)(const JPC_CollideShapeResult *in) { assert(in); return reinterpret_cast<const JPH::CollideShapeResult *>(in); }
+FN(toJpc)(JPH::CollideShapeResult *in) { assert(in); return reinterpret_cast<JPC_CollideShapeResult *>(in); }
+FN(toJph)(JPC_CollideShapeResult *in) { assert(in); return reinterpret_cast<JPH::CollideShapeResult *>(in); }
 
 FN(toJpc)(const JPH::MotionProperties *in) { assert(in); return reinterpret_cast<const JPC_MotionProperties *>(in); }
 FN(toJph)(const JPC_MotionProperties *in) { assert(in); return reinterpret_cast<const JPH::MotionProperties *>(in); }
@@ -292,6 +300,16 @@ FN(toJph)(const JPC_RayCastBodyCollector *in) { assert(in); return reinterpret_c
 FN(toJpc)(JPH::RayCastBodyCollector *in) { assert(in); return reinterpret_cast<JPC_RayCastBodyCollector *>(in); }
 FN(toJph)(JPC_RayCastBodyCollector *in) { assert(in); return reinterpret_cast<JPH::RayCastBodyCollector *>(in); }
 
+FN(toJpc)(const JPH::CollideShapeBodyCollector *in) { assert(in); return reinterpret_cast<const JPC_CollideShapeBodyCollector *>(in); }
+FN(toJph)(const JPC_CollideShapeBodyCollector *in) { assert(in); return reinterpret_cast<const JPH::CollideShapeBodyCollector *>(in); }
+FN(toJpc)(JPH::CollideShapeBodyCollector *in) { assert(in); return reinterpret_cast<JPC_CollideShapeBodyCollector *>(in); }
+FN(toJph)(JPC_CollideShapeBodyCollector *in) { assert(in); return reinterpret_cast<JPH::CollideShapeBodyCollector *>(in); }
+
+FN(toJpc)(const JPH::CastShapeBodyCollector *in) { assert(in); return reinterpret_cast<const JPC_CastShapeBodyCollector *>(in); }
+FN(toJph)(const JPC_CastShapeBodyCollector *in) { assert(in); return reinterpret_cast<const JPH::CastShapeBodyCollector *>(in); }
+FN(toJpc)(JPH::CastShapeBodyCollector *in) { assert(in); return reinterpret_cast<JPC_CastShapeBodyCollector *>(in); }
+FN(toJph)(JPC_CastShapeBodyCollector *in) { assert(in); return reinterpret_cast<JPH::CastShapeBodyCollector *>(in); }
+
 FN(toJpc)(const JPH::BroadPhaseQuery *in) { assert(in); return reinterpret_cast<const JPC_BroadPhaseQuery *>(in); }
 FN(toJph)(const JPC_BroadPhaseQuery *in) { assert(in); return reinterpret_cast<const JPH::BroadPhaseQuery *>(in); }
 FN(toJpc)(JPH::BroadPhaseQuery *in) { assert(in); return reinterpret_cast<JPC_BroadPhaseQuery *>(in); }
@@ -302,16 +320,37 @@ FN(toJph)(const JPC_NarrowPhaseQuery *in) { assert(in); return reinterpret_cast<
 FN(toJpc)(JPH::NarrowPhaseQuery *in) { assert(in); return reinterpret_cast<JPC_NarrowPhaseQuery *>(in); }
 FN(toJph)(JPC_NarrowPhaseQuery *in) { assert(in); return reinterpret_cast<JPH::NarrowPhaseQuery *>(in); }
 
+FN(toJpc)(const JPH::RayCast *in) { assert(in); return reinterpret_cast<const JPC_RayCast *>(in); }
+FN(toJph)(const JPC_RayCast *in) { assert(in); return reinterpret_cast<const JPH::RayCast *>(in); }
+FN(toJpc)(JPH::RayCast *in) { assert(in); return reinterpret_cast<JPC_RayCast *>(in); }
+FN(toJph)(JPC_RayCast *in) { assert(in); return reinterpret_cast<JPH::RayCast *>(in); }
+
+FN(toJpc)(const JPH::RRayCast *in) { assert(in); return reinterpret_cast<const JPC_RRayCast *>(in); }
+FN(toJph)(const JPC_RRayCast *in) { assert(in); return reinterpret_cast<const JPH::RRayCast *>(in); }
+FN(toJpc)(JPH::RRayCast *in) { assert(in); return reinterpret_cast<JPC_RRayCast *>(in); }
+FN(toJph)(JPC_RRayCast *in) { assert(in); return reinterpret_cast<JPH::RRayCast *>(in); }
+
+FN(toJpc)(const JPH::AABox *in) { assert(in); return reinterpret_cast<const JPC_AABox *>(in); }
+FN(toJph)(const JPC_AABox *in) { assert(in); return reinterpret_cast<const JPH::AABox *>(in); }
+FN(toJpc)(JPH::AABox *in) { assert(in); return reinterpret_cast<JPC_AABox *>(in); }
+FN(toJph)(JPC_AABox *in) { assert(in); return reinterpret_cast<JPH::AABox *>(in); }
+
+FN(toJpc)(const JPH::OrientedBox *in) { assert(in); return reinterpret_cast<const JPC_OrientedBox *>(in); }
+FN(toJph)(const JPC_OrientedBox *in) { assert(in); return reinterpret_cast<const JPH::OrientedBox *>(in); }
+FN(toJpc)(JPH::OrientedBox *in) { assert(in); return reinterpret_cast<JPC_OrientedBox *>(in); }
+FN(toJph)(JPC_OrientedBox *in) { assert(in); return reinterpret_cast<JPH::OrientedBox *>(in); }
+
+FN(toJpc)(const JPH::AABoxCast *in) { assert(in); return reinterpret_cast<const JPC_AABoxCast *>(in); }
+FN(toJph)(const JPC_AABoxCast *in) { assert(in); return reinterpret_cast<const JPH::AABoxCast *>(in); }
+FN(toJpc)(JPH::AABoxCast *in) { assert(in); return reinterpret_cast<JPC_AABoxCast *>(in); }
+FN(toJph)(JPC_AABoxCast *in) { assert(in); return reinterpret_cast<JPH::AABoxCast *>(in); }
+
 FN(toJpc)(const JPH::SubShapeIDPair *in) {
     assert(in); return reinterpret_cast<const JPC_SubShapeIDPair *>(in);
 }
 
 FN(toJpc)(const JPH::ContactManifold *in) {
     assert(in); return reinterpret_cast<const JPC_ContactManifold *>(in);
-}
-
-FN(toJpc)(const JPH::CollideShapeResult *in) {
-    assert(in); return reinterpret_cast<const JPC_CollideShapeResult *>(in);
 }
 
 FN(toJpc)(JPH::ContactSettings *in) {
@@ -357,35 +396,6 @@ static inline JPH::Mat44 loadMat44(const float in[16]) {
     return JPH::Mat44::sLoadFloat4x4(reinterpret_cast<const JPH::Float4 *>(in));
 }
 
-static inline JPH::AABox loadAABox(const JPC_AABox in) {
-    return {loadVec3(in.min), loadVec3(in.max)};
-}
-
-static inline JPH::OrientedBox loadOrientedBox(const JPC_OrientedBox in) {
-    return {loadMat44(in.orientation), loadVec3(in.half_extent)};
-}
-
-static inline JPH::RayCast loadRayCast(const JPC_RayCast in) {
-    auto result = JPH::RayCast();
-    result.mOrigin = loadVec3(in.origin);
-    result.mDirection = loadVec3(in.direction);
-    return result;
-}
-
-static inline JPH::RRayCast loadRRayCast(const JPC_RRayCast in) {
-    auto result = JPH::RRayCast();
-    result.mOrigin = loadRVec3(in.origin);
-    result.mDirection = loadVec3(in.direction);
-    return result;
-}
-
-static inline JPH::AABoxCast loadAABoxCast(const JPC_AABoxCast in) {
-    auto result = JPH::AABoxCast();
-    result.mBox = loadAABox(in.box);
-    result.mDirection = loadVec3(in.direction);
-    return result;
-}
-
 static inline void storeVec3(float out[3], JPH::Vec3Arg in) {
     assert(out != nullptr);
     in.StoreFloat3(reinterpret_cast<JPH::Float3 *>(out));
@@ -416,16 +426,6 @@ static inline void storeVec4(float out[4], JPH::Vec4Arg in) {
 static inline void storeMat44(float out[16], JPH::Mat44Arg in) {
     assert(out != nullptr);
     in.StoreFloat4x4(reinterpret_cast<JPH::Float4 *>(out));
-}
-
-static inline void storeAABox(JPC_AABox *out, const JPH::AABox in) {
-    storeVec3(out->min, in.mMin);
-    storeVec3(out->max, in.mMax);
-}
-
-static inline void storeOrientedBox(JPC_OrientedBox *out, const JPH::OrientedBox in) {
-    storeMat44(out->orientation, in.mOrientation);
-    storeVec3(out->half_extent, in.mHalfExtents);
 }
 
 #ifdef JPH_ENABLE_ASSERTS
@@ -516,6 +516,26 @@ JPC_BodyCreationSettings_Set(JPC_BodyCreationSettings *out_settings,
     settings.shape = in_shape;
 
     *out_settings = settings;
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_PhysicsSettings_SetDefault(JPC_PhysicsSettings *out_settings)
+{
+    const JPH::PhysicsSettings settings;
+    *out_settings = *toJpc(&settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_CollideShapeResult_GetEarlyOutFraction(JPC_CollideShapeResult *in_settings)
+{
+    return toJph(in_settings)->GetEarlyOutFraction();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollideShapeResult_Reversed(JPC_CollideShapeResult *in_settings, JPC_CollideShapeResult *out_settings)
+{
+    const auto out = toJph(in_settings)->Reversed();
+    *out_settings = *toJpc(&out);
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -797,6 +817,21 @@ JPC_PhysicsSystem_GetContactListener(const JPC_PhysicsSystem *in_physics_system)
 //}
 //--------------------------------------------------------------------------------------------------
 JPC_API void
+JPC_PhysicsSystem_SetPhysicsSettings(JPC_PhysicsSystem *in_physics_system,
+                                     const JPC_PhysicsSettings *in_settings)
+{
+    toJph(in_physics_system)->SetPhysicsSettings(*toJph(in_settings));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_PhysicsSystem_GetPhysicsSettings(const JPC_PhysicsSystem *in_physics_system,
+                                     JPC_PhysicsSettings *out_settings)
+{
+    const auto out = toJph(in_physics_system)->GetPhysicsSettings();
+    *out_settings = *toJpc(&out);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
 JPC_PhysicsSystem_SetCombineRestitution(JPC_PhysicsSystem *in_physics_system,
                                         float (*in_combine)(const JPC_Body *in_body_1, JPC_SubShapeID in_sub_shape_id_1, JPC_Body *in_body_2, JPC_SubShapeID in_sub_shape_id_2));
 //--------------------------------------------------------------------------------------------------
@@ -966,10 +1001,72 @@ JPC_RayCastBodyCollector_ShouldEarlyOut(JPC_RayCastBodyCollector *in_collector)
     return toJph(in_collector)->ShouldEarlyOut();
 }
 //--------------------------------------------------------------------------------------------------
-JPC_API float
-JPC_RayCastBodyCollector_GetEarlyOutFraction(JPC_RayCastBodyCollector *in_collector)
+//
+// JPC_CollideShapeBodyCollector
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollideShapeBodyCollector_Reset(JPC_CollideShapeBodyCollector *in_collector)
 {
-    return toJph(in_collector)->GetEarlyOutFraction();
+    toJph(in_collector)->Reset();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollideShapeBodyCollector_UpdateEarlyOutFraction(JPC_CollideShapeBodyCollector *in_collector, float in_fraction)
+{
+    toJph(in_collector)->UpdateEarlyOutFraction(in_fraction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollideShapeBodyCollector_ResetEarlyOutFraction(JPC_CollideShapeBodyCollector *in_collector, float in_fraction)
+{
+    toJph(in_collector)->ResetEarlyOutFraction(in_fraction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollideShapeBodyCollector_ForceEarlyOut(JPC_CollideShapeBodyCollector *in_collector)
+{
+    toJph(in_collector)->ForceEarlyOut();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_CollideShapeBodyCollector_ShouldEarlyOut(JPC_CollideShapeBodyCollector *in_collector)
+{
+    return toJph(in_collector)->ShouldEarlyOut();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CastShapeBodyCollector
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CastShapeBodyCollector_Reset(JPC_CastShapeBodyCollector *in_collector)
+{
+    toJph(in_collector)->Reset();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CastShapeBodyCollector_UpdateEarlyOutFraction(JPC_CastShapeBodyCollector *in_collector, float in_fraction)
+{
+    toJph(in_collector)->UpdateEarlyOutFraction(in_fraction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CastShapeBodyCollector_ResetEarlyOutFraction(JPC_CastShapeBodyCollector *in_collector, float in_fraction)
+{
+    toJph(in_collector)->ResetEarlyOutFraction(in_fraction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CastShapeBodyCollector_ForceEarlyOut(JPC_CastShapeBodyCollector *in_collector)
+{
+    toJph(in_collector)->ForceEarlyOut();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_CastShapeBodyCollector_ShouldEarlyOut(JPC_CastShapeBodyCollector *in_collector)
+{
+    return toJph(in_collector)->ShouldEarlyOut();
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -987,13 +1084,14 @@ JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CastRay(
-        *reinterpret_cast<const JPH::RayCast *>(in_ray),
-        *reinterpret_cast<JPH::RayCastBodyCollector *>(io_collector),
-        in_broad_phase_layer_filter ?
-            *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter) :
-            broad_phase_layer_filter,
-        in_object_layer_filter ?
-            *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
+        *toJph(in_ray),
+        *toJph(io_collector),
+        in_broad_phase_layer_filter
+            ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
+            : broad_phase_layer_filter,
+        in_object_layer_filter
+            ? *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter)
+            : object_layer_filter);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -1007,13 +1105,14 @@ JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CollideAABox(
-        *reinterpret_cast<const JPH::AABox *>(in_box),
-        *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
-        in_broad_phase_layer_filter ?
-            *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter) :
-            broad_phase_layer_filter,
-        in_object_layer_filter ?
-            *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
+        *toJph(in_box),
+        *toJph(io_collector),
+        in_broad_phase_layer_filter
+            ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
+            : broad_phase_layer_filter,
+        in_object_layer_filter
+            ? *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter)
+            : object_layer_filter);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -1030,12 +1129,13 @@ JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
     toJph(in_query)->CollideSphere(
         loadVec3(in_center),
         in_radius,
-        *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
-        in_broad_phase_layer_filter ?
-            *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter) :
-            broad_phase_layer_filter,
-        in_object_layer_filter ?
-            *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
+        *toJph(io_collector),
+        in_broad_phase_layer_filter
+            ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
+            : broad_phase_layer_filter,
+        in_object_layer_filter
+            ? *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter)
+            : object_layer_filter);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -1050,12 +1150,13 @@ JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
 
     toJph(in_query)->CollidePoint(
         loadVec3(in_point),
-        *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
-        in_broad_phase_layer_filter ?
-            *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter) :
-            broad_phase_layer_filter,
-        in_object_layer_filter ?
-            *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
+        *toJph(io_collector),
+        in_broad_phase_layer_filter
+            ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
+            : broad_phase_layer_filter,
+        in_object_layer_filter
+            ? *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter)
+            : object_layer_filter);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -1069,19 +1170,20 @@ JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CollideOrientedBox(
-        *reinterpret_cast<const JPH::OrientedBox *>(in_box),
-        *reinterpret_cast<JPH::CollideShapeBodyCollector *>(io_collector),
-        in_broad_phase_layer_filter ?
-            *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter) :
-            broad_phase_layer_filter,
-        in_object_layer_filter ?
-            *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
+        *toJph(in_box),
+        *toJph(io_collector),
+        in_broad_phase_layer_filter
+            ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
+            : broad_phase_layer_filter,
+        in_object_layer_filter
+            ? *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter)
+            : object_layer_filter);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
                               const JPC_AABoxCast *in_box,
-                              JPC_CollideShapeBodyCollector *io_collector,
+                              JPC_CastShapeBodyCollector *io_collector,
                               const void *in_broad_phase_layer_filter,
                               const void *in_object_layer_filter)
 {
@@ -1089,13 +1191,14 @@ JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CastAABox(
-        *reinterpret_cast<const JPH::AABoxCast *>(in_box),
-        *reinterpret_cast<JPH::CastShapeBodyCollector *>(io_collector),
-        in_broad_phase_layer_filter ?
-            *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter) :
-            broad_phase_layer_filter,
-        in_object_layer_filter ?
-            *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter) : object_layer_filter);
+        *toJph(in_box),
+        *toJph(io_collector),
+        in_broad_phase_layer_filter
+            ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
+            : broad_phase_layer_filter,
+        in_object_layer_filter
+            ? *static_cast<const JPH::ObjectLayerFilter *>(in_object_layer_filter)
+            : object_layer_filter);
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -1830,7 +1933,8 @@ JPC_Shape_GetCenterOfMass(const JPC_Shape *in_shape, float out_center_of_mass[3]
 JPC_API void
 JPC_Shape_GetLocalBounds(const JPC_Shape *in_shape, JPC_AABox *out_local_bounds)
 {
-    storeAABox(out_local_bounds, toJph(in_shape)->GetLocalBounds());
+    const auto out = toJph(in_shape)->GetLocalBounds();
+    *out_local_bounds = *toJpc(&out);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API uint32_t
@@ -1845,10 +1949,11 @@ JPC_Shape_GetWorldSpaceBounds(const JPC_Shape *in_shape,
                               const float in_scale[3],
                               JPC_AABox *out_world_space_bounds)
 {
-    storeAABox(out_world_space_bounds, toJph(in_shape)->GetWorldSpaceBounds(
+    const auto out = toJph(in_shape)->GetWorldSpaceBounds(
             loadMat44(in_center_of_mass_transform),
             loadVec3(in_scale)
-    ));
+    );
+    *out_world_space_bounds = *toJpc(&out);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API float

@@ -2,48 +2,70 @@ package jolt.physics.collision;
 
 import jolt.SegmentedJoltNative;
 import jolt.math.DVec3;
+import jolt.math.FVec3;
 
-import java.lang.foreign.Addressable;
-import java.lang.foreign.MemorySegment;
-import java.lang.foreign.MemorySession;
+import java.lang.foreign.*;
 
 import static jolt.headers_d.JPC_RRayCast.*;
 
 public final class DRayCast extends SegmentedJoltNative {
+    // START Jolt-Value
+    private DRayCast(MemorySegment handle) {
+        super(handle);
+    }
+
     public static DRayCast at(MemorySegment segment) {
         return new DRayCast(segment);
     }
 
-    public static DRayCast at(MemorySession session, Addressable ptr) {
-        return ptr.address() == null ? null : at(ofAddress(ptr.address(), session));
+    public static DRayCast at(MemorySession alloc, MemoryAddress addr) {
+        return addr == MemoryAddress.NULL ? null : new DRayCast(ofAddress(addr, alloc));
     }
 
-    public static DRayCast create(MemorySession session, DVec3 origin, DVec3 direction) {
+    public static DRayCast of(SegmentAllocator alloc) {
+        return new DRayCast(allocate(alloc));
+    }
+    // END Jolt-Value
+
+    public static DRayCast of(MemorySession session, DVec3 origin, FVec3 direction) {
         var segment = allocate(session);
         origin.write(origin$slice(segment));
         direction.write(direction$slice(segment));
         return new DRayCast(segment);
     }
 
-    private DRayCast(MemorySegment segment) {
-        super(segment);
-    }
-
     public DVec3 getOrigin() {
-        return DVec3.at(origin$slice(segment));
+        return DVec3.at(origin$slice(handle));
     }
 
-    public DVec3 getDirection() {
-        return DVec3.at(direction$slice(segment));
+    public void setOrigin(DVec3 origin) {
+        origin.write(origin$slice(handle));
     }
 
-    public void set(DRayCast r) {
-        getOrigin().set(r.getOrigin());
-        getDirection().set(r.getDirection());
+    public FVec3 getDirection() {
+        return FVec3.at(direction$slice(handle));
+    }
+
+    public void setDirection(FVec3 direction) {
+        direction.write(direction$slice(handle));
+    }
+
+    public void read(MemorySegment segment) {
+        setOrigin(DVec3.at(origin$slice(segment)));
+        setDirection(FVec3.at(direction$slice(segment)));
+    }
+
+    public void read(DRayCast r) {
+        read(r.handle);
+    }
+
+    public void write(MemorySegment segment) {
+        getOrigin().write(origin$slice(segment));
+        getDirection().write(direction$slice(segment));
     }
 
     @Override
     public String toString() {
-        return "FRayCast(origin=%s, direction=%s)".formatted(getOrigin(), getDirection());
+        return "DRayCast(origin=%s, direction=%s)".formatted(getOrigin(), getDirection());
     }
 }

@@ -7,7 +7,7 @@ import static jolt.headers.JoltPhysicsC.C_INT;
 public final class BodyIds {
     private BodyIds() {}
 
-    public static int read(MemoryAddress address) {
+    public static int at(MemoryAddress address) {
         return address.get(C_INT, 0);
     }
 }
