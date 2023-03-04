@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$27 {
 
+    static final FunctionDescriptor JPC_MotionProperties_GetMaxAngularVelocity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetMaxAngularVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetMaxAngularVelocity",
+        constants$27.JPC_MotionProperties_GetMaxAngularVelocity$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_SetMaxAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_SetMaxAngularVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_SetMaxAngularVelocity",
+        constants$27.JPC_MotionProperties_SetMaxAngularVelocity$FUNC
+    );
     static final FunctionDescriptor JPC_TempAllocator_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
@@ -38,26 +53,6 @@ class constants$27 {
     static final MethodHandle JPC_JobSystem_Destroy$MH = RuntimeHelper.downcallHandle(
         "JPC_JobSystem_Destroy",
         constants$27.JPC_JobSystem_Destroy$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_Create",
-        constants$27.JPC_PhysicsSystem_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_Destroy$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_Destroy$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_Destroy",
-        constants$27.JPC_PhysicsSystem_Destroy$FUNC
     );
 }
 

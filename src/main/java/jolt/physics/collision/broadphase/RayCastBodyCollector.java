@@ -36,8 +36,12 @@ public final class RayCastBodyCollector extends CollisionCollector {
 
     public static RayCastBodyCollector of(MemorySession arena, RayCastBodyCollectorFn impl) {
         var vtable = JPC_RayCastBodyCollectorVTable.allocate(arena);
-        MemorySegment reset = Reset.allocate((v0) ->
-                JPC_CollisionCollector_Reset(v0), arena);
+        @SuppressWarnings("DataFlowIssue")
+        MemorySegment reset = Reset.allocate((v0) -> {
+            try (var arena2 = MemorySession.openConfined()) {
+                at(arena2, v0).resetEarlyOutFraction(INITIAL_EARLY_OUT_FRACTION);
+            }
+        }, arena);
         Reset$set(vtable, reset.address());
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onBody = OnBody.allocate((v0, v1) ->
@@ -51,10 +55,6 @@ public final class RayCastBodyCollector extends CollisionCollector {
         vtable$set(segment, vtable.address());
         early_out_fraction$set(collector$slice(segment), INITIAL_EARLY_OUT_FRACTION);
         return new RayCastBodyCollector(segment);
-    }
-
-    public static RayCastBodyCollector collectingInto(MemorySession session, Collection<? super BroadPhaseCastResult> out) {
-        return RayCastBodyCollector.of(session, out::add);
     }
 
     @Override

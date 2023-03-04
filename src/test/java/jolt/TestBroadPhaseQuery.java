@@ -49,7 +49,7 @@ final class TestBroadPhaseQuery extends PhysicsSystemTest {
         var results = new ArrayList<BroadPhaseCastResult>();
         physics.getBroadPhaseQuery().castRay(
                 FRayCast.of(session, FVec3.of(session, 0.0f), FVec3.of(session, 1.0f, 0.0f, 0.0f)),
-                RayCastBodyCollector.collectingInto(session, results),
+                RayCastBodyCollector.of(session, results::add),
                 BroadPhaseLayerFilter.passthrough(),
                 ObjectLayerFilter.passthrough()
         );
@@ -61,7 +61,7 @@ final class TestBroadPhaseQuery extends PhysicsSystemTest {
         var results = new ArrayList<Integer>();
         physics.getBroadPhaseQuery().collideAABox(
                 AABox.of(session, FVec3.of(session, 0.0f), FVec3.of(session, 1.0f)),
-                CollideShapeBodyCollector.collectingInto(session, results),
+                CollideShapeBodyCollector.of(session, results::add),
                 BroadPhaseLayerFilter.passthrough(),
                 ObjectLayerFilter.passthrough()
         );
@@ -74,7 +74,7 @@ final class TestBroadPhaseQuery extends PhysicsSystemTest {
         physics.getBroadPhaseQuery().collideSphere(
                 FVec3.of(session, 0.0f),
                 1.0f,
-                CollideShapeBodyCollector.collectingInto(session, results),
+                CollideShapeBodyCollector.of(session, results::add),
                 BroadPhaseLayerFilter.passthrough(),
                 ObjectLayerFilter.passthrough()
         );
@@ -87,7 +87,7 @@ final class TestBroadPhaseQuery extends PhysicsSystemTest {
         physics.getBroadPhaseQuery().collideSphere(
                 FVec3.of(session, 0.0f),
                 1.0f,
-                CollideShapeBodyCollector.collectingInto(session, results),
+                CollideShapeBodyCollector.of(session, results::add),
                 BroadPhaseLayerFilter.passthrough(),
                 ObjectLayerFilter.passthrough()
         );
@@ -99,7 +99,7 @@ final class TestBroadPhaseQuery extends PhysicsSystemTest {
         var results = new ArrayList<Integer>();
         physics.getBroadPhaseQuery().collideOrientedBox(
                 OrientedBox.of(session, FMat44.ofIdentity(session), FVec3.of(session, 1.0f)),
-                CollideShapeBodyCollector.collectingInto(session, results),
+                CollideShapeBodyCollector.of(session, results::add),
                 BroadPhaseLayerFilter.passthrough(),
                 ObjectLayerFilter.passthrough()
         );
@@ -114,7 +114,7 @@ final class TestBroadPhaseQuery extends PhysicsSystemTest {
                         AABox.of(session, FVec3.of(session, 0.0f), FVec3.of(session, 1.0f)),
                         FVec3.of(session, 1.0f, 0.0f, 0.0f)
                 ),
-                CastShapeBodyCollector.collectingInto(session, results),
+                CastShapeBodyCollector.of(session, results::add),
                 BroadPhaseLayerFilter.passthrough(),
                 ObjectLayerFilter.passthrough()
         );

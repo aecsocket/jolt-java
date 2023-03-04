@@ -20,6 +20,8 @@ import static jolt.headers.JoltPhysicsC.*;
 public final class Jolt {
     private Jolt() {}
 
+    public static final String JOLT_VERSION = "2.0.1-906ddc0";
+
     private static final AtomicBoolean loaded = new AtomicBoolean(false);
     private static JoltFeatures features;
     private static boolean doublePrecision;
@@ -63,7 +65,16 @@ public final class Jolt {
         if (features == null) {
             int bits = JPJ_GetFeatures();
             features = new JoltFeatures(
-                    (bits & 0x1) != 0
+                    (bits & 0x1) != 0,
+                    (bits & 0x2) != 0,
+                    (bits & 0x4) != 0,
+                    (bits & 0x8) != 0,
+                    (bits & 0x10) != 0,
+                    (bits & 0x20) != 0,
+                    (bits & 0x40) != 0,
+                    (bits & 0x80) != 0,
+                    (bits & 0x100) != 0,
+                    (bits & 0x200) != 0
             );
             doublePrecision = features.doublePrecision();
         }
@@ -73,7 +84,10 @@ public final class Jolt {
     public static Set<JoltFeature> featureSet() {
         JoltFeatures features = features();
         var result = new HashSet<JoltFeature>();
-        if (features.doublePrecision()) result.add(JoltFeature.DOUBLE_PRECISION);
+        for (var feature : JoltFeature.values()) {
+            if (feature.test.test(features))
+                result.add(feature);
+        }
         return result;
     }
 

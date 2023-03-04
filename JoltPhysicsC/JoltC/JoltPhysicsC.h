@@ -883,6 +883,12 @@ JPC_BodyCreationSettings_Set(JPC_BodyCreationSettings *out_settings,
 JPC_API void
 JPC_PhysicsSettings_SetDefault(JPC_PhysicsSettings *out_settings);
 
+JPC_API void
+JPC_BroadPhaseCastResult_SetDefault(JPC_BroadPhaseCastResult *out_result);
+
+JPC_API void
+JPC_RayCastResult_SetDefault(JPC_RayCastResult *out_result);
+
 JPC_API float
 JPC_CollideShapeResult_GetEarlyOutFraction(JPC_CollideShapeResult *in_settings);
 

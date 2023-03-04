@@ -10,44 +10,17 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_RayCastResult {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_INT$LAYOUT.withName("body_id"),
-        Constants$root.C_FLOAT$LAYOUT.withName("fraction"),
+        MemoryLayout.structLayout(
+            Constants$root.C_INT$LAYOUT.withName("body_id"),
+            Constants$root.C_FLOAT$LAYOUT.withName("fraction")
+        ).withName("base"),
         Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
     ).withName("JPC_RayCastResult");
     public static MemoryLayout $LAYOUT() {
         return JPC_RayCastResult.$struct$LAYOUT;
     }
-    static final VarHandle body_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("body_id"));
-    public static VarHandle body_id$VH() {
-        return JPC_RayCastResult.body_id$VH;
-    }
-    public static int body_id$get(MemorySegment seg) {
-        return (int)JPC_RayCastResult.body_id$VH.get(seg);
-    }
-    public static void body_id$set( MemorySegment seg, int x) {
-        JPC_RayCastResult.body_id$VH.set(seg, x);
-    }
-    public static int body_id$get(MemorySegment seg, long index) {
-        return (int)JPC_RayCastResult.body_id$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void body_id$set(MemorySegment seg, long index, int x) {
-        JPC_RayCastResult.body_id$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fraction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fraction"));
-    public static VarHandle fraction$VH() {
-        return JPC_RayCastResult.fraction$VH;
-    }
-    public static float fraction$get(MemorySegment seg) {
-        return (float)JPC_RayCastResult.fraction$VH.get(seg);
-    }
-    public static void fraction$set( MemorySegment seg, float x) {
-        JPC_RayCastResult.fraction$VH.set(seg, x);
-    }
-    public static float fraction$get(MemorySegment seg, long index) {
-        return (float)JPC_RayCastResult.fraction$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fraction$set(MemorySegment seg, long index, float x) {
-        JPC_RayCastResult.fraction$VH.set(seg.asSlice(index*sizeof()), x);
+    public static MemorySegment base$slice(MemorySegment seg) {
+        return seg.asSlice(0, 8);
     }
     static final VarHandle sub_shape_id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sub_shape_id"));
     public static VarHandle sub_shape_id$VH() {

@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$23 {
 
+    static final FunctionDescriptor JPC_MotionProperties_GetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetAngularVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetAngularVelocity",
+        constants$23.JPC_MotionProperties_GetAngularVelocity$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_SetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_SetAngularVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_SetAngularVelocity",
+        constants$23.JPC_MotionProperties_SetAngularVelocity$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_SetAngularVelocityClamped$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -40,21 +56,6 @@ class constants$23 {
     static final MethodHandle JPC_MotionProperties_ClampAngularVelocity$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_ClampAngularVelocity",
         constants$23.JPC_MotionProperties_ClampAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetLinearDamping$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetLinearDamping$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetLinearDamping",
-        constants$23.JPC_MotionProperties_GetLinearDamping$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_SetLinearDamping$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_SetLinearDamping$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetLinearDamping",
-        constants$23.JPC_MotionProperties_SetLinearDamping$FUNC
     );
 }
 

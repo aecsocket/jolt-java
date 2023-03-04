@@ -49,9 +49,10 @@ final class TestShape extends MemoriedTest {
         });
     }
 
+    // convex radii must be smaller than some other values, so we can't test them with random values
     @Test
     void box() {
-        Jolt.use(BoxShape.of(FVEC3_1, F1), obj -> {
+        Jolt.use(BoxShape.of(FVEC3_1, 0.0f), obj -> {
             FVec3 halfExtent = FVec3.of(session);
             obj.getHalfExtent(halfExtent);
             assertEqualValue(FVEC3_1, halfExtent);
@@ -62,9 +63,7 @@ final class TestShape extends MemoriedTest {
 
     @Test
     void triangle() {
-        Jolt.use(TriangleShape.of(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
-            assertEquals(F1, obj.getConvexRadius());
-
+        Jolt.use(TriangleShape.of(FVEC3_1, FVEC3_2, FVEC3_3, 0.0f), obj -> {
             convex(obj);
         });
     }
@@ -86,7 +85,7 @@ final class TestShape extends MemoriedTest {
 
     @Test
     void cylinder() {
-        Jolt.use(CylinderShape.of(F1, F2, F3), obj -> {
+        Jolt.use(CylinderShape.of(F1, F2, 0.0f), obj -> {
             assertEquals(F1, obj.getHalfHeight());
             assertEquals(F2, obj.getRadius());
 

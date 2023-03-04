@@ -162,8 +162,10 @@ public class JPC_CastRayCollectorVTable {
     static final FunctionDescriptor AddHit$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         MemoryLayout.structLayout(
-            Constants$root.C_INT$LAYOUT.withName("body_id"),
-            Constants$root.C_FLOAT$LAYOUT.withName("fraction"),
+            MemoryLayout.structLayout(
+                Constants$root.C_INT$LAYOUT.withName("body_id"),
+                Constants$root.C_FLOAT$LAYOUT.withName("fraction")
+            ).withName("base"),
             Constants$root.C_INT$LAYOUT.withName("sub_shape_id")
         ).withName("JPC_RayCastResult")
     );

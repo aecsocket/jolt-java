@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$22 {
 
+    static final FunctionDescriptor JPC_CollideShapeSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeSettings_SetDefault",
+        constants$22.JPC_CollideShapeSettings_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeCastSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeCastSettings_SetDefault",
+        constants$22.JPC_ShapeCastSettings_SetDefault$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_GetMotionQuality$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -39,22 +53,6 @@ class constants$22 {
     static final MethodHandle JPC_MotionProperties_SetLinearVelocityClamped$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_SetLinearVelocityClamped",
         constants$22.JPC_MotionProperties_SetLinearVelocityClamped$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetAngularVelocity",
-        constants$22.JPC_MotionProperties_GetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_SetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_SetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetAngularVelocity",
-        constants$22.JPC_MotionProperties_SetAngularVelocity$FUNC
     );
 }
 

@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$66 {
 
+    static final FunctionDescriptor JPC_Body_IsActive$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsActive$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsActive",
+        constants$66.JPC_Body_IsActive$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_IsStatic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsStatic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsStatic",
+        constants$66.JPC_Body_IsStatic$FUNC
+    );
     static final FunctionDescriptor JPC_Body_IsKinematic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -37,20 +51,6 @@ class constants$66 {
     static final MethodHandle JPC_Body_SetIsSensor$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_SetIsSensor",
         constants$66.JPC_Body_SetIsSensor$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_IsSensor$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_IsSensor$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_IsSensor",
-        constants$66.JPC_Body_IsSensor$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetMotionType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetMotionType",
-        constants$66.JPC_Body_GetMotionType$FUNC
     );
 }
 

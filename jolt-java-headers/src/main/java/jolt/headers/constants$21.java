@@ -16,6 +16,20 @@ class constants$21 {
         "JPC_PhysicsSettings_SetDefault",
         constants$21.JPC_PhysicsSettings_SetDefault$FUNC
     );
+    static final FunctionDescriptor JPC_BroadPhaseCastResult_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BroadPhaseCastResult_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_BroadPhaseCastResult_SetDefault",
+        constants$21.JPC_BroadPhaseCastResult_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_RayCastResult_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RayCastResult_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_RayCastResult_SetDefault",
+        constants$21.JPC_RayCastResult_SetDefault$FUNC
+    );
     static final FunctionDescriptor JPC_CollideShapeResult_GetEarlyOutFraction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -37,20 +51,6 @@ class constants$21 {
     static final MethodHandle JPC_RayCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
         "JPC_RayCastSettings_SetDefault",
         constants$21.JPC_RayCastSettings_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_CollideShapeSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CollideShapeSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollideShapeSettings_SetDefault",
-        constants$21.JPC_CollideShapeSettings_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_ShapeCastSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ShapeCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeCastSettings_SetDefault",
-        constants$21.JPC_ShapeCastSettings_SetDefault$FUNC
     );
 }
 

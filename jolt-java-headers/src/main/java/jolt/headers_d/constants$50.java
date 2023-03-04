@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$50 {
 
+    static final FunctionDescriptor JPC_MeshShapeSettings_Sanitize$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_Sanitize$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_Sanitize",
+        constants$50.JPC_MeshShapeSettings_Sanitize$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_AddRef$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_AddRef$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_AddRef",
+        constants$50.JPC_Shape_AddRef$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_Release$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -36,21 +50,6 @@ class constants$50 {
     static final MethodHandle JPC_Shape_GetSubType$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_GetSubType",
         constants$50.JPC_Shape_GetSubType$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetUserData",
-        constants$50.JPC_Shape_GetUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_SetUserData$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_SetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_SetUserData",
-        constants$50.JPC_Shape_SetUserData$FUNC
     );
 }
 

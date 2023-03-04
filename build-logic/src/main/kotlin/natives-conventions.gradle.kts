@@ -30,7 +30,7 @@ afterEvaluate {
                 "-S", ".",                                  // source at `JoltPhysicsC/`
                 "-B", file(nativesBuildDir).absolutePath,   // put makefiles into this project's `build/natives/`
                 "-G", nativesExt.generator.get(),           // use the platform-specific generator
-                "-DCMAKE_BUILD_TYPE=${buildType.key}",          // release build type
+                "-DCMAKE_BUILD_TYPE=${buildType.key}",      // release build type
             )
             buildFeatures.forEach { feature ->
                 environment[feature.cmakeFlag()] = "ON"

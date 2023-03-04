@@ -2,11 +2,7 @@ package jolt.physics.collision;
 
 import jolt.AddressedJoltNative;
 import jolt.headers.JPC_BodyFilterVTable;
-import jolt.headers.JPJ_BodyFilter;
 import jolt.headers.JPJ_ShapeFilter;
-import jolt.physics.body.Body;
-import jolt.physics.body.BodyIds;
-import jolt.physics.collision.shape.SubShapeIds;
 
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
@@ -29,10 +25,10 @@ public final class ShapeFilter extends AddressedJoltNative {
     public static ShapeFilter of(MemorySession arena, ShapeFilterFn impl) {
         var vtable = JPC_BodyFilterVTable.allocate(arena);
         MemorySegment shouldCollide = ShouldCollide.allocate((v0, v1) ->
-                impl.shouldCollide(v1), arena);
+                impl.shouldPairCollide(v1), arena);
         ShouldCollide$set(vtable, shouldCollide.address());
         MemorySegment shouldPairCollide = ShouldPairCollide.allocate((v0, v1, v2) ->
-                impl.shouldCollide(v1, v2), arena);
+                impl.shouldPairCollide(v1, v2), arena);
         ShouldPairCollide$set(vtable, shouldPairCollide.address());
 
         var segment = JPJ_ShapeFilter.allocate(arena);
@@ -46,12 +42,12 @@ public final class ShapeFilter extends AddressedJoltNative {
         if (passthrough == null) {
             passthrough = ShapeFilter.of(MemorySession.global(), new ShapeFilterFn() {
                 @Override
-                public boolean shouldCollide(int subShapeId) {
+                public boolean shouldPairCollide(int subShapeId) {
                     return true;
                 }
 
                 @Override
-                public boolean shouldCollide(int subShapeId1, int subShapeId2) {
+                public boolean shouldPairCollide(int subShapeId1, int subShapeId2) {
                     return true;
                 }
             });

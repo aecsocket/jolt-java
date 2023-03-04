@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$29 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_SetPhysicsSettings$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_SetPhysicsSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_SetPhysicsSettings",
+        constants$29.JPC_PhysicsSystem_SetPhysicsSettings$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetPhysicsSettings$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetPhysicsSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetPhysicsSettings",
+        constants$29.JPC_PhysicsSystem_GetPhysicsSettings$FUNC
+    );
     static final FunctionDescriptor JPC_PhysicsSystem_GetNumBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -37,21 +53,6 @@ class constants$29 {
     static final MethodHandle JPC_PhysicsSystem_GetGravity$MH = RuntimeHelper.downcallHandle(
         "JPC_PhysicsSystem_GetGravity",
         constants$29.JPC_PhysicsSystem_GetGravity$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_SetGravity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_SetGravity$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_SetGravity",
-        constants$29.JPC_PhysicsSystem_SetGravity$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyInterface$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetBodyInterface$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetBodyInterface",
-        constants$29.JPC_PhysicsSystem_GetBodyInterface$FUNC
     );
 }
 

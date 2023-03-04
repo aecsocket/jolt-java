@@ -51,7 +51,7 @@ public final class BodyFilter extends AddressedJoltNative {
 
                 @Override
                 public boolean shouldCollideLocked(Body body) {
-                    return false;
+                    return true;
                 }
             });
         }

@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$32 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodiesUnsafe$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBodiesUnsafe$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodiesUnsafe",
+        constants$32.JPC_PhysicsSystem_GetBodiesUnsafe$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyLockInterface_LockRead$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyLockInterface_LockRead$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyLockInterface_LockRead",
+        constants$32.JPC_BodyLockInterface_LockRead$FUNC
+    );
     static final FunctionDescriptor JPC_BodyLockInterface_UnlockRead$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -40,22 +56,6 @@ class constants$32 {
     static final MethodHandle JPC_CollisionCollector_Reset$MH = RuntimeHelper.downcallHandle(
         "JPC_CollisionCollector_Reset",
         constants$32.JPC_CollisionCollector_Reset$FUNC
-    );
-    static final FunctionDescriptor JPC_CollisionCollector_UpdateEarlyOutFraction$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_CollisionCollector_UpdateEarlyOutFraction$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollisionCollector_UpdateEarlyOutFraction",
-        constants$32.JPC_CollisionCollector_UpdateEarlyOutFraction$FUNC
-    );
-    static final FunctionDescriptor JPC_CollisionCollector_ResetEarlyOutFraction$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_CollisionCollector_ResetEarlyOutFraction$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollisionCollector_ResetEarlyOutFraction",
-        constants$32.JPC_CollisionCollector_ResetEarlyOutFraction$FUNC
     );
 }
 

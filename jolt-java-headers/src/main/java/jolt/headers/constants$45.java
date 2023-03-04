@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$45 {
 
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_GetTopRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_GetTopRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_GetTopRadius",
+        constants$45.JPC_TaperedCapsuleShapeSettings_GetTopRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_SetTopRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_SetTopRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_SetTopRadius",
+        constants$45.JPC_TaperedCapsuleShapeSettings_SetTopRadius$FUNC
+    );
     static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_GetBottomRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -40,21 +55,6 @@ class constants$45 {
     static final MethodHandle JPC_CylinderShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
         "JPC_CylinderShapeSettings_GetConvexRadius",
         constants$45.JPC_CylinderShapeSettings_GetConvexRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_CylinderShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_CylinderShapeSettings_SetConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_CylinderShapeSettings_SetConvexRadius",
-        constants$45.JPC_CylinderShapeSettings_SetConvexRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_CylinderShapeSettings_GetHalfHeight$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CylinderShapeSettings_GetHalfHeight$MH = RuntimeHelper.downcallHandle(
-        "JPC_CylinderShapeSettings_GetHalfHeight",
-        constants$45.JPC_CylinderShapeSettings_GetHalfHeight$FUNC
     );
 }
 

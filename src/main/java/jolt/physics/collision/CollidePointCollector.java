@@ -38,8 +38,12 @@ public final class CollidePointCollector extends CollisionCollector {
 
     public static CollidePointCollector of(MemorySession arena, CollidePointCollectorFn impl) {
         var vtable = JPC_CollidePointCollectorVTable.allocate(arena);
-        MemorySegment reset = Reset.allocate((v0) ->
-                JPC_CollisionCollector_Reset(v0), arena);
+        @SuppressWarnings("DataFlowIssue")
+        MemorySegment reset = Reset.allocate((v0) -> {
+            try (var arena2 = MemorySession.openConfined()) {
+                at(arena2, v0).resetEarlyOutFraction(INITIAL_EARLY_OUT_FRACTION);
+            }
+        }, arena);
         Reset$set(vtable, reset.address());
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onBody = OnBody.allocate((v0, v1) ->
@@ -53,10 +57,6 @@ public final class CollidePointCollector extends CollisionCollector {
         vtable$set(segment, vtable.address());
         early_out_fraction$set(collector$slice(segment), INITIAL_EARLY_OUT_FRACTION);
         return new CollidePointCollector(segment);
-    }
-
-    public static CollidePointCollector collectingInto(MemorySession session, Collection<? super CollidePointResult> out) {
-        return CollidePointCollector.of(session, out::add);
     }
 
     @Override

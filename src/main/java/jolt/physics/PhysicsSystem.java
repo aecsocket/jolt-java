@@ -4,6 +4,7 @@ import jolt.DestroyableJoltNative;
 import jolt.Jolt;
 import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
+import jolt.math.FVec3;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
 import jolt.physics.collision.ContactListener;
@@ -104,6 +105,26 @@ public final class PhysicsSystem extends DestroyableJoltNative {
 
     public void optimizeBroadPhase() {
         JPC_PhysicsSystem_OptimizeBroadPhase(handle);
+    }
+
+    public void setGravity(FVec3 gravity) {
+        JPC_PhysicsSystem_SetGravity(handle, gravity.address());
+    }
+
+    public void getGravity(FVec3 out) {
+        JPC_PhysicsSystem_GetGravity(handle, out.address());
+    }
+
+    public int getNumBodies() {
+        return JPC_PhysicsSystem_GetNumBodies(handle);
+    }
+
+    public int getNumActiveBodies() {
+        return JPC_PhysicsSystem_GetNumActiveBodies(handle);
+    }
+
+    public int getMaxBodies() {
+        return JPC_PhysicsSystem_GetMaxBodies(handle);
     }
 
     public void update(

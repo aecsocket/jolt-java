@@ -9,6 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$52 {
 
+    static final FunctionDescriptor JPC_Shape_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetWorldSpaceBounds",
+        constants$52.JPC_Shape_GetWorldSpaceBounds$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetInnerRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetInnerRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetInnerRadius",
+        constants$52.JPC_Shape_GetInnerRadius$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -55,21 +72,6 @@ class constants$52 {
     static final MethodHandle JPC_Shape_GetSubShapeTransformedShape$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_GetSubShapeTransformedShape",
         constants$52.JPC_Shape_GetSubShapeTransformedShape$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetVolume$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetVolume$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetVolume",
-        constants$52.JPC_Shape_GetVolume$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_IsValidScale$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_IsValidScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_IsValidScale",
-        constants$52.JPC_Shape_IsValidScale$FUNC
     );
 }
 

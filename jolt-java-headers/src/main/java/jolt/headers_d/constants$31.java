@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$31 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodyLockInterfaceNoLock",
+        constants$31.JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBroadPhaseQuery$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBroadPhaseQuery$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBroadPhaseQuery",
+        constants$31.JPC_PhysicsSystem_GetBroadPhaseQuery$FUNC
+    );
     static final FunctionDescriptor JPC_PhysicsSystem_GetNarrowPhaseQuery$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -42,22 +56,6 @@ class constants$31 {
     static final MethodHandle JPC_PhysicsSystem_GetActiveBodyIDs$MH = RuntimeHelper.downcallHandle(
         "JPC_PhysicsSystem_GetActiveBodyIDs",
         constants$31.JPC_PhysicsSystem_GetActiveBodyIDs$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetBodiesUnsafe$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetBodiesUnsafe$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetBodiesUnsafe",
-        constants$31.JPC_PhysicsSystem_GetBodiesUnsafe$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_LockRead$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyLockInterface_LockRead$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_LockRead",
-        constants$31.JPC_BodyLockInterface_LockRead$FUNC
     );
 }
 

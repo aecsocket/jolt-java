@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$72 {
 
+    static final FunctionDescriptor JPC_Body_IsInBroadPhase$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsInBroadPhase$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsInBroadPhase",
+        constants$72.JPC_Body_IsInBroadPhase$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_IsCollisionCacheInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsCollisionCacheInvalid$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsCollisionCacheInvalid",
+        constants$72.JPC_Body_IsCollisionCacheInvalid$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -40,23 +54,6 @@ class constants$72 {
     static final MethodHandle JPC_Body_GetWorldTransform$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetWorldTransform",
         constants$72.JPC_Body_GetWorldTransform$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetCenterOfMassPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetCenterOfMassPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCenterOfMassPosition",
-        constants$72.JPC_Body_GetCenterOfMassPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetCenterOfMassTransform$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetCenterOfMassTransform$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCenterOfMassTransform",
-        constants$72.JPC_Body_GetCenterOfMassTransform$FUNC
     );
 }
 

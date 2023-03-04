@@ -1,5 +1,6 @@
 package jolt.kotlin
 
+import jolt.math.DVec3
 import jolt.math.Quat
 import jolt.math.FVec3
 import jolt.physics.body.BodyCreationSettings
@@ -17,6 +18,15 @@ fun BodyCreationSettings(
     session: MemorySession,
     shape: Shape,
     position: FVec3,
+    rotation: Quat,
+    motionType: MotionType,
+    layer: ObjectLayer
+) = BodyCreationSettings.of(session, shape, position, rotation, motionType, layer.layer)
+
+fun BodyCreationSettings(
+    session: MemorySession,
+    shape: Shape,
+    position: DVec3,
     rotation: Quat,
     motionType: MotionType,
     layer: ObjectLayer

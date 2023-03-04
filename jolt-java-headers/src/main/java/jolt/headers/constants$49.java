@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$49 {
 
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBlockSize$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_SetBlockSize$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_SetBlockSize",
+        constants$49.JPC_HeightFieldShapeSettings_SetBlockSize$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetBitsPerSample$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetBitsPerSample",
+        constants$49.JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC
+    );
     static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -42,20 +57,6 @@ class constants$49 {
     static final MethodHandle JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
         "JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf",
         constants$49.JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC
-    );
-    static final FunctionDescriptor JPC_MeshShapeSettings_Sanitize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MeshShapeSettings_Sanitize$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_Sanitize",
-        constants$49.JPC_MeshShapeSettings_Sanitize$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_AddRef$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_AddRef$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_AddRef",
-        constants$49.JPC_Shape_AddRef$FUNC
     );
 }
 

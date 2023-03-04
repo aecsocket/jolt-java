@@ -1,7 +1,7 @@
 package jolt.physics.collision;
 
 public interface ShapeFilterFn {
-    boolean shouldCollide(int subShapeId);
+    boolean shouldPairCollide(int subShapeId);
 
-    boolean shouldCollide(int subShapeId1, int subShapeId2);
+    boolean shouldPairCollide(int subShapeId1, int subShapeId2);
 }

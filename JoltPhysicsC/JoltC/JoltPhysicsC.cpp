@@ -18,6 +18,7 @@
 #include <Jolt/Physics/Collision/RayCast.h>
 #include <Jolt/Physics/Collision/ShapeCast.h>
 #include <Jolt/Physics/Collision/AABoxCast.h>
+#include <Jolt/Physics/Collision/CastResult.h>
 #include <Jolt/Physics/Collision/Shape/BoxShape.h>
 #include <Jolt/Physics/Collision/Shape/SphereShape.h>
 #include <Jolt/Physics/Collision/Shape/TriangleShape.h>
@@ -416,7 +417,7 @@ static inline JPH::Mat44 loadMat44(const float in[16]) {
 }
 
 static inline JPH::Mat44 loadMat44(const float in_rotation[9], const float in_translation[3]) {
-    assert(in != nullptr);
+    assert(in_rotation != nullptr && in_translation != nullptr);
     JPH::Mat44 result{};
     result.SetColumn3(0, loadVec3(&in_rotation[0]));
     result.SetColumn3(1, loadVec3(&in_rotation[3]));
@@ -426,7 +427,7 @@ static inline JPH::Mat44 loadMat44(const float in_rotation[9], const float in_tr
 }
 
 static inline JPH::DMat44 loadDMat44(const float in_rotation[9], const double in_translation[3]) {
-    assert(in != nullptr);
+    assert(in_rotation != nullptr && in_translation != nullptr);
     JPH::DMat44 result{};
     result.SetColumn3(0, loadVec3(&in_rotation[0]));
     result.SetColumn3(1, loadVec3(&in_rotation[3]));
@@ -436,7 +437,6 @@ static inline JPH::DMat44 loadDMat44(const float in_rotation[9], const double in
 }
 
 static inline JPH::RMat44 loadRMat44(const float in_rotation[9], const JPC_Real in_translation[3]) {
-    assert(in != nullptr);
 #if JPC_DOUBLE_PRECISION == 0
     return loadMat44(in_rotation, in_translation);
 #else
@@ -481,7 +481,7 @@ static inline void storeMat44(float out[16], JPH::Mat44Arg in) {
 }
 
 static inline void storeMat44(float out_rotation[9], float out_translation[3], JPH::Mat44Arg in) {
-    assert(out != nullptr);
+    assert(out_rotation != nullptr && out_translation != nullptr);
     storeVec3(&out_rotation[0], in.GetColumn3(0));
     storeVec3(&out_rotation[3], in.GetColumn3(1));
     storeVec3(&out_rotation[6], in.GetColumn3(2));
@@ -489,7 +489,7 @@ static inline void storeMat44(float out_rotation[9], float out_translation[3], J
 }
 
 static inline void storeDMat44(float out_rotation[9], double out_translation[3], JPH::DMat44Arg in) {
-    assert(out != nullptr);
+    assert(out_rotation != nullptr && out_translation != nullptr);
     storeVec3(&out_rotation[0], in.GetColumn3(0));
     storeVec3(&out_rotation[3], in.GetColumn3(1));
     storeVec3(&out_rotation[6], in.GetColumn3(2));
@@ -599,6 +599,20 @@ JPC_PhysicsSettings_SetDefault(JPC_PhysicsSettings *out_settings)
 {
     const JPH::PhysicsSettings settings;
     *out_settings = *toJpc(&settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BroadPhaseCastResult_SetDefault(JPC_BroadPhaseCastResult *out_result)
+{
+    const JPH::BroadPhaseCastResult result;
+    *out_result = *toJpc(&result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RayCastResult_SetDefault(JPC_RayCastResult *out_result)
+{
+    const JPH::RayCastResult result;
+    *out_result = *toJpc(&result);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API float
@@ -1227,12 +1241,14 @@ JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
                             const void *in_broad_phase_layer_filter,
                             const void *in_object_layer_filter)
 {
+    auto collector = static_cast<JPH::RayCastBodyCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CastRay(
         *toJph(in_ray),
-        *static_cast<JPH::RayCastBodyCollector *>(io_collector),
+        *collector,
         in_broad_phase_layer_filter
             ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
             : broad_phase_layer_filter,
@@ -1248,12 +1264,14 @@ JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
                                  const void *in_broad_phase_layer_filter,
                                  const void *in_object_layer_filter)
 {
+    auto collector = static_cast<JPH::CollideShapeBodyCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CollideAABox(
         *toJph(in_box),
-        *static_cast<JPH::CollideShapeBodyCollector *>(io_collector),
+        *collector,
         in_broad_phase_layer_filter
             ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
             : broad_phase_layer_filter,
@@ -1270,13 +1288,15 @@ JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
                                   const void *in_broad_phase_layer_filter,
                                   const void *in_object_layer_filter)
 {
+    auto collector = static_cast<JPH::CollideShapeBodyCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CollideSphere(
         loadVec3(in_center),
         in_radius,
-        *static_cast<JPH::CollideShapeBodyCollector *>(io_collector),
+        *collector,
         in_broad_phase_layer_filter
             ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
             : broad_phase_layer_filter,
@@ -1292,12 +1312,14 @@ JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
                                  const void *in_broad_phase_layer_filter,
                                  const void *in_object_layer_filter)
 {
+    auto collector = static_cast<JPH::CollideShapeBodyCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CollidePoint(
         loadVec3(in_point),
-        *static_cast<JPH::CollideShapeBodyCollector *>(io_collector),
+        *collector,
         in_broad_phase_layer_filter
             ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
             : broad_phase_layer_filter,
@@ -1313,12 +1335,14 @@ JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
                                        const void *in_broad_phase_layer_filter,
                                        const void *in_object_layer_filter)
 {
+    auto collector = static_cast<JPH::CollideShapeBodyCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CollideOrientedBox(
         *toJph(in_box),
-        *static_cast<JPH::CollideShapeBodyCollector *>(io_collector),
+        *collector,
         in_broad_phase_layer_filter
             ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
             : broad_phase_layer_filter,
@@ -1334,12 +1358,14 @@ JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
                               const void *in_broad_phase_layer_filter,
                               const void *in_object_layer_filter)
 {
+    auto collector = static_cast<JPH::CastShapeBodyCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
 
     toJph(in_query)->CastAABox(
         *toJph(in_box),
-        *static_cast<JPH::CastShapeBodyCollector *>(io_collector),
+        *collector,
         in_broad_phase_layer_filter
             ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
             : broad_phase_layer_filter,
@@ -1388,6 +1414,8 @@ JPC_NarrowPhaseQuery_CollectCastRay(const JPC_NarrowPhaseQuery *in_query,
                                     const void *in_body_filter,
                                     const void *in_shape_filter)
 {
+    auto collector = static_cast<JPH::CastRayCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
     const JPH::BodyFilter body_filter{};
@@ -1396,7 +1424,7 @@ JPC_NarrowPhaseQuery_CollectCastRay(const JPC_NarrowPhaseQuery *in_query,
     toJph(in_query)->CastRay(
             *toJph(in_ray),
             *toJph(in_settings),
-            *static_cast<JPH::CastRayCollector *>(io_collector),
+            *collector,
             in_broad_phase_layer_filter
                 ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
                 : broad_phase_layer_filter,
@@ -1417,6 +1445,8 @@ JPC_NarrowPhaseQuery_CollidePoint(const JPC_NarrowPhaseQuery *in_query,
                                   const void *in_body_filter,
                                   const void *in_shape_filter)
 {
+    auto collector = static_cast<JPH::CollidePointCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
     const JPH::BodyFilter body_filter{};
@@ -1424,7 +1454,7 @@ JPC_NarrowPhaseQuery_CollidePoint(const JPC_NarrowPhaseQuery *in_query,
 
     toJph(in_query)->CollidePoint(
             loadRVec3(in_point),
-            *static_cast<JPH::CollidePointCollector *>(io_collector),
+            *collector,
             in_broad_phase_layer_filter
                 ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
                 : broad_phase_layer_filter,
@@ -1450,6 +1480,8 @@ JPC_NarrowPhaseQuery_CollideShape(const JPC_NarrowPhaseQuery *in_query,
                                   const void *in_body_filter,
                                   const void *in_shape_filter)
 {
+    auto collector = static_cast<JPH::CollideShapeCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
     const JPH::BodyFilter body_filter{};
@@ -1461,7 +1493,7 @@ JPC_NarrowPhaseQuery_CollideShape(const JPC_NarrowPhaseQuery *in_query,
             loadRMat44(in_com_rotation, in_com_translation),
             *toJph(in_settings),
             loadRVec3(in_base_offset),
-            *static_cast<JPH::CollideShapeCollector *>(io_collector),
+            *collector,
             in_broad_phase_layer_filter
                 ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
                 : broad_phase_layer_filter,
@@ -1484,6 +1516,8 @@ JPC_NarrowPhaseQuery_CollectTransformedShapes(const JPC_NarrowPhaseQuery *in_que
                                               const void *in_body_filter,
                                               const void *in_shape_filter)
 {
+    auto collector = static_cast<JPH::TransformedShapeCollector *>(io_collector);
+    collector->Reset();
     const JPH::BroadPhaseLayerFilter broad_phase_layer_filter{};
     const JPH::ObjectLayerFilter object_layer_filter{};
     const JPH::BodyFilter body_filter{};
@@ -1491,7 +1525,7 @@ JPC_NarrowPhaseQuery_CollectTransformedShapes(const JPC_NarrowPhaseQuery *in_que
 
     toJph(in_query)->CollectTransformedShapes(
             *toJph(in_box),
-            *static_cast<JPH::TransformedShapeCollector *>(io_collector),
+            *collector,
             in_broad_phase_layer_filter
                 ? *static_cast<const JPH::BroadPhaseLayerFilter *>(in_broad_phase_layer_filter)
                 : broad_phase_layer_filter,
@@ -3495,9 +3529,36 @@ JPC_API uint32_t
 JPJ_GetFeatures()
 {
     uint32_t features = 0;
-    #if JPC_DOUBLE_PRECISION == 1
+#if JPC_DOUBLE_PRECISION == 1
     features |= 0x1;
-    #endif
+#endif
+#if JPH_USE_SSE4_1
+    features |= 0x2;
+#endif
+#if JPH_USE_SSE4_2
+    features |= 0x4;
+#endif
+#if JPH_USE_AVX
+    features |= 0x8;
+#endif
+#if JPH_USE_AVX2
+    features |= 0x10;
+#endif
+#if JPH_USE_AVX512
+    features |= 0x20;
+#endif
+#if JPH_USE_LZCNT
+    features |= 0x40;
+#endif
+#if JPH_USE_TZCNT
+    features |= 0x80;
+#endif
+#if JPH_USE_F16C
+    features |= 0x100;
+#endif
+#if JPH_USE_FMADD
+    features |= 0x200;
+#endif
     return features;
 }
 // END JoltJava

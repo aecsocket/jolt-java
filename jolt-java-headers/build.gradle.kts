@@ -11,7 +11,7 @@ import io.github.krakowski.jextract.LibraryDefinition
 
 plugins {
     id("java-conventions")
-    id("jextract-conventions") apply true
+    id("jextract-conventions") apply false
 }
 
 publishIfNeeded()

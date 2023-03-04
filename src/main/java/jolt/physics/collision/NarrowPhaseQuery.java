@@ -140,6 +140,7 @@ public sealed abstract class NarrowPhaseQuery extends AddressedJoltNative
                 ObjectLayerFilter objectLayerFilter,
                 BodyFilter bodyFilter
         ) {
+            JPC_RayCastResult_SetDefault(hit.address());
             return jolt.headers_f.JoltPhysicsC.JPC_NarrowPhaseQuery_GetCastRay(handle,
                     ray.address(),
                     hit.address(),
@@ -299,6 +300,7 @@ public sealed abstract class NarrowPhaseQuery extends AddressedJoltNative
                 ObjectLayerFilter objectLayerFilter,
                 BodyFilter bodyFilter
         ) {
+            JPC_RayCastResult_SetDefault(hit.address());
             return jolt.headers_d.JoltPhysicsC.JPC_NarrowPhaseQuery_GetCastRay(handle,
                     ray.address(),
                     hit.address(),

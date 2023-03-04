@@ -38,8 +38,12 @@ public final class CollideShapeBodyCollector extends CollisionCollector {
 
     public static CollideShapeBodyCollector of(MemorySession arena, CollideShapeBodyCollectorFn impl) {
         var vtable = JPC_CollideShapeBodyCollectorVTable.allocate(arena);
-        MemorySegment reset = Reset.allocate((v0) ->
-                JPC_CollisionCollector_Reset(v0), arena);
+        @SuppressWarnings("DataFlowIssue")
+        MemorySegment reset = Reset.allocate((v0) -> {
+            try (var arena2 = MemorySession.openConfined()) {
+                at(arena2, v0).resetEarlyOutFraction(INITIAL_EARLY_OUT_FRACTION);
+            }
+        }, arena);
         Reset$set(vtable, reset.address());
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onBody = OnBody.allocate((v0, v1) ->
@@ -53,10 +57,6 @@ public final class CollideShapeBodyCollector extends CollisionCollector {
         vtable$set(segment, vtable.address());
         early_out_fraction$set(collector$slice(segment), INITIAL_EARLY_OUT_FRACTION);
         return new CollideShapeBodyCollector(segment);
-    }
-
-    public static CollideShapeBodyCollector collectingInto(MemorySession session, Collection<? super Integer> out) {
-        return CollideShapeBodyCollector.of(session, out::add);
     }
 
     @Override
