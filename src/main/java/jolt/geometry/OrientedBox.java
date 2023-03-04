@@ -9,7 +9,7 @@ import java.lang.foreign.*;
 import static jolt.headers.JPC_OrientedBox.*;
 
 public final class OrientedBox extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private OrientedBox(MemorySegment handle) {
         super(handle);
     }
@@ -25,7 +25,7 @@ public final class OrientedBox extends SegmentedJoltNative {
     public static OrientedBox of(SegmentAllocator alloc) {
         return new OrientedBox(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public static OrientedBox of(SegmentAllocator alloc, FMat44 orientation, FVec3 halfExtents) {
         var segment = allocate(alloc);

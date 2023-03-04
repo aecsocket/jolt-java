@@ -4,7 +4,7 @@ import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
 public final class TaperedCapsuleShape extends ConvexShape {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private TaperedCapsuleShape(MemoryAddress handle) {
         super(handle);
     }
@@ -12,5 +12,5 @@ public final class TaperedCapsuleShape extends ConvexShape {
     public static TaperedCapsuleShape at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new TaperedCapsuleShape(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 }

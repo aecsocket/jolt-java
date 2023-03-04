@@ -13,7 +13,7 @@ import static jolt.headers.JPC_BodyCreationSettings.*;
 
 public abstract sealed class BodyCreationSettings extends SegmentedJoltNative
         permits BodyCreationSettings.F, BodyCreationSettings.D {
-    // START Jolt-Value-FD
+    //region Jolt-Value-FD
     private BodyCreationSettings(MemorySegment handle) {
         super(handle);
     }
@@ -33,7 +33,7 @@ public abstract sealed class BodyCreationSettings extends SegmentedJoltNative
                 ? new D(jolt.headers_d.JPC_BodyCreationSettings.allocate(alloc))
                 : new F(jolt.headers_f.JPC_BodyCreationSettings.allocate(alloc));
     }
-    // END Jolt-Value-FD
+    //endregion Jolt-Value-FD
 
     public static BodyCreationSettings of(
             SegmentAllocator alloc,

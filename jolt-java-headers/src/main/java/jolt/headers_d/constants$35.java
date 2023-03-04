@@ -9,65 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$35 {
 
-    static final FunctionDescriptor JPC_BroadPhaseQuery_CollidePoint$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_CollideShapeCollector_ForceEarlyOut$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeCollector_ForceEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeCollector_ForceEarlyOut",
+        constants$35.JPC_CollideShapeCollector_ForceEarlyOut$FUNC
+    );
+    static final FunctionDescriptor JPC_CollideShapeCollector_ShouldEarlyOut$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeCollector_ShouldEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeCollector_ShouldEarlyOut",
+        constants$35.JPC_CollideShapeCollector_ShouldEarlyOut$FUNC
+    );
+    static final FunctionDescriptor JPC_TransformedShapeCollector_ForceEarlyOut$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TransformedShapeCollector_ForceEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_TransformedShapeCollector_ForceEarlyOut",
+        constants$35.JPC_TransformedShapeCollector_ForceEarlyOut$FUNC
+    );
+    static final FunctionDescriptor JPC_TransformedShapeCollector_ShouldEarlyOut$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TransformedShapeCollector_ShouldEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_TransformedShapeCollector_ShouldEarlyOut",
+        constants$35.JPC_TransformedShapeCollector_ShouldEarlyOut$FUNC
+    );
+    static final FunctionDescriptor JPC_BroadPhaseQuery_CastRay$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BroadPhaseQuery_CollidePoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_BroadPhaseQuery_CollidePoint",
-        constants$35.JPC_BroadPhaseQuery_CollidePoint$FUNC
+    static final MethodHandle JPC_BroadPhaseQuery_CastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_BroadPhaseQuery_CastRay",
+        constants$35.JPC_BroadPhaseQuery_CastRay$FUNC
     );
-    static final FunctionDescriptor JPC_BroadPhaseQuery_CollideOrientedBox$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BroadPhaseQuery_CollideAABox$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BroadPhaseQuery_CollideOrientedBox$MH = RuntimeHelper.downcallHandle(
-        "JPC_BroadPhaseQuery_CollideOrientedBox",
-        constants$35.JPC_BroadPhaseQuery_CollideOrientedBox$FUNC
-    );
-    static final FunctionDescriptor JPC_BroadPhaseQuery_CastAABox$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BroadPhaseQuery_CastAABox$MH = RuntimeHelper.downcallHandle(
-        "JPC_BroadPhaseQuery_CastAABox",
-        constants$35.JPC_BroadPhaseQuery_CastAABox$FUNC
-    );
-    static final FunctionDescriptor JPC_NarrowPhaseQuery_CastRay$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_NarrowPhaseQuery_CastRay$MH = RuntimeHelper.downcallHandle(
-        "JPC_NarrowPhaseQuery_CastRay",
-        constants$35.JPC_NarrowPhaseQuery_CastRay$FUNC
-    );
-    static final FunctionDescriptor JPC_SphereShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShape_Create",
-        constants$35.JPC_SphereShape_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_SphereShape_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShape_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShape_GetRadius",
-        constants$35.JPC_SphereShape_GetRadius$FUNC
+    static final MethodHandle JPC_BroadPhaseQuery_CollideAABox$MH = RuntimeHelper.downcallHandle(
+        "JPC_BroadPhaseQuery_CollideAABox",
+        constants$35.JPC_BroadPhaseQuery_CollideAABox$FUNC
     );
 }
 

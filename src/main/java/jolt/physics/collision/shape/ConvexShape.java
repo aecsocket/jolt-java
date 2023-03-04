@@ -12,7 +12,7 @@ import static jolt.headers.JoltPhysicsC.*;
 public sealed class ConvexShape extends Shape
         permits SphereShape, BoxShape, TriangleShape, CapsuleShape,
         TaperedCapsuleShape, CylinderShape, ConvexHullShape {
-    // START Jolt-Pointer-Protected
+    //region Jolt-Pointer-Protected
     protected ConvexShape(MemoryAddress handle) {
         super(handle);
     }
@@ -20,7 +20,7 @@ public sealed class ConvexShape extends Shape
     public static ConvexShape at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ConvexShape(addr);
     }
-    // END Jolt-Pointer-Protected
+    //endregion Jolt-Pointer-Protected
 
     public void setMaterial(@Nullable PhysicsMaterial material) {
         JPC_ConvexShape_SetMaterial(handle, Jolt.ptr(material));

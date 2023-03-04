@@ -1,6 +1,6 @@
 package jolt.physics.collision.broadphase;
 
-import jolt.headers.JPC_CastShapeBodyCollector;
+import jolt.headers.JPJ_CastShapeBodyCollector;
 import jolt.headers.JPC_CastShapeBodyCollectorVTable;
 import jolt.physics.body.Body;
 import jolt.physics.collision.BroadPhaseCastResult;
@@ -13,14 +13,15 @@ import java.lang.foreign.MemorySession;
 import java.lang.foreign.SegmentAllocator;
 import java.util.Collection;
 
-import static jolt.headers.JPC_CastShapeBodyCollector.*;
+import static jolt.headers.JPJ_CastShapeBodyCollector.*;
 import static jolt.headers.JPC_CastShapeBodyCollectorVTable.*;
+import static jolt.headers.JPC_CollisionCollector.*;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class CastShapeBodyCollector extends CollisionCollector {
     private static final float INITIAL_EARLY_OUT_FRACTION = Math.ulp(1.0f);
 
-    // START Jolt-Value
+    //region Jolt-Value
     private CastShapeBodyCollector(MemorySegment handle) {
         super(handle);
     }
@@ -30,21 +31,18 @@ public final class CastShapeBodyCollector extends CollisionCollector {
     }
 
     public static CastShapeBodyCollector at(MemorySession alloc, MemoryAddress addr) {
-        return addr == MemoryAddress.NULL ? null : new CastShapeBodyCollector(JPC_CastShapeBodyCollector.ofAddress(addr, alloc));
+        return addr == MemoryAddress.NULL ? null : new CastShapeBodyCollector(JPJ_CastShapeBodyCollector.ofAddress(addr, alloc));
     }
 
     public static CastShapeBodyCollector of(SegmentAllocator alloc) {
-        return new CastShapeBodyCollector(JPC_CastShapeBodyCollector.allocate(alloc));
+        return new CastShapeBodyCollector(JPJ_CastShapeBodyCollector.allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public static CastShapeBodyCollector of(MemorySession arena, CastShapeBodyCollectorFn impl) {
         var vtable = JPC_CastShapeBodyCollectorVTable.allocate(arena);
-        MemorySegment reset = Reset.allocate((v0) -> {
-            try (var arena2 = MemorySession.openConfined()) {
-                early_out_fraction$set(JPC_CastShapeBodyCollector.ofAddress(v0, arena2), INITIAL_EARLY_OUT_FRACTION);
-            }
-        }, arena);
+        MemorySegment reset = Reset.allocate((v0) ->
+                JPC_CollisionCollector_Reset(v0), arena);
         Reset$set(vtable, reset.address());
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onBody = OnBody.allocate((v0, v1) ->
@@ -54,9 +52,9 @@ public final class CastShapeBodyCollector extends CollisionCollector {
                 impl.addHit(BroadPhaseCastResult.at(v1)), arena);
         AddHit$set(vtable, addHit.address());
 
-        var segment = JPC_CastShapeBodyCollector.allocate(arena);
+        var segment = JPJ_CastShapeBodyCollector.allocate(arena);
         vtable$set(segment, vtable.address());
-        early_out_fraction$set(segment, INITIAL_EARLY_OUT_FRACTION);
+        early_out_fraction$set(collector$slice(segment), INITIAL_EARLY_OUT_FRACTION);
         return new CastShapeBodyCollector(segment);
     }
 
@@ -64,38 +62,19 @@ public final class CastShapeBodyCollector extends CollisionCollector {
         return CastShapeBodyCollector.of(session, out::add);
     }
 
-
-    @Override
-    public void reset() {
-        try (var session = MemorySession.openConfined()) {
-            var reset = Reset$get(session.allocate(C_POINTER, vtable$get(handle)));
-            Reset.ofAddress(reset, session).apply(handle.address());
-        }
-    }
-
     @Override
     public float getEarlyOutFraction() {
-        return early_out_fraction$get(handle);
+        return early_out_fraction$get(collector$slice(handle));
     }
 
     @Override
     public TransformedShape getContext(MemorySession arena) {
-        return TransformedShape.at(arena, context$get(handle));
+        return TransformedShape.at(arena, context$get(collector$slice(handle)));
     }
 
     @Override
     public void setContext(TransformedShape context) {
-        context$set(handle, context.address());
-    }
-
-    @Override
-    public void updateEarlyOutFraction(float fraction) {
-        JPC_CollideShapeBodyCollector_UpdateEarlyOutFraction(handle, fraction);
-    }
-
-    @Override
-    public void resetEarlyOutFraction(float fraction) {
-        JPC_CollideShapeBodyCollector_ResetEarlyOutFraction(handle, fraction);
+        context$set(collector$slice(handle), context.address());
     }
 
     @Override

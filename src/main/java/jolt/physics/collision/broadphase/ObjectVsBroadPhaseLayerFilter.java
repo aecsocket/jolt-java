@@ -13,7 +13,7 @@ import static jolt.headers.JPC_ObjectVsBroadPhaseLayerFilterVTable.*;
 import static jolt.headers.JPJ_ObjectVsBroadPhaseLayerFilter.*;
 
 public final class ObjectVsBroadPhaseLayerFilter extends AddressedJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private ObjectVsBroadPhaseLayerFilter(MemoryAddress handle) {
         super(handle);
     }
@@ -21,7 +21,7 @@ public final class ObjectVsBroadPhaseLayerFilter extends AddressedJoltNative {
     public static ObjectVsBroadPhaseLayerFilter at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ObjectVsBroadPhaseLayerFilter(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static ObjectVsBroadPhaseLayerFilter of(MemorySession arena, ObjectVsBroadPhaseLayerFilterFn impl) {
         var vtable = JPC_ObjectVsBroadPhaseLayerFilterVTable.allocate(arena);

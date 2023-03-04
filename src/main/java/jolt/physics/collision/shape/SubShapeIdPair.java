@@ -7,7 +7,7 @@ import java.lang.foreign.*;
 import static jolt.headers.JPC_SubShapeIDPair.*;
 
 public final class SubShapeIdPair extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private SubShapeIdPair(MemorySegment handle) {
         super(handle);
     }
@@ -23,7 +23,7 @@ public final class SubShapeIdPair extends SegmentedJoltNative {
     public static SubShapeIdPair of(SegmentAllocator alloc) {
         return new SubShapeIdPair(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public int getBodyId1() {
         return first.body_id$get(first$slice(handle));

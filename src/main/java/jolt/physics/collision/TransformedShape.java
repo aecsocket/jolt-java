@@ -11,7 +11,7 @@ import java.lang.foreign.*;
 
 public abstract sealed class TransformedShape extends SegmentedJoltNative
         permits TransformedShape.F, TransformedShape.D {
-    // START Jolt-Value-FD
+    //region Jolt-Value-FD
     private TransformedShape(MemorySegment handle) {
         super(handle);
     }
@@ -33,7 +33,7 @@ public abstract sealed class TransformedShape extends SegmentedJoltNative
                 ? new D(jolt.headers_d.JPC_TransformedShape.allocate(alloc))
                 : new F(jolt.headers_f.JPC_TransformedShape.allocate(alloc));
     }
-    // END Jolt-Value-FD
+    //endregion Jolt-Value-FD
 
     // TODO public abstract boolean castRayF(FRayCast ray, RayCastResult outHit);
 

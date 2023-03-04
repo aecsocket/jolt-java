@@ -16,7 +16,7 @@ public sealed class Shape extends DestroyableJoltNative
         permits ConvexShape {
     public static final float DEFAULT_CONVEX_RADIUS = 0.05f;
 
-    // START Jolt-Pointer-Protected
+    //region Jolt-Pointer-Protected
     protected Shape(MemoryAddress handle) {
         super(handle);
     }
@@ -24,7 +24,7 @@ public sealed class Shape extends DestroyableJoltNative
     public static Shape at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new Shape(addr);
     }
-    // END Jolt-Pointer-Protected
+    //endregion Jolt-Pointer-Protected
 
     @Override
     protected void destroyInternal() {

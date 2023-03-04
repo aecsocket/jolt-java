@@ -15,12 +15,14 @@ import static jolt.headers.JoltPhysicsC.C_FLOAT;
 ]
  */
 public final class FMat44 extends SegmentedJoltNative {
-    private static final int NUM_COMPONENTS = 16;
-    private static final long BYTES_SIZE = NUM_COMPONENTS * C_FLOAT.byteSize();
+    private static final long BYTES_SIZE = 16 * C_FLOAT.byteSize();
+    private static final long TRANSLATION_OFFSET = 12 * C_FLOAT.byteSize();
 
-    // START PrimitiveJoltNative
+    private final MemorySegment translation;
+
     private FMat44(MemorySegment handle) {
         super(handle);
+        translation = handle.asSlice(TRANSLATION_OFFSET);
     }
 
     public static FMat44 at(MemorySegment segment) {
@@ -34,8 +36,12 @@ public final class FMat44 extends SegmentedJoltNative {
     public static FMat44 of(SegmentAllocator alloc) {
         return new FMat44(alloc.allocate(BYTES_SIZE));
     }
-    // END PrimitiveJoltNative
+    //endregion PrimitiveJoltNative
 
+    /*
+    in the method definition: typical row-major matrix
+    in the memory allocation: column-major, conforms to JPH
+     */
     public static FMat44 of(
             SegmentAllocator alloc,
             float n00, float n01, float n02, float n03,
@@ -44,10 +50,10 @@ public final class FMat44 extends SegmentedJoltNative {
             float n30, float n31, float n32, float n33
     ) {
         return new FMat44(alloc.allocateArray(C_FLOAT,
-                n00, n01, n02, n03,
-                n10, n11, n12, n13,
-                n20, n21, n22, n23,
-                n30, n31, n32, n33
+                n00, n10, n20, n30,
+                n01, n11, n21, n31,
+                n02, n12, n22, n32,
+                n03, n13, n23, n33
         ));
     }
 
@@ -76,30 +82,45 @@ public final class FMat44 extends SegmentedJoltNative {
         return segment;
     }
 
-    public float[] components() {
-        return handle.toArray(C_FLOAT);
+    public MemorySegment rotationSlice() {
+        return handle.asSlice(0, TRANSLATION_OFFSET);
     }
 
-    public float get(int index) {
+    public MemorySegment translationSlice() {
+        return handle.asSlice(TRANSLATION_OFFSET);
+    }
+
+    public float[] rotationComponents() {
+        return rotationSlice().toArray(C_FLOAT);
+    }
+
+    public float[] translationComponents() {
+        return translationSlice().toArray(C_FLOAT);
+    }
+
+    public float getRotation(int index) {
         return handle.getAtIndex(C_FLOAT, index);
     }
 
-    public void set(int index, float value) {
+    public void setRotation(int index, float value) {
         handle.setAtIndex(C_FLOAT, index, value);
     }
 
-    public float get(int row, int col) {
-        return handle.getAtIndex(C_FLOAT, col * 4L + row);
+    public float getTranslation(int index) {
+        return translation.getAtIndex(C_FLOAT, index);
     }
 
-    public void set(int row, int col, float value) {
-        handle.setAtIndex(C_FLOAT, col * 4L + row, value);
+    public void setTranslation(int index, float value) {
+        translation.setAtIndex(C_FLOAT, index, value);
     }
 
     public void read(MemoryAddress address) {
-        for (int i = 0; i < NUM_COMPONENTS; i++) {
-            set(i, address.getAtIndex(C_FLOAT, i));
-        }
+        for (int i = 0; i < 12; i++)
+            setRotation(i, address.getAtIndex(C_FLOAT, i));
+
+        MemoryAddress translation = address.addOffset(TRANSLATION_OFFSET);
+        for (int i = 0; i < 4; i++)
+            setTranslation(i, translation.getAtIndex(C_FLOAT, i));
     }
 
     public void read(FMat44 m) {
@@ -107,30 +128,56 @@ public final class FMat44 extends SegmentedJoltNative {
     }
 
     public void read(float[] rotation, float[] translation) {
-        set( 0, rotation[0]); set( 4, rotation[3]); set( 8, rotation[6]); set(12, translation[0]);
-        set( 1, rotation[1]); set( 5, rotation[4]); set( 9, rotation[7]); set(13, translation[1]);
-        set( 2, rotation[2]); set( 6, rotation[5]); set(10, rotation[8]); set(14, translation[2]);
+        for (int i = 0; i < 3; i++)
+            setRotation(i, rotation[i]);
+        for (int i = 3; i < 6; i++)
+            setRotation(i + 1, rotation[i]);
+        for (int i = 6; i < 9; i++)
+            setRotation(i + 2, rotation[i]);
+        for (int i = 0; i < 3; i++)
+            setTranslation(i, translation[i]);
     }
 
     public void write(MemorySegment segment) {
-        for (int i = 0; i < NUM_COMPONENTS; i++) {
-            segment.setAtIndex(C_FLOAT, i, get(i));
-        }
+        for (int i = 0; i < 12; i++)
+            segment.setAtIndex(C_FLOAT, i, getRotation(i));
+
+        MemorySegment translation = segment.asSlice(TRANSLATION_OFFSET);
+        for (int i = 0; i < 4; i++)
+            translation.setAtIndex(C_FLOAT, i, getTranslation(i));
+    }
+
+    public void write(MemorySegment rotation, MemorySegment translation) {
+        for (int i = 0; i < 3; i++)
+            rotation.setAtIndex(C_FLOAT, i, getRotation(i));
+        for (int i = 3; i < 6; i++)
+            rotation.setAtIndex(C_FLOAT, i, getRotation(i+1));
+        for (int i = 6; i < 9; i++)
+            rotation.setAtIndex(C_FLOAT, i, getRotation(i+2));
+        for (int i = 0; i < 3; i++)
+            translation.setAtIndex(C_FLOAT, i, getTranslation(i));
     }
 
     public boolean equalValue(FMat44 m) {
-        float[] ours = components();
-        float[] theirs = m.components();
-        for (int i = 0; i < NUM_COMPONENTS; i++) {
-            if (Float.compare(ours[i], theirs[i]) != 0)
+        float[] ourRotation = rotationComponents();
+        float[] theirRotation = m.rotationComponents();
+        for (int i = 0; i < 12; i++)
+            if (Float.compare(ourRotation[i], theirRotation[i]) != 0)
                 return false;
-        }
+
+        float[] ourTranslation = translationComponents();
+        float[] theirTranslation = m.translationComponents();
+        for (int i = 0; i < 4; i++)
+            if (Float.compare(ourTranslation[i], theirTranslation[i]) != 0)
+                return false;
+
         return true;
     }
 
     @Override
     public String toString() {
-        float[] values = components();
+        float[] rotation = rotationComponents();
+        float[] translation = translationComponents();
         return """
                 [
                   %f %f %f %f
@@ -138,10 +185,10 @@ public final class FMat44 extends SegmentedJoltNative {
                   %f %f %f %f
                   %f %f %f %f
                 ]""".formatted(
-                values[ 0], values[ 4], values[ 8], values[12],
-                values[ 1], values[ 5], values[ 9], values[13],
-                values[ 2], values[ 6], values[10], values[14],
-                values[ 3], values[ 7], values[11], values[15]
+                rotation[ 0], rotation[ 4], rotation[ 8], translation[12],
+                rotation[ 1], rotation[ 5], rotation[ 9], translation[13],
+                rotation[ 2], rotation[ 6], rotation[10], translation[14],
+                rotation[ 3], rotation[ 7], rotation[11], translation[15]
         );
     }
 }

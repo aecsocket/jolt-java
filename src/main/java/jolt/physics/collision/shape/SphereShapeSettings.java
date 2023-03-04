@@ -9,7 +9,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class SphereShapeSettings extends ConvexShapeSettings {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private SphereShapeSettings(MemoryAddress handle) {
         super(handle);
     }
@@ -17,7 +17,7 @@ public final class SphereShapeSettings extends ConvexShapeSettings {
     public static SphereShapeSettings at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new SphereShapeSettings(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static SphereShapeSettings of(float radius, @Nullable PhysicsMaterial material) {
         return new SphereShapeSettings(JPC_SphereShapeSettings_Create(radius, Jolt.ptr(material)));

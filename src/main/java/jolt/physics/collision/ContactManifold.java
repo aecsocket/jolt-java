@@ -9,7 +9,7 @@ import java.lang.foreign.*;
 
 public abstract sealed class ContactManifold extends SegmentedJoltNative
         permits ContactManifold.F, ContactManifold.D {
-    // START Jolt-Value-FD
+    //region Jolt-Value-FD
     private ContactManifold(MemorySegment handle) {
         super(handle);
     }
@@ -31,7 +31,7 @@ public abstract sealed class ContactManifold extends SegmentedJoltNative
                 ? new D(jolt.headers_d.JPC_ContactManifold.allocate(alloc))
                 : new F(jolt.headers_f.JPC_ContactManifold.allocate(alloc));
     }
-    // END Jolt-Value-FD
+    //endregion Jolt-Value-FD
 
     public abstract FVec3 getBaseOffsetF();
 

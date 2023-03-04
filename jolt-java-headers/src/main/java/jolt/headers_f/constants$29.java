@@ -9,6 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$29 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNumBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetNumBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNumBodies",
+        constants$29.JPC_PhysicsSystem_GetNumBodies$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNumActiveBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetNumActiveBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNumActiveBodies",
+        constants$29.JPC_PhysicsSystem_GetNumActiveBodies$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetMaxBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetMaxBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetMaxBodies",
+        constants$29.JPC_PhysicsSystem_GetMaxBodies$FUNC
+    );
     static final FunctionDescriptor JPC_PhysicsSystem_GetGravity$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -31,32 +52,6 @@ class constants$29 {
     static final MethodHandle JPC_PhysicsSystem_GetBodyInterface$MH = RuntimeHelper.downcallHandle(
         "JPC_PhysicsSystem_GetBodyInterface",
         constants$29.JPC_PhysicsSystem_GetBodyInterface$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyInterfaceNoLock$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetBodyInterfaceNoLock$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetBodyInterfaceNoLock",
-        constants$29.JPC_PhysicsSystem_GetBodyInterfaceNoLock$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_OptimizeBroadPhase$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_OptimizeBroadPhase$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_OptimizeBroadPhase",
-        constants$29.JPC_PhysicsSystem_OptimizeBroadPhase$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_Update$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_Update$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_Update",
-        constants$29.JPC_PhysicsSystem_Update$FUNC
     );
 }
 

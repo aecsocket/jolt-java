@@ -20,7 +20,7 @@ import static jolt.headers_f.JoltPhysicsC.*;
 
 public abstract sealed class BodyInterface extends AddressedJoltNative
         permits BodyInterface.F, BodyInterface.D {
-    // START Jolt-Pointer-FD
+    //region Jolt-Pointer-FD
     private BodyInterface(MemoryAddress handle) {
         super(handle);
     }
@@ -28,7 +28,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     public static BodyInterface at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : Jolt.doublePrecision() ? new D(addr) : new F(addr);
     }
-    // END Jolt-Pointer-FD
+    //endregion Jolt-Pointer-FD
 
     public MutableBody createBody(BodyCreationSettings settings) {
         return MutableBody.at(JPC_BodyInterface_CreateBody(handle, settings.address()));

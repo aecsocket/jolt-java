@@ -10,7 +10,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class TriangleShape extends ConvexShape {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private TriangleShape(MemoryAddress handle) {
         super(handle);
     }
@@ -18,7 +18,7 @@ public final class TriangleShape extends ConvexShape {
     public static TriangleShape at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new TriangleShape(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static TriangleShape of(FVec3 v1, FVec3 v2, FVec3 v3, float convexRadius, @Nullable PhysicsMaterial material) {
         return new TriangleShape(JPC_TriangleShape_Create(

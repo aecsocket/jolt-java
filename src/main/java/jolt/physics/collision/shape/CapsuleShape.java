@@ -9,7 +9,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class CapsuleShape extends ConvexShape {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private CapsuleShape(MemoryAddress handle) {
         super(handle);
     }
@@ -17,7 +17,7 @@ public final class CapsuleShape extends ConvexShape {
     public static CapsuleShape at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new CapsuleShape(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static CapsuleShape of(float halfHeight, float radius, @Nullable PhysicsMaterial material) {
         return new CapsuleShape(JPC_CapsuleShape_Create(halfHeight, radius, Jolt.ptr(material)));

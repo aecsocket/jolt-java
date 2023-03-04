@@ -6,7 +6,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class ConvexHullShape extends ConvexShape {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private ConvexHullShape(MemoryAddress handle) {
         super(handle);
     }
@@ -14,5 +14,5 @@ public final class ConvexHullShape extends ConvexShape {
     public static ConvexHullShape at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ConvexHullShape(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 }

@@ -10,7 +10,7 @@ import static jolt.headers.JPC_BroadPhaseLayerFilterVTable.*;
 import static jolt.headers.JPJ_BroadPhaseLayerFilter.*;
 
 public final class BroadPhaseLayerFilter extends AddressedJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private BroadPhaseLayerFilter(MemoryAddress handle) {
         super(handle);
     }
@@ -18,7 +18,7 @@ public final class BroadPhaseLayerFilter extends AddressedJoltNative {
     public static BroadPhaseLayerFilter at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new BroadPhaseLayerFilter(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static BroadPhaseLayerFilter of(MemorySession arena, BroadPhaseLayerFilterFn impl) {
         var vtable = JPC_BroadPhaseLayerFilterVTable.allocate(arena);

@@ -10,7 +10,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class BoxShapeSettings extends ConvexShapeSettings {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private BoxShapeSettings(MemoryAddress handle) {
         super(handle);
     }
@@ -18,7 +18,7 @@ public final class BoxShapeSettings extends ConvexShapeSettings {
     public static BoxShapeSettings at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new BoxShapeSettings(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static BoxShapeSettings of(FVec3 halfExtent, float convexRadius, @Nullable PhysicsMaterial material) {
         return new BoxShapeSettings(JPC_BoxShapeSettings_Create(halfExtent.address(), convexRadius, Jolt.ptr(material)));

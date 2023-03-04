@@ -31,28 +31,26 @@ class constants$21 {
         "JPC_CollideShapeResult_Reversed",
         constants$21.JPC_CollideShapeResult_Reversed$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_GetMotionQuality$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor JPC_RayCastSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_GetMotionQuality$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetMotionQuality",
-        constants$21.JPC_MotionProperties_GetMotionQuality$FUNC
+    static final MethodHandle JPC_RayCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_RayCastSettings_SetDefault",
+        constants$21.JPC_RayCastSettings_SetDefault$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_GetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_CollideShapeSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_GetLinearVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetLinearVelocity",
-        constants$21.JPC_MotionProperties_GetLinearVelocity$FUNC
+    static final MethodHandle JPC_CollideShapeSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeSettings_SetDefault",
+        constants$21.JPC_CollideShapeSettings_SetDefault$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_SetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_ShapeCastSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_SetLinearVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetLinearVelocity",
-        constants$21.JPC_MotionProperties_SetLinearVelocity$FUNC
+    static final MethodHandle JPC_ShapeCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeCastSettings_SetDefault",
+        constants$21.JPC_ShapeCastSettings_SetDefault$FUNC
     );
 }
 

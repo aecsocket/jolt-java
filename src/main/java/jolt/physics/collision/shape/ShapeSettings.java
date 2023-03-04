@@ -9,7 +9,7 @@ import static jolt.headers.JoltPhysicsC.*;
 
 public sealed class ShapeSettings extends DestroyableJoltNative
         permits ConvexShapeSettings {
-    // START Jolt-Pointer-Protected
+    //region Jolt-Pointer-Protected
     protected ShapeSettings(MemoryAddress handle) {
         super(handle);
     }
@@ -17,7 +17,7 @@ public sealed class ShapeSettings extends DestroyableJoltNative
     public static ShapeSettings at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ShapeSettings(addr);
     }
-    // END Jolt-Pointer-Protected
+    //endregion Jolt-Pointer-Protected
 
     @Override
     protected void destroyInternal() {

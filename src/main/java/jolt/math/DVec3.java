@@ -10,7 +10,7 @@ public final class DVec3 extends SegmentedJoltNative {
     private static final int NUM_COMPONENTS = 3;
     private static final long BYTES_SIZE = NUM_COMPONENTS * C_DOUBLE.byteSize();
 
-    // START PrimitiveJoltNative
+    //region PrimitiveJoltNative
     private DVec3(MemorySegment handle) {
         super(handle);
     }
@@ -26,7 +26,7 @@ public final class DVec3 extends SegmentedJoltNative {
     public static DVec3 of(SegmentAllocator alloc) {
         return new DVec3(alloc.allocate(BYTES_SIZE));
     }
-    // END PrimitiveJoltNative
+    //endregion PrimitiveJoltNative
 
     public static DVec3 of(SegmentAllocator alloc, double x, double y, double z) {
         return new DVec3(alloc.allocateArray(C_DOUBLE, x, y, z));

@@ -12,7 +12,7 @@ import java.util.Collection;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class ConvexHullShapeSettings extends ConvexShapeSettings {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private ConvexHullShapeSettings(MemoryAddress handle) {
         super(handle);
     }
@@ -20,7 +20,7 @@ public final class ConvexHullShapeSettings extends ConvexShapeSettings {
     public static ConvexHullShapeSettings at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ConvexHullShapeSettings(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static ConvexHullShapeSettings of(FVec3[] points, float convexRadius, @Nullable PhysicsMaterial material) {
         try (var arena = MemorySession.openConfined()) {

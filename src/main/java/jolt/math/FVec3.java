@@ -10,7 +10,7 @@ public final class FVec3 extends SegmentedJoltNative {
     private static final int NUM_COMPONENTS = 3;
     private static final long BYTES_SIZE = NUM_COMPONENTS * C_FLOAT.byteSize();
 
-    // START PrimitiveJoltNative
+    //region PrimitiveJoltNative
     private FVec3(MemorySegment handle) {
         super(handle);
     }
@@ -26,7 +26,7 @@ public final class FVec3 extends SegmentedJoltNative {
     public static FVec3 of(SegmentAllocator alloc) {
         return new FVec3(alloc.allocate(BYTES_SIZE));
     }
-    // END PrimitiveJoltNative
+    //endregion PrimitiveJoltNative
 
     public static FVec3 of(SegmentAllocator alloc, float x, float y, float z) {
         return new FVec3(alloc.allocateArray(C_FLOAT, x, y, z));

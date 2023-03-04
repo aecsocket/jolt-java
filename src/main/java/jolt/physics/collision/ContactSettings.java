@@ -10,7 +10,7 @@ import java.lang.foreign.SegmentAllocator;
 import static jolt.headers.JPC_ContactSettings.*;
 
 public final class ContactSettings extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private ContactSettings(MemorySegment handle) {
         super(handle);
     }
@@ -26,7 +26,7 @@ public final class ContactSettings extends SegmentedJoltNative {
     public static ContactSettings of(SegmentAllocator alloc) {
         return new ContactSettings(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public float getCombinedFriction() {
         return combined_friction$get(handle);

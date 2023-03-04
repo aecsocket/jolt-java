@@ -9,9 +9,10 @@ import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JPC_BroadPhaseCastResult.*;
 
-public final class BroadPhaseCastResult extends SegmentedJoltNative {
-    // START Jolt-Value
-    private BroadPhaseCastResult(MemorySegment handle) {
+public sealed class BroadPhaseCastResult extends SegmentedJoltNative
+        permits RayCastResult {
+    //region Jolt-Value-Protected
+    protected BroadPhaseCastResult(MemorySegment handle) {
         super(handle);
     }
 
@@ -26,7 +27,7 @@ public final class BroadPhaseCastResult extends SegmentedJoltNative {
     public static BroadPhaseCastResult of(SegmentAllocator alloc) {
         return new BroadPhaseCastResult(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value-Protected
 
     public int getBodyId() {
         return body_id$get(handle);

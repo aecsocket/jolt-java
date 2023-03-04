@@ -16,18 +16,22 @@ These bindings are still feature-incomplete and unstable.
 ## Coverage
 
 Features:
-- [ ] Geometry types
-  - [ ] Primitives
-  - [ ] Meshes
+- [ ] Shapes
+  - [x] Convex
+  - [ ] Decorator
+  - [ ] Compound
 - [ ] Rigid bodies
-- [ ] Joints
+  - [x] Body interface
+- [ ] Queries
+  - [x] Broad phase
+- [ ] Constraints
 - [ ] Vehicles
 - [ ] Characters
 
 Platforms:
-- Linux (x86_64)
-- Windows (x86_64)
-- MacOS (x86_64)
+- [x] Linux (x86_64)
+- [ ] Windows (x86_64)
+- [ ] MacOS (x86_64)
 
 Build types (change with Gradle flag `-PbuildType=` or property `buildType`):
 - `debug`

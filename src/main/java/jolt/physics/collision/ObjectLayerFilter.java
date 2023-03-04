@@ -10,7 +10,7 @@ import static jolt.headers.JPC_ObjectLayerFilterVTable.*;
 import static jolt.headers.JPJ_ObjectLayerFilter.*;
 
 public final class ObjectLayerFilter extends AddressedJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private ObjectLayerFilter(MemoryAddress handle) {
         super(handle);
     }
@@ -18,7 +18,7 @@ public final class ObjectLayerFilter extends AddressedJoltNative {
     public static ObjectLayerFilter at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ObjectLayerFilter(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static ObjectLayerFilter of(MemorySession arena, ObjectLayerFilterFn impl) {
         var vtable = JPC_ObjectLayerFilterVTable.allocate(arena);

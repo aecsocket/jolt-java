@@ -13,7 +13,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class BroadPhaseQuery extends AddressedJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private BroadPhaseQuery(MemoryAddress handle) {
         super(handle);
     }
@@ -21,7 +21,7 @@ public final class BroadPhaseQuery extends AddressedJoltNative {
     public static BroadPhaseQuery at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new BroadPhaseQuery(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public void castRay(
             FRayCast ray,

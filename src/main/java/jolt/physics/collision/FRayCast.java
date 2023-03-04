@@ -11,7 +11,7 @@ import static jolt.headers.JPC_AABox.min$slice;
 import static jolt.headers.JPC_RayCast.*;
 
 public final class FRayCast extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private FRayCast(MemorySegment handle) {
         super(handle);
     }
@@ -27,7 +27,7 @@ public final class FRayCast extends SegmentedJoltNative {
     public static FRayCast of(SegmentAllocator alloc) {
         return new FRayCast(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public static FRayCast of(MemorySession session, FVec3 origin, FVec3 direction) {
         var segment = allocate(session);

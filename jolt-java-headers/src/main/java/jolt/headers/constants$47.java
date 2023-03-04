@@ -9,53 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$47 {
 
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetBitsPerSample$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetBitsPerSample",
-        constants$47.JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC
+    static final MethodHandle JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius",
+        constants$47.JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$FUNC
     );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetBitsPerSample$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetBitsPerSample",
-        constants$47.JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC
+    static final MethodHandle JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius",
+        constants$47.JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC
     );
-    static final FunctionDescriptor JPC_MeshShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_GetHullTolerance$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_GetHullTolerance",
+        constants$47.JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_SetHullTolerance$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_SetHullTolerance",
+        constants$47.JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_Create",
-        constants$47.JPC_MeshShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf",
-        constants$47.JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_Create",
+        constants$47.JPC_HeightFieldShapeSettings_Create$FUNC
     );
-    static final FunctionDescriptor JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetOffset$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf",
-        constants$47.JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC
-    );
-    static final FunctionDescriptor JPC_MeshShapeSettings_Sanitize$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MeshShapeSettings_Sanitize$MH = RuntimeHelper.downcallHandle(
-        "JPC_MeshShapeSettings_Sanitize",
-        constants$47.JPC_MeshShapeSettings_Sanitize$FUNC
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetOffset$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetOffset",
+        constants$47.JPC_HeightFieldShapeSettings_GetOffset$FUNC
     );
 }
 

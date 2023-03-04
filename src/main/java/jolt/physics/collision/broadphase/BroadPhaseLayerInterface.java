@@ -10,7 +10,7 @@ import static jolt.headers.JPC_BroadPhaseLayerInterfaceVTable.*;
 import static jolt.headers.JPJ_BroadPhaseLayerInterface.*;
 
 public final class BroadPhaseLayerInterface extends AddressedJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private BroadPhaseLayerInterface(MemoryAddress handle) {
         super(handle);
     }
@@ -18,7 +18,7 @@ public final class BroadPhaseLayerInterface extends AddressedJoltNative {
     public static BroadPhaseLayerInterface at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new BroadPhaseLayerInterface(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static BroadPhaseLayerInterface of(MemorySession arena, BroadPhaseLayerInterfaceFn impl) {
         var vtable = JPC_BroadPhaseLayerInterfaceVTable.allocate(arena);

@@ -15,7 +15,7 @@ import static jolt.headers.JPC_ContactListenerVTable.*;
 import static jolt.headers.JPJ_ContactListener.*;
 
 public final class ContactListener extends AddressedJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private ContactListener(MemoryAddress handle) {
         super(handle);
     }
@@ -23,7 +23,7 @@ public final class ContactListener extends AddressedJoltNative {
     public static ContactListener at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ContactListener(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     private static ContactListener of(MemorySession arena, MemorySegment vtable, ContactListenerFn impl) {
         @SuppressWarnings("DataFlowIssue")

@@ -9,7 +9,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class CylinderShape extends ConvexShape {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private CylinderShape(MemoryAddress handle) {
         super(handle);
     }
@@ -17,7 +17,7 @@ public final class CylinderShape extends ConvexShape {
     public static CylinderShape at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new CylinderShape(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static CylinderShape of(float halfHeight, float radius, float convexRadius, @Nullable PhysicsMaterial material) {
         return new CylinderShape(JPC_CylinderShape_Create(halfHeight, radius, convexRadius, Jolt.ptr(material)));

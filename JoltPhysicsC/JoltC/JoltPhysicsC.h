@@ -128,6 +128,18 @@ typedef enum JPC_Activation
     _JPC_ACTIVATION_FORCEU32     = 0x7fffffff
 } JPC_Activation;
 
+typedef enum JPC_ActiveEdgeMode
+{
+    JPC_COLLIDE_ONLY_WITH_ACTIVE = 0,
+    JPC_COLLIDE_WITH_ALL         = 1
+} JPC_ActiveEdgeMode;
+
+typedef enum JPC_CollectFacesMode
+{
+    JPC_COLLECT_FACES = 0,
+    JPC_NO_FACES      = 1
+} JPC_CollectFacesMode;
+
 typedef enum JPC_ValidateResult
 {
     JPC_VALIDATE_RESULT_ACCEPT_ALL_CONTACTS = 0,
@@ -429,10 +441,24 @@ typedef struct JPC_BroadPhaseCastResult
 // NOTE: Needs to be kept in sync with JPH::RayCastResult
 typedef struct JPC_RayCastResult
 {
-    JPC_BodyID     body_id; // JPC_BODY_ID_INVALID
-    float          fraction; // 1.0 + JPC_FLT_EPSILON
-    JPC_SubShapeID sub_shape_id;
+    JPC_BroadPhaseCastResult base;
+    JPC_SubShapeID           sub_shape_id;
 } JPC_RayCastResult;
+
+// NOTE: Needs to be kept in sync with JPH::ShapeCastResult
+typedef struct JPC_ShapeCastResult
+{
+    JPC_CollideShapeResult base;
+    float fraction;
+    bool is_back_face_hit;
+} JPC_ShapeCastResult;
+
+// NOTE: Needs to be kept in sync with JPH::CollidePointResult
+typedef struct JPC_CollidePointResult
+{
+    JPC_BodyID body_id;
+    JPC_SubShapeID sub_shape_id;
+} JPC_CollidePointResult;
 
 // NOTE: Needs to be kept in sync with JPH::RayCastSettings
 typedef struct JPC_RayCastSettings
@@ -440,6 +466,34 @@ typedef struct JPC_RayCastSettings
     JPC_BackFaceMode back_face_mode;
     bool             treat_convex_as_solid;
 } JPC_RayCastSettings;
+
+// NOTE: Needs to be kept in sync with JPH::CollideSettingsBase
+typedef struct JPC_CollideSettingsBase
+{
+    JPC_ActiveEdgeMode   active_edge_mode;
+    JPC_CollectFacesMode collect_faces_mode;
+    float                collision_tolerance;
+    float                penetration_tolerance;
+    alignas(16) float    active_edge_movement_direction[3];
+} JPC_CollideSettingsBase;
+
+// NOTE: Needs to be kept in sync with JPH::CollideShapeSettings
+typedef struct JPC_CollideShapeSettings
+{
+    JPC_CollideSettingsBase base;
+    float                   max_separation_distance;
+    JPC_BackFaceMode        back_face_mode;
+} JPC_CollideShapeSettings;
+
+// NOTE: Needs to be kept in sync with JPH::ShapeCastSettings
+typedef struct JPC_ShapeCastSettings
+{
+    JPC_CollideSettingsBase base;
+    JPC_BackFaceMode        back_face_mode_triangles;
+    JPC_BackFaceMode        back_face_mode_convex;
+    bool                    use_shrunken_shape_and_convex_radius;
+    bool                    return_deepest_point;
+} JPC_ShapeCastSettings;
 
 // NOTE: Needs to be kept in sync with JPH::AABox
 typedef struct JPC_AABox
@@ -461,6 +515,17 @@ typedef struct JPC_AABoxCast
     JPC_AABox           box;
     alignas(16) float   direction[3];
 } JPC_AABoxCast;
+
+//// NOTE: Needs to be kept in sync with JPH::AABoxCast
+//typedef struct JPC_RShapeCast
+//{
+//    JPC_Shape *shape;
+//    alignas(16) float scale[3];
+//    // todo
+//
+//    JPC_AABox           box;
+//    alignas(16) float   direction[3];
+//} JPC_RShapeCast;
 
 typedef struct JPC_PhysicsSettings
 {
@@ -490,30 +555,11 @@ typedef struct JPC_PhysicsSettings
     bool  check_active_edges; // true
 } JPC_PhysicsSettings;
 
-typedef struct JPC_RayCastBodyCollectorVTable      JPC_RayCastBodyCollectorVTable;
-typedef struct JPC_CollideShapeBodyCollectorVTable JPC_CollideShapeBodyCollectorVTable;
-typedef struct JPC_CastShapeBodyCollectorVTable    JPC_CastShapeBodyCollectorVTable;
-
-typedef struct JPC_RayCastBodyCollector
+typedef struct JPC_CollisionCollector
 {
-    const JPC_RayCastBodyCollectorVTable *vtable;
     float                                 early_out_fraction;
     const JPC_TransformedShape *          context;
-} JPC_RayCastBodyCollector;
-
-typedef struct JPC_CollideShapeBodyCollector
-{
-    const JPC_CollideShapeBodyCollectorVTable *vtable;
-    float                                      early_out_fraction;
-    const JPC_TransformedShape *               context;
-} JPC_CollideShapeBodyCollector;
-
-typedef struct JPC_CastShapeBodyCollector
-{
-    const JPC_CastShapeBodyCollectorVTable *vtable;
-    float                                  early_out_fraction;
-    const JPC_TransformedShape *           context;
-} JPC_CastShapeBodyCollector;
+} JPC_CollisionCollector;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -602,6 +648,20 @@ typedef struct JPC_BodyFilterVTable
     (*ShouldCollideLocked)(const void *in_self, const JPC_Body *in_body);
 } JPC_BodyFilterVTable;
 
+typedef struct JPC_ShapeFilterVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    bool
+    (*ShouldCollide)(const void *in_self, JPC_SubShapeID in_sub_shape_id);
+
+    // Required, *cannot* be NULL.
+    bool
+    (*ShouldPairCollide)(const void *in_self, JPC_SubShapeID in_sub_shape_id1, JPC_SubShapeID in_sub_shape_id2);
+} JPC_ShapeFilterVTable;
+
 typedef struct JPC_ContactListenerVTable
 {
     // Optional, can be NULL.
@@ -640,15 +700,15 @@ typedef struct JPC_RayCastBodyCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*Reset)(const JPC_RayCastBodyCollector *in_self);
+    (*Reset)(void *in_self);
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(const JPC_RayCastBodyCollector *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, JPC_Body in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(const JPC_RayCastBodyCollector *in_self, JPC_BroadPhaseCastResult in_result);
+    (*AddHit)(void *in_self, const JPC_BroadPhaseCastResult in_result);
 } JPC_RayCastBodyCollectorVTable;
 
 typedef struct JPC_CollideShapeBodyCollectorVTable
@@ -658,15 +718,15 @@ typedef struct JPC_CollideShapeBodyCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*Reset)(const JPC_RayCastBodyCollector *in_self);
-
-    // Optional, can be NULL.
-    void
-    (*OnBody)(const JPC_RayCastBodyCollector *in_self, JPC_Body in_body);
+    (*Reset)(void *in_self);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(const JPC_RayCastBodyCollector *in_self, JPC_BodyID in_result);
+    (*OnBody)(void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(void *in_self, JPC_BodyID in_result);
 } JPC_CollideShapeBodyCollectorVTable;
 
 typedef struct JPC_CastShapeBodyCollectorVTable
@@ -676,16 +736,106 @@ typedef struct JPC_CastShapeBodyCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*Reset)(const JPC_CastShapeBodyCollectorVTable *in_self);
-
-    // Optional, can be NULL.
-    void
-    (*OnBody)(const JPC_CastShapeBodyCollectorVTable *in_self, JPC_Body in_body);
+    (*Reset)(void *in_self);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(const JPC_CastShapeBodyCollectorVTable *in_self, JPC_BroadPhaseCastResult in_result);
+    (*OnBody)(void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(void *in_self, const JPC_BroadPhaseCastResult in_result);
 } JPC_CastShapeBodyCollectorVTable;
+
+typedef struct JPC_CastRayCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*Reset)(void *in_self);
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnBody)(void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(void *in_self, const JPC_RayCastResult in_result);
+} JPC_CastRayCollectorVTable;
+
+typedef struct JPC_CastShapeCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*Reset)(void *in_self);
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnBody)(void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(void *in_self, const JPC_ShapeCastResult in_result);
+} JPC_CastShapeCollectorVTable;
+
+typedef struct JPC_CollidePointCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*Reset)(void *in_self);
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnBody)(void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(void *in_self, const JPC_CollidePointResult in_result);
+} JPC_CollidePointCollectorVTable;
+
+typedef struct JPC_CollideShapeCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*Reset)(void *in_self);
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnBody)(void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(void *in_self, const JPC_CollideShapeResult in_result);
+} JPC_CollideShapeCollectorVTable;
+
+typedef struct JPC_TransformedShapeCollectorVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*Reset)(void *in_self);
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnBody)(void *in_self, JPC_Body in_body);
+
+    // Required, *cannot* be NULL.
+    void
+    (*AddHit)(void *in_self, const JPC_TransformedShape in_result);
+} JPC_TransformedShapeCollectorVTable;
 
 // TODO combine
 //typedef struct JPC_CombineFunctor
@@ -738,6 +888,15 @@ JPC_CollideShapeResult_GetEarlyOutFraction(JPC_CollideShapeResult *in_settings);
 
 JPC_API void
 JPC_CollideShapeResult_Reversed(JPC_CollideShapeResult *in_settings, JPC_CollideShapeResult *out_settings);
+
+JPC_API void
+JPC_RayCastSettings_SetDefault(JPC_RayCastSettings *out_settings);
+
+JPC_API void
+JPC_CollideShapeSettings_SetDefault(JPC_CollideShapeSettings *out_settings);
+
+JPC_API void
+JPC_ShapeCastSettings_SetDefault(JPC_ShapeCastSettings *out_settings);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_MotionProperties
@@ -1005,61 +1164,97 @@ JPC_BodyLockInterface_UnlockWrite(const JPC_BodyLockInterface *in_lock_interface
                                   JPC_BodyLockWrite *io_lock);
 //--------------------------------------------------------------------------------------------------
 //
-// JPC_RayCastBodyCollector
+// (collector structs)
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API void
-JPC_RayCastBodyCollector_Reset(JPC_RayCastBodyCollector *in_collector);
+JPC_CollisionCollector_Reset(void *in_collector);
 
 JPC_API void
-JPC_RayCastBodyCollector_UpdateEarlyOutFraction(JPC_RayCastBodyCollector *in_collector, float in_fraction);
+JPC_CollisionCollector_UpdateEarlyOutFraction(void *in_collector, float in_fraction);
 
 JPC_API void
-JPC_RayCastBodyCollector_ResetEarlyOutFraction(JPC_RayCastBodyCollector *in_collector, float in_fraction);
-
+JPC_CollisionCollector_ResetEarlyOutFraction(void *in_collector, float in_fraction);
+//--------------------------------------------------------------------------------------------------
+//
+// (RayCastBodyCollector)
+//
+//--------------------------------------------------------------------------------------------------
 JPC_API void
-JPC_RayCastBodyCollector_ForceEarlyOut(JPC_RayCastBodyCollector *in_collector);
+JPC_RayCastBodyCollector_ForceEarlyOut(void *in_collector);
 
 JPC_API bool
-JPC_RayCastBodyCollector_ShouldEarlyOut(JPC_RayCastBodyCollector *in_collector);
+JPC_RayCastBodyCollector_ShouldEarlyOut(void *in_collector);
 //--------------------------------------------------------------------------------------------------
 //
-// JPC_CollideShapeBodyCollector
+// (CollideShapeBodyCollector)
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API void
-JPC_CollideShapeBodyCollector_Reset(JPC_CollideShapeBodyCollector *in_collector);
-
-JPC_API void
-JPC_CollideShapeBodyCollector_UpdateEarlyOutFraction(JPC_CollideShapeBodyCollector *in_collector, float in_fraction);
-
-JPC_API void
-JPC_CollideShapeBodyCollector_ResetEarlyOutFraction(JPC_CollideShapeBodyCollector *in_collector, float in_fraction);
-
-JPC_API void
-JPC_CollideShapeBodyCollector_ForceEarlyOut(JPC_CollideShapeBodyCollector *in_collector);
+JPC_CollideShapeBodyCollector_ForceEarlyOut(void *in_collector);
 
 JPC_API bool
-JPC_CollideShapeBodyCollector_ShouldEarlyOut(JPC_CollideShapeBodyCollector *in_collector);
+JPC_CollideShapeBodyCollector_ShouldEarlyOut(void *in_collector);
 //--------------------------------------------------------------------------------------------------
 //
-// JPC_CastShapeBodyCollector
+// (CastShapeBodyCollector)
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API void
-JPC_CastShapeBodyCollector_Reset(JPC_CastShapeBodyCollector *in_collector);
-
-JPC_API void
-JPC_CastShapeBodyCollector_UpdateEarlyOutFraction(JPC_CastShapeBodyCollector *in_collector, float in_fraction);
-
-JPC_API void
-JPC_CastShapeBodyCollector_ResetEarlyOutFraction(JPC_CastShapeBodyCollector *in_collector, float in_fraction);
-
-JPC_API void
-JPC_CastShapeBodyCollector_ForceEarlyOut(JPC_CastShapeBodyCollector *in_collector);
+JPC_CastShapeBodyCollector_ForceEarlyOut(void *in_collector);
 
 JPC_API bool
-JPC_CastShapeBodyCollector_ShouldEarlyOut(JPC_CastShapeBodyCollector *in_collector);
+JPC_CastShapeBodyCollector_ShouldEarlyOut(void *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
+// (CastRayCollector)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CastRayCollector_ForceEarlyOut(void *in_collector);
+
+JPC_API bool
+JPC_CastRayCollector_ShouldEarlyOut(void *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
+// (CastShapeCollector)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CastShapeCollector_ForceEarlyOut(void *in_collector);
+
+JPC_API bool
+JPC_CastShapeCollector_ShouldEarlyOut(void *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
+// (CollidePointCollector)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollidePointCollector_ForceEarlyOut(void *in_collector);
+
+JPC_API bool
+JPC_CollidePointCollector_ShouldEarlyOut(void *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
+// (CollideShapeCollector)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CollideShapeCollector_ForceEarlyOut(void *in_collector);
+
+JPC_API bool
+JPC_CollideShapeCollector_ShouldEarlyOut(void *in_collector);
+//--------------------------------------------------------------------------------------------------
+//
+// (TransformedShapeCollector)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_TransformedShapeCollector_ForceEarlyOut(void *in_collector);
+
+JPC_API bool
+JPC_TransformedShapeCollector_ShouldEarlyOut(void *in_collector);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_BroadPhaseQuery
@@ -1068,14 +1263,14 @@ JPC_CastShapeBodyCollector_ShouldEarlyOut(JPC_CastShapeBodyCollector *in_collect
 JPC_API void
 JPC_BroadPhaseQuery_CastRay(const JPC_BroadPhaseQuery *in_query,
                             const JPC_RayCast *in_ray,
-                            JPC_RayCastBodyCollector *io_collector,
+                            void *io_collector,
                             const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
                             const void *in_object_layer_filter); // Can be NULL (no filter)
 
 JPC_API void
 JPC_BroadPhaseQuery_CollideAABox(const JPC_BroadPhaseQuery *in_query,
                                  const JPC_AABox *in_box,
-                                 JPC_CollideShapeBodyCollector *io_collector,
+                                 void *io_collector,
                                  const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
                                  const void *in_object_layer_filter); // Can be NULL (no filter)
 
@@ -1083,28 +1278,28 @@ JPC_API void
 JPC_BroadPhaseQuery_CollideSphere(const JPC_BroadPhaseQuery *in_query,
                                   const float in_center[3],
                                   float in_radius,
-                                  JPC_CollideShapeBodyCollector *io_collector,
+                                  void *io_collector,
                                   const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
                                   const void *in_object_layer_filter); // Can be NULL (no filter)
 
 JPC_API void
 JPC_BroadPhaseQuery_CollidePoint(const JPC_BroadPhaseQuery *in_query,
                                  const float in_point[3],
-                                 JPC_CollideShapeBodyCollector *io_collector,
+                                 void *io_collector,
                                  const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
                                  const void *in_object_layer_filter); // Can be NULL (no filter)
 
 JPC_API void
 JPC_BroadPhaseQuery_CollideOrientedBox(const JPC_BroadPhaseQuery *in_query,
                                        const JPC_OrientedBox *in_box,
-                                       JPC_CollideShapeBodyCollector *io_collector,
+                                       void *io_collector,
                                        const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
                                        const void *in_object_layer_filter); // Can be NULL (no filter)
 
 JPC_API void
 JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
                               const JPC_AABoxCast *in_box,
-                              JPC_CastShapeBodyCollector *io_collector,
+                              void *io_collector,
                               const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
                               const void *in_object_layer_filter); // Can be NULL (no filter)
 //--------------------------------------------------------------------------------------------------
@@ -1113,12 +1308,66 @@ JPC_BroadPhaseQuery_CastAABox(const JPC_BroadPhaseQuery *in_query,
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API bool
-JPC_NarrowPhaseQuery_CastRay(const JPC_NarrowPhaseQuery *in_query,
-                             const JPC_RRayCast *in_ray,
-                             JPC_RayCastResult *io_hit, // *Must* be default initialized (see JPC_RayCastResult)
-                             const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
-                             const void *in_object_layer_filter, // Can be NULL (no filter)
-                             const void *in_body_filter); // Can be NULL (no filter)
+JPC_NarrowPhaseQuery_GetCastRay(const JPC_NarrowPhaseQuery *in_query,
+                                const JPC_RRayCast *in_ray,
+                                JPC_RayCastResult *io_hit, // *Must* be default initialized (see JPC_RayCastResult)
+                                const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                const void *in_object_layer_filter, // Can be NULL (no filter)
+                                const void *in_body_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_NarrowPhaseQuery_CollectCastRay(const JPC_NarrowPhaseQuery *in_query,
+                                    const JPC_RRayCast *in_ray,
+                                    const JPC_RayCastSettings *in_settings,
+                                    void *io_collector,
+                                    const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                    const void *in_object_layer_filter, // Can be NULL (no filter)
+                                    const void *in_body_filter, // Can be NULL (no filter)
+                                    const void *in_shape_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_NarrowPhaseQuery_CollidePoint(const JPC_NarrowPhaseQuery *in_query,
+                                  const JPC_Real in_point[3],
+                                  void *io_collector,
+                                  const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                  const void *in_object_layer_filter, // Can be NULL (no filter)
+                                  const void *in_body_filter, // Can be NULL (no filter)
+                                  const void *in_shape_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_NarrowPhaseQuery_CollideShape(const JPC_NarrowPhaseQuery *in_query,
+                                  const JPC_Shape *in_shape,
+                                  const float in_shape_scale[3],
+                                  const float in_com_rotation[9],
+                                  const JPC_Real in_com_translation[3],
+                                  const JPC_CollideShapeSettings *in_settings,
+                                  const JPC_Real in_base_offset[3],
+                                  void *io_collector,
+                                  const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                  const void *in_object_layer_filter, // Can be NULL (no filter)
+                                  const void *in_body_filter, // Can be NULL (no filter)
+                                  const void *in_shape_filter); // Can be NULL (no filter)
+
+// TODO
+//JPC_API void
+//JPC_NarrowPhaseQuery_CastShape(const JPC_NarrowPhaseQuery *in_query,
+//                               const JPC_RShapeCast *in_shape_cast,
+//                               const JPC_ShapeCastSettings *in_settings,
+//                               const JPC_Real in_base_offset[3],
+//                               void *io_collector,
+//                               const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+//                               const void *in_object_layer_filter, // Can be NULL (no filter)
+//                               const void *in_body_filter, // Can be NULL (no filter)
+//                               const void *in_shape_filter); // Can be NULL (no filter)
+
+JPC_API void
+JPC_NarrowPhaseQuery_CollectTransformedShapes(const JPC_NarrowPhaseQuery *in_query,
+                                              const JPC_AABox *in_box,
+                                              void *io_collector,
+                                              const void *in_broad_phase_layer_filter, // Can be NULL (no filter)
+                                              const void *in_object_layer_filter, // Can be NULL (no filter)
+                                              const void *in_body_filter, // Can be NULL (no filter)
+                                              const void *in_shape_filter); // Can be NULL (no filter)
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_SphereShape (-> JPC_ConvexShape -> JPC_Shape)
@@ -2097,8 +2346,53 @@ struct JPJ_BodyFilter {
     const JPC_BodyFilterVTable *vtable;
 };
 
+struct JPJ_ShapeFilter {
+    const JPC_ShapeFilterVTable *vtable;
+    JPC_BodyID body_id;
+};
+
 struct JPJ_ContactListener {
     const JPC_ContactListenerVTable *vtable;
+};
+
+struct JPJ_RayCastBodyCollector {
+    const JPC_RayCastBodyCollectorVTable *vtable;
+    JPC_CollisionCollector                collector;
+};
+
+struct JPJ_CollideShapeBodyCollector {
+    const JPC_CollideShapeBodyCollectorVTable *vtable;
+    JPC_CollisionCollector                     collector;
+};
+
+struct JPJ_CastShapeBodyCollector {
+    const JPC_CastShapeBodyCollectorVTable *vtable;
+    JPC_CollisionCollector                  collector;
+};
+
+struct JPJ_CastRayCollector {
+    const JPC_CastRayCollectorVTable *vtable;
+    JPC_CollisionCollector            collector;
+};
+
+struct JPJ_CastShapeCollector {
+    const JPC_CastShapeCollectorVTable *vtable;
+    JPC_CollisionCollector              collector;
+};
+
+struct JPJ_CollidePointCollector {
+    const JPC_CollidePointCollectorVTable *vtable;
+    JPC_CollisionCollector                 collector;
+};
+
+struct JPJ_CollideShapeCollector {
+    const JPC_CollideShapeCollectorVTable *vtable;
+    JPC_CollisionCollector                 collector;
+};
+
+struct JPJ_TransformedShapeCollector {
+    const JPC_TransformedShapeCollectorVTable *vtable;
+    JPC_CollisionCollector                     collector;
 };
 // END JoltJava
 #ifdef __cplusplus

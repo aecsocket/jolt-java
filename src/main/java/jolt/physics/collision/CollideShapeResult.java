@@ -9,7 +9,7 @@ import static jolt.headers.JPC_CollideShapeResult.*;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class CollideShapeResult extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private CollideShapeResult(MemorySegment handle) {
         super(handle);
     }
@@ -25,7 +25,7 @@ public final class CollideShapeResult extends SegmentedJoltNative {
     public static CollideShapeResult of(SegmentAllocator alloc) {
         return new CollideShapeResult(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public FVec3 getContactPointOn1() {
         return FVec3.at(shape1_contact_point$slice(handle));

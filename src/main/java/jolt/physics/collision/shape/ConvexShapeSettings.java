@@ -11,7 +11,7 @@ import static jolt.headers.JoltPhysicsC.*;
 public sealed class ConvexShapeSettings extends ShapeSettings
         permits SphereShapeSettings, BoxShapeSettings, TriangleShapeSettings, CapsuleShapeSettings,
         TaperedCapsuleShapeSettings, CylinderShapeSettings, ConvexHullShapeSettings {
-    // START Jolt-Pointer-Protected
+    //region Jolt-Pointer-Protected
     protected ConvexShapeSettings(MemoryAddress handle) {
         super(handle);
     }
@@ -19,7 +19,7 @@ public sealed class ConvexShapeSettings extends ShapeSettings
     public static ConvexShapeSettings at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new ConvexShapeSettings(addr);
     }
-    // END Jolt-Pointer-Protected
+    //endregion Jolt-Pointer-Protected
 
     public @Nullable PhysicsMaterial getMaterial() {
         return PhysicsMaterial.at(JPC_ConvexShapeSettings_GetMaterial(handle));

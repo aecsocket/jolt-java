@@ -9,7 +9,7 @@ import java.lang.foreign.*;
 import static jolt.headers_d.JPC_RRayCast.*;
 
 public final class DRayCast extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private DRayCast(MemorySegment handle) {
         super(handle);
     }
@@ -25,7 +25,7 @@ public final class DRayCast extends SegmentedJoltNative {
     public static DRayCast of(SegmentAllocator alloc) {
         return new DRayCast(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public static DRayCast of(MemorySession session, DVec3 origin, FVec3 direction) {
         var segment = allocate(session);

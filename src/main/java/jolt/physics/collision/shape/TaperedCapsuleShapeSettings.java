@@ -9,7 +9,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class TaperedCapsuleShapeSettings extends ConvexShapeSettings {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private TaperedCapsuleShapeSettings(MemoryAddress handle) {
         super(handle);
     }
@@ -17,7 +17,7 @@ public final class TaperedCapsuleShapeSettings extends ConvexShapeSettings {
     public static TaperedCapsuleShapeSettings at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new TaperedCapsuleShapeSettings(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static TaperedCapsuleShapeSettings of(
             float halfHeight,

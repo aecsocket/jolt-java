@@ -8,7 +8,7 @@ import java.lang.foreign.*;
 import static jolt.headers.JPC_PhysicsSettings.*;
 
 public final class PhysicsSettings extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private PhysicsSettings(MemorySegment handle) {
         super(handle);
     }
@@ -24,7 +24,7 @@ public final class PhysicsSettings extends SegmentedJoltNative {
     public static PhysicsSettings of(SegmentAllocator alloc) {
         return new PhysicsSettings(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public int getMaxInFlightBodyPairs() {
         return max_in_flight_body_pairs$get(handle);

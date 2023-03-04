@@ -10,7 +10,7 @@ public final class Quat extends SegmentedJoltNative {
     private static final int NUM_COMPONENTS = 4;
     private static final long BYTES_SIZE = NUM_COMPONENTS * C_FLOAT.byteSize();
 
-    // START PrimitiveJoltNative
+    //region PrimitiveJoltNative
     private Quat(MemorySegment handle) {
         super(handle);
     }
@@ -26,7 +26,7 @@ public final class Quat extends SegmentedJoltNative {
     public static Quat of(SegmentAllocator alloc) {
         return new Quat(alloc.allocate(BYTES_SIZE));
     }
-    // END PrimitiveJoltNative
+    //endregion PrimitiveJoltNative
 
     public static Quat of(SegmentAllocator alloc, float x, float y, float z, float w) {
         return new Quat(alloc.allocateArray(C_FLOAT, x, y, z, w));

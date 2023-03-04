@@ -11,7 +11,7 @@ import static jolt.headers.JPC_BodyActivationListenerVTable.*;
 import static jolt.headers.JPJ_BodyActivationListener.*;
 
 public final class BodyActivationListener extends AddressedJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private BodyActivationListener(MemoryAddress handle) {
         super(handle);
     }
@@ -19,7 +19,7 @@ public final class BodyActivationListener extends AddressedJoltNative {
     public static BodyActivationListener at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new BodyActivationListener(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static BodyActivationListener of(MemorySession arena, BodyActivationListenerFn impl) {
         var vtable = JPC_BodyActivationListenerVTable.allocate(arena);

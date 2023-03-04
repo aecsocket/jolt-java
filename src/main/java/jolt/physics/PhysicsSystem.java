@@ -7,6 +7,7 @@ import jolt.core.TempAllocator;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
 import jolt.physics.collision.ContactListener;
+import jolt.physics.collision.NarrowPhaseQuery;
 import jolt.physics.collision.ObjectLayerPairFilter;
 import jolt.physics.collision.broadphase.BroadPhaseLayerInterface;
 import jolt.physics.collision.broadphase.BroadPhaseQuery;
@@ -19,7 +20,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class PhysicsSystem extends DestroyableJoltNative {
-    // START Jolt-Pointer
+    //region Jolt-Pointer
     private PhysicsSystem(MemoryAddress handle) {
         super(handle);
     }
@@ -27,7 +28,7 @@ public final class PhysicsSystem extends DestroyableJoltNative {
     public static PhysicsSystem at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : new PhysicsSystem(addr);
     }
-    // END Jolt-Pointer
+    //endregion Jolt-Pointer
 
     public static PhysicsSystem of(
             int maxBodies,
@@ -91,6 +92,14 @@ public final class PhysicsSystem extends DestroyableJoltNative {
 
     public BroadPhaseQuery getBroadPhaseQuery() {
         return BroadPhaseQuery.at(JPC_PhysicsSystem_GetBroadPhaseQuery(handle));
+    }
+
+    public NarrowPhaseQuery getNarrowPhaseQuery() {
+        return NarrowPhaseQuery.at(JPC_PhysicsSystem_GetNarrowPhaseQuery(handle));
+    }
+
+    public NarrowPhaseQuery getNarrowPhaseQueryNoLock() {
+        return NarrowPhaseQuery.at(JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(handle));
     }
 
     public void optimizeBroadPhase() {

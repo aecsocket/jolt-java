@@ -8,7 +8,7 @@ import java.lang.foreign.*;
 import static jolt.headers.JPC_AABoxCast.*;
 
 public final class AABoxCast extends SegmentedJoltNative {
-    // START Jolt-Value
+    //region Jolt-Value
     private AABoxCast(MemorySegment handle) {
         super(handle);
     }
@@ -24,7 +24,7 @@ public final class AABoxCast extends SegmentedJoltNative {
     public static AABoxCast of(SegmentAllocator alloc) {
         return new AABoxCast(allocate(alloc));
     }
-    // END Jolt-Value
+    //endregion Jolt-Value
 
     public static AABoxCast of(SegmentAllocator alloc, AABox box, FVec3 direction) {
         var segment = allocate(alloc);
