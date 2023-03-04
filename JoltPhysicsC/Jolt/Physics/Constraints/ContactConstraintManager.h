@@ -1,3 +1,4 @@
+// Jolt Physics Library (https://github.com/jrouwe/JoltPhysics)
 // SPDX-FileCopyrightText: 2021 Jorrit Rouwe
 // SPDX-License-Identifier: MIT
 
@@ -40,7 +41,7 @@ public:
 	void						SetContactListener(ContactListener *inListener)						{ mContactListener = inListener; }
 	ContactListener *			GetContactListener() const											{ return mContactListener; }
 
-	/// Callback function to fn the restitution or friction of two bodies
+	/// Callback function to combine the restitution or friction of two bodies
 	/// Note that when merging manifolds (when PhysicsSettings::mUseManifoldReduction is true) you will only get a callback for the merged manifold.
 	/// It is not possible in that case to get all sub shape ID pairs that were colliding, you'll get the first encountered pair.
 	using CombineFunction = float (*)(const Body &inBody1, const SubShapeID &inSubShapeID1, const Body &inBody2, const SubShapeID &inSubShapeID2);
@@ -140,12 +141,14 @@ public:
 	bool						AddContactConstraint(ContactAllocator &ioContactAllocator, BodyPairHandle inBodyPair, Body &inBody1, Body &inBody2, const ContactManifold &inManifold);
 
 	/// Finalizes the contact cache, the contact cache that was generated during the calls to AddContactConstraint in this update
-	/// will be used from now on to read from.
-	/// inExpectedNumBodyPairs / inExpectedNumManifolds are the amount of body pairs / manifolds found in the previous step and is used to determine the amount of buckets the contact cache hash map will use.
-	void						FinalizeContactCache(uint inExpectedNumBodyPairs, uint inExpectedNumManifolds);
+	/// will be used from now on to read from. After finalizing the contact cache, the contact removed callbacks will be called.
+	/// inExpectedNumBodyPairs / inExpectedNumManifolds are the amount of body pairs / manifolds found in the previous step and is
+	/// used to determine the amount of buckets the contact cache hash map will use in the next update.
+	void						FinalizeContactCacheAndCallContactPointRemovedCallbacks(uint inExpectedNumBodyPairs, uint inExpectedNumManifolds);
 
-	/// Notifies the listener of any contact points that were removed. Needs to be callsed after FinalizeContactCache().
-	void						ContactPointRemovedCallbacks();
+	/// Check if 2 bodies were in contact during the last simulation step. Since contacts are only detected between active bodies, at least one of the bodies must be active.
+	/// Uses the read collision cache to determine if 2 bodies are in contact.
+	bool						WereBodiesInContact(const BodyID &inBody1ID, const BodyID &inBody2ID) const;
 
 	/// Get the number of contact constraints that were found
 	uint32						GetNumConstraints() const											{ return min<uint32>(mNumConstraints, mMaxConstraints); }
@@ -197,7 +200,7 @@ public:
 	/// Solve position constraints.
 	/// This is using the approach described in 'Modeling and Solving Constraints' by Erin Catto presented at GDC 2007.
 	/// On slide 78 it is suggested to split up the Baumgarte stabilization for positional drift so that it does not
-	/// actually add to the momentum. We fn an Euler velocity integrate + a position integrate and then discard the velocity
+	/// actually add to the momentum. We combine an Euler velocity integrate + a position integrate and then discard the velocity
 	/// change.
 	///
 	/// Constraint force:
@@ -473,7 +476,7 @@ private:
 	/// Listener that is notified whenever a contact point between two bodies is added/updated/removed
 	ContactListener *			mContactListener = nullptr;
 
-	/// Functions that are used to fn friction and restitution of 2 bodies
+	/// Functions that are used to combine friction and restitution of 2 bodies
 	CombineFunction				mCombineFriction = [](const Body &inBody1, const SubShapeID &, const Body &inBody2, const SubShapeID &) { return sqrt(inBody1.GetFriction() * inBody2.GetFriction()); };
 	CombineFunction				mCombineRestitution = [](const Body &inBody1, const SubShapeID &, const Body &inBody2, const SubShapeID &) { return max(inBody1.GetRestitution(), inBody2.GetRestitution()); };
 

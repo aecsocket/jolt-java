@@ -1,3 +1,4 @@
+// Jolt Physics Library (https://github.com/jrouwe/JoltPhysics)
 // SPDX-FileCopyrightText: 2021 Jorrit Rouwe
 // SPDX-License-Identifier: MIT
 
@@ -536,7 +537,7 @@ void WheeledVehicleController::PostCollide(float inDeltaTime, PhysicsSystem &inP
 		WheelWV *w = static_cast<WheelWV *>(w_base);
 		const WheelSettingsWV *settings = w->GetSettings();
 
-		// fn brake with hand brake torque
+		// Combine brake with hand brake torque
 		float brake_torque = mBrakeInput * settings->mMaxBrakeTorque + mHandBrakeInput * settings->mMaxHandBrakeTorque;
 		if (brake_torque > 0.0f)
 		{

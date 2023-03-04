@@ -18,7 +18,7 @@ import static jolt.headers.JPC_CollisionCollector.*;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class CastShapeBodyCollector extends CollisionCollector {
-    private static final float INITIAL_EARLY_OUT_FRACTION = Math.ulp(1.0f);
+    private static final float INITIAL_EARLY_OUT_FRACTION = 1.0f + Math.ulp(1.0f);
 
     //region Jolt-Value
     private CastShapeBodyCollector(MemorySegment handle) {

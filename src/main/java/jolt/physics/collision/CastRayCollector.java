@@ -8,7 +8,6 @@ import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 import java.lang.foreign.SegmentAllocator;
-import java.util.Collection;
 
 import static jolt.headers.JPJ_CastRayCollector.*;
 import static jolt.headers.JPC_CastRayCollectorVTable.*;
@@ -16,7 +15,7 @@ import static jolt.headers.JPC_CollisionCollector.*;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class CastRayCollector extends CollisionCollector {
-    private static final float INITIAL_EARLY_OUT_FRACTION = Math.ulp(1.0f);
+    private static final float INITIAL_EARLY_OUT_FRACTION = 1.0f + Math.ulp(1.0f);
 
     //region Jolt-Value
     private CastRayCollector(MemorySegment handle) {

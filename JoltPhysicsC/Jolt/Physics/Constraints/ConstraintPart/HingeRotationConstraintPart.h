@@ -1,3 +1,4 @@
+// Jolt Physics Library (https://github.com/jrouwe/JoltPhysics)
 // SPDX-FileCopyrightText: 2021 Jorrit Rouwe
 // SPDX-License-Identifier: MIT
 
@@ -176,7 +177,7 @@ public:
 			//
 			// Note we don't accumulate velocities for the stabilization. This is using the approach described in 'Modeling and 
 			// Solving Constraints' by Erin Catto presented at GDC 2007. On slide 78 it is suggested to split up the Baumgarte 
-			// stabilization for positional drift so that it does not actually add to the momentum. We fn an Euler velocity
+			// stabilization for positional drift so that it does not actually add to the momentum. We combine an Euler velocity 
 			// integrate + a position integrate and then discard the velocity change.
 			Vec3 impulse = mB2xA1 * lambda[0] + mC2xA1 * lambda[1];
 			if (ioBody1.IsDynamic())

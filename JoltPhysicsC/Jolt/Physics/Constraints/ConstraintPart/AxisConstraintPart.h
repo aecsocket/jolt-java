@@ -1,3 +1,4 @@
+// Jolt Physics Library (https://github.com/jrouwe/JoltPhysics)
 // SPDX-FileCopyrightText: 2021 Jorrit Rouwe
 // SPDX-License-Identifier: MIT
 
@@ -98,7 +99,7 @@ public:
 
 		if constexpr (Type1 == EMotionType::Dynamic)
 		{
-			Vec3 invi1_r1_plus_u_x_axis = inInvI1 * r1_plus_u_x_axis;
+			Vec3 invi1_r1_plus_u_x_axis = inInvI1.Multiply3x3(r1_plus_u_x_axis);
 			invi1_r1_plus_u_x_axis.StoreFloat3(&mInvI1_R1PlusUxAxis);
 			inv_effective_mass = inMotionProperties1->GetInverseMass() + invi1_r1_plus_u_x_axis.Dot(r1_plus_u_x_axis);
 		}
@@ -111,7 +112,7 @@ public:
 
 		if constexpr (Type2 == EMotionType::Dynamic)
 		{
-			Vec3 invi2_r2_x_axis = inInvI2 * r2_x_axis;
+			Vec3 invi2_r2_x_axis = inInvI2.Multiply3x3(r2_x_axis);
 			invi2_r2_x_axis.StoreFloat3(&mInvI2_R2xAxis);
 			inv_effective_mass += inMotionProperties2->GetInverseMass() + invi2_r2_x_axis.Dot(r2_x_axis);
 		}
@@ -349,7 +350,7 @@ public:
 			//
 			// Note we don't accumulate velocities for the stabilization. This is using the approach described in 'Modeling and 
 			// Solving Constraints' by Erin Catto presented at GDC 2007. On slide 78 it is suggested to split up the Baumgarte 
-			// stabilization for positional drift so that it does not actually add to the momentum. We fn an Euler velocity
+			// stabilization for positional drift so that it does not actually add to the momentum. We combine an Euler velocity 
 			// integrate + a position integrate and then discard the velocity change.
 			if (ioBody1.IsDynamic())
 			{

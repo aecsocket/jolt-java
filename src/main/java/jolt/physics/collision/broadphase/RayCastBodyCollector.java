@@ -6,7 +6,6 @@ import jolt.physics.body.Body;
 import jolt.headers.JPC_RayCastBodyCollectorVTable;
 
 import java.lang.foreign.*;
-import java.util.Collection;
 
 import static jolt.headers.JPJ_RayCastBodyCollector.*;
 import static jolt.headers.JPC_RayCastBodyCollectorVTable.*;
@@ -14,7 +13,7 @@ import static jolt.headers.JPC_CollisionCollector.*;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class RayCastBodyCollector extends CollisionCollector {
-    private static final float INITIAL_EARLY_OUT_FRACTION = Math.ulp(1.0f);
+    private static final float INITIAL_EARLY_OUT_FRACTION = 1.0f + Math.ulp(1.0f);
 
     //region Jolt-Value
     private RayCastBodyCollector(MemorySegment handle) {

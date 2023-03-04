@@ -1,3 +1,4 @@
+// Jolt Physics Library (https://github.com/jrouwe/JoltPhysics)
 // SPDX-FileCopyrightText: 2021 Jorrit Rouwe
 // SPDX-License-Identifier: MIT
 
@@ -23,7 +24,7 @@ inline uint64 HashBytes(const void *inData, uint inSize, uint64 inSeed = 0xcbf29
 }
 
 /// @brief Helper function that hashes a single value into ioSeed
-/// Taken from: https://stackoverflow.com/questions/2590677/how-do-i-fn-hash-values-in-c0x
+/// Taken from: https://stackoverflow.com/questions/2590677/how-do-i-combine-hash-values-in-c0x
 template <typename T>
 inline void HashCombineHelper(size_t &ioSeed, const T &inValue)
 {

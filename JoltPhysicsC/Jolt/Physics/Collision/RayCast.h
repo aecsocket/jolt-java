@@ -1,3 +1,4 @@
+// Jolt Physics Library (https://github.com/jrouwe/JoltPhysics)
 // SPDX-FileCopyrightText: 2021 Jorrit Rouwe
 // SPDX-License-Identifier: MIT
 
@@ -41,8 +42,7 @@ struct RayCast : public RayCastT<Vec3, Mat44, RayCast>
 	using RayCastT<Vec3, Mat44, RayCast>::RayCastT;
 };
 
-struct
-RRayCast : public RayCastT<RVec3, RMat44, RRayCast>
+struct RRayCast : public RayCastT<RVec3, RMat44, RRayCast>
 {
 	using RayCastT<RVec3, RMat44, RRayCast>::RayCastT;
 
