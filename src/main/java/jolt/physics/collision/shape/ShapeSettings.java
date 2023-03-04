@@ -8,7 +8,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public sealed class ShapeSettings extends DestroyableJoltNative
-        permits ConvexShapeSettings {
+        permits ConvexShapeSettings, CompoundShapeSettings {
     //region Jolt-Pointer-Protected
     protected ShapeSettings(MemoryAddress handle) {
         super(handle);

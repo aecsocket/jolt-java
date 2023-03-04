@@ -24,6 +24,7 @@ Features:
   - [x] Body interface
 - [ ] Queries
   - [x] Broad phase
+  - [x] Narrow phase
 - [ ] Constraints
 - [ ] Vehicles
 - [ ] Characters

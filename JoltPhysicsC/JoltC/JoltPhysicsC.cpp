@@ -28,6 +28,8 @@
 #include <Jolt/Physics/Collision/Shape/ConvexHullShape.h>
 #include <Jolt/Physics/Collision/Shape/HeightFieldShape.h>
 #include <Jolt/Physics/Collision/Shape/MeshShape.h>
+#include <Jolt/Physics/Collision/Shape/StaticCompoundShape.h>
+#include <Jolt/Physics/Collision/Shape/MutableCompoundShape.h>
 #include <Jolt/Physics/Collision/PhysicsMaterial.h>
 #include <Jolt/Physics/Body/BodyCreationSettings.h>
 #include <Jolt/Physics/Body/BodyActivationListener.h>
@@ -67,6 +69,9 @@ FN(toJph)(JPC_Body *in) { assert(in); return reinterpret_cast<JPH::Body *>(in); 
 
 FN(toJph)(const JPC_PhysicsMaterial *in) { return reinterpret_cast<const JPH::PhysicsMaterial *>(in); }
 FN(toJpc)(const JPH::PhysicsMaterial *in) { return reinterpret_cast<const JPC_PhysicsMaterial *>(in); }
+
+FN(toJph)(JPC_TempAllocator *in) { return reinterpret_cast<JPH::TempAllocator *>(in); }
+FN(toJpc)(JPH::TempAllocator *in) { return reinterpret_cast<JPC_TempAllocator *>(in); }
 
 FN(toJph)(const JPC_ShapeSettings *in) {
     ENSURE_TYPE(in, JPH::ShapeSettings);
@@ -179,6 +184,21 @@ FN(toJpc)(JPH::MeshShapeSettings *in) {
     assert(in);
     return reinterpret_cast<JPC_MeshShapeSettings *>(in);
 }
+
+FN(toJpc)(const JPH::CompoundShapeSettings *in) { assert(in); return reinterpret_cast<const JPC_CompoundShapeSettings *>(in); }
+FN(toJph)(const JPC_CompoundShapeSettings *in) { assert(in); return reinterpret_cast<const JPH::CompoundShapeSettings *>(in); }
+FN(toJpc)(JPH::CompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPC_CompoundShapeSettings *>(in); }
+FN(toJph)(JPC_CompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPH::CompoundShapeSettings *>(in); }
+
+FN(toJpc)(const JPH::StaticCompoundShapeSettings *in) { assert(in); return reinterpret_cast<const JPC_StaticCompoundShapeSettings *>(in); }
+FN(toJph)(const JPC_StaticCompoundShapeSettings *in) { assert(in); return reinterpret_cast<const JPH::StaticCompoundShapeSettings *>(in); }
+FN(toJpc)(JPH::StaticCompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPC_StaticCompoundShapeSettings *>(in); }
+FN(toJph)(JPC_StaticCompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPH::StaticCompoundShapeSettings *>(in); }
+
+FN(toJpc)(const JPH::MutableCompoundShapeSettings *in) { assert(in); return reinterpret_cast<const JPC_MutableCompoundShapeSettings *>(in); }
+FN(toJph)(const JPC_MutableCompoundShapeSettings *in) { assert(in); return reinterpret_cast<const JPH::MutableCompoundShapeSettings *>(in); }
+FN(toJpc)(JPH::MutableCompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPC_MutableCompoundShapeSettings *>(in); }
+FN(toJph)(JPC_MutableCompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPH::MutableCompoundShapeSettings *>(in); }
 
 FN(toJph)(const JPC_ConvexShapeSettings *in) {
     ENSURE_TYPE(in, JPH::ConvexShapeSettings);
@@ -2166,6 +2186,65 @@ JPC_API void
 JPC_MeshShapeSettings_Sanitize(JPC_MeshShapeSettings *in_settings)
 {
     toJph(in_settings)->Sanitize();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_CompoundShapeSettings (-> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CompoundShapeSettings_AddShapeSettings(JPC_CompoundShapeSettings *in_settings,
+                                           const float in_position[3],
+                                           const float in_rotation[4],
+                                           const JPC_ShapeSettings *in_shape,
+                                           uint32_t in_user_data)
+{
+    toJph(in_settings)->AddShape(loadVec3(in_position), loadQuat(in_rotation), toJph(in_shape), in_user_data);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CompoundShapeSettings_AddShape(JPC_CompoundShapeSettings *in_settings,
+                                   const float in_position[3],
+                                   const float in_rotation[4],
+                                   const JPC_Shape *in_shape,
+                                   uint32_t in_user_data)
+{
+    toJph(in_settings)->AddShape(loadVec3(in_position), loadQuat(in_rotation), toJph(in_shape), in_user_data);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_StaticCompoundShapeSettings (-> JPC_CompoundShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_StaticCompoundShapeSettings *
+JPC_StaticCompoundShapeSettings_Create()
+{
+    auto settings = new JPH::StaticCompoundShapeSettings();
+    settings->AddRef();
+    return toJpc(settings);
+}
+
+JPC_API JPC_Shape *
+JPC_StaticCompoundShapeSettings_CreateShape(const JPC_StaticCompoundShapeSettings *in_settings,
+                                            JPC_TempAllocator *in_temp_allocator)
+{
+    auto result = toJph(in_settings)->Create(*toJph(in_temp_allocator));
+    if (result.HasError()) return nullptr; // TODO return actual error
+    auto shape = const_cast<JPH::Shape *>(result.Get().GetPtr());
+    shape->AddRef();
+    return toJpc(shape);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_MutableCompoundShapeSettings (-> JPC_CompoundShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_MutableCompoundShapeSettings *
+JPC_MutableCompoundShapeSettings_Create()
+{
+    auto settings = new JPH::MutableCompoundShapeSettings();
+    settings->AddRef();
+    return toJpc(settings);
 }
 //--------------------------------------------------------------------------------------------------
 //

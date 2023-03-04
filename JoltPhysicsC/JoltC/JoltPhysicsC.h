@@ -189,29 +189,35 @@ typedef struct JPC_BodyLockInterface JPC_BodyLockInterface;
 typedef struct JPC_BroadPhaseQuery   JPC_BroadPhaseQuery;
 typedef struct JPC_NarrowPhaseQuery  JPC_NarrowPhaseQuery;
 
-typedef struct JPC_Shape               JPC_Shape;
-typedef struct JPC_ConvexShape         JPC_ConvexShape;
-typedef struct JPC_BoxShape            JPC_BoxShape;
-typedef struct JPC_SphereShape         JPC_SphereShape;
-typedef struct JPC_TriangleShape       JPC_TriangleShape;
-typedef struct JPC_CapsuleShape        JPC_CapsuleShape;
-typedef struct JPC_TaperedCapsuleShape JPC_TaperedCapsuleShape;
-typedef struct JPC_CylinderShape       JPC_CylinderShape;
-typedef struct JPC_ConvexHullShape     JPC_ConvexHullShape;
-typedef struct JPC_HeightFieldShape    JPC_HeightFieldShape;
-typedef struct JPC_MeshShape           JPC_MeshShape;
+typedef struct JPC_Shape                JPC_Shape;
+typedef struct JPC_ConvexShape          JPC_ConvexShape;
+typedef struct JPC_BoxShape             JPC_BoxShape;
+typedef struct JPC_SphereShape          JPC_SphereShape;
+typedef struct JPC_TriangleShape        JPC_TriangleShape;
+typedef struct JPC_CapsuleShape         JPC_CapsuleShape;
+typedef struct JPC_TaperedCapsuleShape  JPC_TaperedCapsuleShape;
+typedef struct JPC_CylinderShape        JPC_CylinderShape;
+typedef struct JPC_ConvexHullShape      JPC_ConvexHullShape;
+typedef struct JPC_HeightFieldShape     JPC_HeightFieldShape;
+typedef struct JPC_MeshShape            JPC_MeshShape;
+typedef struct JPC_CompoundShape        JPC_CompoundShape;
+typedef struct JPC_StaticCompoundShape  JPC_StaticCompoundShape;
+typedef struct JPC_MutableCompoundShape JPC_MutableCompoundShape;
 
-typedef struct JPC_ShapeSettings               JPC_ShapeSettings;
-typedef struct JPC_ConvexShapeSettings         JPC_ConvexShapeSettings;
-typedef struct JPC_BoxShapeSettings            JPC_BoxShapeSettings;
-typedef struct JPC_SphereShapeSettings         JPC_SphereShapeSettings;
-typedef struct JPC_TriangleShapeSettings       JPC_TriangleShapeSettings;
-typedef struct JPC_CapsuleShapeSettings        JPC_CapsuleShapeSettings;
-typedef struct JPC_TaperedCapsuleShapeSettings JPC_TaperedCapsuleShapeSettings;
-typedef struct JPC_CylinderShapeSettings       JPC_CylinderShapeSettings;
-typedef struct JPC_ConvexHullShapeSettings     JPC_ConvexHullShapeSettings;
-typedef struct JPC_HeightFieldShapeSettings    JPC_HeightFieldShapeSettings;
-typedef struct JPC_MeshShapeSettings           JPC_MeshShapeSettings;
+typedef struct JPC_ShapeSettings                JPC_ShapeSettings;
+typedef struct JPC_ConvexShapeSettings          JPC_ConvexShapeSettings;
+typedef struct JPC_BoxShapeSettings             JPC_BoxShapeSettings;
+typedef struct JPC_SphereShapeSettings          JPC_SphereShapeSettings;
+typedef struct JPC_TriangleShapeSettings        JPC_TriangleShapeSettings;
+typedef struct JPC_CapsuleShapeSettings         JPC_CapsuleShapeSettings;
+typedef struct JPC_TaperedCapsuleShapeSettings  JPC_TaperedCapsuleShapeSettings;
+typedef struct JPC_CylinderShapeSettings        JPC_CylinderShapeSettings;
+typedef struct JPC_ConvexHullShapeSettings      JPC_ConvexHullShapeSettings;
+typedef struct JPC_HeightFieldShapeSettings     JPC_HeightFieldShapeSettings;
+typedef struct JPC_MeshShapeSettings            JPC_MeshShapeSettings;
+typedef struct JPC_CompoundShapeSettings        JPC_CompoundShapeSettings;
+typedef struct JPC_StaticCompoundShapeSettings  JPC_StaticCompoundShapeSettings;
+typedef struct JPC_MutableCompoundShapeSettings JPC_MutableCompoundShapeSettings;
 
 typedef struct JPC_PhysicsSystem JPC_PhysicsSystem;
 typedef struct JPC_SharedMutex   JPC_SharedMutex;
@@ -1700,6 +1706,38 @@ JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf(JPC_MeshShapeSettings *in_settings,
 
 JPC_API void
 JPC_MeshShapeSettings_Sanitize(JPC_MeshShapeSettings *in_settings);
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_CompoundShapeSettings_AddShapeSettings(JPC_CompoundShapeSettings *in_settings,
+                                           const float in_position[3],
+                                           const float in_rotation[4],
+                                           const JPC_ShapeSettings *in_shape,
+                                           uint32_t in_user_data);
+
+JPC_API void
+JPC_CompoundShapeSettings_AddShape(JPC_CompoundShapeSettings *in_settings,
+                                   const float in_position[3],
+                                   const float in_rotation[4],
+                                   const JPC_Shape *in_shape,
+                                   uint32_t in_user_data);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_StaticCompoundShapeSettings (-> JPC_CompoundShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_StaticCompoundShapeSettings *
+JPC_StaticCompoundShapeSettings_Create();
+
+JPC_API JPC_Shape *
+JPC_StaticCompoundShapeSettings_CreateShape(const JPC_StaticCompoundShapeSettings *in_settings,
+                                            JPC_TempAllocator *in_temp_allocator);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_MutableCompoundShapeSettings (-> JPC_CompoundShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_MutableCompoundShapeSettings *
+JPC_MutableCompoundShapeSettings_Create();
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_Shape
