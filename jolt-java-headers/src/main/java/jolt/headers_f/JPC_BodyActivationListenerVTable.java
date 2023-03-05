@@ -52,7 +52,7 @@ public class JPC_BodyActivationListenerVTable {
     }
     static final FunctionDescriptor OnBodyActivated$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle OnBodyActivated$MH = RuntimeHelper.downcallHandle(
@@ -60,15 +60,15 @@ public class JPC_BodyActivationListenerVTable {
     );
     public interface OnBodyActivated {
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, long _x2);
+        void apply(java.lang.foreign.MemoryAddress _x0, int _x1, long _x2);
         static MemorySegment allocate(OnBodyActivated fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnBodyActivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyActivated$FUNC, session);
         }
         static OnBodyActivated ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, long __x2) -> {
+            return (java.lang.foreign.MemoryAddress __x0, int __x1, long __x2) -> {
                 try {
-                    JPC_BodyActivationListenerVTable.OnBodyActivated$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
+                    JPC_BodyActivationListenerVTable.OnBodyActivated$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -97,7 +97,7 @@ public class JPC_BodyActivationListenerVTable {
     }
     static final FunctionDescriptor OnBodyDeactivated$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle OnBodyDeactivated$MH = RuntimeHelper.downcallHandle(
@@ -105,15 +105,15 @@ public class JPC_BodyActivationListenerVTable {
     );
     public interface OnBodyDeactivated {
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, long _x2);
+        void apply(java.lang.foreign.MemoryAddress _x0, int _x1, long _x2);
         static MemorySegment allocate(OnBodyDeactivated fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnBodyDeactivated.class, fi, JPC_BodyActivationListenerVTable.OnBodyDeactivated$FUNC, session);
         }
         static OnBodyDeactivated ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, long __x2) -> {
+            return (java.lang.foreign.MemoryAddress __x0, int __x1, long __x2) -> {
                 try {
-                    JPC_BodyActivationListenerVTable.OnBodyDeactivated$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2);
+                    JPC_BodyActivationListenerVTable.OnBodyDeactivated$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }

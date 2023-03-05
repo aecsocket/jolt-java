@@ -11,10 +11,6 @@ public final class BodyIds {
     public static final int INVALID_BODY_ID = 0xffffffff;
     public static final int MAX_BODY_INDEX = 0x7fffff;
 
-    public static int at(MemoryAddress address) {
-        return address.get(C_INT, 0);
-    }
-
     public static int index(int id) {
         return id & MAX_BODY_INDEX;
     }

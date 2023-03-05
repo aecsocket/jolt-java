@@ -6,7 +6,7 @@ import jolt.headers.JPC_ContactListenerVTable;
 import jolt.headers.JPJ_ContactListener;
 import jolt.math.DVec3;
 import jolt.math.FVec3;
-import jolt.physics.body.BodyIds;
+import jolt.physics.body.Body;
 import jolt.physics.collision.shape.SubShapeIdPair;
 
 import java.lang.foreign.*;
@@ -29,14 +29,14 @@ public final class ContactListener extends AddressedJoltNative {
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onContactAdded = OnContactAdded.allocate((v0, v1, v2, v3, v4) -> {
             try (var s = MemorySession.openConfined()) {
-                impl.onContactAdded(BodyIds.at(v1), BodyIds.at(v2), ContactManifold.at(s, v3), ContactSettings.at(s, v4));
+                impl.onContactAdded(Body.at(v1), Body.at(v2), ContactManifold.at(s, v3), ContactSettings.at(s, v4));
             }
         }, arena);
         OnContactAdded$set(vtable, onContactAdded.address());
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onContactPersisted = OnContactPersisted.allocate((v0, v1, v2, v3, v4) -> {
             try (var s = MemorySession.openConfined()) {
-                impl.onContactPersisted(BodyIds.at(v1), BodyIds.at(v2), ContactManifold.at(s, v3), ContactSettings.at(s, v4));
+                impl.onContactPersisted(Body.at(v1), Body.at(v2), ContactManifold.at(s, v3), ContactSettings.at(s, v4));
             }
         }, arena);
         OnContactPersisted$set(vtable, onContactPersisted.address());
@@ -59,7 +59,7 @@ public final class ContactListener extends AddressedJoltNative {
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onContactValidate = OnContactValidate.allocate((v0, v1, v2, v3, v4) -> {
             try (var s = MemorySession.openConfined()) {
-                return impl.onContactValidate(BodyIds.at(v1), BodyIds.at(v2), FVec3.at(s, v3), CollideShapeResult.at(s, v4)).ordinal();
+                return impl.onContactValidate(Body.at(v1), Body.at(v2), FVec3.at(s, v3), CollideShapeResult.at(s, v4)).ordinal();
             }
         }, arena);
         OnContactValidate$set(vtable, onContactValidate.address());
@@ -72,7 +72,7 @@ public final class ContactListener extends AddressedJoltNative {
         @SuppressWarnings("DataFlowIssue")
         MemorySegment onContactValidate = OnContactValidate.allocate((v0, v1, v2, v3, v4) -> {
             try (var s = MemorySession.openConfined()) {
-                return impl.onContactValidate(BodyIds.at(v1), BodyIds.at(v2), DVec3.at(s, v3), CollideShapeResult.at(s, v4)).ordinal();
+                return impl.onContactValidate(Body.at(v1), Body.at(v2), DVec3.at(s, v3), CollideShapeResult.at(s, v4)).ordinal();
             }
         }, arena);
         OnContactValidate$set(vtable, onContactValidate.address());

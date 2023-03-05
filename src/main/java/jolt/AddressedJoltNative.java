@@ -2,7 +2,7 @@ package jolt;
 
 import java.lang.foreign.MemoryAddress;
 
-public abstract class AddressedJoltNative implements JoltNative {
+public non-sealed abstract class AddressedJoltNative extends BaseJoltNative {
     protected final MemoryAddress handle;
 
     protected AddressedJoltNative(MemoryAddress handle) {

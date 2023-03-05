@@ -24,10 +24,10 @@ public final class BodyActivationListener extends AddressedJoltNative {
     public static BodyActivationListener of(MemorySession arena, BodyActivationListenerFn impl) {
         var vtable = JPC_BodyActivationListenerVTable.allocate(arena);
         MemorySegment onBodyActivated = OnBodyActivated.allocate((v0, v1, v2) ->
-                impl.onBodyActivated(BodyIds.at(v1), v2), arena);
+                impl.onBodyActivated(v1, v2), arena);
         OnBodyActivated$set(vtable, onBodyActivated.address());
         MemorySegment onBodyDeactivated = OnBodyDeactivated.allocate((v0, v1, v2) ->
-                impl.onBodyDeactivated(BodyIds.at(v1), v2), arena);
+                impl.onBodyDeactivated(v1, v2), arena);
         OnBodyDeactivated$set(vtable, onBodyDeactivated.address());
 
         var segment = JPJ_BodyActivationListener.allocate(arena);

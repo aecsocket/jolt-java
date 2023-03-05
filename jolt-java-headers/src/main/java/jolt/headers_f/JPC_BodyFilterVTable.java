@@ -52,22 +52,22 @@ public class JPC_BodyFilterVTable {
     }
     static final FunctionDescriptor ShouldCollide$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle ShouldCollide$MH = RuntimeHelper.downcallHandle(
         JPC_BodyFilterVTable.ShouldCollide$FUNC
     );
     public interface ShouldCollide {
 
-        boolean apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
+        boolean apply(java.lang.foreign.MemoryAddress _x0, int _x1);
         static MemorySegment allocate(ShouldCollide fi, MemorySession session) {
             return RuntimeHelper.upcallStub(ShouldCollide.class, fi, JPC_BodyFilterVTable.ShouldCollide$FUNC, session);
         }
         static ShouldCollide ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
+            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
                 try {
-                    return (boolean)JPC_BodyFilterVTable.ShouldCollide$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
+                    return (boolean)JPC_BodyFilterVTable.ShouldCollide$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }

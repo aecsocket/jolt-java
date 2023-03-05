@@ -27,7 +27,7 @@ public final class BodyFilter extends AddressedJoltNative {
     public static BodyFilter of(MemorySession arena, BodyFilterFn impl) {
         var vtable = JPC_BodyFilterVTable.allocate(arena);
         MemorySegment shouldCollide = ShouldCollide.allocate((v0, v1) ->
-                impl.shouldCollide(BodyIds.at(v1)), arena);
+                impl.shouldCollide(v1), arena);
         ShouldCollide$set(vtable, shouldCollide.address());
         @SuppressWarnings("DataFlowIssue")
         MemorySegment shouldCollideLocked = ShouldCollideLocked.allocate((v0, v1) ->

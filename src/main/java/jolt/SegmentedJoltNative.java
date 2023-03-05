@@ -3,7 +3,7 @@ package jolt;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySegment;
 
-public abstract class SegmentedJoltNative implements JoltNative {
+public non-sealed abstract class SegmentedJoltNative extends BaseJoltNative {
     protected final MemorySegment handle;
 
     protected SegmentedJoltNative(MemorySegment handle) {

@@ -641,11 +641,11 @@ typedef struct JPC_BodyActivationListenerVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBodyActivated)(void *in_self, const JPC_BodyID *in_body_id, uint64_t in_user_data);
+    (*OnBodyActivated)(void *in_self, JPC_BodyID in_body_id, uint64_t in_user_data);
 
     // Required, *cannot* be NULL.
     void
-    (*OnBodyDeactivated)(void *in_self, const JPC_BodyID *in_body_id, uint64_t in_user_data);
+    (*OnBodyDeactivated)(void *in_self, JPC_BodyID in_body_id, uint64_t in_user_data);
 } JPC_BodyActivationListenerVTable;
 
 typedef struct JPC_BodyFilterVTable
@@ -655,7 +655,7 @@ typedef struct JPC_BodyFilterVTable
 
     // Required, *cannot* be NULL.
     bool
-    (*ShouldCollide)(const void *in_self, const JPC_BodyID *in_body_id);
+    (*ShouldCollide)(const void *in_self, JPC_BodyID in_body_id);
 
     // Required, *cannot* be NULL.
     bool

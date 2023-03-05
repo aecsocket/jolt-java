@@ -105,18 +105,18 @@ public final class HelloJolt {
             var contactListener = doublePrecision
                     ? ContactListener.of(arena, new ContactListenerFn.D() {
                         @Override
-                        public ValidateResult onContactValidate(int body1, int body2, DVec3 baseOffset, CollideShapeResult collisionResult) {
+                        public ValidateResult onContactValidate(Body body1, Body body2, DVec3 baseOffset, CollideShapeResult collisionResult) {
                             System.out.println("Contact validate callback");
                             return ValidateResult.ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR;
                         }
 
                         @Override
-                        public void onContactAdded(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                        public void onContactAdded(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
                             System.out.println("A contact was added");
                         }
 
                         @Override
-                        public void onContactPersisted(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                        public void onContactPersisted(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
                             System.out.println("A contact was persisted");
                         }
 
@@ -127,18 +127,18 @@ public final class HelloJolt {
                     })
                     : ContactListener.of(arena, new ContactListenerFn.F() {
                         @Override
-                        public ValidateResult onContactValidate(int body1, int body2, FVec3 baseOffset, CollideShapeResult collisionResult) {
+                        public ValidateResult onContactValidate(Body body1, Body body2, FVec3 baseOffset, CollideShapeResult collisionResult) {
                             System.out.println("Contact validate callback");
                             return ValidateResult.ACCEPT_ALL_CONTACTS_FOR_THIS_BODY_PAIR;
                         }
 
                         @Override
-                        public void onContactAdded(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                        public void onContactAdded(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
                             System.out.println("A contact was added");
                         }
 
                         @Override
-                        public void onContactPersisted(int body1, int body2, ContactManifold manifold, ContactSettings settings) {
+                        public void onContactPersisted(Body body1, Body body2, ContactManifold manifold, ContactSettings settings) {
                             System.out.println("A contact was persisted");
                         }
 
