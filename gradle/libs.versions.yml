@@ -5,7 +5,7 @@ metadata:
 versions:
   indra: 3.0.1
   kotlin: 1.8.10
-  jextract: 0.3.1
+  jextract: 0.3.2
   findBugs: 3.0.2
   cpuFeaturesJava: 2.0.0-SNAPSHOT
   jUnit: 5.9.2
