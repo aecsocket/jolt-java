@@ -3207,10 +3207,10 @@ public class JoltPhysicsC  {
     public static MethodHandle JPC_ShapeSettings_CreateShape$MH() {
         return RuntimeHelper.requireNonNull(constants$41.JPC_ShapeSettings_CreateShape$MH,"JPC_ShapeSettings_CreateShape");
     }
-    public static MemoryAddress JPC_ShapeSettings_CreateShape ( Addressable in_settings) {
+    public static MemorySegment JPC_ShapeSettings_CreateShape ( SegmentAllocator allocator,  Addressable in_settings) {
         var mh$ = JPC_ShapeSettings_CreateShape$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_settings);
+            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, in_settings);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -3889,10 +3889,10 @@ public class JoltPhysicsC  {
     public static MethodHandle JPC_StaticCompoundShapeSettings_CreateShape$MH() {
         return RuntimeHelper.requireNonNull(constants$52.JPC_StaticCompoundShapeSettings_CreateShape$MH,"JPC_StaticCompoundShapeSettings_CreateShape");
     }
-    public static MemoryAddress JPC_StaticCompoundShapeSettings_CreateShape ( Addressable in_settings,  Addressable in_temp_allocator) {
+    public static MemorySegment JPC_StaticCompoundShapeSettings_CreateShape ( SegmentAllocator allocator,  Addressable in_settings,  Addressable in_temp_allocator) {
         var mh$ = JPC_StaticCompoundShapeSettings_CreateShape$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_settings, in_temp_allocator);
+            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, in_settings, in_temp_allocator);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

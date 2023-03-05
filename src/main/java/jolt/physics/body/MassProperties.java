@@ -29,6 +29,13 @@ public final class MassProperties extends SegmentedJoltNative {
     }
     //endregion Jolt-Value
 
+    public static MassProperties of(SegmentAllocator alloc, float mass, FMat44 inertia) {
+        var segment = allocate(alloc);
+        mass$set(segment, mass);
+        inertia.write(inertia$slice(segment));
+        return new MassProperties(segment);
+    }
+
     public float getMass() {
         return mass$get(handle);
     }

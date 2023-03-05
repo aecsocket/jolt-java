@@ -4,6 +4,7 @@ import jolt.DestroyableJoltNative;
 
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -32,10 +33,7 @@ public sealed class ShapeSettings extends DestroyableJoltNative
         JPC_ShapeSettings_SetUserData(handle, userData);
     }
 
-    public Shape create() {
-        var result = JPC_ShapeSettings_CreateShape(handle);
-        if (result == null)
-            throw new RuntimeException("Could not create shape");
-        return Shape.at(result);
+    public ShapeResult create(SegmentAllocator alloc) {
+        return ShapeResult.at(JPC_ShapeSettings_CreateShape(alloc, handle));
     }
 }

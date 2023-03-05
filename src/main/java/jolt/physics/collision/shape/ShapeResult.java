@@ -35,7 +35,7 @@ public final class ShapeResult extends Result<Shape> {
     }
 
     @Override
-    public @Nullable Shape getOr() {
+    public @Nullable Shape or() {
         return Shape.at(result$get(handle));
     }
 

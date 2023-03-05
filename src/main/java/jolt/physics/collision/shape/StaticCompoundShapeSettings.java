@@ -3,6 +3,7 @@ package jolt.physics.collision.shape;
 import jolt.core.TempAllocator;
 
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -21,7 +22,7 @@ public final class StaticCompoundShapeSettings extends CompoundShapeSettings {
         return new StaticCompoundShapeSettings(JPC_StaticCompoundShapeSettings_Create());
     }
 
-    public Shape create(TempAllocator tempAllocator) {
-        return Shape.at(JPC_StaticCompoundShapeSettings_CreateShape(handle, tempAllocator.address()));
+    public ShapeResult create(SegmentAllocator alloc, TempAllocator tempAllocator) {
+        return ShapeResult.at(JPC_StaticCompoundShapeSettings_CreateShape(alloc, handle, tempAllocator.address()));
     }
 }

@@ -36,7 +36,7 @@ public final class HelloJolt {
         Jolt.createFactory();
         Jolt.registerTypes();
 
-        try (var session = MemorySession.openConfined()) {
+        try (var arena = MemorySession.openConfined()) {
             var tempAllocator = TempAllocator.of(10 * 1024 * 1024);
             var jobSystem = JobSystem.of(
                     JobSystem.MAX_PHYSICS_JOBS,
@@ -44,7 +44,7 @@ public final class HelloJolt {
                     Math.min(16, Math.max(1, Runtime.getRuntime().availableProcessors() - 1))
             );
 
-            var bpLayerInterface = BroadPhaseLayerInterface.of(session, new BroadPhaseLayerInterfaceFn() {
+            var bpLayerInterface = BroadPhaseLayerInterface.of(arena, new BroadPhaseLayerInterfaceFn() {
                 @Override
                 public int getNumBroadPhaseLayers() {
                     return 2;
@@ -60,7 +60,7 @@ public final class HelloJolt {
                 }
             });
 
-            var objBpLayerFilter = ObjectVsBroadPhaseLayerFilter.of(session, new ObjectVsBroadPhaseLayerFilterFn() {
+            var objBpLayerFilter = ObjectVsBroadPhaseLayerFilter.of(arena, new ObjectVsBroadPhaseLayerFilterFn() {
                 @Override
                 public boolean shouldCollide(short layer1, byte layer2) {
                     return switch (layer1) {
@@ -71,7 +71,7 @@ public final class HelloJolt {
                 }
             });
 
-            var objLayerPairFilter = ObjectLayerPairFilter.of(session, new ObjectLayerPairFilterFn() {
+            var objLayerPairFilter = ObjectLayerPairFilter.of(arena, new ObjectLayerPairFilterFn() {
                 @Override
                 public boolean shouldCollide(short layer1, short layer2) {
                     return switch (layer1) {
@@ -92,7 +92,7 @@ public final class HelloJolt {
                     objLayerPairFilter
             );
 
-            var bodyActivationListener = BodyActivationListener.of(session, new BodyActivationListenerFn() {
+            var bodyActivationListener = BodyActivationListener.of(arena, new BodyActivationListenerFn() {
                 @Override
                 public void onBodyActivated(int bodyId, long bodyUserData) {
                     System.out.println("A body got activated");
@@ -106,7 +106,7 @@ public final class HelloJolt {
             physicsSystem.setBodyActivationListener(bodyActivationListener);
 
             var contactListener = doublePrecision
-                    ? ContactListener.of(session, new ContactListenerFn.D() {
+                    ? ContactListener.of(arena, new ContactListenerFn.D() {
                         @Override
                         public ValidateResult onContactValidate(int body1, int body2, DVec3 baseOffset, CollideShapeResult collisionResult) {
                             System.out.println("Contact validate callback");
@@ -128,7 +128,7 @@ public final class HelloJolt {
                             System.out.println("A contact was removed");
                         }
                     })
-                    : ContactListener.of(session, new ContactListenerFn.F() {
+                    : ContactListener.of(arena, new ContactListenerFn.F() {
                         @Override
                         public ValidateResult onContactValidate(int body1, int body2, FVec3 baseOffset, CollideShapeResult collisionResult) {
                             System.out.println("Contact validate callback");
@@ -157,42 +157,42 @@ public final class HelloJolt {
             // Destroyable classes do not implement AutoCloseable due to excessive "try-with-resources" warnings
             // use Jolt.use instead
             Shape floorShape = Jolt.use(BoxShapeSettings.of(
-                    FVec3.of(session, 100.0f, 1.0f, 100.0f)
+                    FVec3.of(arena, 100.0f, 1.0f, 100.0f)
             ), floorShapeSettings -> {
-                return floorShapeSettings.create();
-            });
+                return floorShapeSettings.create(arena);
+            }).orThrow();
 
             var floorSettings = doublePrecision
-                    ? BodyCreationSettings.of(session,
+                    ? BodyCreationSettings.of(arena,
                             floorShape,
-                            DVec3.of(session, 0.0, -1.0, 0.0),
-                            Quat.ofIdentity(session),
+                            DVec3.of(arena, 0.0, -1.0, 0.0),
+                            Quat.ofIdentity(arena),
                             MotionType.STATIC, OBJ_LAYER_NON_MOVING
-                    ) : BodyCreationSettings.of(session,
+                    ) : BodyCreationSettings.of(arena,
                             floorShape,
-                            FVec3.of(session, 0.0f, -1.0f, 0.0f),
-                            Quat.ofIdentity(session),
+                            FVec3.of(arena, 0.0f, -1.0f, 0.0f),
+                            Quat.ofIdentity(arena),
                             MotionType.STATIC, OBJ_LAYER_NON_MOVING
                     );
             Body floor = bodyInterface.createBody(floorSettings);
             bodyInterface.addBody(floor.getId(), Activation.DONT_ACTIVATE);
 
             var sphereSettings = doublePrecision
-                    ? BodyCreationSettings.of(session,
+                    ? BodyCreationSettings.of(arena,
                             SphereShape.of(0.5f),
-                            DVec3.of(session, 0.0, 2.0, 0.0),
-                            Quat.ofIdentity(session),
+                            DVec3.of(arena, 0.0, 2.0, 0.0),
+                            Quat.ofIdentity(arena),
                             MotionType.DYNAMIC, OBJ_LAYER_MOVING
-                    ) : BodyCreationSettings.of(session,
+                    ) : BodyCreationSettings.of(arena,
                             SphereShape.of(0.5f),
-                            FVec3.of(session, 0.0f, 2.0f, 0.0f),
-                            Quat.ofIdentity(session),
+                            FVec3.of(arena, 0.0f, 2.0f, 0.0f),
+                            Quat.ofIdentity(arena),
                             MotionType.DYNAMIC, OBJ_LAYER_MOVING
                     );
 
             int sphereId = bodyInterface.createAndAddBody(sphereSettings, Activation.ACTIVATE);
 
-            bodyInterface.setLinearVelocity(sphereId, FVec3.of(session, 0.0f, -5.0f, 0.0f));
+            bodyInterface.setLinearVelocity(sphereId, FVec3.of(arena, 0.0f, -5.0f, 0.0f));
 
             var deltaTime = 1 / 60.0f;
 
@@ -204,15 +204,15 @@ public final class HelloJolt {
 
                 Object position;
                 if (doublePrecision) {
-                    DVec3 out = DVec3.of(session);
+                    DVec3 out = DVec3.of(arena);
                     bodyInterface.getCOMPosition(sphereId, out);
                     position = out;
                 } else {
-                    FVec3 out = FVec3.of(session);
+                    FVec3 out = FVec3.of(arena);
                     bodyInterface.getCOMPosition(sphereId, out);
                     position = out;
                 }
-                FVec3 velocity = FVec3.of(session);
+                FVec3 velocity = FVec3.of(arena);
                 bodyInterface.getLinearVelocity(sphereId, velocity);
 
                 System.out.println("Step " + step + ": Position = " + position + ", Velocity = " + velocity);

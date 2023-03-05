@@ -405,6 +405,17 @@ FN(activationToJph)(JPC_Activation in) { return static_cast<JPH::EActivation>(in
 FN(toJpc)(JPH::EMotionQuality in) { return static_cast<JPC_MotionQuality>(in); }
 FN(motionQualityToJph)(JPC_MotionQuality in) { return static_cast<JPH::EMotionQuality>(in); }
 
+FN(toJpc)(const JPH::Shape::ShapeResult& in) {
+    if (!in.HasError())
+        const_cast<JPH::Shape *>(in.Get().GetPtr())->AddRef();
+    return in.HasError()
+        ? JPC_ShapeResult {
+            .error = in.GetError().c_str()
+        } : JPC_ShapeResult {
+            .result = toJpc(in.Get().GetPtr())
+        };
+}
+
 #undef FN
 
 static inline JPH::Vec3 loadVec3(const float in[3]) {
@@ -636,12 +647,7 @@ JPC_API JPC_ShapeResult
 JPC_BodyCreationSettings_ConvertShapeSettings(JPC_BodyCreationSettings *in_settings)
 {
     auto result = toJph(in_settings)->ConvertShapeSettings();
-    return result.HasError()
-        ? JPC_ShapeResult {
-            .error = result.GetError().c_str()
-        } : JPC_ShapeResult {
-            .result = toJpc(result.Get().GetPtr())
-        };
+    return toJpc(result);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API const JPC_Shape *
@@ -1754,14 +1760,11 @@ JPC_ShapeSettings_GetRefCount(const JPC_ShapeSettings *in_settings)
     return toJph(in_settings)->GetRefCount();
 }
 //--------------------------------------------------------------------------------------------------
-JPC_API JPC_Shape *
+JPC_API JPC_ShapeResult
 JPC_ShapeSettings_CreateShape(const JPC_ShapeSettings *in_settings)
 {
-    const JPH::Result result = toJph(in_settings)->Create();
-    if (result.HasError()) return nullptr;
-    JPH::Shape *shape = const_cast<JPH::Shape *>(result.Get().GetPtr());
-    shape->AddRef();
-    return toJpc(shape);
+    const auto result = toJph(in_settings)->Create();
+    return toJpc(result);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API uint64_t
@@ -2288,15 +2291,12 @@ JPC_StaticCompoundShapeSettings_Create()
     return toJpc(settings);
 }
 
-JPC_API JPC_Shape *
+JPC_API JPC_ShapeResult
 JPC_StaticCompoundShapeSettings_CreateShape(const JPC_StaticCompoundShapeSettings *in_settings,
                                             JPC_TempAllocator *in_temp_allocator)
 {
     auto result = toJph(in_settings)->Create(*toJph(in_temp_allocator));
-    if (result.HasError()) return nullptr; // TODO return actual error
-    auto shape = const_cast<JPH::Shape *>(result.Get().GetPtr());
-    shape->AddRef();
-    return toJpc(shape);
+    return toJpc(result);
 }
 //--------------------------------------------------------------------------------------------------
 //

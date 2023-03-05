@@ -9,7 +9,10 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$52 {
 
-    static final FunctionDescriptor JPC_StaticCompoundShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_StaticCompoundShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
+        Constants$root.C_POINTER$LAYOUT.withName("result"),
+        Constants$root.C_POINTER$LAYOUT.withName("error")
+    ).withName("JPC_ShapeResult"),
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );

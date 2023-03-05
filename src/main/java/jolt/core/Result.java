@@ -14,10 +14,10 @@ public abstract class Result<T> extends SegmentedJoltNative {
 
     public abstract boolean hasError();
 
-    public abstract @Nullable T getOr();
+    public abstract @Nullable T or();
 
-    public T get() {
-        var result = getOr();
+    public T orThrow() {
+        var result = or();
         if (result == null) throwError();
         return result;
     }

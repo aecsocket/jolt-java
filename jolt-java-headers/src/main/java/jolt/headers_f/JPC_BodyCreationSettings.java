@@ -39,15 +39,14 @@ public class JPC_BodyCreationSettings {
         Constants$root.C_CHAR$LAYOUT.withName("override_mass_properties"),
         MemoryLayout.paddingLayout(24),
         Constants$root.C_FLOAT$LAYOUT.withName("inertia_multiplier"),
-        MemoryLayout.paddingLayout(416),
+        MemoryLayout.paddingLayout(32),
         MemoryLayout.structLayout(
             Constants$root.C_FLOAT$LAYOUT.withName("mass"),
-            MemoryLayout.paddingLayout(480),
+            MemoryLayout.paddingLayout(96),
             MemoryLayout.sequenceLayout(16, Constants$root.C_FLOAT$LAYOUT).withName("inertia")
         ).withName("mass_properties_override"),
         Constants$root.C_POINTER$LAYOUT.withName("reserved"),
-        Constants$root.C_POINTER$LAYOUT.withName("shape"),
-        MemoryLayout.paddingLayout(384)
+        Constants$root.C_POINTER$LAYOUT.withName("shape")
     ).withName("JPC_BodyCreationSettings");
     public static MemoryLayout $LAYOUT() {
         return JPC_BodyCreationSettings.$struct$LAYOUT;
@@ -340,7 +339,7 @@ public class JPC_BodyCreationSettings {
         JPC_BodyCreationSettings.inertia_multiplier$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment mass_properties_override$slice(MemorySegment seg) {
-        return seg.asSlice(192, 128);
+        return seg.asSlice(144, 80);
     }
     static final VarHandle reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved"));
     public static VarHandle reserved$VH() {
