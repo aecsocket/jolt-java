@@ -7,6 +7,7 @@ import jolt.core.TempAllocator;
 import jolt.math.FVec3;
 import jolt.physics.body.BodyActivationListener;
 import jolt.physics.body.BodyInterface;
+import jolt.physics.body.BodyLockInterface;
 import jolt.physics.collision.ContactListener;
 import jolt.physics.collision.NarrowPhaseQuery;
 import jolt.physics.collision.ObjectLayerPairFilter;
@@ -131,8 +132,13 @@ public final class PhysicsSystem extends DestroyableJoltNative {
         JPC_PhysicsSystem_GetGravity(handle, out.address());
     }
 
-    // TODO getBodyLockInterfaceNoLock
-    // TODO getBodyLockInterface
+    public BodyLockInterface getBodyLockInterfaceNoLock() {
+        return BodyLockInterface.at(JPC_PhysicsSystem_GetBodyLockInterfaceNoLock(handle));
+    }
+
+    public BodyLockInterface getBodyLockInterface() {
+        return BodyLockInterface.at(JPC_PhysicsSystem_GetBodyLockInterface(handle));
+    }
 
     public int getNumBodies() {
         return JPC_PhysicsSystem_GetNumBodies(handle);

@@ -3176,6 +3176,24 @@ JPC_Body_IsSensor(const JPC_Body *in_body)
     return toJph(in_body)->IsSensor();
 }
 //--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_Body_SetUseManifoldReduction(JPC_Body *in_body, bool in_use_reduction)
+{
+    toJph(in_body)->SetUseManifoldReduction(in_use_reduction);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_Body_GetUseManifoldReduction(const JPC_Body *in_body)
+{
+    return toJph(in_body)->GetUseManifoldReduction();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_Body_GetUseManifoldReductionWithBody(const JPC_Body *in_body, const JPC_Body *in_other)
+{
+    return toJph(in_body)->GetUseManifoldReductionWithBody(*toJph(in_other));
+}
+//--------------------------------------------------------------------------------------------------
 JPC_API JPC_MotionType
 JPC_Body_GetMotionType(const JPC_Body *in_body)
 {
@@ -3317,6 +3335,18 @@ JPC_Body_AddTorque(JPC_Body *in_body, const float in_torque[3])
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
+JPC_Body_GetAccumulatedForce(JPC_Body *in_body, float out_force[3])
+{
+    storeVec3(out_force, toJph(in_body)->GetAccumulatedForce());
+}
+
+JPC_API void
+JPC_Body_GetAccumulatedTorque(JPC_Body *in_body, float out_torque[3])
+{
+    storeVec3(out_torque, toJph(in_body)->GetAccumulatedTorque());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
 JPC_Body_GetInverseInertia(const JPC_Body *in_body, float out_inverse_inertia[16])
 {
     storeMat44(out_inverse_inertia, toJph(in_body)->GetInverseInertia());
@@ -3350,7 +3380,7 @@ JPC_Body_MoveKinematic(JPC_Body *in_body,
         loadRVec3(in_target_position), JPH::Quat(loadVec4(in_target_rotation)), in_delta_time);
 }
 //--------------------------------------------------------------------------------------------------
-JPC_API void
+JPC_API bool
 JPC_Body_ApplyBuoyancyImpulse(JPC_Body *in_body,
                               const JPC_Real in_surface_position[3],
                               const float in_surface_normal[3],
@@ -3361,7 +3391,7 @@ JPC_Body_ApplyBuoyancyImpulse(JPC_Body *in_body,
                               const float in_gravity[3],
                               float in_delta_time)
 {
-    toJph(in_body)->ApplyBuoyancyImpulse(
+    return toJph(in_body)->ApplyBuoyancyImpulse(
         loadRVec3(in_surface_position),
         loadVec3(in_surface_normal),
         in_buoyancy,
@@ -3466,6 +3496,20 @@ JPC_API void
 JPC_Body_SetUserData(JPC_Body *in_body, uint64_t in_user_data)
 {
     toJph(in_body)->SetUserData(in_user_data);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_Body_GetTransformedShape(JPC_Body *in_body, JPC_TransformedShape *out_shape)
+{
+    auto out = toJph(in_body)->GetTransformedShape();
+    *out_shape = *toJpc(&out);
+}
+
+JPC_API void
+JPC_Body_GetBodyCreationSettings(JPC_Body *in_body, JPC_BodyCreationSettings *out_settings)
+{
+    auto out = toJph(in_body)->GetBodyCreationSettings();
+    *out_settings = *toJpc(&out);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void

@@ -409,7 +409,7 @@ typedef struct JPC_TransformedShape
 {
     JPC_RVEC_ALIGN JPC_Real shape_position_com[4]; // 4th element is ignored
     alignas(16) float       shape_rotation[4];
-    const JPC_Shape *       shape;
+    JPC_Shape *             shape;
     float                   shape_scale[3];
     JPC_BodyID              body_id;
     JPC_SubShapeIDCreator   sub_shape_id_creator;
@@ -2261,6 +2261,15 @@ JPC_Body_SetIsSensor(JPC_Body *in_body, bool in_is_sensor);
 JPC_API bool
 JPC_Body_IsSensor(const JPC_Body *in_body);
 
+JPC_API void
+JPC_Body_SetUseManifoldReduction(JPC_Body *in_body, bool in_use_reduction);
+
+JPC_API bool
+JPC_Body_GetUseManifoldReduction(const JPC_Body *in_body);
+
+JPC_API bool
+JPC_Body_GetUseManifoldReductionWithBody(const JPC_Body *in_body, const JPC_Body *in_other);
+
 JPC_API JPC_MotionType
 JPC_Body_GetMotionType(const JPC_Body *in_body);
 
@@ -2332,6 +2341,12 @@ JPC_API void
 JPC_Body_AddTorque(JPC_Body *in_body, const float in_torque[3]);
 
 JPC_API void
+JPC_Body_GetAccumulatedForce(JPC_Body *in_body, float out_force[3]);
+
+JPC_API void
+JPC_Body_GetAccumulatedTorque(JPC_Body *in_body, float out_torque[3]);
+
+JPC_API void
 JPC_Body_GetInverseInertia(const JPC_Body *in_body, float out_inverse_inertia[16]);
 
 JPC_API void
@@ -2348,7 +2363,7 @@ JPC_Body_MoveKinematic(JPC_Body *in_body,
                        const JPC_Real in_target_position[3],
                        const float in_target_rotation[4],
                        float in_delta_time);
-JPC_API void
+JPC_API bool
 JPC_Body_ApplyBuoyancyImpulse(JPC_Body *in_body,
                               const JPC_Real in_surface_position[3],
                               const float in_surface_normal[3],
@@ -2398,6 +2413,12 @@ JPC_Body_GetUserData(const JPC_Body *in_body);
 
 JPC_API void
 JPC_Body_SetUserData(JPC_Body *in_body, uint64_t in_user_data);
+
+JPC_API void
+JPC_Body_GetTransformedShape(JPC_Body *in_body, JPC_TransformedShape *out_shape);
+
+JPC_API void
+JPC_Body_GetBodyCreationSettings(JPC_Body *in_body, JPC_BodyCreationSettings *out_settings);
 
 JPC_API void
 JPC_Body_GetWorldSpaceSurfaceNormal(const JPC_Body *in_body,
