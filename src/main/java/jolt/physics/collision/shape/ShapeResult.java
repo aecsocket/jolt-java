@@ -42,6 +42,6 @@ public final class ShapeResult extends Result<Shape> {
 
     @Override
     public String getError() {
-        return error$get(handle).getUtf8String(0);
+        return error$slice(handle).getUtf8String(0);
     }
 }

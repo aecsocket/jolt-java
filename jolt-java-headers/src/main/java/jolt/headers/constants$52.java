@@ -45,7 +45,7 @@ class constants$52 {
     );
     static final FunctionDescriptor JPC_StaticCompoundShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
         Constants$root.C_POINTER$LAYOUT.withName("result"),
-        Constants$root.C_POINTER$LAYOUT.withName("error")
+        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("error")
     ).withName("JPC_ShapeResult"),
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT

@@ -34,6 +34,8 @@ public final class HelloJolt {
         Jolt.registerTypes();
 
         try (var arena = MemorySession.openConfined()) {
+            StaticCompoundShapeSettings.of().create(arena).orThrow();
+
             var tempAllocator = TempAllocator.of(10 * 1024 * 1024);
             var jobSystem = JobSystem.of(
                     JobSystem.MAX_PHYSICS_JOBS,

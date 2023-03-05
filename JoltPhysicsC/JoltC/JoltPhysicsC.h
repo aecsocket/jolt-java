@@ -233,7 +233,7 @@ typedef struct JPC_GroupFilter     JPC_GroupFilter;
 typedef struct JPC_ShapeResult
 {
     const JPC_Shape *result;
-    const char      *error;
+    char             error[256];
 } JPC_ShapeResult;
 
 // NOTE: Needs to be kept in sync with JPH::MassProperties

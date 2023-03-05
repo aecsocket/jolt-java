@@ -38,7 +38,7 @@ class constants$21 {
     );
     static final FunctionDescriptor JPC_BodyCreationSettings_ConvertShapeSettings$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
         Constants$root.C_POINTER$LAYOUT.withName("result"),
-        Constants$root.C_POINTER$LAYOUT.withName("error")
+        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("error")
     ).withName("JPC_ShapeResult"),
         Constants$root.C_POINTER$LAYOUT
     );

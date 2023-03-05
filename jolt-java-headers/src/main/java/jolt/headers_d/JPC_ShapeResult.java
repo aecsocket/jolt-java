@@ -11,7 +11,7 @@ public class JPC_ShapeResult {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         Constants$root.C_POINTER$LAYOUT.withName("result"),
-        Constants$root.C_POINTER$LAYOUT.withName("error")
+        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("error")
     ).withName("JPC_ShapeResult");
     public static MemoryLayout $LAYOUT() {
         return JPC_ShapeResult.$struct$LAYOUT;
@@ -32,21 +32,8 @@ public class JPC_ShapeResult {
     public static void result$set(MemorySegment seg, long index, MemoryAddress x) {
         JPC_ShapeResult.result$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle error$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("error"));
-    public static VarHandle error$VH() {
-        return JPC_ShapeResult.error$VH;
-    }
-    public static MemoryAddress error$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)JPC_ShapeResult.error$VH.get(seg);
-    }
-    public static void error$set( MemorySegment seg, MemoryAddress x) {
-        JPC_ShapeResult.error$VH.set(seg, x);
-    }
-    public static MemoryAddress error$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)JPC_ShapeResult.error$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void error$set(MemorySegment seg, long index, MemoryAddress x) {
-        JPC_ShapeResult.error$VH.set(seg.asSlice(index*sizeof()), x);
+    public static MemorySegment error$slice(MemorySegment seg) {
+        return seg.asSlice(8, 256);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }

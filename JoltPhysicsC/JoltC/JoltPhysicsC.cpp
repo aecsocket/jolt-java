@@ -406,14 +406,15 @@ FN(toJpc)(JPH::EMotionQuality in) { return static_cast<JPC_MotionQuality>(in); }
 FN(motionQualityToJph)(JPC_MotionQuality in) { return static_cast<JPH::EMotionQuality>(in); }
 
 FN(toJpc)(const JPH::Shape::ShapeResult& in) {
-    if (!in.HasError())
+    auto result = JPC_ShapeResult {
+        .result = in.IsValid() ? toJpc(in.Get().GetPtr()) : nullptr,
+    };
+    if (in.HasError()) {
+        in.GetError().copy(result.error, 256);
+    } else {
         const_cast<JPH::Shape *>(in.Get().GetPtr())->AddRef();
-    return in.HasError()
-        ? JPC_ShapeResult {
-            .error = in.GetError().c_str()
-        } : JPC_ShapeResult {
-            .result = toJpc(in.Get().GetPtr())
-        };
+    }
+    return result;
 }
 
 #undef FN
