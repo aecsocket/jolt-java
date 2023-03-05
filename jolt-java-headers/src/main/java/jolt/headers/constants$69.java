@@ -9,50 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$69 {
 
-    static final FunctionDescriptor JPC_Body_GetAllowSleeping$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetAllowSleeping$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetAllowSleeping",
-        constants$69.JPC_Body_GetAllowSleeping$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetAllowSleeping$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Body_SetIsSensor$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_BOOL$LAYOUT
     );
-    static final MethodHandle JPC_Body_SetAllowSleeping$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetAllowSleeping",
-        constants$69.JPC_Body_SetAllowSleeping$FUNC
+    static final MethodHandle JPC_Body_SetIsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetIsSensor",
+        constants$69.JPC_Body_SetIsSensor$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetFriction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsSensor$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetFriction",
-        constants$69.JPC_Body_GetFriction$FUNC
+    static final MethodHandle JPC_Body_IsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsSensor",
+        constants$69.JPC_Body_IsSensor$FUNC
     );
-    static final FunctionDescriptor JPC_Body_SetFriction$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetFriction",
-        constants$69.JPC_Body_SetFriction$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetRestitution$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetRestitution$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetRestitution",
-        constants$69.JPC_Body_GetRestitution$FUNC
+    static final MethodHandle JPC_Body_GetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetMotionType",
+        constants$69.JPC_Body_GetMotionType$FUNC
     );
-    static final FunctionDescriptor JPC_Body_SetRestitution$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Body_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle JPC_Body_SetRestitution$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetRestitution",
-        constants$69.JPC_Body_SetRestitution$FUNC
+    static final MethodHandle JPC_Body_SetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetMotionType",
+        constants$69.JPC_Body_SetMotionType$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetBroadPhaseLayer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetBroadPhaseLayer$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetBroadPhaseLayer",
+        constants$69.JPC_Body_GetBroadPhaseLayer$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetObjectLayer$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetObjectLayer",
+        constants$69.JPC_Body_GetObjectLayer$FUNC
     );
 }
 

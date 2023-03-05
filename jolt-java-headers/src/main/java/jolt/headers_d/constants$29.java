@@ -9,50 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$29 {
 
-    static final FunctionDescriptor JPC_PhysicsSystem_SetPhysicsSettings$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_JobSystem_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_JobSystem_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_JobSystem_Create",
+        constants$29.JPC_JobSystem_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_JobSystem_Destroy$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_JobSystem_Destroy$MH = RuntimeHelper.downcallHandle(
+        "JPC_JobSystem_Destroy",
+        constants$29.JPC_JobSystem_Destroy$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_SetPhysicsSettings$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_SetPhysicsSettings",
-        constants$29.JPC_PhysicsSystem_SetPhysicsSettings$FUNC
+    static final MethodHandle JPC_PhysicsSystem_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_Create",
+        constants$29.JPC_PhysicsSystem_Create$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetPhysicsSettings$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_Destroy$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_Destroy$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_Destroy",
+        constants$29.JPC_PhysicsSystem_Destroy$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_SetBodyActivationListener$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_GetPhysicsSettings$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetPhysicsSettings",
-        constants$29.JPC_PhysicsSystem_GetPhysicsSettings$FUNC
+    static final MethodHandle JPC_PhysicsSystem_SetBodyActivationListener$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_SetBodyActivationListener",
+        constants$29.JPC_PhysicsSystem_SetBodyActivationListener$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyActivationListener$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_GetNumBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumBodies",
-        constants$29.JPC_PhysicsSystem_GetNumBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumActiveBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetNumActiveBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumActiveBodies",
-        constants$29.JPC_PhysicsSystem_GetNumActiveBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetMaxBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetMaxBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetMaxBodies",
-        constants$29.JPC_PhysicsSystem_GetMaxBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetGravity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetGravity$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetGravity",
-        constants$29.JPC_PhysicsSystem_GetGravity$FUNC
+    static final MethodHandle JPC_PhysicsSystem_GetBodyActivationListener$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodyActivationListener",
+        constants$29.JPC_PhysicsSystem_GetBodyActivationListener$FUNC
     );
 }
 

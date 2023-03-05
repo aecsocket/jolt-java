@@ -307,6 +307,11 @@ FN(toJpc)(const JPH::ShapeCastSettings *in) { assert(in); return reinterpret_cas
 FN(toJph)(JPC_ShapeCastSettings *in) { assert(in); return reinterpret_cast<JPH::ShapeCastSettings *>(in); }
 FN(toJpc)(JPH::ShapeCastSettings *in) { assert(in); return reinterpret_cast<JPC_ShapeCastSettings *>(in); }
 
+FN(toJph)(const JPC_ShapeResult *in) { assert(in); return reinterpret_cast<const JPH::Shape::ShapeResult *>(in); }
+FN(toJpc)(const JPH::Shape::ShapeResult *in) { assert(in); return reinterpret_cast<const JPC_ShapeResult *>(in); }
+FN(toJph)(JPC_ShapeResult *in) { assert(in); return reinterpret_cast<JPH::Shape::ShapeResult *>(in); }
+FN(toJpc)(JPH::Shape::ShapeResult *in) { assert(in); return reinterpret_cast<JPC_ShapeResult *>(in); }
+
 FN(toJpc)(const JPH::TransformedShape *in) { assert(in); return reinterpret_cast<const JPC_TransformedShape *>(in); }
 FN(toJph)(const JPC_TransformedShape *in) { assert(in); return reinterpret_cast<const JPH::TransformedShape *>(in); }
 FN(toJpc)(JPH::TransformedShape *in) { assert(in); return reinterpret_cast<JPC_TransformedShape *>(in); }
@@ -612,6 +617,64 @@ JPC_BodyCreationSettings_Set(JPC_BodyCreationSettings *out_settings,
     settings.shape = in_shape;
 
     *out_settings = settings;
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_ShapeSettings *
+JPC_BodyCreationSettings_GetShapeSettings(const JPC_BodyCreationSettings *in_settings)
+{
+    return toJpc(toJph(in_settings)->GetShapeSettings());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyCreationSettings_SetShapeSettings(JPC_BodyCreationSettings *in_settings,
+                                          const JPC_ShapeSettings *in_shape)
+{
+    toJph(in_settings)->SetShapeSettings(toJph(in_shape));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ShapeResult
+JPC_BodyCreationSettings_ConvertShapeSettings(JPC_BodyCreationSettings *in_settings)
+{
+    auto result = toJph(in_settings)->ConvertShapeSettings();
+    return result.HasError()
+        ? JPC_ShapeResult {
+            .error = result.GetError().c_str()
+        } : JPC_ShapeResult {
+            .result = toJpc(result.Get().GetPtr())
+        };
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_Shape *
+JPC_BodyCreationSettings_GetShape(const JPC_BodyCreationSettings *in_settings)
+{
+    return toJpc(toJph(in_settings)->GetShape());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyCreationSettings_SetShape(JPC_BodyCreationSettings *in_settings,
+                                  const JPC_Shape *in_shape)
+{
+    toJph(in_settings)->SetShape(toJph(in_shape));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_BodyCreationSettings_HasMassProperties(const JPC_BodyCreationSettings *in_settings)
+{
+    return toJph(in_settings)->HasMassProperties();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyCreationSettings_GetMassProperties(const JPC_BodyCreationSettings *in_settings,
+                                           JPC_MassProperties *out_properties)
+{
+    auto out = toJph(in_settings)->GetMassProperties();
+    *out_properties = *toJpc(&out);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_CollisionGroup_CanCollide(const JPC_CollisionGroup *in_group, const JPC_CollisionGroup *in_other)
+{
+    return toJph(in_group)->CanCollide(*toJph(in_other));
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -2215,6 +2278,7 @@ JPC_CompoundShapeSettings_AddShape(JPC_CompoundShapeSettings *in_settings,
 //
 // JPC_StaticCompoundShapeSettings (-> JPC_CompoundShapeSettings -> JPC_ShapeSettings)
 //
+
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_StaticCompoundShapeSettings *
 JPC_StaticCompoundShapeSettings_Create()

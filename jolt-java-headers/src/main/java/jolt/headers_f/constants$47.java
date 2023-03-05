@@ -9,50 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$47 {
 
-    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetMaxConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_CylinderShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ConvexHullShapeSettings_GetMaxConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexHullShapeSettings_GetMaxConvexRadius",
-        constants$47.JPC_ConvexHullShapeSettings_GetMaxConvexRadius$FUNC
+    static final MethodHandle JPC_CylinderShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_CylinderShapeSettings_Create",
+        constants$47.JPC_CylinderShapeSettings_Create$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_CylinderShapeSettings_GetConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CylinderShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_CylinderShapeSettings_GetConvexRadius",
+        constants$47.JPC_CylinderShapeSettings_GetConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_CylinderShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_ConvexHullShapeSettings_SetMaxConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexHullShapeSettings_SetMaxConvexRadius",
-        constants$47.JPC_ConvexHullShapeSettings_SetMaxConvexRadius$FUNC
+    static final MethodHandle JPC_CylinderShapeSettings_SetConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_CylinderShapeSettings_SetConvexRadius",
+        constants$47.JPC_CylinderShapeSettings_SetConvexRadius$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_CylinderShapeSettings_GetHalfHeight$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius",
-        constants$47.JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$FUNC
+    static final MethodHandle JPC_CylinderShapeSettings_GetHalfHeight$MH = RuntimeHelper.downcallHandle(
+        "JPC_CylinderShapeSettings_GetHalfHeight",
+        constants$47.JPC_CylinderShapeSettings_GetHalfHeight$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_CylinderShapeSettings_SetHalfHeight$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius",
-        constants$47.JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC
+    static final MethodHandle JPC_CylinderShapeSettings_SetHalfHeight$MH = RuntimeHelper.downcallHandle(
+        "JPC_CylinderShapeSettings_SetHalfHeight",
+        constants$47.JPC_CylinderShapeSettings_SetHalfHeight$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_CylinderShapeSettings_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ConvexHullShapeSettings_GetHullTolerance$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexHullShapeSettings_GetHullTolerance",
-        constants$47.JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexHullShapeSettings_SetHullTolerance$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexHullShapeSettings_SetHullTolerance",
-        constants$47.JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC
+    static final MethodHandle JPC_CylinderShapeSettings_GetRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_CylinderShapeSettings_GetRadius",
+        constants$47.JPC_CylinderShapeSettings_GetRadius$FUNC
     );
 }
 

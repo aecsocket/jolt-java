@@ -9,50 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$22 {
 
-    static final FunctionDescriptor JPC_CollideShapeSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CollideShapeSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollideShapeSettings_SetDefault",
-        constants$22.JPC_CollideShapeSettings_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_ShapeCastSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ShapeCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeCastSettings_SetDefault",
-        constants$22.JPC_ShapeCastSettings_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetMotionQuality$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetMotionQuality$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetMotionQuality",
-        constants$22.JPC_MotionProperties_GetMotionQuality$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyCreationSettings_GetMassProperties$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_GetLinearVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetLinearVelocity",
-        constants$22.JPC_MotionProperties_GetLinearVelocity$FUNC
+    static final MethodHandle JPC_BodyCreationSettings_GetMassProperties$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyCreationSettings_GetMassProperties",
+        constants$22.JPC_BodyCreationSettings_GetMassProperties$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_SetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_CollisionGroup_CanCollide$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_SetLinearVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetLinearVelocity",
-        constants$22.JPC_MotionProperties_SetLinearVelocity$FUNC
+    static final MethodHandle JPC_CollisionGroup_CanCollide$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollisionGroup_CanCollide",
+        constants$22.JPC_CollisionGroup_CanCollide$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_SetLinearVelocityClamped$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_PhysicsSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_SetLinearVelocityClamped$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetLinearVelocityClamped",
-        constants$22.JPC_MotionProperties_SetLinearVelocityClamped$FUNC
+    static final MethodHandle JPC_PhysicsSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSettings_SetDefault",
+        constants$22.JPC_PhysicsSettings_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_BroadPhaseCastResult_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BroadPhaseCastResult_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_BroadPhaseCastResult_SetDefault",
+        constants$22.JPC_BroadPhaseCastResult_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_RayCastResult_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RayCastResult_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_RayCastResult_SetDefault",
+        constants$22.JPC_RayCastResult_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_CollideShapeResult_GetEarlyOutFraction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeResult_GetEarlyOutFraction$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeResult_GetEarlyOutFraction",
+        constants$22.JPC_CollideShapeResult_GetEarlyOutFraction$FUNC
     );
 }
 

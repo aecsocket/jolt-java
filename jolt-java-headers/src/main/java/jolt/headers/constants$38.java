@@ -9,56 +9,84 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$38 {
 
-    static final FunctionDescriptor JPC_SphereShape_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShape_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShape_GetRadius",
-        constants$38.JPC_SphereShape_GetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShape_Create",
-        constants$38.JPC_BoxShape_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShape_GetHalfExtent$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShape_GetHalfExtent$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShape_GetHalfExtent",
-        constants$38.JPC_BoxShape_GetHalfExtent$FUNC
-    );
-    static final FunctionDescriptor JPC_TriangleShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_BroadPhaseQuery_CollideOrientedBox$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_TriangleShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_TriangleShape_Create",
-        constants$38.JPC_TriangleShape_Create$FUNC
+    static final MethodHandle JPC_BroadPhaseQuery_CollideOrientedBox$MH = RuntimeHelper.downcallHandle(
+        "JPC_BroadPhaseQuery_CollideOrientedBox",
+        constants$38.JPC_BroadPhaseQuery_CollideOrientedBox$FUNC
     );
-    static final FunctionDescriptor JPC_TriangleShape_GetConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_BroadPhaseQuery_CastAABox$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_TriangleShape_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_TriangleShape_GetConvexRadius",
-        constants$38.JPC_TriangleShape_GetConvexRadius$FUNC
+    static final MethodHandle JPC_BroadPhaseQuery_CastAABox$MH = RuntimeHelper.downcallHandle(
+        "JPC_BroadPhaseQuery_CastAABox",
+        constants$38.JPC_BroadPhaseQuery_CastAABox$FUNC
     );
-    static final FunctionDescriptor JPC_CapsuleShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_NarrowPhaseQuery_GetCastRay$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_CapsuleShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShape_Create",
-        constants$38.JPC_CapsuleShape_Create$FUNC
+    static final MethodHandle JPC_NarrowPhaseQuery_GetCastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_NarrowPhaseQuery_GetCastRay",
+        constants$38.JPC_NarrowPhaseQuery_GetCastRay$FUNC
+    );
+    static final FunctionDescriptor JPC_NarrowPhaseQuery_CollectCastRay$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_NarrowPhaseQuery_CollectCastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_NarrowPhaseQuery_CollectCastRay",
+        constants$38.JPC_NarrowPhaseQuery_CollectCastRay$FUNC
+    );
+    static final FunctionDescriptor JPC_NarrowPhaseQuery_CollidePoint$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_NarrowPhaseQuery_CollidePoint$MH = RuntimeHelper.downcallHandle(
+        "JPC_NarrowPhaseQuery_CollidePoint",
+        constants$38.JPC_NarrowPhaseQuery_CollidePoint$FUNC
+    );
+    static final FunctionDescriptor JPC_NarrowPhaseQuery_CollideShape$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_NarrowPhaseQuery_CollideShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_NarrowPhaseQuery_CollideShape",
+        constants$38.JPC_NarrowPhaseQuery_CollideShape$FUNC
     );
 }
 

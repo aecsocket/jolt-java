@@ -11,7 +11,7 @@ public class JPC_MassProperties {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
         Constants$root.C_FLOAT$LAYOUT.withName("mass"),
-        MemoryLayout.paddingLayout(96),
+        MemoryLayout.paddingLayout(480),
         MemoryLayout.sequenceLayout(16, Constants$root.C_FLOAT$LAYOUT).withName("inertia")
     ).withName("JPC_MassProperties");
     public static MemoryLayout $LAYOUT() {
@@ -34,7 +34,7 @@ public class JPC_MassProperties {
         JPC_MassProperties.mass$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment inertia$slice(MemorySegment seg) {
-        return seg.asSlice(16, 64);
+        return seg.asSlice(64, 64);
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }

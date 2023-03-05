@@ -9,53 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$32 {
 
-    static final FunctionDescriptor JPC_PhysicsSystem_GetBodiesUnsafe$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetBodiesUnsafe$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetBodiesUnsafe",
-        constants$32.JPC_PhysicsSystem_GetBodiesUnsafe$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_LockRead$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_Update$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyLockInterface_LockRead$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_LockRead",
-        constants$32.JPC_BodyLockInterface_LockRead$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_UnlockRead$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyLockInterface_UnlockRead$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_UnlockRead",
-        constants$32.JPC_BodyLockInterface_UnlockRead$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_LockWrite$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyLockInterface_LockWrite$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_LockWrite",
-        constants$32.JPC_BodyLockInterface_LockWrite$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_UnlockWrite$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyLockInterface_UnlockWrite$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_UnlockWrite",
-        constants$32.JPC_BodyLockInterface_UnlockWrite$FUNC
+    static final MethodHandle JPC_PhysicsSystem_Update$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_Update",
+        constants$32.JPC_PhysicsSystem_Update$FUNC
     );
-    static final FunctionDescriptor JPC_CollisionCollector_Reset$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyLockInterface$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_CollisionCollector_Reset$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollisionCollector_Reset",
-        constants$32.JPC_CollisionCollector_Reset$FUNC
+    static final MethodHandle JPC_PhysicsSystem_GetBodyLockInterface$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodyLockInterface",
+        constants$32.JPC_PhysicsSystem_GetBodyLockInterface$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodyLockInterfaceNoLock",
+        constants$32.JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBroadPhaseQuery$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBroadPhaseQuery$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBroadPhaseQuery",
+        constants$32.JPC_PhysicsSystem_GetBroadPhaseQuery$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNarrowPhaseQuery$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetNarrowPhaseQuery$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNarrowPhaseQuery",
+        constants$32.JPC_PhysicsSystem_GetNarrowPhaseQuery$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock",
+        constants$32.JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$FUNC
     );
 }
 

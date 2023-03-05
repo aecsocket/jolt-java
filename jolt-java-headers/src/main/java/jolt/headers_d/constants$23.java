@@ -9,53 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$23 {
 
-    static final FunctionDescriptor JPC_MotionProperties_GetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_CollideShapeResult_Reversed$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_GetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetAngularVelocity",
-        constants$23.JPC_MotionProperties_GetAngularVelocity$FUNC
+    static final MethodHandle JPC_CollideShapeResult_Reversed$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeResult_Reversed",
+        constants$23.JPC_CollideShapeResult_Reversed$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_SetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_RayCastSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RayCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_RayCastSettings_SetDefault",
+        constants$23.JPC_RayCastSettings_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_CollideShapeSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeSettings_SetDefault",
+        constants$23.JPC_CollideShapeSettings_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeCastSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeCastSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeCastSettings_SetDefault",
+        constants$23.JPC_ShapeCastSettings_SetDefault$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_GetMotionQuality$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetMotionQuality$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetMotionQuality",
+        constants$23.JPC_MotionProperties_GetMotionQuality$FUNC
+    );
+    static final FunctionDescriptor JPC_MotionProperties_GetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_SetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetAngularVelocity",
-        constants$23.JPC_MotionProperties_SetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_SetAngularVelocityClamped$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_SetAngularVelocityClamped$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetAngularVelocityClamped",
-        constants$23.JPC_MotionProperties_SetAngularVelocityClamped$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_MoveKinematic$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_MoveKinematic$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_MoveKinematic",
-        constants$23.JPC_MotionProperties_MoveKinematic$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_ClampLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_ClampLinearVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_ClampLinearVelocity",
-        constants$23.JPC_MotionProperties_ClampLinearVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_ClampAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_ClampAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_ClampAngularVelocity",
-        constants$23.JPC_MotionProperties_ClampAngularVelocity$FUNC
+    static final MethodHandle JPC_MotionProperties_GetLinearVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetLinearVelocity",
+        constants$23.JPC_MotionProperties_GetLinearVelocity$FUNC
     );
 }
 

@@ -9,49 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$68 {
 
-    static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor JPC_Body_GetID$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetMotionType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetMotionType",
-        constants$68.JPC_Body_GetMotionType$FUNC
+    static final MethodHandle JPC_Body_GetID$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetID",
+        constants$68.JPC_Body_GetID$FUNC
     );
-    static final FunctionDescriptor JPC_Body_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetMotionType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetMotionType",
-        constants$68.JPC_Body_SetMotionType$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetBroadPhaseLayer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsActive$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetBroadPhaseLayer$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetBroadPhaseLayer",
-        constants$68.JPC_Body_GetBroadPhaseLayer$FUNC
+    static final MethodHandle JPC_Body_IsActive$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsActive",
+        constants$68.JPC_Body_IsActive$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetObjectLayer$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsStatic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetObjectLayer",
-        constants$68.JPC_Body_GetObjectLayer$FUNC
+    static final MethodHandle JPC_Body_IsStatic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsStatic",
+        constants$68.JPC_Body_IsStatic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_GetCollisionGroup$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsKinematic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_GetCollisionGroup$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCollisionGroup",
-        constants$68.JPC_Body_GetCollisionGroup$FUNC
+    static final MethodHandle JPC_Body_IsKinematic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsKinematic",
+        constants$68.JPC_Body_IsKinematic$FUNC
     );
-    static final FunctionDescriptor JPC_Body_SetCollisionGroup$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_IsDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_SetCollisionGroup$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetCollisionGroup",
-        constants$68.JPC_Body_SetCollisionGroup$FUNC
+    static final MethodHandle JPC_Body_IsDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsDynamic",
+        constants$68.JPC_Body_IsDynamic$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_CanBeKinematicOrDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_CanBeKinematicOrDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_CanBeKinematicOrDynamic",
+        constants$68.JPC_Body_CanBeKinematicOrDynamic$FUNC
     );
 }
 

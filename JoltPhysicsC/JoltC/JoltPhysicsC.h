@@ -229,6 +229,12 @@ typedef struct JPC_GroupFilter     JPC_GroupFilter;
 // Structures
 //
 //--------------------------------------------------------------------------------------------------
+typedef struct JPC_ShapeResult
+{
+    const JPC_Shape *result;
+    const char      *error;
+} JPC_ShapeResult;
+
 // NOTE: Needs to be kept in sync with JPH::MassProperties
 typedef struct JPC_MassProperties
 {
@@ -290,6 +296,7 @@ typedef struct JPC_BodyCreationSettings
     JPC_MotionType             motion_type;
     bool                       allow_dynamic_or_kinematic;
     bool                       is_sensor;
+    bool                       use_manifold_reduction;
     JPC_MotionQuality          motion_quality;
     bool                       allow_sleeping;
     float                      friction;
@@ -885,6 +892,33 @@ JPC_BodyCreationSettings_Set(JPC_BodyCreationSettings *out_settings,
                              const float in_rotation[4],
                              JPC_MotionType in_motion_type,
                              JPC_ObjectLayer in_layer);
+
+JPC_API const JPC_ShapeSettings *
+JPC_BodyCreationSettings_GetShapeSettings(const JPC_BodyCreationSettings *in_settings);
+
+JPC_API void
+JPC_BodyCreationSettings_SetShapeSettings(JPC_BodyCreationSettings *in_settings,
+                                          const JPC_ShapeSettings *in_shape);
+
+JPC_API JPC_ShapeResult
+JPC_BodyCreationSettings_ConvertShapeSettings(JPC_BodyCreationSettings *in_settings);
+
+JPC_API const JPC_Shape *
+JPC_BodyCreationSettings_GetShape(const JPC_BodyCreationSettings *in_settings);
+
+JPC_API void
+JPC_BodyCreationSettings_SetShape(JPC_BodyCreationSettings *in_settings,
+                                  const JPC_Shape *in_shape);
+
+JPC_API bool
+JPC_BodyCreationSettings_HasMassProperties(const JPC_BodyCreationSettings *in_settings);
+
+JPC_API void
+JPC_BodyCreationSettings_GetMassProperties(const JPC_BodyCreationSettings *in_settings,
+                                           JPC_MassProperties *out_properties);
+
+JPC_API bool
+JPC_CollisionGroup_CanCollide(const JPC_CollisionGroup *in_group, const JPC_CollisionCollector *in_other);
 
 JPC_API void
 JPC_PhysicsSettings_SetDefault(JPC_PhysicsSettings *out_settings);

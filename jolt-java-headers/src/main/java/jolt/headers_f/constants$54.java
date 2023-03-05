@@ -9,51 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$54 {
 
-    static final FunctionDescriptor JPC_Shape_IsValidScale$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+    static final FunctionDescriptor JPC_Shape_GetSubShapeIDBitsRecursive$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetSubShapeIDBitsRecursive$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetSubShapeIDBitsRecursive",
+        constants$54.JPC_Shape_GetSubShapeIDBitsRecursive$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_IsValidScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_IsValidScale",
-        constants$54.JPC_Shape_IsValidScale$FUNC
+    static final MethodHandle JPC_Shape_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetWorldSpaceBounds",
+        constants$54.JPC_Shape_GetWorldSpaceBounds$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexShape_SetMaterial$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Shape_GetInnerRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetInnerRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetInnerRadius",
+        constants$54.JPC_Shape_GetInnerRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetMaterial$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetMaterial",
+        constants$54.JPC_Shape_GetMaterial$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_ConvexShape_SetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_SetMaterial",
-        constants$54.JPC_ConvexShape_SetMaterial$FUNC
+    static final MethodHandle JPC_Shape_GetSurfaceNormal$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetSurfaceNormal",
+        constants$54.JPC_Shape_GetSurfaceNormal$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexShape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShape_GetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_GetMaterial",
-        constants$54.JPC_ConvexShape_GetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShape_SetDensity$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Shape_GetSubShapeUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle JPC_ConvexShape_SetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_SetDensity",
-        constants$54.JPC_ConvexShape_SetDensity$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShape_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShape_GetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_GetDensity",
-        constants$54.JPC_ConvexShape_GetDensity$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_CreateBody$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_CreateBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_CreateBody",
-        constants$54.JPC_BodyInterface_CreateBody$FUNC
+    static final MethodHandle JPC_Shape_GetSubShapeUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetSubShapeUserData",
+        constants$54.JPC_Shape_GetSubShapeUserData$FUNC
     );
 }
 

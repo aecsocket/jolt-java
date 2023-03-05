@@ -9,57 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$56 {
 
-    static final FunctionDescriptor JPC_BodyInterface_UnassignBodyIDs$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_ConvexShape_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexShape_GetDensity$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_GetDensity",
+        constants$56.JPC_ConvexShape_GetDensity$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_CreateBody$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_CreateBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateBody",
+        constants$56.JPC_BodyInterface_CreateBody$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_CreateBodyWithID$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_UnassignBodyIDs$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_UnassignBodyIDs",
-        constants$56.JPC_BodyInterface_UnassignBodyIDs$FUNC
+    static final MethodHandle JPC_BodyInterface_CreateBodyWithID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateBodyWithID",
+        constants$56.JPC_BodyInterface_CreateBodyWithID$FUNC
     );
-    static final FunctionDescriptor JPC_BodyInterface_DestroyBody$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_CreateBodyWithoutID$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_DestroyBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_DestroyBody",
-        constants$56.JPC_BodyInterface_DestroyBody$FUNC
+    static final MethodHandle JPC_BodyInterface_CreateBodyWithoutID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateBodyWithoutID",
+        constants$56.JPC_BodyInterface_CreateBodyWithoutID$FUNC
     );
-    static final FunctionDescriptor JPC_BodyInterface_DestroyBodies$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_BodyInterface_DestroyBodyWithoutID$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_DestroyBodyWithoutID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_DestroyBodyWithoutID",
+        constants$56.JPC_BodyInterface_DestroyBodyWithoutID$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AssignNextBodyID$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_DestroyBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_DestroyBodies",
-        constants$56.JPC_BodyInterface_DestroyBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_AddBody$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_AddBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_AddBody",
-        constants$56.JPC_BodyInterface_AddBody$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_RemoveBody$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_RemoveBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_RemoveBody",
-        constants$56.JPC_BodyInterface_RemoveBody$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_IsAdded$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_IsAdded$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_IsAdded",
-        constants$56.JPC_BodyInterface_IsAdded$FUNC
+    static final MethodHandle JPC_BodyInterface_AssignNextBodyID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AssignNextBodyID",
+        constants$56.JPC_BodyInterface_AssignNextBodyID$FUNC
     );
 }
 

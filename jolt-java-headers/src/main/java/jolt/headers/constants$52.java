@@ -9,53 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$52 {
 
-    static final FunctionDescriptor JPC_Shape_SetUserData$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_SetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_SetUserData",
-        constants$52.JPC_Shape_SetUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_MustBeStatic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_MustBeStatic$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_MustBeStatic",
-        constants$52.JPC_Shape_MustBeStatic$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetCenterOfMass$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_StaticCompoundShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetCenterOfMass$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetCenterOfMass",
-        constants$52.JPC_Shape_GetCenterOfMass$FUNC
+    static final MethodHandle JPC_StaticCompoundShapeSettings_CreateShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_StaticCompoundShapeSettings_CreateShape",
+        constants$52.JPC_StaticCompoundShapeSettings_CreateShape$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetLocalBounds$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_MutableCompoundShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle JPC_MutableCompoundShapeSettings_Create$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPC_MutableCompoundShapeSettings_Create",
+        constants$52.JPC_MutableCompoundShapeSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_AddRef$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetLocalBounds$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetLocalBounds",
-        constants$52.JPC_Shape_GetLocalBounds$FUNC
+    static final MethodHandle JPC_Shape_AddRef$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_AddRef",
+        constants$52.JPC_Shape_AddRef$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetSubShapeIDBitsRecursive$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_Shape_Release$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetSubShapeIDBitsRecursive$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSubShapeIDBitsRecursive",
-        constants$52.JPC_Shape_GetSubShapeIDBitsRecursive$FUNC
+    static final MethodHandle JPC_Shape_Release$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_Release",
+        constants$52.JPC_Shape_Release$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Shape_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetWorldSpaceBounds",
-        constants$52.JPC_Shape_GetWorldSpaceBounds$FUNC
+    static final MethodHandle JPC_Shape_GetRefCount$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetRefCount",
+        constants$52.JPC_Shape_GetRefCount$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetType",
+        constants$52.JPC_Shape_GetType$FUNC
     );
 }
 

@@ -25,9 +25,10 @@ public class JPC_BodyCreationSettings {
         Constants$root.C_CHAR$LAYOUT.withName("motion_type"),
         Constants$root.C_BOOL$LAYOUT.withName("allow_dynamic_or_kinematic"),
         Constants$root.C_BOOL$LAYOUT.withName("is_sensor"),
+        Constants$root.C_BOOL$LAYOUT.withName("use_manifold_reduction"),
         Constants$root.C_CHAR$LAYOUT.withName("motion_quality"),
         Constants$root.C_BOOL$LAYOUT.withName("allow_sleeping"),
-        MemoryLayout.paddingLayout(24),
+        MemoryLayout.paddingLayout(16),
         Constants$root.C_FLOAT$LAYOUT.withName("friction"),
         Constants$root.C_FLOAT$LAYOUT.withName("restitution"),
         Constants$root.C_FLOAT$LAYOUT.withName("linear_damping"),
@@ -38,14 +39,15 @@ public class JPC_BodyCreationSettings {
         Constants$root.C_CHAR$LAYOUT.withName("override_mass_properties"),
         MemoryLayout.paddingLayout(24),
         Constants$root.C_FLOAT$LAYOUT.withName("inertia_multiplier"),
-        MemoryLayout.paddingLayout(32),
+        MemoryLayout.paddingLayout(288),
         MemoryLayout.structLayout(
             Constants$root.C_FLOAT$LAYOUT.withName("mass"),
-            MemoryLayout.paddingLayout(96),
+            MemoryLayout.paddingLayout(480),
             MemoryLayout.sequenceLayout(16, Constants$root.C_FLOAT$LAYOUT).withName("inertia")
         ).withName("mass_properties_override"),
         Constants$root.C_POINTER$LAYOUT.withName("reserved"),
-        Constants$root.C_POINTER$LAYOUT.withName("shape")
+        Constants$root.C_POINTER$LAYOUT.withName("shape"),
+        MemoryLayout.paddingLayout(384)
     ).withName("JPC_BodyCreationSettings");
     public static MemoryLayout $LAYOUT() {
         return JPC_BodyCreationSettings.$struct$LAYOUT;
@@ -144,6 +146,22 @@ public class JPC_BodyCreationSettings {
     }
     public static void is_sensor$set(MemorySegment seg, long index, boolean x) {
         JPC_BodyCreationSettings.is_sensor$VH.set(seg.asSlice(index*sizeof()), x);
+    }
+    static final VarHandle use_manifold_reduction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("use_manifold_reduction"));
+    public static VarHandle use_manifold_reduction$VH() {
+        return JPC_BodyCreationSettings.use_manifold_reduction$VH;
+    }
+    public static boolean use_manifold_reduction$get(MemorySegment seg) {
+        return (boolean)JPC_BodyCreationSettings.use_manifold_reduction$VH.get(seg);
+    }
+    public static void use_manifold_reduction$set( MemorySegment seg, boolean x) {
+        JPC_BodyCreationSettings.use_manifold_reduction$VH.set(seg, x);
+    }
+    public static boolean use_manifold_reduction$get(MemorySegment seg, long index) {
+        return (boolean)JPC_BodyCreationSettings.use_manifold_reduction$VH.get(seg.asSlice(index*sizeof()));
+    }
+    public static void use_manifold_reduction$set(MemorySegment seg, long index, boolean x) {
+        JPC_BodyCreationSettings.use_manifold_reduction$VH.set(seg.asSlice(index*sizeof()), x);
     }
     static final VarHandle motion_quality$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("motion_quality"));
     public static VarHandle motion_quality$VH() {
@@ -322,7 +340,7 @@ public class JPC_BodyCreationSettings {
         JPC_BodyCreationSettings.inertia_multiplier$VH.set(seg.asSlice(index*sizeof()), x);
     }
     public static MemorySegment mass_properties_override$slice(MemorySegment seg) {
-        return seg.asSlice(160, 80);
+        return seg.asSlice(192, 128);
     }
     static final VarHandle reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved"));
     public static VarHandle reserved$VH() {
