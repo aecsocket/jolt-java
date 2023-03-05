@@ -9,6 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$40 {
 
+    static final FunctionDescriptor JPC_SphereShape_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SphereShape_GetRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_SphereShape_GetRadius",
+        constants$40.JPC_SphereShape_GetRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_BoxShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BoxShape_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShape_Create",
+        constants$40.JPC_BoxShape_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_BoxShape_GetHalfExtent$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BoxShape_GetHalfExtent$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShape_GetHalfExtent",
+        constants$40.JPC_BoxShape_GetHalfExtent$FUNC
+    );
+    static final FunctionDescriptor JPC_TriangleShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TriangleShape_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_TriangleShape_Create",
+        constants$40.JPC_TriangleShape_Create$FUNC
+    );
     static final FunctionDescriptor JPC_TriangleShape_GetConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -24,37 +59,6 @@ class constants$40 {
     static final MethodHandle JPC_CapsuleShape_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_CapsuleShape_Create",
         constants$40.JPC_CapsuleShape_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_CapsuleShape_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CapsuleShape_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShape_GetRadius",
-        constants$40.JPC_CapsuleShape_GetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_CapsuleShape_GetHalfHeightOfCylinder$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CapsuleShape_GetHalfHeightOfCylinder$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShape_GetHalfHeightOfCylinder",
-        constants$40.JPC_CapsuleShape_GetHalfHeightOfCylinder$FUNC
-    );
-    static final FunctionDescriptor JPC_CylinderShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CylinderShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_CylinderShape_Create",
-        constants$40.JPC_CylinderShape_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_CylinderShape_GetHalfHeight$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CylinderShape_GetHalfHeight$MH = RuntimeHelper.downcallHandle(
-        "JPC_CylinderShape_GetHalfHeight",
-        constants$40.JPC_CylinderShape_GetHalfHeight$FUNC
     );
 }
 

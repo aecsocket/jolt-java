@@ -9,6 +9,13 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$30 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyActivationListener$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBodyActivationListener$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodyActivationListener",
+        constants$30.JPC_PhysicsSystem_GetBodyActivationListener$FUNC
+    );
     static final FunctionDescriptor JPC_PhysicsSystem_SetContactListener$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -40,19 +47,12 @@ class constants$30 {
         "JPC_PhysicsSystem_GetPhysicsSettings",
         constants$30.JPC_PhysicsSystem_GetPhysicsSettings$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBroadPhaseQuery$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_GetNumBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumBodies",
-        constants$30.JPC_PhysicsSystem_GetNumBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumActiveBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetNumActiveBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumActiveBodies",
-        constants$30.JPC_PhysicsSystem_GetNumActiveBodies$FUNC
+    static final MethodHandle JPC_PhysicsSystem_GetBroadPhaseQuery$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBroadPhaseQuery",
+        constants$30.JPC_PhysicsSystem_GetBroadPhaseQuery$FUNC
     );
 }
 

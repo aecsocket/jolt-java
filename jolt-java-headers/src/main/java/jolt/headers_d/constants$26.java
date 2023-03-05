@@ -9,6 +9,14 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$26 {
 
+    static final FunctionDescriptor JPC_MotionProperties_SetAngularDamping$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_SetAngularDamping$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_SetAngularDamping",
+        constants$26.JPC_MotionProperties_SetAngularDamping$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_GetGravityFactor$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -46,14 +54,6 @@ class constants$26 {
     static final MethodHandle JPC_MotionProperties_SetInverseMass$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_SetInverseMass",
         constants$26.JPC_MotionProperties_SetInverseMass$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetInverseInertiaDiagonal$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetInverseInertiaDiagonal$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetInverseInertiaDiagonal",
-        constants$26.JPC_MotionProperties_GetInverseInertiaDiagonal$FUNC
     );
 }
 

@@ -9,6 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$70 {
 
+    static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetMotionType",
+        constants$70.JPC_Body_GetMotionType$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetMotionType",
+        constants$70.JPC_Body_SetMotionType$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetBroadPhaseLayer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetBroadPhaseLayer$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetBroadPhaseLayer",
+        constants$70.JPC_Body_GetBroadPhaseLayer$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetObjectLayer$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetObjectLayer",
+        constants$70.JPC_Body_GetObjectLayer$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetCollisionGroup$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -23,36 +52,6 @@ class constants$70 {
     static final MethodHandle JPC_Body_SetCollisionGroup$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_SetCollisionGroup",
         constants$70.JPC_Body_SetCollisionGroup$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetAllowSleeping$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetAllowSleeping$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetAllowSleeping",
-        constants$70.JPC_Body_GetAllowSleeping$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetAllowSleeping$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_BOOL$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetAllowSleeping$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetAllowSleeping",
-        constants$70.JPC_Body_SetAllowSleeping$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetFriction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetFriction",
-        constants$70.JPC_Body_GetFriction$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetFriction$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetFriction",
-        constants$70.JPC_Body_SetFriction$FUNC
     );
 }
 

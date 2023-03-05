@@ -9,6 +9,16 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$25 {
 
+    static final FunctionDescriptor JPC_MotionProperties_MoveKinematic$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_MoveKinematic$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_MoveKinematic",
+        constants$25.JPC_MotionProperties_MoveKinematic$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_ClampLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -44,14 +54,6 @@ class constants$25 {
     static final MethodHandle JPC_MotionProperties_GetAngularDamping$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_GetAngularDamping",
         constants$25.JPC_MotionProperties_GetAngularDamping$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_SetAngularDamping$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_SetAngularDamping$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_SetAngularDamping",
-        constants$25.JPC_MotionProperties_SetAngularDamping$FUNC
     );
 }
 

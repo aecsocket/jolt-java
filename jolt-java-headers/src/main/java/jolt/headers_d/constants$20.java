@@ -9,6 +9,11 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$20 {
 
+    static final FunctionDescriptor JPC_RegisterDefaultAllocator$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle JPC_RegisterDefaultAllocator$MH = RuntimeHelper.downcallHandle(
+        "JPC_RegisterDefaultAllocator",
+        constants$20.JPC_RegisterDefaultAllocator$FUNC
+    );
     static final FunctionDescriptor JPC_RegisterCustomAllocator$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -40,18 +45,6 @@ class constants$20 {
     static final MethodHandle JPC_BodyCreationSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyCreationSettings_SetDefault",
         constants$20.JPC_BodyCreationSettings_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyCreationSettings_Set$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyCreationSettings_Set$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyCreationSettings_Set",
-        constants$20.JPC_BodyCreationSettings_Set$FUNC
     );
 }
 

@@ -9,6 +9,18 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$21 {
 
+    static final FunctionDescriptor JPC_BodyCreationSettings_Set$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyCreationSettings_Set$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyCreationSettings_Set",
+        constants$21.JPC_BodyCreationSettings_Set$FUNC
+    );
     static final FunctionDescriptor JPC_BodyCreationSettings_GetShapeSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -48,13 +60,6 @@ class constants$21 {
     static final MethodHandle JPC_BodyCreationSettings_SetShape$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyCreationSettings_SetShape",
         constants$21.JPC_BodyCreationSettings_SetShape$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyCreationSettings_HasMassProperties$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyCreationSettings_HasMassProperties$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyCreationSettings_HasMassProperties",
-        constants$21.JPC_BodyCreationSettings_HasMassProperties$FUNC
     );
 }
 

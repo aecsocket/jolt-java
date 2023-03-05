@@ -9,6 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$42 {
 
+    static final FunctionDescriptor JPC_ShapeSettings_Release$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_Release$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_Release",
+        constants$42.JPC_ShapeSettings_Release$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_GetRefCount$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_GetRefCount",
+        constants$42.JPC_ShapeSettings_GetRefCount$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
+        Constants$root.C_POINTER$LAYOUT.withName("result"),
+        Constants$root.C_POINTER$LAYOUT.withName("error")
+    ).withName("JPC_ShapeResult"),
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_CreateShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_CreateShape",
+        constants$42.JPC_ShapeSettings_CreateShape$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_GetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_GetUserData",
+        constants$42.JPC_ShapeSettings_GetUserData$FUNC
+    );
     static final FunctionDescriptor JPC_ShapeSettings_SetUserData$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
@@ -23,38 +54,6 @@ class constants$42 {
     static final MethodHandle JPC_ConvexShapeSettings_GetMaterial$MH = RuntimeHelper.downcallHandle(
         "JPC_ConvexShapeSettings_GetMaterial",
         constants$42.JPC_ConvexShapeSettings_GetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_SetMaterial$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShapeSettings_SetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_SetMaterial",
-        constants$42.JPC_ConvexShapeSettings_SetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShapeSettings_GetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_GetDensity",
-        constants$42.JPC_ConvexShapeSettings_GetDensity$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_SetDensity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShapeSettings_SetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_SetDensity",
-        constants$42.JPC_ConvexShapeSettings_SetDensity$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShapeSettings_Create",
-        constants$42.JPC_BoxShapeSettings_Create$FUNC
     );
 }
 

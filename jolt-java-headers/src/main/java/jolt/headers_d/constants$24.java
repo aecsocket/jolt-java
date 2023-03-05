@@ -9,6 +9,14 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$24 {
 
+    static final FunctionDescriptor JPC_MotionProperties_GetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetLinearVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetLinearVelocity",
+        constants$24.JPC_MotionProperties_GetLinearVelocity$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_SetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -48,16 +56,6 @@ class constants$24 {
     static final MethodHandle JPC_MotionProperties_SetAngularVelocityClamped$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_SetAngularVelocityClamped",
         constants$24.JPC_MotionProperties_SetAngularVelocityClamped$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_MoveKinematic$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_MoveKinematic$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_MoveKinematic",
-        constants$24.JPC_MotionProperties_MoveKinematic$FUNC
     );
 }
 

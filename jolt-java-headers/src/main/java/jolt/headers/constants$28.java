@@ -9,6 +9,15 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$28 {
 
+    static final FunctionDescriptor JPC_MotionProperties_GetPointVelocityCOM$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetPointVelocityCOM$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetPointVelocityCOM",
+        constants$28.JPC_MotionProperties_GetPointVelocityCOM$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_GetMaxLinearVelocity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -45,13 +54,6 @@ class constants$28 {
     static final MethodHandle JPC_TempAllocator_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_TempAllocator_Create",
         constants$28.JPC_TempAllocator_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_TempAllocator_Destroy$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_TempAllocator_Destroy$MH = RuntimeHelper.downcallHandle(
-        "JPC_TempAllocator_Destroy",
-        constants$28.JPC_TempAllocator_Destroy$FUNC
     );
 }
 

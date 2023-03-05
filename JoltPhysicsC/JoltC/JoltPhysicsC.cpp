@@ -554,6 +554,12 @@ AssertFailedImpl(const char *in_expression,
 #endif
 //--------------------------------------------------------------------------------------------------
 JPC_API void
+JPC_BodyIDVector_Destroy(JPC_BodyIDVector *in_vector)
+{
+    delete reinterpret_cast<JPH::BodyIDVector *>(in_vector);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
 JPC_RegisterDefaultAllocator(void)
 {
     JPH::RegisterDefaultAllocator();
@@ -1053,6 +1059,30 @@ JPC_PhysicsSystem_GetMaxBodies(const JPC_PhysicsSystem *in_physics_system)
     return toJph(in_physics_system)->GetMaxBodies();
 }
 //--------------------------------------------------------------------------------------------------
+JPC_API JPC_BodyIDVector *
+JPC_PhysicsSystem_GetBodyIDs(const JPC_PhysicsSystem *in_physics_system,
+                             uint32_t *out_num_body_ids,
+                             JPC_BodyID **out_body_ids)
+{
+    auto out = new JPH::BodyIDVector();
+    toJph(in_physics_system)->GetBodies(*out);
+    *out_num_body_ids = out->size();
+    *out_body_ids = toJpc(out->data());
+    return reinterpret_cast<JPC_BodyIDVector *>(out);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_BodyIDVector *
+JPC_PhysicsSystem_GetActiveBodyIDs(const JPC_PhysicsSystem *in_physics_system,
+                                   uint32_t *out_num_body_ids,
+                                   JPC_BodyID **out_body_ids)
+{
+    auto out = new JPH::BodyIDVector();
+    toJph(in_physics_system)->GetActiveBodies(*out);
+    *out_num_body_ids = out->size();
+    *out_body_ids = toJpc(out->data());
+    return reinterpret_cast<JPC_BodyIDVector *>(out);
+}
+//--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_PhysicsSystem_GetGravity(const JPC_PhysicsSystem *in_physics_system, float out_gravity[3])
 {
@@ -1074,12 +1104,6 @@ JPC_API JPC_BodyInterface *
 JPC_PhysicsSystem_GetBodyInterfaceNoLock(JPC_PhysicsSystem *in_physics_system)
 {
     return toJpc(&toJph(in_physics_system)->GetBodyInterfaceNoLock());
-}
-//--------------------------------------------------------------------------------------------------
-JPC_API void
-JPC_PhysicsSystem_OptimizeBroadPhase(JPC_PhysicsSystem *in_physics_system)
-{
-    toJph(in_physics_system)->OptimizeBroadPhase();
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -1126,6 +1150,32 @@ JPC_API const JPC_NarrowPhaseQuery *
 JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(const JPC_PhysicsSystem *in_physics_system)
 {
     return toJpc(&toJph(in_physics_system)->GetNarrowPhaseQueryNoLock());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_PhysicsSystem_OptimizeBroadPhase(JPC_PhysicsSystem *in_physics_system)
+{
+    toJph(in_physics_system)->OptimizeBroadPhase();
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_PhysicsSystem_AddStepListener(JPC_PhysicsSystem *in_physics_system, void *in_listener)
+{
+    toJph(in_physics_system)->AddStepListener(static_cast<JPH::PhysicsStepListener *>(in_listener));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_PhysicsSystem_RemoveStepListener(JPC_PhysicsSystem *in_physics_system, void *in_listener)
+{
+    toJph(in_physics_system)->RemoveStepListener(static_cast<JPH::PhysicsStepListener *>(in_listener));
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API bool
+JPC_PhysicsSystem_WereBodiesInContact(const JPC_PhysicsSystem *in_physics_system,
+                                      JPC_BodyID in_body_id1,
+                                      JPC_BodyID in_body_id2)
+{
+    return toJph(in_physics_system)->WereBodiesInContact(toJph(in_body_id1), toJph(in_body_id2));
 }
 //--------------------------------------------------------------------------------------------------
 //

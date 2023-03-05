@@ -9,6 +9,13 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$22 {
 
+    static final FunctionDescriptor JPC_BodyCreationSettings_HasMassProperties$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyCreationSettings_HasMassProperties$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyCreationSettings_HasMassProperties",
+        constants$22.JPC_BodyCreationSettings_HasMassProperties$FUNC
+    );
     static final FunctionDescriptor JPC_BodyCreationSettings_GetMassProperties$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -45,13 +52,6 @@ class constants$22 {
     static final MethodHandle JPC_RayCastResult_SetDefault$MH = RuntimeHelper.downcallHandle(
         "JPC_RayCastResult_SetDefault",
         constants$22.JPC_RayCastResult_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_CollideShapeResult_GetEarlyOutFraction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CollideShapeResult_GetEarlyOutFraction$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollideShapeResult_GetEarlyOutFraction",
-        constants$22.JPC_CollideShapeResult_GetEarlyOutFraction$FUNC
     );
 }
 

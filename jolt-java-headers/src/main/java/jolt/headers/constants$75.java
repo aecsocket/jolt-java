@@ -9,6 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$75 {
 
+    static final FunctionDescriptor JPC_Body_IsCollisionCacheInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsCollisionCacheInvalid$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsCollisionCacheInvalid",
+        constants$75.JPC_Body_IsCollisionCacheInvalid$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetShape",
+        constants$75.JPC_Body_GetShape$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetPosition",
+        constants$75.JPC_Body_GetPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetRotation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetRotation$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetRotation",
+        constants$75.JPC_Body_GetRotation$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetWorldTransform$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -25,40 +55,6 @@ class constants$75 {
     static final MethodHandle JPC_Body_GetCenterOfMassPosition$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetCenterOfMassPosition",
         constants$75.JPC_Body_GetCenterOfMassPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetCenterOfMassTransform$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetCenterOfMassTransform$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCenterOfMassTransform",
-        constants$75.JPC_Body_GetCenterOfMassTransform$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetInverseCenterOfMassTransform$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetInverseCenterOfMassTransform$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetInverseCenterOfMassTransform",
-        constants$75.JPC_Body_GetInverseCenterOfMassTransform$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetWorldSpaceBounds",
-        constants$75.JPC_Body_GetWorldSpaceBounds$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetMotionProperties$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetMotionProperties$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetMotionProperties",
-        constants$75.JPC_Body_GetMotionProperties$FUNC
     );
 }
 

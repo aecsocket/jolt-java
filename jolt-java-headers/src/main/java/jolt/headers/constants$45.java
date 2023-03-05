@@ -9,6 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$45 {
 
+    static final FunctionDescriptor JPC_TriangleShapeSettings_SetVertices$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TriangleShapeSettings_SetVertices$MH = RuntimeHelper.downcallHandle(
+        "JPC_TriangleShapeSettings_SetVertices",
+        constants$45.JPC_TriangleShapeSettings_SetVertices$FUNC
+    );
+    static final FunctionDescriptor JPC_TriangleShapeSettings_GetVertices$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TriangleShapeSettings_GetVertices$MH = RuntimeHelper.downcallHandle(
+        "JPC_TriangleShapeSettings_GetVertices",
+        constants$45.JPC_TriangleShapeSettings_GetVertices$FUNC
+    );
+    static final FunctionDescriptor JPC_TriangleShapeSettings_GetConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TriangleShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_TriangleShapeSettings_GetConvexRadius",
+        constants$45.JPC_TriangleShapeSettings_GetConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_TriangleShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_TriangleShapeSettings_SetConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_TriangleShapeSettings_SetConvexRadius",
+        constants$45.JPC_TriangleShapeSettings_SetConvexRadius$FUNC
+    );
     static final FunctionDescriptor JPC_CapsuleShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
@@ -24,39 +59,6 @@ class constants$45 {
     static final MethodHandle JPC_CapsuleShapeSettings_GetHalfHeight$MH = RuntimeHelper.downcallHandle(
         "JPC_CapsuleShapeSettings_GetHalfHeight",
         constants$45.JPC_CapsuleShapeSettings_GetHalfHeight$FUNC
-    );
-    static final FunctionDescriptor JPC_CapsuleShapeSettings_SetHalfHeight$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_CapsuleShapeSettings_SetHalfHeight$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShapeSettings_SetHalfHeight",
-        constants$45.JPC_CapsuleShapeSettings_SetHalfHeight$FUNC
-    );
-    static final FunctionDescriptor JPC_CapsuleShapeSettings_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CapsuleShapeSettings_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShapeSettings_GetRadius",
-        constants$45.JPC_CapsuleShapeSettings_GetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_CapsuleShapeSettings_SetRadius$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_CapsuleShapeSettings_SetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_CapsuleShapeSettings_SetRadius",
-        constants$45.JPC_CapsuleShapeSettings_SetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_TaperedCapsuleShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_TaperedCapsuleShapeSettings_Create",
-        constants$45.JPC_TaperedCapsuleShapeSettings_Create$FUNC
     );
 }
 

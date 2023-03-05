@@ -10,6 +10,8 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_ContactListenerVTable {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
+        Constants$root.C_POINTER$LAYOUT.withName("__unused0"),
+        Constants$root.C_POINTER$LAYOUT.withName("__unused1"),
         Constants$root.C_POINTER$LAYOUT.withName("OnContactValidate"),
         Constants$root.C_POINTER$LAYOUT.withName("OnContactAdded"),
         Constants$root.C_POINTER$LAYOUT.withName("OnContactPersisted"),
@@ -17,6 +19,38 @@ public class JPC_ContactListenerVTable {
     ).withName("JPC_ContactListenerVTable");
     public static MemoryLayout $LAYOUT() {
         return JPC_ContactListenerVTable.$struct$LAYOUT;
+    }
+    static final VarHandle __unused0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused0"));
+    public static VarHandle __unused0$VH() {
+        return JPC_ContactListenerVTable.__unused0$VH;
+    }
+    public static MemoryAddress __unused0$get(MemorySegment seg) {
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.__unused0$VH.get(seg);
+    }
+    public static void __unused0$set( MemorySegment seg, MemoryAddress x) {
+        JPC_ContactListenerVTable.__unused0$VH.set(seg, x);
+    }
+    public static MemoryAddress __unused0$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.__unused0$VH.get(seg.asSlice(index*sizeof()));
+    }
+    public static void __unused0$set(MemorySegment seg, long index, MemoryAddress x) {
+        JPC_ContactListenerVTable.__unused0$VH.set(seg.asSlice(index*sizeof()), x);
+    }
+    static final VarHandle __unused1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__unused1"));
+    public static VarHandle __unused1$VH() {
+        return JPC_ContactListenerVTable.__unused1$VH;
+    }
+    public static MemoryAddress __unused1$get(MemorySegment seg) {
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.__unused1$VH.get(seg);
+    }
+    public static void __unused1$set( MemorySegment seg, MemoryAddress x) {
+        JPC_ContactListenerVTable.__unused1$VH.set(seg, x);
+    }
+    public static MemoryAddress __unused1$get(MemorySegment seg, long index) {
+        return (java.lang.foreign.MemoryAddress)JPC_ContactListenerVTable.__unused1$VH.get(seg.asSlice(index*sizeof()));
+    }
+    public static void __unused1$set(MemorySegment seg, long index, MemoryAddress x) {
+        JPC_ContactListenerVTable.__unused1$VH.set(seg.asSlice(index*sizeof()), x);
     }
     static final FunctionDescriptor OnContactValidate$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,

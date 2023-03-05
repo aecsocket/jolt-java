@@ -9,6 +9,13 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$23 {
 
+    static final FunctionDescriptor JPC_CollideShapeResult_GetEarlyOutFraction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeResult_GetEarlyOutFraction$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeResult_GetEarlyOutFraction",
+        constants$23.JPC_CollideShapeResult_GetEarlyOutFraction$FUNC
+    );
     static final FunctionDescriptor JPC_CollideShapeResult_Reversed$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -44,14 +51,6 @@ class constants$23 {
     static final MethodHandle JPC_MotionProperties_GetMotionQuality$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_GetMotionQuality",
         constants$23.JPC_MotionProperties_GetMotionQuality$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetLinearVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetLinearVelocity",
-        constants$23.JPC_MotionProperties_GetLinearVelocity$FUNC
     );
 }
 

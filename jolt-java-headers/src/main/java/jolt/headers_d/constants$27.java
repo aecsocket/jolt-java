@@ -9,6 +9,14 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$27 {
 
+    static final FunctionDescriptor JPC_MotionProperties_GetInverseInertiaDiagonal$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MotionProperties_GetInverseInertiaDiagonal$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetInverseInertiaDiagonal",
+        constants$27.JPC_MotionProperties_GetInverseInertiaDiagonal$FUNC
+    );
     static final FunctionDescriptor JPC_MotionProperties_GetInertiaRotation$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -52,15 +60,6 @@ class constants$27 {
     static final MethodHandle JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$MH = RuntimeHelper.downcallHandle(
         "JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector",
         constants$27.JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$FUNC
-    );
-    static final FunctionDescriptor JPC_MotionProperties_GetPointVelocityCOM$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotionProperties_GetPointVelocityCOM$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetPointVelocityCOM",
-        constants$27.JPC_MotionProperties_GetPointVelocityCOM$FUNC
     );
 }
 

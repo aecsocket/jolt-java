@@ -9,6 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$54 {
 
+    static final FunctionDescriptor JPC_Shape_SetUserData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_SetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_SetUserData",
+        constants$54.JPC_Shape_SetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_MustBeStatic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_MustBeStatic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_MustBeStatic",
+        constants$54.JPC_Shape_MustBeStatic$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetCenterOfMass$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetCenterOfMass$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetCenterOfMass",
+        constants$54.JPC_Shape_GetCenterOfMass$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetLocalBounds$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetLocalBounds$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetLocalBounds",
+        constants$54.JPC_Shape_GetLocalBounds$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_GetSubShapeIDBitsRecursive$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -25,39 +56,6 @@ class constants$54 {
     static final MethodHandle JPC_Shape_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_GetWorldSpaceBounds",
         constants$54.JPC_Shape_GetWorldSpaceBounds$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetInnerRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetInnerRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetInnerRadius",
-        constants$54.JPC_Shape_GetInnerRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetMaterial",
-        constants$54.JPC_Shape_GetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetSurfaceNormal$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSurfaceNormal",
-        constants$54.JPC_Shape_GetSurfaceNormal$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetSubShapeUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetSubShapeUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSubShapeUserData",
-        constants$54.JPC_Shape_GetSubShapeUserData$FUNC
     );
 }
 

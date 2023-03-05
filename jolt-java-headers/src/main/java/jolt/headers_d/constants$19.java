@@ -28,10 +28,12 @@ class constants$19 {
     static final MethodHandle JPC_AlignedFreeFunction$MH = RuntimeHelper.downcallHandle(
         constants$19.JPC_AlignedFreeFunction$FUNC
     );
-    static final FunctionDescriptor JPC_RegisterDefaultAllocator$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle JPC_RegisterDefaultAllocator$MH = RuntimeHelper.downcallHandle(
-        "JPC_RegisterDefaultAllocator",
-        constants$19.JPC_RegisterDefaultAllocator$FUNC
+    static final FunctionDescriptor JPC_BodyIDVector_Destroy$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyIDVector_Destroy$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyIDVector_Destroy",
+        constants$19.JPC_BodyIDVector_Destroy$FUNC
     );
 }
 

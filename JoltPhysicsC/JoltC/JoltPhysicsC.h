@@ -182,6 +182,7 @@ typedef void (*JPC_AlignedFreeFunction)(void *in_block);
 // Opaque Types
 //
 //--------------------------------------------------------------------------------------------------
+typedef struct JPC_BodyIDVector            JPC_BodyIDVector;
 typedef struct JPC_TempAllocator     JPC_TempAllocator;
 typedef struct JPC_JobSystem         JPC_JobSystem;
 typedef struct JPC_BodyInterface     JPC_BodyInterface;
@@ -677,6 +678,9 @@ typedef struct JPC_ShapeFilterVTable
 
 typedef struct JPC_ContactListenerVTable
 {
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
     // Optional, can be NULL.
     JPC_ValidateResult
     (*OnContactValidate)(void *in_self,
@@ -705,6 +709,16 @@ typedef struct JPC_ContactListenerVTable
     void
     (*OnContactRemoved)(void *in_self, const JPC_SubShapeIDPair *in_sub_shape_pair);
 } JPC_ContactListenerVTable;
+
+typedef struct JPC_PhysicsStepListenerVTable
+{
+    const void *__unused0; // Unused, *must* be NULL.
+    const void *__unused1; // Unused, *must* be NULL.
+
+    // Required, *cannot* be NULL.
+    void
+    (*OnStep)(void *in_self, float in_delta_time, JPC_PhysicsSystem *in_physics_system);
+} JPC_PhysicsStepListenerVTable;
 
 typedef struct JPC_RayCastBodyCollectorVTable
 {
@@ -865,6 +879,9 @@ typedef struct JPC_TransformedShapeCollectorVTable
 // Misc functions
 //
 //--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_BodyIDVector_Destroy(JPC_BodyIDVector *in_vector);
+
 JPC_API void
 JPC_RegisterDefaultAllocator(void);
 
@@ -1110,44 +1127,6 @@ JPC_API void
 JPC_PhysicsSystem_GetPhysicsSettings(const JPC_PhysicsSystem *in_physics_system,
                                      JPC_PhysicsSettings *out_settings);
 
-JPC_API uint32_t
-JPC_PhysicsSystem_GetNumBodies(const JPC_PhysicsSystem *in_physics_system);
-
-JPC_API uint32_t
-JPC_PhysicsSystem_GetNumActiveBodies(const JPC_PhysicsSystem *in_physics_system);
-
-JPC_API uint32_t
-JPC_PhysicsSystem_GetMaxBodies(const JPC_PhysicsSystem *in_physics_system);
-
-JPC_API void
-JPC_PhysicsSystem_GetGravity(const JPC_PhysicsSystem *in_physics_system, float out_gravity[3]);
-
-JPC_API void
-JPC_PhysicsSystem_SetGravity(JPC_PhysicsSystem *in_physics_system, const float in_gravity[3]);
-
-JPC_API JPC_BodyInterface *
-JPC_PhysicsSystem_GetBodyInterface(JPC_PhysicsSystem *in_physics_system);
-
-JPC_API JPC_BodyInterface *
-JPC_PhysicsSystem_GetBodyInterfaceNoLock(JPC_PhysicsSystem *in_physics_system);
-
-JPC_API void
-JPC_PhysicsSystem_OptimizeBroadPhase(JPC_PhysicsSystem *in_physics_system);
-
-JPC_API void
-JPC_PhysicsSystem_Update(JPC_PhysicsSystem *in_physics_system,
-                         float in_delta_time,
-                         int in_collision_steps,
-                         int in_integration_sub_steps,
-                         JPC_TempAllocator *in_temp_allocator,
-                         JPC_JobSystem *in_job_system);
-
-JPC_API const JPC_BodyLockInterface *
-JPC_PhysicsSystem_GetBodyLockInterface(const JPC_PhysicsSystem *in_physics_system);
-
-JPC_API const JPC_BodyLockInterface *
-JPC_PhysicsSystem_GetBodyLockInterfaceNoLock(const JPC_PhysicsSystem *in_physics_system);
-
 JPC_API const JPC_BroadPhaseQuery *
 JPC_PhysicsSystem_GetBroadPhaseQuery(const JPC_PhysicsSystem *in_physics_system);
 
@@ -1157,19 +1136,61 @@ JPC_PhysicsSystem_GetNarrowPhaseQuery(const JPC_PhysicsSystem *in_physics_system
 JPC_API const JPC_NarrowPhaseQuery *
 JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(const JPC_PhysicsSystem *in_physics_system);
 
-/// Get copy of the list of all bodies under protection of a lock.
 JPC_API void
+JPC_PhysicsSystem_OptimizeBroadPhase(JPC_PhysicsSystem *in_physics_system);
+
+JPC_API void
+JPC_PhysicsSystem_AddStepListener(JPC_PhysicsSystem *in_physics_system, void *in_listener);
+
+JPC_API void
+JPC_PhysicsSystem_RemoveStepListener(JPC_PhysicsSystem *in_physics_system, void *in_listener);
+
+JPC_API void
+JPC_PhysicsSystem_Update(JPC_PhysicsSystem *in_physics_system,
+                         float in_delta_time,
+                         int in_collision_steps,
+                         int in_integration_sub_steps,
+                         JPC_TempAllocator *in_temp_allocator,
+                         JPC_JobSystem *in_job_system);
+
+JPC_API void
+JPC_PhysicsSystem_SetGravity(JPC_PhysicsSystem *in_physics_system, const float in_gravity[3]);
+
+JPC_API void
+JPC_PhysicsSystem_GetGravity(const JPC_PhysicsSystem *in_physics_system, float out_gravity[3]);
+
+JPC_API JPC_BodyInterface *
+JPC_PhysicsSystem_GetBodyInterfaceNoLock(JPC_PhysicsSystem *in_physics_system);
+
+JPC_API JPC_BodyInterface *
+JPC_PhysicsSystem_GetBodyInterface(JPC_PhysicsSystem *in_physics_system);
+
+JPC_API const JPC_BodyLockInterface *
+JPC_PhysicsSystem_GetBodyLockInterface(const JPC_PhysicsSystem *in_physics_system);
+
+JPC_API const JPC_BodyLockInterface *
+JPC_PhysicsSystem_GetBodyLockInterfaceNoLock(const JPC_PhysicsSystem *in_physics_system);
+
+JPC_API uint32_t
+JPC_PhysicsSystem_GetNumBodies(const JPC_PhysicsSystem *in_physics_system);
+
+JPC_API uint32_t
+JPC_PhysicsSystem_GetNumActiveBodies(const JPC_PhysicsSystem *in_physics_system);
+
+JPC_API uint32_t
+JPC_PhysicsSystem_GetMaxBodies(const JPC_PhysicsSystem *in_physics_system);
+
+/// Get copy of the list of all bodies under protection of a lock.
+JPC_API JPC_BodyIDVector *
 JPC_PhysicsSystem_GetBodyIDs(const JPC_PhysicsSystem *in_physics_system,
-                             uint32_t in_max_body_ids,
                              uint32_t *out_num_body_ids,
-                             JPC_BodyID *out_body_ids);
+                             JPC_BodyID **out_body_ids);
 
 /// Get copy of the list of active bodies under protection of a lock.
-JPC_API void
+JPC_API JPC_BodyIDVector *
 JPC_PhysicsSystem_GetActiveBodyIDs(const JPC_PhysicsSystem *in_physics_system,
-                                   uint32_t in_max_body_ids,
                                    uint32_t *out_num_body_ids,
-                                   JPC_BodyID *out_body_ids);
+                                   JPC_BodyID **out_body_ids);
 ///
 /// Low-level access for advanced usage and zero CPU overhead (access *not* protected by a lock)
 ///
@@ -1189,6 +1210,11 @@ JPC_PhysicsSystem_GetActiveBodyIDs(const JPC_PhysicsSystem *in_physics_system,
 /// Get direct access to all bodies. Not protected by a lock. Use with great care!
 JPC_API JPC_Body **
 JPC_PhysicsSystem_GetBodiesUnsafe(JPC_PhysicsSystem *in_physics_system);
+
+JPC_API bool
+JPC_PhysicsSystem_WereBodiesInContact(const JPC_PhysicsSystem *in_physics_system,
+                                      JPC_BodyID in_body_id1,
+                                      JPC_BodyID in_body_id2);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_BodyLockInterface
@@ -2431,6 +2457,10 @@ struct JPJ_ShapeFilter {
 
 struct JPJ_ContactListener {
     const JPC_ContactListenerVTable *vtable;
+};
+
+struct JPJ_PhysicsStepListener {
+    const JPC_PhysicsStepListenerVTable *vtable;
 };
 
 struct JPJ_RayCastBodyCollector {

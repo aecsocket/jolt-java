@@ -17,6 +17,8 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 import javax.annotation.Nullable;
 
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -103,8 +105,22 @@ public final class PhysicsSystem extends DestroyableJoltNative {
         return NarrowPhaseQuery.at(JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(handle));
     }
 
+    // TODO addConstraint
+    // TODO removeConstraint
+    // TODO addConstraints
+    // TODO removeConstraints
+    // TODO getConstraints
+
     public void optimizeBroadPhase() {
         JPC_PhysicsSystem_OptimizeBroadPhase(handle);
+    }
+
+    public void addStepListener(PhysicsStepListener listener) {
+        JPC_PhysicsSystem_AddStepListener(handle, listener.address());
+    }
+
+    public void removeStepListener(PhysicsStepListener listener) {
+        JPC_PhysicsSystem_RemoveStepListener(handle, listener.address());
     }
 
     public void setGravity(FVec3 gravity) {
@@ -114,6 +130,9 @@ public final class PhysicsSystem extends DestroyableJoltNative {
     public void getGravity(FVec3 out) {
         JPC_PhysicsSystem_GetGravity(handle, out.address());
     }
+
+    // TODO getBodyLockInterfaceNoLock
+    // TODO getBodyLockInterface
 
     public int getNumBodies() {
         return JPC_PhysicsSystem_GetNumBodies(handle);
@@ -125,6 +144,42 @@ public final class PhysicsSystem extends DestroyableJoltNative {
 
     public int getMaxBodies() {
         return JPC_PhysicsSystem_GetMaxBodies(handle);
+    }
+
+    public int[] getBodies() {
+        try (var arena = MemorySession.openConfined()) {
+            var outNumBodyIds = arena.allocate(C_INT, 0);
+            var outBodyIds = arena.allocate(C_POINTER, MemoryAddress.NULL);
+            var vector = JPC_PhysicsSystem_GetBodyIDs(handle, outNumBodyIds.address(), outBodyIds.address());
+            var numBodyIds = outNumBodyIds.get(C_INT, 0);
+            var bodyIds = outBodyIds.get(C_POINTER, 0);
+            var result = new int[numBodyIds];
+            for (int i = 0; i < numBodyIds; i++) {
+                result[i] = bodyIds.getAtIndex(C_INT, i);
+            }
+            JPC_BodyIDVector_Destroy(vector);
+            return result;
+        }
+    }
+
+    public int[] getActiveBodies() {
+        try (var arena = MemorySession.openConfined()) {
+            var outNumBodyIds = arena.allocate(C_INT, 0);
+            var outBodyIds = arena.allocate(C_POINTER, MemoryAddress.NULL);
+            var vector = JPC_PhysicsSystem_GetActiveBodyIDs(handle, outNumBodyIds.address(), outBodyIds.address());
+            var numBodyIds = outNumBodyIds.get(C_INT, 0);
+            var bodyIds = outBodyIds.get(C_POINTER, 0);
+            var result = new int[numBodyIds];
+            for (int i = 0; i < numBodyIds; i++) {
+                result[i] = bodyIds.getAtIndex(C_INT, i);
+            }
+            JPC_BodyIDVector_Destroy(vector);
+            return result;
+        }
+    }
+
+    public boolean wereBodiesInContact(int bodyId1, int bodyId2) {
+        return JPC_PhysicsSystem_WereBodiesInContact(handle, bodyId1, bodyId2);
     }
 
     public void update(
