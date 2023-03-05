@@ -9,6 +9,7 @@ import java.lang.foreign.MemorySession;
 import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JPC_ShapeResult.*;
+import static jolt.headers.JoltPhysicsC.*;
 
 public final class ShapeResult extends Result<Shape> {
     //region Jolt-Value
@@ -31,7 +32,7 @@ public final class ShapeResult extends Result<Shape> {
 
     @Override
     public boolean hasError() {
-        return result$get(handle) != MemoryAddress.NULL;
+        return result$get(handle) == MemoryAddress.NULL;
     }
 
     @Override

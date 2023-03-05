@@ -10,10 +10,7 @@ import jolt.physics.PhysicsSystem;
 import jolt.physics.body.*;
 import jolt.physics.collision.*;
 import jolt.physics.collision.broadphase.*;
-import jolt.physics.collision.shape.BoxShapeSettings;
-import jolt.physics.collision.shape.Shape;
-import jolt.physics.collision.shape.SphereShape;
-import jolt.physics.collision.shape.SubShapeIdPair;
+import jolt.physics.collision.shape.*;
 import org.junit.jupiter.api.Test;
 
 import java.lang.foreign.MemorySession;
@@ -153,6 +150,8 @@ public final class HelloJolt {
             physicsSystem.setContactListener(contactListener);
 
             BodyInterface bodyInterface = physicsSystem.getBodyInterface();
+
+            //StaticCompoundShapeSettings.of().create(arena).orThrow();
 
             // Destroyable classes do not implement AutoCloseable due to excessive "try-with-resources" warnings
             // use Jolt.use instead
