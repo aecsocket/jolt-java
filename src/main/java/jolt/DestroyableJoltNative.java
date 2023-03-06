@@ -9,6 +9,11 @@ public abstract class DestroyableJoltNative extends AddressedJoltNative implemen
         super(address);
     }
 
+    @Override
+    public boolean isDestroyed() {
+        return destroyed;
+    }
+
     protected abstract void destroyInternal();
 
     @Override

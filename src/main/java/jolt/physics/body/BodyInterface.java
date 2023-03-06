@@ -120,6 +120,11 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
+        public boolean isDestroyed() {
+            return destroyed;
+        }
+
+        @Override
         public void destroy() {
             if (destroyed) throw new IllegalStateException("Object is already destroyed");
             arena.close();
