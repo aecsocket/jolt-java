@@ -1730,7 +1730,13 @@ JPC_ConvexHullShapeSettings_SetHullTolerance(JPC_ConvexHullShapeSettings *in_set
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API JPC_HeightFieldShapeSettings *
-JPC_HeightFieldShapeSettings_Create(const float *in_samples, uint32_t in_height_field_size, float in_offset[3], float in_scale[3]);
+JPC_HeightFieldShapeSettings_Create(const float *in_samples,
+                                    uint32_t in_height_field_size,
+                                    float in_offset[3],
+                                    float in_scale[3],
+                                    const uint8_t *in_material_indices,
+                                    const JPC_PhysicsMaterial **in_materials,
+                                    uint32_t in_num_materials);
 
 JPC_API void
 JPC_HeightFieldShapeSettings_GetOffset(const JPC_HeightFieldShapeSettings *in_settings, float out_offset[3]);
@@ -1765,7 +1771,9 @@ JPC_MeshShapeSettings_Create(const void *in_vertices,
                              uint32_t in_num_vertices,
                              uint32_t in_vertex_size,
                              const uint32_t *in_indices,
-                             uint32_t in_num_indices);
+                             uint32_t in_num_indices,
+                             const JPC_PhysicsMaterial **in_materials,
+                             uint32_t in_num_materials);
 JPC_API uint32_t
 JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf(const JPC_MeshShapeSettings *in_settings);
 

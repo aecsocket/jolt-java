@@ -2234,11 +2234,29 @@ JPC_API JPC_HeightFieldShapeSettings *
 JPC_HeightFieldShapeSettings_Create(const float *in_samples,
                                     uint32_t in_height_field_size,
                                     float in_offset[3],
-                                    float in_scale[3])
+                                    float in_scale[3],
+                                    const uint8_t *in_material_indices,
+                                    const JPC_PhysicsMaterial **in_materials,
+                                    uint32_t in_num_materials)
 {
     assert(in_samples != nullptr && in_height_field_size >= 2);
+
+    JPH::PhysicsMaterialList materials;
+    materials.reserve(in_num_materials);
+
+    for (uint32_t i = 0; i < in_num_materials; ++i)
+    {
+        materials.emplace_back(toJph(in_materials[i]));
+    }
+
     auto settings = new JPH::HeightFieldShapeSettings(
-        in_samples, loadVec3(in_offset), loadVec3(in_scale), in_height_field_size);
+        in_samples,
+        loadVec3(in_offset),
+        loadVec3(in_scale),
+        in_height_field_size,
+        in_material_indices,
+        materials
+    );
     settings->AddRef();
     return toJpc(settings);
 }
@@ -2300,21 +2318,23 @@ JPC_MeshShapeSettings_Create(const void *in_vertices,
                              uint32_t in_num_vertices,
                              uint32_t in_vertex_size,
                              const uint32_t *in_indices,
-                             uint32_t in_num_indices)
+                             uint32_t in_num_indices,
+                             const JPC_PhysicsMaterial **in_materials,
+                             uint32_t in_num_materials)
 {
     assert(in_vertices && in_indices);
     assert(in_num_vertices >= 3);
     assert(in_vertex_size >= 3 * sizeof(float));
-    assert(in_num_indices >= 3 && in_num_indices % 3 == 0);
+    assert(in_num_indices >= 4 && in_num_indices % 4 == 0);
 
     JPH::VertexList vertices;
     vertices.reserve(in_num_vertices);
 
     for (uint32_t i = 0; i < in_num_vertices; ++i)
     {
-        const float *base = reinterpret_cast<const float *>(
+        const auto *base = reinterpret_cast<const float *>(
             static_cast<const uint8_t *>(in_vertices) + i * in_vertex_size);
-        vertices.push_back(JPH::Float3(base[0], base[1], base[2]));
+        vertices.emplace_back(base[0], base[1], base[2]);
     }
 
     JPH::IndexedTriangleList triangles;
@@ -2322,11 +2342,19 @@ JPC_MeshShapeSettings_Create(const void *in_vertices,
 
     for (uint32_t i = 0; i < in_num_indices / 3; ++i)
     {
-        triangles.push_back(
-            JPH::IndexedTriangle(in_indices[i * 3], in_indices[i * 3 + 1], in_indices[i * 3 + 2], 0));
+        triangles.emplace_back(
+            in_indices[i * 3], in_indices[i * 3 + 1], in_indices[i * 3 + 2], in_indices[i * 3 + 3]);
     }
 
-    auto settings = new JPH::MeshShapeSettings(vertices, triangles);
+    JPH::PhysicsMaterialList materials;
+    materials.reserve(in_num_materials);
+
+    for (uint32_t i = 0; i < in_num_materials; ++i)
+    {
+        materials.emplace_back(toJph(in_materials[i]));
+    }
+
+    auto settings = new JPH::MeshShapeSettings(vertices, triangles, materials);
     settings->AddRef();
     return toJpc(settings);
 }

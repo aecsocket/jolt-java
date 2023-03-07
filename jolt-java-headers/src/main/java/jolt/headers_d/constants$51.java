@@ -37,6 +37,8 @@ class constants$51 {
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(

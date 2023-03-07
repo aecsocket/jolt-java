@@ -26,8 +26,4 @@ public final class BodyIds {
     public static String asString(int id) {
         return index(id) + "/" + sequenceNumber(id);
     }
-
-    public static int[] arrayOf(Collection<? extends Integer> collection) {
-        return collection.stream().mapToInt(x -> x).toArray();
-    }
 }

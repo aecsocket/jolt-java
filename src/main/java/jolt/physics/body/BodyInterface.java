@@ -72,7 +72,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     }
 
     public List<MutableBody> unassignBodyIds(Collection<? extends Integer> bodyIds) {
-        return Arrays.asList(unassignBodyIds(BodyIds.arrayOf(bodyIds)));
+        return Arrays.asList(unassignBodyIds(Jolt.arrayOf(bodyIds)));
     }
 
     public void destroyBody(int bodyId) {
@@ -87,7 +87,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     }
 
     public void destroyBodies(Collection<? extends Integer> bodyIds) {
-        destroyBodies(BodyIds.arrayOf(bodyIds));
+        destroyBodies(Jolt.arrayOf(bodyIds));
     }
 
     public void addBody(int bodyId, Activation activation) {
@@ -143,7 +143,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     }
 
     public BodyBulk bodyBulk(Collection<? extends Integer> bodyIds) {
-        return bodyBulk(BodyIds.arrayOf(bodyIds));
+        return bodyBulk(Jolt.arrayOf(bodyIds));
     }
 
     public void addBodiesPrepare(BodyBulk bulk) {
@@ -174,7 +174,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     }
 
     public void removeBodies(Collection<? extends Integer> bodyIds) {
-        removeBodies(BodyIds.arrayOf(bodyIds));
+        removeBodies(Jolt.arrayOf(bodyIds));
     }
 
     public void activateBody(int bodyId) {
@@ -189,7 +189,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     }
 
     public void activateBodies(Collection<? extends Integer> bodyIds) {
-        activateBodies(BodyIds.arrayOf(bodyIds));
+        activateBodies(Jolt.arrayOf(bodyIds));
     }
 
     public void deactivateBody(int bodyId) {
@@ -204,7 +204,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
     }
 
     public void deactivateBodies(Collection<? extends Integer> bodyIds) {
-        deactivateBodies(BodyIds.arrayOf(bodyIds));
+        deactivateBodies(Jolt.arrayOf(bodyIds));
     }
 
     public boolean isActive(int bodyId) {
@@ -250,9 +250,9 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
 
     public abstract void setPosition(int bodyId, DVec3 position, Activation activation);
 
-    public abstract void getCOMPosition(int bodyId, FVec3 out);
+    public abstract void getCenterOfMassPosition(int bodyId, FVec3 out);
 
-    public abstract void getCOMPosition(int bodyId, DVec3 out);
+    public abstract void getCenterOfMassPosition(int bodyId, DVec3 out);
 
     public void setRotation(int bodyId, Quat rotation, Activation activation) {
         JPC_BodyInterface_SetRotation(handle, bodyId, rotation.address(), activation.ordinal());
@@ -266,9 +266,9 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
 
     public abstract void getWorldTransform(int bodyId, DMat44 out);
 
-    public abstract void getCOMTransform(int bodyId, FMat44 out);
+    public abstract void getCenterOfMassTransform(int bodyId, FMat44 out);
 
-    public abstract void getCOMTransform(int bodyId, DMat44 out);
+    public abstract void getCenterOfMassTransform(int bodyId, DMat44 out);
 
     public abstract void moveKinematic(int bodyId, FVec3 targetPosition, Quat targetRotation, float deltaTime);
 
@@ -448,12 +448,12 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public void getCOMPosition(int bodyId, FVec3 out) {
+        public void getCenterOfMassPosition(int bodyId, FVec3 out) {
             jolt.headers_f.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(handle, bodyId, out.address());
         }
 
         @Override
-        public void getCOMPosition(int bodyId, DVec3 out) {
+        public void getCenterOfMassPosition(int bodyId, DVec3 out) {
             throw Jolt.tryingDoublePrecision();
         }
 
@@ -473,7 +473,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public void getCOMTransform(int bodyId, FMat44 out) {
+        public void getCenterOfMassTransform(int bodyId, FMat44 out) {
             try (var arena = MemorySession.openConfined()) {
                 var rotation = arena.allocateArray(C_FLOAT, new float[9]);
                 var translation = arena.allocateArray(C_FLOAT, new float[3]);
@@ -483,7 +483,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public void getCOMTransform(int bodyId, DMat44 out) {
+        public void getCenterOfMassTransform(int bodyId, DMat44 out) {
             throw Jolt.tryingDoublePrecision();
         }
 
@@ -584,12 +584,12 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public void getCOMPosition(int bodyId, FVec3 out) {
+        public void getCenterOfMassPosition(int bodyId, FVec3 out) {
             throw Jolt.tryingSinglePrecision();
         }
 
         @Override
-        public void getCOMPosition(int bodyId, DVec3 out) {
+        public void getCenterOfMassPosition(int bodyId, DVec3 out) {
             jolt.headers_d.JoltPhysicsC.JPC_BodyInterface_GetCenterOfMassPosition(handle, bodyId, out.address());
         }
 
@@ -609,12 +609,12 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public void getCOMTransform(int bodyId, FMat44 out) {
+        public void getCenterOfMassTransform(int bodyId, FMat44 out) {
             throw Jolt.tryingSinglePrecision();
         }
 
         @Override
-        public void getCOMTransform(int bodyId, DMat44 out) {
+        public void getCenterOfMassTransform(int bodyId, DMat44 out) {
             try (var arena = MemorySession.openConfined()) {
                 var rotation = arena.allocateArray(C_FLOAT, new float[9]);
                 var translation = arena.allocateArray(C_DOUBLE, new double[3]);

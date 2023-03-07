@@ -13,7 +13,7 @@ import java.lang.foreign.MemoryAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public sealed class Shape extends DestroyableJoltNative
-        permits ConvexShape, CompoundShape, DecoratedShape {
+        permits ConvexShape, CompoundShape, DecoratedShape, MeshShape, HeightFieldShape {
     public static final float DEFAULT_CONVEX_RADIUS = 0.05f;
 
     //region Jolt-Pointer-Protected

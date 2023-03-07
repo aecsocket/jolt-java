@@ -7,8 +7,11 @@ import cpufeatures.CpuPlatform;
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.SegmentAllocator;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -107,6 +110,18 @@ public final class Jolt {
 
     public static MemoryAddress ptr(@Nullable JoltNative obj) {
         return obj == null ? MemoryAddress.NULL : obj.address();
+    }
+
+    public static MemorySegment ofArray(SegmentAllocator alloc, JoltNative[] objs) {
+        var segment = alloc.allocateArray(C_POINTER, objs.length);
+        for (int i = 0; i < objs.length; i++) {
+            segment.setAtIndex(C_POINTER, i, objs[i].address());
+        }
+        return segment;
+    }
+
+    public static int[] arrayOf(Collection<? extends Integer> collection) {
+        return collection.stream().mapToInt(x -> x).toArray();
     }
 
     public static <T extends Destroyable> void use(T obj, Consumer<T> block) {

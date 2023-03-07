@@ -204,11 +204,11 @@ public final class HelloJolt {
                 Object position;
                 if (doublePrecision) {
                     DVec3 out = DVec3.of(arena);
-                    bodyInterface.getCOMPosition(sphereId, out);
+                    bodyInterface.getCenterOfMassPosition(sphereId, out);
                     position = out;
                 } else {
                     FVec3 out = FVec3.of(arena);
-                    bodyInterface.getCOMPosition(sphereId, out);
+                    bodyInterface.getCenterOfMassPosition(sphereId, out);
                     position = out;
                 }
                 FVec3 velocity = FVec3.of(arena);

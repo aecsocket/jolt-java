@@ -3757,10 +3757,10 @@ public class JoltPhysicsC  {
     public static MethodHandle JPC_HeightFieldShapeSettings_Create$MH() {
         return RuntimeHelper.requireNonNull(constants$50.JPC_HeightFieldShapeSettings_Create$MH,"JPC_HeightFieldShapeSettings_Create");
     }
-    public static MemoryAddress JPC_HeightFieldShapeSettings_Create ( Addressable in_samples,  int in_height_field_size,  Addressable in_offset,  Addressable in_scale) {
+    public static MemoryAddress JPC_HeightFieldShapeSettings_Create ( Addressable in_samples,  int in_height_field_size,  Addressable in_offset,  Addressable in_scale,  Addressable in_material_indices,  Addressable in_materials,  int in_num_materials) {
         var mh$ = JPC_HeightFieldShapeSettings_Create$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_samples, in_height_field_size, in_offset, in_scale);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_samples, in_height_field_size, in_offset, in_scale, in_material_indices, in_materials, in_num_materials);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -3856,10 +3856,10 @@ public class JoltPhysicsC  {
     public static MethodHandle JPC_MeshShapeSettings_Create$MH() {
         return RuntimeHelper.requireNonNull(constants$51.JPC_MeshShapeSettings_Create$MH,"JPC_MeshShapeSettings_Create");
     }
-    public static MemoryAddress JPC_MeshShapeSettings_Create ( Addressable in_vertices,  int in_num_vertices,  int in_vertex_size,  Addressable in_indices,  int in_num_indices) {
+    public static MemoryAddress JPC_MeshShapeSettings_Create ( Addressable in_vertices,  int in_num_vertices,  int in_vertex_size,  Addressable in_indices,  int in_num_indices,  Addressable in_materials,  int in_num_materials) {
         var mh$ = JPC_MeshShapeSettings_Create$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_vertices, in_num_vertices, in_vertex_size, in_indices, in_num_indices);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_vertices, in_num_vertices, in_vertex_size, in_indices, in_num_indices, in_materials, in_num_materials);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }

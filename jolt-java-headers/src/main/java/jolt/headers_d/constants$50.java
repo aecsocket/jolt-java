@@ -13,7 +13,10 @@ class constants$50 {
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle JPC_HeightFieldShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_HeightFieldShapeSettings_Create",
