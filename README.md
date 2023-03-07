@@ -6,7 +6,7 @@
 ![Release](https://img.shields.io/maven-central/v/io.github.aecsocket/jolt-java?label=release)
 ![Snapshot](https://img.shields.io/nexus/s/io.github.aecsocket/jolt-java?label=snapshot&server=https%3A%2F%2Fs01.oss.sonatype.org)
 
-Java bindings for [JoltPhysics](https://github.com/jrouwe/JoltPhysics) using
+Java bindings for [JoltPhysics](https://github.com/jrouwe/JoltPhysics) with C bindings based on
 [zig-gamedev JoltPhysicsC](https://github.com/michal-z/zig-gamedev/tree/main/libs/zphysics/libs)
 
 </div>
