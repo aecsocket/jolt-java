@@ -16,16 +16,22 @@ These bindings are still feature-incomplete and unstable.
 ## Coverage
 
 Features:
+- [ ] Rigid bodies
+  - [x] Body interface
+  - [x] Body locking
+  - [ ] Motion properties
 - [x] Shapes
   - [x] Convex
   - [x] Compound
   - [x] Decorator
-- [ ] Rigid bodies
-  - [x] Body interface
-  - [ ] Motion properties
+  - [x] Mesh/height field
 - [x] Queries
   - [x] Broad phase
   - [x] Narrow phase
+- [x] Listeners
+  - [x] Step
+  - [x] Contact
+- [x] Double precision
 - [ ] Constraints
 - [ ] Vehicles
 - [ ] Characters
