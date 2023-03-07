@@ -19,6 +19,7 @@
 #include <Jolt/Physics/Collision/ShapeCast.h>
 #include <Jolt/Physics/Collision/AABoxCast.h>
 #include <Jolt/Physics/Collision/CastResult.h>
+#include <Jolt/Physics/Collision/PhysicsMaterial.h>
 #include <Jolt/Physics/Collision/Shape/BoxShape.h>
 #include <Jolt/Physics/Collision/Shape/SphereShape.h>
 #include <Jolt/Physics/Collision/Shape/TriangleShape.h>
@@ -30,7 +31,10 @@
 #include <Jolt/Physics/Collision/Shape/MeshShape.h>
 #include <Jolt/Physics/Collision/Shape/StaticCompoundShape.h>
 #include <Jolt/Physics/Collision/Shape/MutableCompoundShape.h>
-#include <Jolt/Physics/Collision/PhysicsMaterial.h>
+#include <Jolt/Physics/Collision/Shape/DecoratedShape.h>
+#include <Jolt/Physics/Collision/Shape/ScaledShape.h>
+#include <Jolt/Physics/Collision/Shape/RotatedTranslatedShape.h>
+#include <Jolt/Physics/Collision/Shape/OffsetCenterOfMassShape.h>
 #include <Jolt/Physics/Body/BodyCreationSettings.h>
 #include <Jolt/Physics/Body/BodyActivationListener.h>
 #include <Jolt/Physics/Body/BodyLock.h>
@@ -200,6 +204,26 @@ FN(toJph)(const JPC_MutableCompoundShapeSettings *in) { assert(in); return reint
 FN(toJpc)(JPH::MutableCompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPC_MutableCompoundShapeSettings *>(in); }
 FN(toJph)(JPC_MutableCompoundShapeSettings *in) { assert(in); return reinterpret_cast<JPH::MutableCompoundShapeSettings *>(in); }
 
+FN(toJpc)(const JPH::DecoratedShapeSettings *in) { assert(in); return reinterpret_cast<const JPC_DecoratedShapeSettings *>(in); }
+FN(toJph)(const JPC_DecoratedShapeSettings *in) { assert(in); return reinterpret_cast<const JPH::DecoratedShapeSettings *>(in); }
+FN(toJpc)(JPH::DecoratedShapeSettings *in) { assert(in); return reinterpret_cast<JPC_DecoratedShapeSettings *>(in); }
+FN(toJph)(JPC_DecoratedShapeSettings *in) { assert(in); return reinterpret_cast<JPH::DecoratedShapeSettings *>(in); }
+
+FN(toJpc)(const JPH::ScaledShapeSettings *in) { assert(in); return reinterpret_cast<const JPC_ScaledShapeSettings *>(in); }
+FN(toJph)(const JPC_ScaledShapeSettings *in) { assert(in); return reinterpret_cast<const JPH::ScaledShapeSettings *>(in); }
+FN(toJpc)(JPH::ScaledShapeSettings *in) { assert(in); return reinterpret_cast<JPC_ScaledShapeSettings *>(in); }
+FN(toJph)(JPC_ScaledShapeSettings *in) { assert(in); return reinterpret_cast<JPH::ScaledShapeSettings *>(in); }
+
+FN(toJpc)(const JPH::RotatedTranslatedShapeSettings *in) { assert(in); return reinterpret_cast<const JPC_RotatedTranslatedShapeSettings *>(in); }
+FN(toJph)(const JPC_RotatedTranslatedShapeSettings *in) { assert(in); return reinterpret_cast<const JPH::RotatedTranslatedShapeSettings *>(in); }
+FN(toJpc)(JPH::RotatedTranslatedShapeSettings *in) { assert(in); return reinterpret_cast<JPC_RotatedTranslatedShapeSettings *>(in); }
+FN(toJph)(JPC_RotatedTranslatedShapeSettings *in) { assert(in); return reinterpret_cast<JPH::RotatedTranslatedShapeSettings *>(in); }
+
+FN(toJpc)(const JPH::OffsetCenterOfMassShapeSettings *in) { assert(in); return reinterpret_cast<const JPC_OffsetCenterOfMassShapeSettings *>(in); }
+FN(toJph)(const JPC_OffsetCenterOfMassShapeSettings *in) { assert(in); return reinterpret_cast<const JPH::OffsetCenterOfMassShapeSettings *>(in); }
+FN(toJpc)(JPH::OffsetCenterOfMassShapeSettings *in) { assert(in); return reinterpret_cast<JPC_OffsetCenterOfMassShapeSettings *>(in); }
+FN(toJph)(JPC_OffsetCenterOfMassShapeSettings *in) { assert(in); return reinterpret_cast<JPH::OffsetCenterOfMassShapeSettings *>(in); }
+
 FN(toJph)(const JPC_ConvexShapeSettings *in) {
     ENSURE_TYPE(in, JPH::ConvexShapeSettings);
     return reinterpret_cast<const JPH::ConvexShapeSettings *>(in);
@@ -281,6 +305,26 @@ FN(toJph)(const JPC_ConvexHullShape *in) { assert(in); return reinterpret_cast<c
 FN(toJpc)(const JPH::ConvexHullShape *in) { assert(in); return reinterpret_cast<const JPC_ConvexHullShape *>(in); }
 FN(toJph)(JPC_ConvexHullShape *in) { assert(in); return reinterpret_cast<JPH::ConvexHullShape *>(in); }
 FN(toJpc)(JPH::ConvexHullShape *in) { assert(in); return reinterpret_cast<JPC_ConvexHullShape *>(in); }
+
+FN(toJpc)(const JPH::DecoratedShape *in) { assert(in); return reinterpret_cast<const JPC_DecoratedShape *>(in); }
+FN(toJph)(const JPC_DecoratedShape *in) { assert(in); return reinterpret_cast<const JPH::DecoratedShape *>(in); }
+FN(toJpc)(JPH::DecoratedShape *in) { assert(in); return reinterpret_cast<JPC_DecoratedShape *>(in); }
+FN(toJph)(JPC_DecoratedShape *in) { assert(in); return reinterpret_cast<JPH::DecoratedShape *>(in); }
+
+FN(toJpc)(const JPH::ScaledShape *in) { assert(in); return reinterpret_cast<const JPC_ScaledShape *>(in); }
+FN(toJph)(const JPC_ScaledShape *in) { assert(in); return reinterpret_cast<const JPH::ScaledShape *>(in); }
+FN(toJpc)(JPH::ScaledShape *in) { assert(in); return reinterpret_cast<JPC_ScaledShape *>(in); }
+FN(toJph)(JPC_ScaledShape *in) { assert(in); return reinterpret_cast<JPH::ScaledShape *>(in); }
+
+FN(toJpc)(const JPH::RotatedTranslatedShape *in) { assert(in); return reinterpret_cast<const JPC_RotatedTranslatedShape *>(in); }
+FN(toJph)(const JPC_RotatedTranslatedShape *in) { assert(in); return reinterpret_cast<const JPH::RotatedTranslatedShape *>(in); }
+FN(toJpc)(JPH::RotatedTranslatedShape *in) { assert(in); return reinterpret_cast<JPC_RotatedTranslatedShape *>(in); }
+FN(toJph)(JPC_RotatedTranslatedShape *in) { assert(in); return reinterpret_cast<JPH::RotatedTranslatedShape *>(in); }
+
+FN(toJpc)(const JPH::OffsetCenterOfMassShape *in) { assert(in); return reinterpret_cast<const JPC_OffsetCenterOfMassShape *>(in); }
+FN(toJph)(const JPC_OffsetCenterOfMassShape *in) { assert(in); return reinterpret_cast<const JPH::OffsetCenterOfMassShape *>(in); }
+FN(toJpc)(JPH::OffsetCenterOfMassShape *in) { assert(in); return reinterpret_cast<JPC_OffsetCenterOfMassShape *>(in); }
+FN(toJph)(JPC_OffsetCenterOfMassShape *in) { assert(in); return reinterpret_cast<JPH::OffsetCenterOfMassShape *>(in); }
 
 FN(toJph)(const JPC_BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPH::BroadPhaseCastResult *>(in); }
 FN(toJpc)(const JPH::BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPC_BroadPhaseCastResult *>(in); }
@@ -2363,6 +2407,146 @@ JPC_MutableCompoundShapeSettings_Create()
 }
 //--------------------------------------------------------------------------------------------------
 //
+// JPC_DecoratedShapeSettings (-> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_ShapeSettings *
+JPC_DecoratedShapeSettings_GetInnerShape(const JPC_DecoratedShapeSettings *in_settings)
+{
+    return toJpc(toJph(in_settings)->mInnerShape);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_DecoratedShapeSettings_SetInnerShape(JPC_DecoratedShapeSettings *in_settings, const JPC_ShapeSettings *in_shape)
+{
+    toJph(in_settings)->mInnerShape = toJph(in_shape);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_Shape *
+JPC_DecoratedShapeSettings_GetInnerShapePtr(const JPC_DecoratedShapeSettings *in_settings)
+{
+    return toJpc(toJph(in_settings)->mInnerShapePtr);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_DecoratedShapeSettings_SetInnerShapePtr(JPC_DecoratedShapeSettings *in_settings, const JPC_Shape *in_shape)
+{
+    toJph(in_settings)->mInnerShapePtr = toJph(in_shape);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ScaledShapeSettings (-> JPC_DecoratedShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ScaledShapeSettings *
+JPC_ScaledShapeSettings_CreateFromShape(const JPC_Shape *in_shape, const float in_scale[3])
+{
+    auto settings = new JPH::ScaledShapeSettings(toJph(in_shape), loadVec3(in_scale));
+    settings->AddRef();
+    return toJpc(settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ScaledShapeSettings *
+JPC_ScaledShapeSettings_CreateFromSettings(const JPC_ShapeSettings *in_shape, const float in_scale[3])
+{
+    auto settings = new JPH::ScaledShapeSettings(toJph(in_shape), loadVec3(in_scale));
+    settings->AddRef();
+    return toJpc(settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ScaledShapeSettings_GetScale(const JPC_ScaledShapeSettings *in_settings, float out_scale[3])
+{
+    storeVec3(out_scale, toJph(in_settings)->mScale);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ScaledShapeSettings_SetScale(JPC_ScaledShapeSettings *in_settings, const float in_scale[3])
+{
+    toJph(in_settings)->mScale = loadVec3(in_scale);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_RotatedTranslatedShapeSettings (-> JPC_DecoratedShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_RotatedTranslatedShapeSettings *
+JPC_RotatedTranslatedShapeSettings_CreateFromShape(const JPC_Shape *in_shape,
+                                                   const float in_position[3],
+                                                   const float in_rotation[4])
+{
+    auto settings = new JPH::RotatedTranslatedShapeSettings(loadVec3(in_position), loadQuat(in_rotation), toJph(in_shape));
+    settings->AddRef();
+    return toJpc(settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_RotatedTranslatedShapeSettings *
+JPC_RotatedTranslatedShapeSettings_CreateFromSettings(const JPC_ShapeSettings *in_shape,
+                                                      const float in_position[3],
+                                                      const float in_rotation[4])
+{
+    auto settings = new JPH::RotatedTranslatedShapeSettings(loadVec3(in_position), loadQuat(in_rotation), toJph(in_shape));
+    settings->AddRef();
+    return toJpc(settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_GetPosition(const JPC_RotatedTranslatedShapeSettings *in_settings, float out_position[3])
+{
+    storeVec3(out_position, toJph(in_settings)->mPosition);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_SetPosition(JPC_RotatedTranslatedShapeSettings *in_settings, const float in_position[3])
+{
+    toJph(in_settings)->mPosition = loadVec3(in_position);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_GetRotation(const JPC_RotatedTranslatedShapeSettings *in_settings, float out_rotation[4])
+{
+    storeQuat(out_rotation, toJph(in_settings)->mRotation);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_SetRotation(JPC_RotatedTranslatedShapeSettings *in_settings, const float in_rotation[4])
+{
+    toJph(in_settings)->mRotation = loadQuat(in_rotation);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_OffsetCenterOfMassShapeSettings (-> JPC_DecoratedShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_OffsetCenterOfMassShapeSettings *
+JPC_OffsetCenterOfMassShapeSettings_CreateFromShape(const JPC_Shape *in_shape, const float in_offset[3])
+{
+    auto settings = new JPH::OffsetCenterOfMassShapeSettings(loadVec3(in_offset), toJph(in_shape));
+    settings->AddRef();
+    return toJpc(settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_OffsetCenterOfMassShapeSettings *
+JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings(const JPC_ShapeSettings *in_shape, const float in_offset[3])
+{
+    auto settings = new JPH::OffsetCenterOfMassShapeSettings(loadVec3(in_offset), toJph(in_shape));
+    settings->AddRef();
+    return toJpc(settings);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_OffsetCenterOfMassShapeSettings_GetOffset(const JPC_OffsetCenterOfMassShapeSettings *in_settings, float out_offset[3])
+{
+    storeVec3(out_offset, toJph(in_settings)->mOffset);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_OffsetCenterOfMassShapeSettings_SetOffset(JPC_OffsetCenterOfMassShapeSettings *in_settings, const float in_offset[3])
+{
+    toJph(in_settings)->mOffset = loadVec3(in_offset);
+}
+//--------------------------------------------------------------------------------------------------
+//
 // JPC_Shape
 //
 //--------------------------------------------------------------------------------------------------
@@ -2527,6 +2711,67 @@ JPC_API float
 JPC_ConvexShape_GetDensity(const JPC_ConvexShape *in_shape)
 {
     return toJph(in_shape)->GetDensity();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_DecoratedShape (-> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_Shape *
+JPC_DecoratedShape_GetInnerShape(const JPC_DecoratedShape *in_shape)
+{
+    return toJpc(toJph(in_shape)->GetInnerShape());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ScaledShape (-> JPC_DecoratedShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ScaledShape *
+JPC_ScaledShape_Create(const JPC_Shape *in_shape, const float in_scale[3]) {
+    auto result = new JPH::ScaledShape(toJph(in_shape), loadVec3(in_scale));
+    result->AddRef();
+    return toJpc(result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ScaledShape_GetScale(const JPC_ScaledShape *in_shape, float out_scale[3])
+{
+    storeVec3(out_scale, toJph(in_shape)->GetScale());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_RotatedTranslatedShape (-> JPC_DecoratedShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_RotatedTranslatedShape *
+JPC_RotatedTranslatedShape_Create(const JPC_Shape *in_shape, const float in_position[3], const float in_rotation[4])
+{
+    auto result = new JPH::RotatedTranslatedShape(loadVec3(in_position), loadQuat(in_rotation), toJph(in_shape));
+    result->AddRef();
+    return toJpc(result);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RotatedTranslatedShape_GetPosition(const JPC_RotatedTranslatedShape *in_shape, float out_position[3])
+{
+    storeVec3(out_position, toJph(in_shape)->GetPosition());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_RotatedTranslatedShape_GetRotation(const JPC_RotatedTranslatedShape *in_shape, float out_rotation[4])
+{
+    storeQuat(out_rotation, toJph(in_shape)->GetRotation());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_OffsetCenterOfMassShape (-> JPC_DecoratedShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_OffsetCenterOfMassShape_GetOffset(const JPC_OffsetCenterOfMassShape *in_shape, float out_offset[3])
+{
+    storeVec3(out_offset, toJph(in_shape)->GetOffset());
 }
 //--------------------------------------------------------------------------------------------------
 //

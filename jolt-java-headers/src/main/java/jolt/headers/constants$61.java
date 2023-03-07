@@ -9,65 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$61 {
 
-    static final FunctionDescriptor JPC_BodyInterface_NotifyShapeChanged$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_NotifyShapeChanged$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_NotifyShapeChanged",
-        constants$61.JPC_BodyInterface_NotifyShapeChanged$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetObjectLayer$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetObjectLayer$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetObjectLayer",
-        constants$61.JPC_BodyInterface_SetObjectLayer$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetObjectLayer$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetObjectLayer",
-        constants$61.JPC_BodyInterface_GetObjectLayer$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetPositionAndRotation$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetPositionAndRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetPositionAndRotation",
-        constants$61.JPC_BodyInterface_SetPositionAndRotation$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetPositionAndRotationWhenChanged$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetPositionAndRotationWhenChanged$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetPositionAndRotationWhenChanged",
-        constants$61.JPC_BodyInterface_SetPositionAndRotationWhenChanged$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetPositionAndRotation$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_OffsetCenterOfMassShape_GetOffset$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_GetPositionAndRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetPositionAndRotation",
-        constants$61.JPC_BodyInterface_GetPositionAndRotation$FUNC
+    static final MethodHandle JPC_OffsetCenterOfMassShape_GetOffset$MH = RuntimeHelper.downcallHandle(
+        "JPC_OffsetCenterOfMassShape_GetOffset",
+        constants$61.JPC_OffsetCenterOfMassShape_GetOffset$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_CreateBody$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_CreateBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateBody",
+        constants$61.JPC_BodyInterface_CreateBody$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_CreateBodyWithID$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_CreateBodyWithID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateBodyWithID",
+        constants$61.JPC_BodyInterface_CreateBodyWithID$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_CreateBodyWithoutID$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_CreateBodyWithoutID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_CreateBodyWithoutID",
+        constants$61.JPC_BodyInterface_CreateBodyWithoutID$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_DestroyBodyWithoutID$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_DestroyBodyWithoutID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_DestroyBodyWithoutID",
+        constants$61.JPC_BodyInterface_DestroyBodyWithoutID$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AssignNextBodyID$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AssignNextBodyID$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AssignNextBodyID",
+        constants$61.JPC_BodyInterface_AssignNextBodyID$FUNC
     );
 }
 

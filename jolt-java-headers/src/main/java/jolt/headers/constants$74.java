@@ -9,54 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$74 {
 
-    static final FunctionDescriptor JPC_Body_AddForceAtPosition$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Body_SetIsSensor$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_BOOL$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetIsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetIsSensor",
+        constants$74.JPC_Body_SetIsSensor$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_IsSensor$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsSensor$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsSensor",
+        constants$74.JPC_Body_IsSensor$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_SetUseManifoldReduction$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_BOOL$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetUseManifoldReduction$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetUseManifoldReduction",
+        constants$74.JPC_Body_SetUseManifoldReduction$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetUseManifoldReduction$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetUseManifoldReduction$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetUseManifoldReduction",
+        constants$74.JPC_Body_GetUseManifoldReduction$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetUseManifoldReductionWithBody$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_AddForceAtPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddForceAtPosition",
-        constants$74.JPC_Body_AddForceAtPosition$FUNC
+    static final MethodHandle JPC_Body_GetUseManifoldReductionWithBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetUseManifoldReductionWithBody",
+        constants$74.JPC_Body_GetUseManifoldReductionWithBody$FUNC
     );
-    static final FunctionDescriptor JPC_Body_AddTorque$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Body_AddTorque$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddTorque",
-        constants$74.JPC_Body_AddTorque$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetAccumulatedForce$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetAccumulatedForce$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetAccumulatedForce",
-        constants$74.JPC_Body_GetAccumulatedForce$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetAccumulatedTorque$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetAccumulatedTorque$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetAccumulatedTorque",
-        constants$74.JPC_Body_GetAccumulatedTorque$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetInverseInertia$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetInverseInertia$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetInverseInertia",
-        constants$74.JPC_Body_GetInverseInertia$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_AddImpulse$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_AddImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddImpulse",
-        constants$74.JPC_Body_AddImpulse$FUNC
+    static final MethodHandle JPC_Body_GetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetMotionType",
+        constants$74.JPC_Body_GetMotionType$FUNC
     );
 }
 

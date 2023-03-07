@@ -190,35 +190,43 @@ typedef struct JPC_BodyLockInterface JPC_BodyLockInterface;
 typedef struct JPC_BroadPhaseQuery   JPC_BroadPhaseQuery;
 typedef struct JPC_NarrowPhaseQuery  JPC_NarrowPhaseQuery;
 
-typedef struct JPC_Shape                JPC_Shape;
-typedef struct JPC_ConvexShape          JPC_ConvexShape;
-typedef struct JPC_BoxShape             JPC_BoxShape;
-typedef struct JPC_SphereShape          JPC_SphereShape;
-typedef struct JPC_TriangleShape        JPC_TriangleShape;
-typedef struct JPC_CapsuleShape         JPC_CapsuleShape;
-typedef struct JPC_TaperedCapsuleShape  JPC_TaperedCapsuleShape;
-typedef struct JPC_CylinderShape        JPC_CylinderShape;
-typedef struct JPC_ConvexHullShape      JPC_ConvexHullShape;
-typedef struct JPC_HeightFieldShape     JPC_HeightFieldShape;
-typedef struct JPC_MeshShape            JPC_MeshShape;
-typedef struct JPC_CompoundShape        JPC_CompoundShape;
-typedef struct JPC_StaticCompoundShape  JPC_StaticCompoundShape;
-typedef struct JPC_MutableCompoundShape JPC_MutableCompoundShape;
+typedef struct JPC_Shape                   JPC_Shape;
+typedef struct JPC_ConvexShape             JPC_ConvexShape;
+typedef struct JPC_BoxShape                JPC_BoxShape;
+typedef struct JPC_SphereShape             JPC_SphereShape;
+typedef struct JPC_TriangleShape           JPC_TriangleShape;
+typedef struct JPC_CapsuleShape            JPC_CapsuleShape;
+typedef struct JPC_TaperedCapsuleShape     JPC_TaperedCapsuleShape;
+typedef struct JPC_CylinderShape           JPC_CylinderShape;
+typedef struct JPC_ConvexHullShape         JPC_ConvexHullShape;
+typedef struct JPC_HeightFieldShape        JPC_HeightFieldShape;
+typedef struct JPC_MeshShape               JPC_MeshShape;
+typedef struct JPC_CompoundShape           JPC_CompoundShape;
+typedef struct JPC_StaticCompoundShape     JPC_StaticCompoundShape;
+typedef struct JPC_MutableCompoundShape    JPC_MutableCompoundShape;
+typedef struct JPC_DecoratedShape          JPC_DecoratedShape;
+typedef struct JPC_ScaledShape             JPC_ScaledShape;
+typedef struct JPC_RotatedTranslatedShape  JPC_RotatedTranslatedShape;
+typedef struct JPC_OffsetCenterOfMassShape JPC_OffsetCenterOfMassShape;
 
-typedef struct JPC_ShapeSettings                JPC_ShapeSettings;
-typedef struct JPC_ConvexShapeSettings          JPC_ConvexShapeSettings;
-typedef struct JPC_BoxShapeSettings             JPC_BoxShapeSettings;
-typedef struct JPC_SphereShapeSettings          JPC_SphereShapeSettings;
-typedef struct JPC_TriangleShapeSettings        JPC_TriangleShapeSettings;
-typedef struct JPC_CapsuleShapeSettings         JPC_CapsuleShapeSettings;
-typedef struct JPC_TaperedCapsuleShapeSettings  JPC_TaperedCapsuleShapeSettings;
-typedef struct JPC_CylinderShapeSettings        JPC_CylinderShapeSettings;
-typedef struct JPC_ConvexHullShapeSettings      JPC_ConvexHullShapeSettings;
-typedef struct JPC_HeightFieldShapeSettings     JPC_HeightFieldShapeSettings;
-typedef struct JPC_MeshShapeSettings            JPC_MeshShapeSettings;
-typedef struct JPC_CompoundShapeSettings        JPC_CompoundShapeSettings;
-typedef struct JPC_StaticCompoundShapeSettings  JPC_StaticCompoundShapeSettings;
-typedef struct JPC_MutableCompoundShapeSettings JPC_MutableCompoundShapeSettings;
+typedef struct JPC_ShapeSettings                   JPC_ShapeSettings;
+typedef struct JPC_ConvexShapeSettings             JPC_ConvexShapeSettings;
+typedef struct JPC_BoxShapeSettings                JPC_BoxShapeSettings;
+typedef struct JPC_SphereShapeSettings             JPC_SphereShapeSettings;
+typedef struct JPC_TriangleShapeSettings           JPC_TriangleShapeSettings;
+typedef struct JPC_CapsuleShapeSettings            JPC_CapsuleShapeSettings;
+typedef struct JPC_TaperedCapsuleShapeSettings     JPC_TaperedCapsuleShapeSettings;
+typedef struct JPC_CylinderShapeSettings           JPC_CylinderShapeSettings;
+typedef struct JPC_ConvexHullShapeSettings         JPC_ConvexHullShapeSettings;
+typedef struct JPC_HeightFieldShapeSettings        JPC_HeightFieldShapeSettings;
+typedef struct JPC_MeshShapeSettings               JPC_MeshShapeSettings;
+typedef struct JPC_CompoundShapeSettings           JPC_CompoundShapeSettings;
+typedef struct JPC_StaticCompoundShapeSettings     JPC_StaticCompoundShapeSettings;
+typedef struct JPC_MutableCompoundShapeSettings    JPC_MutableCompoundShapeSettings;
+typedef struct JPC_DecoratedShapeSettings          JPC_DecoratedShapeSettings;
+typedef struct JPC_ScaledShapeSettings             JPC_ScaledShapeSettings;
+typedef struct JPC_RotatedTranslatedShapeSettings  JPC_RotatedTranslatedShapeSettings;
+typedef struct JPC_OffsetCenterOfMassShapeSettings JPC_OffsetCenterOfMassShapeSettings;
 
 typedef struct JPC_PhysicsSystem JPC_PhysicsSystem;
 typedef struct JPC_SharedMutex   JPC_SharedMutex;
@@ -1800,6 +1808,80 @@ JPC_API JPC_MutableCompoundShapeSettings *
 JPC_MutableCompoundShapeSettings_Create();
 //--------------------------------------------------------------------------------------------------
 //
+// JPC_DecoratedShapeSettings (-> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_ShapeSettings *
+JPC_DecoratedShapeSettings_GetInnerShape(const JPC_DecoratedShapeSettings *in_settings);
+
+JPC_API void
+JPC_DecoratedShapeSettings_SetInnerShape(JPC_DecoratedShapeSettings *in_settings, const JPC_ShapeSettings *in_shape);
+
+JPC_API const JPC_Shape *
+JPC_DecoratedShapeSettings_GetInnerShapePtr(const JPC_DecoratedShapeSettings *in_settings);
+
+JPC_API void
+JPC_DecoratedShapeSettings_SetInnerShapePtr(JPC_DecoratedShapeSettings *in_settings, const JPC_Shape *in_shape);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ScaledShapeSettings (-> JPC_DecoratedShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ScaledShapeSettings *
+JPC_ScaledShapeSettings_CreateFromShape(const JPC_Shape *in_shape, const float in_scale[3]);
+
+JPC_API JPC_ScaledShapeSettings *
+JPC_ScaledShapeSettings_CreateFromSettings(const JPC_ShapeSettings *in_shape, const float in_scale[3]);
+
+JPC_API void
+JPC_ScaledShapeSettings_GetScale(const JPC_ScaledShapeSettings *in_settings, float out_scale[3]);
+
+JPC_API void
+JPC_ScaledShapeSettings_SetScale(JPC_ScaledShapeSettings *in_settings, const float in_scale[3]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_RotatedTranslatedShapeSettings (-> JPC_DecoratedShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_RotatedTranslatedShapeSettings *
+JPC_RotatedTranslatedShapeSettings_CreateFromShape(const JPC_Shape *in_shape,
+                                                   const float in_position[3],
+                                                   const float in_rotation[4]);
+
+JPC_API JPC_RotatedTranslatedShapeSettings *
+JPC_RotatedTranslatedShapeSettings_CreateFromSettings(const JPC_ShapeSettings *in_shape,
+                                                      const float in_position[3],
+                                                      const float in_rotation[4]);
+
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_GetPosition(const JPC_RotatedTranslatedShapeSettings *in_settings, float out_position[3]);
+
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_SetPosition(JPC_RotatedTranslatedShapeSettings *in_settings, const float in_position[3]);
+
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_GetRotation(const JPC_RotatedTranslatedShapeSettings *in_settings, float out_rotation[4]);
+
+JPC_API void
+JPC_RotatedTranslatedShapeSettings_SetRotation(JPC_RotatedTranslatedShapeSettings *in_settings, const float in_rotation[4]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_OffsetCenterOfMassShapeSettings (-> JPC_DecoratedShapeSettings -> JPC_ShapeSettings)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_OffsetCenterOfMassShapeSettings *
+JPC_OffsetCenterOfMassShapeSettings_CreateFromShape(const JPC_Shape *in_shape, const float in_offset[3]);
+
+JPC_API JPC_OffsetCenterOfMassShapeSettings *
+JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings(const JPC_ShapeSettings *in_shape, const float in_offset[3]);
+
+JPC_API void
+JPC_OffsetCenterOfMassShapeSettings_GetOffset(const JPC_OffsetCenterOfMassShapeSettings *in_settings, float out_offset[3]);
+
+JPC_API void
+JPC_OffsetCenterOfMassShapeSettings_SetOffset(JPC_OffsetCenterOfMassShapeSettings *in_settings, const float in_offset[3]);
+//--------------------------------------------------------------------------------------------------
+//
 // JPC_Shape
 //
 //--------------------------------------------------------------------------------------------------
@@ -1891,6 +1973,46 @@ JPC_ConvexShape_SetDensity(JPC_ConvexShape *in_shape, float in_density);
 
 JPC_API float
 JPC_ConvexShape_GetDensity(const JPC_ConvexShape *in_shape);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_DecoratedShape (-> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API const JPC_Shape *
+JPC_DecoratedShape_GetInnerShape(const JPC_DecoratedShape *in_shape);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ScaledShape (-> JPC_DecoratedShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ScaledShape *
+JPC_ScaledShape_Create(const JPC_Shape *in_shape, const float in_scale[3]);
+
+JPC_API void
+JPC_ScaledShape_GetScale(const JPC_ScaledShape *in_shape, float out_scale[3]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_RotatedTranslatedShape (-> JPC_DecoratedShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_RotatedTranslatedShape *
+JPC_RotatedTranslatedShape_Create(const JPC_Shape *in_shape, const float in_position[3], const float in_rotation[4]);
+
+JPC_API void
+JPC_RotatedTranslatedShape_GetPosition(const JPC_RotatedTranslatedShape *in_shape, float out_position[3]);
+
+JPC_API void
+JPC_RotatedTranslatedShape_GetRotation(const JPC_RotatedTranslatedShape *in_shape, float out_rotation[4]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_OffsetCenterOfMassShape (-> JPC_DecoratedShape -> JPC_Shape)
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_OffsetCenterOfMassShapeSettings *
+JPC_OffsetCenterOfMassShape_Create(const JPC_Shape *in_shape, const float in_offset[3]);
+
+JPC_API void
+JPC_OffsetCenterOfMassShape_GetOffset(const JPC_OffsetCenterOfMassShape *in_shape, float out_offset[3]);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_BodyInterface

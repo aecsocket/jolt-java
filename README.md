@@ -16,13 +16,14 @@ These bindings are still feature-incomplete and unstable.
 ## Coverage
 
 Features:
-- [ ] Shapes
+- [x] Shapes
   - [x] Convex
-  - [ ] Decorator
-  - [ ] Compound
+  - [x] Compound
+  - [x] Decorator
 - [ ] Rigid bodies
   - [x] Body interface
-- [ ] Queries
+  - [ ] Motion properties
+- [x] Queries
   - [x] Broad phase
   - [x] Narrow phase
 - [ ] Constraints

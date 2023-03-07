@@ -9,47 +9,51 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$53 {
 
-    static final FunctionDescriptor JPC_Shape_AddRef$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_DecoratedShapeSettings_GetInnerShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_AddRef$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_AddRef",
-        constants$53.JPC_Shape_AddRef$FUNC
+    static final MethodHandle JPC_DecoratedShapeSettings_GetInnerShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_DecoratedShapeSettings_GetInnerShape",
+        constants$53.JPC_DecoratedShapeSettings_GetInnerShape$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_Release$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_DecoratedShapeSettings_SetInnerShape$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_Release$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_Release",
-        constants$53.JPC_Shape_Release$FUNC
+    static final MethodHandle JPC_DecoratedShapeSettings_SetInnerShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_DecoratedShapeSettings_SetInnerShape",
+        constants$53.JPC_DecoratedShapeSettings_SetInnerShape$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_DecoratedShapeSettings_GetInnerShapePtr$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetRefCount$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetRefCount",
-        constants$53.JPC_Shape_GetRefCount$FUNC
+    static final MethodHandle JPC_DecoratedShapeSettings_GetInnerShapePtr$MH = RuntimeHelper.downcallHandle(
+        "JPC_DecoratedShapeSettings_GetInnerShapePtr",
+        constants$53.JPC_DecoratedShapeSettings_GetInnerShapePtr$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor JPC_DecoratedShapeSettings_SetInnerShapePtr$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetType",
-        constants$53.JPC_Shape_GetType$FUNC
+    static final MethodHandle JPC_DecoratedShapeSettings_SetInnerShapePtr$MH = RuntimeHelper.downcallHandle(
+        "JPC_DecoratedShapeSettings_SetInnerShapePtr",
+        constants$53.JPC_DecoratedShapeSettings_SetInnerShapePtr$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetSubType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor JPC_ScaledShapeSettings_CreateFromShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetSubType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSubType",
-        constants$53.JPC_Shape_GetSubType$FUNC
+    static final MethodHandle JPC_ScaledShapeSettings_CreateFromShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_ScaledShapeSettings_CreateFromShape",
+        constants$53.JPC_ScaledShapeSettings_CreateFromShape$FUNC
     );
-    static final FunctionDescriptor JPC_Shape_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor JPC_ScaledShapeSettings_CreateFromSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_Shape_GetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetUserData",
-        constants$53.JPC_Shape_GetUserData$FUNC
+    static final MethodHandle JPC_ScaledShapeSettings_CreateFromSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_ScaledShapeSettings_CreateFromSettings",
+        constants$53.JPC_ScaledShapeSettings_CreateFromSettings$FUNC
     );
 }
 

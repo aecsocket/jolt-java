@@ -9,7 +9,7 @@ import java.lang.foreign.SegmentAllocator;
 import static jolt.headers.JoltPhysicsC.*;
 
 public sealed class ShapeSettings extends DestroyableJoltNative
-        permits ConvexShapeSettings, CompoundShapeSettings {
+        permits ConvexShapeSettings, CompoundShapeSettings, DecoratedShapeSettings {
     //region Jolt-Pointer-Protected
     protected ShapeSettings(MemoryAddress handle) {
         super(handle);
