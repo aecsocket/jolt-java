@@ -16,6 +16,10 @@ public sealed interface Body extends JoltNative permits MutableBody {
                 : new BodyImpl.F(addr);
     }
 
+    static MutableBody fixedToWorld() {
+        return BodyImpl.FIXED_TO_WORLD;
+    }
+
     int getId();
 
     boolean isActive();

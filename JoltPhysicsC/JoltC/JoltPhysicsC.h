@@ -233,6 +233,9 @@ typedef struct JPC_SharedMutex   JPC_SharedMutex;
 
 typedef struct JPC_PhysicsMaterial JPC_PhysicsMaterial;
 typedef struct JPC_GroupFilter     JPC_GroupFilter;
+
+typedef struct JPC_Constraint        JPC_Constraint;
+typedef struct JPC_TwoBodyConstraint JPC_TwoBodyConstraint;
 //--------------------------------------------------------------------------------------------------
 //
 // Structures

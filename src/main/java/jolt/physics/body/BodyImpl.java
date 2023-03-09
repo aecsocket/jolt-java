@@ -14,6 +14,8 @@ import static jolt.headers_f.JoltPhysicsC.C_FLOAT;
 
 abstract sealed class BodyImpl extends AddressedJoltNative implements MutableBody
         permits BodyImpl.F, BodyImpl.D {
+    static final MutableBody FIXED_TO_WORLD = MutableBody.at(JPC_Body_FixedToWorld());
+
     private BodyImpl(MemoryAddress handle) {
         super(handle);
     }
