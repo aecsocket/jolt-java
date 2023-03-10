@@ -27,6 +27,10 @@ public abstract sealed class HingeConstraintSettings extends TwoBodyConstraintSe
     }
     //endregion Jolt-Pointer
 
+    public static HingeConstraintSettings of() {
+        return new HingeConstraintSettings(JPC_HingeConstraintSettings_Create());
+    }
+
     public ConstraintSpace getSpace() {
         return ConstraintSpace.values()[JPC_HingeConstraintSettings_GetSpace(handle)];
     }

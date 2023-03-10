@@ -27,6 +27,10 @@ public abstract sealed class FixedConstraintSettings extends TwoBodyConstraintSe
     }
     //endregion Jolt-Pointer
 
+    public static FixedConstraintSettings of() {
+        return new FixedConstraintSettings(JPC_FixedConstraintSettings_Create());
+    }
+
     public ConstraintSpace getSpace() {
         return ConstraintSpace.values()[JPC_FixedConstraintSettings_GetSpace(handle)];
     }

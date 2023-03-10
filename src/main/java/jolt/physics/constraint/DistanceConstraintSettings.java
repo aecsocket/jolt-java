@@ -16,23 +16,27 @@ import static jolt.headers.JoltPhysicsC.*;
 public abstract sealed class DistanceConstraintSettings extends TwoBodyConstraintSettings
         permits DistanceConstraintSettings.F, DistanceConstraintSettings.D {
     //region Jolt-Pointer
-    private FixedConstraintSettings(MemoryAddress handle) {
+    private DistanceConstraintSettings(MemoryAddress handle) {
         super(handle);
     }
 
-    public static FixedConstraintSettings at(MemoryAddress addr) {
+    public static DistanceConstraintSettings at(MemoryAddress addr) {
         return addr == MemoryAddress.NULL ? null : Jolt.tryingDoublePrecision()
                 ? new D(addr)
                 : new F(addr);
     }
     //endregion Jolt-Pointer
 
+    public static DistanceConstraintSettings of() {
+        return new DistanceConstraintSettings(JPC_DistanceConstraintSettings_Create());
+    }
+
     public ConstraintSpace getSpace() {
-        return ConstraintSpace.values()[JPC_FixedConstraintSettings_GetSpace(handle)];
+        return ConstraintSpace.values()[JPC_DistanceConstraintSettings_GetSpace(handle)];
     }
 
     public void setSpace(ConstraintSpace space) {
-        JPC_FixedConstraintSettings_SetSpace(handle, space.ordinal());
+        JPC_DistanceConstraintSettings_SetSpace(handle, space.ordinal());
     }
 
     public abstract void getPoint1(FVec3 out);
@@ -129,7 +133,7 @@ public abstract sealed class DistanceConstraintSettings extends TwoBodyConstrain
         }
     }
 
-    static final class D extends FixedConstraintSettings {
+    static final class D extends DistanceConstraintSettings {
         private D(MemoryAddress handle) {
             super(handle);
         }

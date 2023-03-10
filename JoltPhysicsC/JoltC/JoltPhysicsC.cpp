@@ -35,6 +35,16 @@
 #include <Jolt/Physics/Collision/Shape/ScaledShape.h>
 #include <Jolt/Physics/Collision/Shape/RotatedTranslatedShape.h>
 #include <Jolt/Physics/Collision/Shape/OffsetCenterOfMassShape.h>
+#include <Jolt/Physics/Constraints/Constraint.h>
+#include <Jolt/Physics/Constraints/TwoBodyConstraint.h>
+#include <Jolt/Physics/Constraints/FixedConstraint.h>
+#include <Jolt/Physics/Constraints/DistanceConstraint.h>
+#include <Jolt/Physics/Constraints/PointConstraint.h>
+#include <Jolt/Physics/Constraints/HingeConstraint.h>
+#include <Jolt/Physics/Constraints/ConeConstraint.h>
+#include <Jolt/Physics/Constraints/SliderConstraint.h>
+#include <Jolt/Physics/Constraints/SwingTwistConstraint.h>
+#include <Jolt/Physics/Constraints/SixDOFConstraint.h>
 #include <Jolt/Physics/Body/BodyCreationSettings.h>
 #include <Jolt/Physics/Body/BodyActivationListener.h>
 #include <Jolt/Physics/Body/BodyLock.h>
@@ -326,6 +336,110 @@ FN(toJph)(const JPC_OffsetCenterOfMassShape *in) { assert(in); return reinterpre
 FN(toJpc)(JPH::OffsetCenterOfMassShape *in) { assert(in); return reinterpret_cast<JPC_OffsetCenterOfMassShape *>(in); }
 FN(toJph)(JPC_OffsetCenterOfMassShape *in) { assert(in); return reinterpret_cast<JPH::OffsetCenterOfMassShape *>(in); }
 
+
+FN(toJph)(const JPC_Constraint *in) { assert(in); return reinterpret_cast<const JPH::Constraint *>(in); }
+FN(toJpc)(const JPH::Constraint *in) { assert(in); return reinterpret_cast<const JPC_Constraint *>(in); }
+FN(toJph)(JPC_Constraint *in) { assert(in); return reinterpret_cast<JPH::Constraint *>(in); }
+FN(toJpc)(JPH::Constraint *in) { assert(in); return reinterpret_cast<JPC_Constraint *>(in); }
+
+FN(toJph)(const JPC_TwoBodyConstraint *in) { assert(in); return reinterpret_cast<const JPH::TwoBodyConstraint *>(in); }
+FN(toJpc)(const JPH::TwoBodyConstraint *in) { assert(in); return reinterpret_cast<const JPC_TwoBodyConstraint *>(in); }
+FN(toJph)(JPC_TwoBodyConstraint *in) { assert(in); return reinterpret_cast<JPH::TwoBodyConstraint *>(in); }
+FN(toJpc)(JPH::TwoBodyConstraint *in) { assert(in); return reinterpret_cast<JPC_TwoBodyConstraint *>(in); }
+
+FN(toJph)(const JPC_FixedConstraint *in) { assert(in); return reinterpret_cast<const JPH::FixedConstraint *>(in); }
+FN(toJpc)(const JPH::FixedConstraint *in) { assert(in); return reinterpret_cast<const JPC_FixedConstraint *>(in); }
+FN(toJph)(JPC_FixedConstraint *in) { assert(in); return reinterpret_cast<JPH::FixedConstraint *>(in); }
+FN(toJpc)(JPH::FixedConstraint *in) { assert(in); return reinterpret_cast<JPC_FixedConstraint *>(in); }
+
+FN(toJph)(const JPC_DistanceConstraint *in) { assert(in); return reinterpret_cast<const JPH::DistanceConstraint *>(in); }
+FN(toJpc)(const JPH::DistanceConstraint *in) { assert(in); return reinterpret_cast<const JPC_DistanceConstraint *>(in); }
+FN(toJph)(JPC_DistanceConstraint *in) { assert(in); return reinterpret_cast<JPH::DistanceConstraint *>(in); }
+FN(toJpc)(JPH::DistanceConstraint *in) { assert(in); return reinterpret_cast<JPC_DistanceConstraint *>(in); }
+
+FN(toJph)(const JPC_PointConstraint *in) { assert(in); return reinterpret_cast<const JPH::PointConstraint *>(in); }
+FN(toJpc)(const JPH::PointConstraint *in) { assert(in); return reinterpret_cast<const JPC_PointConstraint *>(in); }
+FN(toJph)(JPC_PointConstraint *in) { assert(in); return reinterpret_cast<JPH::PointConstraint *>(in); }
+FN(toJpc)(JPH::PointConstraint *in) { assert(in); return reinterpret_cast<JPC_PointConstraint *>(in); }
+
+FN(toJph)(const JPC_HingeConstraint *in) { assert(in); return reinterpret_cast<const JPH::HingeConstraint *>(in); }
+FN(toJpc)(const JPH::HingeConstraint *in) { assert(in); return reinterpret_cast<const JPC_HingeConstraint *>(in); }
+FN(toJph)(JPC_HingeConstraint *in) { assert(in); return reinterpret_cast<JPH::HingeConstraint *>(in); }
+FN(toJpc)(JPH::HingeConstraint *in) { assert(in); return reinterpret_cast<JPC_HingeConstraint *>(in); }
+
+FN(toJph)(const JPC_ConeConstraint *in) { assert(in); return reinterpret_cast<const JPH::ConeConstraint *>(in); }
+FN(toJpc)(const JPH::ConeConstraint *in) { assert(in); return reinterpret_cast<const JPC_ConeConstraint *>(in); }
+FN(toJph)(JPC_ConeConstraint *in) { assert(in); return reinterpret_cast<JPH::ConeConstraint *>(in); }
+FN(toJpc)(JPH::ConeConstraint *in) { assert(in); return reinterpret_cast<JPC_ConeConstraint *>(in); }
+
+FN(toJph)(const JPC_SliderConstraint *in) { assert(in); return reinterpret_cast<const JPH::SliderConstraint *>(in); }
+FN(toJpc)(const JPH::SliderConstraint *in) { assert(in); return reinterpret_cast<const JPC_SliderConstraint *>(in); }
+FN(toJph)(JPC_SliderConstraint *in) { assert(in); return reinterpret_cast<JPH::SliderConstraint *>(in); }
+FN(toJpc)(JPH::SliderConstraint *in) { assert(in); return reinterpret_cast<JPC_SliderConstraint *>(in); }
+
+FN(toJph)(const JPC_SwingTwistConstraint *in) { assert(in); return reinterpret_cast<const JPH::SwingTwistConstraint *>(in); }
+FN(toJpc)(const JPH::SwingTwistConstraint *in) { assert(in); return reinterpret_cast<const JPC_SwingTwistConstraint *>(in); }
+FN(toJph)(JPC_SwingTwistConstraint *in) { assert(in); return reinterpret_cast<JPH::SwingTwistConstraint *>(in); }
+FN(toJpc)(JPH::SwingTwistConstraint *in) { assert(in); return reinterpret_cast<JPC_SwingTwistConstraint *>(in); }
+
+FN(toJph)(const JPC_SixDOFConstraint *in) { assert(in); return reinterpret_cast<const JPH::SixDOFConstraint *>(in); }
+FN(toJpc)(const JPH::SixDOFConstraint *in) { assert(in); return reinterpret_cast<const JPC_SixDOFConstraint *>(in); }
+FN(toJph)(JPC_SixDOFConstraint *in) { assert(in); return reinterpret_cast<JPH::SixDOFConstraint *>(in); }
+FN(toJpc)(JPH::SixDOFConstraint *in) { assert(in); return reinterpret_cast<JPC_SixDOFConstraint *>(in); }
+
+
+
+FN(toJph)(const JPC_ConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::ConstraintSettings *>(in); }
+FN(toJpc)(const JPH::ConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_ConstraintSettings *>(in); }
+FN(toJph)(JPC_ConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::ConstraintSettings *>(in); }
+FN(toJpc)(JPH::ConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_ConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_TwoBodyConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::TwoBodyConstraintSettings *>(in); }
+FN(toJpc)(const JPH::TwoBodyConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_TwoBodyConstraintSettings *>(in); }
+FN(toJph)(JPC_TwoBodyConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::TwoBodyConstraintSettings *>(in); }
+FN(toJpc)(JPH::TwoBodyConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_TwoBodyConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_FixedConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::FixedConstraintSettings *>(in); }
+FN(toJpc)(const JPH::FixedConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_FixedConstraintSettings *>(in); }
+FN(toJph)(JPC_FixedConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::FixedConstraintSettings *>(in); }
+FN(toJpc)(JPH::FixedConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_FixedConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_DistanceConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::DistanceConstraintSettings *>(in); }
+FN(toJpc)(const JPH::DistanceConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_DistanceConstraintSettings *>(in); }
+FN(toJph)(JPC_DistanceConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::DistanceConstraintSettings *>(in); }
+FN(toJpc)(JPH::DistanceConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_DistanceConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_PointConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::PointConstraintSettings *>(in); }
+FN(toJpc)(const JPH::PointConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_PointConstraintSettings *>(in); }
+FN(toJph)(JPC_PointConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::PointConstraintSettings *>(in); }
+FN(toJpc)(JPH::PointConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_PointConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_HingeConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::HingeConstraintSettings *>(in); }
+FN(toJpc)(const JPH::HingeConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_HingeConstraintSettings *>(in); }
+FN(toJph)(JPC_HingeConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::HingeConstraintSettings *>(in); }
+FN(toJpc)(JPH::HingeConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_HingeConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_ConeConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::ConeConstraintSettings *>(in); }
+FN(toJpc)(const JPH::ConeConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_ConeConstraintSettings *>(in); }
+FN(toJph)(JPC_ConeConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::ConeConstraintSettings *>(in); }
+FN(toJpc)(JPH::ConeConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_ConeConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_SliderConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::SliderConstraintSettings *>(in); }
+FN(toJpc)(const JPH::SliderConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_SliderConstraintSettings *>(in); }
+FN(toJph)(JPC_SliderConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::SliderConstraintSettings *>(in); }
+FN(toJpc)(JPH::SliderConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_SliderConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_SwingTwistConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::SwingTwistConstraintSettings *>(in); }
+FN(toJpc)(const JPH::SwingTwistConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_SwingTwistConstraintSettings *>(in); }
+FN(toJph)(JPC_SwingTwistConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::SwingTwistConstraintSettings *>(in); }
+FN(toJpc)(JPH::SwingTwistConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_SwingTwistConstraintSettings *>(in); }
+
+FN(toJph)(const JPC_SixDOFConstraintSettings *in) { assert(in); return reinterpret_cast<const JPH::SixDOFConstraintSettings *>(in); }
+FN(toJpc)(const JPH::SixDOFConstraintSettings *in) { assert(in); return reinterpret_cast<const JPC_SixDOFConstraintSettings *>(in); }
+FN(toJph)(JPC_SixDOFConstraintSettings *in) { assert(in); return reinterpret_cast<JPH::SixDOFConstraintSettings *>(in); }
+FN(toJpc)(JPH::SixDOFConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_SixDOFConstraintSettings *>(in); }
+
+
 FN(toJph)(const JPC_BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPH::BroadPhaseCastResult *>(in); }
 FN(toJpc)(const JPH::BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPC_BroadPhaseCastResult *>(in); }
 FN(toJph)(JPC_BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<JPH::BroadPhaseCastResult *>(in); }
@@ -436,6 +550,15 @@ FN(objectLayerToJph)(JPC_ObjectLayer in) { return static_cast<JPH::ObjectLayer>(
 
 FN(toJpc)(JPH::EShapeType in) { return static_cast<JPC_ShapeType>(in); }
 FN(shapeTypeToJph)(JPC_ShapeType in) { return static_cast<JPH::EShapeType>(in); }
+
+FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
+FN(shapeSubTypeToJph)(JPC_ShapeSubType in) { return static_cast<JPH::EShapeSubType>(in); }
+
+FN(toJpc)(JPH::EConstraintType in) { return static_cast<JPC_ConstraintType>(in); }
+FN(constraintTypeToJph)(JPC_ConstraintType in) { return static_cast<JPH::EConstraintType>(in); }
+
+FN(toJpc)(JPH::EConstraintSubType in) { return static_cast<JPC_ConstraintSubType>(in); }
+FN(constraintSubTypeToJph)(JPC_ConstraintSubType in) { return static_cast<JPH::EConstraintSubType>(in); }
 
 FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
 FN(shapeSubTypeToJph)(JPC_ShapeSubType in) { return static_cast<JPH::EShapeSubType>(in); }
@@ -4033,6 +4156,92 @@ JPC_API bool
 JPC_BodyID_IsInvalid(JPC_BodyID in_body_id)
 {
     return JPH::BodyID(in_body_id).IsInvalid();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_Constraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_Constraint_Release(JPC_Constraint *in_constraint)
+{
+    toJph(in_constraint)->Release();
+}
+
+JPC_API JPC_ConstraintType
+JPC_Constraint_GetType(const JPC_Constraint *in_constraint)
+{
+    return toJpc(toJph(in_constraint)->GetType());
+}
+
+JPC_API JPC_ConstraintSubType
+JPC_Constraint_GetSubType(const JPC_Constraint *in_constraint)
+{
+    return toJpc(toJph(in_constraint)->GetSubType());
+}
+
+JPC_API void
+JPC_Constraint_SetNumVelocityStepsOverride(JPC_Constraint *in_constraint, int in_num_velocity_steps_override)
+{
+    toJph(in_constraint)->SetNumVelocityStepsOverride(in_num_velocity_steps_override);
+}
+
+JPC_API int
+JPC_Constraint_GetNumVelocityStepsOverride(const JPC_Constraint *in_constraint)
+{
+    return toJph(in_constraint)->GetNumVelocityStepsOverride();
+}
+
+JPC_API void
+JPC_Constraint_SetNumPositionStepsOverride(JPC_Constraint *in_constraint, int in_num_position_steps_override)
+{
+    toJph(in_constraint)->SetNumPositionStepsOverride(in_num_position_steps_override);
+}
+
+JPC_API int
+JPC_Constraint_GetNumPositionStepsOverride(const JPC_Constraint *in_constraint)
+{
+    return toJph(in_constraint)->GetNumPositionStepsOverride();
+}
+
+JPC_API void
+JPC_Constraint_SetEnabled(JPC_Constraint *in_constraint, bool in_enabled)
+{
+    toJph(in_constraint)->SetEnabled(in_enabled);
+}
+
+JPC_API bool
+JPC_Constraint_GetEnabled(const JPC_Constraint *in_constraint)
+{
+    return toJph(in_constraint)->GetEnabled();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_TwoBodyConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_Body *
+JPC_TwoBodyConstraint_GetBody1(const JPC_TwoBodyConstraint *in_constraint)
+{
+    return toJpc(toJph(in_constraint)->GetBody1());
+}
+
+JPC_API JPC_Body *
+JPC_TwoBodyConstraint_GetBody2(const JPC_TwoBodyConstraint *in_constraint)
+{
+    return toJpc(toJph(in_constraint)->GetBody2());
+}
+
+JPC_API void
+JPC_TwoBodyConstraint_GetConstraintToBody1Matrix(const JPC_TwoBodyConstraint *in_constraint, float out_matrix[16])
+{
+    storeMat44(out_matrix, toJph(in_constraint)->GetConstraintToBody1Matrix());
+}
+
+JPC_API void
+JPC_TwoBodyConstraint_GetConstraintToBody2Matrix(const JPC_TwoBodyConstraint *in_constraint, float out_matrix[16])
+{
+    storeMat44(out_matrix, toJph(in_constraint)->GetConstraintToBody2Matrix());
 }
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support

@@ -27,6 +27,10 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
     }
     //endregion Jolt-Pointer
 
+    public static SwingTwistConstraintSettings of() {
+        return new SwingTwistConstraintSettings(JPC_SwingTwistConstraintSettings_Create());
+    }
+
     public ConstraintSpace getSpace() {
         return ConstraintSpace.values()[JPC_SwingTwistConstraintSettings_GetSpace(handle)];
     }
@@ -35,13 +39,13 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
         JPC_SwingTwistConstraintSettings_SetSpace(handle, space.ordinal());
     }
 
-    public abstract void getPosition1(FVec3 out);
+    public abstract void getPoint1(FVec3 out);
 
-    public abstract void getPosition1(DVec3 out);
+    public abstract void getPoint1(DVec3 out);
 
-    public abstract void setPosition1(FVec3 position1);
+    public abstract void setPoint1(FVec3 position1);
 
-    public abstract void setPosition1(DVec3 position1);
+    public abstract void setPoint1(DVec3 position1);
 
     public void getTwistAxis1(FVec3 out) {
         JPC_SwingTwistConstraintSettings_GetTwistAxis1(handle, out.address());
@@ -59,13 +63,13 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
         JPC_SwingTwistConstraintSettings_SetPlaneAxis1(handle, planeAxis1.address());
     }
 
-    public abstract void getPosition2(FVec3 out);
+    public abstract void getPoint2(FVec3 out);
 
-    public abstract void getPosition2(DVec3 out);
+    public abstract void getPoint2(DVec3 out);
 
-    public abstract void setPosition2(FVec3 position2);
+    public abstract void setPoint2(FVec3 position2);
 
-    public abstract void setPosition2(DVec3 position2);
+    public abstract void setPoint2(DVec3 position2);
 
     public void getTwistAxis2(FVec3 out) {
         JPC_SwingTwistConstraintSettings_GetTwistAxis2(handle, out.address());
@@ -121,6 +125,22 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
 
     public void setMaxFrictionTorque(float maxFrictionTorque) {
         JPC_SwingTwistConstraintSettings_SetMaxFrictionTorque(handle, maxFrictionTorque);
+    }
+
+    public MotorSettings getSwingMotorSettings() {
+        return MotorSettings.at(JPC_SwingConstraintSettings_GetSwingMotorSettings(handle));
+    }
+
+    public void setSwingMotorSettings(MotorSettings swingMotorSettings) {
+        JPC_SwingConstraintSettings_SetSwingMotorSettings(handle, swingMotorSettings.address());
+    }
+
+    public MotorSettings getTwistMotorSettings() {
+        return MotorSettings.at(JPC_SwingConstraintSettings_GetTwistMotorSettings(handle));
+    }
+
+    public void setTwistMotorSettings(MotorSettings twistMotorSettings) {
+        JPC_SwingConstraintSettings_SetTwistMotorSettings(handle, twistMotorSettings.address());
     }
 
     static final class F extends DistanceConstraintSettings {

@@ -27,6 +27,10 @@ public abstract sealed class ConeConstraintSettings extends TwoBodyConstraintSet
     }
     //endregion Jolt-Pointer
 
+    public static ConeConstraintSettings of() {
+        return new ConeConstraintSettings(JPC_ConeConstraintSettings_Create());
+    }
+
     public ConstraintSpace getSpace() {
         return ConstraintSpace.values()[JPC_ConeConstraintSettings_GetSpace(handle)];
     }

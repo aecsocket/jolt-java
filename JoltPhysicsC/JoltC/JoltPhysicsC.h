@@ -98,6 +98,33 @@ enum
     JPC_SHAPE_SUB_TYPE_USER8                 = 21
 };
 
+typedef uint8_t JPC_ConstraintType;
+enum {
+    JPC_CONSTRAINT_TYPE_CONSTRAINT          = 0,
+    JPC_CONSTRAINT_TYPE_TWO_BODY_CONSTRAINT = 1
+};
+
+typedef uint8_t JPC_ConstraintSubType;
+enum {
+    JPC_CONSTRAINT_SUB_TYPE_FIXED           = 0,
+    JPC_CONSTRAINT_SUB_TYPE_POINT           = 1,
+    JPC_CONSTRAINT_SUB_TYPE_HINGE           = 2,
+    JPC_CONSTRAINT_SUB_TYPE_SLIDER          = 3,
+    JPC_CONSTRAINT_SUB_TYPE_DISTANCE        = 4,
+    JPC_CONSTRAINT_SUB_TYPE_CONE            = 5,
+    JPC_CONSTRAINT_SUB_TYPE_SWING_TWIST     = 6,
+    JPC_CONSTRAINT_SUB_TYPE_SIX_DOF         = 7,
+    JPC_CONSTRAINT_SUB_TYPE_PATH            = 8,
+    JPC_CONSTRAINT_SUB_TYPE_VEHICLE         = 9,
+    JPC_CONSTRAINT_SUB_TYPE_RACK_AND_PINION = 10,
+    JPC_CONSTRAINT_SUB_TYPE_GEAR            = 11,
+    JPC_CONSTRAINT_SUB_TYPE_PULLEY          = 12,
+    JPC_CONSTRAINT_SUB_TYPE_USER1           = 13,
+    JPC_CONSTRAINT_SUB_TYPE_USER2           = 14,
+    JPC_CONSTRAINT_SUB_TYPE_USER3           = 15,
+    JPC_CONSTRAINT_SUB_TYPE_USER4           = 16
+};
+
 typedef uint8_t JPC_MotionType;
 enum
 {
@@ -234,8 +261,27 @@ typedef struct JPC_SharedMutex   JPC_SharedMutex;
 typedef struct JPC_PhysicsMaterial JPC_PhysicsMaterial;
 typedef struct JPC_GroupFilter     JPC_GroupFilter;
 
-typedef struct JPC_Constraint        JPC_Constraint;
-typedef struct JPC_TwoBodyConstraint JPC_TwoBodyConstraint;
+typedef struct JPC_Constraint           JPC_Constraint;
+typedef struct JPC_TwoBodyConstraint    JPC_TwoBodyConstraint;
+typedef struct JPC_FixedConstraint      JPC_FixedConstraint;
+typedef struct JPC_DistanceConstraint   JPC_DistanceConstraint;
+typedef struct JPC_PointConstraint      JPC_PointConstraint;
+typedef struct JPC_HingeConstraint      JPC_HingeConstraint;
+typedef struct JPC_ConeConstraint       JPC_ConeConstraint;
+typedef struct JPC_SliderConstraint     JPC_SliderConstraint;
+typedef struct JPC_SwingTwistConstraint JPC_SwingTwistConstraint;
+typedef struct JPC_SixDOFConstraint     JPC_SixDOFConstraint;
+
+typedef struct JPC_ConstraintSettings           JPC_ConstraintSettings;
+typedef struct JPC_TwoBodyConstraintSettings    JPC_TwoBodyConstraintSettings;
+typedef struct JPC_FixedConstraintSettings      JPC_FixedConstraintSettings;
+typedef struct JPC_DistanceConstraintSettings   JPC_DistanceConstraintSettings;
+typedef struct JPC_PointConstraintSettings      JPC_PointConstraintSettings;
+typedef struct JPC_HingeConstraintSettings      JPC_HingeConstraintSettings;
+typedef struct JPC_ConeConstraintSettings       JPC_ConeConstraintSettings;
+typedef struct JPC_SliderConstraintSettings     JPC_SliderConstraintSettings;
+typedef struct JPC_SwingTwistConstraintSettings JPC_SwingTwistConstraintSettings;
+typedef struct JPC_SixDOFConstraintSettings     JPC_SixDOFConstraintSettings;
 //--------------------------------------------------------------------------------------------------
 //
 // Structures
@@ -2571,6 +2617,47 @@ JPC_BodyID_GetSequenceNumber(JPC_BodyID in_body_id);
 
 JPC_API bool
 JPC_BodyID_IsInvalid(JPC_BodyID in_body_id);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_Constraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_Constraint_Release(JPC_Constraint *in_constraint);
+
+JPC_API JPC_ConstraintType
+JPC_Constraint_GetType(const JPC_Constraint *in_constraint);
+
+JPC_API JPC_ConstraintSubType
+JPC_Constraint_GetSubType(const JPC_Constraint *in_constraint);
+
+JPC_API void
+JPC_Constraint_SetNumVelocityStepsOverride(JPC_Constraint *in_constraint, uint32_t in_num_velocity_steps_override);
+
+JPC_API uint32_t
+JPC_Constraint_GetNumVelocityStepsOverride(const JPC_Constraint *in_constraint);
+
+JPC_API void
+JPC_Constraint_SetNumPositionStepsOverride(JPC_Constraint *in_constraint, uint32_t in_num_position_steps_override);
+
+JPC_API uint32_t
+JPC_Constraint_GetNumPositionStepsOverride(const JPC_Constraint *in_constraint);
+
+JPC_API void
+JPC_Constraint_SetEnabled(JPC_Constraint *in_constraint, bool in_enabled);
+
+JPC_API bool
+JPC_Constraint_GetEnabled(const JPC_Constraint *in_constraint);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_TwoBodyConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_Body *
+JPC_TwoBodyConstraint_GetBody1(const JPC_TwoBodyConstraint *in_constraint);
+
+JPC_API JPC_Body *
+JPC_TwoBodyConstraint_GetBody2(const JPC_TwoBodyConstraint *in_constraint);
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
 JPC_API uint32_t

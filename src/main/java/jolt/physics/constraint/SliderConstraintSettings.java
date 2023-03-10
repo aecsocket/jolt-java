@@ -27,6 +27,10 @@ public abstract sealed class SliderConstraintSettings extends TwoBodyConstraintS
     }
     //endregion Jolt-Pointer
 
+    public static SliderConstraintSettings of() {
+        return new SliderConstraintSettings(JPC_SliderConstraintSettings_Create());
+    }
+
     public ConstraintSpace getSpace() {
         return ConstraintSpace.values()[JPC_SliderConstraintSettings_GetSpace(handle)];
     }

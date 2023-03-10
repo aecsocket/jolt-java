@@ -27,6 +27,10 @@ public abstract sealed class PointConstraintSettings extends TwoBodyConstraintSe
     }
     //endregion Jolt-Pointer
 
+    public static PointConstraintSettings of() {
+        return new PointConstraintSettings(JPC_PointConstraintSettings_Create());
+    }
+
     public ConstraintSpace getSpace() {
         return ConstraintSpace.values()[JPC_PointConstraintSettings_GetSpace(handle)];
     }

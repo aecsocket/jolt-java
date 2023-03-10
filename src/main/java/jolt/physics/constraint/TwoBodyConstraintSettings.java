@@ -15,7 +15,7 @@ import static jolt.headers.JoltPhysicsC.*;
 
 public sealed class TwoBodyConstraintSettings extends ConstraintSettings
         permits FixedConstraintSettings, DistanceConstraintSettings, PointConstraintSettings, HingeConstraintSettings, ConeConstraintSettings, SliderConstraintSettings,
-        SwingTwistConstraintSettings, SixDOFConstraintSettings, PathConstraintSettings, GearConstraintSettings, RackAndPinionConstraintSettings, PulleyConstraintSettings {
+        SwingTwistConstraintSettings, SixDOFConstraintSettings /* TODO, PathConstraintSettings, GearConstraintSettings, RackAndPinionConstraintSettings, PulleyConstraintSettings */ {
     //region Jolt-Pointer-Protected
     protected TwoBodyConstraintSettings(MemoryAddress handle) {
         super(handle);
