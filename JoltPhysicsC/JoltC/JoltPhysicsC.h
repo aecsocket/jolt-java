@@ -98,33 +98,6 @@ enum
     JPC_SHAPE_SUB_TYPE_USER8                 = 21
 };
 
-typedef uint8_t JPC_ConstraintType;
-enum {
-    JPC_CONSTRAINT_TYPE_CONSTRAINT          = 0,
-    JPC_CONSTRAINT_TYPE_TWO_BODY_CONSTRAINT = 1
-};
-
-typedef uint8_t JPC_ConstraintSubType;
-enum {
-    JPC_CONSTRAINT_SUB_TYPE_FIXED           = 0,
-    JPC_CONSTRAINT_SUB_TYPE_POINT           = 1,
-    JPC_CONSTRAINT_SUB_TYPE_HINGE           = 2,
-    JPC_CONSTRAINT_SUB_TYPE_SLIDER          = 3,
-    JPC_CONSTRAINT_SUB_TYPE_DISTANCE        = 4,
-    JPC_CONSTRAINT_SUB_TYPE_CONE            = 5,
-    JPC_CONSTRAINT_SUB_TYPE_SWING_TWIST     = 6,
-    JPC_CONSTRAINT_SUB_TYPE_SIX_DOF         = 7,
-    JPC_CONSTRAINT_SUB_TYPE_PATH            = 8,
-    JPC_CONSTRAINT_SUB_TYPE_VEHICLE         = 9,
-    JPC_CONSTRAINT_SUB_TYPE_RACK_AND_PINION = 10,
-    JPC_CONSTRAINT_SUB_TYPE_GEAR            = 11,
-    JPC_CONSTRAINT_SUB_TYPE_PULLEY          = 12,
-    JPC_CONSTRAINT_SUB_TYPE_USER1           = 13,
-    JPC_CONSTRAINT_SUB_TYPE_USER2           = 14,
-    JPC_CONSTRAINT_SUB_TYPE_USER3           = 15,
-    JPC_CONSTRAINT_SUB_TYPE_USER4           = 16
-};
-
 typedef uint8_t JPC_MotionType;
 enum
 {
@@ -176,12 +149,51 @@ typedef enum JPC_ValidateResult
     _JPC_VALIDATE_RESULT_FORCEU32           = 0x7fffffff
 } JPC_ValidateResult;
 
-typedef uint8_t JPC_BackFaceMode;
-enum
+typedef enum JPC_BackFaceMode
 {
     JPC_BACK_FACE_IGNORE  = 0,
     JPC_BACK_FACE_COLLIDE = 1
-};
+} JPC_BackFaceMode;
+
+typedef enum JPC_ConstraintType
+{
+    JPC_CONSTRAINT_TYPE_CONSTRAINT          = 0,
+    JPC_CONSTRAINT_TYPE_TWO_BODY_CONSTRAINT = 1
+} JPC_ConstraintType;
+
+typedef enum JPC_ConstraintSubType
+{
+    JPC_CONSTRAINT_SUB_TYPE_FIXED           = 0,
+    JPC_CONSTRAINT_SUB_TYPE_POINT           = 1,
+    JPC_CONSTRAINT_SUB_TYPE_HINGE           = 2,
+    JPC_CONSTRAINT_SUB_TYPE_SLIDER          = 3,
+    JPC_CONSTRAINT_SUB_TYPE_DISTANCE        = 4,
+    JPC_CONSTRAINT_SUB_TYPE_CONE            = 5,
+    JPC_CONSTRAINT_SUB_TYPE_SWING_TWIST     = 6,
+    JPC_CONSTRAINT_SUB_TYPE_SIX_DOF         = 7,
+    JPC_CONSTRAINT_SUB_TYPE_PATH            = 8,
+    JPC_CONSTRAINT_SUB_TYPE_VEHICLE         = 9,
+    JPC_CONSTRAINT_SUB_TYPE_RACK_AND_PINION = 10,
+    JPC_CONSTRAINT_SUB_TYPE_GEAR            = 11,
+    JPC_CONSTRAINT_SUB_TYPE_PULLEY          = 12,
+    JPC_CONSTRAINT_SUB_TYPE_USER1           = 13,
+    JPC_CONSTRAINT_SUB_TYPE_USER2           = 14,
+    JPC_CONSTRAINT_SUB_TYPE_USER3           = 15,
+    JPC_CONSTRAINT_SUB_TYPE_USER4           = 16
+} JPC_ConstraintSubType;
+
+typedef enum JPC_ConstraintSpace
+{
+    JPC_CONSTRAINT_SPACE_LOCAL_TO_BODY_COM = 0,
+    JPC_CONSTRAINT_SPACE_WORLD_SPACE       = 1
+} JPC_ConstraintSpace;
+
+typedef enum JPC_MotorState
+{
+    JPC_MOTOR_STATE_OFF      = 0,
+    JPC_MOTOR_STATE_VELOCITY = 1,
+    JPC_MOTOR_STATE_POSITION = 2
+} JPC_MotorState;
 //--------------------------------------------------------------------------------------------------
 //
 // Types
@@ -632,6 +644,15 @@ typedef struct JPC_CollisionCollector
     const JPC_TransformedShape *          context;
 } JPC_CollisionCollector;
 
+typedef struct JPC_MotorSettings
+{
+    float frequency;
+    float damping;
+    float min_force_limit;
+    float max_force_limit;
+    float min_torque_limit;
+    float max_torque_limit;
+} JPC_MotorSettings;
 //--------------------------------------------------------------------------------------------------
 //
 // Interfaces (virtual tables)

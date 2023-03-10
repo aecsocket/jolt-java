@@ -440,6 +440,12 @@ FN(toJph)(JPC_SixDOFConstraintSettings *in) { assert(in); return reinterpret_cas
 FN(toJpc)(JPH::SixDOFConstraintSettings *in) { assert(in); return reinterpret_cast<JPC_SixDOFConstraintSettings *>(in); }
 
 
+FN(toJph)(const JPC_MotorSettings *in) { assert(in); return reinterpret_cast<const JPH::MotorSettings *>(in); }
+FN(toJpc)(const JPH::MotorSettings *in) { assert(in); return reinterpret_cast<const JPC_MotorSettings *>(in); }
+FN(toJph)(JPC_MotorSettings *in) { assert(in); return reinterpret_cast<JPH::MotorSettings *>(in); }
+FN(toJpc)(JPH::MotorSettings *in) { assert(in); return reinterpret_cast<JPC_MotorSettings *>(in); }
+
+
 FN(toJph)(const JPC_BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPH::BroadPhaseCastResult *>(in); }
 FN(toJpc)(const JPH::BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<const JPC_BroadPhaseCastResult *>(in); }
 FN(toJph)(JPC_BroadPhaseCastResult *in) { assert(in); return reinterpret_cast<JPH::BroadPhaseCastResult *>(in); }
@@ -554,12 +560,6 @@ FN(shapeTypeToJph)(JPC_ShapeType in) { return static_cast<JPH::EShapeType>(in); 
 FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
 FN(shapeSubTypeToJph)(JPC_ShapeSubType in) { return static_cast<JPH::EShapeSubType>(in); }
 
-FN(toJpc)(JPH::EConstraintType in) { return static_cast<JPC_ConstraintType>(in); }
-FN(constraintTypeToJph)(JPC_ConstraintType in) { return static_cast<JPH::EConstraintType>(in); }
-
-FN(toJpc)(JPH::EConstraintSubType in) { return static_cast<JPC_ConstraintSubType>(in); }
-FN(constraintSubTypeToJph)(JPC_ConstraintSubType in) { return static_cast<JPH::EConstraintSubType>(in); }
-
 FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
 FN(shapeSubTypeToJph)(JPC_ShapeSubType in) { return static_cast<JPH::EShapeSubType>(in); }
 
@@ -571,6 +571,18 @@ FN(activationToJph)(JPC_Activation in) { return static_cast<JPH::EActivation>(in
 
 FN(toJpc)(JPH::EMotionQuality in) { return static_cast<JPC_MotionQuality>(in); }
 FN(motionQualityToJph)(JPC_MotionQuality in) { return static_cast<JPH::EMotionQuality>(in); }
+
+FN(toJpc)(JPH::EConstraintType in) { return static_cast<JPC_ConstraintType>(in); }
+FN(constraintTypeToJph)(JPC_ConstraintType in) { return static_cast<JPH::EConstraintType>(in); }
+
+FN(toJpc)(JPH::EConstraintSubType in) { return static_cast<JPC_ConstraintSubType>(in); }
+FN(constraintSubTypeToJph)(JPC_ConstraintSubType in) { return static_cast<JPH::EConstraintSubType>(in); }
+
+FN(toJpc)(JPH::EConstraintSpace in) { return static_cast<JPC_ConstraintSpace>(in); }
+FN(constraintSpaceToJph)(JPC_ConstraintSpace in) { return static_cast<JPH::EConstraintSpace>(in); }
+
+FN(toJpc)(JPH::EMotorState in) { return static_cast<JPC_MotorState>(in); }
+FN(motorStateToJph)(JPC_MotorState in) { return static_cast<JPH::EMotorState>(in); }
 
 FN(toJpc)(const JPH::Shape::ShapeResult& in) {
     auto result = JPC_ShapeResult {
@@ -4242,6 +4254,378 @@ JPC_API void
 JPC_TwoBodyConstraint_GetConstraintToBody2Matrix(const JPC_TwoBodyConstraint *in_constraint, float out_matrix[16])
 {
     storeMat44(out_matrix, toJph(in_constraint)->GetConstraintToBody2Matrix());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_FixedConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_FixedConstraint_GetTotalLambdaPosition(const JPC_FixedConstraint *in_constraint, float out_lambda[3])
+{
+    storeVec3(out_lambda, toJph(in_constraint)->GetTotalLambdaPosition());
+}
+
+JPC_API void
+JPC_FixedConstraint_GetTotalLambdaRotation(const JPC_FixedConstraint *in_constraint, float out_lambda[3])
+{
+    storeVec3(out_lambda, toJph(in_constraint)->GetTotalLambdaRotation());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_DistanceConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_DistanceConstraint_SetDistance(JPC_DistanceConstraint *in_constraint, float in_min_distance, float in_max_distance)
+{
+    toJph(in_constraint)->SetDistance(in_min_distance, in_max_distance);
+}
+
+JPC_API float
+JPC_DistanceConstraint_GetMinDistance(const JPC_DistanceConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetMinDistance();
+}
+
+JPC_API float
+JPC_DistanceConstraint_GetMaxDistance(const JPC_DistanceConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetMaxDistance();
+}
+
+JPC_API void
+JPC_DistanceConstraint_SetFrequency(JPC_DistanceConstraint *in_constraint, float in_frequency)
+{
+    toJph(in_constraint)->SetFrequency(in_frequency);
+}
+
+JPC_API float
+JPC_DistanceConstraint_GetFrequency(const JPC_DistanceConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetFrequency();
+}
+
+JPC_API void
+JPC_DistanceConstraint_SetDamping(JPC_DistanceConstraint *in_constraint, float in_damping)
+{
+    toJph(in_constraint)->SetDamping(in_damping);
+}
+
+JPC_API float
+JPC_DistanceConstraint_GetDamping(const JPC_DistanceConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetDamping();
+}
+
+JPC_API float
+JPC_DistanceConstraint_GetTotalLambdaPosition(const JPC_DistanceConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetTotalLambdaPosition();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_PointConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_PointConstraint_SetPoint1(JPC_PointConstraint *in_constraint, const JPC_ConstraintSpace in_space, const JPC_Real in_point1[3])
+{
+    toJph(in_constraint)->SetPoint1(constraintSpaceToJph(in_space), loadRVec3(in_point1));
+}
+
+JPC_API void
+JPC_PointConstraint_SetPoint2(JPC_PointConstraint *in_constraint, const JPC_ConstraintSpace in_space, const JPC_Real in_point2[3])
+{
+    toJph(in_constraint)->SetPoint2(constraintSpaceToJph(in_space), loadRVec3(in_point2));
+}
+
+JPC_API void
+JPC_PointConstraint_GetLocalSpacePoint1(const JPC_PointConstraint *in_constraint, float out_point[3])
+{
+    storeVec3(out_point, toJph(in_constraint)->GetLocalSpacePoint1());
+}
+
+JPC_API void
+JPC_PointConstraint_GetLocalSpacePoint2(const JPC_PointConstraint *in_constraint, float out_point[3])
+{
+    storeVec3(out_point, toJph(in_constraint)->GetLocalSpacePoint2());
+}
+
+JPC_API void
+JPC_PointConstraint_GetTotalLambdaPosition(const JPC_PointConstraint *in_constraint, float out_lambda[3])
+{
+    storeVec3(out_lambda, toJph(in_constraint)->GetTotalLambdaPosition());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_HingeConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_HingeConstraint_GetCurrentAngle(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetCurrentAngle();
+}
+
+JPC_API void
+JPC_HingeConstraint_SetMaxFrictionTorque(JPC_HingeConstraint *in_constraint, float in_friction_torque)
+{
+    toJph(in_constraint)->SetMaxFrictionTorque(in_friction_torque);
+}
+
+JPC_API float
+JPC_HingeConstraint_GetMaxFrictionTorque(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetMaxFrictionTorque();
+}
+
+JPC_API JPC_MotorSettings *
+JPC_HingeConstraint_GetMotorSettings(JPC_HingeConstraint *in_constraint)
+{
+    return toJpc(toJph(in_constraint)->GetMotorSettings());
+}
+
+JPC_API void
+JPC_HingeConstraint_SetMotorState(JPC_HingeConstraint *in_constraint, JPC_MotorState in_state)
+{
+    toJph(in_constraint)->SetMotorState(motorStateToJph(in_state));
+}
+
+JPC_API JPC_MotorState
+JPC_HingeConstraint_GetMotorState(const JPC_HingeConstraint *in_constraint)
+{
+    return toJpc(toJph(in_constraint)->GetMotorState());
+}
+
+JPC_API void
+JPC_HingeConstraint_SetTargetAngularVelocity(JPC_HingeConstraint *in_constraint, float in_angular_velocity)
+{
+    toJph(in_constraint)->SetTargetAngularVelocity(in_angular_velocity);
+}
+
+JPC_API float
+JPC_HingeConstraint_GetTargetAngularVelocity(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetTargetAngularVelocity();
+}
+
+JPC_API void
+JPC_HingeConstraint_SetTargetAngle(JPC_HingeConstraint *in_constraint, float in_angle)
+{
+    toJph(in_constraint)->SetTargetAngle(in_angle);
+}
+
+JPC_API float
+JPC_HingeConstraint_GetTargetAngle(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetTargetAngle();
+}
+
+JPC_API void
+JPC_HingeConstraint_SetLimits(JPC_HingeConstraint *in_constraint, float in_limits_min, float in_limits_max)
+{
+    toJph(in_constraint)->SetLimits(in_limits_min, in_limits_max);
+}
+
+JPC_API float
+JPC_HingeConstraint_GetLimitsMin(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetLimitsMin();
+}
+
+JPC_API float
+JPC_HingeConstraint_GetLimitsMax(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetLimitsMax();
+}
+
+JPC_API bool
+JPC_HingeConstraint_HasLimits(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->HasLimits();
+}
+
+JPC_API void
+JPC_HingeConstraint_GetTotalLambdaPosition(const JPC_HingeConstraint *in_constraint, float out_lambda[3])
+{
+    storeVec3(out_lambda, toJph(in_constraint)->GetTotalLambdaPosition());
+}
+
+JPC_API void
+JPC_HingeConstraint_GetTotalLambdaRotation(const JPC_HingeConstraint *in_constraint, float *out_x, float *out_y)
+{
+    auto out = toJph(in_constraint)->GetTotalLambdaRotation();
+    *out_x = out[0];
+    *out_y = out[1];
+}
+
+JPC_API float
+JPC_HingeConstraint_GetTotalLambdaRotationLimits(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetTotalLambdaRotationLimits();
+}
+
+JPC_API float
+JPC_HingeConstraint_GetTotalLambdaMotor(const JPC_HingeConstraint *in_constraint)
+{
+    return toJph(in_constraint)->GetTotalLambdaMotor();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConeConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConeConstraint_SetHalfConeAngle(JPC_ConeConstraint *in_self, float in_half_cone_angle)
+{
+    toJph(in_self)->SetHalfConeAngle(in_half_cone_angle);
+}
+
+JPC_API float
+JPC_ConeConstraint_GetCosHalfConeAngle(const JPC_ConeConstraint *in_self)
+{
+    return toJph(in_self)->GetCosHalfConeAngle();
+}
+
+JPC_API void
+JPC_ConeConstraint_GetTotalLambdaPosition(const JPC_ConeConstraint *in_self, float out_lambda[3])
+{
+    storeVec3(out_lambda, toJph(in_self)->GetTotalLambdaPosition());
+}
+
+JPC_API float
+JPC_ConeConstraint_GetTotalLambdaRotation(const JPC_ConeConstraint *in_self)
+{
+    return toJph(in_self)->GetTotalLambdaRotation();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SliderConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API float
+JPC_SliderConstraint_GetCurrentPosition(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetCurrentPosition();
+}
+
+JPC_API void
+JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in_friction)
+{
+    toJph(in_self)->SetMaxFrictionForce(in_friction);
+}
+
+JPC_API JPC_MotorSettings *
+JPC_SliderConstraint_GetMotorSettings(JPC_SliderConstraint *in_self)
+{
+    return toJpc(toJph(in_self)->GetMotorSettings());
+}
+
+JPC_API void
+JPC_SliderConstraint_SetMotorState(JPC_SliderConstraint *in_self, JPC_MotorState in_state)
+{
+    toJph(in_self)->SetMotorState(motorStateToJph(in_state));
+}
+
+JPC_API JPC_MotorState
+JPC_SliderConstraint_GetMotorState(const JPC_SliderConstraint *in_self)
+{
+    return toJpc(toJph(in_self)->GetMotorState());
+}
+
+JPC_API void
+JPC_SliderConstraint_SetTargetVelocity(JPC_SliderConstraint *in_self, float in_velocity)
+{
+    toJph(in_self)->SetTargetVelocity(in_velocity);
+}
+
+JPC_API float
+JPC_SliderConstraint_GetTargetVelocity(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetTargetVelocity();
+}
+
+JPC_API void
+JPC_SliderConstraint_SetTargetPosition(JPC_SliderConstraint *in_self, float in_position)
+{
+    toJph(in_self)->SetTargetPosition(in_position);
+}
+
+JPC_API float
+JPC_SliderConstraint_GetTargetPosition(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetTargetPosition();
+}
+
+JPC_API void
+JPC_SliderConstraint_SetLimits(JPC_SliderConstraint *in_self, float in_limits_min, float in_limits_max)
+{
+    toJph(in_self)->SetLimits(in_limits_min, in_limits_max);
+}
+
+JPC_API float
+JPC_SliderConstraint_GetLimitsMin(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetLimitsMin();
+}
+
+JPC_API float
+JPC_SliderConstraint_GetLimitsMax(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetLimitsMax();
+}
+
+JPC_API bool
+JPC_SliderConstraint_HasLimits(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->HasLimits();
+}
+
+JPC_API void
+JPC_SliderConstraint_SetFrequency(JPC_SliderConstraint *in_self, float in_frequency)
+{
+    toJph(in_self)->SetFrequency(in_frequency);
+}
+
+JPC_API float
+JPC_SliderConstraint_GetFrequency(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetFrequency();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_MotorSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_MotorSettings_SetForceLimits(JPC_MotorSettings *in_settings, float in_min, float in_max)
+{
+    toJph(in_settings)->SetForceLimits(in_min, in_max);
+}
+
+JPC_API void
+JPC_MotorSettings_SetTorqueLimits(JPC_MotorSettings *in_settings, float in_min, float in_max)
+{
+    toJph(in_settings)->SetTorqueLimits(in_min, in_max);
+}
+
+JPC_API void
+JPC_MotorSettings_SetForceLimit(JPC_MotorSettings *in_settings, float in_limit)
+{
+    toJph(in_settings)->SetForceLimit(in_limit);
+}
+
+JPC_API void
+JPC_MotorSettings_SetTorqueLimit(JPC_MotorSettings *in_settings, float in_limit)
+{
+    toJph(in_settings)->SetTorqueLimit(in_limit);
+}
+
+JPC_API bool
+JPC_MotorSettings_IsValid(const JPC_MotorSettings *in_settings)
+{
+    return toJph(in_settings)->IsValid();
 }
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
