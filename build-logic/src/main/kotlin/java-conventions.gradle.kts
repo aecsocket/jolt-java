@@ -11,8 +11,8 @@ indra {
 }
 
 repositories {
+    mavenLocal() // todo
     mavenCentral()
-    sonatype.s01Snapshots()
 }
 
 afterEvaluate {

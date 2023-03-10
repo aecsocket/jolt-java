@@ -43,19 +43,17 @@ class constants$82 {
         "JPC_Body_GetWorldSpaceSurfaceNormal",
         constants$82.JPC_Body_GetWorldSpaceSurfaceNormal$FUNC
     );
+    static final FunctionDescriptor JPC_Body_FixedToWorld$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle JPC_Body_FixedToWorld$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPC_Body_FixedToWorld",
+        constants$82.JPC_Body_FixedToWorld$FUNC
+    );
     static final FunctionDescriptor JPC_BodyID_GetIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle JPC_BodyID_GetIndex$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyID_GetIndex",
         constants$82.JPC_BodyID_GetIndex$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyID_GetSequenceNumber$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyID_GetSequenceNumber$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_GetSequenceNumber",
-        constants$82.JPC_BodyID_GetSequenceNumber$FUNC
     );
 }
 

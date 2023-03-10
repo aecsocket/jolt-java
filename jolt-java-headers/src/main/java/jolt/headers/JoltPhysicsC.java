@@ -1762,6 +1762,78 @@ public class JoltPhysicsC  {
     public static int JPC_BACK_FACE_COLLIDE() {
         return (int)1L;
     }
+    public static int JPC_CONSTRAINT_TYPE_CONSTRAINT() {
+        return (int)0L;
+    }
+    public static int JPC_CONSTRAINT_TYPE_TWO_BODY_CONSTRAINT() {
+        return (int)1L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_FIXED() {
+        return (int)0L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_POINT() {
+        return (int)1L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_HINGE() {
+        return (int)2L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_SLIDER() {
+        return (int)3L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_DISTANCE() {
+        return (int)4L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_CONE() {
+        return (int)5L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_SWING_TWIST() {
+        return (int)6L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_SIX_DOF() {
+        return (int)7L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_PATH() {
+        return (int)8L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_VEHICLE() {
+        return (int)9L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_RACK_AND_PINION() {
+        return (int)10L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_GEAR() {
+        return (int)11L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_PULLEY() {
+        return (int)12L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_USER1() {
+        return (int)13L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_USER2() {
+        return (int)14L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_USER3() {
+        return (int)15L;
+    }
+    public static int JPC_CONSTRAINT_SUB_TYPE_USER4() {
+        return (int)16L;
+    }
+    public static int JPC_CONSTRAINT_SPACE_LOCAL_TO_BODY_COM() {
+        return (int)0L;
+    }
+    public static int JPC_CONSTRAINT_SPACE_WORLD_SPACE() {
+        return (int)1L;
+    }
+    public static int JPC_MOTOR_STATE_OFF() {
+        return (int)0L;
+    }
+    public static int JPC_MOTOR_STATE_VELOCITY() {
+        return (int)1L;
+    }
+    public static int JPC_MOTOR_STATE_POSITION() {
+        return (int)2L;
+    }
     public static OfAddress JPC_BodyInterfaceAddState = Constants$root.C_POINTER$LAYOUT;
     public static MethodHandle JPC_BodyIDVector_Destroy$MH() {
         return RuntimeHelper.requireNonNull(constants$19.JPC_BodyIDVector_Destroy$MH,"JPC_BodyIDVector_Destroy");
@@ -5910,6 +5982,17 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_Body_FixedToWorld$MH() {
+        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_FixedToWorld$MH,"JPC_Body_FixedToWorld");
+    }
+    public static MemoryAddress JPC_Body_FixedToWorld (Object... x0) {
+        var mh$ = JPC_Body_FixedToWorld$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPC_BodyID_GetIndex$MH() {
         return RuntimeHelper.requireNonNull(constants$82.JPC_BodyID_GetIndex$MH,"JPC_BodyID_GetIndex");
     }
@@ -5922,7 +6005,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyID_GetSequenceNumber$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.JPC_BodyID_GetSequenceNumber$MH,"JPC_BodyID_GetSequenceNumber");
+        return RuntimeHelper.requireNonNull(constants$83.JPC_BodyID_GetSequenceNumber$MH,"JPC_BodyID_GetSequenceNumber");
     }
     public static byte JPC_BodyID_GetSequenceNumber ( int in_body_id) {
         var mh$ = JPC_BodyID_GetSequenceNumber$MH();
@@ -5943,8 +6026,129 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_Constraint_Release$MH() {
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_Release$MH,"JPC_Constraint_Release");
+    }
+    public static void JPC_Constraint_Release ( Addressable in_constraint) {
+        var mh$ = JPC_Constraint_Release$MH();
+        try {
+            mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_GetType$MH() {
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_GetType$MH,"JPC_Constraint_GetType");
+    }
+    public static byte JPC_Constraint_GetType ( Addressable in_constraint) {
+        var mh$ = JPC_Constraint_GetType$MH();
+        try {
+            return (byte)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_GetSubType$MH() {
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_GetSubType$MH,"JPC_Constraint_GetSubType");
+    }
+    public static byte JPC_Constraint_GetSubType ( Addressable in_constraint) {
+        var mh$ = JPC_Constraint_GetSubType$MH();
+        try {
+            return (byte)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_SetNumVelocityStepsOverride$MH() {
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_SetNumVelocityStepsOverride$MH,"JPC_Constraint_SetNumVelocityStepsOverride");
+    }
+    public static void JPC_Constraint_SetNumVelocityStepsOverride ( Addressable in_constraint,  int in_num_velocity_steps_override) {
+        var mh$ = JPC_Constraint_SetNumVelocityStepsOverride$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_num_velocity_steps_override);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_GetNumVelocityStepsOverride$MH() {
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_GetNumVelocityStepsOverride$MH,"JPC_Constraint_GetNumVelocityStepsOverride");
+    }
+    public static int JPC_Constraint_GetNumVelocityStepsOverride ( Addressable in_constraint) {
+        var mh$ = JPC_Constraint_GetNumVelocityStepsOverride$MH();
+        try {
+            return (int)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_SetNumPositionStepsOverride$MH() {
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_SetNumPositionStepsOverride$MH,"JPC_Constraint_SetNumPositionStepsOverride");
+    }
+    public static void JPC_Constraint_SetNumPositionStepsOverride ( Addressable in_constraint,  int in_num_position_steps_override) {
+        var mh$ = JPC_Constraint_SetNumPositionStepsOverride$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_num_position_steps_override);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_GetNumPositionStepsOverride$MH() {
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_GetNumPositionStepsOverride$MH,"JPC_Constraint_GetNumPositionStepsOverride");
+    }
+    public static int JPC_Constraint_GetNumPositionStepsOverride ( Addressable in_constraint) {
+        var mh$ = JPC_Constraint_GetNumPositionStepsOverride$MH();
+        try {
+            return (int)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_SetEnabled$MH() {
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_SetEnabled$MH,"JPC_Constraint_SetEnabled");
+    }
+    public static void JPC_Constraint_SetEnabled ( Addressable in_constraint,  boolean in_enabled) {
+        var mh$ = JPC_Constraint_SetEnabled$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_enabled);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Constraint_GetEnabled$MH() {
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_GetEnabled$MH,"JPC_Constraint_GetEnabled");
+    }
+    public static boolean JPC_Constraint_GetEnabled ( Addressable in_constraint) {
+        var mh$ = JPC_Constraint_GetEnabled$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_TwoBodyConstraint_GetBody1$MH() {
+        return RuntimeHelper.requireNonNull(constants$84.JPC_TwoBodyConstraint_GetBody1$MH,"JPC_TwoBodyConstraint_GetBody1");
+    }
+    public static MemoryAddress JPC_TwoBodyConstraint_GetBody1 ( Addressable in_constraint) {
+        var mh$ = JPC_TwoBodyConstraint_GetBody1$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_TwoBodyConstraint_GetBody2$MH() {
+        return RuntimeHelper.requireNonNull(constants$85.JPC_TwoBodyConstraint_GetBody2$MH,"JPC_TwoBodyConstraint_GetBody2");
+    }
+    public static MemoryAddress JPC_TwoBodyConstraint_GetBody2 ( Addressable in_constraint) {
+        var mh$ = JPC_TwoBodyConstraint_GetBody2$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPJ_GetFeatures$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
+        return RuntimeHelper.requireNonNull(constants$85.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
     }
     public static int JPJ_GetFeatures (Object... x0) {
         var mh$ = JPJ_GetFeatures$MH();
@@ -5970,7 +6174,7 @@ public class JoltPhysicsC  {
         return 201706L;
     }
     public static MemoryAddress NULL() {
-        return constants$83.NULL$ADDR;
+        return constants$85.NULL$ADDR;
     }
     public static int __WCLONE() {
         return (int)2147483648L;

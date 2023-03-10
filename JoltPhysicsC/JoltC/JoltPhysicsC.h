@@ -149,20 +149,20 @@ typedef enum JPC_ValidateResult
     _JPC_VALIDATE_RESULT_FORCEU32           = 0x7fffffff
 } JPC_ValidateResult;
 
-typedef enum JPC_BackFaceMode
-{
-    JPC_BACK_FACE_IGNORE  = 0,
+typedef uint8_t JPC_BackFaceMode;
+enum {
+    JPC_BACK_FACE_IGNORE = 0,
     JPC_BACK_FACE_COLLIDE = 1
-} JPC_BackFaceMode;
+};
 
-typedef enum JPC_ConstraintType
-{
+typedef uint8_t JPC_ConstraintType;
+enum {
     JPC_CONSTRAINT_TYPE_CONSTRAINT          = 0,
     JPC_CONSTRAINT_TYPE_TWO_BODY_CONSTRAINT = 1
-} JPC_ConstraintType;
+};
 
-typedef enum JPC_ConstraintSubType
-{
+typedef uint8_t JPC_ConstraintSubType;
+enum {
     JPC_CONSTRAINT_SUB_TYPE_FIXED           = 0,
     JPC_CONSTRAINT_SUB_TYPE_POINT           = 1,
     JPC_CONSTRAINT_SUB_TYPE_HINGE           = 2,
@@ -180,20 +180,20 @@ typedef enum JPC_ConstraintSubType
     JPC_CONSTRAINT_SUB_TYPE_USER2           = 14,
     JPC_CONSTRAINT_SUB_TYPE_USER3           = 15,
     JPC_CONSTRAINT_SUB_TYPE_USER4           = 16
-} JPC_ConstraintSubType;
+};
 
-typedef enum JPC_ConstraintSpace
-{
+typedef uint8_t JPC_ConstraintSpace;
+enum {
     JPC_CONSTRAINT_SPACE_LOCAL_TO_BODY_COM = 0,
     JPC_CONSTRAINT_SPACE_WORLD_SPACE       = 1
-} JPC_ConstraintSpace;
+};
 
-typedef enum JPC_MotorState
-{
+typedef uint8_t JPC_MotorState;
+enum {
     JPC_MOTOR_STATE_OFF      = 0,
     JPC_MOTOR_STATE_VELOCITY = 1,
     JPC_MOTOR_STATE_POSITION = 2
-} JPC_MotorState;
+};
 //--------------------------------------------------------------------------------------------------
 //
 // Types
@@ -2625,6 +2625,9 @@ JPC_Body_GetWorldSpaceSurfaceNormal(const JPC_Body *in_body,
                                     JPC_SubShapeID in_sub_shape_id,
                                     const JPC_Real in_position[3], // world space
                                     float out_normal_vector[3]);
+
+JPC_API JPC_Body *
+JPC_Body_FixedToWorld();
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_BodyID
@@ -2655,13 +2658,13 @@ JPC_Constraint_GetSubType(const JPC_Constraint *in_constraint);
 JPC_API void
 JPC_Constraint_SetNumVelocityStepsOverride(JPC_Constraint *in_constraint, uint32_t in_num_velocity_steps_override);
 
-JPC_API uint32_t
+JPC_API int
 JPC_Constraint_GetNumVelocityStepsOverride(const JPC_Constraint *in_constraint);
 
 JPC_API void
 JPC_Constraint_SetNumPositionStepsOverride(JPC_Constraint *in_constraint, uint32_t in_num_position_steps_override);
 
-JPC_API uint32_t
+JPC_API int
 JPC_Constraint_GetNumPositionStepsOverride(const JPC_Constraint *in_constraint);
 
 JPC_API void

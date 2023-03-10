@@ -560,9 +560,6 @@ FN(shapeTypeToJph)(JPC_ShapeType in) { return static_cast<JPH::EShapeType>(in); 
 FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
 FN(shapeSubTypeToJph)(JPC_ShapeSubType in) { return static_cast<JPH::EShapeSubType>(in); }
 
-FN(toJpc)(JPH::EShapeSubType in) { return static_cast<JPC_ShapeSubType>(in); }
-FN(shapeSubTypeToJph)(JPC_ShapeSubType in) { return static_cast<JPH::EShapeSubType>(in); }
-
 FN(toJpc)(JPH::EMotionType in) { return static_cast<JPC_MotionType>(in); }
 FN(motionTypeToJph)(JPC_MotionType in) { return static_cast<JPH::EMotionType>(in); }
 
@@ -1246,8 +1243,10 @@ JPC_PhysicsSystem_GetBodyIDs(const JPC_PhysicsSystem *in_physics_system,
 {
     auto out = new JPH::BodyIDVector();
     toJph(in_physics_system)->GetBodies(*out);
-    *out_num_body_ids = out->size();
-    *out_body_ids = toJpc(out->data());
+    auto size = out->size();
+    *out_num_body_ids = size;
+    if (size > 0)
+        *out_body_ids = toJpc(out->data());
     return reinterpret_cast<JPC_BodyIDVector *>(out);
 }
 //--------------------------------------------------------------------------------------------------
@@ -1258,8 +1257,10 @@ JPC_PhysicsSystem_GetActiveBodyIDs(const JPC_PhysicsSystem *in_physics_system,
 {
     auto out = new JPH::BodyIDVector();
     toJph(in_physics_system)->GetActiveBodies(*out);
-    *out_num_body_ids = out->size();
-    *out_body_ids = toJpc(out->data());
+    auto size = out->size();
+    *out_num_body_ids = size;
+    if (size > 0)
+        *out_body_ids = toJpc(out->data());
     return reinterpret_cast<JPC_BodyIDVector *>(out);
 }
 //--------------------------------------------------------------------------------------------------
@@ -3931,6 +3932,12 @@ JPC_Body_GetWorldSpaceSurfaceNormal(const JPC_Body *in_body,
             subShapeIDJph(in_sub_shape_id), loadRVec3(in_position));
     storeVec3(out_normal_vector, v);
 }
+
+JPC_API JPC_Body *
+JPC_Body_FixedToWorld()
+{
+    return toJpc(&JPH::Body::sFixedToWorld);
+}
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_MotionProperties
@@ -4383,7 +4390,7 @@ JPC_HingeConstraint_GetMaxFrictionTorque(const JPC_HingeConstraint *in_constrain
 JPC_API JPC_MotorSettings *
 JPC_HingeConstraint_GetMotorSettings(JPC_HingeConstraint *in_constraint)
 {
-    return toJpc(toJph(in_constraint)->GetMotorSettings());
+    return toJpc(&toJph(in_constraint)->GetMotorSettings());
 }
 
 JPC_API void
@@ -4519,7 +4526,7 @@ JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in
 JPC_API JPC_MotorSettings *
 JPC_SliderConstraint_GetMotorSettings(JPC_SliderConstraint *in_self)
 {
-    return toJpc(toJph(in_self)->GetMotorSettings());
+    return toJpc(&toJph(in_self)->GetMotorSettings());
 }
 
 JPC_API void
