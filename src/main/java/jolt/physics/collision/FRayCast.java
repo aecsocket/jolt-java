@@ -1,14 +1,11 @@
 package jolt.physics.collision;
 
 import jolt.SegmentedJoltNative;
-import jolt.geometry.AABox;
 import jolt.math.FVec3;
 
 import java.lang.foreign.*;
 
-import static jolt.headers.JPC_AABox.max$slice;
-import static jolt.headers.JPC_AABox.min$slice;
-import static jolt.headers.JPC_RayCast.*;
+import static jolt.cheaders.JPC_RayCast.*;
 
 public final class FRayCast extends SegmentedJoltNative {
     //region Jolt-Value

@@ -6,7 +6,7 @@ import jolt.math.FVec3;
 
 import java.lang.foreign.*;
 
-import static jolt.headers_d.JPC_RRayCast.*;
+import static jolt.cheaders.JPC_RRayCast.*;
 
 public final class DRayCast extends SegmentedJoltNative {
     //region Jolt-Value

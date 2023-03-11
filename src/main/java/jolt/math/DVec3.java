@@ -7,8 +7,7 @@ import java.lang.foreign.*;
 import static jolt.headers.JoltPhysicsC.C_DOUBLE;
 
 public final class DVec3 extends SegmentedJoltNative {
-    private static final int NUM_COMPONENTS = 3;
-    private static final long BYTES_SIZE = NUM_COMPONENTS * C_DOUBLE.byteSize();
+    private static final long BYTES_SIZE = 4 * C_DOUBLE.byteSize();
 
     //region PrimitiveJoltNative
     private DVec3(MemorySegment handle) {
@@ -29,7 +28,7 @@ public final class DVec3 extends SegmentedJoltNative {
     //endregion PrimitiveJoltNative
 
     public static DVec3 of(SegmentAllocator alloc, double x, double y, double z) {
-        return new DVec3(alloc.allocateArray(C_DOUBLE, x, y, z));
+        return new DVec3(alloc.allocateArray(C_DOUBLE, x, y, z, z));
     }
 
     public static DVec3 of(SegmentAllocator alloc, double s) {
@@ -63,12 +62,13 @@ public final class DVec3 extends SegmentedJoltNative {
     public void setY(double y) { set(1, y); }
 
     public double getZ() { return get(2); }
-    public void setZ(double z) { set(2, z); }
+    public void setZ(double z) { set(2, z); set(3, z); }
 
     public void read(MemoryAddress address) {
-        for (int i = 0; i < NUM_COMPONENTS; i++) {
+        for (int i = 0; i < 3; i++) {
             set(i, address.getAtIndex(C_DOUBLE, i));
         }
+        set(3, get(2));
     }
 
     public void read(DVec3 v) {
@@ -76,7 +76,7 @@ public final class DVec3 extends SegmentedJoltNative {
     }
 
     public void write(MemorySegment segment) {
-        for (int i = 0; i < NUM_COMPONENTS; i++) {
+        for (int i = 0; i < 3; i++) {
             segment.setAtIndex(C_DOUBLE, i, get(i));
         }
     }
@@ -84,7 +84,7 @@ public final class DVec3 extends SegmentedJoltNative {
     public boolean equalValue(DVec3 v) {
         double[] ours = components();
         double[] theirs = v.components();
-        for (int i = 0; i < NUM_COMPONENTS; i++) {
+        for (int i = 0; i < 3; i++) {
             if (Double.compare(ours[i], theirs[i]) != 0)
                 return false;
         }
