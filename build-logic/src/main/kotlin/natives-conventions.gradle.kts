@@ -32,8 +32,8 @@ afterEvaluate {
                 "-G", nativesExt.generator.get(),           // use the platform-specific generator
                 "-DCMAKE_BUILD_TYPE=${buildType.key}",      // release build type
             )
-            buildFeatures.forEach { feature ->
-                environment[feature.cmakeFlag()] = "ON"
+            JoltBuildFeature.values().forEach { feature ->
+                environment[feature.cmakeFlag()] = if (buildFeatures.contains(feature)) "ON" else "OFF"
             }
 
             doLast {

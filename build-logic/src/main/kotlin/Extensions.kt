@@ -21,14 +21,14 @@ val Project.buildFeatures: List<JoltBuildFeature>
     get() = listOfNotNull(
         if (buildFlavor == JoltBuildFlavor.DP) JoltBuildFeature.DOUBLE_PRECISION else null,
         JoltBuildFeature.USE_SSE4_1,
-        JoltBuildFeature.USE_SSE4_2,
-        JoltBuildFeature.USE_AVX,
-        JoltBuildFeature.USE_AVX2,
-        // JoltFeature.USE_AVX512,
+        JoltBuildFeature.USE_SSE4_2, // defines USE_SSE4_1
+        // JoltBuildFeature.USE_AVX,
+        // JoltBuildFeature.USE_AVX2, // defines USE_AVX
+        // JoltFeature.USE_AVX512, // defines USE_AVX2
         JoltBuildFeature.USE_LZCNT,
         JoltBuildFeature.USE_TZCNT,
-        JoltBuildFeature.USE_F16C,
-        JoltBuildFeature.USE_FMADD
+        // JoltBuildFeature.USE_F16C, // defines USE_SSE4_1, USE_SSE4_2, USE_AVX
+        // JoltBuildFeature.USE_FMADD // defines USE_SSE4_1, USE_SSE4_2, USE_AVX
     )
 
 fun Project.publishIfNeeded() {

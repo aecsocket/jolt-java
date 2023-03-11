@@ -4640,34 +4640,34 @@ JPC_API uint32_t
 JPJ_GetFeatures()
 {
     uint32_t features = 0;
-#if JPC_DOUBLE_PRECISION == 1
+#ifdef JPH_DOUBLE_PRECISION
     features |= 0x1;
 #endif
-#if JPH_USE_SSE4_1
+#ifdef JPH_USE_SSE4_1
     features |= 0x2;
 #endif
-#if JPH_USE_SSE4_2
+#ifdef JPH_USE_SSE4_2
     features |= 0x4;
 #endif
-#if JPH_USE_AVX
+#ifdef JPH_USE_AVX
     features |= 0x8;
 #endif
-#if JPH_USE_AVX2
+#ifdef JPH_USE_AVX2
     features |= 0x10;
 #endif
-#if JPH_USE_AVX512
+#ifdef JPH_USE_AVX512
     features |= 0x20;
 #endif
-#if JPH_USE_LZCNT
+#ifdef JPH_USE_LZCNT
     features |= 0x40;
 #endif
-#if JPH_USE_TZCNT
+#ifdef JPH_USE_TZCNT
     features |= 0x80;
 #endif
-#if JPH_USE_F16C
+#ifdef JPH_USE_F16C
     features |= 0x100;
 #endif
-#if JPH_USE_FMADD
+#ifdef JPH_USE_FMADD
     features |= 0x200;
 #endif
     return features;

@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
@@ -86,7 +87,7 @@ public final class Jolt {
 
     public static Set<JoltFeature> featureSet() {
         JoltFeatures features = features();
-        var result = new HashSet<JoltFeature>();
+        var result = new LinkedHashSet<JoltFeature>(JoltFeature.values().length);
         for (var feature : JoltFeature.values()) {
             if (feature.test.test(features))
                 result.add(feature);
