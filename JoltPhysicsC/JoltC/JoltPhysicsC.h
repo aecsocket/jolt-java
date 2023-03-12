@@ -2797,18 +2797,28 @@ JPC_ConvexShapeSupport_Destroy(JPC_ConvexShapeSupport *in_support);
 // JPC_GJKClosestPoint
 //
 //--------------------------------------------------------------------------------------------------
-#define GJK_INTERSECTS(Name, JpcA, JpcB) \
-JPC_API bool \
-Name(JPC_GJKClosestPoint *in_gjk, \
-     const JpcA *in_a, \
-     const JpcB *in_b, \
-     float in_tolerance, \
-     float io_v[3]);
+#define GJK(Name1, Name2, JpcA, JpcB, JphA, JphB)           \
+JPC_API bool                                                \
+Name1(JPC_GJKClosestPoint *in_gjk,                          \
+     const JpcA *in_a,                                      \
+     const JpcB *in_b,                                      \
+     float in_tolerance,                                    \
+     float io_v[3]);                                        \
+                                                            \
+JPC_API float                                               \
+Name2(JPC_GJKClosestPoint *in_gjk,                          \
+      const JpcA *in_a,                                     \
+      const JpcB *in_b,                                     \
+      float in_tolerance,                                   \
+      float in_max_dist_sq,                                 \
+      float io_v[3],                                        \
+      float out_point_a[3],                                 \
+      float out_point_b[3]);
 
-GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexConvex, JPC_ConvexShapeSupport, JPC_ConvexShape)
-GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexPoint, JPC_ConvexShapeSupport, JPC_PointConvexSupport)
+GJK(JPC_GJKClosestPoint_IntersectsConvexConvex, JPC_GJKClosestPoint_GetClosestPointsConvexConvex, JPC_ConvexShapeSupport, JPC_ConvexShape, JPH::ConvexShape::Support, JPH::ConvexShape::Support)
+GJK(JPC_GJKClosestPoint_IntersectsConvexPoint, JPC_GJKClosestPoint_GetClosestPointsConvexPoint, JPC_ConvexShapeSupport, JPC_PointConvexSupport, JPH::ConvexShape::Support, JPH::PointConvexSupport)
 
-#undef GJK_INTERSECTS
+#undef GJK
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
 JPC_API uint32_t

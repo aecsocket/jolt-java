@@ -6318,6 +6318,17 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH() {
+        return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexConvex");
+    }
+    public static float JPC_GJKClosestPoint_GetClosestPointsConvexConvex ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  float in_max_dist_sq,  Addressable io_v,  Addressable out_point_a,  Addressable out_point_b) {
+        var mh$ = JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH();
+        try {
+            return (float)mh$.invokeExact(in_gjk, in_a, in_b, in_tolerance, in_max_dist_sq, io_v, out_point_a, out_point_b);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH() {
         return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_IntersectsConvexPoint$MH,"JPC_GJKClosestPoint_IntersectsConvexPoint");
     }
@@ -6329,8 +6340,19 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH() {
+        return RuntimeHelper.requireNonNull(constants$88.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexPoint");
+    }
+    public static float JPC_GJKClosestPoint_GetClosestPointsConvexPoint ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  float in_max_dist_sq,  Addressable io_v,  Addressable out_point_a,  Addressable out_point_b) {
+        var mh$ = JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH();
+        try {
+            return (float)mh$.invokeExact(in_gjk, in_a, in_b, in_tolerance, in_max_dist_sq, io_v, out_point_a, out_point_b);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPJ_GetFeatures$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
+        return RuntimeHelper.requireNonNull(constants$88.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
     }
     public static int JPJ_GetFeatures (Object... x0) {
         var mh$ = JPJ_GetFeatures$MH();

@@ -41,6 +41,20 @@ class constants$87 {
         "JPC_GJKClosestPoint_IntersectsConvexConvex",
         constants$87.JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC
     );
+    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH = RuntimeHelper.downcallHandle(
+        "JPC_GJKClosestPoint_GetClosestPointsConvexConvex",
+        constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC
+    );
     static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -51,11 +65,6 @@ class constants$87 {
     static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH = RuntimeHelper.downcallHandle(
         "JPC_GJKClosestPoint_IntersectsConvexPoint",
         constants$87.JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC
-    );
-    static final FunctionDescriptor JPJ_GetFeatures$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle JPJ_GetFeatures$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPJ_GetFeatures",
-        constants$87.JPJ_GetFeatures$FUNC
     );
 }
 

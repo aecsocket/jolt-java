@@ -1,6 +1,7 @@
 package jolt.geometry;
 
 import jolt.SegmentedJoltNative;
+import jolt.headers.JPC_GJKClosestPoint;
 import jolt.math.FVec3;
 import jolt.physics.collision.shape.ConvexShape;
 
@@ -31,11 +32,19 @@ public final class GJKClosestPoint extends SegmentedJoltNative {
     }
     //endregion Jolt-Value
 
-    public boolean testConvexConvex(ConvexShape a, ConvexShape b, float tolerance, FVec3 outSeparating) {
-        return JPC_GJKClosestPoint_IntersectsConvexConvex(handle, a.address(), b.address(), tolerance, outSeparating.address());
+    public boolean intersects(ConvexShape a, ConvexShape b, float tolerance, FVec3 ioSeparating) {
+        return JPC_GJKClosestPoint_IntersectsConvexConvex(handle, a.address(), b.address(), tolerance, ioSeparating.address());
     }
 
-    public boolean testConvexPoint(ConvexShape a, PointConvexSupport b, float tolerance, FVec3 outSeparating) {
-        return JPC_GJKClosestPoint_IntersectsConvexPoint(handle, a.address(), b.address(), tolerance, outSeparating.address());
+    public boolean intersects(ConvexShape a, PointConvexSupport b, float tolerance, FVec3 ioSeparating) {
+        return JPC_GJKClosestPoint_IntersectsConvexPoint(handle, a.address(), b.address(), tolerance, ioSeparating.address());
+    }
+
+    public float getClosestPoints(ConvexShape a, ConvexShape b, float tolerance, float maxDistSq, FVec3 ioSeparating, FVec3 outPointA, FVec3 outPointB) {
+        return JPC_GJKClosestPoint_GetClosestPointsConvexConvex(handle, a.address(), b.address(), tolerance, maxDistSq, ioSeparating.address(), outPointA.address(), outPointB.address());
+    }
+
+    public float getClosestPoints(ConvexShape a, PointConvexSupport b, float tolerance, float maxDistSq, FVec3 ioSeparating, FVec3 outPointA, FVec3 outPointB) {
+        return JPC_GJKClosestPoint_GetClosestPointsConvexPoint(handle, a.address(), b.address(), tolerance, maxDistSq, ioSeparating.address(), outPointA.address(), outPointB.address());
     }
 }

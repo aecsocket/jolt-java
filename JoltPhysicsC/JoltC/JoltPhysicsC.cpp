@@ -4819,26 +4819,47 @@ JPC_ConvexShapeSupport_Destroy(JPC_ConvexShapeSupport *in_support)
 // JPC_GJKClosestPoint
 //
 //--------------------------------------------------------------------------------------------------
-#define GJK_INTERSECTS(Name, JpcA, JpcB, JphA, JphB) \
-JPC_API bool \
-Name(JPC_GJKClosestPoint *in_gjk, \
-     const JpcA *in_a, \
-     const JpcB *in_b, \
-     float in_tolerance, \
-     float io_v[3]) \
-{ \
-    return toJph(in_gjk)->Intersects( \
-            *reinterpret_cast<const JphA *>(in_a), \
-            *reinterpret_cast<const JphB *>(in_b), \
-            in_tolerance, \
-            *reinterpret_cast<JPH::Vec3 *>(io_v) \
-    ); \
+#define GJK(Name1, Name2, JpcA, JpcB, JphA, JphB)           \
+JPC_API bool                                                \
+Name1(JPC_GJKClosestPoint *in_gjk,                          \
+     const JpcA *in_a,                                      \
+     const JpcB *in_b,                                      \
+     float in_tolerance,                                    \
+     float io_v[3])                                         \
+{                                                           \
+    return toJph(in_gjk)->Intersects(                       \
+            *reinterpret_cast<const JphA *>(in_a),          \
+            *reinterpret_cast<const JphB *>(in_b),          \
+            in_tolerance,                                   \
+            *reinterpret_cast<JPH::Vec3 *>(io_v)            \
+    );                                                      \
+}                                                           \
+                                                            \
+JPC_API float                                               \
+Name2(JPC_GJKClosestPoint *in_gjk,                          \
+      const JpcA *in_a,                                     \
+      const JpcB *in_b,                                     \
+      float in_tolerance,                                   \
+      float in_max_dist_sq,                                 \
+      float io_v[3],                                        \
+      float out_point_a[3],                                 \
+      float out_point_b[3])                                 \
+{                                                           \
+    return toJph(in_gjk)->GetClosestPoints(                 \
+            *reinterpret_cast<const JphA *>(in_a),          \
+            *reinterpret_cast<const JphB *>(in_b),          \
+            in_tolerance,                                   \
+            in_max_dist_sq,                                 \
+            *reinterpret_cast<JPH::Vec3 *>(io_v),           \
+            *reinterpret_cast<JPH::Vec3 *>(out_point_a),    \
+            *reinterpret_cast<JPH::Vec3 *>(out_point_b)     \
+    );                                                      \
 }
 
-GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexConvex, JPC_ConvexShapeSupport, JPC_ConvexShape, JPH::ConvexShape::Support, JPH::ConvexShape::Support)
-GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexPoint, JPC_ConvexShapeSupport, JPC_PointConvexSupport, JPH::ConvexShape::Support, JPH::PointConvexSupport)
+GJK(JPC_GJKClosestPoint_IntersectsConvexConvex, JPC_GJKClosestPoint_GetClosestPointsConvexConvex, JPC_ConvexShapeSupport, JPC_ConvexShape, JPH::ConvexShape::Support, JPH::ConvexShape::Support)
+GJK(JPC_GJKClosestPoint_IntersectsConvexPoint, JPC_GJKClosestPoint_GetClosestPointsConvexPoint, JPC_ConvexShapeSupport, JPC_PointConvexSupport, JPH::ConvexShape::Support, JPH::PointConvexSupport)
 
-#undef GJK_INTERSECTS
+#undef GJK
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
 JPC_API uint32_t
