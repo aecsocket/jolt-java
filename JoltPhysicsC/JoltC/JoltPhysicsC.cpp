@@ -10,6 +10,7 @@
 #include <Jolt/Core/Memory.h>
 #include <Jolt/Core/JobSystemThreadPool.h>
 #include <Jolt/Geometry/OrientedBox.h>
+#include <Jolt/Geometry/GJKClosestPoint.h>
 #include <Jolt/Physics/PhysicsSettings.h>
 #include <Jolt/Physics/PhysicsSystem.h>
 #include <Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>
@@ -536,6 +537,21 @@ FN(toJph)(const JPC_AABoxCast *in) { assert(in); return reinterpret_cast<const J
 FN(toJpc)(JPH::AABoxCast *in) { assert(in); return reinterpret_cast<JPC_AABoxCast *>(in); }
 FN(toJph)(JPC_AABoxCast *in) { assert(in); return reinterpret_cast<JPH::AABoxCast *>(in); }
 
+FN(toJpc)(const JPH::Shape::SupportingFace *in) { assert(in); return reinterpret_cast<const JPC_SupportingFace *>(in); }
+FN(toJph)(const JPC_SupportingFace *in) { assert(in); return reinterpret_cast<const JPH::Shape::SupportingFace *>(in); }
+FN(toJpc)(JPH::Shape::SupportingFace *in) { assert(in); return reinterpret_cast<JPC_SupportingFace *>(in); }
+FN(toJph)(JPC_SupportingFace *in) { assert(in); return reinterpret_cast<JPH::Shape::SupportingFace *>(in); }
+
+FN(toJpc)(const JPH::SubShapeIDCreator *in) { assert(in); return reinterpret_cast<const JPC_SubShapeIDCreator *>(in); }
+FN(toJph)(const JPC_SubShapeIDCreator *in) { assert(in); return reinterpret_cast<const JPH::SubShapeIDCreator *>(in); }
+FN(toJpc)(JPH::SubShapeIDCreator *in) { assert(in); return reinterpret_cast<JPC_SubShapeIDCreator *>(in); }
+FN(toJph)(JPC_SubShapeIDCreator *in) { assert(in); return reinterpret_cast<JPH::SubShapeIDCreator *>(in); }
+
+FN(toJpc)(const JPH::GJKClosestPoint *in) { assert(in); return reinterpret_cast<const JPC_GJKClosestPoint *>(in); }
+FN(toJph)(const JPC_GJKClosestPoint *in) { assert(in); return reinterpret_cast<const JPH::GJKClosestPoint *>(in); }
+FN(toJpc)(JPH::GJKClosestPoint *in) { assert(in); return reinterpret_cast<JPC_GJKClosestPoint *>(in); }
+FN(toJph)(JPC_GJKClosestPoint *in) { assert(in); return reinterpret_cast<JPH::GJKClosestPoint *>(in); }
+
 FN(toJpc)(const JPH::SubShapeIDPair *in) {
     assert(in); return reinterpret_cast<const JPC_SubShapeIDPair *>(in);
 }
@@ -734,6 +750,31 @@ JPC_API void
 JPC_BodyIDVector_Destroy(JPC_BodyIDVector *in_vector)
 {
     delete reinterpret_cast<JPH::BodyIDVector *>(in_vector);
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SupportingFace *
+JPC_SupportingFace_Create()
+{
+    auto out = new JPH::Shape::SupportingFace();
+    return toJpc(out);
+}
+
+JPC_API uint
+JPC_SupportingFace_Size(JPC_SupportingFace *in_face)
+{
+    return toJph(in_face)->size();
+}
+
+JPC_API float **
+JPC_SupportingFace_Data(JPC_SupportingFace *in_face)
+{
+    return reinterpret_cast<float **>(toJph(in_face)->data());
+}
+
+JPC_API void
+JPC_SupportingFace_Destroy(JPC_SupportingFace *in_face)
+{
+    delete toJph(in_face);
 }
 //--------------------------------------------------------------------------------------------------
 JPC_API void
@@ -2815,9 +2856,22 @@ JPC_Shape_GetSurfaceNormal(const JPC_Shape *in_shape,
     storeVec3(out_surface_normal, toJph(in_shape)->GetSurfaceNormal(subShapeIDJph(in_sub_shape_id), loadVec3(in_local_surface_position)));
 }
 //--------------------------------------------------------------------------------------------------
-
-// TODO GetSupportingFace
-
+JPC_API void
+JPC_Shape_GetSupportingFace(const JPC_Shape* in_shape,
+                            JPC_SubShapeID in_sub_shape_id,
+                            const float in_direction[3],
+                            const float in_scale[3],
+                            const float in_com_transform[16],
+                            JPC_SupportingFace *out_vertices)
+{
+    toJph(in_shape)->GetSupportingFace(
+            subShapeIDJph(in_sub_shape_id),
+            loadVec3(in_direction),
+            loadVec3(in_scale),
+            loadMat44(in_com_transform),
+            *toJph(out_vertices)
+    );
+}
 //--------------------------------------------------------------------------------------------------
 JPC_API uint64_t
 JPC_Shape_GetSubShapeUserData(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id)
@@ -2836,6 +2890,109 @@ JPC_Shape_GetSubShapeTransformedShape(const JPC_Shape *in_shape,
     auto result = toJph(in_shape)->GetSubShapeTransformedShape(subShapeIDJph(in_sub_shape_id), loadVec3(in_position_com), loadQuat(in_rotation), loadVec3(in_scale), outRemainder);
     return *toJpc(&result);
 }
+
+JPC_API void
+JPC_Shape_GetSubmergedVolume(const JPC_Shape *in_shape,
+                             const float in_com_transform[16],
+                             const float in_scale[3],
+                             const float in_surface_normal[3],
+                             float in_surface_constant,
+                             float *out_total_volume,
+                             float *out_submerged_volume,
+                             float *out_center_of_buoyancy[3])
+{
+    toJph(in_shape)->GetSubmergedVolume(
+            loadMat44(in_com_transform),
+            loadVec3(in_scale),
+            JPH::Plane(loadVec3(in_surface_normal), in_surface_constant),
+            *out_total_volume,
+            *out_submerged_volume,
+            reinterpret_cast<JPH::Vec3 &>(out_center_of_buoyancy)
+    );
+}
+
+JPC_API bool
+JPC_Shape_GetCastRay(const JPC_Shape *in_shape,
+                  const JPC_RayCast *in_ray,
+                  const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                  JPC_RayCastResult *io_hit)
+{
+    return toJph(in_shape)->CastRay(
+            *toJph(in_ray),
+            *toJph(in_sub_shape_id_creator),
+            *toJph(io_hit)
+    );
+}
+
+JPC_API void
+JPC_Shape_CollectCastRay(const JPC_Shape *in_shape,
+                         const JPC_RayCast *in_ray,
+                         const JPC_RayCastSettings *in_settings,
+                         const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                         void *io_collector,
+                         void *in_shape_filter)
+{
+    toJph(in_shape)->CastRay(
+            *toJph(in_ray),
+            *toJph(in_settings),
+            *toJph(in_sub_shape_id_creator),
+            *reinterpret_cast<JPH::CastRayCollector *>(io_collector),
+            *reinterpret_cast<JPH::ShapeFilter *>(in_shape_filter)
+    );
+}
+
+JPC_API void
+JPC_Shape_CollidePoint(const JPC_Shape *in_shape,
+                       const float in_point[3],
+                       const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                       void *io_collector,
+                       void *in_shape_filter)
+{
+    toJph(in_shape)->CollidePoint(
+            loadVec3(in_point),
+            *toJph(in_sub_shape_id_creator),
+            *reinterpret_cast<JPH::CollidePointCollector *>(io_collector),
+            *reinterpret_cast<JPH::ShapeFilter *>(in_shape_filter)
+    );
+}
+
+JPC_API void
+JPC_Shape_CollectTransformedShapes(const JPC_Shape *in_shape,
+                                   const JPC_AABox *in_box,
+                                   const float in_position_com[3],
+                                   const float in_rotation[4],
+                                   const float in_scale[3],
+                                   const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                                   void *io_collector,
+                                   void *in_shape_filter)
+{
+    toJph(in_shape)->CollectTransformedShapes(
+            *toJph(in_box),
+            loadVec3(in_position_com),
+            loadQuat(in_rotation),
+            loadVec3(in_scale),
+            *toJph(in_sub_shape_id_creator),
+            *reinterpret_cast<JPH::TransformedShapeCollector *>(io_collector),
+            *reinterpret_cast<JPH::ShapeFilter *>(in_shape_filter)
+    );
+}
+
+JPC_API void
+JPC_Shape_TransformShape(const JPC_Shape *in_shape,
+                         const float in_com_transform[16],
+                         void *io_collector)
+{
+    toJph(in_shape)->TransformShape(
+            loadMat44(in_com_transform),
+            *reinterpret_cast<JPH::TransformedShapeCollector *>(io_collector)
+    );
+}
+
+JPC_API JPC_ShapeResult
+JPC_Shape_ScaleShape(const JPC_Shape *in_shape, const float in_scale[3])
+{
+    return toJpc(toJph(in_shape)->ScaleShape(loadVec3(in_scale)));
+}
 //--------------------------------------------------------------------------------------------------
 JPC_API float
 JPC_Shape_GetVolume(const JPC_Shape *in_shape)
@@ -2853,6 +3010,19 @@ JPC_Shape_IsValidScale(const JPC_Shape *in_shape, const float in_scale[3])
 // JPC_ConvexShape (-> JPC_Shape)
 //
 //--------------------------------------------------------------------------------------------------
+JPC_API const JPC_ConvexShapeSupport *
+JPC_ConvexShape_GetSupportFunction(const JPC_ConvexShape *in_shape,
+                                   JPC_SupportMode in_mode,
+                                   JPC_SupportBuffer *in_buffer,
+                                   const float in_scale[3])
+{
+    return reinterpret_cast<const JPC_ConvexShapeSupport *>(toJph(in_shape)->GetSupportFunction(
+            static_cast<JPH::ConvexShape::ESupportMode>(in_mode),
+            *reinterpret_cast<JPH::ConvexShape::SupportBuffer *>(in_buffer),
+            loadVec3(in_scale)
+    ));
+}
+
 JPC_API void
 JPC_ConvexShape_SetMaterial(JPC_ConvexShape *in_shape, const JPC_PhysicsMaterial *in_material)
 {
@@ -4634,6 +4804,41 @@ JPC_MotorSettings_IsValid(const JPC_MotorSettings *in_settings)
 {
     return toJph(in_settings)->IsValid();
 }
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConvexShapeSupport
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConvexShapeSupport_Destroy(JPC_ConvexShapeSupport *in_support)
+{
+    delete reinterpret_cast<JPH::ConvexShape::Support *>(in_support);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_GJKClosestPoint
+//
+//--------------------------------------------------------------------------------------------------
+#define GJK_INTERSECTS(Name, JpcA, JpcB, JphA, JphB) \
+JPC_API bool \
+Name(JPC_GJKClosestPoint *in_gjk, \
+     const JpcA *in_a, \
+     const JpcB *in_b, \
+     float in_tolerance, \
+     float io_v[3]) \
+{ \
+    return toJph(in_gjk)->Intersects( \
+            *reinterpret_cast<const JphA *>(in_a), \
+            *reinterpret_cast<const JphB *>(in_b), \
+            in_tolerance, \
+            *reinterpret_cast<JPH::Vec3 *>(io_v) \
+    ); \
+}
+
+GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexConvex, JPC_ConvexShapeSupport, JPC_ConvexShape, JPH::ConvexShape::Support, JPH::ConvexShape::Support)
+GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexPoint, JPC_ConvexShapeSupport, JPC_PointConvexSupport, JPH::ConvexShape::Support, JPH::PointConvexSupport)
+
+#undef GJK_INTERSECTS
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
 JPC_API uint32_t

@@ -4,11 +4,15 @@ import jolt.DestroyableJoltNative;
 import jolt.geometry.AABox;
 import jolt.math.FMat44;
 import jolt.math.FVec3;
+import jolt.math.Quat;
 import jolt.physics.collision.PhysicsMaterial;
+import jolt.physics.collision.TransformedShape;
 
 import javax.annotation.Nullable;
 import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySession;
+import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -80,25 +84,34 @@ public sealed class Shape extends DestroyableJoltNative
     public void getSurfaceNormal(int subShapeId, FVec3 localSurfacePosition, FVec3 out) {
         JPC_Shape_GetSurfaceNormal(handle, subShapeId, localSurfacePosition.address(), out.address());
     }
-
-    // TODO getSupportingFace
+    public FVec3[] getSupportingFace(SegmentAllocator alloc, int subShapeId, FVec3 direction, FVec3 scale, FMat44 comTransform) {
+        var vertices = JPC_SupportingFace_Create();
+        JPC_Shape_GetSupportingFace(handle, subShapeId, direction.address(), scale.address(), comTransform.address(), vertices);
+        var size = JPC_SupportingFace_Size(vertices);
+        var dataPtr = JPC_SupportingFace_Data(vertices);
+        var result = new FVec3[size];
+        for (int i = 0; i < size; i++) {
+            var vecPtr = dataPtr.getAtIndex(C_POINTER, i);
+            var vec = FVec3.of(alloc);
+            vec.read(vecPtr);
+            result[i] = vec;
+        }
+        JPC_SupportingFace_Destroy(vertices);
+        return result;
+    }
 
     public long getSubShapeUserData(int subShapeId) {
         return JPC_Shape_GetSubShapeUserData(handle, subShapeId);
     }
 
-    // TODO
-//    public TransformedShape getSubShapeTransformedShape(MemorySession session, int subShapeId, FVec3 positionCOM, Quat rotation, FVec3 scale) {
-//
-//        try (var session = MemorySession.openConfined()) {
-//            return TransformedShape.at(JPC_Shape_GetSubShapeTransformedShape(session, address,
-//                    subShapeId,
-//                    positionCOM.allocate(session),
-//                    rotation.allocate(session),
-//                    scale.allocate(session)
-//            ));
-//        }
-//    }
+    public TransformedShape getSubShapeTransformedShape(SegmentAllocator alloc, int subShapeId, FVec3 positionCOM, Quat rotation, FVec3 scale) {
+        return TransformedShape.at(JPC_Shape_GetSubShapeTransformedShape(alloc, handle,
+                subShapeId,
+                positionCOM.address(),
+                rotation.address(),
+                scale.address()
+        ));
+    }
 
     // TODO getSubmergedVolume
     // TODO castRay

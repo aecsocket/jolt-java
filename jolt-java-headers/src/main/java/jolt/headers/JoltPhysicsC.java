@@ -1834,6 +1834,12 @@ public class JoltPhysicsC  {
     public static int JPC_MOTOR_STATE_POSITION() {
         return (int)2L;
     }
+    public static int JPC_SUPPORT_MODE_EXCLUDE_CONVEX_RADIUS() {
+        return (int)0L;
+    }
+    public static int JPC_SUPPORT_MODE_INCLUDE_CONVEX_RADIUS() {
+        return (int)1L;
+    }
     public static OfAddress JPC_BodyInterfaceAddState = Constants$root.C_POINTER$LAYOUT;
     public static MethodHandle JPC_BodyIDVector_Destroy$MH() {
         return RuntimeHelper.requireNonNull(constants$19.JPC_BodyIDVector_Destroy$MH,"JPC_BodyIDVector_Destroy");
@@ -1842,6 +1848,50 @@ public class JoltPhysicsC  {
         var mh$ = JPC_BodyIDVector_Destroy$MH();
         try {
             mh$.invokeExact(in_vector);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SupportingFace_Create$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.JPC_SupportingFace_Create$MH,"JPC_SupportingFace_Create");
+    }
+    public static MemoryAddress JPC_SupportingFace_Create (Object... x0) {
+        var mh$ = JPC_SupportingFace_Create$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(x0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SupportingFace_Size$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.JPC_SupportingFace_Size$MH,"JPC_SupportingFace_Size");
+    }
+    public static int JPC_SupportingFace_Size ( Addressable in_face) {
+        var mh$ = JPC_SupportingFace_Size$MH();
+        try {
+            return (int)mh$.invokeExact(in_face);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SupportingFace_Data$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.JPC_SupportingFace_Data$MH,"JPC_SupportingFace_Data");
+    }
+    public static MemoryAddress JPC_SupportingFace_Data ( Addressable in_face) {
+        var mh$ = JPC_SupportingFace_Data$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_face);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SupportingFace_Destroy$MH() {
+        return RuntimeHelper.requireNonNull(constants$20.JPC_SupportingFace_Destroy$MH,"JPC_SupportingFace_Destroy");
+    }
+    public static void JPC_SupportingFace_Destroy ( Addressable in_face) {
+        var mh$ = JPC_SupportingFace_Destroy$MH();
+        try {
+            mh$.invokeExact(in_face);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
@@ -1869,7 +1919,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CreateFactory$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.JPC_CreateFactory$MH,"JPC_CreateFactory");
+        return RuntimeHelper.requireNonNull(constants$21.JPC_CreateFactory$MH,"JPC_CreateFactory");
     }
     public static void JPC_CreateFactory () {
         var mh$ = JPC_CreateFactory$MH();
@@ -1880,7 +1930,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_DestroyFactory$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.JPC_DestroyFactory$MH,"JPC_DestroyFactory");
+        return RuntimeHelper.requireNonNull(constants$21.JPC_DestroyFactory$MH,"JPC_DestroyFactory");
     }
     public static void JPC_DestroyFactory () {
         var mh$ = JPC_DestroyFactory$MH();
@@ -1891,7 +1941,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RegisterTypes$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.JPC_RegisterTypes$MH,"JPC_RegisterTypes");
+        return RuntimeHelper.requireNonNull(constants$21.JPC_RegisterTypes$MH,"JPC_RegisterTypes");
     }
     public static void JPC_RegisterTypes () {
         var mh$ = JPC_RegisterTypes$MH();
@@ -1902,7 +1952,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyCreationSettings_SetDefault$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.JPC_BodyCreationSettings_SetDefault$MH,"JPC_BodyCreationSettings_SetDefault");
+        return RuntimeHelper.requireNonNull(constants$21.JPC_BodyCreationSettings_SetDefault$MH,"JPC_BodyCreationSettings_SetDefault");
     }
     public static void JPC_BodyCreationSettings_SetDefault ( Addressable out_settings) {
         var mh$ = JPC_BodyCreationSettings_SetDefault$MH();
@@ -1935,7 +1985,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyCreationSettings_SetShapeSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.JPC_BodyCreationSettings_SetShapeSettings$MH,"JPC_BodyCreationSettings_SetShapeSettings");
+        return RuntimeHelper.requireNonNull(constants$22.JPC_BodyCreationSettings_SetShapeSettings$MH,"JPC_BodyCreationSettings_SetShapeSettings");
     }
     public static void JPC_BodyCreationSettings_SetShapeSettings ( Addressable in_settings,  Addressable in_shape) {
         var mh$ = JPC_BodyCreationSettings_SetShapeSettings$MH();
@@ -1946,7 +1996,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyCreationSettings_ConvertShapeSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.JPC_BodyCreationSettings_ConvertShapeSettings$MH,"JPC_BodyCreationSettings_ConvertShapeSettings");
+        return RuntimeHelper.requireNonNull(constants$22.JPC_BodyCreationSettings_ConvertShapeSettings$MH,"JPC_BodyCreationSettings_ConvertShapeSettings");
     }
     public static MemorySegment JPC_BodyCreationSettings_ConvertShapeSettings ( SegmentAllocator allocator,  Addressable in_settings) {
         var mh$ = JPC_BodyCreationSettings_ConvertShapeSettings$MH();
@@ -1957,7 +2007,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyCreationSettings_GetShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.JPC_BodyCreationSettings_GetShape$MH,"JPC_BodyCreationSettings_GetShape");
+        return RuntimeHelper.requireNonNull(constants$22.JPC_BodyCreationSettings_GetShape$MH,"JPC_BodyCreationSettings_GetShape");
     }
     public static MemoryAddress JPC_BodyCreationSettings_GetShape ( Addressable in_settings) {
         var mh$ = JPC_BodyCreationSettings_GetShape$MH();
@@ -1968,7 +2018,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyCreationSettings_SetShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.JPC_BodyCreationSettings_SetShape$MH,"JPC_BodyCreationSettings_SetShape");
+        return RuntimeHelper.requireNonNull(constants$22.JPC_BodyCreationSettings_SetShape$MH,"JPC_BodyCreationSettings_SetShape");
     }
     public static void JPC_BodyCreationSettings_SetShape ( Addressable in_settings,  Addressable in_shape) {
         var mh$ = JPC_BodyCreationSettings_SetShape$MH();
@@ -2001,7 +2051,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CollisionGroup_CanCollide$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.JPC_CollisionGroup_CanCollide$MH,"JPC_CollisionGroup_CanCollide");
+        return RuntimeHelper.requireNonNull(constants$23.JPC_CollisionGroup_CanCollide$MH,"JPC_CollisionGroup_CanCollide");
     }
     public static boolean JPC_CollisionGroup_CanCollide ( Addressable in_group,  Addressable in_other) {
         var mh$ = JPC_CollisionGroup_CanCollide$MH();
@@ -2012,7 +2062,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSettings_SetDefault$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.JPC_PhysicsSettings_SetDefault$MH,"JPC_PhysicsSettings_SetDefault");
+        return RuntimeHelper.requireNonNull(constants$23.JPC_PhysicsSettings_SetDefault$MH,"JPC_PhysicsSettings_SetDefault");
     }
     public static void JPC_PhysicsSettings_SetDefault ( Addressable out_settings) {
         var mh$ = JPC_PhysicsSettings_SetDefault$MH();
@@ -2023,7 +2073,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BroadPhaseCastResult_SetDefault$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.JPC_BroadPhaseCastResult_SetDefault$MH,"JPC_BroadPhaseCastResult_SetDefault");
+        return RuntimeHelper.requireNonNull(constants$23.JPC_BroadPhaseCastResult_SetDefault$MH,"JPC_BroadPhaseCastResult_SetDefault");
     }
     public static void JPC_BroadPhaseCastResult_SetDefault ( Addressable out_result) {
         var mh$ = JPC_BroadPhaseCastResult_SetDefault$MH();
@@ -2034,7 +2084,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RayCastResult_SetDefault$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.JPC_RayCastResult_SetDefault$MH,"JPC_RayCastResult_SetDefault");
+        return RuntimeHelper.requireNonNull(constants$23.JPC_RayCastResult_SetDefault$MH,"JPC_RayCastResult_SetDefault");
     }
     public static void JPC_RayCastResult_SetDefault ( Addressable out_result) {
         var mh$ = JPC_RayCastResult_SetDefault$MH();
@@ -2067,7 +2117,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RayCastSettings_SetDefault$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.JPC_RayCastSettings_SetDefault$MH,"JPC_RayCastSettings_SetDefault");
+        return RuntimeHelper.requireNonNull(constants$24.JPC_RayCastSettings_SetDefault$MH,"JPC_RayCastSettings_SetDefault");
     }
     public static void JPC_RayCastSettings_SetDefault ( Addressable out_settings) {
         var mh$ = JPC_RayCastSettings_SetDefault$MH();
@@ -2078,7 +2128,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CollideShapeSettings_SetDefault$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.JPC_CollideShapeSettings_SetDefault$MH,"JPC_CollideShapeSettings_SetDefault");
+        return RuntimeHelper.requireNonNull(constants$24.JPC_CollideShapeSettings_SetDefault$MH,"JPC_CollideShapeSettings_SetDefault");
     }
     public static void JPC_CollideShapeSettings_SetDefault ( Addressable out_settings) {
         var mh$ = JPC_CollideShapeSettings_SetDefault$MH();
@@ -2089,7 +2139,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ShapeCastSettings_SetDefault$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.JPC_ShapeCastSettings_SetDefault$MH,"JPC_ShapeCastSettings_SetDefault");
+        return RuntimeHelper.requireNonNull(constants$24.JPC_ShapeCastSettings_SetDefault$MH,"JPC_ShapeCastSettings_SetDefault");
     }
     public static void JPC_ShapeCastSettings_SetDefault ( Addressable out_settings) {
         var mh$ = JPC_ShapeCastSettings_SetDefault$MH();
@@ -2100,7 +2150,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetMotionQuality$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.JPC_MotionProperties_GetMotionQuality$MH,"JPC_MotionProperties_GetMotionQuality");
+        return RuntimeHelper.requireNonNull(constants$24.JPC_MotionProperties_GetMotionQuality$MH,"JPC_MotionProperties_GetMotionQuality");
     }
     public static byte JPC_MotionProperties_GetMotionQuality ( Addressable in_properties) {
         var mh$ = JPC_MotionProperties_GetMotionQuality$MH();
@@ -2133,7 +2183,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetLinearVelocityClamped$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.JPC_MotionProperties_SetLinearVelocityClamped$MH,"JPC_MotionProperties_SetLinearVelocityClamped");
+        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_SetLinearVelocityClamped$MH,"JPC_MotionProperties_SetLinearVelocityClamped");
     }
     public static void JPC_MotionProperties_SetLinearVelocityClamped ( Addressable in_properties,  Addressable in_linear_velocity) {
         var mh$ = JPC_MotionProperties_SetLinearVelocityClamped$MH();
@@ -2144,7 +2194,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.JPC_MotionProperties_GetAngularVelocity$MH,"JPC_MotionProperties_GetAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_GetAngularVelocity$MH,"JPC_MotionProperties_GetAngularVelocity");
     }
     public static void JPC_MotionProperties_GetAngularVelocity ( Addressable in_properties,  Addressable out_angular_velocity) {
         var mh$ = JPC_MotionProperties_GetAngularVelocity$MH();
@@ -2155,7 +2205,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.JPC_MotionProperties_SetAngularVelocity$MH,"JPC_MotionProperties_SetAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_SetAngularVelocity$MH,"JPC_MotionProperties_SetAngularVelocity");
     }
     public static void JPC_MotionProperties_SetAngularVelocity ( Addressable in_properties,  Addressable in_angular_velocity) {
         var mh$ = JPC_MotionProperties_SetAngularVelocity$MH();
@@ -2166,7 +2216,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetAngularVelocityClamped$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.JPC_MotionProperties_SetAngularVelocityClamped$MH,"JPC_MotionProperties_SetAngularVelocityClamped");
+        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_SetAngularVelocityClamped$MH,"JPC_MotionProperties_SetAngularVelocityClamped");
     }
     public static void JPC_MotionProperties_SetAngularVelocityClamped ( Addressable in_properties,  Addressable in_angular_velocity) {
         var mh$ = JPC_MotionProperties_SetAngularVelocityClamped$MH();
@@ -2199,7 +2249,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_ClampAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_ClampAngularVelocity$MH,"JPC_MotionProperties_ClampAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_ClampAngularVelocity$MH,"JPC_MotionProperties_ClampAngularVelocity");
     }
     public static void JPC_MotionProperties_ClampAngularVelocity ( Addressable in_properties) {
         var mh$ = JPC_MotionProperties_ClampAngularVelocity$MH();
@@ -2210,7 +2260,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetLinearDamping$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_GetLinearDamping$MH,"JPC_MotionProperties_GetLinearDamping");
+        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_GetLinearDamping$MH,"JPC_MotionProperties_GetLinearDamping");
     }
     public static float JPC_MotionProperties_GetLinearDamping ( Addressable in_properties) {
         var mh$ = JPC_MotionProperties_GetLinearDamping$MH();
@@ -2221,7 +2271,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetLinearDamping$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_SetLinearDamping$MH,"JPC_MotionProperties_SetLinearDamping");
+        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_SetLinearDamping$MH,"JPC_MotionProperties_SetLinearDamping");
     }
     public static void JPC_MotionProperties_SetLinearDamping ( Addressable in_properties,  float in_linear_damping) {
         var mh$ = JPC_MotionProperties_SetLinearDamping$MH();
@@ -2232,7 +2282,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetAngularDamping$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.JPC_MotionProperties_GetAngularDamping$MH,"JPC_MotionProperties_GetAngularDamping");
+        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_GetAngularDamping$MH,"JPC_MotionProperties_GetAngularDamping");
     }
     public static float JPC_MotionProperties_GetAngularDamping ( Addressable in_properties) {
         var mh$ = JPC_MotionProperties_GetAngularDamping$MH();
@@ -2265,7 +2315,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetGravityFactor$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_SetGravityFactor$MH,"JPC_MotionProperties_SetGravityFactor");
+        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_SetGravityFactor$MH,"JPC_MotionProperties_SetGravityFactor");
     }
     public static void JPC_MotionProperties_SetGravityFactor ( Addressable in_properties,  float in_gravity_factor) {
         var mh$ = JPC_MotionProperties_SetGravityFactor$MH();
@@ -2276,7 +2326,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetMassProperties$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_SetMassProperties$MH,"JPC_MotionProperties_SetMassProperties");
+        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_SetMassProperties$MH,"JPC_MotionProperties_SetMassProperties");
     }
     public static void JPC_MotionProperties_SetMassProperties ( Addressable in_properties,  Addressable in_mass_properties) {
         var mh$ = JPC_MotionProperties_SetMassProperties$MH();
@@ -2287,7 +2337,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetInverseMass$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_GetInverseMass$MH,"JPC_MotionProperties_GetInverseMass");
+        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_GetInverseMass$MH,"JPC_MotionProperties_GetInverseMass");
     }
     public static float JPC_MotionProperties_GetInverseMass ( Addressable in_properties) {
         var mh$ = JPC_MotionProperties_GetInverseMass$MH();
@@ -2298,7 +2348,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetInverseMass$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.JPC_MotionProperties_SetInverseMass$MH,"JPC_MotionProperties_SetInverseMass");
+        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_SetInverseMass$MH,"JPC_MotionProperties_SetInverseMass");
     }
     public static void JPC_MotionProperties_SetInverseMass ( Addressable in_properties,  float in_inv_mass) {
         var mh$ = JPC_MotionProperties_SetInverseMass$MH();
@@ -2331,7 +2381,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetInverseInertia$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_SetInverseInertia$MH,"JPC_MotionProperties_SetInverseInertia");
+        return RuntimeHelper.requireNonNull(constants$28.JPC_MotionProperties_SetInverseInertia$MH,"JPC_MotionProperties_SetInverseInertia");
     }
     public static void JPC_MotionProperties_SetInverseInertia ( Addressable in_properties,  Addressable in_diagonal,  Addressable in_rotation) {
         var mh$ = JPC_MotionProperties_SetInverseInertia$MH();
@@ -2342,7 +2392,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetLocalSpaceInverseInertia$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_GetLocalSpaceInverseInertia$MH,"JPC_MotionProperties_GetLocalSpaceInverseInertia");
+        return RuntimeHelper.requireNonNull(constants$28.JPC_MotionProperties_GetLocalSpaceInverseInertia$MH,"JPC_MotionProperties_GetLocalSpaceInverseInertia");
     }
     public static void JPC_MotionProperties_GetLocalSpaceInverseInertia ( Addressable in_properties,  Addressable out_matrix) {
         var mh$ = JPC_MotionProperties_GetLocalSpaceInverseInertia$MH();
@@ -2353,7 +2403,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetInverseInertiaForRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_GetInverseInertiaForRotation$MH,"JPC_MotionProperties_GetInverseInertiaForRotation");
+        return RuntimeHelper.requireNonNull(constants$28.JPC_MotionProperties_GetInverseInertiaForRotation$MH,"JPC_MotionProperties_GetInverseInertiaForRotation");
     }
     public static void JPC_MotionProperties_GetInverseInertiaForRotation ( Addressable in_properties,  Addressable in_rotation_matrix,  Addressable out_matrix) {
         var mh$ = JPC_MotionProperties_GetInverseInertiaForRotation$MH();
@@ -2364,7 +2414,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$MH,"JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector");
+        return RuntimeHelper.requireNonNull(constants$28.JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$MH,"JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector");
     }
     public static void JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector ( Addressable in_properties,  Addressable in_body_rotation,  Addressable in_vector,  Addressable out_vector) {
         var mh$ = JPC_MotionProperties_MultiplyWorldSpaceInverseInertiaByVector$MH();
@@ -2397,7 +2447,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetMaxLinearVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.JPC_MotionProperties_SetMaxLinearVelocity$MH,"JPC_MotionProperties_SetMaxLinearVelocity");
+        return RuntimeHelper.requireNonNull(constants$29.JPC_MotionProperties_SetMaxLinearVelocity$MH,"JPC_MotionProperties_SetMaxLinearVelocity");
     }
     public static void JPC_MotionProperties_SetMaxLinearVelocity ( Addressable in_properties,  float in_max_linear_velocity) {
         var mh$ = JPC_MotionProperties_SetMaxLinearVelocity$MH();
@@ -2408,7 +2458,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_GetMaxAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.JPC_MotionProperties_GetMaxAngularVelocity$MH,"JPC_MotionProperties_GetMaxAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$29.JPC_MotionProperties_GetMaxAngularVelocity$MH,"JPC_MotionProperties_GetMaxAngularVelocity");
     }
     public static float JPC_MotionProperties_GetMaxAngularVelocity ( Addressable in_properties) {
         var mh$ = JPC_MotionProperties_GetMaxAngularVelocity$MH();
@@ -2419,7 +2469,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MotionProperties_SetMaxAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.JPC_MotionProperties_SetMaxAngularVelocity$MH,"JPC_MotionProperties_SetMaxAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$29.JPC_MotionProperties_SetMaxAngularVelocity$MH,"JPC_MotionProperties_SetMaxAngularVelocity");
     }
     public static void JPC_MotionProperties_SetMaxAngularVelocity ( Addressable in_properties,  float in_max_angular_velocity) {
         var mh$ = JPC_MotionProperties_SetMaxAngularVelocity$MH();
@@ -2430,7 +2480,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TempAllocator_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.JPC_TempAllocator_Create$MH,"JPC_TempAllocator_Create");
+        return RuntimeHelper.requireNonNull(constants$29.JPC_TempAllocator_Create$MH,"JPC_TempAllocator_Create");
     }
     public static MemoryAddress JPC_TempAllocator_Create ( int in_size) {
         var mh$ = JPC_TempAllocator_Create$MH();
@@ -2463,7 +2513,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_JobSystem_Destroy$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.JPC_JobSystem_Destroy$MH,"JPC_JobSystem_Destroy");
+        return RuntimeHelper.requireNonNull(constants$30.JPC_JobSystem_Destroy$MH,"JPC_JobSystem_Destroy");
     }
     public static void JPC_JobSystem_Destroy ( Addressable in_job_system) {
         var mh$ = JPC_JobSystem_Destroy$MH();
@@ -2474,7 +2524,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.JPC_PhysicsSystem_Create$MH,"JPC_PhysicsSystem_Create");
+        return RuntimeHelper.requireNonNull(constants$30.JPC_PhysicsSystem_Create$MH,"JPC_PhysicsSystem_Create");
     }
     public static MemoryAddress JPC_PhysicsSystem_Create ( int in_max_bodies,  int in_num_body_mutexes,  int in_max_body_pairs,  int in_max_contact_constraints,  Addressable in_broad_phase_layer_interface,  Addressable in_object_vs_broad_phase_layer_filter,  Addressable in_object_layer_pair_filter) {
         var mh$ = JPC_PhysicsSystem_Create$MH();
@@ -2485,7 +2535,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_Destroy$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.JPC_PhysicsSystem_Destroy$MH,"JPC_PhysicsSystem_Destroy");
+        return RuntimeHelper.requireNonNull(constants$30.JPC_PhysicsSystem_Destroy$MH,"JPC_PhysicsSystem_Destroy");
     }
     public static void JPC_PhysicsSystem_Destroy ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_Destroy$MH();
@@ -2496,7 +2546,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_SetBodyActivationListener$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.JPC_PhysicsSystem_SetBodyActivationListener$MH,"JPC_PhysicsSystem_SetBodyActivationListener");
+        return RuntimeHelper.requireNonNull(constants$30.JPC_PhysicsSystem_SetBodyActivationListener$MH,"JPC_PhysicsSystem_SetBodyActivationListener");
     }
     public static void JPC_PhysicsSystem_SetBodyActivationListener ( Addressable in_physics_system,  Addressable in_listener) {
         var mh$ = JPC_PhysicsSystem_SetBodyActivationListener$MH();
@@ -2529,7 +2579,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetContactListener$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.JPC_PhysicsSystem_GetContactListener$MH,"JPC_PhysicsSystem_GetContactListener");
+        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_GetContactListener$MH,"JPC_PhysicsSystem_GetContactListener");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetContactListener ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetContactListener$MH();
@@ -2540,7 +2590,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_SetPhysicsSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.JPC_PhysicsSystem_SetPhysicsSettings$MH,"JPC_PhysicsSystem_SetPhysicsSettings");
+        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_SetPhysicsSettings$MH,"JPC_PhysicsSystem_SetPhysicsSettings");
     }
     public static void JPC_PhysicsSystem_SetPhysicsSettings ( Addressable in_physics_system,  Addressable in_settings) {
         var mh$ = JPC_PhysicsSystem_SetPhysicsSettings$MH();
@@ -2551,7 +2601,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetPhysicsSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.JPC_PhysicsSystem_GetPhysicsSettings$MH,"JPC_PhysicsSystem_GetPhysicsSettings");
+        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_GetPhysicsSettings$MH,"JPC_PhysicsSystem_GetPhysicsSettings");
     }
     public static void JPC_PhysicsSystem_GetPhysicsSettings ( Addressable in_physics_system,  Addressable out_settings) {
         var mh$ = JPC_PhysicsSystem_GetPhysicsSettings$MH();
@@ -2562,7 +2612,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetBroadPhaseQuery$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.JPC_PhysicsSystem_GetBroadPhaseQuery$MH,"JPC_PhysicsSystem_GetBroadPhaseQuery");
+        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_GetBroadPhaseQuery$MH,"JPC_PhysicsSystem_GetBroadPhaseQuery");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetBroadPhaseQuery ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBroadPhaseQuery$MH();
@@ -2595,7 +2645,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_OptimizeBroadPhase$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_OptimizeBroadPhase$MH,"JPC_PhysicsSystem_OptimizeBroadPhase");
+        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_OptimizeBroadPhase$MH,"JPC_PhysicsSystem_OptimizeBroadPhase");
     }
     public static void JPC_PhysicsSystem_OptimizeBroadPhase ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_OptimizeBroadPhase$MH();
@@ -2606,7 +2656,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_AddStepListener$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_AddStepListener$MH,"JPC_PhysicsSystem_AddStepListener");
+        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_AddStepListener$MH,"JPC_PhysicsSystem_AddStepListener");
     }
     public static void JPC_PhysicsSystem_AddStepListener ( Addressable in_physics_system,  Addressable in_listener) {
         var mh$ = JPC_PhysicsSystem_AddStepListener$MH();
@@ -2617,7 +2667,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_RemoveStepListener$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_RemoveStepListener$MH,"JPC_PhysicsSystem_RemoveStepListener");
+        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_RemoveStepListener$MH,"JPC_PhysicsSystem_RemoveStepListener");
     }
     public static void JPC_PhysicsSystem_RemoveStepListener ( Addressable in_physics_system,  Addressable in_listener) {
         var mh$ = JPC_PhysicsSystem_RemoveStepListener$MH();
@@ -2628,7 +2678,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_Update$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.JPC_PhysicsSystem_Update$MH,"JPC_PhysicsSystem_Update");
+        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_Update$MH,"JPC_PhysicsSystem_Update");
     }
     public static void JPC_PhysicsSystem_Update ( Addressable in_physics_system,  float in_delta_time,  int in_collision_steps,  int in_integration_sub_steps,  Addressable in_temp_allocator,  Addressable in_job_system) {
         var mh$ = JPC_PhysicsSystem_Update$MH();
@@ -2661,7 +2711,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetBodyInterfaceNoLock$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_GetBodyInterfaceNoLock$MH,"JPC_PhysicsSystem_GetBodyInterfaceNoLock");
+        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetBodyInterfaceNoLock$MH,"JPC_PhysicsSystem_GetBodyInterfaceNoLock");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetBodyInterfaceNoLock ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyInterfaceNoLock$MH();
@@ -2672,7 +2722,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetBodyInterface$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_GetBodyInterface$MH,"JPC_PhysicsSystem_GetBodyInterface");
+        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetBodyInterface$MH,"JPC_PhysicsSystem_GetBodyInterface");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetBodyInterface ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyInterface$MH();
@@ -2683,7 +2733,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetBodyLockInterface$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_GetBodyLockInterface$MH,"JPC_PhysicsSystem_GetBodyLockInterface");
+        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetBodyLockInterface$MH,"JPC_PhysicsSystem_GetBodyLockInterface");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetBodyLockInterface ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyLockInterface$MH();
@@ -2694,7 +2744,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH,"JPC_PhysicsSystem_GetBodyLockInterfaceNoLock");
+        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH,"JPC_PhysicsSystem_GetBodyLockInterfaceNoLock");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetBodyLockInterfaceNoLock ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH();
@@ -2727,7 +2777,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetMaxBodies$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetMaxBodies$MH,"JPC_PhysicsSystem_GetMaxBodies");
+        return RuntimeHelper.requireNonNull(constants$34.JPC_PhysicsSystem_GetMaxBodies$MH,"JPC_PhysicsSystem_GetMaxBodies");
     }
     public static int JPC_PhysicsSystem_GetMaxBodies ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetMaxBodies$MH();
@@ -2738,7 +2788,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetBodyIDs$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetBodyIDs$MH,"JPC_PhysicsSystem_GetBodyIDs");
+        return RuntimeHelper.requireNonNull(constants$34.JPC_PhysicsSystem_GetBodyIDs$MH,"JPC_PhysicsSystem_GetBodyIDs");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetBodyIDs ( Addressable in_physics_system,  Addressable out_num_body_ids,  Addressable out_body_ids) {
         var mh$ = JPC_PhysicsSystem_GetBodyIDs$MH();
@@ -2749,7 +2799,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetActiveBodyIDs$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetActiveBodyIDs$MH,"JPC_PhysicsSystem_GetActiveBodyIDs");
+        return RuntimeHelper.requireNonNull(constants$34.JPC_PhysicsSystem_GetActiveBodyIDs$MH,"JPC_PhysicsSystem_GetActiveBodyIDs");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetActiveBodyIDs ( Addressable in_physics_system,  Addressable out_num_body_ids,  Addressable out_body_ids) {
         var mh$ = JPC_PhysicsSystem_GetActiveBodyIDs$MH();
@@ -2760,7 +2810,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_PhysicsSystem_GetBodiesUnsafe$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.JPC_PhysicsSystem_GetBodiesUnsafe$MH,"JPC_PhysicsSystem_GetBodiesUnsafe");
+        return RuntimeHelper.requireNonNull(constants$34.JPC_PhysicsSystem_GetBodiesUnsafe$MH,"JPC_PhysicsSystem_GetBodiesUnsafe");
     }
     public static MemoryAddress JPC_PhysicsSystem_GetBodiesUnsafe ( Addressable in_physics_system) {
         var mh$ = JPC_PhysicsSystem_GetBodiesUnsafe$MH();
@@ -2793,7 +2843,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyLockInterface_UnlockRead$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.JPC_BodyLockInterface_UnlockRead$MH,"JPC_BodyLockInterface_UnlockRead");
+        return RuntimeHelper.requireNonNull(constants$35.JPC_BodyLockInterface_UnlockRead$MH,"JPC_BodyLockInterface_UnlockRead");
     }
     public static void JPC_BodyLockInterface_UnlockRead ( Addressable in_lock_interface,  Addressable io_lock) {
         var mh$ = JPC_BodyLockInterface_UnlockRead$MH();
@@ -2804,7 +2854,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyLockInterface_LockWrite$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.JPC_BodyLockInterface_LockWrite$MH,"JPC_BodyLockInterface_LockWrite");
+        return RuntimeHelper.requireNonNull(constants$35.JPC_BodyLockInterface_LockWrite$MH,"JPC_BodyLockInterface_LockWrite");
     }
     public static void JPC_BodyLockInterface_LockWrite ( Addressable in_lock_interface,  int in_body_id,  Addressable out_lock) {
         var mh$ = JPC_BodyLockInterface_LockWrite$MH();
@@ -2815,7 +2865,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyLockInterface_UnlockWrite$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.JPC_BodyLockInterface_UnlockWrite$MH,"JPC_BodyLockInterface_UnlockWrite");
+        return RuntimeHelper.requireNonNull(constants$35.JPC_BodyLockInterface_UnlockWrite$MH,"JPC_BodyLockInterface_UnlockWrite");
     }
     public static void JPC_BodyLockInterface_UnlockWrite ( Addressable in_lock_interface,  Addressable io_lock) {
         var mh$ = JPC_BodyLockInterface_UnlockWrite$MH();
@@ -2826,7 +2876,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CollisionCollector_Reset$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.JPC_CollisionCollector_Reset$MH,"JPC_CollisionCollector_Reset");
+        return RuntimeHelper.requireNonNull(constants$35.JPC_CollisionCollector_Reset$MH,"JPC_CollisionCollector_Reset");
     }
     public static void JPC_CollisionCollector_Reset ( Addressable in_collector) {
         var mh$ = JPC_CollisionCollector_Reset$MH();
@@ -2859,7 +2909,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RayCastBodyCollector_ForceEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.JPC_RayCastBodyCollector_ForceEarlyOut$MH,"JPC_RayCastBodyCollector_ForceEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$36.JPC_RayCastBodyCollector_ForceEarlyOut$MH,"JPC_RayCastBodyCollector_ForceEarlyOut");
     }
     public static void JPC_RayCastBodyCollector_ForceEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_RayCastBodyCollector_ForceEarlyOut$MH();
@@ -2870,7 +2920,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RayCastBodyCollector_ShouldEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.JPC_RayCastBodyCollector_ShouldEarlyOut$MH,"JPC_RayCastBodyCollector_ShouldEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$36.JPC_RayCastBodyCollector_ShouldEarlyOut$MH,"JPC_RayCastBodyCollector_ShouldEarlyOut");
     }
     public static boolean JPC_RayCastBodyCollector_ShouldEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_RayCastBodyCollector_ShouldEarlyOut$MH();
@@ -2881,7 +2931,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CollideShapeBodyCollector_ForceEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.JPC_CollideShapeBodyCollector_ForceEarlyOut$MH,"JPC_CollideShapeBodyCollector_ForceEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$36.JPC_CollideShapeBodyCollector_ForceEarlyOut$MH,"JPC_CollideShapeBodyCollector_ForceEarlyOut");
     }
     public static void JPC_CollideShapeBodyCollector_ForceEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CollideShapeBodyCollector_ForceEarlyOut$MH();
@@ -2892,7 +2942,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CollideShapeBodyCollector_ShouldEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.JPC_CollideShapeBodyCollector_ShouldEarlyOut$MH,"JPC_CollideShapeBodyCollector_ShouldEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$36.JPC_CollideShapeBodyCollector_ShouldEarlyOut$MH,"JPC_CollideShapeBodyCollector_ShouldEarlyOut");
     }
     public static boolean JPC_CollideShapeBodyCollector_ShouldEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CollideShapeBodyCollector_ShouldEarlyOut$MH();
@@ -2925,7 +2975,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CastRayCollector_ForceEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.JPC_CastRayCollector_ForceEarlyOut$MH,"JPC_CastRayCollector_ForceEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$37.JPC_CastRayCollector_ForceEarlyOut$MH,"JPC_CastRayCollector_ForceEarlyOut");
     }
     public static void JPC_CastRayCollector_ForceEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CastRayCollector_ForceEarlyOut$MH();
@@ -2936,7 +2986,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CastRayCollector_ShouldEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.JPC_CastRayCollector_ShouldEarlyOut$MH,"JPC_CastRayCollector_ShouldEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$37.JPC_CastRayCollector_ShouldEarlyOut$MH,"JPC_CastRayCollector_ShouldEarlyOut");
     }
     public static boolean JPC_CastRayCollector_ShouldEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CastRayCollector_ShouldEarlyOut$MH();
@@ -2947,7 +2997,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CastShapeCollector_ForceEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.JPC_CastShapeCollector_ForceEarlyOut$MH,"JPC_CastShapeCollector_ForceEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$37.JPC_CastShapeCollector_ForceEarlyOut$MH,"JPC_CastShapeCollector_ForceEarlyOut");
     }
     public static void JPC_CastShapeCollector_ForceEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CastShapeCollector_ForceEarlyOut$MH();
@@ -2958,7 +3008,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CastShapeCollector_ShouldEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.JPC_CastShapeCollector_ShouldEarlyOut$MH,"JPC_CastShapeCollector_ShouldEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$37.JPC_CastShapeCollector_ShouldEarlyOut$MH,"JPC_CastShapeCollector_ShouldEarlyOut");
     }
     public static boolean JPC_CastShapeCollector_ShouldEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CastShapeCollector_ShouldEarlyOut$MH();
@@ -2991,7 +3041,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CollideShapeCollector_ForceEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.JPC_CollideShapeCollector_ForceEarlyOut$MH,"JPC_CollideShapeCollector_ForceEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$38.JPC_CollideShapeCollector_ForceEarlyOut$MH,"JPC_CollideShapeCollector_ForceEarlyOut");
     }
     public static void JPC_CollideShapeCollector_ForceEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CollideShapeCollector_ForceEarlyOut$MH();
@@ -3002,7 +3052,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CollideShapeCollector_ShouldEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.JPC_CollideShapeCollector_ShouldEarlyOut$MH,"JPC_CollideShapeCollector_ShouldEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$38.JPC_CollideShapeCollector_ShouldEarlyOut$MH,"JPC_CollideShapeCollector_ShouldEarlyOut");
     }
     public static boolean JPC_CollideShapeCollector_ShouldEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_CollideShapeCollector_ShouldEarlyOut$MH();
@@ -3013,7 +3063,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TransformedShapeCollector_ForceEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.JPC_TransformedShapeCollector_ForceEarlyOut$MH,"JPC_TransformedShapeCollector_ForceEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$38.JPC_TransformedShapeCollector_ForceEarlyOut$MH,"JPC_TransformedShapeCollector_ForceEarlyOut");
     }
     public static void JPC_TransformedShapeCollector_ForceEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_TransformedShapeCollector_ForceEarlyOut$MH();
@@ -3024,7 +3074,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TransformedShapeCollector_ShouldEarlyOut$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.JPC_TransformedShapeCollector_ShouldEarlyOut$MH,"JPC_TransformedShapeCollector_ShouldEarlyOut");
+        return RuntimeHelper.requireNonNull(constants$38.JPC_TransformedShapeCollector_ShouldEarlyOut$MH,"JPC_TransformedShapeCollector_ShouldEarlyOut");
     }
     public static boolean JPC_TransformedShapeCollector_ShouldEarlyOut ( Addressable in_collector) {
         var mh$ = JPC_TransformedShapeCollector_ShouldEarlyOut$MH();
@@ -3057,7 +3107,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BroadPhaseQuery_CollideSphere$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.JPC_BroadPhaseQuery_CollideSphere$MH,"JPC_BroadPhaseQuery_CollideSphere");
+        return RuntimeHelper.requireNonNull(constants$39.JPC_BroadPhaseQuery_CollideSphere$MH,"JPC_BroadPhaseQuery_CollideSphere");
     }
     public static void JPC_BroadPhaseQuery_CollideSphere ( Addressable in_query,  Addressable in_center,  float in_radius,  Addressable io_collector,  Addressable in_broad_phase_layer_filter,  Addressable in_object_layer_filter) {
         var mh$ = JPC_BroadPhaseQuery_CollideSphere$MH();
@@ -3068,7 +3118,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BroadPhaseQuery_CollidePoint$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.JPC_BroadPhaseQuery_CollidePoint$MH,"JPC_BroadPhaseQuery_CollidePoint");
+        return RuntimeHelper.requireNonNull(constants$39.JPC_BroadPhaseQuery_CollidePoint$MH,"JPC_BroadPhaseQuery_CollidePoint");
     }
     public static void JPC_BroadPhaseQuery_CollidePoint ( Addressable in_query,  Addressable in_point,  Addressable io_collector,  Addressable in_broad_phase_layer_filter,  Addressable in_object_layer_filter) {
         var mh$ = JPC_BroadPhaseQuery_CollidePoint$MH();
@@ -3079,7 +3129,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BroadPhaseQuery_CollideOrientedBox$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.JPC_BroadPhaseQuery_CollideOrientedBox$MH,"JPC_BroadPhaseQuery_CollideOrientedBox");
+        return RuntimeHelper.requireNonNull(constants$39.JPC_BroadPhaseQuery_CollideOrientedBox$MH,"JPC_BroadPhaseQuery_CollideOrientedBox");
     }
     public static void JPC_BroadPhaseQuery_CollideOrientedBox ( Addressable in_query,  Addressable in_box,  Addressable io_collector,  Addressable in_broad_phase_layer_filter,  Addressable in_object_layer_filter) {
         var mh$ = JPC_BroadPhaseQuery_CollideOrientedBox$MH();
@@ -3090,7 +3140,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BroadPhaseQuery_CastAABox$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.JPC_BroadPhaseQuery_CastAABox$MH,"JPC_BroadPhaseQuery_CastAABox");
+        return RuntimeHelper.requireNonNull(constants$39.JPC_BroadPhaseQuery_CastAABox$MH,"JPC_BroadPhaseQuery_CastAABox");
     }
     public static void JPC_BroadPhaseQuery_CastAABox ( Addressable in_query,  Addressable in_box,  Addressable io_collector,  Addressable in_broad_phase_layer_filter,  Addressable in_object_layer_filter) {
         var mh$ = JPC_BroadPhaseQuery_CastAABox$MH();
@@ -3123,7 +3173,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_NarrowPhaseQuery_CollidePoint$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.JPC_NarrowPhaseQuery_CollidePoint$MH,"JPC_NarrowPhaseQuery_CollidePoint");
+        return RuntimeHelper.requireNonNull(constants$40.JPC_NarrowPhaseQuery_CollidePoint$MH,"JPC_NarrowPhaseQuery_CollidePoint");
     }
     public static void JPC_NarrowPhaseQuery_CollidePoint ( Addressable in_query,  Addressable in_point,  Addressable io_collector,  Addressable in_broad_phase_layer_filter,  Addressable in_object_layer_filter,  Addressable in_body_filter,  Addressable in_shape_filter) {
         var mh$ = JPC_NarrowPhaseQuery_CollidePoint$MH();
@@ -3134,7 +3184,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_NarrowPhaseQuery_CollideShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.JPC_NarrowPhaseQuery_CollideShape$MH,"JPC_NarrowPhaseQuery_CollideShape");
+        return RuntimeHelper.requireNonNull(constants$40.JPC_NarrowPhaseQuery_CollideShape$MH,"JPC_NarrowPhaseQuery_CollideShape");
     }
     public static void JPC_NarrowPhaseQuery_CollideShape ( Addressable in_query,  Addressable in_shape,  Addressable in_shape_scale,  Addressable in_com_rotation,  Addressable in_com_translation,  Addressable in_settings,  Addressable in_base_offset,  Addressable io_collector,  Addressable in_broad_phase_layer_filter,  Addressable in_object_layer_filter,  Addressable in_body_filter,  Addressable in_shape_filter) {
         var mh$ = JPC_NarrowPhaseQuery_CollideShape$MH();
@@ -3145,7 +3195,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_NarrowPhaseQuery_CollectTransformedShapes$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.JPC_NarrowPhaseQuery_CollectTransformedShapes$MH,"JPC_NarrowPhaseQuery_CollectTransformedShapes");
+        return RuntimeHelper.requireNonNull(constants$40.JPC_NarrowPhaseQuery_CollectTransformedShapes$MH,"JPC_NarrowPhaseQuery_CollectTransformedShapes");
     }
     public static void JPC_NarrowPhaseQuery_CollectTransformedShapes ( Addressable in_query,  Addressable in_box,  Addressable io_collector,  Addressable in_broad_phase_layer_filter,  Addressable in_object_layer_filter,  Addressable in_body_filter,  Addressable in_shape_filter) {
         var mh$ = JPC_NarrowPhaseQuery_CollectTransformedShapes$MH();
@@ -3156,7 +3206,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_SphereShape_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.JPC_SphereShape_Create$MH,"JPC_SphereShape_Create");
+        return RuntimeHelper.requireNonNull(constants$40.JPC_SphereShape_Create$MH,"JPC_SphereShape_Create");
     }
     public static MemoryAddress JPC_SphereShape_Create ( float in_radius,  Addressable in_material) {
         var mh$ = JPC_SphereShape_Create$MH();
@@ -3189,7 +3239,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BoxShape_GetHalfExtent$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.JPC_BoxShape_GetHalfExtent$MH,"JPC_BoxShape_GetHalfExtent");
+        return RuntimeHelper.requireNonNull(constants$41.JPC_BoxShape_GetHalfExtent$MH,"JPC_BoxShape_GetHalfExtent");
     }
     public static void JPC_BoxShape_GetHalfExtent ( Addressable in_shape,  Addressable out_half_extent) {
         var mh$ = JPC_BoxShape_GetHalfExtent$MH();
@@ -3200,7 +3250,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TriangleShape_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.JPC_TriangleShape_Create$MH,"JPC_TriangleShape_Create");
+        return RuntimeHelper.requireNonNull(constants$41.JPC_TriangleShape_Create$MH,"JPC_TriangleShape_Create");
     }
     public static MemoryAddress JPC_TriangleShape_Create ( Addressable in_v1,  Addressable in_v2,  Addressable in_v3,  float in_convex_radius,  Addressable in_material) {
         var mh$ = JPC_TriangleShape_Create$MH();
@@ -3211,7 +3261,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TriangleShape_GetConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.JPC_TriangleShape_GetConvexRadius$MH,"JPC_TriangleShape_GetConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$41.JPC_TriangleShape_GetConvexRadius$MH,"JPC_TriangleShape_GetConvexRadius");
     }
     public static float JPC_TriangleShape_GetConvexRadius ( Addressable in_shape) {
         var mh$ = JPC_TriangleShape_GetConvexRadius$MH();
@@ -3222,7 +3272,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CapsuleShape_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.JPC_CapsuleShape_Create$MH,"JPC_CapsuleShape_Create");
+        return RuntimeHelper.requireNonNull(constants$41.JPC_CapsuleShape_Create$MH,"JPC_CapsuleShape_Create");
     }
     public static MemoryAddress JPC_CapsuleShape_Create ( float in_half_height_of_cylinder,  float in_radius,  Addressable in_material) {
         var mh$ = JPC_CapsuleShape_Create$MH();
@@ -3255,7 +3305,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShape_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.JPC_CylinderShape_Create$MH,"JPC_CylinderShape_Create");
+        return RuntimeHelper.requireNonNull(constants$42.JPC_CylinderShape_Create$MH,"JPC_CylinderShape_Create");
     }
     public static MemoryAddress JPC_CylinderShape_Create ( float in_half_height,  float in_radius,  float in_convex_radius,  Addressable in_material) {
         var mh$ = JPC_CylinderShape_Create$MH();
@@ -3266,7 +3316,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShape_GetHalfHeight$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.JPC_CylinderShape_GetHalfHeight$MH,"JPC_CylinderShape_GetHalfHeight");
+        return RuntimeHelper.requireNonNull(constants$42.JPC_CylinderShape_GetHalfHeight$MH,"JPC_CylinderShape_GetHalfHeight");
     }
     public static float JPC_CylinderShape_GetHalfHeight ( Addressable in_shape) {
         var mh$ = JPC_CylinderShape_GetHalfHeight$MH();
@@ -3277,7 +3327,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShape_GetRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.JPC_CylinderShape_GetRadius$MH,"JPC_CylinderShape_GetRadius");
+        return RuntimeHelper.requireNonNull(constants$42.JPC_CylinderShape_GetRadius$MH,"JPC_CylinderShape_GetRadius");
     }
     public static float JPC_CylinderShape_GetRadius ( Addressable in_shape) {
         var mh$ = JPC_CylinderShape_GetRadius$MH();
@@ -3288,7 +3338,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ShapeSettings_AddRef$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.JPC_ShapeSettings_AddRef$MH,"JPC_ShapeSettings_AddRef");
+        return RuntimeHelper.requireNonNull(constants$42.JPC_ShapeSettings_AddRef$MH,"JPC_ShapeSettings_AddRef");
     }
     public static void JPC_ShapeSettings_AddRef ( Addressable in_settings) {
         var mh$ = JPC_ShapeSettings_AddRef$MH();
@@ -3321,7 +3371,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ShapeSettings_CreateShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.JPC_ShapeSettings_CreateShape$MH,"JPC_ShapeSettings_CreateShape");
+        return RuntimeHelper.requireNonNull(constants$43.JPC_ShapeSettings_CreateShape$MH,"JPC_ShapeSettings_CreateShape");
     }
     public static MemorySegment JPC_ShapeSettings_CreateShape ( SegmentAllocator allocator,  Addressable in_settings) {
         var mh$ = JPC_ShapeSettings_CreateShape$MH();
@@ -3332,7 +3382,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ShapeSettings_GetUserData$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.JPC_ShapeSettings_GetUserData$MH,"JPC_ShapeSettings_GetUserData");
+        return RuntimeHelper.requireNonNull(constants$43.JPC_ShapeSettings_GetUserData$MH,"JPC_ShapeSettings_GetUserData");
     }
     public static long JPC_ShapeSettings_GetUserData ( Addressable in_settings) {
         var mh$ = JPC_ShapeSettings_GetUserData$MH();
@@ -3343,7 +3393,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ShapeSettings_SetUserData$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.JPC_ShapeSettings_SetUserData$MH,"JPC_ShapeSettings_SetUserData");
+        return RuntimeHelper.requireNonNull(constants$43.JPC_ShapeSettings_SetUserData$MH,"JPC_ShapeSettings_SetUserData");
     }
     public static void JPC_ShapeSettings_SetUserData ( Addressable in_settings,  long in_user_data) {
         var mh$ = JPC_ShapeSettings_SetUserData$MH();
@@ -3353,8 +3403,19 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_ConvexShape_GetSupportFunction$MH() {
+        return RuntimeHelper.requireNonNull(constants$43.JPC_ConvexShape_GetSupportFunction$MH,"JPC_ConvexShape_GetSupportFunction");
+    }
+    public static MemoryAddress JPC_ConvexShape_GetSupportFunction ( Addressable in_shape,  byte in_mode,  Addressable in_buffer,  Addressable in_scale) {
+        var mh$ = JPC_ConvexShape_GetSupportFunction$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_shape, in_mode, in_buffer, in_scale);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPC_ConvexShapeSettings_GetMaterial$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.JPC_ConvexShapeSettings_GetMaterial$MH,"JPC_ConvexShapeSettings_GetMaterial");
+        return RuntimeHelper.requireNonNull(constants$43.JPC_ConvexShapeSettings_GetMaterial$MH,"JPC_ConvexShapeSettings_GetMaterial");
     }
     public static MemoryAddress JPC_ConvexShapeSettings_GetMaterial ( Addressable in_settings) {
         var mh$ = JPC_ConvexShapeSettings_GetMaterial$MH();
@@ -3376,7 +3437,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexShapeSettings_GetDensity$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.JPC_ConvexShapeSettings_GetDensity$MH,"JPC_ConvexShapeSettings_GetDensity");
+        return RuntimeHelper.requireNonNull(constants$44.JPC_ConvexShapeSettings_GetDensity$MH,"JPC_ConvexShapeSettings_GetDensity");
     }
     public static float JPC_ConvexShapeSettings_GetDensity ( Addressable in_settings) {
         var mh$ = JPC_ConvexShapeSettings_GetDensity$MH();
@@ -3387,7 +3448,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexShapeSettings_SetDensity$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.JPC_ConvexShapeSettings_SetDensity$MH,"JPC_ConvexShapeSettings_SetDensity");
+        return RuntimeHelper.requireNonNull(constants$44.JPC_ConvexShapeSettings_SetDensity$MH,"JPC_ConvexShapeSettings_SetDensity");
     }
     public static void JPC_ConvexShapeSettings_SetDensity ( Addressable in_settings,  float in_density) {
         var mh$ = JPC_ConvexShapeSettings_SetDensity$MH();
@@ -3398,7 +3459,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BoxShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.JPC_BoxShapeSettings_Create$MH,"JPC_BoxShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$44.JPC_BoxShapeSettings_Create$MH,"JPC_BoxShapeSettings_Create");
     }
     public static MemoryAddress JPC_BoxShapeSettings_Create ( Addressable in_half_extent,  float in_convex_radius,  Addressable in_material) {
         var mh$ = JPC_BoxShapeSettings_Create$MH();
@@ -3409,7 +3470,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BoxShapeSettings_GetHalfExtent$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.JPC_BoxShapeSettings_GetHalfExtent$MH,"JPC_BoxShapeSettings_GetHalfExtent");
+        return RuntimeHelper.requireNonNull(constants$44.JPC_BoxShapeSettings_GetHalfExtent$MH,"JPC_BoxShapeSettings_GetHalfExtent");
     }
     public static void JPC_BoxShapeSettings_GetHalfExtent ( Addressable in_settings,  Addressable out_half_extent) {
         var mh$ = JPC_BoxShapeSettings_GetHalfExtent$MH();
@@ -3420,7 +3481,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BoxShapeSettings_SetHalfExtent$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.JPC_BoxShapeSettings_SetHalfExtent$MH,"JPC_BoxShapeSettings_SetHalfExtent");
+        return RuntimeHelper.requireNonNull(constants$44.JPC_BoxShapeSettings_SetHalfExtent$MH,"JPC_BoxShapeSettings_SetHalfExtent");
     }
     public static void JPC_BoxShapeSettings_SetHalfExtent ( Addressable in_settings,  Addressable in_half_extent) {
         var mh$ = JPC_BoxShapeSettings_SetHalfExtent$MH();
@@ -3442,7 +3503,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BoxShapeSettings_SetConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.JPC_BoxShapeSettings_SetConvexRadius$MH,"JPC_BoxShapeSettings_SetConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$45.JPC_BoxShapeSettings_SetConvexRadius$MH,"JPC_BoxShapeSettings_SetConvexRadius");
     }
     public static void JPC_BoxShapeSettings_SetConvexRadius ( Addressable in_settings,  float in_convex_radius) {
         var mh$ = JPC_BoxShapeSettings_SetConvexRadius$MH();
@@ -3453,7 +3514,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_SphereShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.JPC_SphereShapeSettings_Create$MH,"JPC_SphereShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$45.JPC_SphereShapeSettings_Create$MH,"JPC_SphereShapeSettings_Create");
     }
     public static MemoryAddress JPC_SphereShapeSettings_Create ( float in_radius,  Addressable in_material) {
         var mh$ = JPC_SphereShapeSettings_Create$MH();
@@ -3464,7 +3525,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_SphereShapeSettings_GetRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.JPC_SphereShapeSettings_GetRadius$MH,"JPC_SphereShapeSettings_GetRadius");
+        return RuntimeHelper.requireNonNull(constants$45.JPC_SphereShapeSettings_GetRadius$MH,"JPC_SphereShapeSettings_GetRadius");
     }
     public static float JPC_SphereShapeSettings_GetRadius ( Addressable in_settings) {
         var mh$ = JPC_SphereShapeSettings_GetRadius$MH();
@@ -3475,7 +3536,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_SphereShapeSettings_SetRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.JPC_SphereShapeSettings_SetRadius$MH,"JPC_SphereShapeSettings_SetRadius");
+        return RuntimeHelper.requireNonNull(constants$45.JPC_SphereShapeSettings_SetRadius$MH,"JPC_SphereShapeSettings_SetRadius");
     }
     public static void JPC_SphereShapeSettings_SetRadius ( Addressable in_settings,  float in_radius) {
         var mh$ = JPC_SphereShapeSettings_SetRadius$MH();
@@ -3486,7 +3547,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TriangleShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.JPC_TriangleShapeSettings_Create$MH,"JPC_TriangleShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$45.JPC_TriangleShapeSettings_Create$MH,"JPC_TriangleShapeSettings_Create");
     }
     public static MemoryAddress JPC_TriangleShapeSettings_Create ( Addressable in_v1,  Addressable in_v2,  Addressable in_v3,  float in_convex_radius,  Addressable in_material) {
         var mh$ = JPC_TriangleShapeSettings_Create$MH();
@@ -3508,7 +3569,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TriangleShapeSettings_GetVertices$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.JPC_TriangleShapeSettings_GetVertices$MH,"JPC_TriangleShapeSettings_GetVertices");
+        return RuntimeHelper.requireNonNull(constants$46.JPC_TriangleShapeSettings_GetVertices$MH,"JPC_TriangleShapeSettings_GetVertices");
     }
     public static void JPC_TriangleShapeSettings_GetVertices ( Addressable in_settings,  Addressable out_v1,  Addressable out_v2,  Addressable out_v3) {
         var mh$ = JPC_TriangleShapeSettings_GetVertices$MH();
@@ -3519,7 +3580,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TriangleShapeSettings_GetConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.JPC_TriangleShapeSettings_GetConvexRadius$MH,"JPC_TriangleShapeSettings_GetConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$46.JPC_TriangleShapeSettings_GetConvexRadius$MH,"JPC_TriangleShapeSettings_GetConvexRadius");
     }
     public static float JPC_TriangleShapeSettings_GetConvexRadius ( Addressable in_settings) {
         var mh$ = JPC_TriangleShapeSettings_GetConvexRadius$MH();
@@ -3530,7 +3591,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TriangleShapeSettings_SetConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.JPC_TriangleShapeSettings_SetConvexRadius$MH,"JPC_TriangleShapeSettings_SetConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$46.JPC_TriangleShapeSettings_SetConvexRadius$MH,"JPC_TriangleShapeSettings_SetConvexRadius");
     }
     public static void JPC_TriangleShapeSettings_SetConvexRadius ( Addressable in_settings,  float in_convex_radius) {
         var mh$ = JPC_TriangleShapeSettings_SetConvexRadius$MH();
@@ -3541,7 +3602,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CapsuleShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.JPC_CapsuleShapeSettings_Create$MH,"JPC_CapsuleShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$46.JPC_CapsuleShapeSettings_Create$MH,"JPC_CapsuleShapeSettings_Create");
     }
     public static MemoryAddress JPC_CapsuleShapeSettings_Create ( float in_half_height_of_cylinder,  float in_radius,  Addressable in_material) {
         var mh$ = JPC_CapsuleShapeSettings_Create$MH();
@@ -3552,7 +3613,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CapsuleShapeSettings_GetHalfHeight$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.JPC_CapsuleShapeSettings_GetHalfHeight$MH,"JPC_CapsuleShapeSettings_GetHalfHeight");
+        return RuntimeHelper.requireNonNull(constants$46.JPC_CapsuleShapeSettings_GetHalfHeight$MH,"JPC_CapsuleShapeSettings_GetHalfHeight");
     }
     public static float JPC_CapsuleShapeSettings_GetHalfHeight ( Addressable in_settings) {
         var mh$ = JPC_CapsuleShapeSettings_GetHalfHeight$MH();
@@ -3574,7 +3635,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CapsuleShapeSettings_GetRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.JPC_CapsuleShapeSettings_GetRadius$MH,"JPC_CapsuleShapeSettings_GetRadius");
+        return RuntimeHelper.requireNonNull(constants$47.JPC_CapsuleShapeSettings_GetRadius$MH,"JPC_CapsuleShapeSettings_GetRadius");
     }
     public static float JPC_CapsuleShapeSettings_GetRadius ( Addressable in_settings) {
         var mh$ = JPC_CapsuleShapeSettings_GetRadius$MH();
@@ -3585,7 +3646,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CapsuleShapeSettings_SetRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.JPC_CapsuleShapeSettings_SetRadius$MH,"JPC_CapsuleShapeSettings_SetRadius");
+        return RuntimeHelper.requireNonNull(constants$47.JPC_CapsuleShapeSettings_SetRadius$MH,"JPC_CapsuleShapeSettings_SetRadius");
     }
     public static void JPC_CapsuleShapeSettings_SetRadius ( Addressable in_settings,  float in_radius) {
         var mh$ = JPC_CapsuleShapeSettings_SetRadius$MH();
@@ -3596,7 +3657,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TaperedCapsuleShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.JPC_TaperedCapsuleShapeSettings_Create$MH,"JPC_TaperedCapsuleShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$47.JPC_TaperedCapsuleShapeSettings_Create$MH,"JPC_TaperedCapsuleShapeSettings_Create");
     }
     public static MemoryAddress JPC_TaperedCapsuleShapeSettings_Create ( float in_half_height,  float in_top_radius,  float in_bottom_radius,  Addressable in_material) {
         var mh$ = JPC_TaperedCapsuleShapeSettings_Create$MH();
@@ -3607,7 +3668,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TaperedCapsuleShapeSettings_GetHalfHeight$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.JPC_TaperedCapsuleShapeSettings_GetHalfHeight$MH,"JPC_TaperedCapsuleShapeSettings_GetHalfHeight");
+        return RuntimeHelper.requireNonNull(constants$47.JPC_TaperedCapsuleShapeSettings_GetHalfHeight$MH,"JPC_TaperedCapsuleShapeSettings_GetHalfHeight");
     }
     public static float JPC_TaperedCapsuleShapeSettings_GetHalfHeight ( Addressable in_settings) {
         var mh$ = JPC_TaperedCapsuleShapeSettings_GetHalfHeight$MH();
@@ -3618,7 +3679,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TaperedCapsuleShapeSettings_SetHalfHeight$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.JPC_TaperedCapsuleShapeSettings_SetHalfHeight$MH,"JPC_TaperedCapsuleShapeSettings_SetHalfHeight");
+        return RuntimeHelper.requireNonNull(constants$47.JPC_TaperedCapsuleShapeSettings_SetHalfHeight$MH,"JPC_TaperedCapsuleShapeSettings_SetHalfHeight");
     }
     public static void JPC_TaperedCapsuleShapeSettings_SetHalfHeight ( Addressable in_settings,  float in_half_height) {
         var mh$ = JPC_TaperedCapsuleShapeSettings_SetHalfHeight$MH();
@@ -3640,7 +3701,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TaperedCapsuleShapeSettings_SetTopRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.JPC_TaperedCapsuleShapeSettings_SetTopRadius$MH,"JPC_TaperedCapsuleShapeSettings_SetTopRadius");
+        return RuntimeHelper.requireNonNull(constants$48.JPC_TaperedCapsuleShapeSettings_SetTopRadius$MH,"JPC_TaperedCapsuleShapeSettings_SetTopRadius");
     }
     public static void JPC_TaperedCapsuleShapeSettings_SetTopRadius ( Addressable in_settings,  float in_top_radius) {
         var mh$ = JPC_TaperedCapsuleShapeSettings_SetTopRadius$MH();
@@ -3651,7 +3712,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TaperedCapsuleShapeSettings_GetBottomRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.JPC_TaperedCapsuleShapeSettings_GetBottomRadius$MH,"JPC_TaperedCapsuleShapeSettings_GetBottomRadius");
+        return RuntimeHelper.requireNonNull(constants$48.JPC_TaperedCapsuleShapeSettings_GetBottomRadius$MH,"JPC_TaperedCapsuleShapeSettings_GetBottomRadius");
     }
     public static float JPC_TaperedCapsuleShapeSettings_GetBottomRadius ( Addressable in_settings) {
         var mh$ = JPC_TaperedCapsuleShapeSettings_GetBottomRadius$MH();
@@ -3662,7 +3723,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TaperedCapsuleShapeSettings_SetBottomRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.JPC_TaperedCapsuleShapeSettings_SetBottomRadius$MH,"JPC_TaperedCapsuleShapeSettings_SetBottomRadius");
+        return RuntimeHelper.requireNonNull(constants$48.JPC_TaperedCapsuleShapeSettings_SetBottomRadius$MH,"JPC_TaperedCapsuleShapeSettings_SetBottomRadius");
     }
     public static void JPC_TaperedCapsuleShapeSettings_SetBottomRadius ( Addressable in_settings,  float in_bottom_radius) {
         var mh$ = JPC_TaperedCapsuleShapeSettings_SetBottomRadius$MH();
@@ -3673,7 +3734,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.JPC_CylinderShapeSettings_Create$MH,"JPC_CylinderShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$48.JPC_CylinderShapeSettings_Create$MH,"JPC_CylinderShapeSettings_Create");
     }
     public static MemoryAddress JPC_CylinderShapeSettings_Create ( float in_half_height,  float in_radius,  float in_convex_radius,  Addressable in_material) {
         var mh$ = JPC_CylinderShapeSettings_Create$MH();
@@ -3684,7 +3745,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShapeSettings_GetConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.JPC_CylinderShapeSettings_GetConvexRadius$MH,"JPC_CylinderShapeSettings_GetConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$48.JPC_CylinderShapeSettings_GetConvexRadius$MH,"JPC_CylinderShapeSettings_GetConvexRadius");
     }
     public static float JPC_CylinderShapeSettings_GetConvexRadius ( Addressable in_settings) {
         var mh$ = JPC_CylinderShapeSettings_GetConvexRadius$MH();
@@ -3706,7 +3767,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShapeSettings_GetHalfHeight$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.JPC_CylinderShapeSettings_GetHalfHeight$MH,"JPC_CylinderShapeSettings_GetHalfHeight");
+        return RuntimeHelper.requireNonNull(constants$49.JPC_CylinderShapeSettings_GetHalfHeight$MH,"JPC_CylinderShapeSettings_GetHalfHeight");
     }
     public static float JPC_CylinderShapeSettings_GetHalfHeight ( Addressable in_settings) {
         var mh$ = JPC_CylinderShapeSettings_GetHalfHeight$MH();
@@ -3717,7 +3778,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShapeSettings_SetHalfHeight$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.JPC_CylinderShapeSettings_SetHalfHeight$MH,"JPC_CylinderShapeSettings_SetHalfHeight");
+        return RuntimeHelper.requireNonNull(constants$49.JPC_CylinderShapeSettings_SetHalfHeight$MH,"JPC_CylinderShapeSettings_SetHalfHeight");
     }
     public static void JPC_CylinderShapeSettings_SetHalfHeight ( Addressable in_settings,  float in_half_height) {
         var mh$ = JPC_CylinderShapeSettings_SetHalfHeight$MH();
@@ -3728,7 +3789,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShapeSettings_GetRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.JPC_CylinderShapeSettings_GetRadius$MH,"JPC_CylinderShapeSettings_GetRadius");
+        return RuntimeHelper.requireNonNull(constants$49.JPC_CylinderShapeSettings_GetRadius$MH,"JPC_CylinderShapeSettings_GetRadius");
     }
     public static float JPC_CylinderShapeSettings_GetRadius ( Addressable in_settings) {
         var mh$ = JPC_CylinderShapeSettings_GetRadius$MH();
@@ -3739,7 +3800,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CylinderShapeSettings_SetRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.JPC_CylinderShapeSettings_SetRadius$MH,"JPC_CylinderShapeSettings_SetRadius");
+        return RuntimeHelper.requireNonNull(constants$49.JPC_CylinderShapeSettings_SetRadius$MH,"JPC_CylinderShapeSettings_SetRadius");
     }
     public static void JPC_CylinderShapeSettings_SetRadius ( Addressable in_settings,  float in_radius) {
         var mh$ = JPC_CylinderShapeSettings_SetRadius$MH();
@@ -3750,7 +3811,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexHullShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.JPC_ConvexHullShapeSettings_Create$MH,"JPC_ConvexHullShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$49.JPC_ConvexHullShapeSettings_Create$MH,"JPC_ConvexHullShapeSettings_Create");
     }
     public static MemoryAddress JPC_ConvexHullShapeSettings_Create ( Addressable in_vertices,  int in_num_vertices,  int in_vertex_size,  float in_convex_radius,  Addressable in_material) {
         var mh$ = JPC_ConvexHullShapeSettings_Create$MH();
@@ -3772,7 +3833,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexHullShapeSettings_SetMaxConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.JPC_ConvexHullShapeSettings_SetMaxConvexRadius$MH,"JPC_ConvexHullShapeSettings_SetMaxConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$50.JPC_ConvexHullShapeSettings_SetMaxConvexRadius$MH,"JPC_ConvexHullShapeSettings_SetMaxConvexRadius");
     }
     public static void JPC_ConvexHullShapeSettings_SetMaxConvexRadius ( Addressable in_settings,  float in_max_convex_radius) {
         var mh$ = JPC_ConvexHullShapeSettings_SetMaxConvexRadius$MH();
@@ -3783,7 +3844,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$MH,"JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$50.JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$MH,"JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius");
     }
     public static float JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius ( Addressable in_settings) {
         var mh$ = JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$MH();
@@ -3794,7 +3855,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH,"JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius");
+        return RuntimeHelper.requireNonNull(constants$50.JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH,"JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius");
     }
     public static void JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius ( Addressable in_settings,  float in_max_err_convex_radius) {
         var mh$ = JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH();
@@ -3805,7 +3866,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexHullShapeSettings_GetHullTolerance$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.JPC_ConvexHullShapeSettings_GetHullTolerance$MH,"JPC_ConvexHullShapeSettings_GetHullTolerance");
+        return RuntimeHelper.requireNonNull(constants$50.JPC_ConvexHullShapeSettings_GetHullTolerance$MH,"JPC_ConvexHullShapeSettings_GetHullTolerance");
     }
     public static float JPC_ConvexHullShapeSettings_GetHullTolerance ( Addressable in_settings) {
         var mh$ = JPC_ConvexHullShapeSettings_GetHullTolerance$MH();
@@ -3816,7 +3877,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexHullShapeSettings_SetHullTolerance$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.JPC_ConvexHullShapeSettings_SetHullTolerance$MH,"JPC_ConvexHullShapeSettings_SetHullTolerance");
+        return RuntimeHelper.requireNonNull(constants$50.JPC_ConvexHullShapeSettings_SetHullTolerance$MH,"JPC_ConvexHullShapeSettings_SetHullTolerance");
     }
     public static void JPC_ConvexHullShapeSettings_SetHullTolerance ( Addressable in_settings,  float in_hull_tolerance) {
         var mh$ = JPC_ConvexHullShapeSettings_SetHullTolerance$MH();
@@ -3838,7 +3899,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_HeightFieldShapeSettings_GetOffset$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.JPC_HeightFieldShapeSettings_GetOffset$MH,"JPC_HeightFieldShapeSettings_GetOffset");
+        return RuntimeHelper.requireNonNull(constants$51.JPC_HeightFieldShapeSettings_GetOffset$MH,"JPC_HeightFieldShapeSettings_GetOffset");
     }
     public static void JPC_HeightFieldShapeSettings_GetOffset ( Addressable in_settings,  Addressable out_offset) {
         var mh$ = JPC_HeightFieldShapeSettings_GetOffset$MH();
@@ -3849,7 +3910,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_HeightFieldShapeSettings_SetOffset$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.JPC_HeightFieldShapeSettings_SetOffset$MH,"JPC_HeightFieldShapeSettings_SetOffset");
+        return RuntimeHelper.requireNonNull(constants$51.JPC_HeightFieldShapeSettings_SetOffset$MH,"JPC_HeightFieldShapeSettings_SetOffset");
     }
     public static void JPC_HeightFieldShapeSettings_SetOffset ( Addressable in_settings,  Addressable in_offset) {
         var mh$ = JPC_HeightFieldShapeSettings_SetOffset$MH();
@@ -3860,7 +3921,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.JPC_HeightFieldShapeSettings_GetScale$MH,"JPC_HeightFieldShapeSettings_GetScale");
+        return RuntimeHelper.requireNonNull(constants$51.JPC_HeightFieldShapeSettings_GetScale$MH,"JPC_HeightFieldShapeSettings_GetScale");
     }
     public static void JPC_HeightFieldShapeSettings_GetScale ( Addressable in_settings,  Addressable out_scale) {
         var mh$ = JPC_HeightFieldShapeSettings_GetScale$MH();
@@ -3871,7 +3932,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_HeightFieldShapeSettings_SetScale$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.JPC_HeightFieldShapeSettings_SetScale$MH,"JPC_HeightFieldShapeSettings_SetScale");
+        return RuntimeHelper.requireNonNull(constants$51.JPC_HeightFieldShapeSettings_SetScale$MH,"JPC_HeightFieldShapeSettings_SetScale");
     }
     public static void JPC_HeightFieldShapeSettings_SetScale ( Addressable in_settings,  Addressable in_scale) {
         var mh$ = JPC_HeightFieldShapeSettings_SetScale$MH();
@@ -3882,7 +3943,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_HeightFieldShapeSettings_GetBlockSize$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.JPC_HeightFieldShapeSettings_GetBlockSize$MH,"JPC_HeightFieldShapeSettings_GetBlockSize");
+        return RuntimeHelper.requireNonNull(constants$51.JPC_HeightFieldShapeSettings_GetBlockSize$MH,"JPC_HeightFieldShapeSettings_GetBlockSize");
     }
     public static int JPC_HeightFieldShapeSettings_GetBlockSize ( Addressable in_settings) {
         var mh$ = JPC_HeightFieldShapeSettings_GetBlockSize$MH();
@@ -3904,7 +3965,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_HeightFieldShapeSettings_GetBitsPerSample$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.JPC_HeightFieldShapeSettings_GetBitsPerSample$MH,"JPC_HeightFieldShapeSettings_GetBitsPerSample");
+        return RuntimeHelper.requireNonNull(constants$52.JPC_HeightFieldShapeSettings_GetBitsPerSample$MH,"JPC_HeightFieldShapeSettings_GetBitsPerSample");
     }
     public static int JPC_HeightFieldShapeSettings_GetBitsPerSample ( Addressable in_settings) {
         var mh$ = JPC_HeightFieldShapeSettings_GetBitsPerSample$MH();
@@ -3915,7 +3976,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_HeightFieldShapeSettings_SetBitsPerSample$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.JPC_HeightFieldShapeSettings_SetBitsPerSample$MH,"JPC_HeightFieldShapeSettings_SetBitsPerSample");
+        return RuntimeHelper.requireNonNull(constants$52.JPC_HeightFieldShapeSettings_SetBitsPerSample$MH,"JPC_HeightFieldShapeSettings_SetBitsPerSample");
     }
     public static void JPC_HeightFieldShapeSettings_SetBitsPerSample ( Addressable in_settings,  int in_num_bits) {
         var mh$ = JPC_HeightFieldShapeSettings_SetBitsPerSample$MH();
@@ -3926,7 +3987,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MeshShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.JPC_MeshShapeSettings_Create$MH,"JPC_MeshShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$52.JPC_MeshShapeSettings_Create$MH,"JPC_MeshShapeSettings_Create");
     }
     public static MemoryAddress JPC_MeshShapeSettings_Create ( Addressable in_vertices,  int in_num_vertices,  int in_vertex_size,  Addressable in_indices,  int in_num_indices,  Addressable in_materials,  int in_num_materials) {
         var mh$ = JPC_MeshShapeSettings_Create$MH();
@@ -3937,7 +3998,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH,"JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf");
+        return RuntimeHelper.requireNonNull(constants$52.JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH,"JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf");
     }
     public static int JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf ( Addressable in_settings) {
         var mh$ = JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH();
@@ -3948,7 +4009,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH,"JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf");
+        return RuntimeHelper.requireNonNull(constants$52.JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH,"JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf");
     }
     public static void JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf ( Addressable in_settings,  int in_max_triangles) {
         var mh$ = JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH();
@@ -3970,7 +4031,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CompoundShapeSettings_AddShapeSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.JPC_CompoundShapeSettings_AddShapeSettings$MH,"JPC_CompoundShapeSettings_AddShapeSettings");
+        return RuntimeHelper.requireNonNull(constants$53.JPC_CompoundShapeSettings_AddShapeSettings$MH,"JPC_CompoundShapeSettings_AddShapeSettings");
     }
     public static void JPC_CompoundShapeSettings_AddShapeSettings ( Addressable in_settings,  Addressable in_position,  Addressable in_rotation,  Addressable in_shape,  int in_user_data) {
         var mh$ = JPC_CompoundShapeSettings_AddShapeSettings$MH();
@@ -3981,7 +4042,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_CompoundShapeSettings_AddShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.JPC_CompoundShapeSettings_AddShape$MH,"JPC_CompoundShapeSettings_AddShape");
+        return RuntimeHelper.requireNonNull(constants$53.JPC_CompoundShapeSettings_AddShape$MH,"JPC_CompoundShapeSettings_AddShape");
     }
     public static void JPC_CompoundShapeSettings_AddShape ( Addressable in_settings,  Addressable in_position,  Addressable in_rotation,  Addressable in_shape,  int in_user_data) {
         var mh$ = JPC_CompoundShapeSettings_AddShape$MH();
@@ -3992,7 +4053,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_StaticCompoundShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.JPC_StaticCompoundShapeSettings_Create$MH,"JPC_StaticCompoundShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$53.JPC_StaticCompoundShapeSettings_Create$MH,"JPC_StaticCompoundShapeSettings_Create");
     }
     public static MemoryAddress JPC_StaticCompoundShapeSettings_Create (Object... x0) {
         var mh$ = JPC_StaticCompoundShapeSettings_Create$MH();
@@ -4003,7 +4064,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_StaticCompoundShapeSettings_CreateShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.JPC_StaticCompoundShapeSettings_CreateShape$MH,"JPC_StaticCompoundShapeSettings_CreateShape");
+        return RuntimeHelper.requireNonNull(constants$53.JPC_StaticCompoundShapeSettings_CreateShape$MH,"JPC_StaticCompoundShapeSettings_CreateShape");
     }
     public static MemorySegment JPC_StaticCompoundShapeSettings_CreateShape ( SegmentAllocator allocator,  Addressable in_settings,  Addressable in_temp_allocator) {
         var mh$ = JPC_StaticCompoundShapeSettings_CreateShape$MH();
@@ -4014,7 +4075,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_MutableCompoundShapeSettings_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.JPC_MutableCompoundShapeSettings_Create$MH,"JPC_MutableCompoundShapeSettings_Create");
+        return RuntimeHelper.requireNonNull(constants$53.JPC_MutableCompoundShapeSettings_Create$MH,"JPC_MutableCompoundShapeSettings_Create");
     }
     public static MemoryAddress JPC_MutableCompoundShapeSettings_Create (Object... x0) {
         var mh$ = JPC_MutableCompoundShapeSettings_Create$MH();
@@ -4036,7 +4097,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_DecoratedShapeSettings_SetInnerShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.JPC_DecoratedShapeSettings_SetInnerShape$MH,"JPC_DecoratedShapeSettings_SetInnerShape");
+        return RuntimeHelper.requireNonNull(constants$54.JPC_DecoratedShapeSettings_SetInnerShape$MH,"JPC_DecoratedShapeSettings_SetInnerShape");
     }
     public static void JPC_DecoratedShapeSettings_SetInnerShape ( Addressable in_settings,  Addressable in_shape) {
         var mh$ = JPC_DecoratedShapeSettings_SetInnerShape$MH();
@@ -4047,7 +4108,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_DecoratedShapeSettings_GetInnerShapePtr$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.JPC_DecoratedShapeSettings_GetInnerShapePtr$MH,"JPC_DecoratedShapeSettings_GetInnerShapePtr");
+        return RuntimeHelper.requireNonNull(constants$54.JPC_DecoratedShapeSettings_GetInnerShapePtr$MH,"JPC_DecoratedShapeSettings_GetInnerShapePtr");
     }
     public static MemoryAddress JPC_DecoratedShapeSettings_GetInnerShapePtr ( Addressable in_settings) {
         var mh$ = JPC_DecoratedShapeSettings_GetInnerShapePtr$MH();
@@ -4058,7 +4119,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_DecoratedShapeSettings_SetInnerShapePtr$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.JPC_DecoratedShapeSettings_SetInnerShapePtr$MH,"JPC_DecoratedShapeSettings_SetInnerShapePtr");
+        return RuntimeHelper.requireNonNull(constants$54.JPC_DecoratedShapeSettings_SetInnerShapePtr$MH,"JPC_DecoratedShapeSettings_SetInnerShapePtr");
     }
     public static void JPC_DecoratedShapeSettings_SetInnerShapePtr ( Addressable in_settings,  Addressable in_shape) {
         var mh$ = JPC_DecoratedShapeSettings_SetInnerShapePtr$MH();
@@ -4069,7 +4130,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ScaledShapeSettings_CreateFromShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.JPC_ScaledShapeSettings_CreateFromShape$MH,"JPC_ScaledShapeSettings_CreateFromShape");
+        return RuntimeHelper.requireNonNull(constants$54.JPC_ScaledShapeSettings_CreateFromShape$MH,"JPC_ScaledShapeSettings_CreateFromShape");
     }
     public static MemoryAddress JPC_ScaledShapeSettings_CreateFromShape ( Addressable in_shape,  Addressable in_scale) {
         var mh$ = JPC_ScaledShapeSettings_CreateFromShape$MH();
@@ -4080,7 +4141,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ScaledShapeSettings_CreateFromSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.JPC_ScaledShapeSettings_CreateFromSettings$MH,"JPC_ScaledShapeSettings_CreateFromSettings");
+        return RuntimeHelper.requireNonNull(constants$54.JPC_ScaledShapeSettings_CreateFromSettings$MH,"JPC_ScaledShapeSettings_CreateFromSettings");
     }
     public static MemoryAddress JPC_ScaledShapeSettings_CreateFromSettings ( Addressable in_shape,  Addressable in_scale) {
         var mh$ = JPC_ScaledShapeSettings_CreateFromSettings$MH();
@@ -4102,7 +4163,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ScaledShapeSettings_SetScale$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.JPC_ScaledShapeSettings_SetScale$MH,"JPC_ScaledShapeSettings_SetScale");
+        return RuntimeHelper.requireNonNull(constants$55.JPC_ScaledShapeSettings_SetScale$MH,"JPC_ScaledShapeSettings_SetScale");
     }
     public static void JPC_ScaledShapeSettings_SetScale ( Addressable in_settings,  Addressable in_scale) {
         var mh$ = JPC_ScaledShapeSettings_SetScale$MH();
@@ -4113,7 +4174,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShapeSettings_CreateFromShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.JPC_RotatedTranslatedShapeSettings_CreateFromShape$MH,"JPC_RotatedTranslatedShapeSettings_CreateFromShape");
+        return RuntimeHelper.requireNonNull(constants$55.JPC_RotatedTranslatedShapeSettings_CreateFromShape$MH,"JPC_RotatedTranslatedShapeSettings_CreateFromShape");
     }
     public static MemoryAddress JPC_RotatedTranslatedShapeSettings_CreateFromShape ( Addressable in_shape,  Addressable in_position,  Addressable in_rotation) {
         var mh$ = JPC_RotatedTranslatedShapeSettings_CreateFromShape$MH();
@@ -4124,7 +4185,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShapeSettings_CreateFromSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.JPC_RotatedTranslatedShapeSettings_CreateFromSettings$MH,"JPC_RotatedTranslatedShapeSettings_CreateFromSettings");
+        return RuntimeHelper.requireNonNull(constants$55.JPC_RotatedTranslatedShapeSettings_CreateFromSettings$MH,"JPC_RotatedTranslatedShapeSettings_CreateFromSettings");
     }
     public static MemoryAddress JPC_RotatedTranslatedShapeSettings_CreateFromSettings ( Addressable in_shape,  Addressable in_position,  Addressable in_rotation) {
         var mh$ = JPC_RotatedTranslatedShapeSettings_CreateFromSettings$MH();
@@ -4135,7 +4196,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShapeSettings_GetPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.JPC_RotatedTranslatedShapeSettings_GetPosition$MH,"JPC_RotatedTranslatedShapeSettings_GetPosition");
+        return RuntimeHelper.requireNonNull(constants$55.JPC_RotatedTranslatedShapeSettings_GetPosition$MH,"JPC_RotatedTranslatedShapeSettings_GetPosition");
     }
     public static void JPC_RotatedTranslatedShapeSettings_GetPosition ( Addressable in_settings,  Addressable out_position) {
         var mh$ = JPC_RotatedTranslatedShapeSettings_GetPosition$MH();
@@ -4146,7 +4207,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShapeSettings_SetPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.JPC_RotatedTranslatedShapeSettings_SetPosition$MH,"JPC_RotatedTranslatedShapeSettings_SetPosition");
+        return RuntimeHelper.requireNonNull(constants$55.JPC_RotatedTranslatedShapeSettings_SetPosition$MH,"JPC_RotatedTranslatedShapeSettings_SetPosition");
     }
     public static void JPC_RotatedTranslatedShapeSettings_SetPosition ( Addressable in_settings,  Addressable in_position) {
         var mh$ = JPC_RotatedTranslatedShapeSettings_SetPosition$MH();
@@ -4168,7 +4229,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShapeSettings_SetRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.JPC_RotatedTranslatedShapeSettings_SetRotation$MH,"JPC_RotatedTranslatedShapeSettings_SetRotation");
+        return RuntimeHelper.requireNonNull(constants$56.JPC_RotatedTranslatedShapeSettings_SetRotation$MH,"JPC_RotatedTranslatedShapeSettings_SetRotation");
     }
     public static void JPC_RotatedTranslatedShapeSettings_SetRotation ( Addressable in_settings,  Addressable in_rotation) {
         var mh$ = JPC_RotatedTranslatedShapeSettings_SetRotation$MH();
@@ -4179,7 +4240,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_OffsetCenterOfMassShapeSettings_CreateFromShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.JPC_OffsetCenterOfMassShapeSettings_CreateFromShape$MH,"JPC_OffsetCenterOfMassShapeSettings_CreateFromShape");
+        return RuntimeHelper.requireNonNull(constants$56.JPC_OffsetCenterOfMassShapeSettings_CreateFromShape$MH,"JPC_OffsetCenterOfMassShapeSettings_CreateFromShape");
     }
     public static MemoryAddress JPC_OffsetCenterOfMassShapeSettings_CreateFromShape ( Addressable in_shape,  Addressable in_offset) {
         var mh$ = JPC_OffsetCenterOfMassShapeSettings_CreateFromShape$MH();
@@ -4190,7 +4251,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings$MH,"JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings");
+        return RuntimeHelper.requireNonNull(constants$56.JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings$MH,"JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings");
     }
     public static MemoryAddress JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings ( Addressable in_shape,  Addressable in_offset) {
         var mh$ = JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings$MH();
@@ -4201,7 +4262,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_OffsetCenterOfMassShapeSettings_GetOffset$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.JPC_OffsetCenterOfMassShapeSettings_GetOffset$MH,"JPC_OffsetCenterOfMassShapeSettings_GetOffset");
+        return RuntimeHelper.requireNonNull(constants$56.JPC_OffsetCenterOfMassShapeSettings_GetOffset$MH,"JPC_OffsetCenterOfMassShapeSettings_GetOffset");
     }
     public static void JPC_OffsetCenterOfMassShapeSettings_GetOffset ( Addressable in_settings,  Addressable out_offset) {
         var mh$ = JPC_OffsetCenterOfMassShapeSettings_GetOffset$MH();
@@ -4212,7 +4273,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_OffsetCenterOfMassShapeSettings_SetOffset$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.JPC_OffsetCenterOfMassShapeSettings_SetOffset$MH,"JPC_OffsetCenterOfMassShapeSettings_SetOffset");
+        return RuntimeHelper.requireNonNull(constants$56.JPC_OffsetCenterOfMassShapeSettings_SetOffset$MH,"JPC_OffsetCenterOfMassShapeSettings_SetOffset");
     }
     public static void JPC_OffsetCenterOfMassShapeSettings_SetOffset ( Addressable in_settings,  Addressable in_offset) {
         var mh$ = JPC_OffsetCenterOfMassShapeSettings_SetOffset$MH();
@@ -4234,7 +4295,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_Release$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.JPC_Shape_Release$MH,"JPC_Shape_Release");
+        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_Release$MH,"JPC_Shape_Release");
     }
     public static void JPC_Shape_Release ( Addressable in_shape) {
         var mh$ = JPC_Shape_Release$MH();
@@ -4245,7 +4306,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetRefCount$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.JPC_Shape_GetRefCount$MH,"JPC_Shape_GetRefCount");
+        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetRefCount$MH,"JPC_Shape_GetRefCount");
     }
     public static int JPC_Shape_GetRefCount ( Addressable in_shape) {
         var mh$ = JPC_Shape_GetRefCount$MH();
@@ -4256,7 +4317,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetType$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.JPC_Shape_GetType$MH,"JPC_Shape_GetType");
+        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetType$MH,"JPC_Shape_GetType");
     }
     public static byte JPC_Shape_GetType ( Addressable in_shape) {
         var mh$ = JPC_Shape_GetType$MH();
@@ -4267,7 +4328,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetSubType$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.JPC_Shape_GetSubType$MH,"JPC_Shape_GetSubType");
+        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetSubType$MH,"JPC_Shape_GetSubType");
     }
     public static byte JPC_Shape_GetSubType ( Addressable in_shape) {
         var mh$ = JPC_Shape_GetSubType$MH();
@@ -4278,7 +4339,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetUserData$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.JPC_Shape_GetUserData$MH,"JPC_Shape_GetUserData");
+        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetUserData$MH,"JPC_Shape_GetUserData");
     }
     public static long JPC_Shape_GetUserData ( Addressable in_shape) {
         var mh$ = JPC_Shape_GetUserData$MH();
@@ -4300,7 +4361,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_MustBeStatic$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_MustBeStatic$MH,"JPC_Shape_MustBeStatic");
+        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_MustBeStatic$MH,"JPC_Shape_MustBeStatic");
     }
     public static boolean JPC_Shape_MustBeStatic ( Addressable in_shape) {
         var mh$ = JPC_Shape_MustBeStatic$MH();
@@ -4311,7 +4372,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetCenterOfMass$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetCenterOfMass$MH,"JPC_Shape_GetCenterOfMass");
+        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetCenterOfMass$MH,"JPC_Shape_GetCenterOfMass");
     }
     public static void JPC_Shape_GetCenterOfMass ( Addressable in_shape,  Addressable out_center_of_mass) {
         var mh$ = JPC_Shape_GetCenterOfMass$MH();
@@ -4322,7 +4383,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetLocalBounds$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetLocalBounds$MH,"JPC_Shape_GetLocalBounds");
+        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetLocalBounds$MH,"JPC_Shape_GetLocalBounds");
     }
     public static void JPC_Shape_GetLocalBounds ( Addressable in_shape,  Addressable out_local_bounds) {
         var mh$ = JPC_Shape_GetLocalBounds$MH();
@@ -4333,7 +4394,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetSubShapeIDBitsRecursive$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetSubShapeIDBitsRecursive$MH,"JPC_Shape_GetSubShapeIDBitsRecursive");
+        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetSubShapeIDBitsRecursive$MH,"JPC_Shape_GetSubShapeIDBitsRecursive");
     }
     public static int JPC_Shape_GetSubShapeIDBitsRecursive ( Addressable in_shape) {
         var mh$ = JPC_Shape_GetSubShapeIDBitsRecursive$MH();
@@ -4344,7 +4405,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetWorldSpaceBounds$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.JPC_Shape_GetWorldSpaceBounds$MH,"JPC_Shape_GetWorldSpaceBounds");
+        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetWorldSpaceBounds$MH,"JPC_Shape_GetWorldSpaceBounds");
     }
     public static void JPC_Shape_GetWorldSpaceBounds ( Addressable in_shape,  Addressable in_center_of_mass_transform,  Addressable in_scale,  Addressable out_world_space_bounds) {
         var mh$ = JPC_Shape_GetWorldSpaceBounds$MH();
@@ -4366,7 +4427,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetMaterial$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetMaterial$MH,"JPC_Shape_GetMaterial");
+        return RuntimeHelper.requireNonNull(constants$59.JPC_Shape_GetMaterial$MH,"JPC_Shape_GetMaterial");
     }
     public static MemoryAddress JPC_Shape_GetMaterial ( Addressable in_shape,  int in_sub_shape_id) {
         var mh$ = JPC_Shape_GetMaterial$MH();
@@ -4377,7 +4438,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetSurfaceNormal$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetSurfaceNormal$MH,"JPC_Shape_GetSurfaceNormal");
+        return RuntimeHelper.requireNonNull(constants$59.JPC_Shape_GetSurfaceNormal$MH,"JPC_Shape_GetSurfaceNormal");
     }
     public static void JPC_Shape_GetSurfaceNormal ( Addressable in_shape,  int in_sub_shape_id,  Addressable in_local_surface_position,  Addressable out_surface_normal) {
         var mh$ = JPC_Shape_GetSurfaceNormal$MH();
@@ -4387,8 +4448,19 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_Shape_GetSupportingFace$MH() {
+        return RuntimeHelper.requireNonNull(constants$59.JPC_Shape_GetSupportingFace$MH,"JPC_Shape_GetSupportingFace");
+    }
+    public static void JPC_Shape_GetSupportingFace ( Addressable in_shape,  int in_sub_shape_id,  Addressable in_direction,  Addressable in_scale,  Addressable in_com_transform,  Addressable out_vertices) {
+        var mh$ = JPC_Shape_GetSupportingFace$MH();
+        try {
+            mh$.invokeExact(in_shape, in_sub_shape_id, in_direction, in_scale, in_com_transform, out_vertices);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPC_Shape_GetSubShapeUserData$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetSubShapeUserData$MH,"JPC_Shape_GetSubShapeUserData");
+        return RuntimeHelper.requireNonNull(constants$59.JPC_Shape_GetSubShapeUserData$MH,"JPC_Shape_GetSubShapeUserData");
     }
     public static long JPC_Shape_GetSubShapeUserData ( Addressable in_shape,  int in_sub_shape_id) {
         var mh$ = JPC_Shape_GetSubShapeUserData$MH();
@@ -4399,7 +4471,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_GetSubShapeTransformedShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetSubShapeTransformedShape$MH,"JPC_Shape_GetSubShapeTransformedShape");
+        return RuntimeHelper.requireNonNull(constants$59.JPC_Shape_GetSubShapeTransformedShape$MH,"JPC_Shape_GetSubShapeTransformedShape");
     }
     public static MemorySegment JPC_Shape_GetSubShapeTransformedShape ( SegmentAllocator allocator,  Addressable in_shape,  int in_sub_shape_id,  Addressable in_position_com,  Addressable in_rotation,  Addressable in_scale) {
         var mh$ = JPC_Shape_GetSubShapeTransformedShape$MH();
@@ -4409,8 +4481,85 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_Shape_GetSubmergedVolume$MH() {
+        return RuntimeHelper.requireNonNull(constants$59.JPC_Shape_GetSubmergedVolume$MH,"JPC_Shape_GetSubmergedVolume");
+    }
+    public static void JPC_Shape_GetSubmergedVolume ( Addressable in_shape,  Addressable in_com_transform,  Addressable in_scale,  Addressable in_surface_normal,  float in_surface_constant,  Addressable out_total_volume,  Addressable out_submerged_volume,  Addressable out_center_of_buoyancy) {
+        var mh$ = JPC_Shape_GetSubmergedVolume$MH();
+        try {
+            mh$.invokeExact(in_shape, in_com_transform, in_scale, in_surface_normal, in_surface_constant, out_total_volume, out_submerged_volume, out_center_of_buoyancy);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Shape_GetCastRay$MH() {
+        return RuntimeHelper.requireNonNull(constants$60.JPC_Shape_GetCastRay$MH,"JPC_Shape_GetCastRay");
+    }
+    public static boolean JPC_Shape_GetCastRay ( Addressable in_shape,  Addressable in_ray,  Addressable in_sub_shape_id_creator,  Addressable io_hit) {
+        var mh$ = JPC_Shape_GetCastRay$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_shape, in_ray, in_sub_shape_id_creator, io_hit);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Shape_CollectCastRay$MH() {
+        return RuntimeHelper.requireNonNull(constants$60.JPC_Shape_CollectCastRay$MH,"JPC_Shape_CollectCastRay");
+    }
+    public static void JPC_Shape_CollectCastRay ( Addressable in_shape,  Addressable in_ray,  Addressable in_settings,  Addressable in_sub_shape_id_creator,  Addressable io_collector,  Addressable in_shape_filter) {
+        var mh$ = JPC_Shape_CollectCastRay$MH();
+        try {
+            mh$.invokeExact(in_shape, in_ray, in_settings, in_sub_shape_id_creator, io_collector, in_shape_filter);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Shape_CollidePoint$MH() {
+        return RuntimeHelper.requireNonNull(constants$60.JPC_Shape_CollidePoint$MH,"JPC_Shape_CollidePoint");
+    }
+    public static void JPC_Shape_CollidePoint ( Addressable in_shape,  Addressable in_point,  Addressable in_sub_shape_id_creator,  Addressable io_collector,  Addressable in_shape_filter) {
+        var mh$ = JPC_Shape_CollidePoint$MH();
+        try {
+            mh$.invokeExact(in_shape, in_point, in_sub_shape_id_creator, io_collector, in_shape_filter);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Shape_CollectTransformedShapes$MH() {
+        return RuntimeHelper.requireNonNull(constants$60.JPC_Shape_CollectTransformedShapes$MH,"JPC_Shape_CollectTransformedShapes");
+    }
+    public static void JPC_Shape_CollectTransformedShapes ( Addressable in_shape,  Addressable in_box,  Addressable in_position_com,  Addressable in_rotation,  Addressable in_scale,  Addressable in_sub_shape_id_creator,  Addressable io_collector,  Addressable in_shape_filter) {
+        var mh$ = JPC_Shape_CollectTransformedShapes$MH();
+        try {
+            mh$.invokeExact(in_shape, in_box, in_position_com, in_rotation, in_scale, in_sub_shape_id_creator, io_collector, in_shape_filter);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Shape_TransformShape$MH() {
+        return RuntimeHelper.requireNonNull(constants$60.JPC_Shape_TransformShape$MH,"JPC_Shape_TransformShape");
+    }
+    public static void JPC_Shape_TransformShape ( Addressable in_shape,  Addressable in_com_transform,  Addressable io_collector) {
+        var mh$ = JPC_Shape_TransformShape$MH();
+        try {
+            mh$.invokeExact(in_shape, in_com_transform, io_collector);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_Shape_ScaleShape$MH() {
+        return RuntimeHelper.requireNonNull(constants$60.JPC_Shape_ScaleShape$MH,"JPC_Shape_ScaleShape");
+    }
+    public static MemorySegment JPC_Shape_ScaleShape ( SegmentAllocator allocator,  Addressable in_shape,  Addressable in_scale) {
+        var mh$ = JPC_Shape_ScaleShape$MH();
+        try {
+            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, in_shape, in_scale);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPC_Shape_GetVolume$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.JPC_Shape_GetVolume$MH,"JPC_Shape_GetVolume");
+        return RuntimeHelper.requireNonNull(constants$61.JPC_Shape_GetVolume$MH,"JPC_Shape_GetVolume");
     }
     public static float JPC_Shape_GetVolume ( Addressable in_shape) {
         var mh$ = JPC_Shape_GetVolume$MH();
@@ -4421,7 +4570,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Shape_IsValidScale$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.JPC_Shape_IsValidScale$MH,"JPC_Shape_IsValidScale");
+        return RuntimeHelper.requireNonNull(constants$61.JPC_Shape_IsValidScale$MH,"JPC_Shape_IsValidScale");
     }
     public static boolean JPC_Shape_IsValidScale ( Addressable in_shape,  Addressable in_scale) {
         var mh$ = JPC_Shape_IsValidScale$MH();
@@ -4432,7 +4581,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexShape_SetMaterial$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.JPC_ConvexShape_SetMaterial$MH,"JPC_ConvexShape_SetMaterial");
+        return RuntimeHelper.requireNonNull(constants$61.JPC_ConvexShape_SetMaterial$MH,"JPC_ConvexShape_SetMaterial");
     }
     public static void JPC_ConvexShape_SetMaterial ( Addressable in_shape,  Addressable in_material) {
         var mh$ = JPC_ConvexShape_SetMaterial$MH();
@@ -4443,7 +4592,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexShape_GetMaterial$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.JPC_ConvexShape_GetMaterial$MH,"JPC_ConvexShape_GetMaterial");
+        return RuntimeHelper.requireNonNull(constants$61.JPC_ConvexShape_GetMaterial$MH,"JPC_ConvexShape_GetMaterial");
     }
     public static MemoryAddress JPC_ConvexShape_GetMaterial ( Addressable in_shape) {
         var mh$ = JPC_ConvexShape_GetMaterial$MH();
@@ -4454,7 +4603,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexShape_SetDensity$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.JPC_ConvexShape_SetDensity$MH,"JPC_ConvexShape_SetDensity");
+        return RuntimeHelper.requireNonNull(constants$61.JPC_ConvexShape_SetDensity$MH,"JPC_ConvexShape_SetDensity");
     }
     public static void JPC_ConvexShape_SetDensity ( Addressable in_shape,  float in_density) {
         var mh$ = JPC_ConvexShape_SetDensity$MH();
@@ -4465,7 +4614,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ConvexShape_GetDensity$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.JPC_ConvexShape_GetDensity$MH,"JPC_ConvexShape_GetDensity");
+        return RuntimeHelper.requireNonNull(constants$61.JPC_ConvexShape_GetDensity$MH,"JPC_ConvexShape_GetDensity");
     }
     public static float JPC_ConvexShape_GetDensity ( Addressable in_shape) {
         var mh$ = JPC_ConvexShape_GetDensity$MH();
@@ -4476,7 +4625,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_DecoratedShape_GetInnerShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.JPC_DecoratedShape_GetInnerShape$MH,"JPC_DecoratedShape_GetInnerShape");
+        return RuntimeHelper.requireNonNull(constants$62.JPC_DecoratedShape_GetInnerShape$MH,"JPC_DecoratedShape_GetInnerShape");
     }
     public static MemoryAddress JPC_DecoratedShape_GetInnerShape ( Addressable in_shape) {
         var mh$ = JPC_DecoratedShape_GetInnerShape$MH();
@@ -4487,7 +4636,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ScaledShape_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.JPC_ScaledShape_Create$MH,"JPC_ScaledShape_Create");
+        return RuntimeHelper.requireNonNull(constants$62.JPC_ScaledShape_Create$MH,"JPC_ScaledShape_Create");
     }
     public static MemoryAddress JPC_ScaledShape_Create ( Addressable in_shape,  Addressable in_scale) {
         var mh$ = JPC_ScaledShape_Create$MH();
@@ -4498,7 +4647,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_ScaledShape_GetScale$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.JPC_ScaledShape_GetScale$MH,"JPC_ScaledShape_GetScale");
+        return RuntimeHelper.requireNonNull(constants$62.JPC_ScaledShape_GetScale$MH,"JPC_ScaledShape_GetScale");
     }
     public static void JPC_ScaledShape_GetScale ( Addressable in_shape,  Addressable out_scale) {
         var mh$ = JPC_ScaledShape_GetScale$MH();
@@ -4509,7 +4658,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShape_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.JPC_RotatedTranslatedShape_Create$MH,"JPC_RotatedTranslatedShape_Create");
+        return RuntimeHelper.requireNonNull(constants$62.JPC_RotatedTranslatedShape_Create$MH,"JPC_RotatedTranslatedShape_Create");
     }
     public static MemoryAddress JPC_RotatedTranslatedShape_Create ( Addressable in_shape,  Addressable in_position,  Addressable in_rotation) {
         var mh$ = JPC_RotatedTranslatedShape_Create$MH();
@@ -4520,7 +4669,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShape_GetPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.JPC_RotatedTranslatedShape_GetPosition$MH,"JPC_RotatedTranslatedShape_GetPosition");
+        return RuntimeHelper.requireNonNull(constants$62.JPC_RotatedTranslatedShape_GetPosition$MH,"JPC_RotatedTranslatedShape_GetPosition");
     }
     public static void JPC_RotatedTranslatedShape_GetPosition ( Addressable in_shape,  Addressable out_position) {
         var mh$ = JPC_RotatedTranslatedShape_GetPosition$MH();
@@ -4531,7 +4680,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_RotatedTranslatedShape_GetRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.JPC_RotatedTranslatedShape_GetRotation$MH,"JPC_RotatedTranslatedShape_GetRotation");
+        return RuntimeHelper.requireNonNull(constants$62.JPC_RotatedTranslatedShape_GetRotation$MH,"JPC_RotatedTranslatedShape_GetRotation");
     }
     public static void JPC_RotatedTranslatedShape_GetRotation ( Addressable in_shape,  Addressable out_rotation) {
         var mh$ = JPC_RotatedTranslatedShape_GetRotation$MH();
@@ -4542,7 +4691,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_OffsetCenterOfMassShape_Create$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.JPC_OffsetCenterOfMassShape_Create$MH,"JPC_OffsetCenterOfMassShape_Create");
+        return RuntimeHelper.requireNonNull(constants$63.JPC_OffsetCenterOfMassShape_Create$MH,"JPC_OffsetCenterOfMassShape_Create");
     }
     public static MemoryAddress JPC_OffsetCenterOfMassShape_Create ( Addressable in_shape,  Addressable in_offset) {
         var mh$ = JPC_OffsetCenterOfMassShape_Create$MH();
@@ -4553,7 +4702,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_OffsetCenterOfMassShape_GetOffset$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.JPC_OffsetCenterOfMassShape_GetOffset$MH,"JPC_OffsetCenterOfMassShape_GetOffset");
+        return RuntimeHelper.requireNonNull(constants$63.JPC_OffsetCenterOfMassShape_GetOffset$MH,"JPC_OffsetCenterOfMassShape_GetOffset");
     }
     public static void JPC_OffsetCenterOfMassShape_GetOffset ( Addressable in_shape,  Addressable out_offset) {
         var mh$ = JPC_OffsetCenterOfMassShape_GetOffset$MH();
@@ -4564,7 +4713,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_CreateBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.JPC_BodyInterface_CreateBody$MH,"JPC_BodyInterface_CreateBody");
+        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_CreateBody$MH,"JPC_BodyInterface_CreateBody");
     }
     public static MemoryAddress JPC_BodyInterface_CreateBody ( Addressable in_iface,  Addressable in_setting) {
         var mh$ = JPC_BodyInterface_CreateBody$MH();
@@ -4575,7 +4724,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_CreateBodyWithID$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.JPC_BodyInterface_CreateBodyWithID$MH,"JPC_BodyInterface_CreateBodyWithID");
+        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_CreateBodyWithID$MH,"JPC_BodyInterface_CreateBodyWithID");
     }
     public static MemoryAddress JPC_BodyInterface_CreateBodyWithID ( Addressable in_iface,  int in_body_id,  Addressable in_settings) {
         var mh$ = JPC_BodyInterface_CreateBodyWithID$MH();
@@ -4586,7 +4735,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_CreateBodyWithoutID$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.JPC_BodyInterface_CreateBodyWithoutID$MH,"JPC_BodyInterface_CreateBodyWithoutID");
+        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_CreateBodyWithoutID$MH,"JPC_BodyInterface_CreateBodyWithoutID");
     }
     public static MemoryAddress JPC_BodyInterface_CreateBodyWithoutID ( Addressable in_iface,  Addressable in_settings) {
         var mh$ = JPC_BodyInterface_CreateBodyWithoutID$MH();
@@ -4597,7 +4746,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_DestroyBodyWithoutID$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.JPC_BodyInterface_DestroyBodyWithoutID$MH,"JPC_BodyInterface_DestroyBodyWithoutID");
+        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_DestroyBodyWithoutID$MH,"JPC_BodyInterface_DestroyBodyWithoutID");
     }
     public static void JPC_BodyInterface_DestroyBodyWithoutID ( Addressable in_iface,  Addressable in_body) {
         var mh$ = JPC_BodyInterface_DestroyBodyWithoutID$MH();
@@ -4608,7 +4757,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AssignNextBodyID$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.JPC_BodyInterface_AssignNextBodyID$MH,"JPC_BodyInterface_AssignNextBodyID");
+        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_AssignNextBodyID$MH,"JPC_BodyInterface_AssignNextBodyID");
     }
     public static boolean JPC_BodyInterface_AssignNextBodyID ( Addressable in_iface,  Addressable in_body) {
         var mh$ = JPC_BodyInterface_AssignNextBodyID$MH();
@@ -4619,7 +4768,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AssignBodyID$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.JPC_BodyInterface_AssignBodyID$MH,"JPC_BodyInterface_AssignBodyID");
+        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_AssignBodyID$MH,"JPC_BodyInterface_AssignBodyID");
     }
     public static boolean JPC_BodyInterface_AssignBodyID ( Addressable in_iface,  Addressable in_body,  int in_body_id) {
         var mh$ = JPC_BodyInterface_AssignBodyID$MH();
@@ -4630,7 +4779,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_UnassignBodyID$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.JPC_BodyInterface_UnassignBodyID$MH,"JPC_BodyInterface_UnassignBodyID");
+        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_UnassignBodyID$MH,"JPC_BodyInterface_UnassignBodyID");
     }
     public static MemoryAddress JPC_BodyInterface_UnassignBodyID ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_UnassignBodyID$MH();
@@ -4641,7 +4790,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_UnassignBodyIDs$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.JPC_BodyInterface_UnassignBodyIDs$MH,"JPC_BodyInterface_UnassignBodyIDs");
+        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_UnassignBodyIDs$MH,"JPC_BodyInterface_UnassignBodyIDs");
     }
     public static void JPC_BodyInterface_UnassignBodyIDs ( Addressable in_iface,  Addressable in_body_ids,  int in_number,  Addressable out_bodies) {
         var mh$ = JPC_BodyInterface_UnassignBodyIDs$MH();
@@ -4652,7 +4801,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_DestroyBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.JPC_BodyInterface_DestroyBody$MH,"JPC_BodyInterface_DestroyBody");
+        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_DestroyBody$MH,"JPC_BodyInterface_DestroyBody");
     }
     public static void JPC_BodyInterface_DestroyBody ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_DestroyBody$MH();
@@ -4663,7 +4812,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_DestroyBodies$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.JPC_BodyInterface_DestroyBodies$MH,"JPC_BodyInterface_DestroyBodies");
+        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_DestroyBodies$MH,"JPC_BodyInterface_DestroyBodies");
     }
     public static void JPC_BodyInterface_DestroyBodies ( Addressable in_iface,  Addressable in_body_ids,  int in_number) {
         var mh$ = JPC_BodyInterface_DestroyBodies$MH();
@@ -4674,7 +4823,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.JPC_BodyInterface_AddBody$MH,"JPC_BodyInterface_AddBody");
+        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_AddBody$MH,"JPC_BodyInterface_AddBody");
     }
     public static void JPC_BodyInterface_AddBody ( Addressable in_iface,  int in_body_id,  int in_mode) {
         var mh$ = JPC_BodyInterface_AddBody$MH();
@@ -4685,7 +4834,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_RemoveBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_RemoveBody$MH,"JPC_BodyInterface_RemoveBody");
+        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_RemoveBody$MH,"JPC_BodyInterface_RemoveBody");
     }
     public static void JPC_BodyInterface_RemoveBody ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_RemoveBody$MH();
@@ -4696,7 +4845,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_IsAdded$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_IsAdded$MH,"JPC_BodyInterface_IsAdded");
+        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_IsAdded$MH,"JPC_BodyInterface_IsAdded");
     }
     public static boolean JPC_BodyInterface_IsAdded ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_IsAdded$MH();
@@ -4707,7 +4856,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_CreateAndAddBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_CreateAndAddBody$MH,"JPC_BodyInterface_CreateAndAddBody");
+        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_CreateAndAddBody$MH,"JPC_BodyInterface_CreateAndAddBody");
     }
     public static int JPC_BodyInterface_CreateAndAddBody ( Addressable in_iface,  Addressable in_settings,  int in_mode) {
         var mh$ = JPC_BodyInterface_CreateAndAddBody$MH();
@@ -4718,7 +4867,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddBodiesPrepare$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_AddBodiesPrepare$MH,"JPC_BodyInterface_AddBodiesPrepare");
+        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_AddBodiesPrepare$MH,"JPC_BodyInterface_AddBodiesPrepare");
     }
     public static MemoryAddress JPC_BodyInterface_AddBodiesPrepare ( Addressable in_iface,  Addressable io_bodies,  int in_number) {
         var mh$ = JPC_BodyInterface_AddBodiesPrepare$MH();
@@ -4729,7 +4878,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddBodiesFinalize$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_AddBodiesFinalize$MH,"JPC_BodyInterface_AddBodiesFinalize");
+        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_AddBodiesFinalize$MH,"JPC_BodyInterface_AddBodiesFinalize");
     }
     public static void JPC_BodyInterface_AddBodiesFinalize ( Addressable in_iface,  Addressable io_bodies,  int in_number,  Addressable in_add_state,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_AddBodiesFinalize$MH();
@@ -4740,7 +4889,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddBodiesAbort$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.JPC_BodyInterface_AddBodiesAbort$MH,"JPC_BodyInterface_AddBodiesAbort");
+        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_AddBodiesAbort$MH,"JPC_BodyInterface_AddBodiesAbort");
     }
     public static void JPC_BodyInterface_AddBodiesAbort ( Addressable in_iface,  Addressable io_bodies,  int in_number,  Addressable in_add_state) {
         var mh$ = JPC_BodyInterface_AddBodiesAbort$MH();
@@ -4751,7 +4900,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_RemoveBodies$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_RemoveBodies$MH,"JPC_BodyInterface_RemoveBodies");
+        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_RemoveBodies$MH,"JPC_BodyInterface_RemoveBodies");
     }
     public static void JPC_BodyInterface_RemoveBodies ( Addressable in_iface,  Addressable io_bodies,  int in_number) {
         var mh$ = JPC_BodyInterface_RemoveBodies$MH();
@@ -4762,7 +4911,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_ActivateBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_ActivateBody$MH,"JPC_BodyInterface_ActivateBody");
+        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_ActivateBody$MH,"JPC_BodyInterface_ActivateBody");
     }
     public static void JPC_BodyInterface_ActivateBody ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_ActivateBody$MH();
@@ -4773,7 +4922,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_ActivateBodies$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_ActivateBodies$MH,"JPC_BodyInterface_ActivateBodies");
+        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_ActivateBodies$MH,"JPC_BodyInterface_ActivateBodies");
     }
     public static void JPC_BodyInterface_ActivateBodies ( Addressable in_iface,  Addressable in_body_ids,  int in_number) {
         var mh$ = JPC_BodyInterface_ActivateBodies$MH();
@@ -4784,7 +4933,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_DeactivateBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_DeactivateBody$MH,"JPC_BodyInterface_DeactivateBody");
+        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_DeactivateBody$MH,"JPC_BodyInterface_DeactivateBody");
     }
     public static void JPC_BodyInterface_DeactivateBody ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_DeactivateBody$MH();
@@ -4795,7 +4944,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_DeactivateBodies$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_DeactivateBodies$MH,"JPC_BodyInterface_DeactivateBodies");
+        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_DeactivateBodies$MH,"JPC_BodyInterface_DeactivateBodies");
     }
     public static void JPC_BodyInterface_DeactivateBodies ( Addressable in_iface,  Addressable in_body_ids,  int in_number) {
         var mh$ = JPC_BodyInterface_DeactivateBodies$MH();
@@ -4806,7 +4955,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_IsActive$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.JPC_BodyInterface_IsActive$MH,"JPC_BodyInterface_IsActive");
+        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_IsActive$MH,"JPC_BodyInterface_IsActive");
     }
     public static boolean JPC_BodyInterface_IsActive ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_IsActive$MH();
@@ -4817,7 +4966,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_GetShape$MH,"JPC_BodyInterface_GetShape");
+        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_GetShape$MH,"JPC_BodyInterface_GetShape");
     }
     public static MemoryAddress JPC_BodyInterface_GetShape ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetShape$MH();
@@ -4828,7 +4977,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_SetShape$MH,"JPC_BodyInterface_SetShape");
+        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_SetShape$MH,"JPC_BodyInterface_SetShape");
     }
     public static void JPC_BodyInterface_SetShape ( Addressable in_iface,  int in_body_id,  Addressable in_shape,  boolean in_update_mass_properties,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_SetShape$MH();
@@ -4839,7 +4988,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_NotifyShapeChanged$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_NotifyShapeChanged$MH,"JPC_BodyInterface_NotifyShapeChanged");
+        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_NotifyShapeChanged$MH,"JPC_BodyInterface_NotifyShapeChanged");
     }
     public static void JPC_BodyInterface_NotifyShapeChanged ( Addressable in_iface,  int in_body_id,  Addressable in_previous_center_of_mass,  boolean in_update_mass_properties,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_NotifyShapeChanged$MH();
@@ -4850,7 +4999,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetObjectLayer$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_SetObjectLayer$MH,"JPC_BodyInterface_SetObjectLayer");
+        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_SetObjectLayer$MH,"JPC_BodyInterface_SetObjectLayer");
     }
     public static void JPC_BodyInterface_SetObjectLayer ( Addressable in_iface,  int in_body_id,  short in_layer) {
         var mh$ = JPC_BodyInterface_SetObjectLayer$MH();
@@ -4861,7 +5010,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetObjectLayer$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_GetObjectLayer$MH,"JPC_BodyInterface_GetObjectLayer");
+        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_GetObjectLayer$MH,"JPC_BodyInterface_GetObjectLayer");
     }
     public static short JPC_BodyInterface_GetObjectLayer ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetObjectLayer$MH();
@@ -4872,7 +5021,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetPositionAndRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.JPC_BodyInterface_SetPositionAndRotation$MH,"JPC_BodyInterface_SetPositionAndRotation");
+        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_SetPositionAndRotation$MH,"JPC_BodyInterface_SetPositionAndRotation");
     }
     public static void JPC_BodyInterface_SetPositionAndRotation ( Addressable in_iface,  int in_body_id,  Addressable in_position,  Addressable in_rotation,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_SetPositionAndRotation$MH();
@@ -4883,7 +5032,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetPositionAndRotationWhenChanged$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_SetPositionAndRotationWhenChanged$MH,"JPC_BodyInterface_SetPositionAndRotationWhenChanged");
+        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_SetPositionAndRotationWhenChanged$MH,"JPC_BodyInterface_SetPositionAndRotationWhenChanged");
     }
     public static void JPC_BodyInterface_SetPositionAndRotationWhenChanged ( Addressable in_iface,  int in_body_id,  Addressable in_position,  Addressable in_rotation,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_SetPositionAndRotationWhenChanged$MH();
@@ -4894,7 +5043,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetPositionAndRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_GetPositionAndRotation$MH,"JPC_BodyInterface_GetPositionAndRotation");
+        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_GetPositionAndRotation$MH,"JPC_BodyInterface_GetPositionAndRotation");
     }
     public static void JPC_BodyInterface_GetPositionAndRotation ( Addressable in_iface,  int in_body_id,  Addressable out_position,  Addressable out_rotation) {
         var mh$ = JPC_BodyInterface_GetPositionAndRotation$MH();
@@ -4905,7 +5054,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_SetPosition$MH,"JPC_BodyInterface_SetPosition");
+        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_SetPosition$MH,"JPC_BodyInterface_SetPosition");
     }
     public static void JPC_BodyInterface_SetPosition ( Addressable in_iface,  int in_body_id,  Addressable in_position,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_SetPosition$MH();
@@ -4916,7 +5065,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_GetPosition$MH,"JPC_BodyInterface_GetPosition");
+        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_GetPosition$MH,"JPC_BodyInterface_GetPosition");
     }
     public static void JPC_BodyInterface_GetPosition ( Addressable in_iface,  int in_body_id,  Addressable out_position) {
         var mh$ = JPC_BodyInterface_GetPosition$MH();
@@ -4927,7 +5076,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetCenterOfMassPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_GetCenterOfMassPosition$MH,"JPC_BodyInterface_GetCenterOfMassPosition");
+        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_GetCenterOfMassPosition$MH,"JPC_BodyInterface_GetCenterOfMassPosition");
     }
     public static void JPC_BodyInterface_GetCenterOfMassPosition ( Addressable in_iface,  int in_body_id,  Addressable out_position) {
         var mh$ = JPC_BodyInterface_GetCenterOfMassPosition$MH();
@@ -4938,7 +5087,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.JPC_BodyInterface_SetRotation$MH,"JPC_BodyInterface_SetRotation");
+        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_SetRotation$MH,"JPC_BodyInterface_SetRotation");
     }
     public static void JPC_BodyInterface_SetRotation ( Addressable in_iface,  int in_body_id,  Addressable in_rotation,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_SetRotation$MH();
@@ -4949,7 +5098,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_GetRotation$MH,"JPC_BodyInterface_GetRotation");
+        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_GetRotation$MH,"JPC_BodyInterface_GetRotation");
     }
     public static void JPC_BodyInterface_GetRotation ( Addressable in_iface,  int in_body_id,  Addressable out_rotation) {
         var mh$ = JPC_BodyInterface_GetRotation$MH();
@@ -4960,7 +5109,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetWorldTransform$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_GetWorldTransform$MH,"JPC_BodyInterface_GetWorldTransform");
+        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_GetWorldTransform$MH,"JPC_BodyInterface_GetWorldTransform");
     }
     public static void JPC_BodyInterface_GetWorldTransform ( Addressable in_iface,  int in_body_id,  Addressable out_rotation,  Addressable out_translation) {
         var mh$ = JPC_BodyInterface_GetWorldTransform$MH();
@@ -4971,7 +5120,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetCenterOfMassTransform$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_GetCenterOfMassTransform$MH,"JPC_BodyInterface_GetCenterOfMassTransform");
+        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_GetCenterOfMassTransform$MH,"JPC_BodyInterface_GetCenterOfMassTransform");
     }
     public static void JPC_BodyInterface_GetCenterOfMassTransform ( Addressable in_iface,  int in_body_id,  Addressable out_rotation,  Addressable out_translation) {
         var mh$ = JPC_BodyInterface_GetCenterOfMassTransform$MH();
@@ -4982,7 +5131,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_MoveKinematic$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_MoveKinematic$MH,"JPC_BodyInterface_MoveKinematic");
+        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_MoveKinematic$MH,"JPC_BodyInterface_MoveKinematic");
     }
     public static void JPC_BodyInterface_MoveKinematic ( Addressable in_iface,  int in_body_id,  Addressable in_target_position,  Addressable in_target_rotation,  float in_delta_time) {
         var mh$ = JPC_BodyInterface_MoveKinematic$MH();
@@ -4993,7 +5142,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetLinearAndAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_SetLinearAndAngularVelocity$MH,"JPC_BodyInterface_SetLinearAndAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_SetLinearAndAngularVelocity$MH,"JPC_BodyInterface_SetLinearAndAngularVelocity");
     }
     public static void JPC_BodyInterface_SetLinearAndAngularVelocity ( Addressable in_iface,  int in_body_id,  Addressable in_linear_velocity,  Addressable in_angular_velocity) {
         var mh$ = JPC_BodyInterface_SetLinearAndAngularVelocity$MH();
@@ -5004,7 +5153,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetLinearAndAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.JPC_BodyInterface_GetLinearAndAngularVelocity$MH,"JPC_BodyInterface_GetLinearAndAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_GetLinearAndAngularVelocity$MH,"JPC_BodyInterface_GetLinearAndAngularVelocity");
     }
     public static void JPC_BodyInterface_GetLinearAndAngularVelocity ( Addressable in_iface,  int in_body_id,  Addressable out_linear_velocity,  Addressable out_angular_velocity) {
         var mh$ = JPC_BodyInterface_GetLinearAndAngularVelocity$MH();
@@ -5015,7 +5164,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetLinearVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_SetLinearVelocity$MH,"JPC_BodyInterface_SetLinearVelocity");
+        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_SetLinearVelocity$MH,"JPC_BodyInterface_SetLinearVelocity");
     }
     public static void JPC_BodyInterface_SetLinearVelocity ( Addressable in_iface,  int in_body_id,  Addressable in_velocity) {
         var mh$ = JPC_BodyInterface_SetLinearVelocity$MH();
@@ -5026,7 +5175,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetLinearVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_GetLinearVelocity$MH,"JPC_BodyInterface_GetLinearVelocity");
+        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_GetLinearVelocity$MH,"JPC_BodyInterface_GetLinearVelocity");
     }
     public static void JPC_BodyInterface_GetLinearVelocity ( Addressable in_iface,  int in_body_id,  Addressable out_velocity) {
         var mh$ = JPC_BodyInterface_GetLinearVelocity$MH();
@@ -5037,7 +5186,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddLinearVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_AddLinearVelocity$MH,"JPC_BodyInterface_AddLinearVelocity");
+        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_AddLinearVelocity$MH,"JPC_BodyInterface_AddLinearVelocity");
     }
     public static void JPC_BodyInterface_AddLinearVelocity ( Addressable in_iface,  int in_body_id,  Addressable in_velocity) {
         var mh$ = JPC_BodyInterface_AddLinearVelocity$MH();
@@ -5048,7 +5197,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddLinearAndAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_AddLinearAndAngularVelocity$MH,"JPC_BodyInterface_AddLinearAndAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_AddLinearAndAngularVelocity$MH,"JPC_BodyInterface_AddLinearAndAngularVelocity");
     }
     public static void JPC_BodyInterface_AddLinearAndAngularVelocity ( Addressable in_iface,  int in_body_id,  Addressable in_linear_velocity,  Addressable in_angular_velocity) {
         var mh$ = JPC_BodyInterface_AddLinearAndAngularVelocity$MH();
@@ -5059,7 +5208,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_SetAngularVelocity$MH,"JPC_BodyInterface_SetAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_SetAngularVelocity$MH,"JPC_BodyInterface_SetAngularVelocity");
     }
     public static void JPC_BodyInterface_SetAngularVelocity ( Addressable in_iface,  int in_body_id,  Addressable in_velocity) {
         var mh$ = JPC_BodyInterface_SetAngularVelocity$MH();
@@ -5070,7 +5219,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.JPC_BodyInterface_GetAngularVelocity$MH,"JPC_BodyInterface_GetAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_GetAngularVelocity$MH,"JPC_BodyInterface_GetAngularVelocity");
     }
     public static void JPC_BodyInterface_GetAngularVelocity ( Addressable in_iface,  int in_body_id,  Addressable out_velocity) {
         var mh$ = JPC_BodyInterface_GetAngularVelocity$MH();
@@ -5081,7 +5230,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetPointVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_GetPointVelocity$MH,"JPC_BodyInterface_GetPointVelocity");
+        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_GetPointVelocity$MH,"JPC_BodyInterface_GetPointVelocity");
     }
     public static void JPC_BodyInterface_GetPointVelocity ( Addressable in_iface,  int in_body_id,  Addressable in_point,  Addressable out_velocity) {
         var mh$ = JPC_BodyInterface_GetPointVelocity$MH();
@@ -5092,7 +5241,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetPositionRotationAndVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_SetPositionRotationAndVelocity$MH,"JPC_BodyInterface_SetPositionRotationAndVelocity");
+        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_SetPositionRotationAndVelocity$MH,"JPC_BodyInterface_SetPositionRotationAndVelocity");
     }
     public static void JPC_BodyInterface_SetPositionRotationAndVelocity ( Addressable in_iface,  int in_body_id,  Addressable in_position,  Addressable in_rotation,  Addressable in_linear_velocity,  Addressable in_angular_velocity) {
         var mh$ = JPC_BodyInterface_SetPositionRotationAndVelocity$MH();
@@ -5103,7 +5252,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddForce$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_AddForce$MH,"JPC_BodyInterface_AddForce");
+        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_AddForce$MH,"JPC_BodyInterface_AddForce");
     }
     public static void JPC_BodyInterface_AddForce ( Addressable in_iface,  int in_body_id,  Addressable in_force) {
         var mh$ = JPC_BodyInterface_AddForce$MH();
@@ -5114,7 +5263,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddForceAtPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_AddForceAtPosition$MH,"JPC_BodyInterface_AddForceAtPosition");
+        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_AddForceAtPosition$MH,"JPC_BodyInterface_AddForceAtPosition");
     }
     public static void JPC_BodyInterface_AddForceAtPosition ( Addressable in_iface,  int in_body_id,  Addressable in_force,  Addressable in_position) {
         var mh$ = JPC_BodyInterface_AddForceAtPosition$MH();
@@ -5125,7 +5274,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddTorque$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_AddTorque$MH,"JPC_BodyInterface_AddTorque");
+        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_AddTorque$MH,"JPC_BodyInterface_AddTorque");
     }
     public static void JPC_BodyInterface_AddTorque ( Addressable in_iface,  int in_body_id,  Addressable in_torque) {
         var mh$ = JPC_BodyInterface_AddTorque$MH();
@@ -5136,7 +5285,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddForceAndTorque$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.JPC_BodyInterface_AddForceAndTorque$MH,"JPC_BodyInterface_AddForceAndTorque");
+        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_AddForceAndTorque$MH,"JPC_BodyInterface_AddForceAndTorque");
     }
     public static void JPC_BodyInterface_AddForceAndTorque ( Addressable in_iface,  int in_body_id,  Addressable in_force,  Addressable in_torque) {
         var mh$ = JPC_BodyInterface_AddForceAndTorque$MH();
@@ -5147,7 +5296,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddImpulse$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_AddImpulse$MH,"JPC_BodyInterface_AddImpulse");
+        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_AddImpulse$MH,"JPC_BodyInterface_AddImpulse");
     }
     public static void JPC_BodyInterface_AddImpulse ( Addressable in_iface,  int in_body_id,  Addressable in_impulse) {
         var mh$ = JPC_BodyInterface_AddImpulse$MH();
@@ -5158,7 +5307,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddImpulseAtPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_AddImpulseAtPosition$MH,"JPC_BodyInterface_AddImpulseAtPosition");
+        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_AddImpulseAtPosition$MH,"JPC_BodyInterface_AddImpulseAtPosition");
     }
     public static void JPC_BodyInterface_AddImpulseAtPosition ( Addressable in_iface,  int in_body_id,  Addressable in_impulse,  Addressable in_position) {
         var mh$ = JPC_BodyInterface_AddImpulseAtPosition$MH();
@@ -5169,7 +5318,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_AddAngularImpulse$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_AddAngularImpulse$MH,"JPC_BodyInterface_AddAngularImpulse");
+        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_AddAngularImpulse$MH,"JPC_BodyInterface_AddAngularImpulse");
     }
     public static void JPC_BodyInterface_AddAngularImpulse ( Addressable in_iface,  int in_body_id,  Addressable in_impulse) {
         var mh$ = JPC_BodyInterface_AddAngularImpulse$MH();
@@ -5180,7 +5329,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetMotionType$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_SetMotionType$MH,"JPC_BodyInterface_SetMotionType");
+        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_SetMotionType$MH,"JPC_BodyInterface_SetMotionType");
     }
     public static void JPC_BodyInterface_SetMotionType ( Addressable in_iface,  int in_body_id,  byte in_motion_type,  int in_activation_mode) {
         var mh$ = JPC_BodyInterface_SetMotionType$MH();
@@ -5191,7 +5340,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetMotionType$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_GetMotionType$MH,"JPC_BodyInterface_GetMotionType");
+        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_GetMotionType$MH,"JPC_BodyInterface_GetMotionType");
     }
     public static byte JPC_BodyInterface_GetMotionType ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetMotionType$MH();
@@ -5202,7 +5351,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetMotionQuality$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.JPC_BodyInterface_SetMotionQuality$MH,"JPC_BodyInterface_SetMotionQuality");
+        return RuntimeHelper.requireNonNull(constants$73.JPC_BodyInterface_SetMotionQuality$MH,"JPC_BodyInterface_SetMotionQuality");
     }
     public static void JPC_BodyInterface_SetMotionQuality ( Addressable in_iface,  int in_body_id,  byte in_motion_quality) {
         var mh$ = JPC_BodyInterface_SetMotionQuality$MH();
@@ -5213,7 +5362,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetMotionQuality$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_GetMotionQuality$MH,"JPC_BodyInterface_GetMotionQuality");
+        return RuntimeHelper.requireNonNull(constants$73.JPC_BodyInterface_GetMotionQuality$MH,"JPC_BodyInterface_GetMotionQuality");
     }
     public static byte JPC_BodyInterface_GetMotionQuality ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetMotionQuality$MH();
@@ -5224,7 +5373,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetInverseInertia$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_GetInverseInertia$MH,"JPC_BodyInterface_GetInverseInertia");
+        return RuntimeHelper.requireNonNull(constants$73.JPC_BodyInterface_GetInverseInertia$MH,"JPC_BodyInterface_GetInverseInertia");
     }
     public static void JPC_BodyInterface_GetInverseInertia ( Addressable in_iface,  int in_body_id,  Addressable out_inverse_inertia) {
         var mh$ = JPC_BodyInterface_GetInverseInertia$MH();
@@ -5235,7 +5384,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetRestitution$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_SetRestitution$MH,"JPC_BodyInterface_SetRestitution");
+        return RuntimeHelper.requireNonNull(constants$73.JPC_BodyInterface_SetRestitution$MH,"JPC_BodyInterface_SetRestitution");
     }
     public static void JPC_BodyInterface_SetRestitution ( Addressable in_iface,  int in_body_id,  float in_restitution) {
         var mh$ = JPC_BodyInterface_SetRestitution$MH();
@@ -5246,7 +5395,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetRestitution$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_GetRestitution$MH,"JPC_BodyInterface_GetRestitution");
+        return RuntimeHelper.requireNonNull(constants$73.JPC_BodyInterface_GetRestitution$MH,"JPC_BodyInterface_GetRestitution");
     }
     public static float JPC_BodyInterface_GetRestitution ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetRestitution$MH();
@@ -5257,7 +5406,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetFriction$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_SetFriction$MH,"JPC_BodyInterface_SetFriction");
+        return RuntimeHelper.requireNonNull(constants$73.JPC_BodyInterface_SetFriction$MH,"JPC_BodyInterface_SetFriction");
     }
     public static void JPC_BodyInterface_SetFriction ( Addressable in_iface,  int in_body_id,  float in_friction) {
         var mh$ = JPC_BodyInterface_SetFriction$MH();
@@ -5268,7 +5417,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetFriction$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.JPC_BodyInterface_GetFriction$MH,"JPC_BodyInterface_GetFriction");
+        return RuntimeHelper.requireNonNull(constants$74.JPC_BodyInterface_GetFriction$MH,"JPC_BodyInterface_GetFriction");
     }
     public static float JPC_BodyInterface_GetFriction ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetFriction$MH();
@@ -5279,7 +5428,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_SetGravityFactor$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_SetGravityFactor$MH,"JPC_BodyInterface_SetGravityFactor");
+        return RuntimeHelper.requireNonNull(constants$74.JPC_BodyInterface_SetGravityFactor$MH,"JPC_BodyInterface_SetGravityFactor");
     }
     public static void JPC_BodyInterface_SetGravityFactor ( Addressable in_iface,  int in_body_id,  float in_gravity_factor) {
         var mh$ = JPC_BodyInterface_SetGravityFactor$MH();
@@ -5290,7 +5439,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetGravityFactor$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_GetGravityFactor$MH,"JPC_BodyInterface_GetGravityFactor");
+        return RuntimeHelper.requireNonNull(constants$74.JPC_BodyInterface_GetGravityFactor$MH,"JPC_BodyInterface_GetGravityFactor");
     }
     public static float JPC_BodyInterface_GetGravityFactor ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetGravityFactor$MH();
@@ -5301,7 +5450,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetTransformedShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_GetTransformedShape$MH,"JPC_BodyInterface_GetTransformedShape");
+        return RuntimeHelper.requireNonNull(constants$74.JPC_BodyInterface_GetTransformedShape$MH,"JPC_BodyInterface_GetTransformedShape");
     }
     public static void JPC_BodyInterface_GetTransformedShape ( Addressable in_iface,  int in_body_id,  Addressable out_shape) {
         var mh$ = JPC_BodyInterface_GetTransformedShape$MH();
@@ -5312,7 +5461,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetUserData$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_GetUserData$MH,"JPC_BodyInterface_GetUserData");
+        return RuntimeHelper.requireNonNull(constants$74.JPC_BodyInterface_GetUserData$MH,"JPC_BodyInterface_GetUserData");
     }
     public static long JPC_BodyInterface_GetUserData ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_GetUserData$MH();
@@ -5323,7 +5472,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_GetMaterial$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_GetMaterial$MH,"JPC_BodyInterface_GetMaterial");
+        return RuntimeHelper.requireNonNull(constants$74.JPC_BodyInterface_GetMaterial$MH,"JPC_BodyInterface_GetMaterial");
     }
     public static MemoryAddress JPC_BodyInterface_GetMaterial ( Addressable in_iface,  int in_body_id,  int in_sub_shape_id) {
         var mh$ = JPC_BodyInterface_GetMaterial$MH();
@@ -5334,7 +5483,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyInterface_InvalidateContactCache$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.JPC_BodyInterface_InvalidateContactCache$MH,"JPC_BodyInterface_InvalidateContactCache");
+        return RuntimeHelper.requireNonNull(constants$75.JPC_BodyInterface_InvalidateContactCache$MH,"JPC_BodyInterface_InvalidateContactCache");
     }
     public static void JPC_BodyInterface_InvalidateContactCache ( Addressable in_iface,  int in_body_id) {
         var mh$ = JPC_BodyInterface_InvalidateContactCache$MH();
@@ -5345,7 +5494,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetID$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.JPC_Body_GetID$MH,"JPC_Body_GetID");
+        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_GetID$MH,"JPC_Body_GetID");
     }
     public static int JPC_Body_GetID ( Addressable in_body) {
         var mh$ = JPC_Body_GetID$MH();
@@ -5356,7 +5505,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_IsActive$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.JPC_Body_IsActive$MH,"JPC_Body_IsActive");
+        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_IsActive$MH,"JPC_Body_IsActive");
     }
     public static boolean JPC_Body_IsActive ( Addressable in_body) {
         var mh$ = JPC_Body_IsActive$MH();
@@ -5367,7 +5516,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_IsStatic$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.JPC_Body_IsStatic$MH,"JPC_Body_IsStatic");
+        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_IsStatic$MH,"JPC_Body_IsStatic");
     }
     public static boolean JPC_Body_IsStatic ( Addressable in_body) {
         var mh$ = JPC_Body_IsStatic$MH();
@@ -5378,7 +5527,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_IsKinematic$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.JPC_Body_IsKinematic$MH,"JPC_Body_IsKinematic");
+        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_IsKinematic$MH,"JPC_Body_IsKinematic");
     }
     public static boolean JPC_Body_IsKinematic ( Addressable in_body) {
         var mh$ = JPC_Body_IsKinematic$MH();
@@ -5389,7 +5538,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_IsDynamic$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.JPC_Body_IsDynamic$MH,"JPC_Body_IsDynamic");
+        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_IsDynamic$MH,"JPC_Body_IsDynamic");
     }
     public static boolean JPC_Body_IsDynamic ( Addressable in_body) {
         var mh$ = JPC_Body_IsDynamic$MH();
@@ -5400,7 +5549,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_CanBeKinematicOrDynamic$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.JPC_Body_CanBeKinematicOrDynamic$MH,"JPC_Body_CanBeKinematicOrDynamic");
+        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_CanBeKinematicOrDynamic$MH,"JPC_Body_CanBeKinematicOrDynamic");
     }
     public static boolean JPC_Body_CanBeKinematicOrDynamic ( Addressable in_body) {
         var mh$ = JPC_Body_CanBeKinematicOrDynamic$MH();
@@ -5411,7 +5560,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetIsSensor$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.JPC_Body_SetIsSensor$MH,"JPC_Body_SetIsSensor");
+        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_SetIsSensor$MH,"JPC_Body_SetIsSensor");
     }
     public static void JPC_Body_SetIsSensor ( Addressable in_body,  boolean in_is_sensor) {
         var mh$ = JPC_Body_SetIsSensor$MH();
@@ -5422,7 +5571,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_IsSensor$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.JPC_Body_IsSensor$MH,"JPC_Body_IsSensor");
+        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_IsSensor$MH,"JPC_Body_IsSensor");
     }
     public static boolean JPC_Body_IsSensor ( Addressable in_body) {
         var mh$ = JPC_Body_IsSensor$MH();
@@ -5433,7 +5582,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetUseManifoldReduction$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.JPC_Body_SetUseManifoldReduction$MH,"JPC_Body_SetUseManifoldReduction");
+        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_SetUseManifoldReduction$MH,"JPC_Body_SetUseManifoldReduction");
     }
     public static void JPC_Body_SetUseManifoldReduction ( Addressable in_body,  boolean in_use_reduction) {
         var mh$ = JPC_Body_SetUseManifoldReduction$MH();
@@ -5444,7 +5593,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetUseManifoldReduction$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.JPC_Body_GetUseManifoldReduction$MH,"JPC_Body_GetUseManifoldReduction");
+        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_GetUseManifoldReduction$MH,"JPC_Body_GetUseManifoldReduction");
     }
     public static boolean JPC_Body_GetUseManifoldReduction ( Addressable in_body) {
         var mh$ = JPC_Body_GetUseManifoldReduction$MH();
@@ -5455,7 +5604,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetUseManifoldReductionWithBody$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.JPC_Body_GetUseManifoldReductionWithBody$MH,"JPC_Body_GetUseManifoldReductionWithBody");
+        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_GetUseManifoldReductionWithBody$MH,"JPC_Body_GetUseManifoldReductionWithBody");
     }
     public static boolean JPC_Body_GetUseManifoldReductionWithBody ( Addressable in_body,  Addressable in_other) {
         var mh$ = JPC_Body_GetUseManifoldReductionWithBody$MH();
@@ -5466,7 +5615,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetMotionType$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.JPC_Body_GetMotionType$MH,"JPC_Body_GetMotionType");
+        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_GetMotionType$MH,"JPC_Body_GetMotionType");
     }
     public static byte JPC_Body_GetMotionType ( Addressable in_body) {
         var mh$ = JPC_Body_GetMotionType$MH();
@@ -5477,7 +5626,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetMotionType$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_SetMotionType$MH,"JPC_Body_SetMotionType");
+        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_SetMotionType$MH,"JPC_Body_SetMotionType");
     }
     public static void JPC_Body_SetMotionType ( Addressable in_body,  byte in_motion_type) {
         var mh$ = JPC_Body_SetMotionType$MH();
@@ -5488,7 +5637,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetBroadPhaseLayer$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_GetBroadPhaseLayer$MH,"JPC_Body_GetBroadPhaseLayer");
+        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_GetBroadPhaseLayer$MH,"JPC_Body_GetBroadPhaseLayer");
     }
     public static byte JPC_Body_GetBroadPhaseLayer ( Addressable in_body) {
         var mh$ = JPC_Body_GetBroadPhaseLayer$MH();
@@ -5499,7 +5648,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetObjectLayer$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_GetObjectLayer$MH,"JPC_Body_GetObjectLayer");
+        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_GetObjectLayer$MH,"JPC_Body_GetObjectLayer");
     }
     public static short JPC_Body_GetObjectLayer ( Addressable in_body) {
         var mh$ = JPC_Body_GetObjectLayer$MH();
@@ -5510,7 +5659,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetCollisionGroup$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_GetCollisionGroup$MH,"JPC_Body_GetCollisionGroup");
+        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_GetCollisionGroup$MH,"JPC_Body_GetCollisionGroup");
     }
     public static MemoryAddress JPC_Body_GetCollisionGroup ( Addressable in_body) {
         var mh$ = JPC_Body_GetCollisionGroup$MH();
@@ -5521,7 +5670,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetCollisionGroup$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_SetCollisionGroup$MH,"JPC_Body_SetCollisionGroup");
+        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_SetCollisionGroup$MH,"JPC_Body_SetCollisionGroup");
     }
     public static void JPC_Body_SetCollisionGroup ( Addressable in_body,  Addressable in_group) {
         var mh$ = JPC_Body_SetCollisionGroup$MH();
@@ -5532,7 +5681,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetAllowSleeping$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.JPC_Body_GetAllowSleeping$MH,"JPC_Body_GetAllowSleeping");
+        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_GetAllowSleeping$MH,"JPC_Body_GetAllowSleeping");
     }
     public static boolean JPC_Body_GetAllowSleeping ( Addressable in_body) {
         var mh$ = JPC_Body_GetAllowSleeping$MH();
@@ -5543,7 +5692,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetAllowSleeping$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_SetAllowSleeping$MH,"JPC_Body_SetAllowSleeping");
+        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_SetAllowSleeping$MH,"JPC_Body_SetAllowSleeping");
     }
     public static void JPC_Body_SetAllowSleeping ( Addressable in_body,  boolean in_allow_sleeping) {
         var mh$ = JPC_Body_SetAllowSleeping$MH();
@@ -5554,7 +5703,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetFriction$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_GetFriction$MH,"JPC_Body_GetFriction");
+        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_GetFriction$MH,"JPC_Body_GetFriction");
     }
     public static float JPC_Body_GetFriction ( Addressable in_body) {
         var mh$ = JPC_Body_GetFriction$MH();
@@ -5565,7 +5714,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetFriction$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_SetFriction$MH,"JPC_Body_SetFriction");
+        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_SetFriction$MH,"JPC_Body_SetFriction");
     }
     public static void JPC_Body_SetFriction ( Addressable in_body,  float in_friction) {
         var mh$ = JPC_Body_SetFriction$MH();
@@ -5576,7 +5725,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetRestitution$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_GetRestitution$MH,"JPC_Body_GetRestitution");
+        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_GetRestitution$MH,"JPC_Body_GetRestitution");
     }
     public static float JPC_Body_GetRestitution ( Addressable in_body) {
         var mh$ = JPC_Body_GetRestitution$MH();
@@ -5587,7 +5736,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetRestitution$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_SetRestitution$MH,"JPC_Body_SetRestitution");
+        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_SetRestitution$MH,"JPC_Body_SetRestitution");
     }
     public static void JPC_Body_SetRestitution ( Addressable in_body,  float in_restitution) {
         var mh$ = JPC_Body_SetRestitution$MH();
@@ -5598,7 +5747,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetLinearVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.JPC_Body_GetLinearVelocity$MH,"JPC_Body_GetLinearVelocity");
+        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_GetLinearVelocity$MH,"JPC_Body_GetLinearVelocity");
     }
     public static void JPC_Body_GetLinearVelocity ( Addressable in_body,  Addressable out_linear_velocity) {
         var mh$ = JPC_Body_GetLinearVelocity$MH();
@@ -5609,7 +5758,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetLinearVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_SetLinearVelocity$MH,"JPC_Body_SetLinearVelocity");
+        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_SetLinearVelocity$MH,"JPC_Body_SetLinearVelocity");
     }
     public static void JPC_Body_SetLinearVelocity ( Addressable in_body,  Addressable in_linear_velocity) {
         var mh$ = JPC_Body_SetLinearVelocity$MH();
@@ -5620,7 +5769,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetLinearVelocityClamped$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_SetLinearVelocityClamped$MH,"JPC_Body_SetLinearVelocityClamped");
+        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_SetLinearVelocityClamped$MH,"JPC_Body_SetLinearVelocityClamped");
     }
     public static void JPC_Body_SetLinearVelocityClamped ( Addressable in_body,  Addressable in_linear_velocity) {
         var mh$ = JPC_Body_SetLinearVelocityClamped$MH();
@@ -5631,7 +5780,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_GetAngularVelocity$MH,"JPC_Body_GetAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_GetAngularVelocity$MH,"JPC_Body_GetAngularVelocity");
     }
     public static void JPC_Body_GetAngularVelocity ( Addressable in_body,  Addressable out_angular_velocity) {
         var mh$ = JPC_Body_GetAngularVelocity$MH();
@@ -5642,7 +5791,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetAngularVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_SetAngularVelocity$MH,"JPC_Body_SetAngularVelocity");
+        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_SetAngularVelocity$MH,"JPC_Body_SetAngularVelocity");
     }
     public static void JPC_Body_SetAngularVelocity ( Addressable in_body,  Addressable in_angular_velocity) {
         var mh$ = JPC_Body_SetAngularVelocity$MH();
@@ -5653,7 +5802,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetAngularVelocityClamped$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_SetAngularVelocityClamped$MH,"JPC_Body_SetAngularVelocityClamped");
+        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_SetAngularVelocityClamped$MH,"JPC_Body_SetAngularVelocityClamped");
     }
     public static void JPC_Body_SetAngularVelocityClamped ( Addressable in_body,  Addressable in_angular_velocity) {
         var mh$ = JPC_Body_SetAngularVelocityClamped$MH();
@@ -5664,7 +5813,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetPointVelocityCOM$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.JPC_Body_GetPointVelocityCOM$MH,"JPC_Body_GetPointVelocityCOM");
+        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_GetPointVelocityCOM$MH,"JPC_Body_GetPointVelocityCOM");
     }
     public static void JPC_Body_GetPointVelocityCOM ( Addressable in_body,  Addressable in_point_relative_to_com,  Addressable out_velocity) {
         var mh$ = JPC_Body_GetPointVelocityCOM$MH();
@@ -5675,7 +5824,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetPointVelocity$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_GetPointVelocity$MH,"JPC_Body_GetPointVelocity");
+        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_GetPointVelocity$MH,"JPC_Body_GetPointVelocity");
     }
     public static void JPC_Body_GetPointVelocity ( Addressable in_body,  Addressable in_point,  Addressable out_velocity) {
         var mh$ = JPC_Body_GetPointVelocity$MH();
@@ -5686,7 +5835,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_AddForce$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_AddForce$MH,"JPC_Body_AddForce");
+        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_AddForce$MH,"JPC_Body_AddForce");
     }
     public static void JPC_Body_AddForce ( Addressable in_body,  Addressable in_force) {
         var mh$ = JPC_Body_AddForce$MH();
@@ -5697,7 +5846,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_AddForceAtPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_AddForceAtPosition$MH,"JPC_Body_AddForceAtPosition");
+        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_AddForceAtPosition$MH,"JPC_Body_AddForceAtPosition");
     }
     public static void JPC_Body_AddForceAtPosition ( Addressable in_body,  Addressable in_force,  Addressable in_position) {
         var mh$ = JPC_Body_AddForceAtPosition$MH();
@@ -5708,7 +5857,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_AddTorque$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_AddTorque$MH,"JPC_Body_AddTorque");
+        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_AddTorque$MH,"JPC_Body_AddTorque");
     }
     public static void JPC_Body_AddTorque ( Addressable in_body,  Addressable in_torque) {
         var mh$ = JPC_Body_AddTorque$MH();
@@ -5719,7 +5868,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetAccumulatedForce$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_GetAccumulatedForce$MH,"JPC_Body_GetAccumulatedForce");
+        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_GetAccumulatedForce$MH,"JPC_Body_GetAccumulatedForce");
     }
     public static void JPC_Body_GetAccumulatedForce ( Addressable in_body,  Addressable out_force) {
         var mh$ = JPC_Body_GetAccumulatedForce$MH();
@@ -5730,7 +5879,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetAccumulatedTorque$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.JPC_Body_GetAccumulatedTorque$MH,"JPC_Body_GetAccumulatedTorque");
+        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetAccumulatedTorque$MH,"JPC_Body_GetAccumulatedTorque");
     }
     public static void JPC_Body_GetAccumulatedTorque ( Addressable in_body,  Addressable out_torque) {
         var mh$ = JPC_Body_GetAccumulatedTorque$MH();
@@ -5741,7 +5890,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetInverseInertia$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_GetInverseInertia$MH,"JPC_Body_GetInverseInertia");
+        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetInverseInertia$MH,"JPC_Body_GetInverseInertia");
     }
     public static void JPC_Body_GetInverseInertia ( Addressable in_body,  Addressable out_inverse_inertia) {
         var mh$ = JPC_Body_GetInverseInertia$MH();
@@ -5752,7 +5901,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_AddImpulse$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_AddImpulse$MH,"JPC_Body_AddImpulse");
+        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_AddImpulse$MH,"JPC_Body_AddImpulse");
     }
     public static void JPC_Body_AddImpulse ( Addressable in_body,  Addressable in_impulse) {
         var mh$ = JPC_Body_AddImpulse$MH();
@@ -5763,7 +5912,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_AddImpulseAtPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_AddImpulseAtPosition$MH,"JPC_Body_AddImpulseAtPosition");
+        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_AddImpulseAtPosition$MH,"JPC_Body_AddImpulseAtPosition");
     }
     public static void JPC_Body_AddImpulseAtPosition ( Addressable in_body,  Addressable in_impulse,  Addressable in_position) {
         var mh$ = JPC_Body_AddImpulseAtPosition$MH();
@@ -5774,7 +5923,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_AddAngularImpulse$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_AddAngularImpulse$MH,"JPC_Body_AddAngularImpulse");
+        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_AddAngularImpulse$MH,"JPC_Body_AddAngularImpulse");
     }
     public static void JPC_Body_AddAngularImpulse ( Addressable in_body,  Addressable in_angular_impulse) {
         var mh$ = JPC_Body_AddAngularImpulse$MH();
@@ -5785,7 +5934,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_MoveKinematic$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_MoveKinematic$MH,"JPC_Body_MoveKinematic");
+        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_MoveKinematic$MH,"JPC_Body_MoveKinematic");
     }
     public static void JPC_Body_MoveKinematic ( Addressable in_body,  Addressable in_target_position,  Addressable in_target_rotation,  float in_delta_time) {
         var mh$ = JPC_Body_MoveKinematic$MH();
@@ -5796,7 +5945,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_ApplyBuoyancyImpulse$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.JPC_Body_ApplyBuoyancyImpulse$MH,"JPC_Body_ApplyBuoyancyImpulse");
+        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_ApplyBuoyancyImpulse$MH,"JPC_Body_ApplyBuoyancyImpulse");
     }
     public static boolean JPC_Body_ApplyBuoyancyImpulse ( Addressable in_body,  Addressable in_surface_position,  Addressable in_surface_normal,  float in_buoyancy,  float in_linear_drag,  float in_angular_drag,  Addressable in_fluid_velocity,  Addressable in_gravity,  float in_delta_time) {
         var mh$ = JPC_Body_ApplyBuoyancyImpulse$MH();
@@ -5807,7 +5956,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_IsInBroadPhase$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_IsInBroadPhase$MH,"JPC_Body_IsInBroadPhase");
+        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_IsInBroadPhase$MH,"JPC_Body_IsInBroadPhase");
     }
     public static boolean JPC_Body_IsInBroadPhase ( Addressable in_body) {
         var mh$ = JPC_Body_IsInBroadPhase$MH();
@@ -5818,7 +5967,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_IsCollisionCacheInvalid$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_IsCollisionCacheInvalid$MH,"JPC_Body_IsCollisionCacheInvalid");
+        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_IsCollisionCacheInvalid$MH,"JPC_Body_IsCollisionCacheInvalid");
     }
     public static boolean JPC_Body_IsCollisionCacheInvalid ( Addressable in_body) {
         var mh$ = JPC_Body_IsCollisionCacheInvalid$MH();
@@ -5829,7 +5978,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_GetShape$MH,"JPC_Body_GetShape");
+        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_GetShape$MH,"JPC_Body_GetShape");
     }
     public static MemoryAddress JPC_Body_GetShape ( Addressable in_body) {
         var mh$ = JPC_Body_GetShape$MH();
@@ -5840,7 +5989,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_GetPosition$MH,"JPC_Body_GetPosition");
+        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_GetPosition$MH,"JPC_Body_GetPosition");
     }
     public static void JPC_Body_GetPosition ( Addressable in_body,  Addressable out_position) {
         var mh$ = JPC_Body_GetPosition$MH();
@@ -5851,7 +6000,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetRotation$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_GetRotation$MH,"JPC_Body_GetRotation");
+        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_GetRotation$MH,"JPC_Body_GetRotation");
     }
     public static void JPC_Body_GetRotation ( Addressable in_body,  Addressable out_rotation) {
         var mh$ = JPC_Body_GetRotation$MH();
@@ -5862,7 +6011,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetWorldTransform$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.JPC_Body_GetWorldTransform$MH,"JPC_Body_GetWorldTransform");
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Body_GetWorldTransform$MH,"JPC_Body_GetWorldTransform");
     }
     public static void JPC_Body_GetWorldTransform ( Addressable in_body,  Addressable out_rotation,  Addressable out_translation) {
         var mh$ = JPC_Body_GetWorldTransform$MH();
@@ -5873,7 +6022,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetCenterOfMassPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetCenterOfMassPosition$MH,"JPC_Body_GetCenterOfMassPosition");
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Body_GetCenterOfMassPosition$MH,"JPC_Body_GetCenterOfMassPosition");
     }
     public static void JPC_Body_GetCenterOfMassPosition ( Addressable in_body,  Addressable out_position) {
         var mh$ = JPC_Body_GetCenterOfMassPosition$MH();
@@ -5884,7 +6033,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetCenterOfMassTransform$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetCenterOfMassTransform$MH,"JPC_Body_GetCenterOfMassTransform");
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Body_GetCenterOfMassTransform$MH,"JPC_Body_GetCenterOfMassTransform");
     }
     public static void JPC_Body_GetCenterOfMassTransform ( Addressable in_body,  Addressable out_rotation,  Addressable out_translation) {
         var mh$ = JPC_Body_GetCenterOfMassTransform$MH();
@@ -5895,7 +6044,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetInverseCenterOfMassTransform$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetInverseCenterOfMassTransform$MH,"JPC_Body_GetInverseCenterOfMassTransform");
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Body_GetInverseCenterOfMassTransform$MH,"JPC_Body_GetInverseCenterOfMassTransform");
     }
     public static void JPC_Body_GetInverseCenterOfMassTransform ( Addressable in_body,  Addressable out_rotation,  Addressable out_translation) {
         var mh$ = JPC_Body_GetInverseCenterOfMassTransform$MH();
@@ -5906,7 +6055,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetWorldSpaceBounds$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetWorldSpaceBounds$MH,"JPC_Body_GetWorldSpaceBounds");
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Body_GetWorldSpaceBounds$MH,"JPC_Body_GetWorldSpaceBounds");
     }
     public static void JPC_Body_GetWorldSpaceBounds ( Addressable in_body,  Addressable out_min,  Addressable out_max) {
         var mh$ = JPC_Body_GetWorldSpaceBounds$MH();
@@ -5917,7 +6066,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetMotionProperties$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetMotionProperties$MH,"JPC_Body_GetMotionProperties");
+        return RuntimeHelper.requireNonNull(constants$83.JPC_Body_GetMotionProperties$MH,"JPC_Body_GetMotionProperties");
     }
     public static MemoryAddress JPC_Body_GetMotionProperties ( Addressable in_body) {
         var mh$ = JPC_Body_GetMotionProperties$MH();
@@ -5928,7 +6077,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetUserData$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.JPC_Body_GetUserData$MH,"JPC_Body_GetUserData");
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Body_GetUserData$MH,"JPC_Body_GetUserData");
     }
     public static long JPC_Body_GetUserData ( Addressable in_body) {
         var mh$ = JPC_Body_GetUserData$MH();
@@ -5939,7 +6088,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_SetUserData$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_SetUserData$MH,"JPC_Body_SetUserData");
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Body_SetUserData$MH,"JPC_Body_SetUserData");
     }
     public static void JPC_Body_SetUserData ( Addressable in_body,  long in_user_data) {
         var mh$ = JPC_Body_SetUserData$MH();
@@ -5950,7 +6099,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetTransformedShape$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_GetTransformedShape$MH,"JPC_Body_GetTransformedShape");
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Body_GetTransformedShape$MH,"JPC_Body_GetTransformedShape");
     }
     public static void JPC_Body_GetTransformedShape ( Addressable in_body,  Addressable out_shape) {
         var mh$ = JPC_Body_GetTransformedShape$MH();
@@ -5961,7 +6110,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetBodyCreationSettings$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_GetBodyCreationSettings$MH,"JPC_Body_GetBodyCreationSettings");
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Body_GetBodyCreationSettings$MH,"JPC_Body_GetBodyCreationSettings");
     }
     public static void JPC_Body_GetBodyCreationSettings ( Addressable in_body,  Addressable out_settings) {
         var mh$ = JPC_Body_GetBodyCreationSettings$MH();
@@ -5972,7 +6121,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_GetWorldSpaceSurfaceNormal$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_GetWorldSpaceSurfaceNormal$MH,"JPC_Body_GetWorldSpaceSurfaceNormal");
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Body_GetWorldSpaceSurfaceNormal$MH,"JPC_Body_GetWorldSpaceSurfaceNormal");
     }
     public static void JPC_Body_GetWorldSpaceSurfaceNormal ( Addressable in_body,  int in_sub_shape_id,  Addressable in_position,  Addressable out_normal_vector) {
         var mh$ = JPC_Body_GetWorldSpaceSurfaceNormal$MH();
@@ -5983,7 +6132,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Body_FixedToWorld$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.JPC_Body_FixedToWorld$MH,"JPC_Body_FixedToWorld");
+        return RuntimeHelper.requireNonNull(constants$84.JPC_Body_FixedToWorld$MH,"JPC_Body_FixedToWorld");
     }
     public static MemoryAddress JPC_Body_FixedToWorld (Object... x0) {
         var mh$ = JPC_Body_FixedToWorld$MH();
@@ -5994,7 +6143,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyID_GetIndex$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.JPC_BodyID_GetIndex$MH,"JPC_BodyID_GetIndex");
+        return RuntimeHelper.requireNonNull(constants$85.JPC_BodyID_GetIndex$MH,"JPC_BodyID_GetIndex");
     }
     public static int JPC_BodyID_GetIndex ( int in_body_id) {
         var mh$ = JPC_BodyID_GetIndex$MH();
@@ -6005,7 +6154,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyID_GetSequenceNumber$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.JPC_BodyID_GetSequenceNumber$MH,"JPC_BodyID_GetSequenceNumber");
+        return RuntimeHelper.requireNonNull(constants$85.JPC_BodyID_GetSequenceNumber$MH,"JPC_BodyID_GetSequenceNumber");
     }
     public static byte JPC_BodyID_GetSequenceNumber ( int in_body_id) {
         var mh$ = JPC_BodyID_GetSequenceNumber$MH();
@@ -6016,7 +6165,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_BodyID_IsInvalid$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.JPC_BodyID_IsInvalid$MH,"JPC_BodyID_IsInvalid");
+        return RuntimeHelper.requireNonNull(constants$85.JPC_BodyID_IsInvalid$MH,"JPC_BodyID_IsInvalid");
     }
     public static boolean JPC_BodyID_IsInvalid ( int in_body_id) {
         var mh$ = JPC_BodyID_IsInvalid$MH();
@@ -6027,7 +6176,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_Release$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_Release$MH,"JPC_Constraint_Release");
+        return RuntimeHelper.requireNonNull(constants$85.JPC_Constraint_Release$MH,"JPC_Constraint_Release");
     }
     public static void JPC_Constraint_Release ( Addressable in_constraint) {
         var mh$ = JPC_Constraint_Release$MH();
@@ -6038,7 +6187,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_GetType$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_GetType$MH,"JPC_Constraint_GetType");
+        return RuntimeHelper.requireNonNull(constants$85.JPC_Constraint_GetType$MH,"JPC_Constraint_GetType");
     }
     public static byte JPC_Constraint_GetType ( Addressable in_constraint) {
         var mh$ = JPC_Constraint_GetType$MH();
@@ -6049,7 +6198,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_GetSubType$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_GetSubType$MH,"JPC_Constraint_GetSubType");
+        return RuntimeHelper.requireNonNull(constants$85.JPC_Constraint_GetSubType$MH,"JPC_Constraint_GetSubType");
     }
     public static byte JPC_Constraint_GetSubType ( Addressable in_constraint) {
         var mh$ = JPC_Constraint_GetSubType$MH();
@@ -6060,7 +6209,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_SetNumVelocityStepsOverride$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.JPC_Constraint_SetNumVelocityStepsOverride$MH,"JPC_Constraint_SetNumVelocityStepsOverride");
+        return RuntimeHelper.requireNonNull(constants$86.JPC_Constraint_SetNumVelocityStepsOverride$MH,"JPC_Constraint_SetNumVelocityStepsOverride");
     }
     public static void JPC_Constraint_SetNumVelocityStepsOverride ( Addressable in_constraint,  int in_num_velocity_steps_override) {
         var mh$ = JPC_Constraint_SetNumVelocityStepsOverride$MH();
@@ -6071,7 +6220,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_GetNumVelocityStepsOverride$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_GetNumVelocityStepsOverride$MH,"JPC_Constraint_GetNumVelocityStepsOverride");
+        return RuntimeHelper.requireNonNull(constants$86.JPC_Constraint_GetNumVelocityStepsOverride$MH,"JPC_Constraint_GetNumVelocityStepsOverride");
     }
     public static int JPC_Constraint_GetNumVelocityStepsOverride ( Addressable in_constraint) {
         var mh$ = JPC_Constraint_GetNumVelocityStepsOverride$MH();
@@ -6082,7 +6231,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_SetNumPositionStepsOverride$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_SetNumPositionStepsOverride$MH,"JPC_Constraint_SetNumPositionStepsOverride");
+        return RuntimeHelper.requireNonNull(constants$86.JPC_Constraint_SetNumPositionStepsOverride$MH,"JPC_Constraint_SetNumPositionStepsOverride");
     }
     public static void JPC_Constraint_SetNumPositionStepsOverride ( Addressable in_constraint,  int in_num_position_steps_override) {
         var mh$ = JPC_Constraint_SetNumPositionStepsOverride$MH();
@@ -6093,7 +6242,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_GetNumPositionStepsOverride$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_GetNumPositionStepsOverride$MH,"JPC_Constraint_GetNumPositionStepsOverride");
+        return RuntimeHelper.requireNonNull(constants$86.JPC_Constraint_GetNumPositionStepsOverride$MH,"JPC_Constraint_GetNumPositionStepsOverride");
     }
     public static int JPC_Constraint_GetNumPositionStepsOverride ( Addressable in_constraint) {
         var mh$ = JPC_Constraint_GetNumPositionStepsOverride$MH();
@@ -6104,7 +6253,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_SetEnabled$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_SetEnabled$MH,"JPC_Constraint_SetEnabled");
+        return RuntimeHelper.requireNonNull(constants$86.JPC_Constraint_SetEnabled$MH,"JPC_Constraint_SetEnabled");
     }
     public static void JPC_Constraint_SetEnabled ( Addressable in_constraint,  boolean in_enabled) {
         var mh$ = JPC_Constraint_SetEnabled$MH();
@@ -6115,7 +6264,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_Constraint_GetEnabled$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.JPC_Constraint_GetEnabled$MH,"JPC_Constraint_GetEnabled");
+        return RuntimeHelper.requireNonNull(constants$86.JPC_Constraint_GetEnabled$MH,"JPC_Constraint_GetEnabled");
     }
     public static boolean JPC_Constraint_GetEnabled ( Addressable in_constraint) {
         var mh$ = JPC_Constraint_GetEnabled$MH();
@@ -6126,7 +6275,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TwoBodyConstraint_GetBody1$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.JPC_TwoBodyConstraint_GetBody1$MH,"JPC_TwoBodyConstraint_GetBody1");
+        return RuntimeHelper.requireNonNull(constants$87.JPC_TwoBodyConstraint_GetBody1$MH,"JPC_TwoBodyConstraint_GetBody1");
     }
     public static MemoryAddress JPC_TwoBodyConstraint_GetBody1 ( Addressable in_constraint) {
         var mh$ = JPC_TwoBodyConstraint_GetBody1$MH();
@@ -6137,7 +6286,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_TwoBodyConstraint_GetBody2$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.JPC_TwoBodyConstraint_GetBody2$MH,"JPC_TwoBodyConstraint_GetBody2");
+        return RuntimeHelper.requireNonNull(constants$87.JPC_TwoBodyConstraint_GetBody2$MH,"JPC_TwoBodyConstraint_GetBody2");
     }
     public static MemoryAddress JPC_TwoBodyConstraint_GetBody2 ( Addressable in_constraint) {
         var mh$ = JPC_TwoBodyConstraint_GetBody2$MH();
@@ -6147,8 +6296,41 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_ConvexShapeSupport_Destroy$MH() {
+        return RuntimeHelper.requireNonNull(constants$87.JPC_ConvexShapeSupport_Destroy$MH,"JPC_ConvexShapeSupport_Destroy");
+    }
+    public static void JPC_ConvexShapeSupport_Destroy ( Addressable in_support) {
+        var mh$ = JPC_ConvexShapeSupport_Destroy$MH();
+        try {
+            mh$.invokeExact(in_support);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_GJKClosestPoint_IntersectsConvexConvex$MH() {
+        return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_IntersectsConvexConvex$MH,"JPC_GJKClosestPoint_IntersectsConvexConvex");
+    }
+    public static boolean JPC_GJKClosestPoint_IntersectsConvexConvex ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  Addressable io_v) {
+        var mh$ = JPC_GJKClosestPoint_IntersectsConvexConvex$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_gjk, in_a, in_b, in_tolerance, io_v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH() {
+        return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_IntersectsConvexPoint$MH,"JPC_GJKClosestPoint_IntersectsConvexPoint");
+    }
+    public static boolean JPC_GJKClosestPoint_IntersectsConvexPoint ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  Addressable io_v) {
+        var mh$ = JPC_GJKClosestPoint_IntersectsConvexPoint$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_gjk, in_a, in_b, in_tolerance, io_v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPJ_GetFeatures$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
+        return RuntimeHelper.requireNonNull(constants$87.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
     }
     public static int JPJ_GetFeatures (Object... x0) {
         var mh$ = JPJ_GetFeatures$MH();
@@ -6174,7 +6356,7 @@ public class JoltPhysicsC  {
         return 201706L;
     }
     public static MemoryAddress NULL() {
-        return constants$85.NULL$ADDR;
+        return constants$88.NULL$ADDR;
     }
     public static int __WCLONE() {
         return (int)2147483648L;

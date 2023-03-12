@@ -9,54 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$61 {
 
-    static final FunctionDescriptor JPC_OffsetCenterOfMassShape_GetOffset$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_Shape_GetVolume$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetVolume$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetVolume",
+        constants$61.JPC_Shape_GetVolume$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_IsValidScale$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_OffsetCenterOfMassShape_GetOffset$MH = RuntimeHelper.downcallHandle(
-        "JPC_OffsetCenterOfMassShape_GetOffset",
-        constants$61.JPC_OffsetCenterOfMassShape_GetOffset$FUNC
+    static final MethodHandle JPC_Shape_IsValidScale$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_IsValidScale",
+        constants$61.JPC_Shape_IsValidScale$FUNC
     );
-    static final FunctionDescriptor JPC_BodyInterface_CreateBody$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_ConvexShape_SetMaterial$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_CreateBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_CreateBody",
-        constants$61.JPC_BodyInterface_CreateBody$FUNC
+    static final MethodHandle JPC_ConvexShape_SetMaterial$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_SetMaterial",
+        constants$61.JPC_ConvexShape_SetMaterial$FUNC
     );
-    static final FunctionDescriptor JPC_BodyInterface_CreateBodyWithID$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor JPC_ConvexShape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_CreateBodyWithID$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_CreateBodyWithID",
-        constants$61.JPC_BodyInterface_CreateBodyWithID$FUNC
+    static final MethodHandle JPC_ConvexShape_GetMaterial$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_GetMaterial",
+        constants$61.JPC_ConvexShape_GetMaterial$FUNC
     );
-    static final FunctionDescriptor JPC_BodyInterface_CreateBodyWithoutID$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_ConvexShape_SetDensity$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexShape_SetDensity$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_SetDensity",
+        constants$61.JPC_ConvexShape_SetDensity$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexShape_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_BodyInterface_CreateBodyWithoutID$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_CreateBodyWithoutID",
-        constants$61.JPC_BodyInterface_CreateBodyWithoutID$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_DestroyBodyWithoutID$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_DestroyBodyWithoutID$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_DestroyBodyWithoutID",
-        constants$61.JPC_BodyInterface_DestroyBodyWithoutID$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_AssignNextBodyID$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_AssignNextBodyID$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_AssignNextBodyID",
-        constants$61.JPC_BodyInterface_AssignNextBodyID$FUNC
+    static final MethodHandle JPC_ConvexShape_GetDensity$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_GetDensity",
+        constants$61.JPC_ConvexShape_GetDensity$FUNC
     );
 }
 

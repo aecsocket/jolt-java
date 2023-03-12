@@ -9,6 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$22 {
 
+    static final FunctionDescriptor JPC_BodyCreationSettings_SetShapeSettings$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyCreationSettings_SetShapeSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyCreationSettings_SetShapeSettings",
+        constants$22.JPC_BodyCreationSettings_SetShapeSettings$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyCreationSettings_ConvertShapeSettings$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
+        Constants$root.C_POINTER$LAYOUT.withName("result"),
+        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("error")
+    ).withName("JPC_ShapeResult"),
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyCreationSettings_ConvertShapeSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyCreationSettings_ConvertShapeSettings",
+        constants$22.JPC_BodyCreationSettings_ConvertShapeSettings$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyCreationSettings_GetShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyCreationSettings_GetShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyCreationSettings_GetShape",
+        constants$22.JPC_BodyCreationSettings_GetShape$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyCreationSettings_SetShape$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyCreationSettings_SetShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyCreationSettings_SetShape",
+        constants$22.JPC_BodyCreationSettings_SetShape$FUNC
+    );
     static final FunctionDescriptor JPC_BodyCreationSettings_HasMassProperties$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -23,35 +56,6 @@ class constants$22 {
     static final MethodHandle JPC_BodyCreationSettings_GetMassProperties$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyCreationSettings_GetMassProperties",
         constants$22.JPC_BodyCreationSettings_GetMassProperties$FUNC
-    );
-    static final FunctionDescriptor JPC_CollisionGroup_CanCollide$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CollisionGroup_CanCollide$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollisionGroup_CanCollide",
-        constants$22.JPC_CollisionGroup_CanCollide$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSettings_SetDefault",
-        constants$22.JPC_PhysicsSettings_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_BroadPhaseCastResult_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BroadPhaseCastResult_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_BroadPhaseCastResult_SetDefault",
-        constants$22.JPC_BroadPhaseCastResult_SetDefault$FUNC
-    );
-    static final FunctionDescriptor JPC_RayCastResult_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_RayCastResult_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_RayCastResult_SetDefault",
-        constants$22.JPC_RayCastResult_SetDefault$FUNC
     );
 }
 

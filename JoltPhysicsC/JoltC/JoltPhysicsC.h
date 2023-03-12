@@ -20,6 +20,10 @@
     #define JPC_ENABLE_ASSERTS 0
 #endif
 
+#if defined(JPH_DEBUG_RENDERER)
+    #undef JPH_DEBUG_RENDERER
+#endif
+
 #if defined(JPH_DOUBLE_PRECISION)
     #define JPC_DOUBLE_PRECISION 1
 #else
@@ -194,6 +198,12 @@ enum {
     JPC_MOTOR_STATE_VELOCITY = 1,
     JPC_MOTOR_STATE_POSITION = 2
 };
+
+typedef uint8_t JPC_SupportMode;
+enum {
+    JPC_SUPPORT_MODE_EXCLUDE_CONVEX_RADIUS = 0,
+    JPC_SUPPORT_MODE_INCLUDE_CONVEX_RADIUS = 1
+};
 //--------------------------------------------------------------------------------------------------
 //
 // Types
@@ -221,7 +231,7 @@ typedef void (*JPC_AlignedFreeFunction)(void *in_block);
 // Opaque Types
 //
 //--------------------------------------------------------------------------------------------------
-typedef struct JPC_BodyIDVector            JPC_BodyIDVector;
+typedef struct JPC_BodyIDVector      JPC_BodyIDVector;
 typedef struct JPC_TempAllocator     JPC_TempAllocator;
 typedef struct JPC_JobSystem         JPC_JobSystem;
 typedef struct JPC_BodyInterface     JPC_BodyInterface;
@@ -229,6 +239,8 @@ typedef struct JPC_BodyLockInterface JPC_BodyLockInterface;
 typedef struct JPC_BroadPhaseQuery   JPC_BroadPhaseQuery;
 typedef struct JPC_NarrowPhaseQuery  JPC_NarrowPhaseQuery;
 
+typedef struct JPC_SupportingFace          JPC_SupportingFace;
+typedef struct JPC_ConvexShapeSupport      JPC_ConvexShapeSupport;
 typedef struct JPC_Shape                   JPC_Shape;
 typedef struct JPC_ConvexShape             JPC_ConvexShape;
 typedef struct JPC_BoxShape                JPC_BoxShape;
@@ -653,6 +665,24 @@ typedef struct JPC_MotorSettings
     float min_torque_limit;
     float max_torque_limit;
 } JPC_MotorSettings;
+
+typedef struct JPC_PointConvexSupport
+{
+    alignas(16) float point[3];
+} JPC_PointConvexSupport;
+
+typedef struct JPC_GJKClosestPoint
+{
+    alignas(16) float y[4];
+    alignas(16) float p[4];
+    alignas(16) float q[4];
+    int num_points;
+} JPC_GJKClosestPoint;
+
+typedef struct JPC_SupportBuffer
+{
+    alignas(16) uint8_t data[4160];
+} JPC_SupportBuffer;
 //--------------------------------------------------------------------------------------------------
 //
 // Interfaces (virtual tables)
@@ -959,6 +989,18 @@ typedef struct JPC_TransformedShapeCollectorVTable
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_BodyIDVector_Destroy(JPC_BodyIDVector *in_vector);
+
+JPC_API JPC_SupportingFace *
+JPC_SupportingFace_Create();
+
+JPC_API uint
+JPC_SupportingFace_Size(JPC_SupportingFace *in_face);
+
+JPC_API float **
+JPC_SupportingFace_Data(JPC_SupportingFace *in_face);
+
+JPC_API void
+JPC_SupportingFace_Destroy(JPC_SupportingFace *in_face);
 
 JPC_API void
 JPC_RegisterDefaultAllocator(void);
@@ -1612,6 +1654,12 @@ JPC_ShapeSettings_SetUserData(JPC_ShapeSettings *in_settings, uint64_t in_user_d
 // JPC_ConvexShapeSettings (-> JPC_ShapeSettings)
 //
 //--------------------------------------------------------------------------------------------------
+JPC_API const JPC_ConvexShapeSupport *
+JPC_ConvexShape_GetSupportFunction(const JPC_ConvexShape *in_shape,
+                                   JPC_SupportMode in_mode,
+                                   JPC_SupportBuffer *in_buffer,
+                                   const float in_scale[3]);
+
 JPC_API const JPC_PhysicsMaterial *
 JPC_ConvexShapeSettings_GetMaterial(const JPC_ConvexShapeSettings *in_settings);
 
@@ -2018,7 +2066,13 @@ JPC_Shape_GetSurfaceNormal(const JPC_Shape *in_shape,
                            const float in_local_surface_position[3],
                            float out_surface_normal[3]);
 
-// TODO GetSupportingFace
+JPC_API void
+JPC_Shape_GetSupportingFace(const JPC_Shape* in_shape,
+                            JPC_SubShapeID in_sub_shape_id,
+                            const float in_direction[3],
+                            const float in_scale[3],
+                            const float in_com_transform[16],
+                            JPC_SupportingFace *out_vertices);
 
 JPC_API uint64_t
 JPC_Shape_GetSubShapeUserData(const JPC_Shape *in_shape, JPC_SubShapeID in_sub_shape_id);
@@ -2029,6 +2083,55 @@ JPC_Shape_GetSubShapeTransformedShape(const JPC_Shape *in_shape,
                                       const float in_position_com[3],
                                       const float in_rotation[4],
                                       const float in_scale[3]);
+
+JPC_API void
+JPC_Shape_GetSubmergedVolume(const JPC_Shape *in_shape,
+                             const float in_com_transform[16],
+                             const float in_scale[3],
+                             const float in_surface_normal[3],
+                             float in_surface_constant,
+                             float *out_total_volume,
+                             float *out_submerged_volume,
+                             float *out_center_of_buoyancy[3]);
+
+JPC_API bool
+JPC_Shape_GetCastRay(const JPC_Shape *in_shape,
+                     const JPC_RayCast *in_ray,
+                     const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                     JPC_RayCastResult *io_hit);
+
+JPC_API void
+JPC_Shape_CollectCastRay(const JPC_Shape *in_shape,
+                         const JPC_RayCast *in_ray,
+                         const JPC_RayCastSettings *in_settings,
+                         const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                         void *io_collector,
+                         void *in_shape_filter);
+
+JPC_API void
+JPC_Shape_CollidePoint(const JPC_Shape *in_shape,
+                       const float in_point[3],
+                       const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                       void *io_collector,
+                       void *in_shape_filter);
+
+JPC_API void
+JPC_Shape_CollectTransformedShapes(const JPC_Shape *in_shape,
+                                   const JPC_AABox *in_box,
+                                   const float in_position_com[3],
+                                   const float in_rotation[4],
+                                   const float in_scale[3],
+                                   const JPC_SubShapeIDCreator *in_sub_shape_id_creator,
+                                   void *io_collector,
+                                   void *in_shape_filter);
+
+JPC_API void
+JPC_Shape_TransformShape(const JPC_Shape *in_shape,
+                         const float in_com_transform[16],
+                         void *io_collector);
+
+JPC_API JPC_ShapeResult
+JPC_Shape_ScaleShape(const JPC_Shape *in_shape, const float in_scale[3]);
 
 JPC_API float
 JPC_Shape_GetVolume(const JPC_Shape *in_shape);
@@ -2682,6 +2785,30 @@ JPC_TwoBodyConstraint_GetBody1(const JPC_TwoBodyConstraint *in_constraint);
 
 JPC_API JPC_Body *
 JPC_TwoBodyConstraint_GetBody2(const JPC_TwoBodyConstraint *in_constraint);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConvexShapeSupport
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConvexShapeSupport_Destroy(JPC_ConvexShapeSupport *in_support);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_GJKClosestPoint
+//
+//--------------------------------------------------------------------------------------------------
+#define GJK_INTERSECTS(Name, JpcA, JpcB) \
+JPC_API bool \
+Name(JPC_GJKClosestPoint *in_gjk, \
+     const JpcA *in_a, \
+     const JpcB *in_b, \
+     float in_tolerance, \
+     float io_v[3]);
+
+GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexConvex, JPC_ConvexShapeSupport, JPC_ConvexShape)
+GJK_INTERSECTS(JPC_GJKClosestPoint_IntersectsConvexPoint, JPC_ConvexShapeSupport, JPC_PointConvexSupport)
+
+#undef GJK_INTERSECTS
 //--------------------------------------------------------------------------------------------------
 // JoltJava: Java support
 JPC_API uint32_t

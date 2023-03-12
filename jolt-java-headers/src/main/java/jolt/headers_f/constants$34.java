@@ -9,6 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$34 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_GetMaxBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetMaxBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetMaxBodies",
+        constants$34.JPC_PhysicsSystem_GetMaxBodies$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyIDs$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBodyIDs$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodyIDs",
+        constants$34.JPC_PhysicsSystem_GetBodyIDs$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetActiveBodyIDs$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetActiveBodyIDs$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetActiveBodyIDs",
+        constants$34.JPC_PhysicsSystem_GetActiveBodyIDs$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetBodiesUnsafe$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetBodiesUnsafe$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetBodiesUnsafe",
+        constants$34.JPC_PhysicsSystem_GetBodiesUnsafe$FUNC
+    );
     static final FunctionDescriptor JPC_PhysicsSystem_WereBodiesInContact$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -26,38 +58,6 @@ class constants$34 {
     static final MethodHandle JPC_BodyLockInterface_LockRead$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyLockInterface_LockRead",
         constants$34.JPC_BodyLockInterface_LockRead$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_UnlockRead$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyLockInterface_UnlockRead$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_UnlockRead",
-        constants$34.JPC_BodyLockInterface_UnlockRead$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_LockWrite$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyLockInterface_LockWrite$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_LockWrite",
-        constants$34.JPC_BodyLockInterface_LockWrite$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyLockInterface_UnlockWrite$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyLockInterface_UnlockWrite$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyLockInterface_UnlockWrite",
-        constants$34.JPC_BodyLockInterface_UnlockWrite$FUNC
-    );
-    static final FunctionDescriptor JPC_CollisionCollector_Reset$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CollisionCollector_Reset$MH = RuntimeHelper.downcallHandle(
-        "JPC_CollisionCollector_Reset",
-        constants$34.JPC_CollisionCollector_Reset$FUNC
     );
 }
 

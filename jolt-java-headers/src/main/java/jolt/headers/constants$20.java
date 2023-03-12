@@ -9,6 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$20 {
 
+    static final FunctionDescriptor JPC_SupportingFace_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle JPC_SupportingFace_Create$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPC_SupportingFace_Create",
+        constants$20.JPC_SupportingFace_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_SupportingFace_Size$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SupportingFace_Size$MH = RuntimeHelper.downcallHandle(
+        "JPC_SupportingFace_Size",
+        constants$20.JPC_SupportingFace_Size$FUNC
+    );
+    static final FunctionDescriptor JPC_SupportingFace_Data$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SupportingFace_Data$MH = RuntimeHelper.downcallHandle(
+        "JPC_SupportingFace_Data",
+        constants$20.JPC_SupportingFace_Data$FUNC
+    );
+    static final FunctionDescriptor JPC_SupportingFace_Destroy$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SupportingFace_Destroy$MH = RuntimeHelper.downcallHandle(
+        "JPC_SupportingFace_Destroy",
+        constants$20.JPC_SupportingFace_Destroy$FUNC
+    );
     static final FunctionDescriptor JPC_RegisterDefaultAllocator$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle JPC_RegisterDefaultAllocator$MH = RuntimeHelper.downcallHandle(
         "JPC_RegisterDefaultAllocator",
@@ -23,28 +49,6 @@ class constants$20 {
     static final MethodHandle JPC_RegisterCustomAllocator$MH = RuntimeHelper.downcallHandle(
         "JPC_RegisterCustomAllocator",
         constants$20.JPC_RegisterCustomAllocator$FUNC
-    );
-    static final FunctionDescriptor JPC_CreateFactory$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle JPC_CreateFactory$MH = RuntimeHelper.downcallHandle(
-        "JPC_CreateFactory",
-        constants$20.JPC_CreateFactory$FUNC
-    );
-    static final FunctionDescriptor JPC_DestroyFactory$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle JPC_DestroyFactory$MH = RuntimeHelper.downcallHandle(
-        "JPC_DestroyFactory",
-        constants$20.JPC_DestroyFactory$FUNC
-    );
-    static final FunctionDescriptor JPC_RegisterTypes$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle JPC_RegisterTypes$MH = RuntimeHelper.downcallHandle(
-        "JPC_RegisterTypes",
-        constants$20.JPC_RegisterTypes$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyCreationSettings_SetDefault$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyCreationSettings_SetDefault$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyCreationSettings_SetDefault",
-        constants$20.JPC_BodyCreationSettings_SetDefault$FUNC
     );
 }
 

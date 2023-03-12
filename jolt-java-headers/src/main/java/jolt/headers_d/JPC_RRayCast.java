@@ -10,8 +10,9 @@ import static java.lang.foreign.ValueLayout.*;
 public class JPC_RRayCast {
 
     static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_DOUBLE$LAYOUT).withBitAlignment(256).withName("origin"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withBitAlignment(128).withName("direction")
+        MemoryLayout.sequenceLayout(4, Constants$root.C_DOUBLE$LAYOUT).withName("origin"),
+        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("direction"),
+        MemoryLayout.paddingLayout(128)
     ).withName("JPC_RRayCast");
     public static MemoryLayout $LAYOUT() {
         return JPC_RRayCast.$struct$LAYOUT;
