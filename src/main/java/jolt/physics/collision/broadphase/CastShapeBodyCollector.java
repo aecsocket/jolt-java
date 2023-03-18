@@ -51,8 +51,12 @@ public final class CastShapeBodyCollector extends CollisionCollector {
         MemorySegment onBody = OnBody.allocate((v0, v1) ->
                 impl.onBody(Body.at(v1.address())), arena);
         OnBody$set(vtable, onBody.address());
-        MemorySegment addHit = AddHit.allocate((v0, v1) ->
-                impl.addHit(BroadPhaseCastResult.at(v1)), arena);
+        @SuppressWarnings("DataFlowIssue")
+        MemorySegment addHit = AddHit.allocate((v0, v1) -> {
+            try (var arena2 = MemorySession.openConfined()) {
+                impl.addHit(BroadPhaseCastResult.at(arena2, v1.address()));
+            }
+        }, arena);
         AddHit$set(vtable, addHit.address());
 
         var segment = JPJ_CastShapeBodyCollector.allocate(arena);

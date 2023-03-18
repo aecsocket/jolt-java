@@ -796,7 +796,8 @@ void ContactConstraintManager::GetContactsFromCache(ContactAllocator &ioContactA
 		if (mContactListener != nullptr)
 		{
 			// Convert constraint to manifold structure for callback
-			ContactManifold manifold;
+
+            ContactManifold manifold;
 			manifold.mWorldSpaceNormal = world_space_normal;
 			manifold.mSubShapeID1 = input_key.GetSubShapeID1();
 			manifold.mSubShapeID2 = input_key.GetSubShapeID2();

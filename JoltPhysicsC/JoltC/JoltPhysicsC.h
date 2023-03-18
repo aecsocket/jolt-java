@@ -839,11 +839,11 @@ typedef struct JPC_RayCastBodyCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, const JPC_BroadPhaseCastResult in_result);
+    (*AddHit)(void *in_self, const JPC_BroadPhaseCastResult *in_result);
 } JPC_RayCastBodyCollectorVTable;
 
 typedef struct JPC_CollideShapeBodyCollectorVTable
@@ -857,11 +857,11 @@ typedef struct JPC_CollideShapeBodyCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, JPC_BodyID in_result);
+    (*AddHit)(void *in_self, const JPC_BodyID *in_result);
 } JPC_CollideShapeBodyCollectorVTable;
 
 typedef struct JPC_CastShapeBodyCollectorVTable
@@ -875,11 +875,11 @@ typedef struct JPC_CastShapeBodyCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, const JPC_BroadPhaseCastResult in_result);
+    (*AddHit)(void *in_self, const JPC_BroadPhaseCastResult *in_result);
 } JPC_CastShapeBodyCollectorVTable;
 
 typedef struct JPC_CastRayCollectorVTable
@@ -893,11 +893,11 @@ typedef struct JPC_CastRayCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, const JPC_RayCastResult in_result);
+    (*AddHit)(void *in_self, const JPC_RayCastResult *in_result);
 } JPC_CastRayCollectorVTable;
 
 typedef struct JPC_CastShapeCollectorVTable
@@ -911,11 +911,11 @@ typedef struct JPC_CastShapeCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, const JPC_ShapeCastResult in_result);
+    (*AddHit)(void *in_self, const JPC_ShapeCastResult *in_result);
 } JPC_CastShapeCollectorVTable;
 
 typedef struct JPC_CollidePointCollectorVTable
@@ -929,11 +929,11 @@ typedef struct JPC_CollidePointCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, const JPC_CollidePointResult in_result);
+    (*AddHit)(void *in_self, const JPC_CollidePointResult *in_result);
 } JPC_CollidePointCollectorVTable;
 
 typedef struct JPC_CollideShapeCollectorVTable
@@ -947,11 +947,11 @@ typedef struct JPC_CollideShapeCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, const JPC_CollideShapeResult in_result);
+    (*AddHit)(void *in_self, const JPC_CollideShapeResult *in_result);
 } JPC_CollideShapeCollectorVTable;
 
 typedef struct JPC_TransformedShapeCollectorVTable
@@ -965,11 +965,11 @@ typedef struct JPC_TransformedShapeCollectorVTable
 
     // Required, *cannot* be NULL.
     void
-    (*OnBody)(void *in_self, JPC_Body in_body);
+    (*OnBody)(void *in_self, const JPC_Body *in_body);
 
     // Required, *cannot* be NULL.
     void
-    (*AddHit)(void *in_self, const JPC_TransformedShape in_result);
+    (*AddHit)(void *in_self, const JPC_TransformedShape *in_result);
 } JPC_TransformedShapeCollectorVTable;
 
 // TODO combine

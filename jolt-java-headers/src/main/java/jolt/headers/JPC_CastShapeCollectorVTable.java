@@ -96,43 +96,22 @@ public class JPC_CastShapeCollectorVTable {
     }
     static final FunctionDescriptor OnBody$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("position"),
-            MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("rotation"),
-            MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("bounds_min"),
-            MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("bounds_max"),
-            Constants$root.C_POINTER$LAYOUT.withName("shape"),
-            Constants$root.C_POINTER$LAYOUT.withName("motion_properties"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("user_data"),
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("filter"),
-                Constants$root.C_INT$LAYOUT.withName("group_id"),
-                Constants$root.C_INT$LAYOUT.withName("sub_group_id")
-            ).withName("collision_group"),
-            Constants$root.C_FLOAT$LAYOUT.withName("friction"),
-            Constants$root.C_FLOAT$LAYOUT.withName("restitution"),
-            Constants$root.C_INT$LAYOUT.withName("id"),
-            Constants$root.C_SHORT$LAYOUT.withName("object_layer"),
-            Constants$root.C_CHAR$LAYOUT.withName("broad_phase_layer"),
-            Constants$root.C_CHAR$LAYOUT.withName("motion_type"),
-            Constants$root.C_CHAR$LAYOUT.withName("flags"),
-            MemoryLayout.paddingLayout(56)
-        ).withName("JPC_Body")
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle OnBody$MH = RuntimeHelper.downcallHandle(
         JPC_CastShapeCollectorVTable.OnBody$FUNC
     );
     public interface OnBody {
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
+        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
         static MemorySegment allocate(OnBody fi, MemorySession session) {
             return RuntimeHelper.upcallStub(OnBody.class, fi, JPC_CastShapeCollectorVTable.OnBody$FUNC, session);
         }
         static OnBody ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
                 try {
-                    JPC_CastShapeCollectorVTable.OnBody$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
+                    JPC_CastShapeCollectorVTable.OnBody$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }
@@ -161,45 +140,22 @@ public class JPC_CastShapeCollectorVTable {
     }
     static final FunctionDescriptor AddHit$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape1_contact_point"),
-                MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape2_contact_point"),
-                MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("penetration_axis"),
-                Constants$root.C_FLOAT$LAYOUT.withName("penetration_depth"),
-                Constants$root.C_INT$LAYOUT.withName("shape1_sub_shape_id"),
-                Constants$root.C_INT$LAYOUT.withName("shape2_sub_shape_id"),
-                Constants$root.C_INT$LAYOUT.withName("body2_id"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_INT$LAYOUT.withName("num_points"),
-                    MemoryLayout.paddingLayout(96),
-                    MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
-                ).withName("shape1_face"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_INT$LAYOUT.withName("num_points"),
-                    MemoryLayout.paddingLayout(96),
-                    MemoryLayout.sequenceLayout(32, MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT)).withName("points")
-                ).withName("shape2_face")
-            ).withName("base"),
-            Constants$root.C_FLOAT$LAYOUT.withName("fraction"),
-            Constants$root.C_BOOL$LAYOUT.withName("is_back_face_hit"),
-            MemoryLayout.paddingLayout(88)
-        ).withName("JPC_ShapeCastResult")
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle AddHit$MH = RuntimeHelper.downcallHandle(
         JPC_CastShapeCollectorVTable.AddHit$FUNC
     );
     public interface AddHit {
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
+        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
         static MemorySegment allocate(AddHit fi, MemorySession session) {
             return RuntimeHelper.upcallStub(AddHit.class, fi, JPC_CastShapeCollectorVTable.AddHit$FUNC, session);
         }
         static AddHit ofAddress(MemoryAddress addr, MemorySession session) {
             MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
+            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
                 try {
-                    JPC_CastShapeCollectorVTable.AddHit$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
+                    JPC_CastShapeCollectorVTable.AddHit$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
                 } catch (Throwable ex$) {
                     throw new AssertionError("should not reach here", ex$);
                 }

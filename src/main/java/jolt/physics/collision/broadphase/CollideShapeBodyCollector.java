@@ -1,6 +1,5 @@
 package jolt.physics.collision.broadphase;
 
-import jolt.headers.JPC_CollisionCollector;
 import jolt.headers.JPJ_CollideShapeBodyCollector;
 import jolt.headers.JPC_CollideShapeBodyCollectorVTable;
 import jolt.physics.body.Body;
@@ -8,7 +7,6 @@ import jolt.physics.collision.CollisionCollector;
 import jolt.physics.collision.TransformedShape;
 
 import java.lang.foreign.*;
-import java.util.Collection;
 
 import static jolt.headers.JPJ_CollideShapeBodyCollector.*;
 import static jolt.headers.JPC_CollideShapeBodyCollectorVTable.*;
@@ -50,7 +48,7 @@ public final class CollideShapeBodyCollector extends CollisionCollector {
                 impl.onBody(Body.at(v1.address())), arena);
         OnBody$set(vtable, onBody.address());
         MemorySegment addHit = AddHit.allocate((v0, v1) ->
-                impl.addHit(v1), arena);
+                impl.addHit(v1.get(C_INT, 0)), arena);
         AddHit$set(vtable, addHit.address());
 
         var segment = JPJ_CollideShapeBodyCollector.allocate(arena);

@@ -223,13 +223,6 @@ public final class HelloJolt {
                         tempAllocator,
                         jobSystem
                 );
-
-                var ray = DRayCast.of(arena, DVec3.of(arena, 0.1, 0.2, 0.3), FVec3.of(arena, 0.0f, 1.0f, 0.0f));
-                physicsSystem.getNarrowPhaseQuery().castRay(
-                        ray,
-                        RayCastResult.of(arena),
-                        BroadPhaseLayerFilter.passthrough(), ObjectLayerFilter.passthrough(), BodyFilter.passthrough()
-                );
             }
 
             bodyInterface.removeBody(sphereId);
