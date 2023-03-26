@@ -9,6 +9,24 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$73 {
 
+    static final FunctionDescriptor JPC_BodyInterface_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_SetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetMotionType",
+        constants$73.JPC_BodyInterface_SetMotionType$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetMotionType$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetMotionType",
+        constants$73.JPC_BodyInterface_GetMotionType$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_SetMotionQuality$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -43,23 +61,6 @@ class constants$73 {
     static final MethodHandle JPC_BodyInterface_SetRestitution$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_SetRestitution",
         constants$73.JPC_BodyInterface_SetRestitution$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetRestitution$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetRestitution$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetRestitution",
-        constants$73.JPC_BodyInterface_GetRestitution$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetFriction$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetFriction",
-        constants$73.JPC_BodyInterface_SetFriction$FUNC
     );
 }
 

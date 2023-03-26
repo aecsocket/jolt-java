@@ -9,6 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$59 {
 
+    static final FunctionDescriptor JPC_Shape_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetWorldSpaceBounds",
+        constants$59.JPC_Shape_GetWorldSpaceBounds$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetInnerRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetInnerRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetInnerRadius",
+        constants$59.JPC_Shape_GetInnerRadius$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -46,41 +63,6 @@ class constants$59 {
     static final MethodHandle JPC_Shape_GetSubShapeUserData$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_GetSubShapeUserData",
         constants$59.JPC_Shape_GetSubShapeUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetSubShapeTransformedShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_position_com"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_rotation"),
-        Constants$root.C_POINTER$LAYOUT.withName("shape"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_FLOAT$LAYOUT).withName("shape_scale"),
-        Constants$root.C_INT$LAYOUT.withName("body_id"),
-        MemoryLayout.structLayout(
-            Constants$root.C_INT$LAYOUT.withName("id"),
-            Constants$root.C_INT$LAYOUT.withName("current_bit")
-        ).withName("sub_shape_id_creator")
-    ).withName("JPC_TransformedShape"),
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetSubShapeTransformedShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSubShapeTransformedShape",
-        constants$59.JPC_Shape_GetSubShapeTransformedShape$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetSubmergedVolume$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetSubmergedVolume$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSubmergedVolume",
-        constants$59.JPC_Shape_GetSubmergedVolume$FUNC
     );
 }
 

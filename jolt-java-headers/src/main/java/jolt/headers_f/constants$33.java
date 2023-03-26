@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$33 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_SetGravity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_SetGravity$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_SetGravity",
+        constants$33.JPC_PhysicsSystem_SetGravity$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetGravity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetGravity$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetGravity",
+        constants$33.JPC_PhysicsSystem_GetGravity$FUNC
+    );
     static final FunctionDescriptor JPC_PhysicsSystem_GetBodyInterfaceNoLock$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -36,20 +52,6 @@ class constants$33 {
     static final MethodHandle JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$MH = RuntimeHelper.downcallHandle(
         "JPC_PhysicsSystem_GetBodyLockInterfaceNoLock",
         constants$33.JPC_PhysicsSystem_GetBodyLockInterfaceNoLock$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetNumBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumBodies",
-        constants$33.JPC_PhysicsSystem_GetNumBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetNumActiveBodies$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetNumActiveBodies$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetNumActiveBodies",
-        constants$33.JPC_PhysicsSystem_GetNumActiveBodies$FUNC
     );
 }
 

@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$45 {
 
+    static final FunctionDescriptor JPC_BoxShapeSettings_SetHalfExtent$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BoxShapeSettings_SetHalfExtent$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShapeSettings_SetHalfExtent",
+        constants$45.JPC_BoxShapeSettings_SetHalfExtent$FUNC
+    );
+    static final FunctionDescriptor JPC_BoxShapeSettings_GetConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BoxShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_BoxShapeSettings_GetConvexRadius",
+        constants$45.JPC_BoxShapeSettings_GetConvexRadius$FUNC
+    );
     static final FunctionDescriptor JPC_BoxShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -39,27 +54,6 @@ class constants$45 {
     static final MethodHandle JPC_SphereShapeSettings_SetRadius$MH = RuntimeHelper.downcallHandle(
         "JPC_SphereShapeSettings_SetRadius",
         constants$45.JPC_SphereShapeSettings_SetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_TriangleShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_TriangleShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_TriangleShapeSettings_Create",
-        constants$45.JPC_TriangleShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_TriangleShapeSettings_SetVertices$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_TriangleShapeSettings_SetVertices$MH = RuntimeHelper.downcallHandle(
-        "JPC_TriangleShapeSettings_SetVertices",
-        constants$45.JPC_TriangleShapeSettings_SetVertices$FUNC
     );
 }
 

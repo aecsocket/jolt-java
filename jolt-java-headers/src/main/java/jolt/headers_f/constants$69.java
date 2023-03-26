@@ -9,6 +9,24 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$69 {
 
+    static final FunctionDescriptor JPC_BodyInterface_GetPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetPosition",
+        constants$69.JPC_BodyInterface_GetPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetCenterOfMassPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetCenterOfMassPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetCenterOfMassPosition",
+        constants$69.JPC_BodyInterface_GetCenterOfMassPosition$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_SetRotation$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -47,27 +65,6 @@ class constants$69 {
     static final MethodHandle JPC_BodyInterface_GetCenterOfMassTransform$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_GetCenterOfMassTransform",
         constants$69.JPC_BodyInterface_GetCenterOfMassTransform$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_MoveKinematic$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_MoveKinematic$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_MoveKinematic",
-        constants$69.JPC_BodyInterface_MoveKinematic$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetLinearAndAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetLinearAndAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetLinearAndAngularVelocity",
-        constants$69.JPC_BodyInterface_SetLinearAndAngularVelocity$FUNC
     );
 }
 

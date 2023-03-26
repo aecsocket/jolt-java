@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$85 {
 
+    static final FunctionDescriptor JPC_Body_GetWorldSpaceSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetWorldSpaceSurfaceNormal$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetWorldSpaceSurfaceNormal",
+        constants$85.JPC_Body_GetWorldSpaceSurfaceNormal$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_FixedToWorld$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle JPC_Body_FixedToWorld$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPC_Body_FixedToWorld",
+        constants$85.JPC_Body_FixedToWorld$FUNC
+    );
     static final FunctionDescriptor JPC_BodyID_GetIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
@@ -36,20 +51,6 @@ class constants$85 {
     static final MethodHandle JPC_Constraint_Release$MH = RuntimeHelper.downcallHandle(
         "JPC_Constraint_Release",
         constants$85.JPC_Constraint_Release$FUNC
-    );
-    static final FunctionDescriptor JPC_Constraint_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Constraint_GetType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Constraint_GetType",
-        constants$85.JPC_Constraint_GetType$FUNC
-    );
-    static final FunctionDescriptor JPC_Constraint_GetSubType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Constraint_GetSubType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Constraint_GetSubType",
-        constants$85.JPC_Constraint_GetSubType$FUNC
     );
 }
 

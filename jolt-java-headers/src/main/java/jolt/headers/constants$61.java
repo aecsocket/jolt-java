@@ -9,6 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$61 {
 
+    static final FunctionDescriptor JPC_Shape_TransformShape$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_TransformShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_TransformShape",
+        constants$61.JPC_Shape_TransformShape$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_ScaleShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
+        Constants$root.C_POINTER$LAYOUT.withName("result"),
+        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("error")
+    ).withName("JPC_ShapeResult"),
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_ScaleShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_ScaleShape",
+        constants$61.JPC_Shape_ScaleShape$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_GetVolume$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -38,21 +58,6 @@ class constants$61 {
     static final MethodHandle JPC_ConvexShape_GetMaterial$MH = RuntimeHelper.downcallHandle(
         "JPC_ConvexShape_GetMaterial",
         constants$61.JPC_ConvexShape_GetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShape_SetDensity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShape_SetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_SetDensity",
-        constants$61.JPC_ConvexShape_SetDensity$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShape_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShape_GetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_GetDensity",
-        constants$61.JPC_ConvexShape_GetDensity$FUNC
     );
 }
 

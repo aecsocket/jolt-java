@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$76 {
 
+    static final FunctionDescriptor JPC_Body_IsKinematic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsKinematic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsKinematic",
+        constants$76.JPC_Body_IsKinematic$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_IsDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_IsDynamic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_IsDynamic",
+        constants$76.JPC_Body_IsDynamic$FUNC
+    );
     static final FunctionDescriptor JPC_Body_CanBeKinematicOrDynamic$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -38,21 +52,6 @@ class constants$76 {
     static final MethodHandle JPC_Body_SetUseManifoldReduction$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_SetUseManifoldReduction",
         constants$76.JPC_Body_SetUseManifoldReduction$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetUseManifoldReduction$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetUseManifoldReduction$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetUseManifoldReduction",
-        constants$76.JPC_Body_GetUseManifoldReduction$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetUseManifoldReductionWithBody$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetUseManifoldReductionWithBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetUseManifoldReductionWithBody",
-        constants$76.JPC_Body_GetUseManifoldReductionWithBody$FUNC
     );
 }
 

@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$62 {
 
+    static final FunctionDescriptor JPC_ConvexShape_SetDensity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexShape_SetDensity$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_SetDensity",
+        constants$62.JPC_ConvexShape_SetDensity$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexShape_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexShape_GetDensity$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_GetDensity",
+        constants$62.JPC_ConvexShape_GetDensity$FUNC
+    );
     static final FunctionDescriptor JPC_DecoratedShape_GetInnerShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -40,22 +55,6 @@ class constants$62 {
     static final MethodHandle JPC_RotatedTranslatedShape_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_RotatedTranslatedShape_Create",
         constants$62.JPC_RotatedTranslatedShape_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_RotatedTranslatedShape_GetPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_RotatedTranslatedShape_GetPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_RotatedTranslatedShape_GetPosition",
-        constants$62.JPC_RotatedTranslatedShape_GetPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_RotatedTranslatedShape_GetRotation$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_RotatedTranslatedShape_GetRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_RotatedTranslatedShape_GetRotation",
-        constants$62.JPC_RotatedTranslatedShape_GetRotation$FUNC
     );
 }
 

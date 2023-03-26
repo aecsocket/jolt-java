@@ -9,6 +9,24 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$50 {
 
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_Create",
+        constants$50.JPC_ConvexHullShapeSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetMaxConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_GetMaxConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_GetMaxConvexRadius",
+        constants$50.JPC_ConvexHullShapeSettings_GetMaxConvexRadius$FUNC
+    );
     static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxConvexRadius$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -38,27 +56,6 @@ class constants$50 {
     static final MethodHandle JPC_ConvexHullShapeSettings_GetHullTolerance$MH = RuntimeHelper.downcallHandle(
         "JPC_ConvexHullShapeSettings_GetHullTolerance",
         constants$50.JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexHullShapeSettings_SetHullTolerance$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexHullShapeSettings_SetHullTolerance",
-        constants$50.JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_Create",
-        constants$50.JPC_HeightFieldShapeSettings_Create$FUNC
     );
 }
 

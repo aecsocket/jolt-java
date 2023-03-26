@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$44 {
 
+    static final FunctionDescriptor JPC_ConvexShapeSettings_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexShapeSettings_GetMaterial$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShapeSettings_GetMaterial",
+        constants$44.JPC_ConvexShapeSettings_GetMaterial$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexShapeSettings_SetMaterial$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexShapeSettings_SetMaterial$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShapeSettings_SetMaterial",
+        constants$44.JPC_ConvexShapeSettings_SetMaterial$FUNC
+    );
     static final FunctionDescriptor JPC_ConvexShapeSettings_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -40,21 +55,6 @@ class constants$44 {
     static final MethodHandle JPC_BoxShapeSettings_GetHalfExtent$MH = RuntimeHelper.downcallHandle(
         "JPC_BoxShapeSettings_GetHalfExtent",
         constants$44.JPC_BoxShapeSettings_GetHalfExtent$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShapeSettings_SetHalfExtent$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShapeSettings_SetHalfExtent$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShapeSettings_SetHalfExtent",
-        constants$44.JPC_BoxShapeSettings_SetHalfExtent$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShapeSettings_GetConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShapeSettings_GetConvexRadius",
-        constants$44.JPC_BoxShapeSettings_GetConvexRadius$FUNC
     );
 }
 

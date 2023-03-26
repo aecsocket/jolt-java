@@ -54,12 +54,13 @@ class constants$28 {
         "JPC_MotionProperties_GetPointVelocityCOM",
         constants$28.JPC_MotionProperties_GetPointVelocityCOM$FUNC
     );
-    static final FunctionDescriptor JPC_MotionProperties_GetMaxLinearVelocity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_MotionProperties_GetAccumulatedForce$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_MotionProperties_GetMaxLinearVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotionProperties_GetMaxLinearVelocity",
-        constants$28.JPC_MotionProperties_GetMaxLinearVelocity$FUNC
+    static final MethodHandle JPC_MotionProperties_GetAccumulatedForce$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotionProperties_GetAccumulatedForce",
+        constants$28.JPC_MotionProperties_GetAccumulatedForce$FUNC
     );
 }
 

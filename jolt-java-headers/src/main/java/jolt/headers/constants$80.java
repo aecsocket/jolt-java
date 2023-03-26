@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$80 {
 
+    static final FunctionDescriptor JPC_Body_SetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetAngularVelocity$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetAngularVelocity",
+        constants$80.JPC_Body_SetAngularVelocity$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_SetAngularVelocityClamped$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetAngularVelocityClamped$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetAngularVelocityClamped",
+        constants$80.JPC_Body_SetAngularVelocityClamped$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetPointVelocityCOM$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -43,22 +59,6 @@ class constants$80 {
     static final MethodHandle JPC_Body_AddForceAtPosition$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_AddForceAtPosition",
         constants$80.JPC_Body_AddForceAtPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_AddTorque$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_AddTorque$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_AddTorque",
-        constants$80.JPC_Body_AddTorque$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetAccumulatedForce$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetAccumulatedForce$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetAccumulatedForce",
-        constants$80.JPC_Body_GetAccumulatedForce$FUNC
     );
 }
 

@@ -4302,6 +4302,20 @@ JPC_MotionProperties_GetPointVelocityCOM(const JPC_MotionProperties *in_properti
     storeVec3(out_point, toJph(in_properties)->GetPointVelocityCOM(loadVec3(in_point_relative_to_com)));
 }
 //--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_MotionProperties_GetAccumulatedForce(const JPC_MotionProperties *in_properties,
+                                         float out_force[3])
+{
+    storeVec3(out_force, toJph(in_properties)->GetAccumulatedForce());
+}
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_MotionProperties_GetAccumulatedTorque(const JPC_MotionProperties *in_properties,
+                                          float out_torque[3])
+{
+    storeVec3(out_torque, toJph(in_properties)->GetAccumulatedTorque());
+}
+//--------------------------------------------------------------------------------------------------
 JPC_API float
 JPC_MotionProperties_GetMaxLinearVelocity(const JPC_MotionProperties *in_properties)
 {

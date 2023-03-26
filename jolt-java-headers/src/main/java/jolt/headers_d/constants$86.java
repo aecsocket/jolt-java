@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$86 {
 
+    static final FunctionDescriptor JPC_Constraint_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Constraint_GetType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Constraint_GetType",
+        constants$86.JPC_Constraint_GetType$FUNC
+    );
+    static final FunctionDescriptor JPC_Constraint_GetSubType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Constraint_GetSubType$MH = RuntimeHelper.downcallHandle(
+        "JPC_Constraint_GetSubType",
+        constants$86.JPC_Constraint_GetSubType$FUNC
+    );
     static final FunctionDescriptor JPC_Constraint_SetNumVelocityStepsOverride$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -38,21 +52,6 @@ class constants$86 {
     static final MethodHandle JPC_Constraint_GetNumPositionStepsOverride$MH = RuntimeHelper.downcallHandle(
         "JPC_Constraint_GetNumPositionStepsOverride",
         constants$86.JPC_Constraint_GetNumPositionStepsOverride$FUNC
-    );
-    static final FunctionDescriptor JPC_Constraint_SetEnabled$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_BOOL$LAYOUT
-    );
-    static final MethodHandle JPC_Constraint_SetEnabled$MH = RuntimeHelper.downcallHandle(
-        "JPC_Constraint_SetEnabled",
-        constants$86.JPC_Constraint_SetEnabled$FUNC
-    );
-    static final FunctionDescriptor JPC_Constraint_GetEnabled$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Constraint_GetEnabled$MH = RuntimeHelper.downcallHandle(
-        "JPC_Constraint_GetEnabled",
-        constants$86.JPC_Constraint_GetEnabled$FUNC
     );
 }
 

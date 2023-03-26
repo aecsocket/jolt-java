@@ -9,6 +9,24 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$82 {
 
+    static final FunctionDescriptor JPC_Body_AddAngularImpulse$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_AddAngularImpulse$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_AddAngularImpulse",
+        constants$82.JPC_Body_AddAngularImpulse$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_MoveKinematic$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_Body_MoveKinematic$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_MoveKinematic",
+        constants$82.JPC_Body_MoveKinematic$FUNC
+    );
     static final FunctionDescriptor JPC_Body_ApplyBuoyancyImpulse$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -44,22 +62,6 @@ class constants$82 {
     static final MethodHandle JPC_Body_GetShape$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetShape",
         constants$82.JPC_Body_GetShape$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetPosition",
-        constants$82.JPC_Body_GetPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetRotation$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetRotation",
-        constants$82.JPC_Body_GetRotation$FUNC
     );
 }
 

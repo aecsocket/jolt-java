@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$53 {
 
+    static final FunctionDescriptor JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf",
+        constants$53.JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC
+    );
+    static final FunctionDescriptor JPC_MeshShapeSettings_Sanitize$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_Sanitize$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_Sanitize",
+        constants$53.JPC_MeshShapeSettings_Sanitize$FUNC
+    );
     static final FunctionDescriptor JPC_CompoundShapeSettings_AddShapeSettings$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -46,18 +61,6 @@ class constants$53 {
     static final MethodHandle JPC_StaticCompoundShapeSettings_CreateShape$MH = RuntimeHelper.downcallHandle(
         "JPC_StaticCompoundShapeSettings_CreateShape",
         constants$53.JPC_StaticCompoundShapeSettings_CreateShape$FUNC
-    );
-    static final FunctionDescriptor JPC_MutableCompoundShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
-    static final MethodHandle JPC_MutableCompoundShapeSettings_Create$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPC_MutableCompoundShapeSettings_Create",
-        constants$53.JPC_MutableCompoundShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_DecoratedShapeSettings_GetInnerShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_DecoratedShapeSettings_GetInnerShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_DecoratedShapeSettings_GetInnerShape",
-        constants$53.JPC_DecoratedShapeSettings_GetInnerShape$FUNC
     );
 }
 

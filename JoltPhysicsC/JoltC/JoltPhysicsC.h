@@ -1170,6 +1170,15 @@ JPC_API void
 JPC_MotionProperties_GetPointVelocityCOM(const JPC_MotionProperties *in_properties,
                                          const float in_point_relative_to_com[3],
                                          float out_point[3]);
+
+JPC_API void
+JPC_MotionProperties_GetAccumulatedForce(const JPC_MotionProperties *in_properties,
+                                         float out_force[3]);
+
+JPC_API void
+JPC_MotionProperties_GetAccumulatedTorque(const JPC_MotionProperties *in_properties,
+                                          float out_torque[3]);
+
 JPC_API float
 JPC_MotionProperties_GetMaxLinearVelocity(const JPC_MotionProperties *in_properties);
 

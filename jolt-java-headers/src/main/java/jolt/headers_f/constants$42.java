@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$42 {
 
+    static final FunctionDescriptor JPC_CapsuleShape_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CapsuleShape_GetRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_CapsuleShape_GetRadius",
+        constants$42.JPC_CapsuleShape_GetRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_CapsuleShape_GetHalfHeightOfCylinder$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CapsuleShape_GetHalfHeightOfCylinder$MH = RuntimeHelper.downcallHandle(
+        "JPC_CapsuleShape_GetHalfHeightOfCylinder",
+        constants$42.JPC_CapsuleShape_GetHalfHeightOfCylinder$FUNC
+    );
     static final FunctionDescriptor JPC_CylinderShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
@@ -39,20 +53,6 @@ class constants$42 {
     static final MethodHandle JPC_ShapeSettings_AddRef$MH = RuntimeHelper.downcallHandle(
         "JPC_ShapeSettings_AddRef",
         constants$42.JPC_ShapeSettings_AddRef$FUNC
-    );
-    static final FunctionDescriptor JPC_ShapeSettings_Release$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ShapeSettings_Release$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeSettings_Release",
-        constants$42.JPC_ShapeSettings_Release$FUNC
-    );
-    static final FunctionDescriptor JPC_ShapeSettings_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ShapeSettings_GetRefCount$MH = RuntimeHelper.downcallHandle(
-        "JPC_ShapeSettings_GetRefCount",
-        constants$42.JPC_ShapeSettings_GetRefCount$FUNC
     );
 }
 

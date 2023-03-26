@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$30 {
 
+    static final FunctionDescriptor JPC_TempAllocator_Destroy$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TempAllocator_Destroy$MH = RuntimeHelper.downcallHandle(
+        "JPC_TempAllocator_Destroy",
+        constants$30.JPC_TempAllocator_Destroy$FUNC
+    );
+    static final FunctionDescriptor JPC_JobSystem_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_JobSystem_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_JobSystem_Create",
+        constants$30.JPC_JobSystem_Create$FUNC
+    );
     static final FunctionDescriptor JPC_JobSystem_Destroy$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -43,21 +59,6 @@ class constants$30 {
     static final MethodHandle JPC_PhysicsSystem_SetBodyActivationListener$MH = RuntimeHelper.downcallHandle(
         "JPC_PhysicsSystem_SetBodyActivationListener",
         constants$30.JPC_PhysicsSystem_SetBodyActivationListener$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetBodyActivationListener$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetBodyActivationListener$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetBodyActivationListener",
-        constants$30.JPC_PhysicsSystem_GetBodyActivationListener$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_SetContactListener$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_SetContactListener$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_SetContactListener",
-        constants$30.JPC_PhysicsSystem_SetContactListener$FUNC
     );
 }
 

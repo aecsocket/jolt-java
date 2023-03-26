@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$83 {
 
+    static final FunctionDescriptor JPC_Body_GetPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetPosition",
+        constants$83.JPC_Body_GetPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetRotation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetRotation$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetRotation",
+        constants$83.JPC_Body_GetRotation$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetWorldTransform$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -43,22 +59,6 @@ class constants$83 {
     static final MethodHandle JPC_Body_GetInverseCenterOfMassTransform$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetInverseCenterOfMassTransform",
         constants$83.JPC_Body_GetInverseCenterOfMassTransform$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetWorldSpaceBounds",
-        constants$83.JPC_Body_GetWorldSpaceBounds$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetMotionProperties$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetMotionProperties$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetMotionProperties",
-        constants$83.JPC_Body_GetMotionProperties$FUNC
     );
 }
 

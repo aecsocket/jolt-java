@@ -9,6 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$74 {
 
+    static final FunctionDescriptor JPC_BodyInterface_GetRestitution$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetRestitution$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetRestitution",
+        constants$74.JPC_BodyInterface_GetRestitution$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_SetFriction$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_SetFriction$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetFriction",
+        constants$74.JPC_BodyInterface_SetFriction$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_GetFriction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -42,23 +59,6 @@ class constants$74 {
     static final MethodHandle JPC_BodyInterface_GetTransformedShape$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_GetTransformedShape",
         constants$74.JPC_BodyInterface_GetTransformedShape$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetUserData$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetUserData",
-        constants$74.JPC_BodyInterface_GetUserData$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetMaterial",
-        constants$74.JPC_BodyInterface_GetMaterial$FUNC
     );
 }
 

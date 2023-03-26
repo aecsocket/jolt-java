@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$79 {
 
+    static final FunctionDescriptor JPC_Body_GetRestitution$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetRestitution$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetRestitution",
+        constants$79.JPC_Body_GetRestitution$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_SetRestitution$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetRestitution$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetRestitution",
+        constants$79.JPC_Body_SetRestitution$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetLinearVelocity$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -40,22 +55,6 @@ class constants$79 {
     static final MethodHandle JPC_Body_GetAngularVelocity$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetAngularVelocity",
         constants$79.JPC_Body_GetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetAngularVelocity",
-        constants$79.JPC_Body_SetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetAngularVelocityClamped$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetAngularVelocityClamped$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetAngularVelocityClamped",
-        constants$79.JPC_Body_SetAngularVelocityClamped$FUNC
     );
 }
 

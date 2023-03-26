@@ -9,6 +9,18 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$54 {
 
+    static final FunctionDescriptor JPC_MutableCompoundShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle JPC_MutableCompoundShapeSettings_Create$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPC_MutableCompoundShapeSettings_Create",
+        constants$54.JPC_MutableCompoundShapeSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_DecoratedShapeSettings_GetInnerShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_DecoratedShapeSettings_GetInnerShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_DecoratedShapeSettings_GetInnerShape",
+        constants$54.JPC_DecoratedShapeSettings_GetInnerShape$FUNC
+    );
     static final FunctionDescriptor JPC_DecoratedShapeSettings_SetInnerShape$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -39,22 +51,6 @@ class constants$54 {
     static final MethodHandle JPC_ScaledShapeSettings_CreateFromShape$MH = RuntimeHelper.downcallHandle(
         "JPC_ScaledShapeSettings_CreateFromShape",
         constants$54.JPC_ScaledShapeSettings_CreateFromShape$FUNC
-    );
-    static final FunctionDescriptor JPC_ScaledShapeSettings_CreateFromSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ScaledShapeSettings_CreateFromSettings$MH = RuntimeHelper.downcallHandle(
-        "JPC_ScaledShapeSettings_CreateFromSettings",
-        constants$54.JPC_ScaledShapeSettings_CreateFromSettings$FUNC
-    );
-    static final FunctionDescriptor JPC_ScaledShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ScaledShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_ScaledShapeSettings_GetScale",
-        constants$54.JPC_ScaledShapeSettings_GetScale$FUNC
     );
 }
 

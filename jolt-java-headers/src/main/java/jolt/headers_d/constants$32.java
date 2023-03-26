@@ -9,6 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$32 {
 
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNarrowPhaseQuery$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetNarrowPhaseQuery$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNarrowPhaseQuery",
+        constants$32.JPC_PhysicsSystem_GetNarrowPhaseQuery$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock",
+        constants$32.JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$FUNC
+    );
     static final FunctionDescriptor JPC_PhysicsSystem_OptimizeBroadPhase$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -43,22 +57,6 @@ class constants$32 {
     static final MethodHandle JPC_PhysicsSystem_Update$MH = RuntimeHelper.downcallHandle(
         "JPC_PhysicsSystem_Update",
         constants$32.JPC_PhysicsSystem_Update$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_SetGravity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_SetGravity$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_SetGravity",
-        constants$32.JPC_PhysicsSystem_SetGravity$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_GetGravity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_GetGravity$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_GetGravity",
-        constants$32.JPC_PhysicsSystem_GetGravity$FUNC
     );
 }
 

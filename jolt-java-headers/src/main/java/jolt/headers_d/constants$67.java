@@ -9,6 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$67 {
 
+    static final FunctionDescriptor JPC_BodyInterface_DeactivateBody$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_DeactivateBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_DeactivateBody",
+        constants$67.JPC_BodyInterface_DeactivateBody$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_DeactivateBodies$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_DeactivateBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_DeactivateBodies",
+        constants$67.JPC_BodyInterface_DeactivateBodies$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_IsActive$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -46,23 +63,6 @@ class constants$67 {
     static final MethodHandle JPC_BodyInterface_NotifyShapeChanged$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_NotifyShapeChanged",
         constants$67.JPC_BodyInterface_NotifyShapeChanged$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetObjectLayer$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetObjectLayer$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetObjectLayer",
-        constants$67.JPC_BodyInterface_SetObjectLayer$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetObjectLayer$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetObjectLayer",
-        constants$67.JPC_BodyInterface_GetObjectLayer$FUNC
     );
 }
 

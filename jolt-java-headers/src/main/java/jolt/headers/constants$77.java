@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$77 {
 
+    static final FunctionDescriptor JPC_Body_GetUseManifoldReduction$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetUseManifoldReduction$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetUseManifoldReduction",
+        constants$77.JPC_Body_GetUseManifoldReduction$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetUseManifoldReductionWithBody$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetUseManifoldReductionWithBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetUseManifoldReductionWithBody",
+        constants$77.JPC_Body_GetUseManifoldReductionWithBody$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -37,21 +52,6 @@ class constants$77 {
     static final MethodHandle JPC_Body_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetObjectLayer",
         constants$77.JPC_Body_GetObjectLayer$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetCollisionGroup$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetCollisionGroup$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetCollisionGroup",
-        constants$77.JPC_Body_GetCollisionGroup$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_SetCollisionGroup$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_SetCollisionGroup$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_SetCollisionGroup",
-        constants$77.JPC_Body_SetCollisionGroup$FUNC
     );
 }
 

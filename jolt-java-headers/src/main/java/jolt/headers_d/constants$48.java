@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$48 {
 
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_SetHalfHeight$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_SetHalfHeight$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_SetHalfHeight",
+        constants$48.JPC_TaperedCapsuleShapeSettings_SetHalfHeight$FUNC
+    );
+    static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_GetTopRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TaperedCapsuleShapeSettings_GetTopRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_TaperedCapsuleShapeSettings_GetTopRadius",
+        constants$48.JPC_TaperedCapsuleShapeSettings_GetTopRadius$FUNC
+    );
     static final FunctionDescriptor JPC_TaperedCapsuleShapeSettings_SetTopRadius$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -41,21 +56,6 @@ class constants$48 {
     static final MethodHandle JPC_CylinderShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_CylinderShapeSettings_Create",
         constants$48.JPC_CylinderShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_CylinderShapeSettings_GetConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CylinderShapeSettings_GetConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_CylinderShapeSettings_GetConvexRadius",
-        constants$48.JPC_CylinderShapeSettings_GetConvexRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_CylinderShapeSettings_SetConvexRadius$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_CylinderShapeSettings_SetConvexRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_CylinderShapeSettings_SetConvexRadius",
-        constants$48.JPC_CylinderShapeSettings_SetConvexRadius$FUNC
     );
 }
 

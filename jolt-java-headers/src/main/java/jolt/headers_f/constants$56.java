@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$56 {
 
+    static final FunctionDescriptor JPC_RotatedTranslatedShapeSettings_SetPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RotatedTranslatedShapeSettings_SetPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_RotatedTranslatedShapeSettings_SetPosition",
+        constants$56.JPC_RotatedTranslatedShapeSettings_SetPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_RotatedTranslatedShapeSettings_GetRotation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RotatedTranslatedShapeSettings_GetRotation$MH = RuntimeHelper.downcallHandle(
+        "JPC_RotatedTranslatedShapeSettings_GetRotation",
+        constants$56.JPC_RotatedTranslatedShapeSettings_GetRotation$FUNC
+    );
     static final FunctionDescriptor JPC_RotatedTranslatedShapeSettings_SetRotation$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -40,21 +56,6 @@ class constants$56 {
     static final MethodHandle JPC_OffsetCenterOfMassShapeSettings_GetOffset$MH = RuntimeHelper.downcallHandle(
         "JPC_OffsetCenterOfMassShapeSettings_GetOffset",
         constants$56.JPC_OffsetCenterOfMassShapeSettings_GetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_OffsetCenterOfMassShapeSettings_SetOffset$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_OffsetCenterOfMassShapeSettings_SetOffset$MH = RuntimeHelper.downcallHandle(
-        "JPC_OffsetCenterOfMassShapeSettings_SetOffset",
-        constants$56.JPC_OffsetCenterOfMassShapeSettings_SetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_AddRef$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_AddRef$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_AddRef",
-        constants$56.JPC_Shape_AddRef$FUNC
     );
 }
 

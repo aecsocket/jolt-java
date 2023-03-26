@@ -9,6 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$87 {
 
+    static final FunctionDescriptor JPC_Constraint_SetEnabled$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_BOOL$LAYOUT
+    );
+    static final MethodHandle JPC_Constraint_SetEnabled$MH = RuntimeHelper.downcallHandle(
+        "JPC_Constraint_SetEnabled",
+        constants$87.JPC_Constraint_SetEnabled$FUNC
+    );
+    static final FunctionDescriptor JPC_Constraint_GetEnabled$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Constraint_GetEnabled$MH = RuntimeHelper.downcallHandle(
+        "JPC_Constraint_GetEnabled",
+        constants$87.JPC_Constraint_GetEnabled$FUNC
+    );
     static final FunctionDescriptor JPC_TwoBodyConstraint_GetBody1$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -47,31 +62,6 @@ class constants$87 {
     static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH = RuntimeHelper.downcallHandle(
         "JPC_GJKClosestPoint_GetClosestPointsConvexConvex",
         constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC
-    );
-    static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_IntersectsConvexPoint",
-        constants$87.JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC
-    );
-    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_GetClosestPointsConvexPoint",
-        constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC
     );
 }
 

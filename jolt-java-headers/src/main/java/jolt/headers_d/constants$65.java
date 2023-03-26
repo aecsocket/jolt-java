@@ -9,6 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$65 {
 
+    static final FunctionDescriptor JPC_BodyInterface_DestroyBody$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_DestroyBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_DestroyBody",
+        constants$65.JPC_BodyInterface_DestroyBody$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_DestroyBodies$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_DestroyBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_DestroyBodies",
+        constants$65.JPC_BodyInterface_DestroyBodies$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_AddBody$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -42,26 +59,6 @@ class constants$65 {
     static final MethodHandle JPC_BodyInterface_CreateAndAddBody$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_CreateAndAddBody",
         constants$65.JPC_BodyInterface_CreateAndAddBody$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_AddBodiesPrepare$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_AddBodiesPrepare$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_AddBodiesPrepare",
-        constants$65.JPC_BodyInterface_AddBodiesPrepare$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_AddBodiesFinalize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_AddBodiesFinalize$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_AddBodiesFinalize",
-        constants$65.JPC_BodyInterface_AddBodiesFinalize$FUNC
     );
 }
 

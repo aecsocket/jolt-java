@@ -9,6 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$40 {
 
+    static final FunctionDescriptor JPC_NarrowPhaseQuery_GetCastRay$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_NarrowPhaseQuery_GetCastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_NarrowPhaseQuery_GetCastRay",
+        constants$40.JPC_NarrowPhaseQuery_GetCastRay$FUNC
+    );
+    static final FunctionDescriptor JPC_NarrowPhaseQuery_CollectCastRay$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_NarrowPhaseQuery_CollectCastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_NarrowPhaseQuery_CollectCastRay",
+        constants$40.JPC_NarrowPhaseQuery_CollectCastRay$FUNC
+    );
     static final FunctionDescriptor JPC_NarrowPhaseQuery_CollidePoint$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -60,22 +86,6 @@ class constants$40 {
     static final MethodHandle JPC_SphereShape_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_SphereShape_Create",
         constants$40.JPC_SphereShape_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_SphereShape_GetRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SphereShape_GetRadius$MH = RuntimeHelper.downcallHandle(
-        "JPC_SphereShape_GetRadius",
-        constants$40.JPC_SphereShape_GetRadius$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShape_Create",
-        constants$40.JPC_BoxShape_Create$FUNC
     );
 }
 

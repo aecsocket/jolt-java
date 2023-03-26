@@ -9,6 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$72 {
 
+    static final FunctionDescriptor JPC_BodyInterface_AddForceAtPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddForceAtPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddForceAtPosition",
+        constants$72.JPC_BodyInterface_AddForceAtPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AddTorque$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddTorque",
+        constants$72.JPC_BodyInterface_AddTorque$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_AddForceAndTorque$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -46,24 +65,6 @@ class constants$72 {
     static final MethodHandle JPC_BodyInterface_AddAngularImpulse$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_AddAngularImpulse",
         constants$72.JPC_BodyInterface_AddAngularImpulse$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetMotionType$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetMotionType",
-        constants$72.JPC_BodyInterface_SetMotionType$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetMotionType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetMotionType$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetMotionType",
-        constants$72.JPC_BodyInterface_GetMotionType$FUNC
     );
 }
 

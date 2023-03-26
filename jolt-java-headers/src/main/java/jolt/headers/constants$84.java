@@ -9,6 +9,22 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$84 {
 
+    static final FunctionDescriptor JPC_Body_GetWorldSpaceBounds$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetWorldSpaceBounds$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetWorldSpaceBounds",
+        constants$84.JPC_Body_GetWorldSpaceBounds$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetMotionProperties$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetMotionProperties$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetMotionProperties",
+        constants$84.JPC_Body_GetMotionProperties$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -39,21 +55,6 @@ class constants$84 {
     static final MethodHandle JPC_Body_GetBodyCreationSettings$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_GetBodyCreationSettings",
         constants$84.JPC_Body_GetBodyCreationSettings$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetWorldSpaceSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetWorldSpaceSurfaceNormal$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetWorldSpaceSurfaceNormal",
-        constants$84.JPC_Body_GetWorldSpaceSurfaceNormal$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_FixedToWorld$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
-    static final MethodHandle JPC_Body_FixedToWorld$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPC_Body_FixedToWorld",
-        constants$84.JPC_Body_FixedToWorld$FUNC
     );
 }
 

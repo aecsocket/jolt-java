@@ -9,6 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$68 {
 
+    static final FunctionDescriptor JPC_BodyInterface_SetObjectLayer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_SetObjectLayer$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_SetObjectLayer",
+        constants$68.JPC_BodyInterface_SetObjectLayer$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_GetObjectLayer$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_GetObjectLayer$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_GetObjectLayer",
+        constants$68.JPC_BodyInterface_GetObjectLayer$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_SetPositionAndRotation$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -50,24 +67,6 @@ class constants$68 {
     static final MethodHandle JPC_BodyInterface_SetPosition$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_SetPosition",
         constants$68.JPC_BodyInterface_SetPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetPosition",
-        constants$68.JPC_BodyInterface_GetPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetCenterOfMassPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetCenterOfMassPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetCenterOfMassPosition",
-        constants$68.JPC_BodyInterface_GetCenterOfMassPosition$FUNC
     );
 }
 
