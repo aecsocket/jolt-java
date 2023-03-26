@@ -20,12 +20,12 @@ public final class ObjectLayerPairFilter extends AddressedJoltNative {
     }
     //endregion Jolt-Pointer
 
-    public static ObjectLayerPairFilter of(MemorySession session, ObjectLayerPairFilterFn impl) {
-        var vtable = JPC_ObjectLayerPairFilterVTable.allocate(session);
-        MemorySegment shouldCollide = ShouldCollide.allocate((v0, v1, v2) -> impl.shouldCollide(v1, v2), session);
+    public static ObjectLayerPairFilter of(MemorySession arena, ObjectLayerPairFilterFn impl) {
+        var vtable = JPC_ObjectLayerPairFilterVTable.allocate(arena);
+        MemorySegment shouldCollide = ShouldCollide.allocate((v0, v1, v2) -> impl.shouldCollide(v1, v2), arena);
         ShouldCollide$set(vtable, shouldCollide.address());
 
-        var handle = JPJ_ObjectLayerPairFilter.allocate(session);
+        var handle = JPJ_ObjectLayerPairFilter.allocate(arena);
         vtable$set(handle, vtable.address());
         return new ObjectLayerPairFilter(handle.address());
     }

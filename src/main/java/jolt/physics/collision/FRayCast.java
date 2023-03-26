@@ -26,8 +26,8 @@ public final class FRayCast extends SegmentedJoltNative {
     }
     //endregion Jolt-Value
 
-    public static FRayCast of(MemorySession session, FVec3 origin, FVec3 direction) {
-        var segment = allocate(session);
+    public static FRayCast of(MemorySession arena, FVec3 origin, FVec3 direction) {
+        var segment = allocate(arena);
         origin.write(origin$slice(segment));
         direction.write(direction$slice(segment));
         return new FRayCast(segment);

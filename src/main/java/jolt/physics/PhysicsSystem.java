@@ -1,6 +1,6 @@
 package jolt.physics;
 
-import jolt.DestroyableJoltNative;
+import jolt.DeletableJoltNative;
 import jolt.Jolt;
 import jolt.core.JobSystem;
 import jolt.core.TempAllocator;
@@ -18,12 +18,11 @@ import jolt.physics.collision.broadphase.ObjectVsBroadPhaseLayerFilter;
 import javax.annotation.Nullable;
 
 import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySegment;
 import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public final class PhysicsSystem extends DestroyableJoltNative {
+public final class PhysicsSystem extends DeletableJoltNative {
     //region Jolt-Pointer
     private PhysicsSystem(MemoryAddress handle) {
         super(handle);
@@ -55,7 +54,7 @@ public final class PhysicsSystem extends DestroyableJoltNative {
     }
 
     @Override
-    protected void destroyInternal() {
+    protected void deleteInternal() {
         JPC_PhysicsSystem_Destroy(handle);
     }
 

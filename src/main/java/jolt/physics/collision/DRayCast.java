@@ -27,8 +27,8 @@ public final class DRayCast extends SegmentedJoltNative {
     }
     //endregion Jolt-Value
 
-    public static DRayCast of(MemorySession session, DVec3 origin, FVec3 direction) {
-        var segment = allocate(session);
+    public static DRayCast of(MemorySession arena, DVec3 origin, FVec3 direction) {
+        var segment = allocate(arena);
         origin.write(origin$slice(segment));
         direction.write(direction$slice(segment));
         return new DRayCast(segment);

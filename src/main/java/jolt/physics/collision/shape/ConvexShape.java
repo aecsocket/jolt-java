@@ -1,19 +1,15 @@
 package jolt.physics.collision.shape;
 
 import jolt.AddressedJoltNative;
-import jolt.DestroyableJoltNative;
 import jolt.Jolt;
 import jolt.SegmentedJoltNative;
+import jolt.headers.JPC_SupportBuffer;
 import jolt.math.FVec3;
-import jolt.physics.PhysicsSystem;
 import jolt.physics.collision.PhysicsMaterial;
-import jolt.physics.collision.RayCastSettings;
 
 import javax.annotation.Nullable;
 import java.lang.foreign.*;
 
-import static jolt.headers.JPC_RayCastSettings.allocate;
-import static jolt.headers.JPC_RayCastSettings.ofAddress;
 import static jolt.headers.JoltPhysicsC.*;
 
 public sealed class ConvexShape extends Shape
@@ -35,16 +31,16 @@ public sealed class ConvexShape extends Shape
         }
 
         public static SupportBuffer at(MemorySession alloc, MemoryAddress addr) {
-            return addr == MemoryAddress.NULL ? null : new SupportBuffer(ofAddress(addr, alloc));
+            return addr == MemoryAddress.NULL ? null : new SupportBuffer(JPC_SupportBuffer.ofAddress(addr, alloc));
         }
 
         public static SupportBuffer of(SegmentAllocator alloc) {
-            return new SupportBuffer(allocate(alloc));
+            return new SupportBuffer(JPC_SupportBuffer.allocate(alloc));
         }
         //endregion Jolt-Value
     }
 
-    public static final class Support extends DestroyableJoltNative {
+    public static final class Support extends AddressedJoltNative {
         //region Jolt-Pointer
         private Support(MemoryAddress handle) {
             super(handle);
@@ -54,11 +50,6 @@ public sealed class ConvexShape extends Shape
             return addr == MemoryAddress.NULL ? null : new Support(addr);
         }
         //endregion Jolt-Pointer
-
-        @Override
-        protected void destroyInternal() {
-            JPC_ConvexShapeSupport_Destroy(handle);
-        }
     }
 
     //region Jolt-Pointer-Protected

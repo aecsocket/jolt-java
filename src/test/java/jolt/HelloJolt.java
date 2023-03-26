@@ -231,10 +231,10 @@ public final class HelloJolt {
             bodyInterface.removeBody(floor.getId());
             bodyInterface.destroyBody(floor.getId());
 
-            physicsSystem.destroy();
+            physicsSystem.delete();
 
-            jobSystem.destroy();
-            tempAllocator.destroy();
+            jobSystem.delete();
+            tempAllocator.delete();
             Jolt.destroyFactory();
         }
     }

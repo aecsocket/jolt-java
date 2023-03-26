@@ -55,7 +55,7 @@ final class TestShapeSettings extends MemoriedTest {
     @Test
     void box() {
         Jolt.use(BoxShapeSettings.of(FVEC3_1, F1), obj -> {
-            FVec3 halfExtent = FVec3.of(session);
+            FVec3 halfExtent = FVec3.of(arena);
             obj.getHalfExtent(halfExtent);
             assertEqualValue(FVEC3_1, halfExtent);
             assertEquals(F1, obj.getConvexRadius());
@@ -73,9 +73,9 @@ final class TestShapeSettings extends MemoriedTest {
     @Test
     void triangle() {
         Jolt.use(TriangleShapeSettings.of(FVEC3_1, FVEC3_2, FVEC3_3, F1), obj -> {
-            FVec3 v1 = FVec3.of(session);
-            FVec3 v2 = FVec3.of(session);
-            FVec3 v3 = FVec3.of(session);
+            FVec3 v1 = FVec3.of(arena);
+            FVec3 v2 = FVec3.of(arena);
+            FVec3 v3 = FVec3.of(arena);
             obj.getVertices(v1, v2, v3);
             assertEqualValue(FVEC3_1, v1);
             assertEqualValue(FVEC3_2, v2);

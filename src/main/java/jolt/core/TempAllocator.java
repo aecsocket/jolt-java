@@ -1,12 +1,12 @@
 package jolt.core;
 
-import jolt.DestroyableJoltNative;
+import jolt.DeletableJoltNative;
 
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public final class TempAllocator extends DestroyableJoltNative {
+public final class TempAllocator extends DeletableJoltNative {
     //region Jolt-Pointer
     private TempAllocator(MemoryAddress handle) {
         super(handle);
@@ -22,7 +22,7 @@ public final class TempAllocator extends DestroyableJoltNative {
     }
 
     @Override
-    protected void destroyInternal() {
+    protected void deleteInternal() {
         JPC_TempAllocator_Destroy(handle);
     }
 }

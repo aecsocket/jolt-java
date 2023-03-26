@@ -1,6 +1,6 @@
 package jolt.physics.collision.shape;
 
-import jolt.DestroyableJoltNative;
+import jolt.DeletableJoltNative;
 import jolt.geometry.AABox;
 import jolt.math.FMat44;
 import jolt.math.FVec3;
@@ -9,14 +9,12 @@ import jolt.physics.collision.PhysicsMaterial;
 import jolt.physics.collision.TransformedShape;
 
 import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
-import java.lang.foreign.MemorySession;
 import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public sealed class Shape extends DestroyableJoltNative
+public sealed class Shape extends DeletableJoltNative
         permits ConvexShape, CompoundShape, DecoratedShape, MeshShape, HeightFieldShape {
     public static final float DEFAULT_CONVEX_RADIUS = 0.05f;
 
@@ -31,7 +29,7 @@ public sealed class Shape extends DestroyableJoltNative
     //endregion Jolt-Pointer-Protected
 
     @Override
-    protected void destroyInternal() {
+    protected void deleteInternal() {
         JPC_Shape_Release(handle);
     }
 

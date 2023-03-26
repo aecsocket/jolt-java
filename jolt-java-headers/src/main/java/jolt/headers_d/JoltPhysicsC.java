@@ -6296,17 +6296,6 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle JPC_ConvexShapeSupport_Destroy$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.JPC_ConvexShapeSupport_Destroy$MH,"JPC_ConvexShapeSupport_Destroy");
-    }
-    public static void JPC_ConvexShapeSupport_Destroy ( Addressable in_support) {
-        var mh$ = JPC_ConvexShapeSupport_Destroy$MH();
-        try {
-            mh$.invokeExact(in_support);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
     public static MethodHandle JPC_GJKClosestPoint_IntersectsConvexConvex$MH() {
         return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_IntersectsConvexConvex$MH,"JPC_GJKClosestPoint_IntersectsConvexConvex");
     }
@@ -6341,7 +6330,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexPoint");
+        return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexPoint");
     }
     public static float JPC_GJKClosestPoint_GetClosestPointsConvexPoint ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  float in_max_dist_sq,  Addressable io_v,  Addressable out_point_a,  Addressable out_point_b) {
         var mh$ = JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH();

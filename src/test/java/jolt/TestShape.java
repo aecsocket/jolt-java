@@ -53,7 +53,7 @@ final class TestShape extends MemoriedTest {
     @Test
     void box() {
         Jolt.use(BoxShape.of(FVEC3_1, 0.0f), obj -> {
-            FVec3 halfExtent = FVec3.of(session);
+            FVec3 halfExtent = FVec3.of(arena);
             obj.getHalfExtent(halfExtent);
             assertEqualValue(FVEC3_1, halfExtent);
 

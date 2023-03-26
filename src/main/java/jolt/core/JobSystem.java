@@ -1,12 +1,12 @@
 package jolt.core;
 
-import jolt.DestroyableJoltNative;
+import jolt.DeletableJoltNative;
 
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public final class JobSystem extends DestroyableJoltNative {
+public final class JobSystem extends DeletableJoltNative {
     public static final int MAX_PHYSICS_JOBS = JPC_MAX_PHYSICS_JOBS();
     public static final int MAX_PHYSICS_BARRIERS = JPC_MAX_PHYSICS_BARRIERS();
 
@@ -25,7 +25,7 @@ public final class JobSystem extends DestroyableJoltNative {
     }
 
     @Override
-    protected void destroyInternal() {
+    protected void deleteInternal() {
         JPC_JobSystem_Destroy(handle);
     }
 }

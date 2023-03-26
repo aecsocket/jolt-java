@@ -23,13 +23,6 @@ class constants$87 {
         "JPC_TwoBodyConstraint_GetBody2",
         constants$87.JPC_TwoBodyConstraint_GetBody2$FUNC
     );
-    static final FunctionDescriptor JPC_ConvexShapeSupport_Destroy$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShapeSupport_Destroy$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSupport_Destroy",
-        constants$87.JPC_ConvexShapeSupport_Destroy$FUNC
-    );
     static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -65,6 +58,20 @@ class constants$87 {
     static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH = RuntimeHelper.downcallHandle(
         "JPC_GJKClosestPoint_IntersectsConvexPoint",
         constants$87.JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC
+    );
+    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH = RuntimeHelper.downcallHandle(
+        "JPC_GJKClosestPoint_GetClosestPointsConvexPoint",
+        constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC
     );
 }
 

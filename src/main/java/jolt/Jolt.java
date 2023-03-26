@@ -12,7 +12,6 @@ import java.lang.foreign.SegmentAllocator;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -125,14 +124,14 @@ public final class Jolt {
         return collection.stream().mapToInt(x -> x).toArray();
     }
 
-    public static <T extends Destroyable> void use(T obj, Consumer<T> block) {
+    public static <T extends Deletable> void use(T obj, Consumer<T> block) {
         block.accept(obj);
-        obj.destroy();
+        obj.delete();
     }
 
-    public static <T extends Destroyable, R> R use(T obj, Function<T, R> block) {
+    public static <T extends Deletable, R> R use(T obj, Function<T, R> block) {
         var result = block.apply(obj);
-        obj.destroy();
+        obj.delete();
         return result;
     }
 

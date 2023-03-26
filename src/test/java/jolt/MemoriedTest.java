@@ -3,13 +3,13 @@ package jolt;
 import java.lang.foreign.MemorySession;
 
 public class MemoriedTest {
-    protected MemorySession session;
+    protected MemorySession arena;
 
     protected void setUpMemory() {
-        session = MemorySession.openConfined();
+        arena = MemorySession.openConfined();
     }
 
     protected void tearDownMemory() {
-        session.close();
+        arena.close();
     }
 }

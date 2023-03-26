@@ -1,7 +1,7 @@
 package jolt.physics.body;
 
 import jolt.AddressedJoltNative;
-import jolt.Destroyable;
+import jolt.Deletable;
 import jolt.Jolt;
 import jolt.math.*;
 import jolt.physics.Activation;
@@ -106,7 +106,7 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         return JPC_BodyInterface_CreateAndAddBody(handle, settings.address(), activation.ordinal());
     }
 
-    public static final class BodyBulk implements Destroyable {
+    public static final class BodyBulk implements Deletable {
         private final MemorySession arena;
         private final MemoryAddress bodies;
         private final int numBodies;
@@ -120,12 +120,12 @@ public abstract sealed class BodyInterface extends AddressedJoltNative
         }
 
         @Override
-        public boolean isDestroyed() {
+        public boolean isDeleted() {
             return destroyed;
         }
 
         @Override
-        public void destroy() {
+        public void delete() {
             if (destroyed) throw new IllegalStateException("Object is already destroyed");
             arena.close();
             destroyed = true;

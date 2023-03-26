@@ -3016,11 +3016,14 @@ JPC_ConvexShape_GetSupportFunction(const JPC_ConvexShape *in_shape,
                                    JPC_SupportBuffer *in_buffer,
                                    const float in_scale[3])
 {
-    return reinterpret_cast<const JPC_ConvexShapeSupport *>(toJph(in_shape)->GetSupportFunction(
+    auto a = toJph(in_shape);
+    auto b = a->GetSupportFunction(
             static_cast<JPH::ConvexShape::ESupportMode>(in_mode),
             *reinterpret_cast<JPH::ConvexShape::SupportBuffer *>(in_buffer),
             loadVec3(in_scale)
-    ));
+    );
+    // this is so hacky
+    return reinterpret_cast<const JPC_ConvexShapeSupport *>(b);
 }
 
 JPC_API void
@@ -3028,7 +3031,7 @@ JPC_ConvexShape_SetMaterial(JPC_ConvexShape *in_shape, const JPC_PhysicsMaterial
 {
     toJph(in_shape)->SetMaterial(toJph(in_material));
 }
-//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------/
 JPC_API const JPC_PhysicsMaterial *
 JPC_ConvexShape_GetMaterial(const JPC_ConvexShape *in_shape)
 {
@@ -4803,16 +4806,6 @@ JPC_API bool
 JPC_MotorSettings_IsValid(const JPC_MotorSettings *in_settings)
 {
     return toJph(in_settings)->IsValid();
-}
-//--------------------------------------------------------------------------------------------------
-//
-// JPC_ConvexShapeSupport
-//
-//--------------------------------------------------------------------------------------------------
-JPC_API void
-JPC_ConvexShapeSupport_Destroy(JPC_ConvexShapeSupport *in_support)
-{
-    delete reinterpret_cast<JPH::ConvexShape::Support *>(in_support);
 }
 //--------------------------------------------------------------------------------------------------
 //

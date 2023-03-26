@@ -1,14 +1,13 @@
 package jolt.physics.collision.shape;
 
-import jolt.DestroyableJoltNative;
+import jolt.DeletableJoltNative;
 
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.SegmentAllocator;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public sealed class ShapeSettings extends DestroyableJoltNative
+public sealed class ShapeSettings extends DeletableJoltNative
         permits ConvexShapeSettings, CompoundShapeSettings, DecoratedShapeSettings, MeshShapeSettings, HeightFieldShapeSettings {
     //region Jolt-Pointer-Protected
     protected ShapeSettings(MemoryAddress handle) {
@@ -21,7 +20,7 @@ public sealed class ShapeSettings extends DestroyableJoltNative
     //endregion Jolt-Pointer-Protected
 
     @Override
-    protected void destroyInternal() {
+    protected void deleteInternal() {
         JPC_ShapeSettings_Release(handle);
     }
 

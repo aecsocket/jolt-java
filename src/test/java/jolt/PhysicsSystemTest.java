@@ -19,7 +19,7 @@ class PhysicsSystemTest extends MemoriedTest {
     protected PhysicsSystem physics;
 
     protected void setUpPhysics() {
-        bpLayerIface = BroadPhaseLayerInterface.of(session, new BroadPhaseLayerInterfaceFn() {
+        bpLayerIface = BroadPhaseLayerInterface.of(arena, new BroadPhaseLayerInterfaceFn() {
             @Override
             public int getNumBroadPhaseLayers() {
                 return 2;
@@ -34,12 +34,12 @@ class PhysicsSystemTest extends MemoriedTest {
                 };
             }
         });
-        objBpLayerIface = ObjectVsBroadPhaseLayerFilter.of(session, (layer1, layer2) -> switch (layer1) {
+        objBpLayerIface = ObjectVsBroadPhaseLayerFilter.of(arena, (layer1, layer2) -> switch (layer1) {
             case OBJ_LAYER_NON_MOVING -> layer2 == BP_LAYER_MOVING;
             case OBJ_LAYER_MOVING -> true;
             default -> false;
         });
-        objLayerPairFilter = ObjectLayerPairFilter.of(session, (layer1, layer2) -> switch (layer1) {
+        objLayerPairFilter = ObjectLayerPairFilter.of(arena, (layer1, layer2) -> switch (layer1) {
             case OBJ_LAYER_NON_MOVING -> layer2 == OBJ_LAYER_MOVING;
             case OBJ_LAYER_MOVING -> true;
             default -> false;
@@ -53,6 +53,6 @@ class PhysicsSystemTest extends MemoriedTest {
     }
 
     protected void tearDownPhysics() {
-        physics.destroy();
+        physics.delete();
     }
 }
