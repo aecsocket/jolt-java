@@ -597,6 +597,9 @@ FN(constraintSpaceToJph)(JPC_ConstraintSpace in) { return static_cast<JPH::ECons
 FN(toJpc)(JPH::EMotorState in) { return static_cast<JPC_MotorState>(in); }
 FN(motorStateToJph)(JPC_MotorState in) { return static_cast<JPH::EMotorState>(in); }
 
+FN(toJpc)(JPH::SixDOFConstraint::EAxis in) { return static_cast<JPC_SixDOFConstraintAxis>(in); }
+FN(sixDofConstraintAxisToJph)(JPC_SixDOFConstraintAxis in) { return static_cast<JPH::SixDOFConstraint::EAxis>(in); }
+
 FN(toJpc)(const JPH::Shape::ShapeResult& in) {
     auto result = JPC_ShapeResult {
         .result = in.IsValid() ? toJpc(in.Get().GetPtr()) : nullptr,
@@ -4786,6 +4789,350 @@ JPC_API float
 JPC_SliderConstraint_GetFrequency(const JPC_SliderConstraint *in_self)
 {
     return toJph(in_self)->GetFrequency();
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SwingTwistConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_SwingTwistConstraint_GetLocalSpacePosition1(const JPC_SwingTwistConstraint *in_self, float out_position[3])
+{
+    storeVec3(out_position, toJph(in_self)->GetLocalSpacePosition1());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_GetLocalSpacePosition2(const JPC_SwingTwistConstraint *in_self, float out_position[3])
+{
+    storeVec3(out_position, toJph(in_self)->GetLocalSpacePosition2());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_GetConstraintToBody1(const JPC_SwingTwistConstraint *in_self, float out_rotation[4])
+{
+    storeQuat(out_rotation, toJph(in_self)->GetConstraintToBody1());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_GetConstraintToBody2(const JPC_SwingTwistConstraint *in_self, float out_rotation[4])
+{
+    storeQuat(out_rotation, toJph(in_self)->GetConstraintToBody2());
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetNormalHalfConeAngle(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetNormalHalfConeAngle();
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetNormalHalfConeAngle(JPC_SwingTwistConstraint *in_self, float in_angle)
+{
+    toJph(in_self)->SetNormalHalfConeAngle(in_angle);
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetPlaneHalfConeAngle(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetPlaneHalfConeAngle();
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetPlaneHalfConeAngle(JPC_SwingTwistConstraint *in_self, float in_angle)
+{
+    toJph(in_self)->SetPlaneHalfConeAngle(in_angle);
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetTwistMinAngle(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetTwistMinAngle();
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetTwistMinAngle(JPC_SwingTwistConstraint *in_self, float in_angle)
+{
+    toJph(in_self)->SetTwistMinAngle(in_angle);
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetTwistMaxAngle(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetTwistMaxAngle();
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetTwistMaxAngle(JPC_SwingTwistConstraint *in_self, float in_angle)
+{
+    toJph(in_self)->SetTwistMaxAngle(in_angle);
+}
+
+JPC_API JPC_MotorSettings *
+JPC_SwingTwistConstraint_GetSwingMotorSettings(JPC_SwingTwistConstraint *in_self)
+{
+    return toJpc(&toJph(in_self)->GetSwingMotorSettings());
+}
+
+JPC_API JPC_MotorSettings *
+JPC_SwingTwistConstraint_GetTwistMotorSettings(JPC_SwingTwistConstraint *in_self)
+{
+    return toJpc(&toJph(in_self)->GetTwistMotorSettings());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetMaxFrictionTorque(JPC_SwingTwistConstraint *in_self, float in_friction_torque)
+{
+    toJph(in_self)->SetMaxFrictionTorque(in_friction_torque);
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetMaxFrictionTorque(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetMaxFrictionTorque();
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetSwingMotorState(JPC_SwingTwistConstraint *in_self, JPC_MotorState in_state)
+{
+    toJph(in_self)->SetSwingMotorState(motorStateToJph(in_state));
+}
+
+JPC_API JPC_MotorState
+JPC_SwingTwistConstraint_GetSwingMotorState(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJpc(toJph(in_self)->GetSwingMotorState());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetTwistMotorState(JPC_SwingTwistConstraint *in_self, JPC_MotorState in_state)
+{
+    toJph(in_self)->SetTwistMotorState(motorStateToJph(in_state));
+}
+
+JPC_API JPC_MotorState
+JPC_SwingTwistConstraint_GetTwistMotorState(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJpc(toJph(in_self)->GetTwistMotorState());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetTargetAngularVelocityCS(JPC_SwingTwistConstraint *in_self, const float in_angular_velocity[3])
+{
+    toJph(in_self)->SetTargetAngularVelocityCS(loadVec3(in_angular_velocity));
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_GetTargetAngularVelocityCS(const JPC_SwingTwistConstraint *in_self, float out_angular_velocity[3])
+{
+    storeVec3(out_angular_velocity, toJph(in_self)->GetTargetAngularVelocityCS());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetTargetOrientationCS(JPC_SwingTwistConstraint *in_self, const float in_orientation[4])
+{
+    toJph(in_self)->SetTargetOrientationCS(loadQuat(in_orientation));
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_GetTargetOrientationCS(const JPC_SwingTwistConstraint *in_self, float out_orientation[4])
+{
+    storeQuat(out_orientation, toJph(in_self)->GetTargetOrientationCS());
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_SetTargetOrientationBS(JPC_SwingTwistConstraint *in_self, const float in_orientation[4])
+{
+    toJph(in_self)->SetTargetOrientationBS(loadQuat(in_orientation));
+}
+
+// JPC_API void
+// JPC_SwingTwistConstraint_GetRotationInConstraintSpace(const JPC_SwingTwistConstraint *in_self, float out_rotation[4])
+// {
+//     storeQuat(out_rotation, toJph(in_self)->GetRotationInConstraintSpace());
+// }
+
+JPC_API void
+JPC_SwingTwistConstraint_GetTotalLambdaPosition(const JPC_SwingTwistConstraint *in_self, float out_position[3])
+{
+    storeVec3(out_position, toJph(in_self)->GetTotalLambdaPosition());
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetTotalLambdaTwist(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetTotalLambdaTwist();
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetTotalLambdaSwingY(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetTotalLambdaSwingY();
+}
+
+JPC_API float
+JPC_SwingTwistConstraint_GetTotalLambdaSwingZ(const JPC_SwingTwistConstraint *in_self)
+{
+    return toJph(in_self)->GetTotalLambdaSwingZ();
+}
+
+JPC_API void
+JPC_SwingTwistConstraint_GetTotalLambdaMotor(const JPC_SwingTwistConstraint *in_self, float out_motor[3])
+{
+    storeVec3(out_motor, toJph(in_self)->GetTotalLambdaMotor());
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SixDOFConstraint
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_SixDOFConstraint_SetTranslationLimits(JPC_SixDOFConstraint *in_self, const float in_limit_min[3], const float in_limit_max[3])
+{
+    toJph(in_self)->SetTranslationLimits(loadVec3(in_limit_min), loadVec3(in_limit_max));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetRotationLimits(JPC_SixDOFConstraint *in_self, const float in_limit_min[3], const float in_limit_max[3])
+{
+    toJph(in_self)->SetRotationLimits(loadVec3(in_limit_min), loadVec3(in_limit_max));
+}
+
+JPC_API float
+JPC_SixDOFConstraint_GetLimitsMin(const JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJph(in_self)->GetLimitsMin(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API float
+JPC_SixDOFConstraint_GetLimitsMax(const JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJph(in_self)->GetLimitsMax(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API bool
+JPC_SixDOFConstraint_IsFixedAxis(const JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJph(in_self)->IsFixedAxis(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API bool
+JPC_SixDOFConstraint_IsFreeAxis(const JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJph(in_self)->IsFreeAxis(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetMaxFriction(JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis, float in_friction)
+{
+    toJph(in_self)->SetMaxFriction(sixDofConstraintAxisToJph(in_axis), in_friction);
+}
+
+JPC_API float
+JPC_SixDOFConstraint_GetMaxFriction(const JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJph(in_self)->GetMaxFriction(sixDofConstraintAxisToJph(in_axis));
+}
+
+// JPC_API void
+// JPC_SixDOFConstraint_GetRotationInConstraintSpace(const JPC_SixDOFConstraint *in_self, float out_rotation[4])
+// {
+//     return storeQuat(out_rotation, toJph(in_self)->GetRotationInConstraintSpace());
+// }
+
+JPC_API JPC_MotorSettings *
+JPC_SixDOFConstraint_GetMotorSettings(JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJpc(&toJph(in_self)->GetMotorSettings(sixDofConstraintAxisToJph(in_axis)));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetMotorState(JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis, JPC_MotorState in_state)
+{
+    toJph(in_self)->SetMotorState(sixDofConstraintAxisToJph(in_axis), motorStateToJph(in_state));
+}
+
+JPC_API JPC_MotorState
+JPC_SixDOFConstraint_GetMotorState(const JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJpc(toJph(in_self)->GetMotorState(sixDofConstraintAxisToJph(in_axis)));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTargetVelocityCS(const JPC_SixDOFConstraint *in_self, float out_velocity[3])
+{
+    storeVec3(out_velocity, toJph(in_self)->GetTargetVelocityCS());
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetTargetVelocityCS(JPC_SixDOFConstraint *in_self, const float in_velocity[3])
+{
+    toJph(in_self)->SetTargetVelocityCS(loadVec3(in_velocity));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetTargetAngularVelocityCS(JPC_SixDOFConstraint *in_self, const float in_angular_velocity[3])
+{
+    toJph(in_self)->SetTargetAngularVelocityCS(loadVec3(in_angular_velocity));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTargetAngularVelocityCS(const JPC_SixDOFConstraint *in_self, float out_angular_velocity[3])
+{
+    storeVec3(out_angular_velocity, toJph(in_self)->GetTargetAngularVelocityCS());
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTargetPositionCS(const JPC_SixDOFConstraint *in_self, float out_position[3])
+{
+    storeVec3(out_position, toJph(in_self)->GetTargetPositionCS());
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetTargetPositionCS(JPC_SixDOFConstraint *in_self, const float in_position[3])
+{
+    toJph(in_self)->SetTargetPositionCS(loadVec3(in_position));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetTargetOrientationCS(JPC_SixDOFConstraint *in_self, const float in_orientation[4])
+{
+    toJph(in_self)->SetTargetOrientationCS(loadQuat(in_orientation));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTargetOrientationCS(const JPC_SixDOFConstraint *in_self, float out_orientation[4])
+{
+    storeQuat(out_orientation, toJph(in_self)->GetTargetOrientationCS());
+}
+
+JPC_API void
+JPC_SixDOFConstraint_SetTargetOrientationBS(JPC_SixDOFConstraint *in_self, const float in_orientation[4])
+{
+    toJph(in_self)->SetTargetOrientationBS(loadQuat(in_orientation));
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTotalLambdaPosition(const JPC_SixDOFConstraint *in_self, float out_position[3])
+{
+    storeVec3(out_position, toJph(in_self)->GetTotalLambdaPosition());
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTotalLambdaRotation(const JPC_SixDOFConstraint *in_self, float out_rotation[3])
+{
+    storeVec3(out_rotation, toJph(in_self)->GetTotalLambdaRotation());
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation(const JPC_SixDOFConstraint *in_self, float out_translation[3])
+{
+    storeVec3(out_translation, toJph(in_self)->GetTotalLambdaMotorTranslation());
+}
+
+JPC_API void
+JPC_SixDOFConstraint_GetTotalLambdaMotorRotation(const JPC_SixDOFConstraint *in_self, float out_rotation[3])
+{
+    storeVec3(out_rotation, toJph(in_self)->GetTotalLambdaMotorRotation());
 }
 //--------------------------------------------------------------------------------------------------
 //
