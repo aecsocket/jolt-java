@@ -19,7 +19,7 @@ Features:
 - [ ] Rigid bodies
   - [x] Body interface
   - [x] Body locking
-  - [ ] Motion properties
+  - [x] Motion properties
 - [x] Shapes
   - [x] Convex
   - [x] Compound
@@ -33,7 +33,9 @@ Features:
   - [x] Contact
 - [x] Double precision
 - [ ] Constraints
+  - [x] (C bindings) Basic two-body
 - [ ] Vehicles
+- [ ] Ragdolls
 - [ ] Characters
 
 Platforms:
