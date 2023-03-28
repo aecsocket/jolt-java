@@ -11,7 +11,7 @@ import java.lang.foreign.SegmentAllocator;
 import static jolt.headers.JPC_MotorSettings.*;
 import static jolt.headers.JoltPhysicsC.*;
 
-public final class MotorSettings extends CollideSettingsBase {
+public final class MotorSettings extends SegmentedJoltNative {
     //region Jolt-Value
     private MotorSettings(MemorySegment handle) {
         super(handle);
@@ -35,7 +35,7 @@ public final class MotorSettings extends CollideSettingsBase {
     }
 
     public void setFrqeuency(float frequency) {
-        frequency$set(handle, frqeuency);
+        frequency$set(handle, frequency);
     }
 
     public float getDamping() {

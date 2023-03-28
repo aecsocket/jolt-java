@@ -3,8 +3,6 @@ plugins {
     id("java-conventions")
 }
 
-publishIfNeeded()
-
 group = "io.github.aecsocket"
 version = "0.1.0-SNAPSHOT"
 description = "Java bindings for JoltPhysics"
@@ -22,8 +20,10 @@ dependencies {
     //testRuntimeOnly(projects.joltJavaNativesMacosX86)
 }
 
-tasks.register("printVersionType") {
-    doFirst {
-        println(if (net.kyori.indra.util.Versioning.isSnapshot(project)) "snapshot" else "release")
+if (!publishCore()) {
+    tasks {
+        withType<PublishToMavenRepository> {
+            enabled = false
+        }
     }
 }

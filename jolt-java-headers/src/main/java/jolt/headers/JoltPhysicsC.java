@@ -7,7 +7,7 @@ import java.lang.invoke.VarHandle;
 import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
-public class JoltPhysicsC  {
+public class JoltPhysicsC extends JoltPhysicsC_1 {
 
     /* package-private */ JoltPhysicsC() {}
     public static OfByte C_CHAR = Constants$root.C_CHAR$LAYOUT;
@@ -1833,6 +1833,24 @@ public class JoltPhysicsC  {
     }
     public static int JPC_MOTOR_STATE_POSITION() {
         return (int)2L;
+    }
+    public static int JPC_SIX_DOF_CONSTRAINT_AXIS_TRANSLATION_X() {
+        return (int)0L;
+    }
+    public static int JPC_SIX_DOF_CONSTRAINT_AXIS_TRANSLATION_Y() {
+        return (int)1L;
+    }
+    public static int JPC_SIX_DOF_CONSTRAINT_AXIS_TRANSLATION_Z() {
+        return (int)2L;
+    }
+    public static int JPC_SIX_DOF_CONSTRAINT_AXIS_ROTATION_X() {
+        return (int)3L;
+    }
+    public static int JPC_SIX_DOF_CONSTRAINT_AXIS_ROTATION_Y() {
+        return (int)4L;
+    }
+    public static int JPC_SIX_DOF_CONSTRAINT_AXIS_ROTATION_Z() {
+        return (int)5L;
     }
     public static int JPC_SUPPORT_MODE_EXCLUDE_CONVEX_RADIUS() {
         return (int)0L;
@@ -6318,8 +6336,1251 @@ public class JoltPhysicsC  {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+    public static MethodHandle JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$MH() {
+        return RuntimeHelper.requireNonNull(constants$87.JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$MH,"JPC_TwoBodyConstraint_GetConstraintToBody1Matrix");
+    }
+    public static void JPC_TwoBodyConstraint_GetConstraintToBody1Matrix ( Addressable in_constraint,  Addressable out_matrix) {
+        var mh$ = JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_matrix);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$MH() {
+        return RuntimeHelper.requireNonNull(constants$87.JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$MH,"JPC_TwoBodyConstraint_GetConstraintToBody2Matrix");
+    }
+    public static void JPC_TwoBodyConstraint_GetConstraintToBody2Matrix ( Addressable in_constraint,  Addressable out_matrix) {
+        var mh$ = JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_matrix);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_FixedConstraint_GetTotalLambdaPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$88.JPC_FixedConstraint_GetTotalLambdaPosition$MH,"JPC_FixedConstraint_GetTotalLambdaPosition");
+    }
+    public static void JPC_FixedConstraint_GetTotalLambdaPosition ( Addressable in_constraint,  Addressable out_lambda) {
+        var mh$ = JPC_FixedConstraint_GetTotalLambdaPosition$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_lambda);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_FixedConstraint_GetTotalLambdaRotation$MH() {
+        return RuntimeHelper.requireNonNull(constants$88.JPC_FixedConstraint_GetTotalLambdaRotation$MH,"JPC_FixedConstraint_GetTotalLambdaRotation");
+    }
+    public static void JPC_FixedConstraint_GetTotalLambdaRotation ( Addressable in_constraint,  Addressable out_lambda) {
+        var mh$ = JPC_FixedConstraint_GetTotalLambdaRotation$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_lambda);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_SetDistance$MH() {
+        return RuntimeHelper.requireNonNull(constants$88.JPC_DistanceConstraint_SetDistance$MH,"JPC_DistanceConstraint_SetDistance");
+    }
+    public static void JPC_DistanceConstraint_SetDistance ( Addressable in_constraint,  float in_min_distance,  float in_max_distance) {
+        var mh$ = JPC_DistanceConstraint_SetDistance$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_min_distance, in_max_distance);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_GetMinDistance$MH() {
+        return RuntimeHelper.requireNonNull(constants$88.JPC_DistanceConstraint_GetMinDistance$MH,"JPC_DistanceConstraint_GetMinDistance");
+    }
+    public static float JPC_DistanceConstraint_GetMinDistance ( Addressable in_constraint) {
+        var mh$ = JPC_DistanceConstraint_GetMinDistance$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_GetMaxDistance$MH() {
+        return RuntimeHelper.requireNonNull(constants$88.JPC_DistanceConstraint_GetMaxDistance$MH,"JPC_DistanceConstraint_GetMaxDistance");
+    }
+    public static float JPC_DistanceConstraint_GetMaxDistance ( Addressable in_constraint) {
+        var mh$ = JPC_DistanceConstraint_GetMaxDistance$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_SetFrequency$MH() {
+        return RuntimeHelper.requireNonNull(constants$88.JPC_DistanceConstraint_SetFrequency$MH,"JPC_DistanceConstraint_SetFrequency");
+    }
+    public static void JPC_DistanceConstraint_SetFrequency ( Addressable in_constraint,  float in_frequency) {
+        var mh$ = JPC_DistanceConstraint_SetFrequency$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_frequency);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_GetFrequency$MH() {
+        return RuntimeHelper.requireNonNull(constants$89.JPC_DistanceConstraint_GetFrequency$MH,"JPC_DistanceConstraint_GetFrequency");
+    }
+    public static float JPC_DistanceConstraint_GetFrequency ( Addressable in_constraint) {
+        var mh$ = JPC_DistanceConstraint_GetFrequency$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_SetDamping$MH() {
+        return RuntimeHelper.requireNonNull(constants$89.JPC_DistanceConstraint_SetDamping$MH,"JPC_DistanceConstraint_SetDamping");
+    }
+    public static void JPC_DistanceConstraint_SetDamping ( Addressable in_constraint,  float in_damping) {
+        var mh$ = JPC_DistanceConstraint_SetDamping$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_damping);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_GetDamping$MH() {
+        return RuntimeHelper.requireNonNull(constants$89.JPC_DistanceConstraint_GetDamping$MH,"JPC_DistanceConstraint_GetDamping");
+    }
+    public static float JPC_DistanceConstraint_GetDamping ( Addressable in_constraint) {
+        var mh$ = JPC_DistanceConstraint_GetDamping$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_DistanceConstraint_GetTotalLambdaPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$89.JPC_DistanceConstraint_GetTotalLambdaPosition$MH,"JPC_DistanceConstraint_GetTotalLambdaPosition");
+    }
+    public static float JPC_DistanceConstraint_GetTotalLambdaPosition ( Addressable in_constraint) {
+        var mh$ = JPC_DistanceConstraint_GetTotalLambdaPosition$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_PointConstraint_SetPoint1$MH() {
+        return RuntimeHelper.requireNonNull(constants$89.JPC_PointConstraint_SetPoint1$MH,"JPC_PointConstraint_SetPoint1");
+    }
+    public static void JPC_PointConstraint_SetPoint1 ( Addressable in_constraint,  byte in_space,  Addressable in_point1) {
+        var mh$ = JPC_PointConstraint_SetPoint1$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_space, in_point1);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_PointConstraint_SetPoint2$MH() {
+        return RuntimeHelper.requireNonNull(constants$89.JPC_PointConstraint_SetPoint2$MH,"JPC_PointConstraint_SetPoint2");
+    }
+    public static void JPC_PointConstraint_SetPoint2 ( Addressable in_constraint,  byte in_space,  Addressable in_point2) {
+        var mh$ = JPC_PointConstraint_SetPoint2$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_space, in_point2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_PointConstraint_GetLocalSpacePoint1$MH() {
+        return RuntimeHelper.requireNonNull(constants$90.JPC_PointConstraint_GetLocalSpacePoint1$MH,"JPC_PointConstraint_GetLocalSpacePoint1");
+    }
+    public static void JPC_PointConstraint_GetLocalSpacePoint1 ( Addressable in_constraint,  Addressable out_point) {
+        var mh$ = JPC_PointConstraint_GetLocalSpacePoint1$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_point);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_PointConstraint_GetLocalSpacePoint2$MH() {
+        return RuntimeHelper.requireNonNull(constants$90.JPC_PointConstraint_GetLocalSpacePoint2$MH,"JPC_PointConstraint_GetLocalSpacePoint2");
+    }
+    public static void JPC_PointConstraint_GetLocalSpacePoint2 ( Addressable in_constraint,  Addressable out_point) {
+        var mh$ = JPC_PointConstraint_GetLocalSpacePoint2$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_point);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_PointConstraint_GetTotalLambdaPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$90.JPC_PointConstraint_GetTotalLambdaPosition$MH,"JPC_PointConstraint_GetTotalLambdaPosition");
+    }
+    public static void JPC_PointConstraint_GetTotalLambdaPosition ( Addressable in_constraint,  Addressable out_lambda) {
+        var mh$ = JPC_PointConstraint_GetTotalLambdaPosition$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_lambda);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetCurrentAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$90.JPC_HingeConstraint_GetCurrentAngle$MH,"JPC_HingeConstraint_GetCurrentAngle");
+    }
+    public static float JPC_HingeConstraint_GetCurrentAngle ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetCurrentAngle$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_SetMaxFrictionTorque$MH() {
+        return RuntimeHelper.requireNonNull(constants$90.JPC_HingeConstraint_SetMaxFrictionTorque$MH,"JPC_HingeConstraint_SetMaxFrictionTorque");
+    }
+    public static void JPC_HingeConstraint_SetMaxFrictionTorque ( Addressable in_constraint,  float in_friction_torque) {
+        var mh$ = JPC_HingeConstraint_SetMaxFrictionTorque$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_friction_torque);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetMaxFrictionTorque$MH() {
+        return RuntimeHelper.requireNonNull(constants$90.JPC_HingeConstraint_GetMaxFrictionTorque$MH,"JPC_HingeConstraint_GetMaxFrictionTorque");
+    }
+    public static float JPC_HingeConstraint_GetMaxFrictionTorque ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetMaxFrictionTorque$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetMotorSettings$MH() {
+        return RuntimeHelper.requireNonNull(constants$91.JPC_HingeConstraint_GetMotorSettings$MH,"JPC_HingeConstraint_GetMotorSettings");
+    }
+    public static MemoryAddress JPC_HingeConstraint_GetMotorSettings ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetMotorSettings$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_SetMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$91.JPC_HingeConstraint_SetMotorState$MH,"JPC_HingeConstraint_SetMotorState");
+    }
+    public static void JPC_HingeConstraint_SetMotorState ( Addressable in_constraint,  byte in_state) {
+        var mh$ = JPC_HingeConstraint_SetMotorState$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_state);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$91.JPC_HingeConstraint_GetMotorState$MH,"JPC_HingeConstraint_GetMotorState");
+    }
+    public static byte JPC_HingeConstraint_GetMotorState ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetMotorState$MH();
+        try {
+            return (byte)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_SetTargetAngularVelocity$MH() {
+        return RuntimeHelper.requireNonNull(constants$91.JPC_HingeConstraint_SetTargetAngularVelocity$MH,"JPC_HingeConstraint_SetTargetAngularVelocity");
+    }
+    public static void JPC_HingeConstraint_SetTargetAngularVelocity ( Addressable in_constraint,  float in_angular_velocity) {
+        var mh$ = JPC_HingeConstraint_SetTargetAngularVelocity$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_angular_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetTargetAngularVelocity$MH() {
+        return RuntimeHelper.requireNonNull(constants$91.JPC_HingeConstraint_GetTargetAngularVelocity$MH,"JPC_HingeConstraint_GetTargetAngularVelocity");
+    }
+    public static float JPC_HingeConstraint_GetTargetAngularVelocity ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetTargetAngularVelocity$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_SetTargetAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$91.JPC_HingeConstraint_SetTargetAngle$MH,"JPC_HingeConstraint_SetTargetAngle");
+    }
+    public static void JPC_HingeConstraint_SetTargetAngle ( Addressable in_constraint,  float in_angle) {
+        var mh$ = JPC_HingeConstraint_SetTargetAngle$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_angle);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetTargetAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$92.JPC_HingeConstraint_GetTargetAngle$MH,"JPC_HingeConstraint_GetTargetAngle");
+    }
+    public static float JPC_HingeConstraint_GetTargetAngle ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetTargetAngle$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_SetLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$92.JPC_HingeConstraint_SetLimits$MH,"JPC_HingeConstraint_SetLimits");
+    }
+    public static void JPC_HingeConstraint_SetLimits ( Addressable in_constraint,  float in_limits_min,  float in_limits_max) {
+        var mh$ = JPC_HingeConstraint_SetLimits$MH();
+        try {
+            mh$.invokeExact(in_constraint, in_limits_min, in_limits_max);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetLimitsMin$MH() {
+        return RuntimeHelper.requireNonNull(constants$92.JPC_HingeConstraint_GetLimitsMin$MH,"JPC_HingeConstraint_GetLimitsMin");
+    }
+    public static float JPC_HingeConstraint_GetLimitsMin ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetLimitsMin$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetLimitsMax$MH() {
+        return RuntimeHelper.requireNonNull(constants$92.JPC_HingeConstraint_GetLimitsMax$MH,"JPC_HingeConstraint_GetLimitsMax");
+    }
+    public static float JPC_HingeConstraint_GetLimitsMax ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetLimitsMax$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_HasLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$92.JPC_HingeConstraint_HasLimits$MH,"JPC_HingeConstraint_HasLimits");
+    }
+    public static boolean JPC_HingeConstraint_HasLimits ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_HasLimits$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetTotalLambdaPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$92.JPC_HingeConstraint_GetTotalLambdaPosition$MH,"JPC_HingeConstraint_GetTotalLambdaPosition");
+    }
+    public static void JPC_HingeConstraint_GetTotalLambdaPosition ( Addressable in_constraint,  Addressable out_lambda) {
+        var mh$ = JPC_HingeConstraint_GetTotalLambdaPosition$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_lambda);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetTotalLambdaRotation$MH() {
+        return RuntimeHelper.requireNonNull(constants$93.JPC_HingeConstraint_GetTotalLambdaRotation$MH,"JPC_HingeConstraint_GetTotalLambdaRotation");
+    }
+    public static void JPC_HingeConstraint_GetTotalLambdaRotation ( Addressable in_constraint,  Addressable out_x,  Addressable out_y) {
+        var mh$ = JPC_HingeConstraint_GetTotalLambdaRotation$MH();
+        try {
+            mh$.invokeExact(in_constraint, out_x, out_y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetTotalLambdaRotationLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$93.JPC_HingeConstraint_GetTotalLambdaRotationLimits$MH,"JPC_HingeConstraint_GetTotalLambdaRotationLimits");
+    }
+    public static float JPC_HingeConstraint_GetTotalLambdaRotationLimits ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetTotalLambdaRotationLimits$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_HingeConstraint_GetTotalLambdaMotor$MH() {
+        return RuntimeHelper.requireNonNull(constants$93.JPC_HingeConstraint_GetTotalLambdaMotor$MH,"JPC_HingeConstraint_GetTotalLambdaMotor");
+    }
+    public static float JPC_HingeConstraint_GetTotalLambdaMotor ( Addressable in_constraint) {
+        var mh$ = JPC_HingeConstraint_GetTotalLambdaMotor$MH();
+        try {
+            return (float)mh$.invokeExact(in_constraint);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_ConeConstraint_SetHalfConeAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$93.JPC_ConeConstraint_SetHalfConeAngle$MH,"JPC_ConeConstraint_SetHalfConeAngle");
+    }
+    public static void JPC_ConeConstraint_SetHalfConeAngle ( Addressable in_self,  float in_half_cone_angle) {
+        var mh$ = JPC_ConeConstraint_SetHalfConeAngle$MH();
+        try {
+            mh$.invokeExact(in_self, in_half_cone_angle);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_ConeConstraint_GetCosHalfConeAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$93.JPC_ConeConstraint_GetCosHalfConeAngle$MH,"JPC_ConeConstraint_GetCosHalfConeAngle");
+    }
+    public static float JPC_ConeConstraint_GetCosHalfConeAngle ( Addressable in_self) {
+        var mh$ = JPC_ConeConstraint_GetCosHalfConeAngle$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_ConeConstraint_GetTotalLambdaPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$93.JPC_ConeConstraint_GetTotalLambdaPosition$MH,"JPC_ConeConstraint_GetTotalLambdaPosition");
+    }
+    public static void JPC_ConeConstraint_GetTotalLambdaPosition ( Addressable in_self,  Addressable out_lambda) {
+        var mh$ = JPC_ConeConstraint_GetTotalLambdaPosition$MH();
+        try {
+            mh$.invokeExact(in_self, out_lambda);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_ConeConstraint_GetTotalLambdaRotation$MH() {
+        return RuntimeHelper.requireNonNull(constants$94.JPC_ConeConstraint_GetTotalLambdaRotation$MH,"JPC_ConeConstraint_GetTotalLambdaRotation");
+    }
+    public static float JPC_ConeConstraint_GetTotalLambdaRotation ( Addressable in_self) {
+        var mh$ = JPC_ConeConstraint_GetTotalLambdaRotation$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetCurrentPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$94.JPC_SliderConstraint_GetCurrentPosition$MH,"JPC_SliderConstraint_GetCurrentPosition");
+    }
+    public static float JPC_SliderConstraint_GetCurrentPosition ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetCurrentPosition$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_SetMaxFrictionForce$MH() {
+        return RuntimeHelper.requireNonNull(constants$94.JPC_SliderConstraint_SetMaxFrictionForce$MH,"JPC_SliderConstraint_SetMaxFrictionForce");
+    }
+    public static void JPC_SliderConstraint_SetMaxFrictionForce ( Addressable in_self,  float in_friction) {
+        var mh$ = JPC_SliderConstraint_SetMaxFrictionForce$MH();
+        try {
+            mh$.invokeExact(in_self, in_friction);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetMotorSettings$MH() {
+        return RuntimeHelper.requireNonNull(constants$94.JPC_SliderConstraint_GetMotorSettings$MH,"JPC_SliderConstraint_GetMotorSettings");
+    }
+    public static MemoryAddress JPC_SliderConstraint_GetMotorSettings ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetMotorSettings$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_SetMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$94.JPC_SliderConstraint_SetMotorState$MH,"JPC_SliderConstraint_SetMotorState");
+    }
+    public static void JPC_SliderConstraint_SetMotorState ( Addressable in_self,  byte in_state) {
+        var mh$ = JPC_SliderConstraint_SetMotorState$MH();
+        try {
+            mh$.invokeExact(in_self, in_state);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$94.JPC_SliderConstraint_GetMotorState$MH,"JPC_SliderConstraint_GetMotorState");
+    }
+    public static byte JPC_SliderConstraint_GetMotorState ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetMotorState$MH();
+        try {
+            return (byte)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_SetTargetVelocity$MH() {
+        return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_SetTargetVelocity$MH,"JPC_SliderConstraint_SetTargetVelocity");
+    }
+    public static void JPC_SliderConstraint_SetTargetVelocity ( Addressable in_self,  float in_velocity) {
+        var mh$ = JPC_SliderConstraint_SetTargetVelocity$MH();
+        try {
+            mh$.invokeExact(in_self, in_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetTargetVelocity$MH() {
+        return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_GetTargetVelocity$MH,"JPC_SliderConstraint_GetTargetVelocity");
+    }
+    public static float JPC_SliderConstraint_GetTargetVelocity ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetTargetVelocity$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_SetTargetPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_SetTargetPosition$MH,"JPC_SliderConstraint_SetTargetPosition");
+    }
+    public static void JPC_SliderConstraint_SetTargetPosition ( Addressable in_self,  float in_position) {
+        var mh$ = JPC_SliderConstraint_SetTargetPosition$MH();
+        try {
+            mh$.invokeExact(in_self, in_position);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetTargetPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_GetTargetPosition$MH,"JPC_SliderConstraint_GetTargetPosition");
+    }
+    public static float JPC_SliderConstraint_GetTargetPosition ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetTargetPosition$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_SetLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_SetLimits$MH,"JPC_SliderConstraint_SetLimits");
+    }
+    public static void JPC_SliderConstraint_SetLimits ( Addressable in_self,  float in_limits_min,  float in_limits_max) {
+        var mh$ = JPC_SliderConstraint_SetLimits$MH();
+        try {
+            mh$.invokeExact(in_self, in_limits_min, in_limits_max);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetLimitsMin$MH() {
+        return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_GetLimitsMin$MH,"JPC_SliderConstraint_GetLimitsMin");
+    }
+    public static float JPC_SliderConstraint_GetLimitsMin ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetLimitsMin$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetLimitsMax$MH() {
+        return RuntimeHelper.requireNonNull(constants$96.JPC_SliderConstraint_GetLimitsMax$MH,"JPC_SliderConstraint_GetLimitsMax");
+    }
+    public static float JPC_SliderConstraint_GetLimitsMax ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetLimitsMax$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_HasLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$96.JPC_SliderConstraint_HasLimits$MH,"JPC_SliderConstraint_HasLimits");
+    }
+    public static boolean JPC_SliderConstraint_HasLimits ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_HasLimits$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_SetFrequency$MH() {
+        return RuntimeHelper.requireNonNull(constants$96.JPC_SliderConstraint_SetFrequency$MH,"JPC_SliderConstraint_SetFrequency");
+    }
+    public static void JPC_SliderConstraint_SetFrequency ( Addressable in_self,  float in_frequency) {
+        var mh$ = JPC_SliderConstraint_SetFrequency$MH();
+        try {
+            mh$.invokeExact(in_self, in_frequency);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SliderConstraint_GetFrequency$MH() {
+        return RuntimeHelper.requireNonNull(constants$96.JPC_SliderConstraint_GetFrequency$MH,"JPC_SliderConstraint_GetFrequency");
+    }
+    public static float JPC_SliderConstraint_GetFrequency ( Addressable in_self) {
+        var mh$ = JPC_SliderConstraint_GetFrequency$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetLocalSpacePosition1$MH() {
+        return RuntimeHelper.requireNonNull(constants$96.JPC_SwingTwistConstraint_GetLocalSpacePosition1$MH,"JPC_SwingTwistConstraint_GetLocalSpacePosition1");
+    }
+    public static void JPC_SwingTwistConstraint_GetLocalSpacePosition1 ( Addressable in_self,  Addressable out_position) {
+        var mh$ = JPC_SwingTwistConstraint_GetLocalSpacePosition1$MH();
+        try {
+            mh$.invokeExact(in_self, out_position);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetLocalSpacePosition2$MH() {
+        return RuntimeHelper.requireNonNull(constants$96.JPC_SwingTwistConstraint_GetLocalSpacePosition2$MH,"JPC_SwingTwistConstraint_GetLocalSpacePosition2");
+    }
+    public static void JPC_SwingTwistConstraint_GetLocalSpacePosition2 ( Addressable in_self,  Addressable out_position) {
+        var mh$ = JPC_SwingTwistConstraint_GetLocalSpacePosition2$MH();
+        try {
+            mh$.invokeExact(in_self, out_position);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetConstraintToBody1$MH() {
+        return RuntimeHelper.requireNonNull(constants$97.JPC_SwingTwistConstraint_GetConstraintToBody1$MH,"JPC_SwingTwistConstraint_GetConstraintToBody1");
+    }
+    public static void JPC_SwingTwistConstraint_GetConstraintToBody1 ( Addressable in_self,  Addressable out_rotation) {
+        var mh$ = JPC_SwingTwistConstraint_GetConstraintToBody1$MH();
+        try {
+            mh$.invokeExact(in_self, out_rotation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetConstraintToBody2$MH() {
+        return RuntimeHelper.requireNonNull(constants$97.JPC_SwingTwistConstraint_GetConstraintToBody2$MH,"JPC_SwingTwistConstraint_GetConstraintToBody2");
+    }
+    public static void JPC_SwingTwistConstraint_GetConstraintToBody2 ( Addressable in_self,  Addressable out_rotation) {
+        var mh$ = JPC_SwingTwistConstraint_GetConstraintToBody2$MH();
+        try {
+            mh$.invokeExact(in_self, out_rotation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetNormalHalfConeAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$97.JPC_SwingTwistConstraint_GetNormalHalfConeAngle$MH,"JPC_SwingTwistConstraint_GetNormalHalfConeAngle");
+    }
+    public static float JPC_SwingTwistConstraint_GetNormalHalfConeAngle ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetNormalHalfConeAngle$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetNormalHalfConeAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$97.JPC_SwingTwistConstraint_SetNormalHalfConeAngle$MH,"JPC_SwingTwistConstraint_SetNormalHalfConeAngle");
+    }
+    public static void JPC_SwingTwistConstraint_SetNormalHalfConeAngle ( Addressable in_self,  float in_angle) {
+        var mh$ = JPC_SwingTwistConstraint_SetNormalHalfConeAngle$MH();
+        try {
+            mh$.invokeExact(in_self, in_angle);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetPlaneHalfConeAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$97.JPC_SwingTwistConstraint_GetPlaneHalfConeAngle$MH,"JPC_SwingTwistConstraint_GetPlaneHalfConeAngle");
+    }
+    public static float JPC_SwingTwistConstraint_GetPlaneHalfConeAngle ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetPlaneHalfConeAngle$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetPlaneHalfConeAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$97.JPC_SwingTwistConstraint_SetPlaneHalfConeAngle$MH,"JPC_SwingTwistConstraint_SetPlaneHalfConeAngle");
+    }
+    public static void JPC_SwingTwistConstraint_SetPlaneHalfConeAngle ( Addressable in_self,  float in_angle) {
+        var mh$ = JPC_SwingTwistConstraint_SetPlaneHalfConeAngle$MH();
+        try {
+            mh$.invokeExact(in_self, in_angle);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTwistMinAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$98.JPC_SwingTwistConstraint_GetTwistMinAngle$MH,"JPC_SwingTwistConstraint_GetTwistMinAngle");
+    }
+    public static float JPC_SwingTwistConstraint_GetTwistMinAngle ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetTwistMinAngle$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetTwistMinAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$98.JPC_SwingTwistConstraint_SetTwistMinAngle$MH,"JPC_SwingTwistConstraint_SetTwistMinAngle");
+    }
+    public static void JPC_SwingTwistConstraint_SetTwistMinAngle ( Addressable in_self,  float in_angle) {
+        var mh$ = JPC_SwingTwistConstraint_SetTwistMinAngle$MH();
+        try {
+            mh$.invokeExact(in_self, in_angle);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTwistMaxAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$98.JPC_SwingTwistConstraint_GetTwistMaxAngle$MH,"JPC_SwingTwistConstraint_GetTwistMaxAngle");
+    }
+    public static float JPC_SwingTwistConstraint_GetTwistMaxAngle ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetTwistMaxAngle$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetTwistMaxAngle$MH() {
+        return RuntimeHelper.requireNonNull(constants$98.JPC_SwingTwistConstraint_SetTwistMaxAngle$MH,"JPC_SwingTwistConstraint_SetTwistMaxAngle");
+    }
+    public static void JPC_SwingTwistConstraint_SetTwistMaxAngle ( Addressable in_self,  float in_angle) {
+        var mh$ = JPC_SwingTwistConstraint_SetTwistMaxAngle$MH();
+        try {
+            mh$.invokeExact(in_self, in_angle);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetSwingMotorSettings$MH() {
+        return RuntimeHelper.requireNonNull(constants$98.JPC_SwingTwistConstraint_GetSwingMotorSettings$MH,"JPC_SwingTwistConstraint_GetSwingMotorSettings");
+    }
+    public static MemoryAddress JPC_SwingTwistConstraint_GetSwingMotorSettings ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetSwingMotorSettings$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTwistMotorSettings$MH() {
+        return RuntimeHelper.requireNonNull(constants$98.JPC_SwingTwistConstraint_GetTwistMotorSettings$MH,"JPC_SwingTwistConstraint_GetTwistMotorSettings");
+    }
+    public static MemoryAddress JPC_SwingTwistConstraint_GetTwistMotorSettings ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetTwistMotorSettings$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetMaxFrictionTorque$MH() {
+        return RuntimeHelper.requireNonNull(constants$99.JPC_SwingTwistConstraint_SetMaxFrictionTorque$MH,"JPC_SwingTwistConstraint_SetMaxFrictionTorque");
+    }
+    public static void JPC_SwingTwistConstraint_SetMaxFrictionTorque ( Addressable in_self,  float in_friction_torque) {
+        var mh$ = JPC_SwingTwistConstraint_SetMaxFrictionTorque$MH();
+        try {
+            mh$.invokeExact(in_self, in_friction_torque);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetMaxFrictionTorque$MH() {
+        return RuntimeHelper.requireNonNull(constants$99.JPC_SwingTwistConstraint_GetMaxFrictionTorque$MH,"JPC_SwingTwistConstraint_GetMaxFrictionTorque");
+    }
+    public static float JPC_SwingTwistConstraint_GetMaxFrictionTorque ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetMaxFrictionTorque$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetSwingMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$99.JPC_SwingTwistConstraint_SetSwingMotorState$MH,"JPC_SwingTwistConstraint_SetSwingMotorState");
+    }
+    public static void JPC_SwingTwistConstraint_SetSwingMotorState ( Addressable in_self,  byte in_state) {
+        var mh$ = JPC_SwingTwistConstraint_SetSwingMotorState$MH();
+        try {
+            mh$.invokeExact(in_self, in_state);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetSwingMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$99.JPC_SwingTwistConstraint_GetSwingMotorState$MH,"JPC_SwingTwistConstraint_GetSwingMotorState");
+    }
+    public static byte JPC_SwingTwistConstraint_GetSwingMotorState ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetSwingMotorState$MH();
+        try {
+            return (byte)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetTwistMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$99.JPC_SwingTwistConstraint_SetTwistMotorState$MH,"JPC_SwingTwistConstraint_SetTwistMotorState");
+    }
+    public static void JPC_SwingTwistConstraint_SetTwistMotorState ( Addressable in_self,  byte in_state) {
+        var mh$ = JPC_SwingTwistConstraint_SetTwistMotorState$MH();
+        try {
+            mh$.invokeExact(in_self, in_state);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTwistMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$99.JPC_SwingTwistConstraint_GetTwistMotorState$MH,"JPC_SwingTwistConstraint_GetTwistMotorState");
+    }
+    public static byte JPC_SwingTwistConstraint_GetTwistMotorState ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetTwistMotorState$MH();
+        try {
+            return (byte)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$100.JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$MH,"JPC_SwingTwistConstraint_SetTargetAngularVelocityCS");
+    }
+    public static void JPC_SwingTwistConstraint_SetTargetAngularVelocityCS ( Addressable in_self,  Addressable in_angular_velocity) {
+        var mh$ = JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$MH();
+        try {
+            mh$.invokeExact(in_self, in_angular_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$100.JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$MH,"JPC_SwingTwistConstraint_GetTargetAngularVelocityCS");
+    }
+    public static void JPC_SwingTwistConstraint_GetTargetAngularVelocityCS ( Addressable in_self,  Addressable out_angular_velocity) {
+        var mh$ = JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$MH();
+        try {
+            mh$.invokeExact(in_self, out_angular_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetTargetOrientationCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$100.JPC_SwingTwistConstraint_SetTargetOrientationCS$MH,"JPC_SwingTwistConstraint_SetTargetOrientationCS");
+    }
+    public static void JPC_SwingTwistConstraint_SetTargetOrientationCS ( Addressable in_self,  Addressable in_orientation) {
+        var mh$ = JPC_SwingTwistConstraint_SetTargetOrientationCS$MH();
+        try {
+            mh$.invokeExact(in_self, in_orientation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTargetOrientationCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$100.JPC_SwingTwistConstraint_GetTargetOrientationCS$MH,"JPC_SwingTwistConstraint_GetTargetOrientationCS");
+    }
+    public static void JPC_SwingTwistConstraint_GetTargetOrientationCS ( Addressable in_self,  Addressable out_orientation) {
+        var mh$ = JPC_SwingTwistConstraint_GetTargetOrientationCS$MH();
+        try {
+            mh$.invokeExact(in_self, out_orientation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_SetTargetOrientationBS$MH() {
+        return RuntimeHelper.requireNonNull(constants$100.JPC_SwingTwistConstraint_SetTargetOrientationBS$MH,"JPC_SwingTwistConstraint_SetTargetOrientationBS");
+    }
+    public static void JPC_SwingTwistConstraint_SetTargetOrientationBS ( Addressable in_self,  Addressable in_orientation) {
+        var mh$ = JPC_SwingTwistConstraint_SetTargetOrientationBS$MH();
+        try {
+            mh$.invokeExact(in_self, in_orientation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$100.JPC_SwingTwistConstraint_GetTotalLambdaPosition$MH,"JPC_SwingTwistConstraint_GetTotalLambdaPosition");
+    }
+    public static void JPC_SwingTwistConstraint_GetTotalLambdaPosition ( Addressable in_self,  Addressable out_position) {
+        var mh$ = JPC_SwingTwistConstraint_GetTotalLambdaPosition$MH();
+        try {
+            mh$.invokeExact(in_self, out_position);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaTwist$MH() {
+        return RuntimeHelper.requireNonNull(constants$101.JPC_SwingTwistConstraint_GetTotalLambdaTwist$MH,"JPC_SwingTwistConstraint_GetTotalLambdaTwist");
+    }
+    public static float JPC_SwingTwistConstraint_GetTotalLambdaTwist ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetTotalLambdaTwist$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaSwingY$MH() {
+        return RuntimeHelper.requireNonNull(constants$101.JPC_SwingTwistConstraint_GetTotalLambdaSwingY$MH,"JPC_SwingTwistConstraint_GetTotalLambdaSwingY");
+    }
+    public static float JPC_SwingTwistConstraint_GetTotalLambdaSwingY ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetTotalLambdaSwingY$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaSwingZ$MH() {
+        return RuntimeHelper.requireNonNull(constants$101.JPC_SwingTwistConstraint_GetTotalLambdaSwingZ$MH,"JPC_SwingTwistConstraint_GetTotalLambdaSwingZ");
+    }
+    public static float JPC_SwingTwistConstraint_GetTotalLambdaSwingZ ( Addressable in_self) {
+        var mh$ = JPC_SwingTwistConstraint_GetTotalLambdaSwingZ$MH();
+        try {
+            return (float)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaMotor$MH() {
+        return RuntimeHelper.requireNonNull(constants$101.JPC_SwingTwistConstraint_GetTotalLambdaMotor$MH,"JPC_SwingTwistConstraint_GetTotalLambdaMotor");
+    }
+    public static void JPC_SwingTwistConstraint_GetTotalLambdaMotor ( Addressable in_self,  Addressable out_motor) {
+        var mh$ = JPC_SwingTwistConstraint_GetTotalLambdaMotor$MH();
+        try {
+            mh$.invokeExact(in_self, out_motor);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetTranslationLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$101.JPC_SixDOFConstraint_SetTranslationLimits$MH,"JPC_SixDOFConstraint_SetTranslationLimits");
+    }
+    public static void JPC_SixDOFConstraint_SetTranslationLimits ( Addressable in_self,  Addressable in_limit_min,  Addressable in_limit_max) {
+        var mh$ = JPC_SixDOFConstraint_SetTranslationLimits$MH();
+        try {
+            mh$.invokeExact(in_self, in_limit_min, in_limit_max);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetRotationLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$101.JPC_SixDOFConstraint_SetRotationLimits$MH,"JPC_SixDOFConstraint_SetRotationLimits");
+    }
+    public static void JPC_SixDOFConstraint_SetRotationLimits ( Addressable in_self,  Addressable in_limit_min,  Addressable in_limit_max) {
+        var mh$ = JPC_SixDOFConstraint_SetRotationLimits$MH();
+        try {
+            mh$.invokeExact(in_self, in_limit_min, in_limit_max);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetLimitsMin$MH() {
+        return RuntimeHelper.requireNonNull(constants$102.JPC_SixDOFConstraint_GetLimitsMin$MH,"JPC_SixDOFConstraint_GetLimitsMin");
+    }
+    public static float JPC_SixDOFConstraint_GetLimitsMin ( Addressable in_self,  byte in_axis) {
+        var mh$ = JPC_SixDOFConstraint_GetLimitsMin$MH();
+        try {
+            return (float)mh$.invokeExact(in_self, in_axis);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetLimitsMax$MH() {
+        return RuntimeHelper.requireNonNull(constants$102.JPC_SixDOFConstraint_GetLimitsMax$MH,"JPC_SixDOFConstraint_GetLimitsMax");
+    }
+    public static float JPC_SixDOFConstraint_GetLimitsMax ( Addressable in_self,  byte in_axis) {
+        var mh$ = JPC_SixDOFConstraint_GetLimitsMax$MH();
+        try {
+            return (float)mh$.invokeExact(in_self, in_axis);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_IsFixedAxis$MH() {
+        return RuntimeHelper.requireNonNull(constants$102.JPC_SixDOFConstraint_IsFixedAxis$MH,"JPC_SixDOFConstraint_IsFixedAxis");
+    }
+    public static boolean JPC_SixDOFConstraint_IsFixedAxis ( Addressable in_self,  byte in_axis) {
+        var mh$ = JPC_SixDOFConstraint_IsFixedAxis$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_self, in_axis);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_IsFreeAxis$MH() {
+        return RuntimeHelper.requireNonNull(constants$102.JPC_SixDOFConstraint_IsFreeAxis$MH,"JPC_SixDOFConstraint_IsFreeAxis");
+    }
+    public static boolean JPC_SixDOFConstraint_IsFreeAxis ( Addressable in_self,  byte in_axis) {
+        var mh$ = JPC_SixDOFConstraint_IsFreeAxis$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_self, in_axis);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetMaxFriction$MH() {
+        return RuntimeHelper.requireNonNull(constants$102.JPC_SixDOFConstraint_SetMaxFriction$MH,"JPC_SixDOFConstraint_SetMaxFriction");
+    }
+    public static void JPC_SixDOFConstraint_SetMaxFriction ( Addressable in_self,  byte in_axis,  float in_friction) {
+        var mh$ = JPC_SixDOFConstraint_SetMaxFriction$MH();
+        try {
+            mh$.invokeExact(in_self, in_axis, in_friction);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetMaxFriction$MH() {
+        return RuntimeHelper.requireNonNull(constants$102.JPC_SixDOFConstraint_GetMaxFriction$MH,"JPC_SixDOFConstraint_GetMaxFriction");
+    }
+    public static float JPC_SixDOFConstraint_GetMaxFriction ( Addressable in_self,  byte in_axis) {
+        var mh$ = JPC_SixDOFConstraint_GetMaxFriction$MH();
+        try {
+            return (float)mh$.invokeExact(in_self, in_axis);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetMotorSettings$MH() {
+        return RuntimeHelper.requireNonNull(constants$103.JPC_SixDOFConstraint_GetMotorSettings$MH,"JPC_SixDOFConstraint_GetMotorSettings");
+    }
+    public static MemoryAddress JPC_SixDOFConstraint_GetMotorSettings ( Addressable in_self) {
+        var mh$ = JPC_SixDOFConstraint_GetMotorSettings$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(in_self);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$103.JPC_SixDOFConstraint_SetMotorState$MH,"JPC_SixDOFConstraint_SetMotorState");
+    }
+    public static void JPC_SixDOFConstraint_SetMotorState ( Addressable in_self,  byte in_axis,  byte in_state) {
+        var mh$ = JPC_SixDOFConstraint_SetMotorState$MH();
+        try {
+            mh$.invokeExact(in_self, in_axis, in_state);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetMotorState$MH() {
+        return RuntimeHelper.requireNonNull(constants$103.JPC_SixDOFConstraint_GetMotorState$MH,"JPC_SixDOFConstraint_GetMotorState");
+    }
+    public static byte JPC_SixDOFConstraint_GetMotorState ( Addressable in_self,  byte in_axis) {
+        var mh$ = JPC_SixDOFConstraint_GetMotorState$MH();
+        try {
+            return (byte)mh$.invokeExact(in_self, in_axis);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTargetVelocityCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$103.JPC_SixDOFConstraint_GetTargetVelocityCS$MH,"JPC_SixDOFConstraint_GetTargetVelocityCS");
+    }
+    public static void JPC_SixDOFConstraint_GetTargetVelocityCS ( Addressable in_self,  Addressable out_velocity) {
+        var mh$ = JPC_SixDOFConstraint_GetTargetVelocityCS$MH();
+        try {
+            mh$.invokeExact(in_self, out_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetTargetVelocityCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$103.JPC_SixDOFConstraint_SetTargetVelocityCS$MH,"JPC_SixDOFConstraint_SetTargetVelocityCS");
+    }
+    public static void JPC_SixDOFConstraint_SetTargetVelocityCS ( Addressable in_self,  Addressable in_velocity) {
+        var mh$ = JPC_SixDOFConstraint_SetTargetVelocityCS$MH();
+        try {
+            mh$.invokeExact(in_self, in_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetTargetAngularVelocityCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$103.JPC_SixDOFConstraint_SetTargetAngularVelocityCS$MH,"JPC_SixDOFConstraint_SetTargetAngularVelocityCS");
+    }
+    public static void JPC_SixDOFConstraint_SetTargetAngularVelocityCS ( Addressable in_self,  Addressable in_angular_velocity) {
+        var mh$ = JPC_SixDOFConstraint_SetTargetAngularVelocityCS$MH();
+        try {
+            mh$.invokeExact(in_self, in_angular_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTargetAngularVelocityCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$104.JPC_SixDOFConstraint_GetTargetAngularVelocityCS$MH,"JPC_SixDOFConstraint_GetTargetAngularVelocityCS");
+    }
+    public static void JPC_SixDOFConstraint_GetTargetAngularVelocityCS ( Addressable in_self,  Addressable out_angular_velocity) {
+        var mh$ = JPC_SixDOFConstraint_GetTargetAngularVelocityCS$MH();
+        try {
+            mh$.invokeExact(in_self, out_angular_velocity);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTargetPositionCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$104.JPC_SixDOFConstraint_GetTargetPositionCS$MH,"JPC_SixDOFConstraint_GetTargetPositionCS");
+    }
+    public static void JPC_SixDOFConstraint_GetTargetPositionCS ( Addressable in_self,  Addressable out_position) {
+        var mh$ = JPC_SixDOFConstraint_GetTargetPositionCS$MH();
+        try {
+            mh$.invokeExact(in_self, out_position);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetTargetPositionCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$104.JPC_SixDOFConstraint_SetTargetPositionCS$MH,"JPC_SixDOFConstraint_SetTargetPositionCS");
+    }
+    public static void JPC_SixDOFConstraint_SetTargetPositionCS ( Addressable in_self,  Addressable in_position) {
+        var mh$ = JPC_SixDOFConstraint_SetTargetPositionCS$MH();
+        try {
+            mh$.invokeExact(in_self, in_position);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetTargetOrientationCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$104.JPC_SixDOFConstraint_SetTargetOrientationCS$MH,"JPC_SixDOFConstraint_SetTargetOrientationCS");
+    }
+    public static void JPC_SixDOFConstraint_SetTargetOrientationCS ( Addressable in_self,  Addressable in_orientation) {
+        var mh$ = JPC_SixDOFConstraint_SetTargetOrientationCS$MH();
+        try {
+            mh$.invokeExact(in_self, in_orientation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTargetOrientationCS$MH() {
+        return RuntimeHelper.requireNonNull(constants$104.JPC_SixDOFConstraint_GetTargetOrientationCS$MH,"JPC_SixDOFConstraint_GetTargetOrientationCS");
+    }
+    public static void JPC_SixDOFConstraint_GetTargetOrientationCS ( Addressable in_self,  Addressable out_orientation) {
+        var mh$ = JPC_SixDOFConstraint_GetTargetOrientationCS$MH();
+        try {
+            mh$.invokeExact(in_self, out_orientation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_SetTargetOrientationBS$MH() {
+        return RuntimeHelper.requireNonNull(constants$104.JPC_SixDOFConstraint_SetTargetOrientationBS$MH,"JPC_SixDOFConstraint_SetTargetOrientationBS");
+    }
+    public static void JPC_SixDOFConstraint_SetTargetOrientationBS ( Addressable in_self,  Addressable in_orientation) {
+        var mh$ = JPC_SixDOFConstraint_SetTargetOrientationBS$MH();
+        try {
+            mh$.invokeExact(in_self, in_orientation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTotalLambdaPosition$MH() {
+        return RuntimeHelper.requireNonNull(constants$105.JPC_SixDOFConstraint_GetTotalLambdaPosition$MH,"JPC_SixDOFConstraint_GetTotalLambdaPosition");
+    }
+    public static void JPC_SixDOFConstraint_GetTotalLambdaPosition ( Addressable in_self,  Addressable out_position) {
+        var mh$ = JPC_SixDOFConstraint_GetTotalLambdaPosition$MH();
+        try {
+            mh$.invokeExact(in_self, out_position);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTotalLambdaRotation$MH() {
+        return RuntimeHelper.requireNonNull(constants$105.JPC_SixDOFConstraint_GetTotalLambdaRotation$MH,"JPC_SixDOFConstraint_GetTotalLambdaRotation");
+    }
+    public static void JPC_SixDOFConstraint_GetTotalLambdaRotation ( Addressable in_self,  Addressable out_rotation) {
+        var mh$ = JPC_SixDOFConstraint_GetTotalLambdaRotation$MH();
+        try {
+            mh$.invokeExact(in_self, out_rotation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$MH() {
+        return RuntimeHelper.requireNonNull(constants$105.JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$MH,"JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation");
+    }
+    public static void JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation ( Addressable in_self,  Addressable out_translation) {
+        var mh$ = JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$MH();
+        try {
+            mh$.invokeExact(in_self, out_translation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$MH() {
+        return RuntimeHelper.requireNonNull(constants$105.JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$MH,"JPC_SixDOFConstraint_GetTotalLambdaMotorRotation");
+    }
+    public static void JPC_SixDOFConstraint_GetTotalLambdaMotorRotation ( Addressable in_self,  Addressable out_rotation) {
+        var mh$ = JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$MH();
+        try {
+            mh$.invokeExact(in_self, out_rotation);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_MotorSettings_SetForceLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$105.JPC_MotorSettings_SetForceLimits$MH,"JPC_MotorSettings_SetForceLimits");
+    }
+    public static void JPC_MotorSettings_SetForceLimits ( Addressable in_settings,  float in_min,  float in_max) {
+        var mh$ = JPC_MotorSettings_SetForceLimits$MH();
+        try {
+            mh$.invokeExact(in_settings, in_min, in_max);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_MotorSettings_SetTorqueLimits$MH() {
+        return RuntimeHelper.requireNonNull(constants$105.JPC_MotorSettings_SetTorqueLimits$MH,"JPC_MotorSettings_SetTorqueLimits");
+    }
+    public static void JPC_MotorSettings_SetTorqueLimits ( Addressable in_settings,  float in_min,  float in_max) {
+        var mh$ = JPC_MotorSettings_SetTorqueLimits$MH();
+        try {
+            mh$.invokeExact(in_settings, in_min, in_max);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_MotorSettings_SetForceLimit$MH() {
+        return RuntimeHelper.requireNonNull(constants$106.JPC_MotorSettings_SetForceLimit$MH,"JPC_MotorSettings_SetForceLimit");
+    }
+    public static void JPC_MotorSettings_SetForceLimit ( Addressable in_settings,  float in_limit) {
+        var mh$ = JPC_MotorSettings_SetForceLimit$MH();
+        try {
+            mh$.invokeExact(in_settings, in_limit);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_MotorSettings_SetTorqueLimit$MH() {
+        return RuntimeHelper.requireNonNull(constants$106.JPC_MotorSettings_SetTorqueLimit$MH,"JPC_MotorSettings_SetTorqueLimit");
+    }
+    public static void JPC_MotorSettings_SetTorqueLimit ( Addressable in_settings,  float in_limit) {
+        var mh$ = JPC_MotorSettings_SetTorqueLimit$MH();
+        try {
+            mh$.invokeExact(in_settings, in_limit);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle JPC_MotorSettings_IsValid$MH() {
+        return RuntimeHelper.requireNonNull(constants$106.JPC_MotorSettings_IsValid$MH,"JPC_MotorSettings_IsValid");
+    }
+    public static boolean JPC_MotorSettings_IsValid ( Addressable in_settings) {
+        var mh$ = JPC_MotorSettings_IsValid$MH();
+        try {
+            return (boolean)mh$.invokeExact(in_settings);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static MethodHandle JPC_GJKClosestPoint_IntersectsConvexConvex$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_IntersectsConvexConvex$MH,"JPC_GJKClosestPoint_IntersectsConvexConvex");
+        return RuntimeHelper.requireNonNull(constants$106.JPC_GJKClosestPoint_IntersectsConvexConvex$MH,"JPC_GJKClosestPoint_IntersectsConvexConvex");
     }
     public static boolean JPC_GJKClosestPoint_IntersectsConvexConvex ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  Addressable io_v) {
         var mh$ = JPC_GJKClosestPoint_IntersectsConvexConvex$MH();
@@ -6330,7 +7591,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexConvex");
+        return RuntimeHelper.requireNonNull(constants$106.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexConvex");
     }
     public static float JPC_GJKClosestPoint_GetClosestPointsConvexConvex ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  float in_max_dist_sq,  Addressable io_v,  Addressable out_point_a,  Addressable out_point_b) {
         var mh$ = JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH();
@@ -6341,7 +7602,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.JPC_GJKClosestPoint_IntersectsConvexPoint$MH,"JPC_GJKClosestPoint_IntersectsConvexPoint");
+        return RuntimeHelper.requireNonNull(constants$106.JPC_GJKClosestPoint_IntersectsConvexPoint$MH,"JPC_GJKClosestPoint_IntersectsConvexPoint");
     }
     public static boolean JPC_GJKClosestPoint_IntersectsConvexPoint ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  Addressable io_v) {
         var mh$ = JPC_GJKClosestPoint_IntersectsConvexPoint$MH();
@@ -6352,7 +7613,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexPoint");
+        return RuntimeHelper.requireNonNull(constants$107.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH,"JPC_GJKClosestPoint_GetClosestPointsConvexPoint");
     }
     public static float JPC_GJKClosestPoint_GetClosestPointsConvexPoint ( Addressable in_gjk,  Addressable in_a,  Addressable in_b,  float in_tolerance,  float in_max_dist_sq,  Addressable io_v,  Addressable out_point_a,  Addressable out_point_b) {
         var mh$ = JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH();
@@ -6363,7 +7624,7 @@ public class JoltPhysicsC  {
         }
     }
     public static MethodHandle JPJ_GetFeatures$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
+        return RuntimeHelper.requireNonNull(constants$107.JPJ_GetFeatures$MH,"JPJ_GetFeatures");
     }
     public static int JPJ_GetFeatures (Object... x0) {
         var mh$ = JPJ_GetFeatures$MH();
@@ -6389,7 +7650,7 @@ public class JoltPhysicsC  {
         return 201706L;
     }
     public static MemoryAddress NULL() {
-        return constants$88.NULL$ADDR;
+        return constants$107.NULL$ADDR;
     }
     public static int __WCLONE() {
         return (int)2147483648L;
@@ -6645,78 +7906,6 @@ public class JoltPhysicsC  {
     }
     public static int DBL_MAX_EXP() {
         return (int)1024L;
-    }
-    public static int LDBL_MAX_EXP() {
-        return (int)16384L;
-    }
-    public static int FLT_MAX_10_EXP() {
-        return (int)38L;
-    }
-    public static int DBL_MAX_10_EXP() {
-        return (int)308L;
-    }
-    public static int LDBL_MAX_10_EXP() {
-        return (int)4932L;
-    }
-    public static float FLT_MAX() {
-        return 3.4028234663852886E38f;
-    }
-    public static double DBL_MAX() {
-        return 1.7976931348623157E308d;
-    }
-    public static float FLT_EPSILON() {
-        return 1.1920928955078125E-7f;
-    }
-    public static double DBL_EPSILON() {
-        return 2.220446049250313E-16d;
-    }
-    public static float FLT_MIN() {
-        return 1.1754943508222875E-38f;
-    }
-    public static double DBL_MIN() {
-        return 2.2250738585072014E-308d;
-    }
-    public static float FLT_TRUE_MIN() {
-        return 1.401298464324817E-45f;
-    }
-    public static double DBL_TRUE_MIN() {
-        return 4.9E-324d;
-    }
-    public static int FLT_DECIMAL_DIG() {
-        return (int)9L;
-    }
-    public static int DBL_DECIMAL_DIG() {
-        return (int)17L;
-    }
-    public static int LDBL_DECIMAL_DIG() {
-        return (int)21L;
-    }
-    public static int FLT_HAS_SUBNORM() {
-        return (int)1L;
-    }
-    public static int DBL_HAS_SUBNORM() {
-        return (int)1L;
-    }
-    public static int LDBL_HAS_SUBNORM() {
-        return (int)1L;
-    }
-    public static int JPC_COLLISION_GROUP_INVALID_GROUP() {
-        return (int)4294967295L;
-    }
-    public static int JPC_COLLISION_GROUP_INVALID_SUB_GROUP() {
-        return (int)4294967295L;
-    }
-    public static int JPC_BODY_ID_INVALID() {
-        return (int)4294967295L;
-    }
-    public static int JPC_BODY_ID_SEQUENCE_BITS() {
-        return (int)4278190080L;
-    }
-    public static int JPC_SUB_SHAPE_ID_EMPTY() {
-        return (int)4294967295L;
-    }
-    public static float JPC_FLT_EPSILON() {
-        return 1.1920928955078125E-7f;
     }
 }
 

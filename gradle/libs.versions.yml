@@ -4,7 +4,6 @@ metadata:
 
 versions:
   indra: 3.0.1
-  kotlin: 1.8.10
   jextract: 0.3.2
   findBugs: 3.0.2
   cpuFeaturesJava: 2.0.1
@@ -13,7 +12,6 @@ versions:
 dependencies:
   indraCommon: { group: net.kyori, name: indra-common, version: { ref: indra } }
   indraPublishingSonatype: { group: net.kyori, name: indra-publishing-sonatype, version: { ref: indra } }
-  kotlin: { group: org.jetbrains.kotlin, name: kotlin-gradle-plugin, version: { ref: kotlin } }
   jextract: { group: gradle.plugin.io.github.krakowski, name: gradle-jextract, version: { ref: jextract } }
   findBugs: { group: com.google.code.findbugs, name: jsr305, version: { ref: findBugs } }
   cpuFeaturesJava: { group: io.github.aecsocket, name: cpu-features-java, version: { ref: cpuFeaturesJava } }

@@ -1,14 +1,7 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
 import jolt.math.FVec3;
-import jolt.physics.body.MutableBody;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;

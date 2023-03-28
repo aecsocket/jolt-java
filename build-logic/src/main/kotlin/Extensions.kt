@@ -5,8 +5,8 @@ import java.io.File
 val Project.ci: Provider<Boolean>
     get() = providers.environmentVariable("CI").map { it.toBoolean() }.orElse(false)
 
-val Project.ciPublishApi: Provider<Boolean>
-    get() = providers.environmentVariable("CI_PUBLISH_API").map { it.toBoolean() }.orElse(false)
+val Project.ciPublishCore: Provider<Boolean>
+    get() = providers.environmentVariable("CI_PUBLISH_CORE").map { it.toBoolean() }.orElse(false)
 
 val Project.joltDir: File
     get() = rootDir.resolve("JoltPhysicsC")
@@ -31,8 +31,10 @@ val Project.buildFeatures: List<JoltBuildFeature>
         JoltBuildFeature.USE_FMADD // defines USE_SSE4_1, USE_SSE4_2, USE_AVX
     )
 
-fun Project.publishIfNeeded() {
-    if (!ci.get() || ciPublishApi.get()) {
-        plugins.apply("publishing-conventions")
-    }
+fun Project.publishCore(): Boolean {
+    if (ci.get() && !ciPublishCore.get())
+        return false
+
+    plugins.apply("publishing-conventions")
+    return true
 }

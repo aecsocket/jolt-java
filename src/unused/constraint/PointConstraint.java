@@ -1,16 +1,9 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
 import jolt.Jolt;
-import jolt.geometry.AABox;
 import jolt.math.DVec3;
-import jolt.math.FMat44;
 import jolt.math.FVec3;
-import jolt.physics.body.MutableBody;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
@@ -56,7 +49,7 @@ public abstract sealed class PointConstraint extends TwoBodyConstraint
 
         @Override
         public void setPoint1(ConstraintSpace space, FVec3 point1) {
-            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint1(handle, space.ordinal(), point1.address());
+            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint1(handle, (byte) space.ordinal(), point1.address());
         }
 
         @Override
@@ -66,7 +59,7 @@ public abstract sealed class PointConstraint extends TwoBodyConstraint
     
         @Override
         public void setPoint2(ConstraintSpace space, FVec3 point2) {
-            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint2(handle, space.ordinal(), point2.address());
+            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint2(handle, (byte) space.ordinal(), point2.address());
         }
     
         @Override
@@ -87,7 +80,7 @@ public abstract sealed class PointConstraint extends TwoBodyConstraint
 
         @Override
         public void setPoint1(ConstraintSpace space, DVec3 point1) {
-            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint1(handle, space.ordinal(), point1.address());
+            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint1(handle, (byte) space.ordinal(), point1.address());
         }
     
         @Override
@@ -97,7 +90,7 @@ public abstract sealed class PointConstraint extends TwoBodyConstraint
     
         @Override
         public void setPoint2(ConstraintSpace space, DVec3 point2) {
-            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint2(handle, space.ordinal(), point2.address());
+            jolt.headers_f.JoltPhysicsC.JPC_PointConstraint_SetPoint2(handle, (byte) space.ordinal(), point2.address());
         }
     }
 }

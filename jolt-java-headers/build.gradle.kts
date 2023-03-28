@@ -5,7 +5,7 @@ plugins {
     id("java-conventions")
 }
 
-publishIfNeeded()
+publishCore()
 
 fun LibraryDefinition.defaults() {
     className.set("JoltPhysicsC")

@@ -1,19 +1,13 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
-import jolt.math.FVec3;
-import jolt.physics.collision.PhysicsMaterial;
+import jolt.DeletableJoltNative;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
 
-public sealed class Constraint extends DestroyableJoltNative
-        permits TwoBodyConstraint, VehicleConstraint {
+public sealed class Constraint extends DeletableJoltNative
+        permits TwoBodyConstraint/* TODO, VehicleConstraint*/ {
     //region Jolt-Pointer-Protected
     protected Constraint(MemoryAddress handle) {
         super(handle);
@@ -25,7 +19,7 @@ public sealed class Constraint extends DestroyableJoltNative
     //endregion Jolt-Pointer-Protected
 
     @Override
-    protected void destroyInternal() {
+    protected void deleteInternal() {
         JPC_Constraint_Release(handle);
     }
 

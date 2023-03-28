@@ -38,30 +38,21 @@ class constants$87 {
         "JPC_TwoBodyConstraint_GetBody2",
         constants$87.JPC_TwoBodyConstraint_GetBody2$FUNC
     );
-    static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexConvex$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_IntersectsConvexConvex",
-        constants$87.JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC
-    );
-    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_GetClosestPointsConvexConvex",
-        constants$87.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC
+    static final MethodHandle JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$MH = RuntimeHelper.downcallHandle(
+        "JPC_TwoBodyConstraint_GetConstraintToBody1Matrix",
+        constants$87.JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$FUNC
+    );
+    static final FunctionDescriptor JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$MH = RuntimeHelper.downcallHandle(
+        "JPC_TwoBodyConstraint_GetConstraintToBody2Matrix",
+        constants$87.JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$FUNC
     );
 }
 

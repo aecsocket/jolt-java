@@ -1,14 +1,8 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
-import jolt.geometry.AABox;
 import jolt.math.FMat44;
-import jolt.math.FVec3;
 import jolt.physics.body.MutableBody;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
@@ -35,10 +29,10 @@ public sealed class TwoBodyConstraint extends Constraint
     }
 
     public void getConstraintToBody1Matrix(FMat44 out) {
-        JPC_TwoBodyConstraint_GetConstraintToBody1Matrix(handle, out);
+        JPC_TwoBodyConstraint_GetConstraintToBody1Matrix(handle, out.address());
     }
 
     public void getConstraintToBody2Matrix(FMat44 out) {
-        JPC_TwoBodyConstraint_GetConstraintToBody2Matrix(handle, out);
+        JPC_TwoBodyConstraint_GetConstraintToBody2Matrix(handle, out.address());
     }
 }

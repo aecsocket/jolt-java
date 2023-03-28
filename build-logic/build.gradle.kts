@@ -9,6 +9,5 @@ repositories {
 dependencies {
     implementation(libs.indraCommon)
     implementation(libs.indraPublishingSonatype)
-    implementation(libs.kotlin)
     implementation(libs.jextract)
 }

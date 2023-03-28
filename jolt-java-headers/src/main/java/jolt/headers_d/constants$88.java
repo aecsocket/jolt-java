@@ -9,37 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$88 {
 
-    static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_IntersectsConvexPoint",
-        constants$88.JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC
-    );
-    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_FixedConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_GetClosestPointsConvexPoint",
-        constants$88.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC
+    static final MethodHandle JPC_FixedConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraint_GetTotalLambdaPosition",
+        constants$88.JPC_FixedConstraint_GetTotalLambdaPosition$FUNC
     );
-    static final FunctionDescriptor JPJ_GetFeatures$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle JPJ_GetFeatures$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPJ_GetFeatures",
-        constants$88.JPJ_GetFeatures$FUNC
+    static final FunctionDescriptor JPC_FixedConstraint_GetTotalLambdaRotation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
+    static final MethodHandle JPC_FixedConstraint_GetTotalLambdaRotation$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraint_GetTotalLambdaRotation",
+        constants$88.JPC_FixedConstraint_GetTotalLambdaRotation$FUNC
+    );
+    static final FunctionDescriptor JPC_DistanceConstraint_SetDistance$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_SetDistance$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_SetDistance",
+        constants$88.JPC_DistanceConstraint_SetDistance$FUNC
+    );
+    static final FunctionDescriptor JPC_DistanceConstraint_GetMinDistance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_GetMinDistance$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_GetMinDistance",
+        constants$88.JPC_DistanceConstraint_GetMinDistance$FUNC
+    );
+    static final FunctionDescriptor JPC_DistanceConstraint_GetMaxDistance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_GetMaxDistance$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_GetMaxDistance",
+        constants$88.JPC_DistanceConstraint_GetMaxDistance$FUNC
+    );
+    static final FunctionDescriptor JPC_DistanceConstraint_SetFrequency$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_SetFrequency$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_SetFrequency",
+        constants$88.JPC_DistanceConstraint_SetFrequency$FUNC
+    );
 }
 
 
