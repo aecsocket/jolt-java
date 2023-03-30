@@ -16,8 +16,8 @@ dependencies {
     testImplementation(libs.jUnitJupiterEngine)
     testImplementation(libs.findBugs)
     testRuntimeOnly(projects.joltJavaNativesLinuxX86)
-    //testRuntimeOnly(projects.joltJavaNativesWindowsX86)
-    //testRuntimeOnly(projects.joltJavaNativesMacosX86)
+    testRuntimeOnly(projects.joltJavaNativesWindowsX86)
+    testRuntimeOnly(projects.joltJavaNativesMacosX86)
 }
 
 if (!publishCore()) {
