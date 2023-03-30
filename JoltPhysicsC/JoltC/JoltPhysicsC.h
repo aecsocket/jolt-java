@@ -1027,7 +1027,7 @@ JPC_BodyIDVector_Destroy(JPC_BodyIDVector *in_vector);
 JPC_API JPC_SupportingFace *
 JPC_SupportingFace_Create();
 
-JPC_API uint
+JPC_API uint32_t
 JPC_SupportingFace_Size(JPC_SupportingFace *in_face);
 
 JPC_API float **

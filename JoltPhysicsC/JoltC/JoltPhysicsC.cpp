@@ -762,7 +762,7 @@ JPC_SupportingFace_Create()
     return toJpc(out);
 }
 
-JPC_API uint
+JPC_API uint32_t
 JPC_SupportingFace_Size(JPC_SupportingFace *in_face)
 {
     return toJph(in_face)->size();

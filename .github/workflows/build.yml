@@ -30,7 +30,7 @@ jobs:
       - name: "Setup Gradle"
         uses: gradle/gradle-build-action@v2
       - name: "Run Gradle build"
-        run: ./gradlew --stacktrace build
+        run: ./gradlew build
       - name: "sh: Get version type "
         if: ${{ matrix.os != 'windows-latest' }}
         run: |
