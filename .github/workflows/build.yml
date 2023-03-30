@@ -30,7 +30,7 @@ jobs:
       - name: "Setup Gradle"
         uses: gradle/gradle-build-action@v2
       - name: "Run Gradle build"
-        run: ./gradlew build
+        run: ./gradlew --stacktrace build
       - name: "sh: Get version type "
         if: ${{ matrix.os != 'windows-latest' }}
         run: |
@@ -52,7 +52,7 @@ jobs:
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
       - name: "Publish release"
         if: ${{ env.VERSION_TYPE == 'release' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: ./gradlew --info -PforceSign=true publishToSonatype closeSonatypeStagingRepository
+        run: ./gradlew -PforceSign=true publishToSonatype closeSonatypeStagingRepository
         env:
           CI_PUBLISH_CORE: ${{ matrix.publish-core }}
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
