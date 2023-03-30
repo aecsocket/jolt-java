@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
 plugins {
     id("base-conventions")
     id("java-library")
@@ -28,6 +30,7 @@ afterEvaluate {
 
         test {
             jvmArgs("--enable-preview", "--enable-native-access=ALL-UNNAMED")
+            testLogging.exceptionFormat = TestExceptionFormat.FULL
         }
     }
 }
