@@ -2902,16 +2902,18 @@ JPC_Shape_GetSubmergedVolume(const JPC_Shape *in_shape,
                              float in_surface_constant,
                              float *out_total_volume,
                              float *out_submerged_volume,
-                             float *out_center_of_buoyancy[3])
+                             float out_center_of_buoyancy[3])
 {
+    JPH::Vec3 centerOfBuoyancy{};
     toJph(in_shape)->GetSubmergedVolume(
             loadMat44(in_com_transform),
             loadVec3(in_scale),
             JPH::Plane(loadVec3(in_surface_normal), in_surface_constant),
             *out_total_volume,
             *out_submerged_volume,
-            reinterpret_cast<JPH::Vec3 &>(out_center_of_buoyancy)
+            centerOfBuoyancy
     );
+    storeVec3(out_center_of_buoyancy, centerOfBuoyancy);
 }
 
 JPC_API bool
