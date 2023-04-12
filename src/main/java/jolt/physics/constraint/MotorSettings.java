@@ -12,7 +12,7 @@ import static jolt.headers.JPC_MotorSettings.*;
 import static jolt.headers.JoltPhysicsC.*;
 
 public final class MotorSettings extends SegmentedJoltNative {
-    //region Jolt-Value
+    //region Jolt-Pointer
     private MotorSettings(MemorySegment handle) {
         super(handle);
     }
@@ -34,7 +34,7 @@ public final class MotorSettings extends SegmentedJoltNative {
         return frequency$get(handle);
     }
 
-    public void setFrqeuency(float frequency) {
+    public void setFrequency(float frequency) {
         frequency$set(handle, frequency);
     }
 

@@ -26,7 +26,7 @@ public final class ConeConstraint extends TwoBodyConstraint {
     }
 
     public void getTotalLambdaPosition(FVec3 out) {
-        JPC_ConeConstraint_GetTotalLambdaPosition(handle, out);
+        JPC_ConeConstraint_GetTotalLambdaPosition(handle, out.address());
     }
 
     public float getTotalLambdaRotation() {

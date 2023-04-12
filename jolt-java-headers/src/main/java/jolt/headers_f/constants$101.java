@@ -9,52 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$101 {
 
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTotalLambdaTwist$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetMaxFrictionTorque$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaTwist$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetTotalLambdaTwist",
-        constants$101.JPC_SwingTwistConstraint_GetTotalLambdaTwist$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetMaxFrictionTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetMaxFrictionTorque",
+        constants$101.JPC_SwingTwistConstraint_GetMaxFrictionTorque$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTotalLambdaSwingY$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetSwingMotorState$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle JPC_SwingTwistConstraint_SetSwingMotorState$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetSwingMotorState",
+        constants$101.JPC_SwingTwistConstraint_SetSwingMotorState$FUNC
+    );
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetSwingMotorState$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaSwingY$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetTotalLambdaSwingY",
-        constants$101.JPC_SwingTwistConstraint_GetTotalLambdaSwingY$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetSwingMotorState$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetSwingMotorState",
+        constants$101.JPC_SwingTwistConstraint_GetSwingMotorState$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTotalLambdaSwingZ$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTwistMotorState$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle JPC_SwingTwistConstraint_SetTwistMotorState$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetTwistMotorState",
+        constants$101.JPC_SwingTwistConstraint_SetTwistMotorState$FUNC
+    );
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTwistMotorState$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaSwingZ$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetTotalLambdaSwingZ",
-        constants$101.JPC_SwingTwistConstraint_GetTotalLambdaSwingZ$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetTwistMotorState$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetTwistMotorState",
+        constants$101.JPC_SwingTwistConstraint_GetTwistMotorState$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTotalLambdaMotor$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaMotor$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetTotalLambdaMotor",
-        constants$101.JPC_SwingTwistConstraint_GetTotalLambdaMotor$FUNC
-    );
-    static final FunctionDescriptor JPC_SixDOFConstraint_SetTranslationLimits$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SixDOFConstraint_SetTranslationLimits$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_SetTranslationLimits",
-        constants$101.JPC_SixDOFConstraint_SetTranslationLimits$FUNC
-    );
-    static final FunctionDescriptor JPC_SixDOFConstraint_SetRotationLimits$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SixDOFConstraint_SetRotationLimits$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_SetRotationLimits",
-        constants$101.JPC_SixDOFConstraint_SetRotationLimits$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetTargetAngularVelocityCS",
+        constants$101.JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$FUNC
     );
 }
 

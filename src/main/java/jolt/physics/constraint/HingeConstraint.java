@@ -3,6 +3,8 @@ package jolt.physics.constraint;
 import jolt.math.FVec3;
 
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySession;
+import java.lang.foreign.ValueLayout;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -29,12 +31,12 @@ public final class HingeConstraint extends TwoBodyConstraint {
         return JPC_HingeConstraint_GetMaxFrictionTorque(handle);
     }
 
-    public MotorSettings getMotorSettings() {
-        return MotorSettings.at(JPC_HingeConstraint_GetMotorSettings(handle));
+    public MotorSettings getMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_HingeConstraint_GetMotorSettings(handle));
     }
 
     public void setMotorState(MotorState state) {
-        JPC_HingeConstraint_SetMotorState(handle, state.ordinal());
+        JPC_HingeConstraint_SetMotorState(handle, (byte) state.ordinal());
     }
 
     public MotorState getMotorState() {
@@ -79,8 +81,12 @@ public final class HingeConstraint extends TwoBodyConstraint {
 
     // float[2]
     public float[] getTotalLambdaRotation() {
-        // TODO
-        JPC_HingeConstraint_GetTotalLambdaRotation(handle);
+        try (var arena = MemorySession.openConfined()) {
+            var x = arena.allocate(C_FLOAT, 0);
+            var y = arena.allocate(C_FLOAT, 0);
+            JPC_HingeConstraint_GetTotalLambdaRotation(handle, x, y);
+            return new float[]{ x.get(C_FLOAT, 0), y.get(C_FLOAT, 0) };
+        }
     }
 
     public float getTotalLambdaRotationLimits() {

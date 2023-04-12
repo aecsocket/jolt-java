@@ -9,6 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$57 {
 
+    static final FunctionDescriptor JPC_RotatedTranslatedShapeSettings_SetRotation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RotatedTranslatedShapeSettings_SetRotation$MH = RuntimeHelper.downcallHandle(
+        "JPC_RotatedTranslatedShapeSettings_SetRotation",
+        constants$57.JPC_RotatedTranslatedShapeSettings_SetRotation$FUNC
+    );
+    static final FunctionDescriptor JPC_OffsetCenterOfMassShapeSettings_CreateFromShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_OffsetCenterOfMassShapeSettings_CreateFromShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_OffsetCenterOfMassShapeSettings_CreateFromShape",
+        constants$57.JPC_OffsetCenterOfMassShapeSettings_CreateFromShape$FUNC
+    );
+    static final FunctionDescriptor JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings",
+        constants$57.JPC_OffsetCenterOfMassShapeSettings_CreateFromSettings$FUNC
+    );
+    static final FunctionDescriptor JPC_OffsetCenterOfMassShapeSettings_GetOffset$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_OffsetCenterOfMassShapeSettings_GetOffset$MH = RuntimeHelper.downcallHandle(
+        "JPC_OffsetCenterOfMassShapeSettings_GetOffset",
+        constants$57.JPC_OffsetCenterOfMassShapeSettings_GetOffset$FUNC
+    );
     static final FunctionDescriptor JPC_OffsetCenterOfMassShapeSettings_SetOffset$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -23,34 +55,6 @@ class constants$57 {
     static final MethodHandle JPC_Shape_AddRef$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_AddRef",
         constants$57.JPC_Shape_AddRef$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_Release$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_Release$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_Release",
-        constants$57.JPC_Shape_Release$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetRefCount$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetRefCount$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetRefCount",
-        constants$57.JPC_Shape_GetRefCount$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetType",
-        constants$57.JPC_Shape_GetType$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetSubType$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetSubType$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetSubType",
-        constants$57.JPC_Shape_GetSubType$FUNC
     );
 }
 

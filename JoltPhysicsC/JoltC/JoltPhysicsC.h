@@ -684,32 +684,9 @@ typedef struct JPC_SupportBuffer
     alignas(16) uint8_t data[4160];
 } JPC_SupportBuffer;
 
-typedef struct JPC_ConstraintSettings
-{
-    const void *vtable; // unused
-    bool        enabled;
-    int         num_velocity_steps_override;
-    int         num_position_steps_override;
-    float       draw_constraint_size;
-} JPC_ConstraintSettings;
-
-typedef struct JPC_TwoBodyConstraintSettings
-{
-    JPC_ConstraintSettings *base;
-} JPC_TwoBodyConstraintSettings;
-
-typedef struct JPC_FixedConstraintSettings {
-    JPC_TwoBodyConstraint *  base;
-    JPC_ConstraintSpace      space;
-    bool                     auto_detect_point;
-    JPC_RVEC_ALIGN JPC_Real  point1[4];
-    alignas(16) float        axis_x1[4];
-    alignas(16) float        axis_y1[4];
-    JPC_RVEC_ALIGN JPC_Real  point2[4];
-    alignas(16) float        axis_x2[4];
-    alignas(16) float        axis_y2[4];
-} JPC_FixedConstraintSettings;
-
+typedef struct JPC_ConstraintSettings           JPC_ConstraintSettings;
+typedef struct JPC_TwoBodyConstraintSettings    JPC_TwoBodyConstraintSettings;
+typedef struct JPC_FixedConstraintSettings      JPC_FixedConstraintSettings;
 typedef struct JPC_DistanceConstraintSettings   JPC_DistanceConstraintSettings;
 typedef struct JPC_PointConstraintSettings      JPC_PointConstraintSettings;
 typedef struct JPC_HingeConstraintSettings      JPC_HingeConstraintSettings;
@@ -1298,6 +1275,18 @@ JPC_PhysicsSystem_GetNarrowPhaseQuery(const JPC_PhysicsSystem *in_physics_system
 
 JPC_API const JPC_NarrowPhaseQuery *
 JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(const JPC_PhysicsSystem *in_physics_system);
+
+JPC_API void
+JPC_PhysicsSystem_AddConstraint(JPC_PhysicsSystem *in_physics_system, JPC_Constraint *in_constraint);
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraint(JPC_PhysicsSystem *in_physics_system, JPC_Constraint *in_constraint);
+
+JPC_API void
+JPC_PhysicsSystem_AddConstraints(JPC_PhysicsSystem *in_physics_system, JPC_Constraint *in_constraints[], int in_number);
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraints(JPC_PhysicsSystem *in_physics_system, JPC_Constraint *in_constraints[], int in_number);
 
 JPC_API void
 JPC_PhysicsSystem_OptimizeBroadPhase(JPC_PhysicsSystem *in_physics_system);
@@ -2976,6 +2965,9 @@ JPC_SliderConstraint_GetCurrentPosition(const JPC_SliderConstraint *in_self);
 JPC_API void
 JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in_friction);
 
+JPC_API float
+JPC_SliderConstraint_GetMaxFrictionForce(const JPC_SliderConstraint *in_self);
+
 JPC_API JPC_MotorSettings *
 JPC_SliderConstraint_GetMotorSettings(JPC_SliderConstraint *in_self);
 
@@ -3014,6 +3006,24 @@ JPC_SliderConstraint_SetFrequency(JPC_SliderConstraint *in_self, float in_freque
 
 JPC_API float
 JPC_SliderConstraint_GetFrequency(const JPC_SliderConstraint *in_self);
+
+JPC_API void
+JPC_SliderConstraint_SetDamping(JPC_SliderConstraint *in_self, float in_damping);
+
+JPC_API float
+JPC_SliderConstraint_GetDamping(const JPC_SliderConstraint *in_self);
+
+JPC_API void
+JPC_SliderConstraint_GetTotalLambdaPosition(const JPC_SliderConstraint *in_self, float *out_x, float *out_y);
+
+JPC_API float
+JPC_SliderConstraint_GetTotalLambdaPositionLimits(const JPC_SliderConstraint *in_self);
+
+JPC_API void
+JPC_SliderConstraint_GetTotalLambdaRotation(const JPC_SliderConstraint *in_self, float out_rotation[3]);
+
+JPC_API float
+JPC_SliderConstraint_GetTotalLambdaMotor(const JPC_SliderConstraint *in_self);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_SwingTwistConstraint
@@ -3144,7 +3154,7 @@ JPC_SixDOFConstraint_GetMaxFriction(const JPC_SixDOFConstraint *in_self, JPC_Six
 // JPC_SixDOFConstraint_GetRotationInConstraintSpace(const JPC_SixDOFConstraint *in_self, float out_rotation[4]);
 
 JPC_API JPC_MotorSettings *
-JPC_SixDOFConstraint_GetMotorSettings(JPC_SixDOFConstraint *in_self);
+JPC_SixDOFConstraint_GetMotorSettings(JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis);
 
 JPC_API void
 JPC_SixDOFConstraint_SetMotorState(JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis, JPC_MotorState in_state);
@@ -3209,6 +3219,71 @@ JPC_MotorSettings_SetTorqueLimit(JPC_MotorSettings *in_settings, float in_limit)
 
 JPC_API bool
 JPC_MotorSettings_IsValid(const JPC_MotorSettings *in_settings);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConstraintSettings_Release(const JPC_ConstraintSettings *in_self);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_FixedConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_FixedConstraintSettings *
+JPC_FixedConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_FixedConstraintSettings_GetSpace(const JPC_FixedConstraintSettings *in_self);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetSpace(JPC_FixedConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API bool
+JPC_FixedConstraintSettings_GetAutoDetectPoint(const JPC_FixedConstraintSettings *in_self);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAutoDetectPoint(JPC_FixedConstraintSettings *in_self, bool in_auto_detect_point);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetPoint1(const JPC_FixedConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetPoint1(JPC_FixedConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisX1(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisX1(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisY1(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisY1(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetPoint2(const JPC_FixedConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetPoint2(JPC_FixedConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisX2(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisX2(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisY2(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisY2(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API const JPC_TwoBodyConstraint *
+JPC_FixedConstraintSettings_CreateConstraint(const JPC_FixedConstraintSettings *in_self, JPC_Body *in_body1, JPC_Body *in_body2);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_GJKClosestPoint

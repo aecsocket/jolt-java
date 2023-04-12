@@ -9,6 +9,96 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
  class JoltPhysicsC_1 {
 
+    public static long UINTPTR_MAX() {
+        return -1L;
+    }
+    public static long INTMAX_MIN() {
+        return -9223372036854775808L;
+    }
+    public static long INTMAX_MAX() {
+        return 9223372036854775807L;
+    }
+    public static long UINTMAX_MAX() {
+        return -1L;
+    }
+    public static long PTRDIFF_MIN() {
+        return -9223372036854775808L;
+    }
+    public static long PTRDIFF_MAX() {
+        return 9223372036854775807L;
+    }
+    public static int SIG_ATOMIC_MIN() {
+        return (int)-2147483648L;
+    }
+    public static int SIG_ATOMIC_MAX() {
+        return (int)2147483647L;
+    }
+    public static long SIZE_MAX() {
+        return -1L;
+    }
+    public static int WCHAR_MIN() {
+        return (int)-2147483648L;
+    }
+    public static int WCHAR_MAX() {
+        return (int)2147483647L;
+    }
+    public static int WINT_MIN() {
+        return (int)0L;
+    }
+    public static int WINT_MAX() {
+        return (int)4294967295L;
+    }
+    public static int FLT_EVAL_METHOD() {
+        return (int)0L;
+    }
+    public static int FLT_RADIX() {
+        return (int)2L;
+    }
+    public static int FLT_MANT_DIG() {
+        return (int)24L;
+    }
+    public static int DBL_MANT_DIG() {
+        return (int)53L;
+    }
+    public static int LDBL_MANT_DIG() {
+        return (int)64L;
+    }
+    public static int DECIMAL_DIG() {
+        return (int)21L;
+    }
+    public static int FLT_DIG() {
+        return (int)6L;
+    }
+    public static int DBL_DIG() {
+        return (int)15L;
+    }
+    public static int LDBL_DIG() {
+        return (int)18L;
+    }
+    public static int FLT_MIN_EXP() {
+        return (int)-125L;
+    }
+    public static int DBL_MIN_EXP() {
+        return (int)-1021L;
+    }
+    public static int LDBL_MIN_EXP() {
+        return (int)-16381L;
+    }
+    public static int FLT_MIN_10_EXP() {
+        return (int)-37L;
+    }
+    public static int DBL_MIN_10_EXP() {
+        return (int)-307L;
+    }
+    public static int LDBL_MIN_10_EXP() {
+        return (int)-4931L;
+    }
+    public static int FLT_MAX_EXP() {
+        return (int)128L;
+    }
+    public static int DBL_MAX_EXP() {
+        return (int)1024L;
+    }
     public static int LDBL_MAX_EXP() {
         return (int)16384L;
     }

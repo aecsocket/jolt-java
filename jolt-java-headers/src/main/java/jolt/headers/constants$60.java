@@ -9,6 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$60 {
 
+    static final FunctionDescriptor JPC_Shape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetMaterial$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetMaterial",
+        constants$60.JPC_Shape_GetMaterial$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetSurfaceNormal$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetSurfaceNormal",
+        constants$60.JPC_Shape_GetSurfaceNormal$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetSupportingFace$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetSupportingFace$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetSupportingFace",
+        constants$60.JPC_Shape_GetSupportingFace$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_GetSubShapeUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetSubShapeUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetSubShapeUserData",
+        constants$60.JPC_Shape_GetSubShapeUserData$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_GetSubShapeTransformedShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_position_com"),
         MemoryLayout.sequenceLayout(4, Constants$root.C_FLOAT$LAYOUT).withName("shape_rotation"),
@@ -43,53 +81,6 @@ class constants$60 {
     static final MethodHandle JPC_Shape_GetSubmergedVolume$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_GetSubmergedVolume",
         constants$60.JPC_Shape_GetSubmergedVolume$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetCastRay$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetCastRay$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetCastRay",
-        constants$60.JPC_Shape_GetCastRay$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_CollectCastRay$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_CollectCastRay$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_CollectCastRay",
-        constants$60.JPC_Shape_CollectCastRay$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_CollidePoint$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_CollidePoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_CollidePoint",
-        constants$60.JPC_Shape_CollidePoint$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_CollectTransformedShapes$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_CollectTransformedShapes$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_CollectTransformedShapes",
-        constants$60.JPC_Shape_CollectTransformedShapes$FUNC
     );
 }
 

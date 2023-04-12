@@ -1,16 +1,10 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
 import jolt.math.FVec3;
 import jolt.math.Quat;
-import jolt.physics.body.MutableBody;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -73,16 +67,16 @@ public final class SwingTwistConstraint extends TwoBodyConstraint {
         JPC_SwingTwistConstraint_SetTwistMaxAngle(handle, twistMaxAngle);
     }
 
-    public MotorSettings getSwingMotorSettings() {
-        return MotorSettings.at(JPC_SwingTwistConstraint_GetSwingMotorSettings(handle));
+    public MotorSettings getSwingMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_SwingTwistConstraint_GetSwingMotorSettings(handle));
     }
 
-    public MotorSettings getTwistMotorSettings() {
-        return MotorSettings.at(JPC_SwingTwistConstraint_GetTwistMotorSettings(handle));
+    public MotorSettings getTwistMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_SwingTwistConstraint_GetTwistMotorSettings(handle));
     }
 
     public void setSwingMotorState(MotorState state) {
-        JPC_SwingTwistConstraint_SetSwingMotorState(handle, state.ordinal());
+        JPC_SwingTwistConstraint_SetSwingMotorState(handle, (byte) state.ordinal());
     }
 
     public MotorState getSwingMotorState() {
@@ -90,7 +84,7 @@ public final class SwingTwistConstraint extends TwoBodyConstraint {
     }
 
     public void setTwistMotorState(MotorState state) {
-        JPC_SwingTwistConstraint_SetTwistMotorState(handle, state.ordinal());
+        JPC_SwingTwistConstraint_SetTwistMotorState(handle, (byte) state.ordinal());
     }
 
     public MotorState getTwistMotorState() {
@@ -117,9 +111,10 @@ public final class SwingTwistConstraint extends TwoBodyConstraint {
         JPC_SwingTwistConstraint_SetTargetOrientationBS(handle, orientation.address());
     }
 
-    public void getRotationInConstraintSpace(Quat out) {
-        JPC_SwingTwistConstraint_GetRotationInConstraintSpace(handle, out.address());
-    }
+    // TODO not implemented in C++
+//    public void getRotationInConstraintSpace(Quat out) {
+//        JPC_SwingTwistConstraint_GetRotationInConstraintSpace(handle, out.address());
+//    }
 
     public void getTotalLambdaPosition(FVec3 out) {
         JPC_SwingTwistConstraint_GetTotalLambdaPosition(handle, out.address());

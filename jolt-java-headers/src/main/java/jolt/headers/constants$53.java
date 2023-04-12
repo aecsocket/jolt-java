@@ -9,6 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$53 {
 
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_GetBitsPerSample$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_GetBitsPerSample",
+        constants$53.JPC_HeightFieldShapeSettings_GetBitsPerSample$FUNC
+    );
+    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_HeightFieldShapeSettings_SetBitsPerSample$MH = RuntimeHelper.downcallHandle(
+        "JPC_HeightFieldShapeSettings_SetBitsPerSample",
+        constants$53.JPC_HeightFieldShapeSettings_SetBitsPerSample$FUNC
+    );
+    static final FunctionDescriptor JPC_MeshShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_Create",
+        constants$53.JPC_MeshShapeSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$MH = RuntimeHelper.downcallHandle(
+        "JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf",
+        constants$53.JPC_MeshShapeSettings_GetMaxTrianglesPerLeaf$FUNC
+    );
     static final FunctionDescriptor JPC_MeshShapeSettings_SetMaxTrianglesPerLeaf$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -23,44 +58,6 @@ class constants$53 {
     static final MethodHandle JPC_MeshShapeSettings_Sanitize$MH = RuntimeHelper.downcallHandle(
         "JPC_MeshShapeSettings_Sanitize",
         constants$53.JPC_MeshShapeSettings_Sanitize$FUNC
-    );
-    static final FunctionDescriptor JPC_CompoundShapeSettings_AddShapeSettings$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_CompoundShapeSettings_AddShapeSettings$MH = RuntimeHelper.downcallHandle(
-        "JPC_CompoundShapeSettings_AddShapeSettings",
-        constants$53.JPC_CompoundShapeSettings_AddShapeSettings$FUNC
-    );
-    static final FunctionDescriptor JPC_CompoundShapeSettings_AddShape$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_CompoundShapeSettings_AddShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_CompoundShapeSettings_AddShape",
-        constants$53.JPC_CompoundShapeSettings_AddShape$FUNC
-    );
-    static final FunctionDescriptor JPC_StaticCompoundShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
-    static final MethodHandle JPC_StaticCompoundShapeSettings_Create$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPC_StaticCompoundShapeSettings_Create",
-        constants$53.JPC_StaticCompoundShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_StaticCompoundShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("result"),
-        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("error")
-    ).withName("JPC_ShapeResult"),
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_StaticCompoundShapeSettings_CreateShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_StaticCompoundShapeSettings_CreateShape",
-        constants$53.JPC_StaticCompoundShapeSettings_CreateShape$FUNC
     );
 }
 

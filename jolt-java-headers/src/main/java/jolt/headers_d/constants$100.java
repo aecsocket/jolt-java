@@ -9,53 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$100 {
 
-    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTwistMinAngle$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_SwingTwistConstraint_SetTwistMinAngle$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetTwistMinAngle",
+        constants$100.JPC_SwingTwistConstraint_SetTwistMinAngle$FUNC
+    );
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTwistMaxAngle$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_SetTargetAngularVelocityCS",
-        constants$100.JPC_SwingTwistConstraint_SetTargetAngularVelocityCS$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetTwistMaxAngle$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetTwistMaxAngle",
+        constants$100.JPC_SwingTwistConstraint_GetTwistMaxAngle$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTwistMaxAngle$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_SwingTwistConstraint_SetTwistMaxAngle$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetTwistMaxAngle",
+        constants$100.JPC_SwingTwistConstraint_SetTwistMaxAngle$FUNC
+    );
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetSwingMotorSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetTargetAngularVelocityCS",
-        constants$100.JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetSwingMotorSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetSwingMotorSettings",
+        constants$100.JPC_SwingTwistConstraint_GetSwingMotorSettings$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTwistMotorSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_SetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_SetTargetOrientationCS",
-        constants$100.JPC_SwingTwistConstraint_SetTargetOrientationCS$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetTwistMotorSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetTwistMotorSettings",
+        constants$100.JPC_SwingTwistConstraint_GetTwistMotorSettings$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetMaxFrictionTorque$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetTargetOrientationCS",
-        constants$100.JPC_SwingTwistConstraint_GetTargetOrientationCS$FUNC
-    );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTargetOrientationBS$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SwingTwistConstraint_SetTargetOrientationBS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_SetTargetOrientationBS",
-        constants$100.JPC_SwingTwistConstraint_SetTargetOrientationBS$FUNC
-    );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetTotalLambdaPosition",
-        constants$100.JPC_SwingTwistConstraint_GetTotalLambdaPosition$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_SetMaxFrictionTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetMaxFrictionTorque",
+        constants$100.JPC_SwingTwistConstraint_SetMaxFrictionTorque$FUNC
     );
 }
 

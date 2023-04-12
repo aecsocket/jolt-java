@@ -9,26 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$107 {
 
-    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaRotation$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_GetClosestPointsConvexPoint",
-        constants$107.JPC_GJKClosestPoint_GetClosestPointsConvexPoint$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaRotation$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTotalLambdaRotation",
+        constants$107.JPC_SixDOFConstraint_GetTotalLambdaRotation$FUNC
     );
-    static final FunctionDescriptor JPJ_GetFeatures$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle JPJ_GetFeatures$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPJ_GetFeatures",
-        constants$107.JPJ_GetFeatures$FUNC
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
+    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation",
+        constants$107.JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$FUNC
+    );
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTotalLambdaMotorRotation",
+        constants$107.JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$FUNC
+    );
+    static final FunctionDescriptor JPC_MotorSettings_SetForceLimits$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_MotorSettings_SetForceLimits$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotorSettings_SetForceLimits",
+        constants$107.JPC_MotorSettings_SetForceLimits$FUNC
+    );
+    static final FunctionDescriptor JPC_MotorSettings_SetTorqueLimits$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_MotorSettings_SetTorqueLimits$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotorSettings_SetTorqueLimits",
+        constants$107.JPC_MotorSettings_SetTorqueLimits$FUNC
+    );
+    static final FunctionDescriptor JPC_MotorSettings_SetForceLimit$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_MotorSettings_SetForceLimit$MH = RuntimeHelper.downcallHandle(
+        "JPC_MotorSettings_SetForceLimit",
+        constants$107.JPC_MotorSettings_SetForceLimit$FUNC
+    );
 }
 
 

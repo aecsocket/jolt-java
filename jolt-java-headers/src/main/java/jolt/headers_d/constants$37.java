@@ -9,6 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$37 {
 
+    static final FunctionDescriptor JPC_RayCastBodyCollector_ForceEarlyOut$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RayCastBodyCollector_ForceEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_RayCastBodyCollector_ForceEarlyOut",
+        constants$37.JPC_RayCastBodyCollector_ForceEarlyOut$FUNC
+    );
+    static final FunctionDescriptor JPC_RayCastBodyCollector_ShouldEarlyOut$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RayCastBodyCollector_ShouldEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_RayCastBodyCollector_ShouldEarlyOut",
+        constants$37.JPC_RayCastBodyCollector_ShouldEarlyOut$FUNC
+    );
+    static final FunctionDescriptor JPC_CollideShapeBodyCollector_ForceEarlyOut$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeBodyCollector_ForceEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeBodyCollector_ForceEarlyOut",
+        constants$37.JPC_CollideShapeBodyCollector_ForceEarlyOut$FUNC
+    );
+    static final FunctionDescriptor JPC_CollideShapeBodyCollector_ShouldEarlyOut$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_CollideShapeBodyCollector_ShouldEarlyOut$MH = RuntimeHelper.downcallHandle(
+        "JPC_CollideShapeBodyCollector_ShouldEarlyOut",
+        constants$37.JPC_CollideShapeBodyCollector_ShouldEarlyOut$FUNC
+    );
     static final FunctionDescriptor JPC_CastShapeBodyCollector_ForceEarlyOut$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
@@ -22,34 +50,6 @@ class constants$37 {
     static final MethodHandle JPC_CastShapeBodyCollector_ShouldEarlyOut$MH = RuntimeHelper.downcallHandle(
         "JPC_CastShapeBodyCollector_ShouldEarlyOut",
         constants$37.JPC_CastShapeBodyCollector_ShouldEarlyOut$FUNC
-    );
-    static final FunctionDescriptor JPC_CastRayCollector_ForceEarlyOut$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CastRayCollector_ForceEarlyOut$MH = RuntimeHelper.downcallHandle(
-        "JPC_CastRayCollector_ForceEarlyOut",
-        constants$37.JPC_CastRayCollector_ForceEarlyOut$FUNC
-    );
-    static final FunctionDescriptor JPC_CastRayCollector_ShouldEarlyOut$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CastRayCollector_ShouldEarlyOut$MH = RuntimeHelper.downcallHandle(
-        "JPC_CastRayCollector_ShouldEarlyOut",
-        constants$37.JPC_CastRayCollector_ShouldEarlyOut$FUNC
-    );
-    static final FunctionDescriptor JPC_CastShapeCollector_ForceEarlyOut$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CastShapeCollector_ForceEarlyOut$MH = RuntimeHelper.downcallHandle(
-        "JPC_CastShapeCollector_ForceEarlyOut",
-        constants$37.JPC_CastShapeCollector_ForceEarlyOut$FUNC
-    );
-    static final FunctionDescriptor JPC_CastShapeCollector_ShouldEarlyOut$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_CastShapeCollector_ShouldEarlyOut$MH = RuntimeHelper.downcallHandle(
-        "JPC_CastShapeCollector_ShouldEarlyOut",
-        constants$37.JPC_CastShapeCollector_ShouldEarlyOut$FUNC
     );
 }
 

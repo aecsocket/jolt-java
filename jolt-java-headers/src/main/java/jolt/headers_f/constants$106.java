@@ -9,64 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$106 {
 
-    static final FunctionDescriptor JPC_MotorSettings_SetForceLimit$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotorSettings_SetForceLimit$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotorSettings_SetForceLimit",
-        constants$106.JPC_MotorSettings_SetForceLimit$FUNC
-    );
-    static final FunctionDescriptor JPC_MotorSettings_SetTorqueLimit$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotorSettings_SetTorqueLimit$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotorSettings_SetTorqueLimit",
-        constants$106.JPC_MotorSettings_SetTorqueLimit$FUNC
-    );
-    static final FunctionDescriptor JPC_MotorSettings_IsValid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_MotorSettings_IsValid$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotorSettings_IsValid",
-        constants$106.JPC_MotorSettings_IsValid$FUNC
-    );
-    static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexConvex$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_IntersectsConvexConvex",
-        constants$106.JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC
-    );
-    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTargetPositionCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_GetClosestPointsConvexConvex",
-        constants$106.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_GetTargetPositionCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTargetPositionCS",
+        constants$106.JPC_SixDOFConstraint_GetTargetPositionCS$FUNC
     );
-    static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetPositionCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_IntersectsConvexPoint",
-        constants$106.JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_SetTargetPositionCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_SetTargetPositionCS",
+        constants$106.JPC_SixDOFConstraint_SetTargetPositionCS$FUNC
+    );
+    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SixDOFConstraint_SetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_SetTargetOrientationCS",
+        constants$106.JPC_SixDOFConstraint_SetTargetOrientationCS$FUNC
+    );
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SixDOFConstraint_GetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTargetOrientationCS",
+        constants$106.JPC_SixDOFConstraint_GetTargetOrientationCS$FUNC
+    );
+    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetOrientationBS$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SixDOFConstraint_SetTargetOrientationBS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_SetTargetOrientationBS",
+        constants$106.JPC_SixDOFConstraint_SetTargetOrientationBS$FUNC
+    );
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTotalLambdaPosition",
+        constants$106.JPC_SixDOFConstraint_GetTotalLambdaPosition$FUNC
     );
 }
 

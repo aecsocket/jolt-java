@@ -1,15 +1,9 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
 import jolt.math.FVec3;
-import jolt.physics.body.MutableBody;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -36,12 +30,12 @@ public final class SliderConstraint extends TwoBodyConstraint {
         return JPC_SliderConstraint_GetMaxFrictionForce(handle);
     }
 
-    public MotorSettings getMotorSettings() {
-        return MotorSettings.at(JPC_SliderConstraint_GetMotorSettings(handle));
+    public MotorSettings getMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_SliderConstraint_GetMotorSettings(handle));
     }
 
     public void setMotorState(MotorState state) {
-        JPC_SliderConstraint_SetMotorState(handle, state.ordinal());
+        JPC_SliderConstraint_SetMotorState(handle, (byte) state.ordinal());
     }
 
     public MotorState getMotorState() {
@@ -98,7 +92,12 @@ public final class SliderConstraint extends TwoBodyConstraint {
 
     // float[2]
     public float[] getTotalLambdaPosition() {
-        // TODO
+        try (var arena = MemorySession.openConfined()) {
+            var x = arena.allocate(C_FLOAT, 0);
+            var y = arena.allocate(C_FLOAT, 0);
+            JPC_SliderConstraint_GetTotalLambdaPosition(handle, x, y);
+            return new float[]{ x.get(C_FLOAT, 0), y.get(C_FLOAT, 0) };
+        }
     }
 
     public float getTotalLambdaPositionLimits() {

@@ -9,6 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$61 {
 
+    static final FunctionDescriptor JPC_Shape_GetCastRay$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_GetCastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_GetCastRay",
+        constants$61.JPC_Shape_GetCastRay$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_CollectCastRay$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_CollectCastRay$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_CollectCastRay",
+        constants$61.JPC_Shape_CollectCastRay$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_CollidePoint$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_CollidePoint$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_CollidePoint",
+        constants$61.JPC_Shape_CollidePoint$FUNC
+    );
+    static final FunctionDescriptor JPC_Shape_CollectTransformedShapes$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Shape_CollectTransformedShapes$MH = RuntimeHelper.downcallHandle(
+        "JPC_Shape_CollectTransformedShapes",
+        constants$61.JPC_Shape_CollectTransformedShapes$FUNC
+    );
     static final FunctionDescriptor JPC_Shape_TransformShape$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -28,36 +75,6 @@ class constants$61 {
     static final MethodHandle JPC_Shape_ScaleShape$MH = RuntimeHelper.downcallHandle(
         "JPC_Shape_ScaleShape",
         constants$61.JPC_Shape_ScaleShape$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_GetVolume$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_GetVolume$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_GetVolume",
-        constants$61.JPC_Shape_GetVolume$FUNC
-    );
-    static final FunctionDescriptor JPC_Shape_IsValidScale$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Shape_IsValidScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_Shape_IsValidScale",
-        constants$61.JPC_Shape_IsValidScale$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShape_SetMaterial$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShape_SetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_SetMaterial",
-        constants$61.JPC_ConvexShape_SetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShape_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShape_GetMaterial$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShape_GetMaterial",
-        constants$61.JPC_ConvexShape_GetMaterial$FUNC
     );
 }
 
