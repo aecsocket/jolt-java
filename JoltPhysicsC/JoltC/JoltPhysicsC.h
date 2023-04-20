@@ -306,6 +306,17 @@ typedef struct JPC_ConeConstraint       JPC_ConeConstraint;
 typedef struct JPC_SliderConstraint     JPC_SliderConstraint;
 typedef struct JPC_SwingTwistConstraint JPC_SwingTwistConstraint;
 typedef struct JPC_SixDOFConstraint     JPC_SixDOFConstraint;
+
+typedef struct JPC_ConstraintSettings           JPC_ConstraintSettings;
+typedef struct JPC_TwoBodyConstraintSettings    JPC_TwoBodyConstraintSettings;
+typedef struct JPC_FixedConstraintSettings      JPC_FixedConstraintSettings;
+typedef struct JPC_DistanceConstraintSettings   JPC_DistanceConstraintSettings;
+typedef struct JPC_PointConstraintSettings      JPC_PointConstraintSettings;
+typedef struct JPC_HingeConstraintSettings      JPC_HingeConstraintSettings;
+typedef struct JPC_ConeConstraintSettings       JPC_ConeConstraintSettings;
+typedef struct JPC_SliderConstraintSettings     JPC_SliderConstraintSettings;
+typedef struct JPC_SwingTwistConstraintSettings JPC_SwingTwistConstraintSettings;
+typedef struct JPC_SixDOFConstraintSettings     JPC_SixDOFConstraintSettings;
 //--------------------------------------------------------------------------------------------------
 //
 // Structures
@@ -683,40 +694,6 @@ typedef struct JPC_SupportBuffer
 {
     alignas(16) uint8_t data[4160];
 } JPC_SupportBuffer;
-
-typedef struct JPC_ConstraintSettings
-{
-    const void *vtable; // unused
-    bool        enabled;
-    int         num_velocity_steps_override;
-    int         num_position_steps_override;
-    float       draw_constraint_size;
-} JPC_ConstraintSettings;
-
-typedef struct JPC_TwoBodyConstraintSettings
-{
-    JPC_ConstraintSettings *base;
-} JPC_TwoBodyConstraintSettings;
-
-typedef struct JPC_FixedConstraintSettings {
-    JPC_TwoBodyConstraint *  base;
-    JPC_ConstraintSpace      space;
-    bool                     auto_detect_point;
-    JPC_RVEC_ALIGN JPC_Real  point1[4];
-    alignas(16) float        axis_x1[4];
-    alignas(16) float        axis_y1[4];
-    JPC_RVEC_ALIGN JPC_Real  point2[4];
-    alignas(16) float        axis_x2[4];
-    alignas(16) float        axis_y2[4];
-} JPC_FixedConstraintSettings;
-
-typedef struct JPC_DistanceConstraintSettings   JPC_DistanceConstraintSettings;
-typedef struct JPC_PointConstraintSettings      JPC_PointConstraintSettings;
-typedef struct JPC_HingeConstraintSettings      JPC_HingeConstraintSettings;
-typedef struct JPC_ConeConstraintSettings       JPC_ConeConstraintSettings;
-typedef struct JPC_SliderConstraintSettings     JPC_SliderConstraintSettings;
-typedef struct JPC_SwingTwistConstraintSettings JPC_SwingTwistConstraintSettings;
-typedef struct JPC_SixDOFConstraintSettings     JPC_SixDOFConstraintSettings;
 //--------------------------------------------------------------------------------------------------
 //
 // Interfaces (virtual tables)
@@ -3209,6 +3186,13 @@ JPC_MotorSettings_SetTorqueLimit(JPC_MotorSettings *in_settings, float in_limit)
 
 JPC_API bool
 JPC_MotorSettings_IsValid(const JPC_MotorSettings *in_settings);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API void
+JPC_ConstraintSettings_Release(JPC_ConstraintSettings *in_self);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_GJKClosestPoint
