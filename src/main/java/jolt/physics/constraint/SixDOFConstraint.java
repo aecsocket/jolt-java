@@ -51,11 +51,6 @@ public final class SixDOFConstraint extends TwoBodyConstraint {
         return JPC_SixDOFConstraint_GetMaxFriction(handle, (byte) axis.ordinal());
     }
 
-    // TODO not implemented
-//    public void getRotationInConstraintSpace(Quat out) {
-//        JPC_SixDOFConstraint_GetRotationInConstraintSpace(handle, out.address());
-//    }
-
     public MotorSettings getMotorSettings(MemorySession alloc, Axis axis) {
         return MotorSettings.at(alloc, JPC_SixDOFConstraint_GetMotorSettings(handle, (byte) axis.ordinal()));
     }

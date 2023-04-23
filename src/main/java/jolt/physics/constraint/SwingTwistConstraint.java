@@ -111,11 +111,6 @@ public final class SwingTwistConstraint extends TwoBodyConstraint {
         JPC_SwingTwistConstraint_SetTargetOrientationBS(handle, orientation.address());
     }
 
-    // TODO not implemented in C++
-//    public void getRotationInConstraintSpace(Quat out) {
-//        JPC_SwingTwistConstraint_GetRotationInConstraintSpace(handle, out.address());
-//    }
-
     public void getTotalLambdaPosition(FVec3 out) {
         JPC_SwingTwistConstraint_GetTotalLambdaPosition(handle, out.address());
     }

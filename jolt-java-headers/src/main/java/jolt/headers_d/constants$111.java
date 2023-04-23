@@ -9,66 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$111 {
 
-    static final FunctionDescriptor JPC_FixedConstraintSettings_GetAxisY2$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_FixedConstraintSettings_SetAxisX1$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_GetAxisY2$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_GetAxisY2",
-        constants$111.JPC_FixedConstraintSettings_GetAxisY2$FUNC
+    static final MethodHandle JPC_FixedConstraintSettings_SetAxisX1$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraintSettings_SetAxisX1",
+        constants$111.JPC_FixedConstraintSettings_SetAxisX1$FUNC
     );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_SetAxisY2$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_FixedConstraintSettings_GetAxisY1$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_SetAxisY2$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_SetAxisY2",
-        constants$111.JPC_FixedConstraintSettings_SetAxisY2$FUNC
+    static final MethodHandle JPC_FixedConstraintSettings_GetAxisY1$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraintSettings_GetAxisY1",
+        constants$111.JPC_FixedConstraintSettings_GetAxisY1$FUNC
     );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_CreateConstraint$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_FixedConstraintSettings_SetAxisY1$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_CreateConstraint$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_CreateConstraint",
-        constants$111.JPC_FixedConstraintSettings_CreateConstraint$FUNC
+    static final MethodHandle JPC_FixedConstraintSettings_SetAxisY1$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraintSettings_SetAxisY1",
+        constants$111.JPC_FixedConstraintSettings_SetAxisY1$FUNC
     );
-    static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexConvex$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_IntersectsConvexConvex",
-        constants$111.JPC_GJKClosestPoint_IntersectsConvexConvex$FUNC
-    );
-    static final FunctionDescriptor JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_FixedConstraintSettings_GetPoint2$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_GJKClosestPoint_GetClosestPointsConvexConvex$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_GetClosestPointsConvexConvex",
-        constants$111.JPC_GJKClosestPoint_GetClosestPointsConvexConvex$FUNC
+    static final MethodHandle JPC_FixedConstraintSettings_GetPoint2$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraintSettings_GetPoint2",
+        constants$111.JPC_FixedConstraintSettings_GetPoint2$FUNC
     );
-    static final FunctionDescriptor JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+    static final FunctionDescriptor JPC_FixedConstraintSettings_SetPoint2$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_GJKClosestPoint_IntersectsConvexPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_GJKClosestPoint_IntersectsConvexPoint",
-        constants$111.JPC_GJKClosestPoint_IntersectsConvexPoint$FUNC
+    static final MethodHandle JPC_FixedConstraintSettings_SetPoint2$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraintSettings_SetPoint2",
+        constants$111.JPC_FixedConstraintSettings_SetPoint2$FUNC
+    );
+    static final FunctionDescriptor JPC_FixedConstraintSettings_GetAxisX2$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_FixedConstraintSettings_GetAxisX2$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraintSettings_GetAxisX2",
+        constants$111.JPC_FixedConstraintSettings_GetAxisX2$FUNC
     );
 }
 

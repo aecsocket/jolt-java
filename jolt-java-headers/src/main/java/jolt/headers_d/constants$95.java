@@ -9,6 +9,13 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$95 {
 
+    static final FunctionDescriptor JPC_SliderConstraint_GetMaxFrictionForce$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SliderConstraint_GetMaxFrictionForce$MH = RuntimeHelper.downcallHandle(
+        "JPC_SliderConstraint_GetMaxFrictionForce",
+        constants$95.JPC_SliderConstraint_GetMaxFrictionForce$FUNC
+    );
     static final FunctionDescriptor JPC_SliderConstraint_SetMaxFrictionForce$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -16,13 +23,6 @@ class constants$95 {
     static final MethodHandle JPC_SliderConstraint_SetMaxFrictionForce$MH = RuntimeHelper.downcallHandle(
         "JPC_SliderConstraint_SetMaxFrictionForce",
         constants$95.JPC_SliderConstraint_SetMaxFrictionForce$FUNC
-    );
-    static final FunctionDescriptor JPC_SliderConstraint_GetMaxFrictionForce$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SliderConstraint_GetMaxFrictionForce$MH = RuntimeHelper.downcallHandle(
-        "JPC_SliderConstraint_GetMaxFrictionForce",
-        constants$95.JPC_SliderConstraint_GetMaxFrictionForce$FUNC
     );
     static final FunctionDescriptor JPC_SliderConstraint_GetMotorSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT

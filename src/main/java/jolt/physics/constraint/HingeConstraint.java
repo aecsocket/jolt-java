@@ -4,7 +4,6 @@ import jolt.math.FVec3;
 
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySession;
-import java.lang.foreign.ValueLayout;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -82,10 +81,10 @@ public final class HingeConstraint extends TwoBodyConstraint {
     // float[2]
     public float[] getTotalLambdaRotation() {
         try (var arena = MemorySession.openConfined()) {
-            var x = arena.allocate(C_FLOAT, 0);
-            var y = arena.allocate(C_FLOAT, 0);
+            var x = arena.allocate(C_FLOAT, 0.0f);
+            var y = arena.allocate(C_FLOAT, 0.0f);
             JPC_HingeConstraint_GetTotalLambdaRotation(handle, x, y);
-            return new float[]{ x.get(C_FLOAT, 0), y.get(C_FLOAT, 0) };
+            return new float[] { x.get(C_FLOAT, 0), y.get(C_FLOAT, 0) };
         }
     }
 

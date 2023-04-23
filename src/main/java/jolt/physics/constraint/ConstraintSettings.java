@@ -22,4 +22,28 @@ public sealed class ConstraintSettings extends DeletableJoltNative
     protected void deleteInternal() {
         JPC_ConstraintSettings_Release(handle);
     }
+
+    public boolean getEnabled() {
+        return JPC_ConstraintSettings_GetEnabled(handle);
+    }
+
+    public void setEnabled(boolean enabled) {
+        JPC_ConstraintSettings_SetEnabled(handle, enabled);
+    }
+
+    public int getNumVelocityStepsOverride() {
+        return JPC_ConstraintSettings_GetNumVelocityStepsOverride(handle);
+    }
+
+    public void setNumVelocityStepsOverride(int numVelocityStepsOverride) {
+        JPC_ConstraintSettings_SetNumVelocityStepsOverride(handle, numVelocityStepsOverride);
+    }
+
+    public int getNumPositionStepsOverride() {
+        return JPC_ConstraintSettings_GetNumPositionStepsOverride(handle);
+    }
+
+    public void setNumPositionsStepsOverride(int numPositionStepsOverride) {
+        JPC_ConstraintSettings_SetNumPositionStepsOverride(handle, numPositionStepsOverride);
+    }
 }

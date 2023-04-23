@@ -93,10 +93,10 @@ public final class SliderConstraint extends TwoBodyConstraint {
     // float[2]
     public float[] getTotalLambdaPosition() {
         try (var arena = MemorySession.openConfined()) {
-            var x = arena.allocate(C_FLOAT, 0);
-            var y = arena.allocate(C_FLOAT, 0);
+            var x = arena.allocate(C_FLOAT, 0.0f);
+            var y = arena.allocate(C_FLOAT, 0.0f);
             JPC_SliderConstraint_GetTotalLambdaPosition(handle, x, y);
-            return new float[]{ x.get(C_FLOAT, 0), y.get(C_FLOAT, 0) };
+            return new float[] { x.get(C_FLOAT, 0), y.get(C_FLOAT, 0) };
         }
     }
 

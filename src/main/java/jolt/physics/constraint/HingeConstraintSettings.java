@@ -1,15 +1,11 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
 import jolt.Jolt;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
+import jolt.math.DVec3;
 import jolt.math.FVec3;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -21,14 +17,14 @@ public abstract sealed class HingeConstraintSettings extends TwoBodyConstraintSe
     }
 
     public static HingeConstraintSettings at(MemoryAddress addr) {
-        return addr == MemoryAddress.NULL ? null : Jolt.tryingDoublePrecision()
+        return addr == MemoryAddress.NULL ? null : Jolt.doublePrecision()
                 ? new D(addr)
                 : new F(addr);
     }
     //endregion Jolt-Pointer
 
     public static HingeConstraintSettings of() {
-        return new HingeConstraintSettings(JPC_HingeConstraintSettings_Create());
+        return Jolt.doublePrecision() ? new D(JPC_HingeConstraintSettings_Create()) : new F(JPC_HingeConstraintSettings_Create());
     }
 
     public ConstraintSpace getSpace() {
@@ -36,7 +32,7 @@ public abstract sealed class HingeConstraintSettings extends TwoBodyConstraintSe
     }
 
     public void setSpace(ConstraintSpace space) {
-        JPC_HingeConstraintSettings_SetSpace(handle, space.ordinal());
+        JPC_HingeConstraintSettings_SetSpace(handle, (byte) space.ordinal());
     }
 
     public abstract void getPoint1(FVec3 out);
@@ -111,12 +107,8 @@ public abstract sealed class HingeConstraintSettings extends TwoBodyConstraintSe
         JPC_HingeConstraintSettings_SetMaxFrictionTorque(handle, maxFrictionTorque);
     }
 
-    public MotorSettings getMotorSettings(SegmentAllocator alloc) {
-        return MotorSettings.at(JPC_HingeConstraintSettings_GetMotorSettings(alloc, handle));
-    }
-
-    public void setMotorSettings(MotorSettings motorSettings) {
-        JPC_HingeConstraintSettings_SetMotorSettings(handle, motorSettings.address());
+    public MotorSettings getMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_HingeConstraintSettings_GetMotorSettings(handle));
     }
 
     static final class F extends HingeConstraintSettings {
@@ -156,7 +148,7 @@ public abstract sealed class HingeConstraintSettings extends TwoBodyConstraintSe
 
         @Override
         public void setPoint2(FVec3 point2) {
-            jolt.headers_f.JoltPhysicsC.JPC_HingeConstraintSettings_SetPoint2(handle, out.address());
+            jolt.headers_f.JoltPhysicsC.JPC_HingeConstraintSettings_SetPoint2(handle, point2.address());
         }
 
         @Override
@@ -197,7 +189,7 @@ public abstract sealed class HingeConstraintSettings extends TwoBodyConstraintSe
 
         @Override
         public void getPoint2(DVec3 point2) {
-            jolt.headers_d.JoltPhysicsC.JPC_HingeConstraintSettings_GetPoint2(handle, out.address());
+            jolt.headers_d.JoltPhysicsC.JPC_HingeConstraintSettings_GetPoint2(handle, point2.address());
         }
 
         @Override
@@ -207,7 +199,7 @@ public abstract sealed class HingeConstraintSettings extends TwoBodyConstraintSe
 
         @Override
         public void setPoint2(DVec3 point2) {
-            jolt.headers_d.JoltPhysicsC.JPC_HingeConstraintSettings_SetPoint2(handle, out.address());
+            jolt.headers_d.JoltPhysicsC.JPC_HingeConstraintSettings_SetPoint2(handle, point2.address());
         }
     }
 }

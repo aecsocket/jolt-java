@@ -16,7 +16,7 @@ These bindings are still feature-incomplete and unstable.
 ## Coverage
 
 Features:
-- [ ] Rigid bodies
+- [x] Rigid bodies
   - [x] Body interface
   - [x] Body locking
   - [x] Motion properties
@@ -33,7 +33,7 @@ Features:
   - [x] Contact
 - [x] Double precision
 - [ ] Constraints
-  - [x] (C bindings) Basic two-body
+  - [x] Two-body constraints
 - [ ] Vehicles
 - [ ] Ragdolls
 - [ ] Characters

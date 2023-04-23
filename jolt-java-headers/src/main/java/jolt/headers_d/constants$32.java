@@ -31,14 +31,6 @@ class constants$32 {
         "JPC_PhysicsSystem_AddConstraint",
         constants$32.JPC_PhysicsSystem_AddConstraint$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_RemoveConstraint$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_RemoveConstraint$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_RemoveConstraint",
-        constants$32.JPC_PhysicsSystem_RemoveConstraint$FUNC
-    );
     static final FunctionDescriptor JPC_PhysicsSystem_AddConstraints$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -47,6 +39,14 @@ class constants$32 {
     static final MethodHandle JPC_PhysicsSystem_AddConstraints$MH = RuntimeHelper.downcallHandle(
         "JPC_PhysicsSystem_AddConstraints",
         constants$32.JPC_PhysicsSystem_AddConstraints$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_RemoveConstraint$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_RemoveConstraint$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_RemoveConstraint",
+        constants$32.JPC_PhysicsSystem_RemoveConstraint$FUNC
     );
     static final FunctionDescriptor JPC_PhysicsSystem_RemoveConstraints$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,

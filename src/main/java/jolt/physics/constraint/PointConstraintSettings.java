@@ -1,14 +1,9 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
 import jolt.Jolt;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
+import jolt.math.DVec3;
 import jolt.math.FVec3;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
 
 import static jolt.headers.JoltPhysicsC.*;
@@ -21,14 +16,14 @@ public abstract sealed class PointConstraintSettings extends TwoBodyConstraintSe
     }
 
     public static PointConstraintSettings at(MemoryAddress addr) {
-        return addr == MemoryAddress.NULL ? null : Jolt.tryingDoublePrecision()
+        return addr == MemoryAddress.NULL ? null : Jolt.doublePrecision()
                 ? new D(addr)
                 : new F(addr);
     }
     //endregion Jolt-Pointer
 
     public static PointConstraintSettings of() {
-        return new PointConstraintSettings(JPC_PointConstraintSettings_Create());
+        return Jolt.doublePrecision() ? new D(JPC_PointConstraintSettings_Create()) : new F(JPC_PointConstraintSettings_Create());
     }
 
     public ConstraintSpace getSpace() {
@@ -36,7 +31,7 @@ public abstract sealed class PointConstraintSettings extends TwoBodyConstraintSe
     }
 
     public void setSpace(ConstraintSpace space) {
-        JPC_PointConstraintSettings_SetSpace(handle, space.ordinal());
+        JPC_PointConstraintSettings_SetSpace(handle, (byte) space.ordinal());
     }
 
     public abstract void getPoint1(FVec3 out);

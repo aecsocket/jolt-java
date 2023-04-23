@@ -110,27 +110,27 @@ public final class PhysicsSystem extends DeletableJoltNative {
         JPC_PhysicsSystem_AddConstraint(handle, constraint.address());
     }
 
+    public void addConstraints(Constraint[] constraints) {
+        try (var arena = MemorySession.openConfined()) {
+            var nConstraints = arena.allocateArray(C_POINTER, constraints.length);
+            for (int i = 0; i < constraints.length; i++) {
+                nConstraints.setAtIndex(C_POINTER, i, constraints[i].address());
+            }
+            JPC_PhysicsSystem_AddConstraints(handle, nConstraints, constraints.length);
+        }
+    }
+
     public void removeConstraint(Constraint constraint) {
         JPC_PhysicsSystem_RemoveConstraint(handle, constraint.address());
     }
 
-    public void addConstraints(Constraint[] constraints) {
-        try (var arena = MemorySession.openConfined()) {
-            var arr = arena.allocateArray(C_POINTER, constraints.length);
-            for (int i = 0; i < constraints.length; i++) {
-                arr.setAtIndex(C_POINTER, i, constraints[i].address());
-            }
-            JPC_PhysicsSystem_AddConstraints(handle, arr, constraints.length);
-        }
-    }
-
     public void removeConstraints(Constraint[] constraints) {
         try (var arena = MemorySession.openConfined()) {
-            var arr = arena.allocateArray(C_POINTER, constraints.length);
+            var nConstraints = arena.allocateArray(C_POINTER, constraints.length);
             for (int i = 0; i < constraints.length; i++) {
-                arr.setAtIndex(C_POINTER, i, constraints[i].address());
+                nConstraints.setAtIndex(C_POINTER, i, constraints[i].address());
             }
-            JPC_PhysicsSystem_RemoveConstraints(handle, arr, constraints.length);
+            JPC_PhysicsSystem_RemoveConstraints(handle, nConstraints, constraints.length);
         }
     }
 

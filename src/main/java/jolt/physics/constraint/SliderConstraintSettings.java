@@ -1,15 +1,11 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
 import jolt.Jolt;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
+import jolt.math.DVec3;
 import jolt.math.FVec3;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -21,14 +17,14 @@ public abstract sealed class SliderConstraintSettings extends TwoBodyConstraintS
     }
 
     public static SliderConstraintSettings at(MemoryAddress addr) {
-        return addr == MemoryAddress.NULL ? null : Jolt.tryingDoublePrecision()
+        return addr == MemoryAddress.NULL ? null : Jolt.doublePrecision()
                 ? new D(addr)
                 : new F(addr);
     }
     //endregion Jolt-Pointer
 
     public static SliderConstraintSettings of() {
-        return new SliderConstraintSettings(JPC_SliderConstraintSettings_Create());
+        return Jolt.doublePrecision() ? new D(JPC_SliderConstraintSettings_Create()) : new F(JPC_SliderConstraintSettings_Create());
     }
 
     public ConstraintSpace getSpace() {
@@ -36,7 +32,7 @@ public abstract sealed class SliderConstraintSettings extends TwoBodyConstraintS
     }
 
     public void setSpace(ConstraintSpace space) {
-        JPC_SliderConstraintSettings_SetSpace(handle, space.ordinal());
+        JPC_SliderConstraintSettings_SetSpace(handle, (byte) space.ordinal());
     }
 
     public boolean getAutoDetectPoint() {
@@ -115,7 +111,7 @@ public abstract sealed class SliderConstraintSettings extends TwoBodyConstraintS
         return JPC_SliderConstraintSettings_GetFrequency(handle);
     }
 
-    public void setFrequency(float frqeuency) {
+    public void setFrequency(float frequency) {
         JPC_SliderConstraintSettings_SetFrequency(handle, frequency);
     }
 
@@ -135,12 +131,8 @@ public abstract sealed class SliderConstraintSettings extends TwoBodyConstraintS
         JPC_SliderConstraintSettings_SetMaxFrictionForce(handle, maxFrictionForce);
     }
 
-    public MotorSettings getMotorSettings(SegmentAllocator alloc) {
-        return MotorSettings.at(JPC_SliderConstraintSettings_GetMotorSettings(alloc, handle));
-    }
-
-    public void setMotorSettings(MotorSettings motorSettings) {
-        JPC_SliderConstraintSettings_SetMotorSettings(motorSettings.address());
+    public MotorSettings getMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_SliderConstraintSettings_GetMotorSettings(handle));
     }
 
     static final class F extends SliderConstraintSettings {

@@ -7,7 +7,5 @@ public enum Axis {
 
     ROTATION_X,
     ROTATION_Y,
-    ROTATION_Z,
-
-    NUM
+    ROTATION_Z
 }

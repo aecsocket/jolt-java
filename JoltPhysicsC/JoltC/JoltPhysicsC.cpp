@@ -1376,6 +1376,32 @@ JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(const JPC_PhysicsSystem *in_physics_
 {
     return toJpc(&toJph(in_physics_system)->GetNarrowPhaseQueryNoLock());
 }
+
+JPC_API void
+JPC_PhysicsSystem_AddConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint)
+{
+    toJph(in_self)->AddConstraint(toJph(in_constraint));
+}
+
+JPC_API void
+JPC_PhysicsSystem_AddConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number)
+{
+    toJph(in_self)->AddConstraints(reinterpret_cast<JPH::Constraint **>(in_constraints), in_number);
+}
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint)
+{
+    toJph(in_self)->RemoveConstraint(toJph(in_constraint));
+}
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number)
+{
+    toJph(in_self)->RemoveConstraints(reinterpret_cast<JPH::Constraint **>(in_constraints), in_number);
+}
+
+// TODO GetConstraints
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_PhysicsSystem_AddConstraint(JPC_PhysicsSystem *in_physics_system, JPC_Constraint *in_constraint)
@@ -4733,6 +4759,12 @@ JPC_SliderConstraint_GetCurrentPosition(const JPC_SliderConstraint *in_self)
     return toJph(in_self)->GetCurrentPosition();
 }
 
+JPC_API float
+JPC_SliderConstraint_GetMaxFrictionForce(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetMaxFrictionForce();
+}
+
 JPC_API void
 JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in_friction)
 {
@@ -5244,9 +5276,55 @@ JPC_MotorSettings_IsValid(const JPC_MotorSettings *in_settings)
 //
 //--------------------------------------------------------------------------------------------------
 JPC_API void
-JPC_ConstraintSettings_Release(const JPC_ConstraintSettings *in_self)
+JPC_ConstraintSettings_Release(JPC_ConstraintSettings *in_self)
 {
     toJph(in_self)->Release();
+}
+
+JPC_API bool
+JPC_ConstraintSettings_GetEnabled(const JPC_ConstraintSettings *in_self)
+{
+    return toJph(in_self)->mEnabled;
+}
+
+JPC_API void
+JPC_ConstraintSettings_SetEnabled(JPC_ConstraintSettings *in_self, bool in_enabled)
+{
+    toJph(in_self)->mEnabled = in_enabled;
+}
+
+JPC_API int
+JPC_ConstraintSettings_GetNumVelocityStepsOverride(const JPC_ConstraintSettings *in_self)
+{
+    return toJph(in_self)->mNumVelocityStepsOverride;
+}
+
+JPC_API void
+JPC_ConstraintSettings_SetNumVelocityStepsOverride(JPC_ConstraintSettings *in_self, int in_num_velocity_steps_override)
+{
+    toJph(in_self)->mNumVelocityStepsOverride = in_num_velocity_steps_override;
+}
+
+JPC_API int
+JPC_ConstraintSettings_GetNumPositionStepsOverride(const JPC_ConstraintSettings *in_self)
+{
+    return toJph(in_self)->mNumPositionStepsOverride;
+}
+
+JPC_API void
+JPC_ConstraintSettings_SetNumPositionStepsOverride(JPC_ConstraintSettings *in_self, int in_num_position_steps_override)
+{
+    toJph(in_self)->mNumPositionStepsOverride = in_num_position_steps_override;
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_TwoBodyConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_TwoBodyConstraint *
+JPC_TwoBodyConstraintSettings_CreateConstraint(const JPC_TwoBodyConstraintSettings *in_self, JPC_Body *in_body1, JPC_Body *in_body2)
+{
+    return toJpc(toJph(in_self)->Create(*toJph(in_body1), *toJph(in_body2)));
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -5256,9 +5334,9 @@ JPC_ConstraintSettings_Release(const JPC_ConstraintSettings *in_self)
 JPC_API JPC_FixedConstraintSettings *
 JPC_FixedConstraintSettings_Create()
 {
-    auto settings = new JPH::FixedConstraintSettings();
-    settings->AddRef();
-    return toJpc(settings);
+    auto result = new JPH::FixedConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
 }
 
 JPC_API JPC_ConstraintSpace
@@ -5356,13 +5434,868 @@ JPC_FixedConstraintSettings_SetAxisY2(JPC_FixedConstraintSettings *in_self, cons
 {
     toJph(in_self)->mAxisY2 = loadVec3(in_axis);
 }
-
-JPC_API const JPC_TwoBodyConstraint *
-JPC_FixedConstraintSettings_CreateConstraint(const JPC_FixedConstraintSettings *in_self, JPC_Body *in_body1, JPC_Body *in_body2)
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_DistanceConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_DistanceConstraintSettings *
+JPC_DistanceConstraintSettings_Create()
 {
-    auto res = toJph(in_self)->Create(*toJph(in_body1), *toJph(in_body2));
-    res->AddRef();
-    return toJpc(res);
+    auto result = new JPH::DistanceConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API JPC_ConstraintSpace
+JPC_DistanceConstraintSettings_GetSpace(const JPC_DistanceConstraintSettings *in_self)
+{
+    return toJpc(toJph(in_self)->mSpace);
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetSpace(JPC_DistanceConstraintSettings *in_self, JPC_ConstraintSpace in_space)
+{
+    toJph(in_self)->mSpace = constraintSpaceToJph(in_space);
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_GetPoint1(const JPC_DistanceConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint1);
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetPoint1(JPC_DistanceConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint1 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_GetPoint2(const JPC_DistanceConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint2);
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetPoint2(JPC_DistanceConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
+}
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetMinDistance(const JPC_DistanceConstraintSettings *in_self)
+{
+    return toJph(in_self)->mMinDistance;
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetMinDistance(JPC_DistanceConstraintSettings *in_self, float in_distance)
+{
+    toJph(in_self)->mMinDistance = in_distance;
+}
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetMaxDistance(const JPC_DistanceConstraintSettings *in_self)
+{
+    return toJph(in_self)->mMaxDistance;
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetMaxDistance(JPC_DistanceConstraintSettings *in_self, float in_distance)
+{
+    toJph(in_self)->mMaxDistance = in_distance;
+}
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetFrequency(const JPC_DistanceConstraintSettings *in_self)
+{
+    return toJph(in_self)->mFrequency;
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetFrequency(JPC_DistanceConstraintSettings *in_self, float in_frequency)
+{
+    toJph(in_self)->mFrequency = in_frequency; 
+}
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetDamping(const JPC_DistanceConstraintSettings *in_self)
+{
+    return toJph(in_self)->mDamping;
+}
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetDamping(JPC_DistanceConstraintSettings *in_self, float in_damping)
+{
+    toJph(in_self)->mDamping = in_damping;
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_PointConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_PointConstraintSettings *
+JPC_PointConstraintSettings_Create()
+{
+    auto result = new JPH::PointConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API JPC_ConstraintSpace
+JPC_PointConstraintSettings_GetSpace(const JPC_PointConstraintSettings *in_self)
+{
+    return toJpc(toJph(in_self)->mSpace);
+}
+
+JPC_API void
+JPC_PointConstraintSettings_SetSpace(JPC_PointConstraintSettings *in_self, JPC_ConstraintSpace in_space)
+{
+    toJph(in_self)->mSpace = constraintSpaceToJph(in_space);
+}
+
+JPC_API void
+JPC_PointConstraintSettings_GetPoint1(const JPC_PointConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint1);
+}
+
+JPC_API void
+JPC_PointConstraintSettings_SetPoint1(JPC_PointConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_PointConstraintSettings_GetPoint2(const JPC_PointConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint2);
+}
+
+JPC_API void
+JPC_PointConstraintSettings_SetPoint2(JPC_PointConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_HingeConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_HingeConstraintSettings *
+JPC_HingeConstraintSettings_Create()
+{
+    auto result = new JPH::HingeConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API JPC_ConstraintSpace
+JPC_HingeConstraintSettings_GetSpace(const JPC_HingeConstraintSettings *in_self)
+{
+    return toJpc(toJph(in_self)->mSpace);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetSpace(JPC_HingeConstraintSettings *in_self, JPC_ConstraintSpace in_space)
+{
+    toJph(in_self)->mSpace = constraintSpaceToJph(in_space);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_GetPoint1(const JPC_HingeConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint1);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetPoint1(JPC_HingeConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint1 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_GetHingeAxis1(const JPC_HingeConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mHingeAxis1);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetHingeAxis1(JPC_HingeConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mHingeAxis1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_GetNormalAxis1(const JPC_HingeConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mNormalAxis1);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetNormalAxis1(JPC_HingeConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mNormalAxis1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_GetPoint2(const JPC_HingeConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint2);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetPoint2(JPC_HingeConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_GetHingeAxis2(const JPC_HingeConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mHingeAxis2);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetHingeAxis2(JPC_HingeConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mHingeAxis2 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_GetNormalAxis2(const JPC_HingeConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mNormalAxis2);
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetNormalAxis2(JPC_HingeConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mNormalAxis2 = loadVec3(in_axis);
+}
+
+JPC_API float
+JPC_HingeConstraintSettings_GetLimitsMin(const JPC_HingeConstraintSettings *in_self)
+{
+    return toJph(in_self)->mLimitsMin;
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetLimitsMin(JPC_HingeConstraintSettings *in_self, float in_limits)
+{
+    toJph(in_self)->mLimitsMin = in_limits;
+}
+
+JPC_API float
+JPC_HingeConstraintSettings_GetLimitsMax(const JPC_HingeConstraintSettings *in_self)
+{
+    return toJph(in_self)->mLimitsMax;
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetLimitsMax(JPC_HingeConstraintSettings *in_self, float in_limits)
+{
+    toJph(in_self)->mLimitsMax = in_limits;
+}
+
+JPC_API float
+JPC_HingeConstraintSettings_GetMaxFrictionTorque(const JPC_HingeConstraintSettings *in_self)
+{
+    return toJph(in_self)->mMaxFrictionTorque;
+}
+
+JPC_API void
+JPC_HingeConstraintSettings_SetMaxFrictionTorque(JPC_HingeConstraintSettings *in_self, float in_max_friction_torque)
+{
+    toJph(in_self)->mMaxFrictionTorque = in_max_friction_torque;
+}
+
+JPC_API JPC_MotorSettings *
+JPC_HingeConstraintSettings_GetMotorSettings(JPC_HingeConstraintSettings *in_self)
+{
+    return toJpc(&toJph(in_self)->mMotorSettings);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConeConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ConeConstraintSettings *
+JPC_ConeConstraintSettings_Create()
+{
+    auto result = new JPH::ConeConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API JPC_ConstraintSpace
+JPC_ConeConstraintSettings_GetSpace(const JPC_ConeConstraintSettings *in_self)
+{
+    return toJpc(toJph(in_self)->mSpace);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_SetSpace(JPC_ConeConstraintSettings *in_self, JPC_ConstraintSpace in_space)
+{
+    toJph(in_self)->mSpace = constraintSpaceToJph(in_space);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_GetPoint1(const JPC_ConeConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint1);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_SetPoint1(JPC_ConeConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint1 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_GetTwistAxis1(const JPC_ConeConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mTwistAxis1);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_SetTwistAxis1(JPC_ConeConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mTwistAxis1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_GetPoint2(const JPC_ConeConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint2);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_SetPoint2(JPC_ConeConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_GetTwistAxis2(const JPC_ConeConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mTwistAxis2);
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_SetTwistAxis2(JPC_ConeConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mTwistAxis2 = loadVec3(in_axis);
+}
+
+JPC_API float
+JPC_ConeConstraintSettings_GetHalfConeAngle(const JPC_ConeConstraintSettings *in_self)
+{
+    return toJph(in_self)->mHalfConeAngle;
+}
+
+JPC_API void
+JPC_ConeConstraintSettings_SetHalfConeAngle(JPC_ConeConstraintSettings *in_self, float in_half_cone_angle)
+{
+    toJph(in_self)->mHalfConeAngle = in_half_cone_angle;
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SliderConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SliderConstraintSettings *
+JPC_SliderConstraintSettings_Create()
+{
+    auto result = new JPH::SliderConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSliderAxis(JPC_SliderConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->SetSliderAxis(loadVec3(in_axis));
+}
+
+JPC_API JPC_ConstraintSpace
+JPC_SliderConstraintSettings_GetSpace(const JPC_SliderConstraintSettings *in_self)
+{
+    return toJpc(toJph(in_self)->mSpace);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSpace(JPC_SliderConstraintSettings *in_self, JPC_ConstraintSpace in_space)
+{
+    toJph(in_self)->mSpace = constraintSpaceToJph(in_space);
+}
+
+JPC_API bool
+JPC_SliderConstraintSettings_GetAutoDetectPoint(const JPC_SliderConstraintSettings *in_self)
+{
+    return toJph(in_self)->mAutoDetectPoint;
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetAutoDetectPoint(JPC_SliderConstraintSettings *in_self, bool in_auto_detect_point)
+{
+    toJph(in_self)->mAutoDetectPoint = in_auto_detect_point;
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_GetPoint1(const JPC_SliderConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint1);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetPoint1(JPC_SliderConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint1 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_GetSliderAxis1(const JPC_SliderConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mSliderAxis1);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSliderAxis1(JPC_SliderConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mSliderAxis1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_GetNormalAxis1(const JPC_SliderConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mNormalAxis1);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetNormalAxis1(JPC_SliderConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mNormalAxis1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_GetPoint2(const JPC_SliderConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPoint2);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetPoint2(JPC_SliderConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_GetSliderAxis2(const JPC_SliderConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mSliderAxis2);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSliderAxis2(JPC_SliderConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mSliderAxis2 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_GetNormalAxis2(const JPC_SliderConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mNormalAxis2);
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetNormalAxis2(JPC_SliderConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mNormalAxis2 = loadVec3(in_axis);
+}
+
+JPC_API float
+JPC_SliderConstraintSettings_GetLimitsMin(const JPC_SliderConstraintSettings *in_self)
+{
+    return toJph(in_self)->mLimitsMin;
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetLimitsMin(JPC_SliderConstraintSettings *in_self, float in_limits)
+{
+    toJph(in_self)->mLimitsMin = in_limits;
+}
+
+JPC_API float
+JPC_SliderConstraintSettings_GetLimitsMax(const JPC_SliderConstraintSettings *in_self)
+{
+    return toJph(in_self)->mLimitsMax;
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetLimitsMax(JPC_SliderConstraintSettings *in_self, float in_limits)
+{
+    toJph(in_self)->mLimitsMax = in_limits;
+}
+
+JPC_API float
+JPC_SliderConstraintSettings_GetFrequency(const JPC_SliderConstraintSettings *in_self)
+{
+    return toJph(in_self)->mFrequency;
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetFrequency(JPC_SliderConstraintSettings *in_self, float in_frequency)
+{
+    toJph(in_self)->mFrequency = in_frequency;
+}
+
+JPC_API float
+JPC_SliderConstraintSettings_GetDamping(const JPC_SliderConstraintSettings *in_self)
+{
+    return toJph(in_self)->mDamping;
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetDamping(JPC_SliderConstraintSettings *in_self, float in_damping)
+{
+    toJph(in_self)->mDamping = in_damping;
+}
+
+JPC_API float
+JPC_SliderConstraintSettings_GetMaxFrictionForce(const JPC_SliderConstraintSettings *in_self)
+{
+    return toJph(in_self)->mMaxFrictionForce;
+}
+
+JPC_API void
+JPC_SliderConstraintSettings_SetMaxFrictionForce(JPC_SliderConstraintSettings *in_self, float in_max_friction_force)
+{
+    toJph(in_self)->mMaxFrictionForce = in_max_friction_force;
+}
+
+JPC_API JPC_MotorSettings *
+JPC_SliderConstraintSettings_GetMotorSettings(JPC_SliderConstraintSettings *in_self)
+{
+    return toJpc(&toJph(in_self)->mMotorSettings);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SwingTwistConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SwingTwistConstraintSettings *
+JPC_SwingTwistConstraintSettings_Create()
+{
+    auto result = new JPH::SwingTwistConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API JPC_ConstraintSpace
+JPC_SwingTwistConstraintSettings_GetSpace(const JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJpc(toJph(in_self)->mSpace);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetSpace(JPC_SwingTwistConstraintSettings *in_self, JPC_ConstraintSpace in_space)
+{
+    toJph(in_self)->mSpace = constraintSpaceToJph(in_space);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPosition1(const JPC_SwingTwistConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPosition1);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPosition1(JPC_SwingTwistConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPosition1 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetTwistAxis1(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mTwistAxis1);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistAxis1(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mTwistAxis1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPlaneAxis1(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mPlaneAxis1);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPlaneAxis1(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mPlaneAxis1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPosition2(const JPC_SwingTwistConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPosition2);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPosition2(JPC_SwingTwistConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPosition2 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetTwistAxis2(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mTwistAxis2);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistAxis2(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mTwistAxis2 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPlaneAxis2(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mPlaneAxis2);
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPlaneAxis2(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mPlaneAxis2 = loadVec3(in_axis);
+}
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetNormalHalfConeAngle(const JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJph(in_self)->mNormalHalfConeAngle;
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetNormalHalfConeAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle)
+{
+    toJph(in_self)->mNormalHalfConeAngle = in_angle;
+}
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetPlaneHalfConeAngle(const JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJph(in_self)->mPlaneHalfConeAngle;
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPlaneHalfConeAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle)
+{
+    toJph(in_self)->mPlaneHalfConeAngle = in_angle;
+}
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetTwistMinAngle(const JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJph(in_self)->mTwistMinAngle;
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistMinAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle)
+{
+    toJph(in_self)->mTwistMinAngle = in_angle;
+}
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetTwistMaxAngle(const JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJph(in_self)->mTwistMaxAngle;
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistMaxAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle)
+{
+    toJph(in_self)->mTwistMaxAngle = in_angle;
+}
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetMaxFrictionTorque(const JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJph(in_self)->mMaxFrictionTorque;
+}
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetMaxFrictionTorque(JPC_SwingTwistConstraintSettings *in_self, float in_max_friction_torque)
+{
+    toJph(in_self)->mMaxFrictionTorque = in_max_friction_torque;
+}
+
+JPC_API JPC_MotorSettings *
+JPC_SwingTwistConstraintSettings_GetSwingMotorSettings(JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJpc(&toJph(in_self)->mSwingMotorSettings);
+}
+
+JPC_API JPC_MotorSettings *
+JPC_SwingTwistConstraintSettings_GetTwistMotorSettings(JPC_SwingTwistConstraintSettings *in_self)
+{
+    return toJpc(&toJph(in_self)->mTwistMotorSettings);
+}
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SixDOFConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SixDOFConstraintSettings *
+JPC_SixDOFConstraintSettings_Create()
+{
+    auto result = new JPH::SixDOFConstraintSettings();
+    result->AddRef();
+    return toJpc(result);
+}
+
+JPC_API JPC_ConstraintSpace
+JPC_SixDOFConstraintSettings_GetSpace(const JPC_SixDOFConstraintSettings *in_self)
+{
+    return toJpc(toJph(in_self)->mSpace);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetSpace(JPC_SixDOFConstraintSettings *in_self, JPC_ConstraintSpace in_space)
+{
+    toJph(in_self)->mSpace = constraintSpaceToJph(in_space);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetPosition1(const JPC_SixDOFConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPosition1);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetPosition1(JPC_SixDOFConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPosition1 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisX1(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mAxisX1);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisX1(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mAxisX1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisY1(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mAxisY1);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisY1(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mAxisY1 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetPosition2(const JPC_SixDOFConstraintSettings *in_self, JPC_Real out_point[3])
+{
+    storeRVec3(out_point, toJph(in_self)->mPosition2);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetPosition2(JPC_SixDOFConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPosition2 = loadRVec3(in_point);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisX2(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mAxisX2);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisX2(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mAxisX2 = loadVec3(in_axis);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisY2(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3])
+{
+    storeVec3(out_axis, toJph(in_self)->mAxisY2);
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisY2(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3])
+{
+    toJph(in_self)->mAxisY2 = loadVec3(in_axis);
+}
+
+JPC_API float *
+JPC_SixDOFConstraintSettings_GetMaxFriction(JPC_SixDOFConstraintSettings *in_self) {
+    return toJph(in_self)->mMaxFriction;
+}
+
+JPC_API float *
+JPC_SixDOFConstraintSettings_GetLimitMin(JPC_SixDOFConstraintSettings *in_self)
+{
+    return toJph(in_self)->mLimitMin;
+}
+
+JPC_API float *
+JPC_SixDOFConstraintSettings_GetLimitMax(JPC_SixDOFConstraintSettings *in_self)
+{
+    return toJph(in_self)->mLimitMax;
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_MakeFreeAxis(JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    toJph(in_self)->MakeFreeAxis(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API bool
+JPC_SixDOFConstraintSettings_IsFreeAxis(const JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJph(in_self)->IsFreeAxis(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_MakeFixedAxis(JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    toJph(in_self)->MakeFixedAxis(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API bool
+JPC_SixDOFConstraintSettings_IsFixedAxis(const JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis)
+{
+    return toJph(in_self)->IsFixedAxis(sixDofConstraintAxisToJph(in_axis));
+}
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetLimitedAxis(JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis, float in_min, float in_max)
+{
+    toJph(in_self)->SetLimitedAxis(sixDofConstraintAxisToJph(in_axis), in_min, in_max);
+}
+
+JPC_API JPC_MotorSettings **
+JPC_SixDOFConstraintSettings_GetMotorSettings(JPC_SixDOFConstraintSettings *in_self)
+{
+    return reinterpret_cast<JPC_MotorSettings **>(toJph(in_self)->mMotorSettings);
 }
 //--------------------------------------------------------------------------------------------------
 //

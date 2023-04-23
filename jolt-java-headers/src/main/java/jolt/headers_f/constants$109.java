@@ -9,52 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$109 {
 
-    static final FunctionDescriptor JPC_FixedConstraintSettings_GetAutoDetectPoint$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+    static final FunctionDescriptor JPC_ConstraintSettings_SetNumVelocityStepsOverride$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_ConstraintSettings_SetNumVelocityStepsOverride$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConstraintSettings_SetNumVelocityStepsOverride",
+        constants$109.JPC_ConstraintSettings_SetNumVelocityStepsOverride$FUNC
+    );
+    static final FunctionDescriptor JPC_ConstraintSettings_GetNumPositionStepsOverride$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_GetAutoDetectPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_GetAutoDetectPoint",
-        constants$109.JPC_FixedConstraintSettings_GetAutoDetectPoint$FUNC
+    static final MethodHandle JPC_ConstraintSettings_GetNumPositionStepsOverride$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConstraintSettings_GetNumPositionStepsOverride",
+        constants$109.JPC_ConstraintSettings_GetNumPositionStepsOverride$FUNC
     );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_SetAutoDetectPoint$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_ConstraintSettings_SetNumPositionStepsOverride$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_BOOL$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_SetAutoDetectPoint$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_SetAutoDetectPoint",
-        constants$109.JPC_FixedConstraintSettings_SetAutoDetectPoint$FUNC
+    static final MethodHandle JPC_ConstraintSettings_SetNumPositionStepsOverride$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConstraintSettings_SetNumPositionStepsOverride",
+        constants$109.JPC_ConstraintSettings_SetNumPositionStepsOverride$FUNC
     );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_GetPoint1$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_TwoBodyConstraintSettings_CreateConstraint$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_FixedConstraintSettings_GetPoint1$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_GetPoint1",
-        constants$109.JPC_FixedConstraintSettings_GetPoint1$FUNC
-    );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_SetPoint1$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_FixedConstraintSettings_SetPoint1$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_SetPoint1",
-        constants$109.JPC_FixedConstraintSettings_SetPoint1$FUNC
-    );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_GetAxisX1$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_GetAxisX1$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_GetAxisX1",
-        constants$109.JPC_FixedConstraintSettings_GetAxisX1$FUNC
+    static final MethodHandle JPC_TwoBodyConstraintSettings_CreateConstraint$MH = RuntimeHelper.downcallHandle(
+        "JPC_TwoBodyConstraintSettings_CreateConstraint",
+        constants$109.JPC_TwoBodyConstraintSettings_CreateConstraint$FUNC
     );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_SetAxisX1$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_FixedConstraintSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle JPC_FixedConstraintSettings_Create$MH = RuntimeHelper.downcallHandleVariadic(
+        "JPC_FixedConstraintSettings_Create",
+        constants$109.JPC_FixedConstraintSettings_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_FixedConstraintSettings_GetSpace$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_SetAxisX1$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_SetAxisX1",
-        constants$109.JPC_FixedConstraintSettings_SetAxisX1$FUNC
+    static final MethodHandle JPC_FixedConstraintSettings_GetSpace$MH = RuntimeHelper.downcallHandle(
+        "JPC_FixedConstraintSettings_GetSpace",
+        constants$109.JPC_FixedConstraintSettings_GetSpace$FUNC
     );
 }
 

@@ -18,15 +18,21 @@ option(CROSS_PLATFORM_DETERMINISTIC "Cross platform deterministic" OFF)
 # When turning this option on, the library will be compiled for ARM (aarch64-linux-gnu), requires compiling with clang
 option(CROSS_COMPILE_ARM "Cross compile to aarch64-linux-gnu" OFF)
 
+# When turning this option on, Jolt will be compiled as a shared library and public symbols will be exported.
+option(COMPILE_AS_SHARED_LIBRARY "Compile Jolt as a shared library" OFF)
+
 # When turning this option on, the library will be compiled with interprocedural optimizations enabled, also known as link-time optimizations or link-time code generation.
 # Note that if you turn this on you need to use SET_INTERPROCEDURAL_OPTIMIZATION() or set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON) to enable LTO specificly for your own project as well.
 # If you don't do this you may get an error: /usr/bin/ld: libJolt.a: error adding symbols: file format not recognized
 option(INTERPROCEDURAL_OPTIMIZATION "Enable interprocedural optimizations" ON)
 
-# When turning this on, in Debug and Release mode, the library will emit extra code to ensure that the 4th component of a 3-vector is kept the same as the 3rd component
-# and will enable floating point exceptions during simulation to detect divisions by zero.
+# When turning this on, in Debug and Release mode, the library will emit extra code to ensure that the 4th component of a 3-vector is kept the same as the 3rd component 
+# and will enable floating point exceptions during simulation to detect divisions by zero. 
 # Note that this currently only works using MSVC. Clang turns Float2 into a SIMD vector sometimes causing floating point exceptions (the option is ignored).
 option(FLOATING_POINT_EXCEPTIONS_ENABLED "Enable floating point exceptions" ON)
+
+# Number of bits to use in ObjectLayer. Can be 16 or 32.
+option(OBJECT_LAYER_BITS "Number of bits in ObjectLayer" 16)
 
 # Select X86 processor features to use (if everything is off it will be SSE2 compatible)
 option(USE_SSE4_1 "Enable SSE4.1" $ENV{JPJ_USE_SSE4_1})
@@ -38,6 +44,9 @@ option(USE_LZCNT "Enable LZCNT" $ENV{JPJ_USE_LZCNT})
 option(USE_TZCNT "Enable TZCNT" $ENV{JPJ_USE_TZCNT})
 option(USE_F16C "Enable F16C" $ENV{JPJ_USE_F16C})
 option(USE_FMADD "Enable FMADD" $ENV{JPJ_USE_FMADD})
+
+# Enable all warnings
+option(ENABLE_ALL_WARNINGS "Enable all warnings and warnings as errors" ON)
 
 include(CMakeDependentOption)
 
@@ -55,19 +64,22 @@ endif()
 if (("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "WindowsStore") AND NOT MINGW)
 	# Fill in the path to the asan libraries
 	set(CLANG_LIB_PATH "\"$(VSInstallDir)\\VC\\Tools\\Llvm\\x64\\lib\\clang\\${CMAKE_CXX_COMPILER_VERSION}\\lib\\windows\"")
-
+	
 	# 64 bit architecture
 	set(CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE "x64")
 
 	# Set runtime library
 	if (USE_STATIC_MSVC_RUNTIME_LIBRARY)
 		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-	else()
-		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
 	endif()
 
 	# Set general compiler flags
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus /Gm- /Wall /WX /MP /nologo /diagnostics:classic /FC /fp:except- /Zc:inline")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus /Gm- /MP /nologo /diagnostics:classic /FC /fp:except- /Zc:inline")
+	
+	# Enable warnings
+	if (ENABLE_ALL_WARNINGS)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall /WX")
+	endif()
 
 	# Optionally generate debug symbols
 	if (GENERATE_DEBUG_SYMBOLS)
@@ -110,7 +122,12 @@ if (("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows" OR "${CMAKE_SYSTEM_NAME}" STREQUA
 	endif()
 elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin" OR "${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR MINGW OR EMSCRIPTEN)
 	# Set general compiler flags
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I. -Wall -Wno-unused-function -Werror -fPIC") # JoltJava: add -fPIC, change some warning flags
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I. -fPIC") # JoltJava: add -fPIC
+
+	# Enable warnings
+	if (ENABLE_ALL_WARNINGS)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wno-unused-function -Wno-unused-variable") # JoltJava: add flags
+	endif()
 
 	# Optionally generate debug symbols
 	if (GENERATE_DEBUG_SYMBOLS)
@@ -121,7 +138,7 @@ elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR "${CMAKE_SYSTEM_NAME}" STREQU
 		# Somehow -Wcomment doesn't want to be turned off from code and we need this because Doxygen MathJax uses it
 		# Also disable -Wstringop-overflow or it will generate false positives that can't be disabled from code when link-time optimizations are enabled
 		# Also turn off automatic fused multiply add contractions, there doesn't seem to be a way to do this selectively through the macro JPH_PRECISE_MATH_OFF
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-comment -Wno-stringop-overflow -ffp-contract=off -Wno-unused-function -Wno-unused-variable") # JoltJava: add -Wno-unused-function -Wno-unused-variable
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-comment -Wno-stringop-overflow -ffp-contract=off")
 	else()
 		# Do not use -ffast-math since it cannot be turned off in a single compilation unit under clang, see Core.h
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffp-model=precise")
@@ -179,7 +196,7 @@ set(PHYSICS_REPO_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/)
 include(${PHYSICS_REPO_ROOT}/Jolt/Jolt.cmake)
 if (IOS)
 	# Ensure that we enable SSE4.2 for the x86_64 build, CMAKE_SYSTEM_PROCESSOR is not set for iOS
-	set_property(TARGET Jolt PROPERTY XCODE_ATTRIBUTE_OTHER_CPLUSPLUSFLAGS[arch=x86_64] "$(inherited) -msse4.2 -mpopcnt")
+	set_property(TARGET Jolt PROPERTY XCODE_ATTRIBUTE_OTHER_CPLUSPLUSFLAGS[arch=x86_64] "$(inherited) -msse4.2 -mpopcnt") 
 endif()
 
 # JoltJava: source JoltPhysicsC

@@ -1,15 +1,11 @@
 package jolt.physics.constraint;
 
-import jolt.DestroyableJoltNative;
 import jolt.Jolt;
-import jolt.geometry.AABox;
-import jolt.math.FMat44;
+import jolt.math.DVec3;
 import jolt.math.FVec3;
-import jolt.physics.collision.PhysicsMaterial;
 
-import javax.annotation.Nullable;
-import java.lang.foreign.Addressable;
 import java.lang.foreign.MemoryAddress;
+import java.lang.foreign.MemorySession;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -21,14 +17,14 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
     }
 
     public static SwingTwistConstraintSettings at(MemoryAddress addr) {
-        return addr == MemoryAddress.NULL ? null : Jolt.tryingDoublePrecision()
+        return addr == MemoryAddress.NULL ? null : Jolt.doublePrecision()
                 ? new D(addr)
                 : new F(addr);
     }
     //endregion Jolt-Pointer
 
     public static SwingTwistConstraintSettings of() {
-        return new SwingTwistConstraintSettings(JPC_SwingTwistConstraintSettings_Create());
+        return Jolt.doublePrecision() ? new D(JPC_SwingTwistConstraintSettings_Create()) : new F(JPC_SwingTwistConstraintSettings_Create());
     }
 
     public ConstraintSpace getSpace() {
@@ -36,7 +32,7 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
     }
 
     public void setSpace(ConstraintSpace space) {
-        JPC_SwingTwistConstraintSettings_SetSpace(handle, space.ordinal());
+        JPC_SwingTwistConstraintSettings_SetSpace(handle, (byte) space.ordinal());
     }
 
     public abstract void getPoint1(FVec3 out);
@@ -84,7 +80,7 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
     }
 
     public void setPlaneAxis2(FVec3 planeAxis2) {
-        JPC_SwingTwistConstraintSettings_SetPlaneAxis2(handle, out.address());
+        JPC_SwingTwistConstraintSettings_SetPlaneAxis2(handle, planeAxis2.address());
     }
 
     public float getNormalHalfConeAngle() {
@@ -127,23 +123,15 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
         JPC_SwingTwistConstraintSettings_SetMaxFrictionTorque(handle, maxFrictionTorque);
     }
 
-    public MotorSettings getSwingMotorSettings() {
-        return MotorSettings.at(JPC_SwingConstraintSettings_GetSwingMotorSettings(handle));
+    public MotorSettings getSwingMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_SwingTwistConstraintSettings_GetSwingMotorSettings(handle));
     }
 
-    public void setSwingMotorSettings(MotorSettings swingMotorSettings) {
-        JPC_SwingConstraintSettings_SetSwingMotorSettings(handle, swingMotorSettings.address());
+    public MotorSettings getTwistMotorSettings(MemorySession alloc) {
+        return MotorSettings.at(alloc, JPC_SwingTwistConstraintSettings_GetTwistMotorSettings(handle));
     }
 
-    public MotorSettings getTwistMotorSettings() {
-        return MotorSettings.at(JPC_SwingConstraintSettings_GetTwistMotorSettings(handle));
-    }
-
-    public void setTwistMotorSettings(MotorSettings twistMotorSettings) {
-        JPC_SwingConstraintSettings_SetTwistMotorSettings(handle, twistMotorSettings.address());
-    }
-
-    static final class F extends DistanceConstraintSettings {
+    static final class F extends SwingTwistConstraintSettings {
         private F(MemoryAddress handle) {
             super(handle);
         }
@@ -189,7 +177,7 @@ public abstract sealed class SwingTwistConstraintSettings extends TwoBodyConstra
         }
     }
 
-    static final class D extends FixedConstraintSettings {
+    static final class D extends SwingTwistConstraintSettings {
         private D(MemoryAddress handle) {
             super(handle);
         }

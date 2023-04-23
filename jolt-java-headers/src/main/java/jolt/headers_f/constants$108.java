@@ -31,25 +31,27 @@ class constants$108 {
         "JPC_ConstraintSettings_Release",
         constants$108.JPC_ConstraintSettings_Release$FUNC
     );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
-    static final MethodHandle JPC_FixedConstraintSettings_Create$MH = RuntimeHelper.downcallHandleVariadic(
-        "JPC_FixedConstraintSettings_Create",
-        constants$108.JPC_FixedConstraintSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_GetSpace$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor JPC_ConstraintSettings_GetEnabled$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_GetSpace$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_GetSpace",
-        constants$108.JPC_FixedConstraintSettings_GetSpace$FUNC
+    static final MethodHandle JPC_ConstraintSettings_GetEnabled$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConstraintSettings_GetEnabled",
+        constants$108.JPC_ConstraintSettings_GetEnabled$FUNC
     );
-    static final FunctionDescriptor JPC_FixedConstraintSettings_SetSpace$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_ConstraintSettings_SetEnabled$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_BOOL$LAYOUT
     );
-    static final MethodHandle JPC_FixedConstraintSettings_SetSpace$MH = RuntimeHelper.downcallHandle(
-        "JPC_FixedConstraintSettings_SetSpace",
-        constants$108.JPC_FixedConstraintSettings_SetSpace$FUNC
+    static final MethodHandle JPC_ConstraintSettings_SetEnabled$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConstraintSettings_SetEnabled",
+        constants$108.JPC_ConstraintSettings_SetEnabled$FUNC
+    );
+    static final FunctionDescriptor JPC_ConstraintSettings_GetNumVelocityStepsOverride$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConstraintSettings_GetNumVelocityStepsOverride$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConstraintSettings_GetNumVelocityStepsOverride",
+        constants$108.JPC_ConstraintSettings_GetNumVelocityStepsOverride$FUNC
     );
 }
 
