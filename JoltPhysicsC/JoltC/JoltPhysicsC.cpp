@@ -1376,32 +1376,6 @@ JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(const JPC_PhysicsSystem *in_physics_
 {
     return toJpc(&toJph(in_physics_system)->GetNarrowPhaseQueryNoLock());
 }
-
-JPC_API void
-JPC_PhysicsSystem_AddConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint)
-{
-    toJph(in_self)->AddConstraint(toJph(in_constraint));
-}
-
-JPC_API void
-JPC_PhysicsSystem_AddConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number)
-{
-    toJph(in_self)->AddConstraints(reinterpret_cast<JPH::Constraint **>(in_constraints), in_number);
-}
-
-JPC_API void
-JPC_PhysicsSystem_RemoveConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint)
-{
-    toJph(in_self)->RemoveConstraint(toJph(in_constraint));
-}
-
-JPC_API void
-JPC_PhysicsSystem_RemoveConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number)
-{
-    toJph(in_self)->RemoveConstraints(reinterpret_cast<JPH::Constraint **>(in_constraints), in_number);
-}
-
-// TODO GetConstraints
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_PhysicsSystem_AddConstraint(JPC_PhysicsSystem *in_physics_system, JPC_Constraint *in_constraint)
@@ -4769,12 +4743,6 @@ JPC_API void
 JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in_friction)
 {
     toJph(in_self)->SetMaxFrictionForce(in_friction);
-}
-
-JPC_API float
-JPC_SliderConstraint_GetMaxFrictionForce(const JPC_SliderConstraint *in_self)
-{
-    return toJph(in_self)->GetMaxFrictionForce();
 }
 
 JPC_API JPC_MotorSettings *

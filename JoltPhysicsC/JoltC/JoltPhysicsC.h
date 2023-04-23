@@ -2968,9 +2968,6 @@ JPC_SliderConstraint_GetMaxFrictionForce(const JPC_SliderConstraint *in_self);
 JPC_API void
 JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in_friction);
 
-JPC_API float
-JPC_SliderConstraint_GetMaxFrictionForce(const JPC_SliderConstraint *in_self);
-
 JPC_API JPC_MotorSettings *
 JPC_SliderConstraint_GetMotorSettings(JPC_SliderConstraint *in_self);
 

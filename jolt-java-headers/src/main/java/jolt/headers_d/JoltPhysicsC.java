@@ -6842,17 +6842,6 @@ public class JoltPhysicsC extends JoltPhysicsC_1 {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle JPC_SliderConstraint_GetMaxFrictionForce$MH() {
-        return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_GetMaxFrictionForce$MH,"JPC_SliderConstraint_GetMaxFrictionForce");
-    }
-    public static float JPC_SliderConstraint_GetMaxFrictionForce ( Addressable in_self) {
-        var mh$ = JPC_SliderConstraint_GetMaxFrictionForce$MH();
-        try {
-            return (float)mh$.invokeExact(in_self);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
     public static MethodHandle JPC_SliderConstraint_GetMotorSettings$MH() {
         return RuntimeHelper.requireNonNull(constants$95.JPC_SliderConstraint_GetMotorSettings$MH,"JPC_SliderConstraint_GetMotorSettings");
     }
