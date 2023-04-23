@@ -40,7 +40,8 @@ afterEvaluate {
                 exec {
                     workingDir = file(nativesBuildDir)
                     commandLine = listOf(
-                        nativesExt.generatorBinary.get(),
+                        "cmake",
+                        "--build", ".",
                         "-j$workers"
                     )
                 }
