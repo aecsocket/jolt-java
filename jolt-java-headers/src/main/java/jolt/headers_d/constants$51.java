@@ -9,6 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$51 {
 
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_SetMaxConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_SetMaxConvexRadius",
+        constants$51.JPC_ConvexHullShapeSettings_SetMaxConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius",
+        constants$51.JPC_ConvexHullShapeSettings_GetMaxErrorConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius",
+        constants$51.JPC_ConvexHullShapeSettings_SetMaxErrorConvexRadius$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexHullShapeSettings_GetHullTolerance$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexHullShapeSettings_GetHullTolerance",
+        constants$51.JPC_ConvexHullShapeSettings_GetHullTolerance$FUNC
+    );
     static final FunctionDescriptor JPC_ConvexHullShapeSettings_SetHullTolerance$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
@@ -29,38 +59,6 @@ class constants$51 {
     static final MethodHandle JPC_HeightFieldShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
         "JPC_HeightFieldShapeSettings_Create",
         constants$51.JPC_HeightFieldShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetOffset$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetOffset$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetOffset",
-        constants$51.JPC_HeightFieldShapeSettings_GetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetOffset$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetOffset$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetOffset",
-        constants$51.JPC_HeightFieldShapeSettings_SetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_GetScale$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_GetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_GetScale",
-        constants$51.JPC_HeightFieldShapeSettings_GetScale$FUNC
-    );
-    static final FunctionDescriptor JPC_HeightFieldShapeSettings_SetScale$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HeightFieldShapeSettings_SetScale$MH = RuntimeHelper.downcallHandle(
-        "JPC_HeightFieldShapeSettings_SetScale",
-        constants$51.JPC_HeightFieldShapeSettings_SetScale$FUNC
     );
 }
 

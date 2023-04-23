@@ -9,6 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$44 {
 
+    static final FunctionDescriptor JPC_ShapeSettings_CreateShape$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
+        Constants$root.C_POINTER$LAYOUT.withName("result"),
+        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("error")
+    ).withName("JPC_ShapeResult"),
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_CreateShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_CreateShape",
+        constants$44.JPC_ShapeSettings_CreateShape$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_GetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_GetUserData",
+        constants$44.JPC_ShapeSettings_GetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_ShapeSettings_SetUserData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle JPC_ShapeSettings_SetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_ShapeSettings_SetUserData",
+        constants$44.JPC_ShapeSettings_SetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_ConvexShape_GetSupportFunction$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ConvexShape_GetSupportFunction$MH = RuntimeHelper.downcallHandle(
+        "JPC_ConvexShape_GetSupportFunction",
+        constants$44.JPC_ConvexShape_GetSupportFunction$FUNC
+    );
     static final FunctionDescriptor JPC_ConvexShapeSettings_GetMaterial$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -23,38 +58,6 @@ class constants$44 {
     static final MethodHandle JPC_ConvexShapeSettings_SetMaterial$MH = RuntimeHelper.downcallHandle(
         "JPC_ConvexShapeSettings_SetMaterial",
         constants$44.JPC_ConvexShapeSettings_SetMaterial$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_GetDensity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShapeSettings_GetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_GetDensity",
-        constants$44.JPC_ConvexShapeSettings_GetDensity$FUNC
-    );
-    static final FunctionDescriptor JPC_ConvexShapeSettings_SetDensity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_ConvexShapeSettings_SetDensity$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConvexShapeSettings_SetDensity",
-        constants$44.JPC_ConvexShapeSettings_SetDensity$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShapeSettings_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShapeSettings_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShapeSettings_Create",
-        constants$44.JPC_BoxShapeSettings_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_BoxShapeSettings_GetHalfExtent$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BoxShapeSettings_GetHalfExtent$MH = RuntimeHelper.downcallHandle(
-        "JPC_BoxShapeSettings_GetHalfExtent",
-        constants$44.JPC_BoxShapeSettings_GetHalfExtent$FUNC
     );
 }
 

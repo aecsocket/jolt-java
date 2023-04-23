@@ -9,6 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$67 {
 
+    static final FunctionDescriptor JPC_BodyInterface_AddBodiesAbort$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddBodiesAbort$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddBodiesAbort",
+        constants$67.JPC_BodyInterface_AddBodiesAbort$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_RemoveBodies$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_RemoveBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_RemoveBodies",
+        constants$67.JPC_BodyInterface_RemoveBodies$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_ActivateBody$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_ActivateBody$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_ActivateBody",
+        constants$67.JPC_BodyInterface_ActivateBody$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_ActivateBodies$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_ActivateBodies$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_ActivateBodies",
+        constants$67.JPC_BodyInterface_ActivateBodies$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_DeactivateBody$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
@@ -25,44 +61,6 @@ class constants$67 {
     static final MethodHandle JPC_BodyInterface_DeactivateBodies$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_DeactivateBodies",
         constants$67.JPC_BodyInterface_DeactivateBodies$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_IsActive$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_IsActive$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_IsActive",
-        constants$67.JPC_BodyInterface_IsActive$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetShape",
-        constants$67.JPC_BodyInterface_GetShape$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetShape$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetShape",
-        constants$67.JPC_BodyInterface_SetShape$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_NotifyShapeChanged$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_NotifyShapeChanged$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_NotifyShapeChanged",
-        constants$67.JPC_BodyInterface_NotifyShapeChanged$FUNC
     );
 }
 

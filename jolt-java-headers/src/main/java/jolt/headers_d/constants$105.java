@@ -9,55 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$105 {
 
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_SetMotorState$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle JPC_SixDOFConstraint_SetMotorState$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_SetMotorState",
+        constants$105.JPC_SixDOFConstraint_SetMotorState$FUNC
+    );
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetMotorState$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle JPC_SixDOFConstraint_GetMotorState$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetMotorState",
+        constants$105.JPC_SixDOFConstraint_GetMotorState$FUNC
+    );
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTargetVelocityCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetTotalLambdaPosition",
-        constants$105.JPC_SixDOFConstraint_GetTotalLambdaPosition$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_GetTargetVelocityCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTargetVelocityCS",
+        constants$105.JPC_SixDOFConstraint_GetTargetVelocityCS$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaRotation$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetVelocityCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetTotalLambdaRotation",
-        constants$105.JPC_SixDOFConstraint_GetTotalLambdaRotation$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_SetTargetVelocityCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_SetTargetVelocityCS",
+        constants$105.JPC_SixDOFConstraint_SetTargetVelocityCS$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetAngularVelocityCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation",
-        constants$105.JPC_SixDOFConstraint_GetTotalLambdaMotorTranslation$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_SetTargetAngularVelocityCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_SetTargetAngularVelocityCS",
+        constants$105.JPC_SixDOFConstraint_SetTargetAngularVelocityCS$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetTargetAngularVelocityCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetTotalLambdaMotorRotation",
-        constants$105.JPC_SixDOFConstraint_GetTotalLambdaMotorRotation$FUNC
-    );
-    static final FunctionDescriptor JPC_MotorSettings_SetForceLimits$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotorSettings_SetForceLimits$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotorSettings_SetForceLimits",
-        constants$105.JPC_MotorSettings_SetForceLimits$FUNC
-    );
-    static final FunctionDescriptor JPC_MotorSettings_SetTorqueLimits$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_MotorSettings_SetTorqueLimits$MH = RuntimeHelper.downcallHandle(
-        "JPC_MotorSettings_SetTorqueLimits",
-        constants$105.JPC_MotorSettings_SetTorqueLimits$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_GetTargetAngularVelocityCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetTargetAngularVelocityCS",
+        constants$105.JPC_SixDOFConstraint_GetTargetAngularVelocityCS$FUNC
     );
 }
 

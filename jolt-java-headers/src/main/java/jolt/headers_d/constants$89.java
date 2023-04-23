@@ -9,6 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$89 {
 
+    static final FunctionDescriptor JPC_DistanceConstraint_SetDistance$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_SetDistance$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_SetDistance",
+        constants$89.JPC_DistanceConstraint_SetDistance$FUNC
+    );
+    static final FunctionDescriptor JPC_DistanceConstraint_GetMinDistance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_GetMinDistance$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_GetMinDistance",
+        constants$89.JPC_DistanceConstraint_GetMinDistance$FUNC
+    );
+    static final FunctionDescriptor JPC_DistanceConstraint_GetMaxDistance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_GetMaxDistance$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_GetMaxDistance",
+        constants$89.JPC_DistanceConstraint_GetMaxDistance$FUNC
+    );
+    static final FunctionDescriptor JPC_DistanceConstraint_SetFrequency$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_DistanceConstraint_SetFrequency$MH = RuntimeHelper.downcallHandle(
+        "JPC_DistanceConstraint_SetFrequency",
+        constants$89.JPC_DistanceConstraint_SetFrequency$FUNC
+    );
     static final FunctionDescriptor JPC_DistanceConstraint_GetFrequency$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -23,38 +54,6 @@ class constants$89 {
     static final MethodHandle JPC_DistanceConstraint_SetDamping$MH = RuntimeHelper.downcallHandle(
         "JPC_DistanceConstraint_SetDamping",
         constants$89.JPC_DistanceConstraint_SetDamping$FUNC
-    );
-    static final FunctionDescriptor JPC_DistanceConstraint_GetDamping$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_DistanceConstraint_GetDamping$MH = RuntimeHelper.downcallHandle(
-        "JPC_DistanceConstraint_GetDamping",
-        constants$89.JPC_DistanceConstraint_GetDamping$FUNC
-    );
-    static final FunctionDescriptor JPC_DistanceConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_DistanceConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_DistanceConstraint_GetTotalLambdaPosition",
-        constants$89.JPC_DistanceConstraint_GetTotalLambdaPosition$FUNC
-    );
-    static final FunctionDescriptor JPC_PointConstraint_SetPoint1$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PointConstraint_SetPoint1$MH = RuntimeHelper.downcallHandle(
-        "JPC_PointConstraint_SetPoint1",
-        constants$89.JPC_PointConstraint_SetPoint1$FUNC
-    );
-    static final FunctionDescriptor JPC_PointConstraint_SetPoint2$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PointConstraint_SetPoint2$MH = RuntimeHelper.downcallHandle(
-        "JPC_PointConstraint_SetPoint2",
-        constants$89.JPC_PointConstraint_SetPoint2$FUNC
     );
 }
 

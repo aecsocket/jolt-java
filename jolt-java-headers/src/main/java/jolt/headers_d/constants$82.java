@@ -9,6 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$82 {
 
+    static final FunctionDescriptor JPC_Body_GetAccumulatedTorque$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetAccumulatedTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetAccumulatedTorque",
+        constants$82.JPC_Body_GetAccumulatedTorque$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetInverseInertia$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetInverseInertia$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetInverseInertia",
+        constants$82.JPC_Body_GetInverseInertia$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_AddImpulse$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_AddImpulse$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_AddImpulse",
+        constants$82.JPC_Body_AddImpulse$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_AddImpulseAtPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_AddImpulseAtPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_AddImpulseAtPosition",
+        constants$82.JPC_Body_AddImpulseAtPosition$FUNC
+    );
     static final FunctionDescriptor JPC_Body_AddAngularImpulse$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -26,42 +59,6 @@ class constants$82 {
     static final MethodHandle JPC_Body_MoveKinematic$MH = RuntimeHelper.downcallHandle(
         "JPC_Body_MoveKinematic",
         constants$82.JPC_Body_MoveKinematic$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_ApplyBuoyancyImpulse$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_Body_ApplyBuoyancyImpulse$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_ApplyBuoyancyImpulse",
-        constants$82.JPC_Body_ApplyBuoyancyImpulse$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_IsInBroadPhase$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_IsInBroadPhase$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_IsInBroadPhase",
-        constants$82.JPC_Body_IsInBroadPhase$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_IsCollisionCacheInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_IsCollisionCacheInvalid$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_IsCollisionCacheInvalid",
-        constants$82.JPC_Body_IsCollisionCacheInvalid$FUNC
-    );
-    static final FunctionDescriptor JPC_Body_GetShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Body_GetShape$MH = RuntimeHelper.downcallHandle(
-        "JPC_Body_GetShape",
-        constants$82.JPC_Body_GetShape$FUNC
     );
 }
 

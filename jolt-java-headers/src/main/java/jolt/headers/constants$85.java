@@ -9,6 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$85 {
 
+    static final FunctionDescriptor JPC_Body_GetUserData$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetUserData",
+        constants$85.JPC_Body_GetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_SetUserData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle JPC_Body_SetUserData$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_SetUserData",
+        constants$85.JPC_Body_SetUserData$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetTransformedShape$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetTransformedShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetTransformedShape",
+        constants$85.JPC_Body_GetTransformedShape$FUNC
+    );
+    static final FunctionDescriptor JPC_Body_GetBodyCreationSettings$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_Body_GetBodyCreationSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_Body_GetBodyCreationSettings",
+        constants$85.JPC_Body_GetBodyCreationSettings$FUNC
+    );
     static final FunctionDescriptor JPC_Body_GetWorldSpaceSurfaceNormal$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -23,34 +54,6 @@ class constants$85 {
     static final MethodHandle JPC_Body_FixedToWorld$MH = RuntimeHelper.downcallHandleVariadic(
         "JPC_Body_FixedToWorld",
         constants$85.JPC_Body_FixedToWorld$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyID_GetIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyID_GetIndex$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_GetIndex",
-        constants$85.JPC_BodyID_GetIndex$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyID_GetSequenceNumber$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyID_GetSequenceNumber$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_GetSequenceNumber",
-        constants$85.JPC_BodyID_GetSequenceNumber$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyID_IsInvalid$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyID_IsInvalid$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyID_IsInvalid",
-        constants$85.JPC_BodyID_IsInvalid$FUNC
-    );
-    static final FunctionDescriptor JPC_Constraint_Release$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_Constraint_Release$MH = RuntimeHelper.downcallHandle(
-        "JPC_Constraint_Release",
-        constants$85.JPC_Constraint_Release$FUNC
     );
 }
 

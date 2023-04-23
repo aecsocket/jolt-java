@@ -23,40 +23,39 @@ class constants$32 {
         "JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock",
         constants$32.JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_OptimizeBroadPhase$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_PhysicsSystem_OptimizeBroadPhase$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_OptimizeBroadPhase",
-        constants$32.JPC_PhysicsSystem_OptimizeBroadPhase$FUNC
-    );
-    static final FunctionDescriptor JPC_PhysicsSystem_AddStepListener$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_AddConstraint$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_AddStepListener$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_AddStepListener",
-        constants$32.JPC_PhysicsSystem_AddStepListener$FUNC
+    static final MethodHandle JPC_PhysicsSystem_AddConstraint$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_AddConstraint",
+        constants$32.JPC_PhysicsSystem_AddConstraint$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_RemoveStepListener$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_AddConstraints$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle JPC_PhysicsSystem_AddConstraints$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_AddConstraints",
+        constants$32.JPC_PhysicsSystem_AddConstraints$FUNC
+    );
+    static final FunctionDescriptor JPC_PhysicsSystem_RemoveConstraint$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_RemoveStepListener$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_RemoveStepListener",
-        constants$32.JPC_PhysicsSystem_RemoveStepListener$FUNC
+    static final MethodHandle JPC_PhysicsSystem_RemoveConstraint$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_RemoveConstraint",
+        constants$32.JPC_PhysicsSystem_RemoveConstraint$FUNC
     );
-    static final FunctionDescriptor JPC_PhysicsSystem_Update$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_PhysicsSystem_RemoveConstraints$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle JPC_PhysicsSystem_Update$MH = RuntimeHelper.downcallHandle(
-        "JPC_PhysicsSystem_Update",
-        constants$32.JPC_PhysicsSystem_Update$FUNC
+    static final MethodHandle JPC_PhysicsSystem_RemoveConstraints$MH = RuntimeHelper.downcallHandle(
+        "JPC_PhysicsSystem_RemoveConstraints",
+        constants$32.JPC_PhysicsSystem_RemoveConstraints$FUNC
     );
 }
 

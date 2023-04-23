@@ -9,6 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$63 {
 
+    static final FunctionDescriptor JPC_DecoratedShape_GetInnerShape$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_DecoratedShape_GetInnerShape$MH = RuntimeHelper.downcallHandle(
+        "JPC_DecoratedShape_GetInnerShape",
+        constants$63.JPC_DecoratedShape_GetInnerShape$FUNC
+    );
+    static final FunctionDescriptor JPC_ScaledShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ScaledShape_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_ScaledShape_Create",
+        constants$63.JPC_ScaledShape_Create$FUNC
+    );
+    static final FunctionDescriptor JPC_ScaledShape_GetScale$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_ScaledShape_GetScale$MH = RuntimeHelper.downcallHandle(
+        "JPC_ScaledShape_GetScale",
+        constants$63.JPC_ScaledShape_GetScale$FUNC
+    );
+    static final FunctionDescriptor JPC_RotatedTranslatedShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_RotatedTranslatedShape_Create$MH = RuntimeHelper.downcallHandle(
+        "JPC_RotatedTranslatedShape_Create",
+        constants$63.JPC_RotatedTranslatedShape_Create$FUNC
+    );
     static final FunctionDescriptor JPC_RotatedTranslatedShape_GetPosition$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -24,39 +56,6 @@ class constants$63 {
     static final MethodHandle JPC_RotatedTranslatedShape_GetRotation$MH = RuntimeHelper.downcallHandle(
         "JPC_RotatedTranslatedShape_GetRotation",
         constants$63.JPC_RotatedTranslatedShape_GetRotation$FUNC
-    );
-    static final FunctionDescriptor JPC_OffsetCenterOfMassShape_Create$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_OffsetCenterOfMassShape_Create$MH = RuntimeHelper.downcallHandle(
-        "JPC_OffsetCenterOfMassShape_Create",
-        constants$63.JPC_OffsetCenterOfMassShape_Create$FUNC
-    );
-    static final FunctionDescriptor JPC_OffsetCenterOfMassShape_GetOffset$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_OffsetCenterOfMassShape_GetOffset$MH = RuntimeHelper.downcallHandle(
-        "JPC_OffsetCenterOfMassShape_GetOffset",
-        constants$63.JPC_OffsetCenterOfMassShape_GetOffset$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_CreateBody$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_CreateBody$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_CreateBody",
-        constants$63.JPC_BodyInterface_CreateBody$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_CreateBodyWithID$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_CreateBodyWithID$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_CreateBodyWithID",
-        constants$63.JPC_BodyInterface_CreateBodyWithID$FUNC
     );
 }
 

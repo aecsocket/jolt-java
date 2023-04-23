@@ -9,51 +9,51 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$97 {
 
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetConstraintToBody1$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor JPC_SliderConstraint_HasLimits$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetConstraintToBody1$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetConstraintToBody1",
-        constants$97.JPC_SwingTwistConstraint_GetConstraintToBody1$FUNC
+    static final MethodHandle JPC_SliderConstraint_HasLimits$MH = RuntimeHelper.downcallHandle(
+        "JPC_SliderConstraint_HasLimits",
+        constants$97.JPC_SliderConstraint_HasLimits$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetConstraintToBody2$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SwingTwistConstraint_GetConstraintToBody2$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetConstraintToBody2",
-        constants$97.JPC_SwingTwistConstraint_GetConstraintToBody2$FUNC
-    );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetNormalHalfConeAngle$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_SwingTwistConstraint_GetNormalHalfConeAngle$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetNormalHalfConeAngle",
-        constants$97.JPC_SwingTwistConstraint_GetNormalHalfConeAngle$FUNC
-    );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_SetNormalHalfConeAngle$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SliderConstraint_SetFrequency$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_SetNormalHalfConeAngle$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_SetNormalHalfConeAngle",
-        constants$97.JPC_SwingTwistConstraint_SetNormalHalfConeAngle$FUNC
+    static final MethodHandle JPC_SliderConstraint_SetFrequency$MH = RuntimeHelper.downcallHandle(
+        "JPC_SliderConstraint_SetFrequency",
+        constants$97.JPC_SliderConstraint_SetFrequency$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_GetPlaneHalfConeAngle$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_SliderConstraint_GetFrequency$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_GetPlaneHalfConeAngle$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_GetPlaneHalfConeAngle",
-        constants$97.JPC_SwingTwistConstraint_GetPlaneHalfConeAngle$FUNC
+    static final MethodHandle JPC_SliderConstraint_GetFrequency$MH = RuntimeHelper.downcallHandle(
+        "JPC_SliderConstraint_GetFrequency",
+        constants$97.JPC_SliderConstraint_GetFrequency$FUNC
     );
-    static final FunctionDescriptor JPC_SwingTwistConstraint_SetPlaneHalfConeAngle$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SliderConstraint_SetDamping$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_SwingTwistConstraint_SetPlaneHalfConeAngle$MH = RuntimeHelper.downcallHandle(
-        "JPC_SwingTwistConstraint_SetPlaneHalfConeAngle",
-        constants$97.JPC_SwingTwistConstraint_SetPlaneHalfConeAngle$FUNC
+    static final MethodHandle JPC_SliderConstraint_SetDamping$MH = RuntimeHelper.downcallHandle(
+        "JPC_SliderConstraint_SetDamping",
+        constants$97.JPC_SliderConstraint_SetDamping$FUNC
+    );
+    static final FunctionDescriptor JPC_SliderConstraint_GetDamping$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SliderConstraint_GetDamping$MH = RuntimeHelper.downcallHandle(
+        "JPC_SliderConstraint_GetDamping",
+        constants$97.JPC_SliderConstraint_GetDamping$FUNC
+    );
+    static final FunctionDescriptor JPC_SliderConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_SliderConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_SliderConstraint_GetTotalLambdaPosition",
+        constants$97.JPC_SliderConstraint_GetTotalLambdaPosition$FUNC
     );
 }
 

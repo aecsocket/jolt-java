@@ -9,6 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$88 {
 
+    static final FunctionDescriptor JPC_TwoBodyConstraint_GetBody1$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TwoBodyConstraint_GetBody1$MH = RuntimeHelper.downcallHandle(
+        "JPC_TwoBodyConstraint_GetBody1",
+        constants$88.JPC_TwoBodyConstraint_GetBody1$FUNC
+    );
+    static final FunctionDescriptor JPC_TwoBodyConstraint_GetBody2$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TwoBodyConstraint_GetBody2$MH = RuntimeHelper.downcallHandle(
+        "JPC_TwoBodyConstraint_GetBody2",
+        constants$88.JPC_TwoBodyConstraint_GetBody2$FUNC
+    );
+    static final FunctionDescriptor JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$MH = RuntimeHelper.downcallHandle(
+        "JPC_TwoBodyConstraint_GetConstraintToBody1Matrix",
+        constants$88.JPC_TwoBodyConstraint_GetConstraintToBody1Matrix$FUNC
+    );
+    static final FunctionDescriptor JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$MH = RuntimeHelper.downcallHandle(
+        "JPC_TwoBodyConstraint_GetConstraintToBody2Matrix",
+        constants$88.JPC_TwoBodyConstraint_GetConstraintToBody2Matrix$FUNC
+    );
     static final FunctionDescriptor JPC_FixedConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
@@ -24,37 +54,6 @@ class constants$88 {
     static final MethodHandle JPC_FixedConstraint_GetTotalLambdaRotation$MH = RuntimeHelper.downcallHandle(
         "JPC_FixedConstraint_GetTotalLambdaRotation",
         constants$88.JPC_FixedConstraint_GetTotalLambdaRotation$FUNC
-    );
-    static final FunctionDescriptor JPC_DistanceConstraint_SetDistance$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_DistanceConstraint_SetDistance$MH = RuntimeHelper.downcallHandle(
-        "JPC_DistanceConstraint_SetDistance",
-        constants$88.JPC_DistanceConstraint_SetDistance$FUNC
-    );
-    static final FunctionDescriptor JPC_DistanceConstraint_GetMinDistance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_DistanceConstraint_GetMinDistance$MH = RuntimeHelper.downcallHandle(
-        "JPC_DistanceConstraint_GetMinDistance",
-        constants$88.JPC_DistanceConstraint_GetMinDistance$FUNC
-    );
-    static final FunctionDescriptor JPC_DistanceConstraint_GetMaxDistance$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_DistanceConstraint_GetMaxDistance$MH = RuntimeHelper.downcallHandle(
-        "JPC_DistanceConstraint_GetMaxDistance",
-        constants$88.JPC_DistanceConstraint_GetMaxDistance$FUNC
-    );
-    static final FunctionDescriptor JPC_DistanceConstraint_SetFrequency$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_DistanceConstraint_SetFrequency$MH = RuntimeHelper.downcallHandle(
-        "JPC_DistanceConstraint_SetFrequency",
-        constants$88.JPC_DistanceConstraint_SetFrequency$FUNC
     );
 }
 

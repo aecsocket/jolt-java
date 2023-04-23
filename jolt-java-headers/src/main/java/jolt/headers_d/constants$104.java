@@ -9,53 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$104 {
 
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetTargetAngularVelocityCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetLimitsMax$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetTargetAngularVelocityCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetTargetAngularVelocityCS",
-        constants$104.JPC_SixDOFConstraint_GetTargetAngularVelocityCS$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_GetLimitsMax$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetLimitsMax",
+        constants$104.JPC_SixDOFConstraint_GetLimitsMax$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetTargetPositionCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_IsFixedAxis$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetTargetPositionCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetTargetPositionCS",
-        constants$104.JPC_SixDOFConstraint_GetTargetPositionCS$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_IsFixedAxis$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_IsFixedAxis",
+        constants$104.JPC_SixDOFConstraint_IsFixedAxis$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetPositionCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_IsFreeAxis$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_SetTargetPositionCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_SetTargetPositionCS",
-        constants$104.JPC_SixDOFConstraint_SetTargetPositionCS$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_IsFreeAxis$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_IsFreeAxis",
+        constants$104.JPC_SixDOFConstraint_IsFreeAxis$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_SetMaxFriction$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_SetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_SetTargetOrientationCS",
-        constants$104.JPC_SixDOFConstraint_SetTargetOrientationCS$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_SetMaxFriction$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_SetMaxFriction",
+        constants$104.JPC_SixDOFConstraint_SetMaxFriction$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetMaxFriction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetTargetOrientationCS",
-        constants$104.JPC_SixDOFConstraint_GetTargetOrientationCS$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_GetMaxFriction$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetMaxFriction",
+        constants$104.JPC_SixDOFConstraint_GetMaxFriction$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_SetTargetOrientationBS$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SixDOFConstraint_GetMotorSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_SetTargetOrientationBS$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_SetTargetOrientationBS",
-        constants$104.JPC_SixDOFConstraint_SetTargetOrientationBS$FUNC
+    static final MethodHandle JPC_SixDOFConstraint_GetMotorSettings$MH = RuntimeHelper.downcallHandle(
+        "JPC_SixDOFConstraint_GetMotorSettings",
+        constants$104.JPC_SixDOFConstraint_GetMotorSettings$FUNC
     );
 }
 

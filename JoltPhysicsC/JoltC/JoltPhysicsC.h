@@ -1277,6 +1277,18 @@ JPC_API const JPC_NarrowPhaseQuery *
 JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(const JPC_PhysicsSystem *in_physics_system);
 
 JPC_API void
+JPC_PhysicsSystem_AddConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint);
+
+JPC_API void
+JPC_PhysicsSystem_AddConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number);
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint);
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number);
+
+JPC_API void
 JPC_PhysicsSystem_OptimizeBroadPhase(JPC_PhysicsSystem *in_physics_system);
 
 JPC_API void
@@ -2950,6 +2962,9 @@ JPC_ConeConstraint_GetTotalLambdaRotation(const JPC_ConeConstraint *in_self);
 JPC_API float
 JPC_SliderConstraint_GetCurrentPosition(const JPC_SliderConstraint *in_self);
 
+JPC_API float
+JPC_SliderConstraint_GetMaxFrictionForce(const JPC_SliderConstraint *in_self);
+
 JPC_API void
 JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in_friction);
 
@@ -2991,6 +3006,24 @@ JPC_SliderConstraint_SetFrequency(JPC_SliderConstraint *in_self, float in_freque
 
 JPC_API float
 JPC_SliderConstraint_GetFrequency(const JPC_SliderConstraint *in_self);
+
+JPC_API void
+JPC_SliderConstraint_SetDamping(JPC_SliderConstraint *in_self, float in_damping);
+
+JPC_API float
+JPC_SliderConstraint_GetDamping(const JPC_SliderConstraint *in_self);
+
+JPC_API void
+JPC_SliderConstraint_GetTotalLambdaPosition(const JPC_SliderConstraint *in_self, float *out_x, float *out_y);
+
+JPC_API float
+JPC_SliderConstraint_GetTotalLambdaPositionLimits(const JPC_SliderConstraint *in_self);
+
+JPC_API void
+JPC_SliderConstraint_GetTotalLambdaRotation(const JPC_SliderConstraint *in_self, float out_rotation[3]);
+
+JPC_API float
+JPC_SliderConstraint_GetTotalLambdaMotor(const JPC_SliderConstraint *in_self);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_SwingTwistConstraint
@@ -3121,7 +3154,7 @@ JPC_SixDOFConstraint_GetMaxFriction(const JPC_SixDOFConstraint *in_self, JPC_Six
 // JPC_SixDOFConstraint_GetRotationInConstraintSpace(const JPC_SixDOFConstraint *in_self, float out_rotation[4]);
 
 JPC_API JPC_MotorSettings *
-JPC_SixDOFConstraint_GetMotorSettings(JPC_SixDOFConstraint *in_self);
+JPC_SixDOFConstraint_GetMotorSettings(JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis);
 
 JPC_API void
 JPC_SixDOFConstraint_SetMotorState(JPC_SixDOFConstraint *in_self, JPC_SixDOFConstraintAxis in_axis, JPC_MotorState in_state);
@@ -3193,6 +3226,525 @@ JPC_MotorSettings_IsValid(const JPC_MotorSettings *in_settings);
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_ConstraintSettings_Release(JPC_ConstraintSettings *in_self);
+
+JPC_API bool
+JPC_ConstraintSettings_GetEnabled(const JPC_ConstraintSettings *in_self);
+
+JPC_API void
+JPC_ConstraintSettings_SetEnabled(JPC_ConstraintSettings *in_self, bool in_enabled);
+
+JPC_API int
+JPC_ConstraintSettings_GetNumVelocityStepsOverride(const JPC_ConstraintSettings *in_self);
+
+JPC_API void
+JPC_ConstraintSettings_SetNumVelocityStepsOverride(JPC_ConstraintSettings *in_self, int in_num_velocity_steps_override);
+
+JPC_API int
+JPC_ConstraintSettings_GetNumPositionStepsOverride(const JPC_ConstraintSettings *in_self);
+
+JPC_API void
+JPC_ConstraintSettings_SetNumPositionStepsOverride(JPC_ConstraintSettings *in_self, int in_num_position_steps_override);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_TwoBodyConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_TwoBodyConstraint *
+JPC_TwoBodyConstraintSettings_CreateConstraint(const JPC_TwoBodyConstraintSettings *in_self, JPC_Body *in_body1, JPC_Body *in_body2);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_FixedConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_FixedConstraintSettings *
+JPC_FixedConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_FixedConstraintSettings_GetSpace(const JPC_FixedConstraintSettings *in_self);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetSpace(JPC_FixedConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API bool
+JPC_FixedConstraintSettings_GetAutoDetectPoint(const JPC_FixedConstraintSettings *in_self);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAutoDetectPoint(JPC_FixedConstraintSettings *in_self, bool in_auto_detect_point);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetPoint1(const JPC_FixedConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetPoint1(JPC_FixedConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisX1(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisX1(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisY1(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisY1(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetPoint2(const JPC_FixedConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetPoint2(JPC_FixedConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisX2(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisX2(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_GetAxisY2(const JPC_FixedConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_FixedConstraintSettings_SetAxisY2(JPC_FixedConstraintSettings *in_self, const float in_axis[3]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_DistanceConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_DistanceConstraintSettings *
+JPC_DistanceConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_DistanceConstraintSettings_GetSpace(const JPC_DistanceConstraintSettings *in_self);
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetSpace(JPC_DistanceConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API void
+JPC_DistanceConstraintSettings_GetPoint1(const JPC_DistanceConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetPoint1(JPC_DistanceConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_DistanceConstraintSettings_GetPoint2(const JPC_DistanceConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetPoint2(JPC_DistanceConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetMinDistance(const JPC_DistanceConstraintSettings *in_self);
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetMinDistance(JPC_DistanceConstraintSettings *in_self, float in_distance);
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetMaxDistance(const JPC_DistanceConstraintSettings *in_self);
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetMaxDistance(JPC_DistanceConstraintSettings *in_self, float in_distance);
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetFrequency(const JPC_DistanceConstraintSettings *in_self);
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetFrequency(JPC_DistanceConstraintSettings *in_self, float in_frequency);
+
+JPC_API float
+JPC_DistanceConstraintSettings_GetDamping(const JPC_DistanceConstraintSettings *in_self);
+
+JPC_API void
+JPC_DistanceConstraintSettings_SetDamping(JPC_DistanceConstraintSettings *in_self, float in_damping);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_PointConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_PointConstraintSettings *
+JPC_PointConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_PointConstraintSettings_GetSpace(const JPC_PointConstraintSettings *in_self);
+
+JPC_API void
+JPC_PointConstraintSettings_SetSpace(JPC_PointConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API void
+JPC_PointConstraintSettings_GetPoint1(const JPC_PointConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_PointConstraintSettings_SetPoint1(JPC_PointConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_PointConstraintSettings_GetPoint2(const JPC_PointConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_PointConstraintSettings_SetPoint2(JPC_PointConstraintSettings *in_self, const JPC_Real in_point[3]);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_HingeConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_HingeConstraintSettings *
+JPC_HingeConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_HingeConstraintSettings_GetSpace(const JPC_HingeConstraintSettings *in_self);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetSpace(JPC_HingeConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API void
+JPC_HingeConstraintSettings_GetPoint1(const JPC_HingeConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetPoint1(JPC_HingeConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_GetHingeAxis1(const JPC_HingeConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetHingeAxis1(JPC_HingeConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_GetNormalAxis1(const JPC_HingeConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetNormalAxis1(JPC_HingeConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_GetPoint2(const JPC_HingeConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetPoint2(JPC_HingeConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_GetHingeAxis2(const JPC_HingeConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetHingeAxis2(JPC_HingeConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_GetNormalAxis2(const JPC_HingeConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetNormalAxis2(JPC_HingeConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API float
+JPC_HingeConstraintSettings_GetLimitsMin(const JPC_HingeConstraintSettings *in_self);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetLimitsMin(JPC_HingeConstraintSettings *in_self, float in_limits);
+
+JPC_API float
+JPC_HingeConstraintSettings_GetLimitsMax(const JPC_HingeConstraintSettings *in_self);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetLimitsMax(JPC_HingeConstraintSettings *in_self, float in_limits);
+
+JPC_API float
+JPC_HingeConstraintSettings_GetMaxFrictionTorque(const JPC_HingeConstraintSettings *in_self);
+
+JPC_API void
+JPC_HingeConstraintSettings_SetMaxFrictionTorque(JPC_HingeConstraintSettings *in_self, float in_max_friction_torque);
+
+JPC_API JPC_MotorSettings *
+JPC_HingeConstraintSettings_GetMotorSettings(JPC_HingeConstraintSettings *in_self);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_ConeConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_ConeConstraintSettings *
+JPC_ConeConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_ConeConstraintSettings_GetSpace(const JPC_ConeConstraintSettings *in_self);
+
+JPC_API void
+JPC_ConeConstraintSettings_SetSpace(JPC_ConeConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API void
+JPC_ConeConstraintSettings_GetPoint1(const JPC_ConeConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_ConeConstraintSettings_SetPoint1(JPC_ConeConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_ConeConstraintSettings_GetTwistAxis1(const JPC_ConeConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_ConeConstraintSettings_SetTwistAxis1(JPC_ConeConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_ConeConstraintSettings_GetPoint2(const JPC_ConeConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_ConeConstraintSettings_SetPoint2(JPC_ConeConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_ConeConstraintSettings_GetTwistAxis2(const JPC_ConeConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_ConeConstraintSettings_SetTwistAxis2(JPC_ConeConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API float
+JPC_ConeConstraintSettings_GetHalfConeAngle(const JPC_ConeConstraintSettings *in_self);
+
+JPC_API void
+JPC_ConeConstraintSettings_SetHalfConeAngle(JPC_ConeConstraintSettings *in_self, float in_half_cone_angle);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SliderConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SliderConstraintSettings *
+JPC_SliderConstraintSettings_Create();
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSliderAxis(JPC_SliderConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API JPC_ConstraintSpace
+JPC_SliderConstraintSettings_GetSpace(const JPC_SliderConstraintSettings *in_self);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSpace(JPC_SliderConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API bool
+JPC_SliderConstraintSettings_GetAutoDetectPoint(const JPC_SliderConstraintSettings *in_self);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetAutoDetectPoint(JPC_SliderConstraintSettings *in_self, bool in_auto_detect_point);
+
+JPC_API void
+JPC_SliderConstraintSettings_GetPoint1(const JPC_SliderConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetPoint1(JPC_SliderConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_GetSliderAxis1(const JPC_SliderConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSliderAxis1(JPC_SliderConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_GetNormalAxis1(const JPC_SliderConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetNormalAxis1(JPC_SliderConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_GetPoint2(const JPC_SliderConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetPoint2(JPC_SliderConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_GetSliderAxis2(const JPC_SliderConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetSliderAxis2(JPC_SliderConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_GetNormalAxis2(const JPC_SliderConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetNormalAxis2(JPC_SliderConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API float
+JPC_SliderConstraintSettings_GetLimitsMin(const JPC_SliderConstraintSettings *in_self);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetLimitsMin(JPC_SliderConstraintSettings *in_self, float in_limits);
+
+JPC_API float
+JPC_SliderConstraintSettings_GetLimitsMax(const JPC_SliderConstraintSettings *in_self);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetLimitsMax(JPC_SliderConstraintSettings *in_self, float in_limits);
+
+JPC_API float
+JPC_SliderConstraintSettings_GetFrequency(const JPC_SliderConstraintSettings *in_self);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetFrequency(JPC_SliderConstraintSettings *in_self, float in_frequency);
+
+JPC_API float
+JPC_SliderConstraintSettings_GetDamping(const JPC_SliderConstraintSettings *in_self);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetDamping(JPC_SliderConstraintSettings *in_self, float in_damping);
+
+JPC_API float
+JPC_SliderConstraintSettings_GetMaxFrictionForce(const JPC_SliderConstraintSettings *in_self);
+
+JPC_API void
+JPC_SliderConstraintSettings_SetMaxFrictionForce(JPC_SliderConstraintSettings *in_self, float in_max_friction_force);
+
+JPC_API JPC_MotorSettings *
+JPC_SliderConstraintSettings_GetMotorSettings(JPC_SliderConstraintSettings *in_self);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SwingTwistConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SwingTwistConstraintSettings *
+JPC_SwingTwistConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_SwingTwistConstraintSettings_GetSpace(const JPC_SwingTwistConstraintSettings *in_self);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetSpace(JPC_SwingTwistConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPosition1(const JPC_SwingTwistConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPosition1(JPC_SwingTwistConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetTwistAxis1(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistAxis1(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPlaneAxis1(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPlaneAxis1(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPosition2(const JPC_SwingTwistConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPosition2(JPC_SwingTwistConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetTwistAxis2(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistAxis2(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_GetPlaneAxis2(const JPC_SwingTwistConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPlaneAxis2(JPC_SwingTwistConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetNormalHalfConeAngle(const JPC_SwingTwistConstraintSettings *in_self);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetNormalHalfConeAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle);
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetPlaneHalfConeAngle(const JPC_SwingTwistConstraintSettings *in_self);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetPlaneHalfConeAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle);
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetTwistMinAngle(const JPC_SwingTwistConstraintSettings *in_self);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistMinAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle);
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetTwistMaxAngle(const JPC_SwingTwistConstraintSettings *in_self);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetTwistMaxAngle(JPC_SwingTwistConstraintSettings *in_self, float in_angle);
+
+JPC_API float
+JPC_SwingTwistConstraintSettings_GetMaxFrictionTorque(const JPC_SwingTwistConstraintSettings *in_self);
+
+JPC_API void
+JPC_SwingTwistConstraintSettings_SetMaxFrictionTorque(JPC_SwingTwistConstraintSettings *in_self, float in_max_friction_torque);
+
+JPC_API JPC_MotorSettings *
+JPC_SwingTwistConstraintSettings_GetSwingMotorSettings(JPC_SwingTwistConstraintSettings *in_self);
+
+JPC_API JPC_MotorSettings *
+JPC_SwingTwistConstraintSettings_GetTwistMotorSettings(JPC_SwingTwistConstraintSettings *in_self);
+//--------------------------------------------------------------------------------------------------
+//
+// JPC_SixDOFConstraintSettings
+//
+//--------------------------------------------------------------------------------------------------
+JPC_API JPC_SixDOFConstraintSettings *
+JPC_SixDOFConstraintSettings_Create();
+
+JPC_API JPC_ConstraintSpace
+JPC_SixDOFConstraintSettings_GetSpace(const JPC_SixDOFConstraintSettings *in_self);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetSpace(JPC_SixDOFConstraintSettings *in_self, JPC_ConstraintSpace in_space);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetPosition1(const JPC_SixDOFConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetPosition1(JPC_SixDOFConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisX1(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisX1(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisY1(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisY1(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetPosition2(const JPC_SixDOFConstraintSettings *in_self, JPC_Real out_point[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetPosition2(JPC_SixDOFConstraintSettings *in_self, const JPC_Real in_point[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisX2(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisX2(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_GetAxisY2(const JPC_SixDOFConstraintSettings *in_self, float out_axis[3]);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetAxisY2(JPC_SixDOFConstraintSettings *in_self, const float in_axis[3]);
+
+JPC_API float *
+JPC_SixDOFConstraintSettings_GetMaxFriction(JPC_SixDOFConstraintSettings *in_self);
+
+JPC_API float *
+JPC_SixDOFConstraintSettings_GetLimitMin(JPC_SixDOFConstraintSettings *in_self);
+
+JPC_API float *
+JPC_SixDOFConstraintSettings_GetLimitMax(JPC_SixDOFConstraintSettings *in_self);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_MakeFreeAxis(JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis);
+
+JPC_API bool
+JPC_SixDOFConstraintSettings_IsFreeAxis(const JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_MakeFixedAxis(JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis);
+
+JPC_API bool
+JPC_SixDOFConstraintSettings_IsFixedAxis(const JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis);
+
+JPC_API void
+JPC_SixDOFConstraintSettings_SetLimitedAxis(JPC_SixDOFConstraintSettings *in_self, JPC_SixDOFConstraintAxis in_axis, float in_min, float in_max);
+
+JPC_API JPC_MotorSettings **
+JPC_SixDOFConstraintSettings_GetMotorSettings(JPC_SixDOFConstraintSettings *in_self);
 //--------------------------------------------------------------------------------------------------
 //
 // JPC_GJKClosestPoint

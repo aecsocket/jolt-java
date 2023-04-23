@@ -9,6 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$91 {
 
+    static final FunctionDescriptor JPC_PointConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_PointConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_PointConstraint_GetTotalLambdaPosition",
+        constants$91.JPC_PointConstraint_GetTotalLambdaPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_HingeConstraint_GetCurrentAngle$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HingeConstraint_GetCurrentAngle$MH = RuntimeHelper.downcallHandle(
+        "JPC_HingeConstraint_GetCurrentAngle",
+        constants$91.JPC_HingeConstraint_GetCurrentAngle$FUNC
+    );
+    static final FunctionDescriptor JPC_HingeConstraint_SetMaxFrictionTorque$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle JPC_HingeConstraint_SetMaxFrictionTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_HingeConstraint_SetMaxFrictionTorque",
+        constants$91.JPC_HingeConstraint_SetMaxFrictionTorque$FUNC
+    );
+    static final FunctionDescriptor JPC_HingeConstraint_GetMaxFrictionTorque$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HingeConstraint_GetMaxFrictionTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_HingeConstraint_GetMaxFrictionTorque",
+        constants$91.JPC_HingeConstraint_GetMaxFrictionTorque$FUNC
+    );
     static final FunctionDescriptor JPC_HingeConstraint_GetMotorSettings$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
@@ -23,36 +53,6 @@ class constants$91 {
     static final MethodHandle JPC_HingeConstraint_SetMotorState$MH = RuntimeHelper.downcallHandle(
         "JPC_HingeConstraint_SetMotorState",
         constants$91.JPC_HingeConstraint_SetMotorState$FUNC
-    );
-    static final FunctionDescriptor JPC_HingeConstraint_GetMotorState$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HingeConstraint_GetMotorState$MH = RuntimeHelper.downcallHandle(
-        "JPC_HingeConstraint_GetMotorState",
-        constants$91.JPC_HingeConstraint_GetMotorState$FUNC
-    );
-    static final FunctionDescriptor JPC_HingeConstraint_SetTargetAngularVelocity$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_HingeConstraint_SetTargetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_HingeConstraint_SetTargetAngularVelocity",
-        constants$91.JPC_HingeConstraint_SetTargetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_HingeConstraint_GetTargetAngularVelocity$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HingeConstraint_GetTargetAngularVelocity$MH = RuntimeHelper.downcallHandle(
-        "JPC_HingeConstraint_GetTargetAngularVelocity",
-        constants$91.JPC_HingeConstraint_GetTargetAngularVelocity$FUNC
-    );
-    static final FunctionDescriptor JPC_HingeConstraint_SetTargetAngle$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_HingeConstraint_SetTargetAngle$MH = RuntimeHelper.downcallHandle(
-        "JPC_HingeConstraint_SetTargetAngle",
-        constants$91.JPC_HingeConstraint_SetTargetAngle$FUNC
     );
 }
 

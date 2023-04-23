@@ -9,54 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$102 {
 
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetLimitsMin$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetLimitsMin$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetLimitsMin",
-        constants$102.JPC_SixDOFConstraint_GetLimitsMin$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetTargetAngularVelocityCS",
+        constants$102.JPC_SwingTwistConstraint_GetTargetAngularVelocityCS$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetLimitsMax$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetLimitsMax$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetLimitsMax",
-        constants$102.JPC_SixDOFConstraint_GetLimitsMax$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_SetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetTargetOrientationCS",
+        constants$102.JPC_SwingTwistConstraint_SetTargetOrientationCS$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_IsFixedAxis$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTargetOrientationCS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_IsFixedAxis$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_IsFixedAxis",
-        constants$102.JPC_SixDOFConstraint_IsFixedAxis$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetTargetOrientationCS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetTargetOrientationCS",
+        constants$102.JPC_SwingTwistConstraint_GetTargetOrientationCS$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_IsFreeAxis$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+    static final FunctionDescriptor JPC_SwingTwistConstraint_SetTargetOrientationBS$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_IsFreeAxis$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_IsFreeAxis",
-        constants$102.JPC_SixDOFConstraint_IsFreeAxis$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_SetTargetOrientationBS$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_SetTargetOrientationBS",
+        constants$102.JPC_SwingTwistConstraint_SetTargetOrientationBS$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_SetMaxFriction$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_SetMaxFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_SetMaxFriction",
-        constants$102.JPC_SixDOFConstraint_SetMaxFriction$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetTotalLambdaPosition",
+        constants$102.JPC_SwingTwistConstraint_GetTotalLambdaPosition$FUNC
     );
-    static final FunctionDescriptor JPC_SixDOFConstraint_GetMaxFriction$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+    static final FunctionDescriptor JPC_SwingTwistConstraint_GetTotalLambdaTwist$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle JPC_SixDOFConstraint_GetMaxFriction$MH = RuntimeHelper.downcallHandle(
-        "JPC_SixDOFConstraint_GetMaxFriction",
-        constants$102.JPC_SixDOFConstraint_GetMaxFriction$FUNC
+    static final MethodHandle JPC_SwingTwistConstraint_GetTotalLambdaTwist$MH = RuntimeHelper.downcallHandle(
+        "JPC_SwingTwistConstraint_GetTotalLambdaTwist",
+        constants$102.JPC_SwingTwistConstraint_GetTotalLambdaTwist$FUNC
     );
 }
 

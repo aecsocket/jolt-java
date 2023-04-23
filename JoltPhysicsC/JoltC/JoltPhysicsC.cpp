@@ -1376,6 +1376,32 @@ JPC_PhysicsSystem_GetNarrowPhaseQueryNoLock(const JPC_PhysicsSystem *in_physics_
 {
     return toJpc(&toJph(in_physics_system)->GetNarrowPhaseQueryNoLock());
 }
+
+JPC_API void
+JPC_PhysicsSystem_AddConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint)
+{
+    toJph(in_self)->AddConstraint(toJph(in_constraint));
+}
+
+JPC_API void
+JPC_PhysicsSystem_AddConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number)
+{
+    toJph(in_self)->AddConstraints(reinterpret_cast<JPH::Constraint **>(in_constraints), in_number);
+}
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraint(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraint)
+{
+    toJph(in_self)->RemoveConstraint(toJph(in_constraint));
+}
+
+JPC_API void
+JPC_PhysicsSystem_RemoveConstraints(JPC_PhysicsSystem *in_self, JPC_Constraint *in_constraints[], int in_number)
+{
+    toJph(in_self)->RemoveConstraints(reinterpret_cast<JPH::Constraint **>(in_constraints), in_number);
+}
+
+// TODO GetConstraints
 //--------------------------------------------------------------------------------------------------
 JPC_API void
 JPC_PhysicsSystem_OptimizeBroadPhase(JPC_PhysicsSystem *in_physics_system)
@@ -4709,6 +4735,12 @@ JPC_SliderConstraint_GetCurrentPosition(const JPC_SliderConstraint *in_self)
     return toJph(in_self)->GetCurrentPosition();
 }
 
+JPC_API float
+JPC_SliderConstraint_GetMaxFrictionForce(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetMaxFrictionForce();
+}
+
 JPC_API void
 JPC_SliderConstraint_SetMaxFrictionForce(JPC_SliderConstraint *in_self, float in_friction)
 {
@@ -4791,6 +4823,44 @@ JPC_API float
 JPC_SliderConstraint_GetFrequency(const JPC_SliderConstraint *in_self)
 {
     return toJph(in_self)->GetFrequency();
+}
+
+JPC_API void
+JPC_SliderConstraint_SetDamping(JPC_SliderConstraint *in_self, float in_damping)
+{
+    toJph(in_self)->SetDamping(in_damping);
+}
+
+JPC_API float
+JPC_SliderConstraint_GetDamping(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetDamping();
+}
+
+JPC_API void
+JPC_SliderConstraint_GetTotalLambdaPosition(const JPC_SliderConstraint *in_self, float *out_x, float *out_y)
+{
+    auto out = toJph(in_self)->GetTotalLambdaPosition();
+    *out_x = out[0];
+    *out_y = out[1];
+}
+
+JPC_API float
+JPC_SliderConstraint_GetTotalLambdaPositionLimits(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetTotalLambdaPositionLimits();
+}
+
+JPC_API void
+JPC_SliderConstraint_GetTotalLambdaRotation(const JPC_SliderConstraint *in_self, float out_rotation[3])
+{
+    storeVec3(out_rotation, toJph(in_self)->GetTotalLambdaRotation());
+}
+
+JPC_API float
+JPC_SliderConstraint_GetTotalLambdaMotor(const JPC_SliderConstraint *in_self)
+{
+    return toJph(in_self)->GetTotalLambdaMotor();
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -5288,15 +5358,15 @@ JPC_FixedConstraintSettings_SetAxisX1(JPC_FixedConstraintSettings *in_self, cons
 }
 
 JPC_API void
-JPC_FixedConstraintSettings_GetAxisX2(const JPC_FixedConstraintSettings *in_self, float out_axis[3])
+JPC_FixedConstraintSettings_GetAxisY1(const JPC_FixedConstraintSettings *in_self, float out_axis[3])
 {
-    storeVec3(out_axis, toJph(in_self)->mAxisX2);
+    storeVec3(out_axis, toJph(in_self)->mAxisY1);
 }
 
 JPC_API void
-JPC_FixedConstraintSettings_SetAxisX2(JPC_FixedConstraintSettings *in_self, const float in_axis[3])
+JPC_FixedConstraintSettings_SetAxisY1(JPC_FixedConstraintSettings *in_self, const float in_axis[3])
 {
-    toJph(in_self)->mAxisX2 = loadVec3(in_axis);
+    toJph(in_self)->mAxisY1 = loadVec3(in_axis);
 }
 
 JPC_API void
@@ -5324,15 +5394,15 @@ JPC_FixedConstraintSettings_SetAxisX2(JPC_FixedConstraintSettings *in_self, cons
 }
 
 JPC_API void
-JPC_FixedConstraintSettings_GetAxisX2(const JPC_FixedConstraintSettings *in_self, float out_axis[3])
+JPC_FixedConstraintSettings_GetAxisY2(const JPC_FixedConstraintSettings *in_self, float out_axis[3])
 {
-    storeVec3(out_axis, toJph(in_self)->mAxisX2);
+    storeVec3(out_axis, toJph(in_self)->mAxisY2);
 }
 
 JPC_API void
-JPC_FixedConstraintSettings_SetAxisX2(JPC_FixedConstraintSettings *in_self, const float in_axis[3])
+JPC_FixedConstraintSettings_SetAxisY2(JPC_FixedConstraintSettings *in_self, const float in_axis[3])
 {
-    toJph(in_self)->mAxisX2 = loadVec3(in_axis);
+    toJph(in_self)->mAxisY2 = loadVec3(in_axis);
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -5462,9 +5532,21 @@ JPC_PointConstraintSettings_GetPoint1(const JPC_PointConstraintSettings *in_self
 }
 
 JPC_API void
+JPC_PointConstraintSettings_SetPoint1(JPC_PointConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
+}
+
+JPC_API void
 JPC_PointConstraintSettings_GetPoint2(const JPC_PointConstraintSettings *in_self, JPC_Real out_point[3])
 {
     storeRVec3(out_point, toJph(in_self)->mPoint2);
+}
+
+JPC_API void
+JPC_PointConstraintSettings_SetPoint2(JPC_PointConstraintSettings *in_self, const JPC_Real in_point[3])
+{
+    toJph(in_self)->mPoint2 = loadRVec3(in_point);
 }
 //--------------------------------------------------------------------------------------------------
 //
@@ -5482,7 +5564,7 @@ JPC_HingeConstraintSettings_Create()
 JPC_API JPC_ConstraintSpace
 JPC_HingeConstraintSettings_GetSpace(const JPC_HingeConstraintSettings *in_self)
 {
-    toJpc(toJph(in_self)->mSpace);
+    return toJpc(toJph(in_self)->mSpace);
 }
 
 JPC_API void

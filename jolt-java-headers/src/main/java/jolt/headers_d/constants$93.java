@@ -9,6 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$93 {
 
+    static final FunctionDescriptor JPC_HingeConstraint_GetLimitsMin$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HingeConstraint_GetLimitsMin$MH = RuntimeHelper.downcallHandle(
+        "JPC_HingeConstraint_GetLimitsMin",
+        constants$93.JPC_HingeConstraint_GetLimitsMin$FUNC
+    );
+    static final FunctionDescriptor JPC_HingeConstraint_GetLimitsMax$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HingeConstraint_GetLimitsMax$MH = RuntimeHelper.downcallHandle(
+        "JPC_HingeConstraint_GetLimitsMax",
+        constants$93.JPC_HingeConstraint_GetLimitsMax$FUNC
+    );
+    static final FunctionDescriptor JPC_HingeConstraint_HasLimits$FUNC = FunctionDescriptor.of(Constants$root.C_BOOL$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HingeConstraint_HasLimits$MH = RuntimeHelper.downcallHandle(
+        "JPC_HingeConstraint_HasLimits",
+        constants$93.JPC_HingeConstraint_HasLimits$FUNC
+    );
+    static final FunctionDescriptor JPC_HingeConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_HingeConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_HingeConstraint_GetTotalLambdaPosition",
+        constants$93.JPC_HingeConstraint_GetTotalLambdaPosition$FUNC
+    );
     static final FunctionDescriptor JPC_HingeConstraint_GetTotalLambdaRotation$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
@@ -24,36 +53,6 @@ class constants$93 {
     static final MethodHandle JPC_HingeConstraint_GetTotalLambdaRotationLimits$MH = RuntimeHelper.downcallHandle(
         "JPC_HingeConstraint_GetTotalLambdaRotationLimits",
         constants$93.JPC_HingeConstraint_GetTotalLambdaRotationLimits$FUNC
-    );
-    static final FunctionDescriptor JPC_HingeConstraint_GetTotalLambdaMotor$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_HingeConstraint_GetTotalLambdaMotor$MH = RuntimeHelper.downcallHandle(
-        "JPC_HingeConstraint_GetTotalLambdaMotor",
-        constants$93.JPC_HingeConstraint_GetTotalLambdaMotor$FUNC
-    );
-    static final FunctionDescriptor JPC_ConeConstraint_SetHalfConeAngle$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_ConeConstraint_SetHalfConeAngle$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConeConstraint_SetHalfConeAngle",
-        constants$93.JPC_ConeConstraint_SetHalfConeAngle$FUNC
-    );
-    static final FunctionDescriptor JPC_ConeConstraint_GetCosHalfConeAngle$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConeConstraint_GetCosHalfConeAngle$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConeConstraint_GetCosHalfConeAngle",
-        constants$93.JPC_ConeConstraint_GetCosHalfConeAngle$FUNC
-    );
-    static final FunctionDescriptor JPC_ConeConstraint_GetTotalLambdaPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_ConeConstraint_GetTotalLambdaPosition$MH = RuntimeHelper.downcallHandle(
-        "JPC_ConeConstraint_GetTotalLambdaPosition",
-        constants$93.JPC_ConeConstraint_GetTotalLambdaPosition$FUNC
     );
 }
 

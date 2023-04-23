@@ -9,6 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$73 {
 
+    static final FunctionDescriptor JPC_BodyInterface_AddForceAndTorque$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddForceAndTorque$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddForceAndTorque",
+        constants$73.JPC_BodyInterface_AddForceAndTorque$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AddImpulse$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddImpulse$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddImpulse",
+        constants$73.JPC_BodyInterface_AddImpulse$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AddImpulseAtPosition$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddImpulseAtPosition$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddImpulseAtPosition",
+        constants$73.JPC_BodyInterface_AddImpulseAtPosition$FUNC
+    );
+    static final FunctionDescriptor JPC_BodyInterface_AddAngularImpulse$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle JPC_BodyInterface_AddAngularImpulse$MH = RuntimeHelper.downcallHandle(
+        "JPC_BodyInterface_AddAngularImpulse",
+        constants$73.JPC_BodyInterface_AddAngularImpulse$FUNC
+    );
     static final FunctionDescriptor JPC_BodyInterface_SetMotionType$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -26,41 +64,6 @@ class constants$73 {
     static final MethodHandle JPC_BodyInterface_GetMotionType$MH = RuntimeHelper.downcallHandle(
         "JPC_BodyInterface_GetMotionType",
         constants$73.JPC_BodyInterface_GetMotionType$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetMotionQuality$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetMotionQuality$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetMotionQuality",
-        constants$73.JPC_BodyInterface_SetMotionQuality$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetMotionQuality$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetMotionQuality$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetMotionQuality",
-        constants$73.JPC_BodyInterface_GetMotionQuality$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_GetInverseInertia$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_GetInverseInertia$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_GetInverseInertia",
-        constants$73.JPC_BodyInterface_GetInverseInertia$FUNC
-    );
-    static final FunctionDescriptor JPC_BodyInterface_SetRestitution$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle JPC_BodyInterface_SetRestitution$MH = RuntimeHelper.downcallHandle(
-        "JPC_BodyInterface_SetRestitution",
-        constants$73.JPC_BodyInterface_SetRestitution$FUNC
     );
 }
 
