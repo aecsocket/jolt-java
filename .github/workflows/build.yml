@@ -31,13 +31,13 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: "Setup CMake"
         run: |
-          sudo apt update
-          sudo apt install gcc-10 g++-10
+          sudo apt-get update
+          sudo apt-get install clang-10
       - name: "Run Gradle build"
         run: ./gradlew build
         env:
-          CC: gcc-10
-          CXX: g++-10
+          CC: clang-10
+          CXX: clang++-10
       - name: "sh: Get version type "
         if: ${{ matrix.os != 'windows-latest' }}
         run: |
