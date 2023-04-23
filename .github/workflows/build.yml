@@ -7,21 +7,64 @@ on:
   pull_request:
 
 jobs:
-  build:
+  linux-gcc:
+    name: "Linux GCC"
+    runs-on: ubuntu-latest
     # Only run on PRs if the source branch is on someone else's repo
     if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ] # TODO windows-latest, macos-latest
-        include:
-          - os: ubuntu-latest
-            publish-core: true
-    runs-on: ${{ matrix.os }}
     steps:
       - name: "Checkout source"
         uses: actions/checkout@v3
+      - name: "Setup Java"
+        uses: actions/setup-java@v3
         with:
-          submodules: true
+          distribution: temurin
+          java-version: 19
+      - name: "Setup CMake"
+        run: |
+          sudo apt-get update
+          sudo apt-get install gcc-9
+      - name: "Setup Gradle"
+        uses: gradle/gradle-build-action@v2
+      - name: "Run Gradle build"
+        run: ./gradlew build
+        env:
+          CC: gcc-9
+          CXX: g++-9
+      - name: "Get version type"
+        run: |
+          VERSION_TYPE=$(./gradlew -q --console=plain --no-daemon printVersionType)
+          echo VERSION_TYPE=$VERSION_TYPE
+          echo VERSION_TYPE=$VERSION_TYPE >> $GITHUB_ENV
+      - name: "Publish snapshot"
+        if: ${{ env.VERSION_TYPE == 'snapshot' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: ./gradlew publish
+        env:
+          CI_PUBLISH_CORE: ${{ matrix.publish-core }}
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
+      - name: "Publish release"
+        if: ${{ env.VERSION_TYPE == 'release' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: ./gradlew -PforceSign=true publishToSonatype closeSonatypeStagingRepository
+        env:
+          CI_PUBLISH_CORE: ${{ matrix.publish-core }}
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+
+  windows-mingw:
+    name: "Windows MinGW GCC"
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    # Only run on PRs if the source branch is on someone else's repo
+    if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+    steps:
+      - name: "Checkout source"
+        uses: actions/checkout@v3
       - name: "Setup Java"
         uses: actions/setup-java@v3
         with:
@@ -29,24 +72,15 @@ jobs:
           java-version: 19
       - name: "Setup Gradle"
         uses: gradle/gradle-build-action@v2
-      - name: "Setup CMake"
-        run: |
-          wget https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 10
+      - name: "Setup MSys2"
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: mingw64
+          install: mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake
+          update: true
       - name: "Run Gradle build"
         run: ./gradlew build
-        env:
-          CC: clang-10
-          CXX: clang++-10
-      - name: "sh: Get version type "
-        if: ${{ matrix.os != 'windows-latest' }}
-        run: |
-          VERSION_TYPE=$(./gradlew -q --console=plain --no-daemon printVersionType)
-          echo VERSION_TYPE=$VERSION_TYPE
-          echo VERSION_TYPE=$VERSION_TYPE >> $GITHUB_ENV
-      - name: "ps: Get version type"
-        if: ${{ matrix.os == 'windows-latest' }}
+      - name: "Get version type"
         run: |
           $VERSION_TYPE = ./gradlew -q --console=plain --no-daemon printVersionType
           echo VERSION_TYPE=$VERSION_TYPE
