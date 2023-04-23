@@ -23,7 +23,7 @@ import static jolt.headers.JoltPhysicsC.*;
 public final class Jolt {
     private Jolt() {}
 
-    public static final String JOLT_VERSION = "2.0.1-54e3ce6";
+    public static final String JOLT_VERSION = "3.0.1-f16f2a0";
 
     private static final AtomicBoolean loaded = new AtomicBoolean(false);
     private static JoltFeatures features;
