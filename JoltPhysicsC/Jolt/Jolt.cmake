@@ -422,7 +422,8 @@ set(JOLT_PHYSICS_SRC_FILES
 
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
 	# Add natvis file
-	set(JOLT_PHYSICS_SRC_FILES ${JOLT_PHYSICS_SRC_FILES} ${JOLT_PHYSICS_ROOT}/Jolt.natvis)
+	# JoltJava: Don't add natvis file
+	# set(JOLT_PHYSICS_SRC_FILES ${JOLT_PHYSICS_SRC_FILES} ${JOLT_PHYSICS_ROOT}/Jolt.natvis)
 endif()
 
 # Group source files
