@@ -82,9 +82,9 @@ jobs:
         run: ./gradlew build
       - name: "Get version type"
         run: |
-          $VERSION_TYPE = ./gradlew -q --console=plain --no-daemon printVersionType
+          VERSION_TYPE=$(./gradlew -q --console=plain --no-daemon printVersionType)
           echo VERSION_TYPE=$VERSION_TYPE
-          echo VERSION_TYPE=$VERSION_TYPE >> $env:GITHUB_ENV
+          echo VERSION_TYPE=$VERSION_TYPE >> $GITHUB_ENV
       - name: "Publish snapshot"
         if: ${{ env.VERSION_TYPE == 'snapshot' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: ./gradlew publish
