@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
 
 import java.lang.foreign.MemoryAddress;
 import java.lang.foreign.MemorySession;
+import java.util.Collection;
 
 import static jolt.headers.JoltPhysicsC.*;
 
@@ -120,6 +121,10 @@ public final class PhysicsSystem extends DeletableJoltNative {
         }
     }
 
+    public void addConstraints(Collection<? extends Constraint> constraints) {
+        addConstraints(constraints.toArray(new Constraint[0]));
+    }
+
     public void removeConstraint(Constraint constraint) {
         JPC_PhysicsSystem_RemoveConstraint(handle, constraint.address());
     }
@@ -132,6 +137,10 @@ public final class PhysicsSystem extends DeletableJoltNative {
             }
             JPC_PhysicsSystem_RemoveConstraints(handle, nConstraints, constraints.length);
         }
+    }
+
+    public void removeConstraints(Collection<? extends Constraint> constraints) {
+        removeConstraints(constraints.toArray(new Constraint[0]));
     }
 
     // TODO getConstraints
